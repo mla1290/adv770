@@ -621,8 +621,8 @@ PLACE +BALCONY
    a small, dark tunnel leads out to the west.
 #
 PLACE +NOWHERE
-   You are in the middle of a gray, misty nowhere.
-  %You are in the middle of a gray, misty nowhere. You peer about,
+   You are in the middle of a grey, misty nowhere.
+  %You are in the middle of a grey, misty nowhere. You peer about,
    groping with your confused mind for some distinct form or feature,
    but there is nothing to be seen, heard, felt, smelt or otherwise
    experienced except for the vast nothingness.
@@ -847,7 +847,7 @@ PLACE CATACOMBS.LOBBY
    You're by the entrance to the Magical Catacombs.
   %You are in a small square room with a dark exit leading east,
    and an imposing archway occupying most of the southern wall.
-   Chiseled above the archway are the words
+   Chiselled above the archway are the words
 
   +        ENCHANTED CATACOMBS
 
@@ -926,7 +926,7 @@ PLACE CATACOMBS.EXIT
 PLACE NEW.DEN
    You're in the new thieves den.
   %This must be a thieves den!  There is a large shelf on one wall,
-   labeled 'SWAG'. The only exit leads east.
+   labelled 'SWAG'. The only exit leads east.
 #
 PLACE +AUDIENCE
    You're at west end of Audience Hall.
@@ -1676,7 +1676,7 @@ PLACE +TRACK, +TRACKS
   %You are standing at a curve on a wide forest track amidst a
    dense forest, which looks particularly dark to west and northwest.
    The track climbs up a steep hill to the east, while to the
-   southwest it winds it way through the forest, vaguely in the
+   southwest it winds its way through the forest, vaguely in the
    direction of a white tower, that can be seen above the trees.
 #
 PLACE OUTSIDE.GATES
@@ -1793,7 +1793,7 @@ PLACE NORTH.ATTIC
 PLACE +DEN
    You're in the thieves den.
   %This must be a thieves den!  There is a large shelf on one wall,
-   labeled 'SWAG'. A hand-written note is pinned to the wall just 
+   labelled 'SWAG'. A hand-written note is pinned to the wall just 
    above the shelf.
 #
 PLACE +PANTRY
@@ -3027,8 +3027,8 @@ PLACE WRONG.VENUE
    the east wall.
 #
 PLACE INSIDE.WELL
-  %You are hanging by your arms inside the dark well.
-   You are inside the well, hanging by your arms off its crumbling 
+   You are hanging by your arms inside the dark well.
+  %You are inside the well, hanging by your arms off its crumbling 
    inside lip. Above you can see the blues sky, but the daylight fails to
    penetrate the dark depth of the well below you.   
 #

@@ -11,6 +11,13 @@ at road
    fin
    call by.house.actions
    respond grass, attention.to.detail, grass
+   ifeq status, 1
+      or
+   ifkey door
+      and
+   ifany lock, unlock, close, open
+      quip wellhouse.no.door
+   fin
    ifkey drink    # In case he said "drink stream"
       proceed
    fin
@@ -101,7 +108,9 @@ at road
       move nw, path, path
       respond pipe, upstream, pipe.too.narrow, 1
    fin
-   respond pipe, hah!
+   ifkey pipe
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -206,6 +215,13 @@ at building
       quip spring.is.water
    fin
    respond well, wellhouse.you.dummy
+   ifeq status, 1
+      or
+   ifkey door
+      and
+   ifany lock, unlock, close, open
+      quip wellhouse.no.door
+   fin
    ifkey read
       and
    ifeq status, 1
@@ -230,7 +246,8 @@ at building
          proceed
       fin
       respond bricks, wall, house.bricks
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifkey look
       respond pipe, water.pipes
@@ -455,7 +472,8 @@ at depression
       ifany dig, dynamite
          proceed
       fin
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifany bed, rock
       ifkey dig
@@ -551,7 +569,9 @@ at in.cave
       move pit, pit
       move out, debris, debris
    fin
-   respond crawl, cobbles, hah!
+   ifany crawl, cobbles
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -577,7 +597,9 @@ at cobbles
       move inward, dark, west, debris, debris
       move pit, pit
    fin
-   respond cobbles, crawl, hah!
+   ifany cobbles, crawl
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -591,6 +613,9 @@ at debris
       respond passage, tunnel, corridor, is.passage, 0
       respond canyon, is.canyon, 0
       proceed
+   fin
+   ifkey say xyzzy
+      set status, 1
    fin
    ifkey go
       or
@@ -614,7 +639,9 @@ at debris
          smove building, foof
       fin
    fin
-   respond note, hah!
+   ifany note
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -639,7 +666,9 @@ at canyon
          smove depression, in.cave, cant.pass.grate
       fin
    fin
-   respond canyon, hah!
+   ifany canyon
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -669,7 +698,9 @@ at bird.chamber
          smove depression, in.cave, cant.pass.grate
       fin
    fin
-   respond chamber, canyon, passage, walls, stone, river, hah!
+   ifany chamber, canyon, passage, walls, stone, river
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -727,7 +758,9 @@ at pit
          call splatter
       fin
    fin
-   respond crack, pit, steps, hah!
+   ifany crack, pit, steps
+      flag context, arg2.here
+   fin
    lda throw.here, mists
    lda throw.text, throw.pit
 #
@@ -775,7 +808,9 @@ at mists
          quip dome.unclimbable
       fin
    fin
-   respond passage, tunnel, corridor, crack, staircase, steps, hah!
+   ifany passage, tunnel, corridor, crack, staircase, steps
+      flag context, arg2.here
+   fin
    set throw.it, true
    lda throw.text, up.the.dome
    lda throw.here, pit
@@ -831,14 +866,17 @@ at east.of.fissure
       fin
       respond bank, you.are.there
    fin
-   respond fissure, mist, hall, bank, hah!
+   ifany fissure, mist, hall, bank
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
 at nugget.room
    ifkey note
       respond look, read, nugget.room.note, nugget.room
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifkey look
       proceed
@@ -938,7 +976,9 @@ at mtking
       fin
       move place.ptr
    fin
-   respond passage, tunnel, corridor, steps, hall, hah!
+   ifany passage, tunnel, corridor, steps, hall
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -956,7 +996,8 @@ at west.pit.end
             quip too.far.up, hole
          fin
       else
-         quip hah!
+         flag context, arg2.here
+         proceed
       fin
    fin
    ifkey climb
@@ -1032,7 +1073,8 @@ at west.pit
          or
       ifeq status, 1
       else
-         quip hah!
+         flag context, arg2.here
+         proceed
       fin
    fin
    ifany go, pit
@@ -1177,7 +1219,9 @@ at west.of.fissure
       fin
       respond bank, you.are.there
    fin
-   respond fissure, mist, hall, bank, hah!
+   ifany fissure, mist, hall, bank
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -1203,7 +1247,9 @@ at low.n/s.passage
    fin
    lda throw.here, dirty
    lda throw.text, throw.hole
-   respond passage, tunnel, corridor, hole, hah!
+   ifany passage, tunnel, corridor, hole
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -1229,7 +1275,9 @@ at south.side.chamber
       move down, steps, stairs, shaft, half.stairs
       respond chamber, you.are.there
    fin
-   respond steps, stairs, chamber, hah!
+   ifany steps, stairs, chamber
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -1248,7 +1296,9 @@ at west.side.chamber
       move west, up, passage, crossover
       respond chamber, you.are.there
    fin
-   respond chamber, passage, hah!
+   ifany chamber, passage
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -1291,7 +1341,9 @@ at y2
          call follow.it, east.window, west, low.n/s.passage, east
       fin
    fin
-   respond passage, tunnel, corridor, jumble, wall, rock, y2, hah!
+   ifany passage, tunnel, corridor, jumble, wall, rock, y2
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -1310,7 +1362,9 @@ at jumble
       move up, mists
       respond n, ne, e, se, s, sw, w, nw, lost.in.jumble
    fin
-   respond crack, jumble, hah!
+   ifany crack, jumble
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -1320,12 +1374,18 @@ at east.window
    fin
    call fake.window
    ifkey look
+      respond me, its.you
       respond pit, huge.pit
       respond mist, this.is.mist
       respond marks, dust, cant.tell
       respond floor, misty.floor
       respond passage, tunnel, corridor, dark.exit, passage
       proceed
+   fin
+   ifkey climb
+      and
+   ifany down, pit
+      quip climbing.out.risky
    fin
    ifany go, jump
       and
@@ -1339,7 +1399,9 @@ at east.window
    ifeq status, 1
       move east, passage, tunnel, corridor, y2, y2
    fin
-   respond pit, mist, marks, dust, passage, tunnel, corridor, hah!
+   ifany pit, mist, marks, dust, passage, tunnel, corridor
+      flag context, arg2.here
+   fin
    lda throw.here, mirror.canyon
    lda throw.text, throw.pit
 #
@@ -1363,7 +1425,9 @@ at dirty
       move west, passage, dusty
       move bedquilt, bedquilt
    fin
-   respond crawl, passage, hole, dirt, hah!
+   ifany crawl, passage, hole, dirt
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -1387,7 +1451,9 @@ at brink
       move west, crawl, dirty
       move down, climb, pit, streampit
    fin
-   respond brink, pit, crawl, hah!
+   ifany brink, pit, crawl
+      flag context, arg2.here
+   fin
    lda throw.here, streampit
    lda throw.text, throw.pit
 #
@@ -1433,7 +1499,9 @@ at dusty
       move bedquilt, bedquilt
       respond crack, useless.cracks
    fin
-   respond dust, rock, hole, passage, crack, hah!
+   ifany dust, rock, hole, passage, crack
+      flag context, arg2.here
+   fin
    lda throw.here, complex
    lda throw.text, throw.hole
 #
@@ -1457,7 +1525,9 @@ at west.end.of.mists
       move west, crawl, hall, long.hall.east
       smove north, west.of.fissure, crawled.back.to.mists
    fin
-   respond hall, passage, crawl, hah!
+   ifany hall, passage, crawl
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -1648,7 +1718,9 @@ at mazea.by.pit
       move north, mazea.83
       move east, mazea.84
    fin
-   respond column, stalactite, wall, brink, hah!
+   ifany column, stalactite, wall, brink
+      flag context, arg2.here
+   fin
    lda throw.here, bird.chamber
    lda throw.text, throw.pit
 #
@@ -1681,7 +1753,9 @@ at long.hall.east
       move west, hall, long.hall.west
       move north, down, hole, crossover
    fin
-   respond hall, crawl, hole, hah!
+   ifany hall, crawl, hole
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -1701,7 +1775,9 @@ at long.hall.west
       move south, mazed.107
       respond passage, tunnel, corridor, need.a.direction
    fin
-   respond passage, tunnel, corridor, hah!
+   ifany passage, tunnel, corridor
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -1719,7 +1795,9 @@ at crossover
       move south, long.hall.west
       respond passage, tunnel, corridor, too.many.exits, passage
    fin
-   respond passage, tunnel, corridor, hah!
+   ifany passage, tunnel, corridor
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -1733,7 +1811,9 @@ at dead.end.1
    ifeq status, 1
       move out, crawl, south, crossover
    fin
-   respond crawl, hah!
+   ifany crawl
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -1758,7 +1838,9 @@ at complex
          call follow.it, bedquilt, west, shell, north
       fin
    fin
-   respond crawl, passage, hah!
+   ifany crawl, passage
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -1824,7 +1906,9 @@ at bedquilt
          fin
       fin
    fin
-   respond bedquilt, passage, hole, hah!
+   ifany bedquilt, passage, hole
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -1868,7 +1952,9 @@ at swiss
          fin
       fin
    fin
-   respond block, passage, wall, hole, hah!
+   ifany block, passage, wall, hole
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -1892,7 +1978,9 @@ at east.pit.end
          call follow.it, swiss, east, west.pit.end, west
       fin
    fin
-   respond path, passage, pit, opening, hole, slab, path, hah!
+   ifany path, passage, pit, opening, hole, slab, path
+      flag context, arg2.here
+   fin
    lda throw.here, east.pit
    lda throw.text, throw.pit
 #
@@ -1931,7 +2019,9 @@ at slab
          call follow.it, bedquilt, north, west.pit.end, south
       fin
    fin
-   respond passage, tunnel, corridor, ceiling, hole, boulder, wall, slab, hah!
+   ifany passage, tunnel, corridor, ceiling, hole, boulder, wall, slab
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -1956,7 +2046,9 @@ at secret.n/s.canyon.1
          call follow.it, mirror.canyon, north, secret.n/e.canyon.1, south
       fin
    fin
-   respond canyon, hah!
+   ifany canyon
+      flag context, arg2.here
+   fin
    lda throw.here, slab
    lda throw.text, throw.room
 #
@@ -1982,7 +2074,9 @@ at secret.n/s.canyon.2
          call follow.it, junction, n, top.of.stalactite, s
       fin
    fin
-   respond canyon, passage, hah!
+   ifany canyon, passage
+      flag context, arg2.here
+   fin
    lda throw.here, bedquilt
    lda throw.text, throw.room
 #
@@ -2006,7 +2100,9 @@ at junction
       respond canyon, too.many.exits, canyon
       respond junction, you.are.there
    fin
-   respond canyon, hah!
+   ifany canyon
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -2024,7 +2120,9 @@ at low
       move se, oriental, oriental
       respond crawl, too.many.exits, crawl
    fin
-   respond crawl, hah!
+   ifany crawl
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -2069,7 +2167,9 @@ at secret.e/w.canyon
          call follow.it, west.room, west, mtking, east
       fin
    fin
-   respond canyon, hah!
+   ifany canyon
+      flag context, arg2.here
+   fin
    lda throw.here, wide.n/s.canyon
    lda throw.text, throw.canyon
 #
@@ -2091,7 +2191,9 @@ at wide.n/s.canyon
          call follow.it, tight.dead.end, s, tall.e/w.canyon, n
       fin
    fin
-   respond canyon, hah!
+   ifany canyon
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -2105,7 +2207,9 @@ at tight.dead.end
    ifeq status, 1
       move out, north, canyon, wide.n/s.canyon
    fin
-   respond canyon hah!
+   ifany canyon
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -2132,7 +2236,9 @@ at tall.e/w.canyon
          call follow.it, dead.end.3, west, wide.n/s.canyon, e
       fin
    fin
-   respond canyon, crawl, entrance, arch, hah!
+   ifany canyon, crawl, entrance, arch
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -2140,7 +2246,8 @@ at valuers
    ifany note, notice, message, sign
       respond look, read, valuers.note
       respond get, leave.it.alone, note
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifkey bell-pull
       and
@@ -2283,14 +2390,17 @@ at valuers
    ifeq status, 1
       move north, out, tall.e/w.canyon
    fin
-   respond niche, bell, note, notice, message, sign, hah!
+   ifany niche, bell, note, notice, message, sign
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
 at dead.end.3
    ifany words, inscription, note, message
       respond look, read, jerry.words
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifkey look
       respond boulders, mass.of.boulders
@@ -2302,7 +2412,9 @@ at dead.end.3
    ifeq status, 1
       move south, out, tall.e/w.canyon
    fin
-   respond boulders, hah!
+   ifany boulders
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -2403,7 +2515,9 @@ at narrow.corridor
       move east, plant, down, climb, hole, west.pit
       move west, corridor, giant.room
    fin
-   respond tunnel, passage, corridor, plant, leaves, hole, hah!
+   ifany tunnel, passage, corridor, plant, leaves, hole
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -2422,7 +2536,9 @@ at incline
       move north, cavern, passage, cavern
       smove down, climb, incline, low, oof
    fin
-   respond passage, tunnel, corridor, incline, hah!
+   ifany passage, tunnel, corridor, incline
+      flag context, arg2.here
+   fin
    lda throw.here, low
    lda throw.text, throw.room
 #
@@ -2445,8 +2561,12 @@ at giant.room
       move north, immense.n/s.passages
       respond passage, tunnel, corridor, too.many.exits, passage
    fin
-   respond ceiling, note, notice, message, inscription, words, hah!
-   respond tunnel, passage, corridor, hah!
+   ifany ceiling, note, notice, message, inscription, words
+      flag context, arg2.here
+   fin
+   ifany tunnel, passage, corridor
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -2510,7 +2630,9 @@ at immense.n/s.passages
          move cavern
       fin
    fin
-   respond passage, tunnel, corridor, hah!
+   ifany passage, tunnel, corridor
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -2553,7 +2675,12 @@ at cavern
          quip text.ptr
       fin
    fin
-   respond waterfall, stream, whirlpool, passage, hole, hah!
+   ifany waterfall, 
+      flag context, arg2.distant
+   fin
+   ifany  passage, hole, stream, whirlpool
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -2578,7 +2705,9 @@ at soft
       move west, out, swiss, swiss
       respond north, south, sw, nw, ne, solid.rock
    fin
-   respond moss, carpet, hah!
+   ifany moss, carpet
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -2595,7 +2724,9 @@ at oriental
       move west, crawl, low
       move north, passage, up, cavern, misty
    fin
-   respond passage, tunnel, corridor, crawl, hah!
+   ifany passage, tunnel, corridor, crawl
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -2633,7 +2764,9 @@ at misty
    fin
    lda throw.text, throw.cavern
    lda throw.here, cavern
-   respond ceiling, mist, fissure, path, cavern, hah!
+   ifany ceiling, mist, fissure, path, cavern
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -2675,7 +2808,9 @@ at alcove
          move plover
       fin
    fin
-   respond tunnel, passage, corridor, path, alcove, hah!
+   ifany tunnel, passage, corridor, path, alcove
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -2723,7 +2858,9 @@ at plover
          move alcove
       fin
    fin
-   respond chamber, tunnel, corridor, hah!
+   ifany chamber, tunnel, corridor
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -2745,7 +2882,9 @@ at dark
          move plover
       fin
    fin
-   respond tunnel, passage, corridor, hah!
+   ifany tunnel, passage, corridor
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -2767,7 +2906,9 @@ at arched
       fin
       respond arched, hall, you.are.there
    fin
-   respond passage, tunnel, corridor, arched, hall, arch, hah!
+   ifany passage, tunnel, corridor, arched, hall, arch
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -2794,7 +2935,9 @@ at shell
          move complex
       fin
    fin
-   respond passage, tunnel, corridor, stone, shell, rock, wall, floor, hah!
+   ifany passage, tunnel, corridor, stone, shell, rock, wall, floor
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -2815,7 +2958,9 @@ at ragged.corridor
          call follow.it, shell, up, culdesac, down
       fin
    fin
-   respond wall, corridor, hah!
+   ifany wall, corridor
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -2826,7 +2971,9 @@ at culdesac
       move up, out, corridor, ragged.corridor
       move shell, shell
    fin
-   respond tunnel, corridor, passage, hah!
+   ifany tunnel, corridor, passage
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -2851,7 +2998,9 @@ at anteroom
       respond anteroom, you.are.there
       respond passage, tunnel, corridor, too.many.exits, passage
    fin
-   respond passage, tunnel, corridor, anteroom, remnants, hah!
+   ifany passage, tunnel, corridor, anteroom, remnants
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -2875,7 +3024,9 @@ at mazed.107
       move down, long.hall.west
       respond tunnel, passage, corridor, too.many.exits, passage
    fin
-   respond tunnel, passage, corridor, hah!
+   ifany tunnel, passage, corridor
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -2902,7 +3053,9 @@ at witts.end
          move anteroom
       fin
    fin
-   respond passage, tunnel, corridor, hah!
+   ifany passage, tunnel, corridor
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -2926,19 +3079,27 @@ at mirror.canyon
       fin
    fin
    respond mirror, window, too.far.up, mirror
-   respond canyon, mist, hah!
+   ifany canyon, mist
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
 at west.window
    call fake.window
    ifkey look
+      respond me, its.you
       respond pit, huge.pit
       respond mist, this.is.mist
       respond marks, dust, cant.tell
       respond floor, misty.floor
       respond passage, tunnel, corridor, dark.exit, passage
       proceed
+   fin
+   ifkey climb
+      and
+   ifany down, pit
+      quip climbing.out.risky
    fin
    ifany go, jump
       and
@@ -2952,7 +3113,9 @@ at west.window
    ifeq status, 1
       move west, passage, tunnel, corridor, junction
    fin
-   respond pit, mist, marks, dust, passage, tunnel, corridor, hah!
+   ifany pit, mist, marks, dust, passage, tunnel, corridor
+      flag context, arg2.here
+   fin
    lda throw.here, mirror.canyon
    lda throw.text, throw.pit
 #
@@ -2987,7 +3150,9 @@ at top.of.stalactite
          fin
       fin
    fin
-   respond stalactite, hah!
+   ifany stalactite
+      flag context, arg2.here
+   fin
    lda throw.text, throw.room
    lda throw.here, mazea.53
 #
@@ -3013,7 +3178,9 @@ at mazed.112
       move south, mazed.140
       respond passage, tunnel, corridor, too.many.exits, passage
    fin
-   respond passage, tunnel, corridor, hah!
+   ifany passage, tunnel, corridor
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -3038,7 +3205,12 @@ at reservoir
       move south, mirror, passage, mirror.canyon
       move west, causeway, causeway
    fin
-   respond hole, stream, mist, reservoir, passage, causeway, hah!
+   ifany hole, stream, mist, causeway
+      flag context, arg2.distant
+   fin
+   ifany reservoir, passage
+      flag context, arg2.here
+   fin
    lda throw.text, throw.reservoir
    lda throw.here, ylem
 #
@@ -3075,7 +3247,9 @@ at reservoir.north
          quip cant.swim
       fin
    fin
-   respond hole, stream, reservoir, mist, tracks, passage, tunnel, corridor, hah!
+   ifany hole, stream, reservoir, mist, tracks, passage, tunnel, corridor
+      flag context, arg2.here
+   fin
    lda throw.text, throw.reservoir
    lda throw.here, ylem
 #
@@ -3101,7 +3275,9 @@ at chamber
          call follow.it, balcony, ne, reservoir.north, south
       fin
    fin
-   respond mist, wall, passage, chamber, hah!
+   ifany mist, wall, passage, chamber
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -3144,8 +3320,12 @@ at balcony
       move reservoir, reservoir.north
       respond balcony, you.are.there
    fin
-   respond gap, stream, pool, balcony, chamber, tunnel, plaque, hah!
-   respond note, inscription, words, torches, walls, balustrade, hah!
+   ifany gap, stream, pool, balcony, torches, walls, balustrade
+      flag context, arg2.distant
+   fin
+   ifany chamber, tunnel, plaque, note, inscription, words
+      flag context, arg2.here
+   fin
    lda throw.text, throw.room
    lda throw.here, ylem
 #
@@ -3168,7 +3348,8 @@ at sw.of.chasm
    lda throw.here, ylem
    ifkey notice
       respond read, look, same.as.before
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifkey look
       respond path, corridor, dark.exit, corridor
@@ -3248,7 +3429,9 @@ at sw.of.chasm
          move ne.of.chasm
       fin
    fin
-   respond tunnel, passage, corridor, path, hah!
+   ifany tunnel, passage, corridor, path
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -3268,7 +3451,9 @@ at sloping
          call follow.it, sw.of.chasm, ne, low, sw
       fin
    fin
-   respond tunnel, passage, corridor, hah!
+   ifany tunnel, passage, corridor
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -3310,7 +3495,9 @@ at secret.n/e.canyon.1
          call follow.it, secret.n/s.canyon.1, n, secret.e/w.canyon, e
       fin
    fin
-   respond canyon, hah!
+   ifany canyon
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -3345,7 +3532,9 @@ at secret.n/e.canyon.2
          call follow.it, secret.n/s.canyon.1, n, secret.e/w.canyon, e
       fin
    fin
-   respond canyon, hah!
+   ifany canyon
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -3355,7 +3544,8 @@ at ne.of.chasm
    fin
    ifkey notice
       respond read, look, same.as.before
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifkey look
       respond path, nothing.special, path
@@ -3480,7 +3670,9 @@ at ne.of.chasm
          move sw.of.chasm
       fin
    fin
-   respond path, hah!
+   ifany path
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -3502,7 +3694,9 @@ at corridor
          call follow.it, ne.of.chasm, west, fork, east
       fin
    fin
-   respond tunnel, passage, corridor, hah!
+   ifany tunnel, passage, corridor
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -3522,7 +3716,9 @@ at fork
       move barren, barren
       respond tunnel, passage, corridor, fork, too.many.exits, corridor
    fin
-   respond tunnel, passage, corridor, fork, hah!
+   ifany tunnel, passage, corridor, fork
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -3542,7 +3738,9 @@ at warmjunctn
       move north, view, breathtaker
       move east, crawl, boulder.chamber
    fin
-   respond junction, passage, crawl, hah!
+   ifany junction, passage, crawl
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -3566,7 +3764,8 @@ at breathtaker
    fin
    ifkey volcano
       respond listen, volcano.roar
-      quip hah!
+      flag context, arg2.distant
+      proceed
    fin
    ifkey jump, up
       quip you.jump
@@ -3617,10 +3816,15 @@ at breathtaker
          call coroner
       fin
    fin
-   respond volcano, passage, gorge, river, fire, shadows, hah!
-   respond alabaster, formations, roof, ceiling, wall, shadows, hah!
-   respond entrance, valley, fountains, hah!
-   respond geyser, lake, island, ash, hah!
+   ifany volcano, passage, gorge, river, fire, shadows, roof, ceiling
+      flag context, arg2.distant
+   fin
+   ifany alabaster, formations, wall, entrance
+      flag context, arg2.here
+   fin
+   ifany geyser, lake, island, ash, valley, fountains
+      flag context, arg2.distant
+   fin
    lda throw.text, throw.gorge
    lda throw.here, ylem
 #
@@ -3647,7 +3851,9 @@ at boulder.chamber
       move view, breathtaker
       respond chamber, you.are.there
    fin
-   respond boulders, chamber, wall, hah!
+   ifany boulders, chamber, wall
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -3669,7 +3875,9 @@ at limestone
          call follow.it, barren, south, fork, north
       fin
    fin
-   respond passage, tunnel, corridor, limestone, formations, hah!
+   ifany passage, tunnel, corridor, limestone, formations
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -3690,7 +3898,9 @@ at barren
       move east, in, barren, bear, bear.room
       move view, breathtaker
    fin
-   respond entrance, limestone, passage, hah!
+   ifany entrance, limestone, passage
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -3716,7 +3926,9 @@ at bear.room
          quip bear.guards.axe, arg2
       fin
    fin
-   respond marks, dust, exit, hah!
+   ifany marks, dust, exit
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -3740,7 +3952,9 @@ at mazed.131
       move east, mazed.112
       respond passage, tunnel, corridor, too.many.exits, passage
    fin
-   respond passage, tunnel, corridor, hah!
+   ifany passage, tunnel, corridor
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -3764,7 +3978,9 @@ at mazed.132
       move se, mazed.112
       respond passage, tunnel, corridor, too.many.exits, passage
    fin
-   respond passage, tunnel, corridor, hah!
+   ifany passage, tunnel, corridor
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -3788,7 +4004,9 @@ at mazed.133
       move south, mazed.112
       respond passage, tunnel, corridor, too.many.exits, passage
    fin
-   respond passage, tunnel, corridor, hah!
+   ifany passage, tunnel, corridor
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -3812,7 +4030,9 @@ at mazed.134
       move sw, mazed.112
       respond passage, tunnel, corridor, too.many.exits, passage
    fin
-   respond passage, tunnel, corridor, hah!
+   ifany passage, tunnel, corridor
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -3836,7 +4056,9 @@ at mazed.135
       move up, mazed.112
       respond passage, tunnel, corridor, too.many.exits, passage
    fin
-   respond passage, tunnel, corridor, hah!
+   ifany passage, tunnel, corridor
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -3860,7 +4082,9 @@ at mazed.136
       move north, mazed.112
       respond passage, tunnel, corridor, too.many.exits, passage
    fin
-   respond passage, tunnel, corridor, hah!
+   ifany passage, tunnel, corridor
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -3884,7 +4108,9 @@ at mazed.137
       move west, mazed.112
       respond passage, tunnel, corridor, too.many.exits, passage
    fin
-   respond passage, tunnel, corridor, hah!
+   ifany passage, tunnel, corridor
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -3908,7 +4134,9 @@ at mazed.138
       move nw, mazed.112
       respond passage, tunnel, corridor, too.many.exits, passage
    fin
-   respond passage, tunnel, corridor, hah!
+   ifany passage, tunnel, corridor
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -3932,7 +4160,9 @@ at mazed.139
       move ne, mazed.112
       respond passage, tunnel, corridor, too.many.exits, passage
    fin
-   respond passage, tunnel, corridor, hah!
+   ifany passage, tunnel, corridor
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -3955,7 +4185,9 @@ at mazed.140
    ifeq status, 1
       move north, out, passage, tunnel, corridor, mazed.112
    fin
-   respond passage, tunnel, corridor, hah!
+   ifany passage, tunnel, corridor
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -3993,7 +4225,9 @@ at sandstone
       move down, steps, cubicle
       move west, out, hall, opening, mists, mists
    fin
-   respond chamber, steps, rock, wall, sandstone, opening, hah!
+   ifany chamber, steps, rock, wall, sandstone, opening
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -4020,7 +4254,9 @@ at morion
    ifeq status, 1
       move north, out, passage, corridor, tunnel, hall, mtking
    fin
-   respond passage, corridor, tunnel, crystals, hah!
+   ifany passage, corridor, tunnel, crystals
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -4052,7 +4288,9 @@ at vault
          move mtking
       fin
    fin
-   respond vault, tunnel, passage, exit, hah!
+   ifany vault, tunnel, passage, exit
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -4065,7 +4303,8 @@ at insafe                    # Inside the safe - strange stuff happens here!
       respond close, no.handle
       respond open, already.open, arg2
       respond look, insafe.info
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifkey look
       proceed
@@ -4094,7 +4333,9 @@ at wide.n/s.corridor
          call follow.it, mtking, south, wide.e/w.corridor, north
       fin
    fin
-   respond tunnel, passage, corridor, hah!
+   ifany tunnel, passage, corridor
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -4115,7 +4356,9 @@ at wide.e/w.corridor
          call follow.it, toolroom, east, wide.n/s.corridor, west
       fin
    fin
-   respond tunnel, passage, corridor, hah!
+   ifany tunnel, passage, corridor
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -4131,7 +4374,9 @@ at toolroom
    ifeq status, 1
       move out, south, corridor, wide.e/w.corridor
    fin
-   respond tunnel, passage, corridor, hah!
+   ifany tunnel, passage, corridor
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -4148,7 +4393,9 @@ at division.in.passage
       move east, cubicle
       respond passage, tunnel, corridor, need.a.direction
    fin
-   respond corridor, passage, tunnel, hah!
+   ifany corridor, passage, tunnel
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -4166,7 +4413,9 @@ at cubicle
       move up, steps, east, doorway, sandstone
       move south, passage, corridor, out, division.in.passage
    fin
-   respond steps, sandstone, doorway, passage, corridor, tunnel, hah!
+   ifany steps, sandstone, doorway, passage, corridor, tunnel
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -4185,7 +4434,9 @@ at spherical
       move out, south, passage, tunnel, corridor, division.in.passage
       respond chamber, you.are.there
    fin
-   respond passage, tunnel, corridor, chamber, wall, hah!
+   ifany passage, tunnel, corridor, chamber, wall
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -4207,7 +4458,9 @@ at irregular.tunnel
          call follow.it, glassy, north, giant.room, south
       fin
    fin
-   respond ceiling, tunnel, blockage, hah!
+   ifany ceiling, tunnel, blockage
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -4233,14 +4486,17 @@ at glassy
          move lair
       fin
    fin
-   respond passage, corridor, tunnel, wall, hah!
+   ifany passage, corridor, tunnel, wall
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
 at lair
    ifkey runes
       respond look, read, translate, sorcerous.runes
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifkey look
       respond stalactite, light, liquid.light
@@ -4264,8 +4520,12 @@ at lair
       fin
       respond lair, you.are.there
    fin
-   respond stalactite, wall, shadow, shadows, hah!
-   respond passage, tunnel, corridor, lair, hah!
+   ifany stalactite
+      flag context, arg2.distant
+   fin
+   ifany passage, tunnel, corridor, lair, wall, shadow, shadows
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -4294,7 +4554,9 @@ at bottomless.brink
          call follow.it, bottomless.brink.south, w, bottomless.brink.east, e
       fin
    fin
-   respond brink, edge, pit, ledge, passage, hah!
+   ifany brink, edge, pit, ledge, passage
+      flag context, arg2.here
+   fin
    lda throw.text, throw.pit
    lda throw.here, ylem
 #
@@ -4322,7 +4584,9 @@ at bottomless.brink.south
       move north, ledge, bottomless.brink
       move southeast, tunnel, passage, corridor, ice
    fin
-   respond ledge, tunnel, passage, corridor, brink, edge, pit, hah!
+   ifany ledge, tunnel, passage, corridor, brink, edge, pit
+      flag context, arg2.here
+   fin
    lda throw.text, throw.pit
    lda throw.here, ylem
 #
@@ -4340,7 +4604,9 @@ at ice
       move northwest, bottomless.brink.south
       smove down, east, slide, maze, slide, oof
    fin
-   respond slide, slope, hah!
+   ifany slide, slope
+      flag context, arg2.here
+   fin
    lda throw.text, throw.slide
    lda throw.here, slide
 #
@@ -4367,7 +4633,9 @@ at slide
          call follow.it, ice.cave.2a, south, ice.cave.4, nw
       fin
    fin
-   respond slide, slope, hah!
+   ifany slide, slope
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -4850,8 +5118,12 @@ at ice.cave.30
       smove thurb, ice, foof
       respond chamber, you.are.there
    fin
-   respond chamber, tunnel, passage, corridor, sign, notice, message, hah!
-   respond letters, words, hah!
+   ifany chamber, tunnel, passage, corridor, sign, notice, message
+      flag context, arg2.here
+   fin
+   ifany letters, words
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -4880,7 +5152,9 @@ at bottomless.brink.east
       move north, ledge, passage, corridor, tunnel, bottomless.brink
       move in, northeast, crack, crack.entry
    fin
-   respond pit, brink, ledge, passage, tunnel, corridor, crack, hah!
+   ifany pit, brink, ledge, passage, tunnel, corridor, crack
+      flag context, arg2.here
+   fin
    lda throw.text, throw.pit
    lda throw.here, ylem
 #
@@ -4902,7 +5176,9 @@ at crack.entry
          call follow.it, crack.north, se, bottomless.brink.east, sw
       fin
    fin
-   respond crack, hah!
+   ifany crack
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -4937,7 +5213,9 @@ at crack.north
          move crack.south
       fin
    fin
-   respond crack, passage, hah!
+   ifany crack, passage
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -4952,7 +5230,9 @@ at crack.south
       move north, out, passage, crack.north
       move south, in, crawl, small.chamber
    fin
-   respond crawl, passage, hah!
+   ifany crawl, passage
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -4970,7 +5250,9 @@ at small.chamber
       move north, out, crawl, crack.south
       respond chamber, you.are.there
    fin
-   respond crawl, chamber, hah!
+   ifany crawl, chamber
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -5020,7 +5302,9 @@ at arched.corridor.1
       respond sand, coral, not.required
       respond debris, no.future.in.it, debris
    fin
-   respond fork, debris, arch, arched, passage, coral, hah!
+   ifany fork, debris, arch, arched, passage, coral
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -5057,7 +5341,9 @@ at arched.corridor.2
    ifkey get
       respond sand, coral not.required
    fin
-   respond coral, passage, bend, patch, sand, quicksand, arch, arched, hah!
+   ifany coral, passage, bend, patch, sand, quicksand, arch, arched
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -5082,7 +5368,9 @@ at arched.fork
    ifkey get, coral
       quip not.required
    fin
-   respond passage, tunnel, corridor, fork, arch, arched, coral, hah!
+   ifany passage, tunnel, corridor, fork, arch, arched, coral
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -5107,7 +5395,9 @@ at fourier
    ifkey get, coral
       respond coral, not.required
    fin
-   respond passage, tunnel, corridor, fourier, coral, hah!
+   ifany passage, tunnel, corridor, fourier, coral
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -5141,7 +5431,12 @@ at rock.shelf
    ifkey get, coral
       quip not.required
    fin
-   respond sea, steps, horizon, coral, shelf, beach, passage, hah!
+   ifany beach, sea, horizon
+      flag context, arg2.distant
+   fin
+   ifany steps, coral, shelf, passage
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -5154,7 +5449,10 @@ at rocky.beach
       respond steps, beach.steps
       respond outcrops, jutting.outcrop
    fin
-   respond shelf, steps, outcrops, stem, hah!
+   ifany shelf, steps, outcrops, stem
+      flag context, arg2.here
+      proceed
+   fin
    call beach.stuff
    ifkey up, steps
       set status, 1
@@ -5168,7 +5466,9 @@ at rocky.beach
       move north, sandy.beach
       move up, steps, east, rock.shelf
    fin
-   respond shelf, steps, outcrops, hah!
+   ifany shelf, steps, outcrops
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -5285,7 +5585,8 @@ at beanstalk.bottom
    fin
    ifkey chalk
       respond get, look, no.future.in.it, chalk
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifkey look
       respond cliff, white.cliffs
@@ -5303,7 +5604,10 @@ at beanstalk.bottom
       ifkey chew, stem
          call chew.stem
       fin
-      respond stem, foliage, hah!
+      ifany stem, foliage
+         flag context, arg2.here
+         proceed
+      fin
    fin      
    ifkey go
       or
@@ -5342,11 +5646,25 @@ at beanstalk.middle
       respond crack, sapling.crack
       proceed
    fin
+   ifkey get
+      and
+   ifany cliff, rock, stone
+      ifhave sunstone
+         and
+      ifge sunstone, 6
+         and
+      ifle sunstone, 8
+         quip no.hold.cliff, 1
+      else
+         quip no.hold.cliff, 0
+      fin
+   fin
    ifkey chew, stem
       call chew.stem
    fin
    ifany stem, foliage
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifkey beanstalk
       and
@@ -5377,7 +5695,12 @@ at beanstalk.middle
          quip ledge?
       fin
    fin
-   respond ledge, sea, horizon, stem, foliage, hah!
+   ifany ledge, stem, foliage
+      flag context, arg2.here
+   fin
+   ifany sea, horizon
+      flag context, arg2.distant
+   fin
    lda drop.here, beanstalk.bottom
    lda drop.text, down.the.foliage
    set throw.it, true
@@ -5398,9 +5721,15 @@ at ledge
       respond island, island.too.far
       proceed
    fin
+   ifkey get
+      and
+   ifany cliff, rock, stone
+      quip no.hold.cliff, 1
+   fin
    ifany beanstalk, foliage
       respond get, no.grab.beanstalk
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifkey sunstone
       and
@@ -5419,7 +5748,12 @@ at ledge
       respond north, sapling.blocks
       respond jump, sw, west, nw, sunstone.saves
    fin
-   respond ledge, crack, beanstalk sea, horizon, island, hah!
+   ifany ledge, crack, beanstalk
+      flag context, arg2.here
+   fin
+   ifany sea, horizon, island
+      flag context, arg2.distant
+   fin
    lda drop.here, beanstalk.bottom
    lda drop.text, down.to.the.beach
    set throw.it, true
@@ -5452,7 +5786,13 @@ at beanstalk.top
    ifkey chew, stem
       call chew.stem
    fin
-   respond grass, banks, stem, foliage, sea, horizon, island, hah!
+   ifany grass, stem, foliage
+      flag context, arg2.here
+      proceed
+   fin
+   ifany sea, horizon, island, banks
+      flag context, arg2.distant
+   fin
    ifkey climb
       set status, 1
    fin
@@ -5501,7 +5841,9 @@ at jonah
       move south, in, jonah, hall, in.jonah
       move west, out, passage, coral, fork, arched.fork
    fin
-   respond passage, tunnel, corridor, coral, hall, jonah, ribs, wall, hah!
+   ifany passage, tunnel, corridor, coral, hall, jonah, ribs, wall
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -5524,7 +5866,9 @@ at in.jonah
    ifeq status, 1
       move north, out, jonah
    fin
-   respond darkness, hah!
+   ifany darkness
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -5545,7 +5889,8 @@ at faces
    fin
    ifkey volcano
       respond listen, volcano.roar
-      quip hah!
+      flag context, arg2.distant
+      proceed
    fin
    ifkey cross
       set status, 1
@@ -5572,7 +5917,12 @@ at faces
          call coroner
       fin
    fin
-   respond volcano, faces, valley, carving, figure, hah!
+   ifkey faces
+      flag context, arg2.distant
+   fin
+   ifany valley, carving, figure
+      flag context, arg2.here
+   fin
    lda throw.text, throw.gorge
    lda throw.here, ylem
 #
@@ -5607,7 +5957,12 @@ at by.figure
       move south, faces
       respond valley, you.are.there
    fin
-   respond valley, wall, faces, feet, hah!
+   ifany valley, wall, feet
+      flag context, arg2.here
+   fin
+   ifkey faces
+      flag context, arg2.distant
+   fin
 #
 #=====================================================================
 #
@@ -5628,7 +5983,9 @@ at plain.1
          move plain.2
       fin
    fin
-   respond passage, tunnel, corridor, hah!
+   ifany passage, tunnel, corridor
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -5688,7 +6045,9 @@ at plain.3
          quit
       fin
    fin
-   respond opening, passage, cairn, rock, hah!
+   ifany opening, passage, cairn, rock
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -5706,7 +6065,9 @@ at nondescript
       move north, crawl, pentagram, pentagram
       move up, passage, south, plain.3
    fin
-   respond chamber, crawl, passage, hah!
+   ifany chamber, crawl, passage
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -5736,7 +6097,9 @@ at pentagram
       move north, crack, chimney, chimney
       respond pentagram, no.enter.pentagram
    fin
-   respond floor, pentagram, crawl, crack, hah!
+   ifany floor, pentagram, crawl, crack
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -5761,7 +6124,9 @@ at chimney
       move south, crack, pentagram, pentagram
       respond bottom, you.are.there
    fin
-   respond crack, chimney, bottom, hah!
+   ifany crack, chimney, bottom
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -5792,7 +6157,9 @@ at tube
          call follow.it, basalt.shelf, nw, tube.slide, south
       fin
    fin
-   respond tube, lava, chimney, hah!
+   ifany tube, lava, chimney
+      flag context, arg2.here
+   fin
    lda throw.text, throw.chimney
    lda throw.here, chimney
 #
@@ -5814,7 +6181,9 @@ at tube.slide
       smove s, down, slide, plain.1, oof
       move n, chimney, tube, tube
    fin
-   respond slide, tube, lava, hah!
+   ifany slide, tube, lava
+      flag context, arg2.here
+   fin
    lda throw.text, throw.tube
    lda throw.here, plain.1
 #
@@ -5850,7 +6219,9 @@ at north.of.basilisk
          move basilisk.den
       fin
    fin
-   respond passage, tunnel, corridor, hah!
+   ifany passage, tunnel, corridor
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -5903,7 +6274,9 @@ at basilisk.den
          move north.of.basilisk
       fin
    fin
-   respond den, passage, hah!
+   ifany den, passage
+      flag context, arg2.here
+   fin
 #  
 #=====================================================================
 #
@@ -5930,7 +6303,9 @@ at south.of.basilisk
          call follow.it, basilisk.den, south, peelgrunt, north
       fin
    fin
-   respond steps, passage, hah!
+   ifany steps, passage
+      flag context, arg2.here
+   fin
    lda throw.text, throw.steps
    lda throw.here, on.steps
 #
@@ -5972,7 +6347,9 @@ at on.steps
       move up, south.of.basilisk
       move down, depth, steps, steps.exit
    fin
-   respond steps, depth, hah!
+   ifany steps, depth
+      flag context, arg2.here
+   fin
    lda throw.text, throw.steps
    lda throw.here, steps.exit
 #
@@ -5995,7 +6372,9 @@ at steps.exit
       move north, out, passage, corridor, tunnel, fake.y2
       respond landing, you.are.there
    fin
-   respond steps, passage, corridor, tunnel, landing, hah!
+   ifany steps, passage, corridor, tunnel, landing
+      flag context, arg2.here
+   fin
    lda throw.text, throw.steps
    lda throw.here, storage
 #
@@ -6011,7 +6390,9 @@ at storage
    ifeq status, 1
       move up, steps, steps.exit
    fin
-   respond steps, hah!
+   ifany steps
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -6043,7 +6424,9 @@ at fake.y2
          call follow.it, steps.exit, south, catacombs.lobby, west
       fin
    fin
-   respond passage, tunnel, corridor, y2, rock, wall, jumble, hah!
+   ifany passage, tunnel, corridor, y2, rock, wall, jumble
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -6080,7 +6463,9 @@ at catacombs.lobby
          move catacombs.entrance
       fin
    fin
-   respond words, inscription, message, note, hah!
+   ifany words, inscription, message, note
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -6098,7 +6483,9 @@ at fake.jumble
       move west, down, fake.y2
       respond n, ne, e, se, s, sw, nw, lost.in.jumble
    fin
-   respond crack, jumble, hah!
+   ifany crack, jumble
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -6122,8 +6509,12 @@ at audience
       move west, out, doorway, catacombs.portal
       respond chamber, hall, you.are.there
    fin
-   respond doorway, ceiling, chamber, hall, pillars, granite, hah!
-   respond slab, marble, onyx, hah!
+   ifany doorway, ceiling, chamber, hall, pillars, granite
+      flag context, arg2.here
+   fin
+   ifany slab, marble, onyx
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -6168,9 +6559,12 @@ at audience.east
       respond dais, no.go.dais
       respond chamber, hall, you.are.there
    fin
-   respond ceiling, chamber, hall, pillars, granite, hah!
-   respond slab, marble, onyx, hah!
-   respond dais, metal, rods, bars, handholds, hah!
+   ifany ceiling, chamber, hall, pillars, granite, slab, marble, onyx
+      flag context, arg2.here
+   fin
+   ifany dais, metal, rods, bars, handholds
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -6192,7 +6586,9 @@ at loopy.passage
          call follow.it, by.figure, nw, golden.chamber, north
       fin
    fin
-   respond passage, tunnel, corridor, hah!
+   ifany passage, tunnel, corridor
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -6213,7 +6609,9 @@ at golden.chamber
       move south, loopy.passage
       respond chamber, you.are.there
    fin
-   respond chamber, hah!
+   ifany chamber
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -6227,7 +6625,9 @@ at arabesque
    ifeq status, 1
       move south, out, golden.chamber
    fin
-   respond arabesque, design, figure, figures, wall, hah!
+   ifany arabesque, design, figure, figures, wall
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -6252,7 +6652,9 @@ at translucent
          move golden.chamber
       fin
    fin
-   respond passage, tunnel, corridor, glow, wall, minerals, hah!
+   ifany passage, tunnel, corridor, glow, wall, minerals
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -6268,9 +6670,15 @@ at platform
    fin
    ifkey volcano
       respond listen, volcano.roar
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifkey climb, down
+      set status, 1
+   fin
+   ifkey say
+      and
+   ifany plugh, plover
       set status, 1
    fin
    ifkey go
@@ -6294,7 +6702,9 @@ at platform
       fin
       respond platform, you.are.there
    fin
-   respond volcano, lava, platform, glow, river, hah!
+   ifany lava, platform, glow, river
+      flag context, arg2.here
+   fin
    lda throw.text, throw.gorge
    lda throw.here, ylem
 #
@@ -6416,7 +6826,9 @@ at catacombs.entrance
       respond catacombs, you.are.there
       respond tunnel, passage, corridor, too.many.exits, tunnel
    fin
-   respond catacombs, tunnel, hah!
+   ifany catacombs, tunnel
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -6437,7 +6849,9 @@ at catacombs.2
       respond catacombs, you.are.there
       respond tunnel, passage, corridor, too.many.exits, tunnel
    fin
-   respond catacombs, tunnel, hah!
+   ifany catacombs, tunnel
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -6458,7 +6872,9 @@ at catacombs.3
       respond catacombs, you.are.there
       respond tunnel, passage, corridor, too.many.exits, tunnel
    fin
-   respond catacombs, tunnel, hah!
+   ifany catacombs, tunnel
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -6479,7 +6895,9 @@ at catacombs.4
       respond catacombs, you.are.there
       respond tunnel, passage, corridor, too.many.exits, tunnel
    fin
-   respond catacombs, tunnel, hah!
+   ifany catacombs, tunnel
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -6500,7 +6918,9 @@ at catacombs.5
       respond catacombs, you.are.there
       respond tunnel, passage, corridor, too.many.exits, tunnel
    fin
-   respond catacombs, tunnel, hah!
+   ifany catacombs, tunnel
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -6521,7 +6941,9 @@ at catacombs.6
       respond catacombs, you.are.there
       respond tunnel, passage, corridor, too.many.exits, tunnel
    fin
-   respond catacombs, tunnel, hah!
+   ifany catacombs, tunnel
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -6542,7 +6964,9 @@ at catacombs.7
       respond catacombs, you.are.there
       respond tunnel, passage, corridor, too.many.exits, tunnel
    fin
-   respond catacombs, tunnel, hah!
+   ifany catacombs, tunnel
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -6563,7 +6987,9 @@ at catacombs.8
       respond catacombs, you.are.there
       respond tunnel, passage, corridor, too.many.exits, tunnel
    fin
-   respond catacombs, tunnel, hah!
+   ifany catacombs, tunnel
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -6584,7 +7010,9 @@ at catacombs.9
       respond catacombs, you.are.there
       respond tunnel, passage, corridor, too.many.exits, tunnel
    fin
-   respond catacombs, tunnel, hah!
+   ifany catacombs, tunnel
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -6605,7 +7033,9 @@ at catacombs.10
       respond catacombs, you.are.there
       respond tunnel, passage, corridor, too.many.exits, tunnel
    fin
-   respond catacombs, tunnel, hah!
+   ifany catacombs, tunnel
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -6626,7 +7056,9 @@ at catacombs.11
       respond catacombs, you.are.there
       respond tunnel, passage, corridor, too.many.exits, tunnel
    fin
-   respond catacombs, tunnel, hah!
+   ifany catacombs, tunnel
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -6647,7 +7079,9 @@ at catacombs.12
       respond catacombs, you.are.there
       respond tunnel, passage, corridor, too.many.exits, tunnel
    fin
-   respond catacombs, tunnel, hah!
+   ifany catacombs, tunnel
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -6668,7 +7102,9 @@ at catacombs.13
       respond catacombs, you.are.there
       respond tunnel, passage, corridor, too.many.exits, tunnel
    fin
-   respond catacombs, tunnel, hah!
+   ifany catacombs, tunnel
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -6694,8 +7130,12 @@ at catacombs.portal
       move in, east, portal, doorway, space, audience
       move catacombs, tunnel, passage, corridor, north, catacombs.13
    fin
-   respond catacombs, portal, corridor, passage, tunnel, space, hah!
-   respond doorway, entrance, hah!
+   ifany catacombs, portal, corridor, passage, tunnel, space
+      flag context, arg2.here
+   fin
+   ifany doorway, entrance
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -6709,7 +7149,8 @@ at new.den
       respond look, read, its.swag
       respond get, leave.it.alone, label
       ifgt status, 1
-         quip hah!
+         flag context, arg2.here
+         proceed
       else
          flag status, pls.clarify
          quip do.what?, building
@@ -6741,7 +7182,9 @@ at new.den
    ifeq status, 1
       move east, out, doorway, portal, catacombs.portal
    fin
-   respond wall, shelf, exit, den, hah!
+   ifany wall, shelf, exit, den
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -6762,7 +7205,9 @@ at catacombs.14
       respond catacombs, you.are.there
       respond tunnel, passage, corridor, too.many.exits, tunnel
    fin
-   respond catacombs, tunnel, hah!
+   ifany catacombs, tunnel
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -6783,7 +7228,9 @@ at catacombs.15
       respond catacombs, you.are.there
       respond tunnel, passage, corridor, too.many.exits, tunnel
    fin
-   respond catacombs, tunnel, hah!
+   ifany catacombs, tunnel
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -6804,7 +7251,9 @@ at catacombs.exit
       respond catacombs, you.are.there
       respond tunnel, passage, corridor, too.many.exits, tunnel
    fin
-   respond catacombs, tunnel, hah!
+   ifany catacombs, tunnel
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -6839,7 +7288,9 @@ at rest.area
          move catacombs.entrance
       fin
    fin
-   respond fountain, exit, passage, tunnel, hah!
+   ifany fountain, exit, passage, tunnel
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -6872,7 +7323,9 @@ at half.stairs
       fin
       respond shaft, you.are.there
    fin
-   respond steps, stairs, minerals, wall, gold, rock, seams, shaft, hah!
+   ifany steps, stairs, minerals, wall, gold, rock, seams, shaft
+      flag context, arg2.here
+   fin
    lda throw.text, throw.downstairs
    lda throw.here, cellar.view
 #
@@ -6918,7 +7371,9 @@ at cellar.view
       move up, steps, stairs, half.stairs
       respond cellar, in, drain, portcullis.in.the.way
    fin
-   respond steps, stairs, portcullis, cellar, hah!
+   ifany steps, stairs, portcullis, cellar
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -6959,7 +7414,12 @@ at chapel
          call follow.it, top.of.chapel, up, crypt, down
       fin
    fin
-   respond hole, stairs, steps, slab, spiral, column, ceiling, beams, hah!
+   ifany hole, stairs, steps, slab, spiral, column
+      flag context, arg2.here
+   fin
+   ifany ceiling, beams
+      flag context, arg2.distant
+   fin
 #
 #=====================================================================
 #
@@ -6976,7 +7436,9 @@ at vestry
    ifeq status, 1
       move east, out, chapel, chapel
    fin
-   respond ceiling, vault, hah!
+   ifany ceiling, vault
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -7006,7 +7468,9 @@ at quarters
       move south, maze, web.maze.1
       move east, pantry, pantry
    fin
-   respond openings, hah!
+   ifany openings
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -7031,7 +7495,9 @@ at beams
    ifeq status, 1
       move out, climb, down, chapel
    fin
-   respond beams, ceiling, hah!
+   ifany beams, ceiling
+      flag context, arg2.here
+   fin
    lda drop.here, chapel
    lda throw.here, chapel
    set throw.it, true
@@ -7077,7 +7543,8 @@ at dungeon
          fin
          quit
       fin
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifany in, climb
       and
@@ -7097,11 +7564,17 @@ at dungeon
       fin
       respond dungeon, you.are.there
    fin
-   respond dungeon, passage, hah!
-   ifeq dungeon, flagstone.moved
-      respond hole, opening, hah!
+   ifany dungeon, passage
+      flag context, arg2.here
    fin
-   respond stanchions, passage, dungeon, hah!
+   ifeq dungeon, flagstone.moved
+      ifany hole, opening
+         flag context, arg2.here
+      fin
+   fin
+   ifany stanchions, passage, dungeon
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -7124,7 +7597,9 @@ at web.maze.1
       move north, quarters
       respond maze, you.are.there
    fin
-   respond passage, tunnel, corridor, maze, hah!
+   ifany passage, tunnel, corridor, maze
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -7145,7 +7620,9 @@ at web.maze.2
       move south, web.maze.3
       move up, web.maze.4
    fin
-   respond passage, tunnel, corridor, maze, hah!
+   ifany passage, tunnel, corridor, maze
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -7166,7 +7643,9 @@ at web.maze.3
       move south, web.maze.4
       move up, web.maze.5
    fin
-   respond passage, tunnel, corridor, maze, hah!
+   ifany passage, tunnel, corridor, maze
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -7243,7 +7722,9 @@ at web.maze.4
          move dank.cave
       fin
    fin
-   respond passage, tunnel, corridor, maze, hole, opening, hah!
+   ifany passage, tunnel, corridor, maze, hole, opening
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -7264,7 +7745,9 @@ at web.maze.5
       move south, web.maze.4
       move down, web.maze.3
    fin
-   respond passage, tunnel, corridor, maze, hah!
+   ifany passage, tunnel, corridor, maze
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -7285,7 +7768,9 @@ at web.maze.6
       move up, web.maze.5
       move down, web.maze.2
    fin
-   respond passage, tunnel, corridor, maze, hah!
+   ifany passage, tunnel, corridor, maze
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -7294,13 +7779,15 @@ at basement
    ifkey counterweights
       respond look, delicate.mechanism
       respond break, push, pull, no.break.mechanism
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifkey slab
       respond look, suspended.slab
       respond pull, push, close, no.move.slab, arg1
       respond break, leave.it.alone, slab
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifkey look
       respond ceiling, up, its.a.ceiling, c.basement
@@ -7318,7 +7805,9 @@ at basement
       smove in, south, opening, hole, cellar, slab.shuts
       respond basement, you.are.there
    fin
-   respond steps, basement, opening, hole, hah!
+   ifany steps, basement, opening, hole
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -7369,7 +7858,9 @@ at cellar
       set drop.here, throw.here
       set drop.text, throw.text
    fin
-   respond steps, portcullis, cellar, drain, bricks, chamber, slab, hah!
+   ifany steps, portcullis, cellar, drain, bricks, chamber, slab
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -7387,7 +7878,9 @@ at curtain.entrance
       move up, pantry
       move nw, in, soft, entrance, curtains, soft
    fin
-   respond steps, entrance, hah!
+   ifany steps, entrance
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -7418,7 +7911,12 @@ at causeway.west
          quip down.to.streambed?
       fin
    fin
-   respond mist, bottom, streambed, causeway, gap, hah!
+   ifany mist, causeway, gap
+      flag context, arg2.here
+   fin
+   ifany bottom, streambed
+      flag context, arg2.distant
+   fin
 #
 #=====================================================================
 #
@@ -7449,7 +7947,12 @@ at causeway
          quip down.to.streambed?
       fin
    fin
-   respond mist, bottom, streambed, causeway, gap, hah!
+   ifany mist, causeway, gap
+      flag context, arg2.here
+   fin
+   ifany bottom, streambed
+      flag context, arg2.distant
+   fin
 #
 #=====================================================================
 #
@@ -7479,7 +7982,9 @@ at tower.base
          move tower.steps
       fin
    fin
-   respond steps, arch, doorway, daylight, hah!
+   ifany steps, arch, doorway, daylight
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -7505,7 +8010,9 @@ at tower.steps
          call follow.it, tower.base, down, tower.lower.window, up
       fin
    fin
-   respond steps, hah!
+   ifany steps
+      flag context, arg2.here
+   fin
    lda throw.text, throw.downstairs
    set throw.here, here
    sub throw.here, 1
@@ -7537,7 +8044,13 @@ at tower.lower.window
       fin
       respond meadows, mountains, lake, snow, no.way.there
    fin
-   respond steps, view, meadows, mountains, lake, snow, hah!
+   ifany steps, view, meadows, mountains, lake, snow
+      ifkey steps
+         flag context, arg2.here
+      else
+         flag context, arg2.distant
+      fin
+   fin
    lda throw.text, throw.downstairs
    lda throw.here, tower.base
 #
@@ -7569,7 +8082,9 @@ at landing
       fin
       respond landing, you.are.there
    fin
-   respond steps, landing, hah!
+   ifany steps, landing
+      flag context, arg2.here
+   fin
    lda throw.text, throw.downstairs
    lda throw.here, tower.base
 #
@@ -7600,7 +8115,13 @@ at tower.upper.window
       fin
       respond ravine, stream, no.way.there
    fin
-   respond steps, view, ravine, stream, hah!
+   ifany steps, view, ravine, stream
+      ifkey steps
+         flag context, arg2.here
+      else
+         flag context, arg2.distant
+      fin
+   fin
    lda throw.text, throw.downstairs
    lda throw.here, landing
 #
@@ -7609,7 +8130,8 @@ at tower.upper.window
 at tower.upper.landing
    ifany notice, inscription
       respond read, look, door.notice
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    call fake.note
    fakearg door, door2
@@ -7664,7 +8186,9 @@ at tower.upper.landing
       fin
       respond landing, you.are.there
    fin
-   respond steps, landing, door, hah!
+   ifany steps, landing, door
+      flag context, arg2.here
+   fin
    lda throw.text, throw.downstairs
    lda throw.here, landing
 #
@@ -7720,7 +8244,13 @@ at tower.top.window
       fin
       respond cliff, sea, no.way.there
    fin
-   respond steps, cliff, sea, view, hah!
+   ifany steps, cliff, sea, view
+      ifkey steps
+         flag context, arg2.here
+      else
+         flag context, arg2.distant
+      fin
+   fin
    lda throw.text, throw.downstairs
    lda throw.here, tower.upper.landing
 #
@@ -7733,7 +8263,8 @@ at tower.top.landing
    ifkey stool
       respond look, get, pull, push, lift, its.a.stool
       ifeq status, 2
-         quip hah!
+         flag context, arg2.here
+         proceed
       fin
    fin
    ifkey look
@@ -7772,7 +8303,14 @@ at tower.top.landing
       move down, steps, tower.top.window
       respond landing, you.are.there
    fin
-   respond steps, table, mug, hah!
+   ifeq door3, opened
+      and
+   ifany table, mug
+      flag context, arg2.distant
+   otherwise
+   ifany steps
+      flag context, arg2.here
+   fin
    lda throw.text, throw.downstairs
    lda throw.here, tower.upper.landing
 #
@@ -7822,7 +8360,8 @@ at dwarves.quarters
       fin
          not
       ifnear ring
-         quip hah!
+         flag context, arg2.here
+         proceed
       fin
    fin
    respond table, leave.it.alone, table
@@ -7840,7 +8379,14 @@ at dwarves.quarters
          move tower.top.landing
       fin
    fin
-   respond landing, stool, table, window, forest, hah!
+   ifeq door3, opened
+      and
+   ifany landing, stool
+      flag context, arg2.distant
+   otherwise
+   ifany table, window, forest
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -7903,8 +8449,12 @@ at tower.roof
    chance 5
       sub throw.here, 3
    fin
-   respond horizon, sea, view, forest, roof, bush, path, gates, hah!
-   respond ravine, crag, track, hill, vista, hah!
+   ifany horizon, sea, view, forest, bush, path, gates
+      flag context, arg2.distant
+   otherwise
+   ifany ravine, crag, track, hill, vista
+      flag context, arg2.distant
+   fin
 #
 #=====================================================================
 #
@@ -7929,7 +8479,10 @@ at storeroom
          move shelves.east
       fin
    fin
-   respond shelf, hah!
+   ifkey shelf
+      flag context, arg2.here
+      proceed
+   fin
    ifkey go, door
       fakearg door, out
    fin
@@ -7945,7 +8498,9 @@ at storeroom
          move tower.upper.landing
       fin
    fin
-   respond passage, tunnel, corridor, hah!
+   ifany passage, tunnel, corridor
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -7973,7 +8528,9 @@ at shelves.east
          smove tower.roof, up.trapdoor
       fin
    fin
-   respond ceiling, beams, wood, planks, shelf, hah!
+   ifany ceiling, beams, wood, planks, shelf
+      flag context, arg2.here
+   fin
    lda drop.text, drop.room
    lda drop.here, storeroom
    set throw.here, drop.here
@@ -7988,7 +8545,10 @@ at shelves.west
       respond beams, wood, planks, rough.ceiling
       proceed
    fin
-   respond shelf, hah!
+   ifkey shelf
+      flag context, arg2.here
+      proceed
+   fin
    respond door, it.is.too.far
    ifkey climb, shelves
       set status, 1
@@ -7999,7 +8559,10 @@ at shelves.west
       move climb, down, storeroom
       move east, shelves.east
    fin
-   respond ceiling, beams, wood, planks, shelves, hah!
+   ifany ceiling, beams, wood, planks, shelves
+      flag context, arg2.here
+      proceed
+   fin
    lda drop.text, drop.room
    lda drop.here, storeroom
    set throw.here, drop.here
@@ -8023,7 +8586,12 @@ at track
    fin
    ifany hill, tower, track
       ifeq status, 2
-         quip hah!
+         ifkey track
+            flag context, arg2.here
+         else
+            flag context, arg2.distant
+         fin
+         proceed
       fin
    fin
    ifkey go
@@ -8077,15 +8645,23 @@ at outside.gates
       respond get, pull, firmly.attached, notice
       respond read, look, trespass.notice
       respond push, no.push, notice
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifkey look
+      respond tower, tower.through.gates
+      respond path, path.through.gates
+      respond gravel, nothing.special, gravel
       respond horses, horse.shapes
-      respond garden, in, desolate.garden
+      respond garden, bush, roses, in, desolate.garden
       respond wall, no.climb.wall
       proceed
    fin
-   respond horses, hah!
+   ifkey horses
+      respond feed, kill, placate, no.feed.horses, arg1
+      flag context, arg2.here
+      proceed
+   fin
    ifkey dirt
       call handle.dirt
    fin
@@ -8146,7 +8722,7 @@ at outside.gates
          and
       ifis there, garden.n
          or
-      ifany south, in
+      ifany south, in, tower, path, garden
          ifhave bust
             set beyond.gates, 1
             smove garden.n, through.the.gates
@@ -8161,7 +8737,9 @@ at outside.gates
       move north, track, track
       move east, west, ne, nw, dark.forest
    fin
-   respond garden, hah!
+   ifany garden, tower, roses, bush, path
+      flag context, arg2.distant
+   fin
 #
 #=====================================================================
 #
@@ -8169,14 +8747,16 @@ at garden.nw
    ifkey pedestal
       respond look, garden.things, 0
       respond get, push, pull, no.move.pedestals
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifany bushes, roses
       respond look, dead.rose.bushes
    fin
    ifkey tower
       respond look, tower.over.roses
-      quip hah!
+      flag context, arg2.distant
+      proceed
    fin
    respond roses, i.dont.see, roses
    call garden.stuff
@@ -8191,7 +8771,9 @@ at garden.nw
    ifeq status, 1
       move south, path, garden.sw
    fin
-   respond path, hah!
+   ifany path
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -8209,7 +8791,8 @@ at garden.n
          move garden.s
       fin
       respond look, garden.things, 1
-      quip hah!
+      flag context, arg2.distant
+      proceed
    fin
    ifkey gates
       ifkey open
@@ -8227,7 +8810,11 @@ at garden.n
       respond horses, horse.shapes
       proceed
    fin
-   respond horses, hah!
+   ifkey horses
+      respond feed, kill, placate, no.feed.horses, arg1
+      flag context, arg2.here
+      proceed
+   fin
    ifkey climb
       ifkey gates
          or
@@ -8255,7 +8842,9 @@ at garden.n
          quip no.pass.gate
       fin
    fin
-   respond tower, path, hah!
+   ifany path
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -8266,7 +8855,8 @@ at garden.ne
    fin
    ifkey tower
       respond look, tower.over.roses
-      quip hah!
+      flag context, arg2.distant
+      proceed
    fin
    call garden.stuff
    ifkey wall
@@ -8280,7 +8870,9 @@ at garden.ne
    ifeq status, 1
       move south, garden.se
    fin
-   respond path, hah!
+   ifany path
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -8292,7 +8884,8 @@ at garden.sw
    fin
    ifkey bench
       respond look, garden.things, 2
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifkey wall
       call wall.stuff
@@ -8300,7 +8893,8 @@ at garden.sw
    ifkey tower
       respond look, below.tower, 1
       respond climb, up, tower.no.climb
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    call garden.stuff
    ifkey look
@@ -8315,7 +8909,9 @@ at garden.sw
          call follow.it, garden.nw, north, garden.n, ne
       fin
    fin
-   respond path, hah!
+   ifany path
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -8339,7 +8935,8 @@ at garden.s
       respond look, below.tower, 0
       ifany up, climb
       else
-         quip hah!
+         flag context, arg2.here
+         proceed
       fin
    fin
    ifkey wall
@@ -8358,13 +8955,17 @@ at garden.s
    ifkey look
       proceed
    fin
-   respond ivy, hah!
+   ifany ivy
+      flag context, arg2.here
+   fin
    ifkey go
       or
    ifeq status, 1
       move north, path, garden.n
    fin
-   respond path, hah!
+   ifany path
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -8374,11 +8975,13 @@ at garden.se
          proceed
       fin
       respond look, garden.things, 3
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifany cupid, statue
       respond look, garden.things, 4
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifkey wall
       call wall.stuff
@@ -8386,7 +8989,8 @@ at garden.se
    ifkey tower
       respond look, below.tower, 1
       respond climb, up, tower.no.climb
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    call garden.stuff
    ifkey look
@@ -8402,7 +9006,9 @@ at garden.se
          call follow.it, garden.n, nw, garden.ne, north
       fin
    fin
-   respond path, shadow, shade, hah!
+   ifany path, shadow, shade
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -8427,7 +9033,9 @@ at dungeon.exit
          smove dungeon, back.to.dungeon
       fin
    fin
-   respond passage, tunnel, corridor, hole, hah!
+   ifany passage, tunnel, corridor, hole
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -8454,7 +9062,9 @@ at well.bottom
       fin
       respond chamber, well, you.are.there
    fin
-   respond well, wall, daylight, patch, passage, tunnel, corridor, hah!
+   ifany well, wall, daylight, patch, passage, tunnel, corridor
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -8519,7 +9129,8 @@ at crypt
             ifkey give
                proceed
             fin
-            quip hah!
+            flag context, arg2.here
+            proceed
          else
             say blank
             quip wave.crucifix?
@@ -8548,7 +9159,9 @@ at crypt
          move chapel
       fin
    fin
-   respond stairs, column, slab, tombs, dust, web, hah!
+   ifany stairs, column, slab, tombs, dust, web
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -8624,7 +9237,9 @@ at top.of.chapel
       move south, doorway, arch, in, tower.base
       move west, pantry, pantry
    fin
-   respond stairs, drawings, something, opening, arch, doorway, hah!
+   ifany stairs, drawings, something, opening, arch, doorway
+      flag context, arg2.here
+   fin
    lda throw.text, throw.downstairs
    lda throw.here, chapel
 #
@@ -8644,7 +9259,9 @@ at attic
       move north, attic, north.attic
       move sw, pantry, pantry
    fin
-   respond attic, hah!
+   ifany attic
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -8662,7 +9279,9 @@ at north.attic
       move south, out, attic, attic
       move north, in, passage, den
    fin
-   respond passage, tunnel, corridor, attic, hah!
+   ifany passage, tunnel, corridor, attic
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -8681,7 +9300,8 @@ at den
       respond look, read, its.swag
       respond get, leave.it.alone, label
       ifgt status, 1
-         quip hah!
+         flag context, arg2.here
+         proceed
       else
          flag status, pls.clarify
          quip do.what?, building
@@ -8701,7 +9321,9 @@ at den
       move out, attic
       respond den, you.are.there
    fin
-   respond note, label, shelf, den, hah!
+   ifany note, label, shelf, den
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -8728,8 +9350,12 @@ at pantry
       respond pantry, you.are.there
       respond pantry, need.a.direction
    fin
-   respond steps, stream, pantry, shelves, corner, archway, arch, hah!
-   respond passage, tunnel, corridor, wall, hah!
+   ifany steps, stream, pantry, shelves, corner, archway, arch
+      flag context, arg2.here
+   fin
+   ifany passage, tunnel, corridor, wall
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -8762,8 +9388,12 @@ at unsafe
          move low.room
       fin
    fin
-   respond corridor, passage, tunnel, timber, wood, rockfall, hah!
-   respond opening, hole, wall, fracture, slit, hah!
+   ifany corridor, passage, tunnel, timber, wood, rockfall
+      flag context, arg2.here
+   fin
+   ifany opening, hole, wall, fracture, slit
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -8780,7 +9410,9 @@ at very.unsafe
    ifeq status, 1
       move south, passage, corridor, tunnel, unsafe
    fin
-   respond corridor, passage, tunnel, timber, hah!
+   ifany corridor, passage, tunnel, timber
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -8824,7 +9456,9 @@ at low.room
          move unsafe
       fin
    fin
-   respond water, crack, hole, slit, out, hah!
+   ifany water, crack, hole, slit, out
+      flag context, arg2.here
+   fin
    lda throw.here, sea.view
    lda throw.text, down.the.shaft
    set throw.it, true
@@ -8843,7 +9477,8 @@ at bones.room
          quip droppings.no.good, 0
       fin
       respond look, droppings.large
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifkey look
       respond passage, tunnel, corridor, dark.exit, passage
@@ -8859,7 +9494,9 @@ at bones.room
       move east, down, out, passage, tunnel, corridor, low.room
       respond cave, you.are.there
    fin
-   respond passage, tunnel, corridor, cave, hah!
+   ifany passage, tunnel, corridor, cave
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -8901,7 +9538,9 @@ at phoney.shaft
          move low.room
       fin
    fin
-   respond shaft, slime, sewage, liquid, hah!
+   ifany shaft, slime, sewage, liquid
+      flag context, arg2.here
+   fin
    lda throw.here, sea.view
    lda throw.text, into.sewage
    set drop.here, throw.here
@@ -8939,7 +9578,9 @@ at in.shaft
       fin
       move up, out, climb, low.room
    fin
-   respond shaft, sewage, water, liquid, culvert, slime, hah!
+   ifany shaft, sewage, water, liquid, culvert, slime
+      flag context, arg2.here
+   fin
    lda throw.here, sea.view
    lda throw.text, into.sewage
    set drop.here, throw.here
@@ -8964,7 +9605,9 @@ at culvert
          call follow.it, sea.view, north, culvert.south, south
       fin
    fin
-   respond sewage, bricks, culvert, hah!
+   ifany sewage, bricks, culvert
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -8991,8 +9634,12 @@ at sea.view
       move south, out, culvert, tunnel, passage, corridor, culvert
       respond sea, grill.solid
    fin
-   respond grill, sewage, culvert, bricks, inscription, hah!
-   respond passage, tunnel, corridor, sea, line, roof, ceiling, hah!
+   ifany grill, sewage, culvert, bricks, inscription
+      flag context, arg2.here
+   fin
+   ifany passage, tunnel, corridor, sea, line, roof, ceiling
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -9020,7 +9667,9 @@ at culvert.south
       move east, south, se, sewer.1
       respond pipe, need.a.direction
    fin
-   respond rats, pipe, sewage, bricks, culvert, roof, ceiling, hah!
+   ifany rats, pipe, sewage, bricks, culvert, roof, ceiling
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -9040,7 +9689,9 @@ at sewer.1
       respond junction, you.are.there
       respond pipe, need.a.direction
    fin
-   respond pipe, sewage, junction, hah!
+   ifany pipe, sewage, junction
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -9060,7 +9711,9 @@ at sewer.2
       respond pipe, need.a.direction
       respond junction, you.are.there
    fin
-   respond pipe, sewage, junction, hah!
+   ifany pipe, sewage, junction
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -9074,7 +9727,9 @@ at sewer.3
    ifeq status, 1
       move north, out, pipe, junction, sewer.2
    fin
-   respond pipe, sewage, junction, hah!
+   ifany pipe, sewage, junction
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -9098,7 +9753,9 @@ at sewer.4
       fin
       respond junction, you.are.there
    fin
-   respond stream, pipe, sewage, junction, fracture, hah!
+   ifany stream, pipe, sewage, junction, fracture
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -9112,7 +9769,9 @@ at sewer.5
    ifeq status, 1
       move east, out, culvert, culvert.south
    fin
-   respond pipe, sewage, hah!
+   ifany pipe, sewage
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -9138,7 +9797,9 @@ at stream.maze.entrance
          move stream.maze
       fin
    fin
-   respond passage, tunnel, corridor, hah!
+   ifany passage, tunnel, corridor
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -9180,7 +9841,9 @@ at stream.maze
          move stream.maze
       fin
    fin
-   respond passage, tunnel, corridor, hah!
+   ifany passage, tunnel, corridor
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -9201,7 +9864,9 @@ at bare.cavern
       move north, passage, low.passage
       respond cavern, you.are.there
    fin
-   respond opening, hole, tunnel, corridor, passage, cavern, hah!
+   ifany opening, hole, tunnel, corridor, passage, cavern
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -9223,7 +9888,9 @@ at low.passage
          call follow.it, bare.cavern, south, large.cavern, north
       fin
    fin
-   respond passage, tunnel, corridor, cavern, hah!
+   ifany passage, tunnel, corridor, cavern
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -9245,7 +9912,9 @@ at large.cavern
       move north, mist, opening, hole, swirling.mist
       respond cavern, you.are.there
    fin
-   respond mist, cavern, passage, roof, hole, opening, hah!
+   ifany mist, cavern, passage, roof, hole, opening
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -9278,7 +9947,9 @@ at swirling.mist
          call lost.in.mist
       fin
    fin
-   respond mist, hah!
+   ifany mist
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -9299,7 +9970,9 @@ at dank.cave
       respond cave, you.are.there
       move north, back, out, web.maze.4
    fin
-   respond cave, mould, hah!
+   ifany cave, mould
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -9317,7 +9990,9 @@ at sword.place
    ifeq status, 1
       move north, ne, east, se, south, sw, west, nw, back, swirling.mist
    fin
-   respond mist, hah!
+   ifany mist
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -9396,7 +10071,8 @@ at stupendous.view
          quip heelprint.info
       fin
       respond ashes, just.a.fixture, ashes
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifkey ravine
       respond look, its.ravine, 0
@@ -9422,7 +10098,8 @@ at stupendous.view
       fin
    fin
    ifkey cliff
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifkey sapling
       and
@@ -9447,7 +10124,14 @@ at stupendous.view
       respond island, island.too.far
       respond banks, bushes, gorse, flower, flowers, beach, sea, rollers, pardon?
    fin
-   respond banks, bushes, gorse, flower, flowers, beach, sea, rollers, hah!
+   ifany banks, bushes, gorse, flower, flowers
+      flag context, arg2.here
+      proceed
+   fin
+   ifany beach, sea, rollers
+      flag context, arg2.distant
+      proceed
+   fin
    ifkey in, beanstalk2
       set status, 1
    fin
@@ -9496,7 +10180,13 @@ at stupendous.view
       fin
       move ravine, path, out, se, ravine.west
    fin
-   respond ravine, view, vista, island, sea, reflections, hah!
+   ifany ravine, view, vista, island, sea, reflections, path
+      ifkey ravine, path
+         flag context, arg2.here
+      else
+         flag context, arg2.distant
+      fin
+   fin
 #
 #=====================================================================
 #
@@ -9552,8 +10242,12 @@ at above.sea
    else
       quip flight.regulations
    fin
-   respond cliff, horizon, island, sea, reflections, slope, hah!
-   respond sand, beach, beanstalk, mountain, volcano, vegetation, hah!
+   ifany cliff, beanstalk, vegetation, reflections, slope, giant
+      flag context, arg2.distant
+   fin
+   ifany sand, beach, mountain, volcano, vegetation, horizon, island, sea
+      flag context, arg2.distant
+   fin
 #
 #=====================================================================
 #
@@ -9603,7 +10297,9 @@ at ravine
       move west, ravine.west
       move se, path
    fin
-   respond path, ferns, ravine, banks, hah!
+   ifany path, ferns, ravine, banks
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -9651,7 +10347,9 @@ at ravine.west
       move nw, stupendous.view
       respond ferns, its.ferns
    fin
-   respond path, ferns, ravine, banks, hah!
+   ifany path, ferns, ravine, banks
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -9703,7 +10401,9 @@ at path
       move sw, west, forest.2
       move view, stupendous.view
    fin
-   respond path, ravine, hah!
+   ifany path, ravine
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -9855,7 +10555,10 @@ at end.of.valley
       respond nettles, romans.ate.nettles
       respond brambles, wrong.season
    fin
-   respond nettles, brambles, rock, jumble, hah!
+   ifany nettles, brambles, rock, jumble
+      flag context, arg2.here
+      proceed
+   fin
    ifkey go
       or
    ifeq status, 1
@@ -9877,7 +10580,9 @@ at end.of.valley
       move west, forest, forest.17
       move nw, forest.16
    fin
-   respond wall, slope, hah!
+   ifany wall, slope
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -9900,7 +10605,9 @@ at forest.1
       move se, forest.4
       move south, sw, path, ravine, path
    fin
-   respond path, ravine, hah!
+   ifany path, ravine
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -9926,7 +10633,9 @@ at forest.2
       move se, hill
       move sw, west, nw, dark.forest
    fin
-   respond path, ravine, hah!
+   ifany path, ravine
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -9957,7 +10666,9 @@ at forest.4
       move west, path
       move nw, forest.1
    fin
-   respond road, hah!
+   ifany road
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -10360,7 +11071,8 @@ at clearing
       respond rub, clean, dust, window.clean.enough, 0
       respond break, no.point.in.that
       respond open, close, it.dont.do.it, open
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifkey jump
       and
@@ -10389,9 +11101,15 @@ at clearing
       fin
       move north, ne, east, se, south, west, dark.forest
    fin
-   respond grass, clearing, forest, tree, conifer, well, shaft, hah!
-   respond shed, path, track, ground, stone, supports, hah!
-   respond window, roof, wall, planks, hah!
+   ifany grass, clearing, forest, tree, conifer, well, shaft
+      flag context, arg2.here
+   fin
+   ifany shed, path, track, ground, stone, supports
+      flag context, arg2.here
+   fin
+   ifany window, roof, wall, planks
+      flag context, arg2.here
+   fin
    lda throw.here, well.bottom
    lda throw.text, well.drop
 #
@@ -10403,7 +11121,8 @@ at shed
       respond stir, kick, get, no.point.in.that
       respond door, walls, floor, no.point.in.that
       respond window, window.clean.enough, 1
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifkey door
       respond open, shed.no.stay.open, 0
@@ -10413,7 +11132,8 @@ at shed
    ifkey shed
       respond look, shed.info
       respond go, in, already.inside, shed
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifkey look
       respond walls, wooden.shed, 0
@@ -10428,7 +11148,8 @@ at shed
       respond rub, clean, window.clean.enough  # Dusting already handled.
       respond break, no.point.in.that
       respond open, close, it.dont.do.it, open
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifkey go
       or
@@ -10439,8 +11160,12 @@ at shed
          move clearing
       fin
    fin
-   respond roof, window, wall, door4, floor, planks, shed, dust, hah!
-   respond clearing, hah!
+   ifany roof, window, wall, door4, floor, planks, shed, dust
+      flag context, arg2.here
+   fin
+   ifany clearing
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -10524,8 +11249,13 @@ at basalt.shelf
          call splatter
       fin
    fin
-   respond moon, opening, hole, beach, break, shelf, ocean, spire, hah!
-   respond lava, landscape, view, mist, aurora, reflections, sun, clouds, hah!
+#.............................................
+   ifany moon, opening, hole, beach, break, shelf, ocean, spire
+      flag context, arg2.here
+   fin
+   ifany lava, landscape, view, mist, aurora, reflections, sun, clouds
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -10546,7 +11276,9 @@ at west.of.spire
       respond east, spire.there, east
       respond ramp, no.way.there
    fin
-   respond ramp, hah!
+   ifany ramp
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -10567,7 +11299,9 @@ at north.of.spire
       move sw, west.of.spire
       respond south, spire.there, south
    fin
-   respond ramp, hah!
+   ifany ramp
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -10642,7 +11376,9 @@ at south.of.spire
          move sw, desert.last
       fin
    fin
-   respond ramp, hah!
+   ifany ramp
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -10728,7 +11464,9 @@ at spire.part.up
          move spire.nearly.up
       fin
    fin
-   respond horizon, ramp, top, bottom, desert, sand, dune, hah!
+   ifany horizon, ramp, top, bottom, desert, sand, dune
+      flag context, arg2.here
+   fin
    lda throw.text, throw.spire
    lda throw.here, ylem
 #
@@ -10812,7 +11550,9 @@ at spire.nearly.up
       respond cliff, no.way.there
       respond bottom, desert, sand, dune, jump.if.you.want.to
    fin
-   respond horizon, ramp, top, bottom, cliff, desert, sand, dune, hah!
+   ifany horizon, ramp, top, bottom, cliff, desert, sand, dune
+      flag context, arg2.here
+   fin
    lda throw.text, throw.spire
    lda throw.here, ylem
 #
@@ -10899,7 +11639,9 @@ at spire
       respond desert, dune, sand, jump.if.you.want.to
       respond spire, platform, top, you.are.there
    fin
-   respond horizon, dune, desert, top, spire, platform, ramp, hah!
+   ifany horizon, dune, desert, top, spire, platform, ramp
+      flag context, arg2.here
+   fin
    lda throw.text, throw.spire
    lda throw.here, ylem
 #
@@ -10933,8 +11675,12 @@ at basalt.shelf.2
       move sw, scree
       move nw, scree.3
    fin
-   respond slope, scree, lava, rock, tube, opening, hole, hah!
-   respond chunks, grit, sand, scene, vista, view, hah!
+   ifany slope, scree, lava, rock, tube, opening, hole
+      flag context, arg2.here
+   fin
+   ifany chunks, grit, sand, scene, vista, view
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -10961,7 +11707,9 @@ at scree
       fin
       move up, se, scree, basalt.shelf.2
    fin
-   respond slope, scree, hah!
+   ifany slope, scree
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -10988,7 +11736,9 @@ at scree.2
       fin
       move east, up, scree, basalt.shelf.2
    fin
-   respond slope, scree, hah!
+   ifany slope, scree
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11015,7 +11765,9 @@ at scree.3
       fin
       move up, ne, scree, basalt.shelf.2
    fin
-   respond slope, scree, hah!
+   ifany slope, scree
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11085,7 +11837,9 @@ at river.bed.1
       respond east, in, hole, opening, cave, time.river
       respond riverbed, you.are.there
    fin
-   respond riverbed, hah!
+   ifany riverbed
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11117,7 +11871,9 @@ at desert.1
       move se, scree
       move east, cliff.base.1
    fin
-   respond dune, sand, sky, sun, hah!
+   ifany dune, sand, sky, sun
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11137,7 +11893,9 @@ at desert.2
       move east, scree
       move ne, cliff.base.1
    fin
-   respond dune, sand, sky, sun, hah!
+   ifany dune, sand, sky, sun
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11158,7 +11916,9 @@ at desert.3
       move east, scree.2
       move ne, scree
    fin
-   respond dune, sand, sky, sun, hah!
+   ifany dune, sand, sky, sun
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11179,7 +11939,9 @@ at desert.4
       move east, scree.3
       move ne, scree.2
    fin
-   respond dune, sand, sky, sun, hah!
+   ifany dune, sand, sky, sun
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11199,7 +11961,9 @@ at desert.5
       move east, cliff.base.2
       move ne, scree.3
    fin
-   respond dune, sand, sky, sun, hah!
+   ifany dune, sand, sky, sun
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11218,7 +11982,9 @@ at desert.6
       move east, cliff.base.3
       move ne, cliff.base.2
    fin
-   respond dune, sand, sky, sun, hah!
+   ifany dune, sand, sky, sun
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11240,7 +12006,9 @@ at river.bed.2
       move ne, cliff.base.3
       respond riverbed, you.are.there
    fin
-   respond riverbed, hah!
+   ifany riverbed
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11260,7 +12028,9 @@ at desert.7
       move east, desert.2
       move ne, desert.1
    fin
-   respond dune, sand, sky, sun, hah!
+   ifany dune, sand, sky, sun
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11281,7 +12051,9 @@ at desert.8
       move east, desert.3
       move ne, desert.2
    fin
-   respond dune, sand, sky, sun, hah!
+   ifany dune, sand, sky, sun
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11301,7 +12073,9 @@ at desert.9
       move east, desert.4
       move ne, desert.3
    fin
-   respond dune, sand, sky, sun, hah!
+   ifany dune, sand, sky, sun
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11319,7 +12093,9 @@ at desert.10
       move east, desert.5
       move ne, desert.4
    fin
-   respond dune, sand, sky, sun, hah!
+   ifany dune, sand, sky, sun
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11337,7 +12113,9 @@ at desert.11
       move south, desert.12
       move se, desert.7
    fin
-   respond dune, sand, sky, sun, cliff, outcrop, hah!
+   ifany dune, sand, sky, sun, cliff, outcrop
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11354,8 +12132,12 @@ at rocky.desert
    ifeq status, 1
       move se, outcrop, desert, desert.11
    fin
-   respond horizon, cliff, sky, sun, sand, hah!
-   respond desert, dunes, outcrop, boulders, hah!
+   ifany horizon, cliff, sky, sun, sand
+      flag context, arg2.here
+   fin
+   ifany desert, dunes, outcrop, boulders
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11374,7 +12156,9 @@ at desert.12
       move se, desert.8
       move east, desert.7
    fin
-   respond dune, sand, sky, sun, hah!
+   ifany dune, sand, sky, sun
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11395,7 +12179,9 @@ at desert.13
       move east, desert.8
       move ne, desert.7
    fin
-   respond dune, sand, sky, sun, hah!
+   ifany dune, sand, sky, sun
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11415,7 +12201,9 @@ at desert.14
       move east, desert.9
       move ne, desert.8
    fin
-   respond dune, sand, sky, sun, hah!
+   ifany dune, sand, sky, sun
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11435,7 +12223,9 @@ at desert.15
       move east, desert.12
       move ne, desert.11
    fin
-   respond dune, sand, sky, sun, hah!
+   ifany dune, sand, sky, sun
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11456,7 +12246,9 @@ at desert.16
       move east, desert.13
       move ne, desert.12
    fin
-   respond dune, sand, sky, sun, hah!
+   ifany dune, sand, sky, sun
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11475,7 +12267,9 @@ at desert.17
       move east, desert.14
       move ne, desert.13
    fin
-   respond dune, sand, sky, sun, hah!
+   ifany dune, sand, sky, sun
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11491,7 +12285,9 @@ at desert.18
       move nw, desert.21
       move ne, desert.14
    fin
-   respond dune, sand, sky, sun, hah!
+   ifany dune, sand, sky, sun
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11507,7 +12303,9 @@ at desert.19
       move south, desert.20
       move se, desert.15
    fin
-   respond dune, sand, sky, sun, hah!
+   ifany dune, sand, sky, sun
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11526,7 +12324,9 @@ at desert.20
       move se, desert.16
       move east, desert.15
    fin
-   respond dune, sand, sky, sun, hah!
+   ifany dune, sand, sky, sun
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11544,7 +12344,9 @@ at desert.21
       move east, desert.17
       move ne, desert.16
    fin
-   respond dune, sand, sky, sun, hah!
+   ifany dune, sand, sky, sun
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11561,7 +12363,9 @@ at desert.22
       move east, desert.20
       move ne, desert.19
    fin
-   respond dune, sand, sky, sun, hah!
+   ifany dune, sand, sky, sun
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11578,7 +12382,9 @@ at desert.last
       move east, west.of.spire
       move ne, desert.20
    fin
-   respond dune, sand, sky, sun, hah!
+   ifany dune, sand, sky, sun
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11595,7 +12401,9 @@ at cave.1
       move east, cave.2
       move corridor, passage, tunnel, cave.2
    fin
-   respond corridor, passage, tunnel, beach, sea, hah!
+   ifany corridor, passage, tunnel, beach, sea
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11618,7 +12426,9 @@ at cave.2
          call follow.it, cave.1, west, cave.3, east
       fin
    fin
-   respond corridor, passage, tunnel, hah!
+   ifany corridor, passage, tunnel
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11646,7 +12456,9 @@ at cave.3
       fin
       respond bend, you.are.there
    fin
-   respond corridor, passage, tunnel, hah!
+   ifany corridor, passage, tunnel
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11684,8 +12496,12 @@ at cave.4
       fin
       respond cave, you.are.there
    fin
-   respond membrane, opening, passage, tunnel, corridor, cave, hah!
-   respond river, stream, shelf, flow, foam, flecks, bank, shore, edge, hah!
+   ifany membrane, opening, passage, tunnel, corridor, cave
+      flag context, arg2.here
+   fin
+   ifany river, stream, shelf, flow, foam, flecks, bank, shore, edge
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11721,8 +12537,12 @@ at cave.5
          move river.north
       fin
    fin
-   respond membrane, corridor, passage, tunnel, hah!
-   respond river, stream, shelf, flow, foam, flecks, bank, shore, edge, hah!
+   ifany membrane, corridor, passage, tunnel
+      flag context, arg2.here
+   fin
+   ifany river, stream, shelf, flow, foam, flecks, bank, shore, edge
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11742,7 +12562,9 @@ at cave.6
          call follow.it, cave.7, north, cave.5, south
       fin
    fin
-   respond slope, passage, corridor, tunnel, hah!
+   ifany slope, passage, corridor, tunnel
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11761,7 +12583,9 @@ at cave.7
       move out, corridor, passage, tunnel, south, cave.6
       respond cave, you.are.there
    fin
-   respond out, corridor, passage, tunnel, hah!
+   ifany out, corridor, passage, tunnel
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11779,19 +12603,22 @@ at cave.8
       fin
       proceed
    fin
-   respond imp, hah!
-   ifkey jump
-      call river.jump, 0
-   fin
-   ifkey throw
-      call bridge.stuff
-   fin
    ifkey evict
       ifeq status, 1
          or
       ifkey imp
          quip no.evict.imp
       fin
+   fin
+   ifkey imp
+      flag context, arg2.here
+      proceed
+   fin
+   ifkey jump
+      call river.jump, 0
+   fin
+   ifkey throw
+      call bridge.stuff
    fin
    ifany read, translate
        ifkey writing
@@ -11800,7 +12627,10 @@ at cave.8
          quip imps.writing, arg1
       fin
    fin
-   respond writing, hah!
+   ifkey writing
+      flag context, arg2.here
+      proceed
+   fin
    ifkey go
       or
    ifeq status, 1
@@ -11815,7 +12645,9 @@ at cave.8
          move cave.9
       fin
    fin
-   respond river, stream, shelf, flow, foam, flecks, bank, shore, edge, hah!
+   ifany river, stream, shelf, flow, foam, flecks, bank, shore, edge
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11835,7 +12667,9 @@ at cave.9
          call follow.it, cave.8, east, river.north, west
       fin
    fin
-   respond river, stream, shelf, flow, foam, flecks, bank, shore, edge, hah!
+   ifany river, stream, shelf, flow, foam, flecks, bank, shore, edge
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11851,7 +12685,9 @@ at river
    ifeq status, 1
       move west, river, stream, shelf, downstream, cave.4
    fin
-   respond river, stream, shelf, flow, foam, flecks, bank, shore, edge, hah!
+   ifany river, stream, shelf, flow, foam, flecks, bank, shore, edge
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11879,7 +12715,9 @@ at river.north
          move cave.5
       fin
    fin
-   respond river, stream, shelf, flow, foam, flecks, bank, shore, edge, hah!
+   ifany river, stream, shelf, flow, foam, flecks, bank, shore, edge
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11918,8 +12756,12 @@ at island
          quip cant.go.back, 2
       fin
    fin
-   respond building, outcrop, temple, structure, mountain, barrier, hah!
-   respond shadow, shade, hah!
+   ifany building, outcrop, temple, structure, mountain, barrier
+      flag context, arg2.here
+   fin
+   ifany shadow, shade
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11951,7 +12793,9 @@ at island.se
       respond mountain, not.from.here
       respond shade, no.rest.in.shade
    fin
-   respond slope, mountain, ridge, shade, shadow, hah!
+   ifany slope, mountain, ridge, shade, shadow
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11973,7 +12817,9 @@ at island.s
          call follow.it, island.se, east, island.sw, west
       fin
    fin
-   respond slope, mountain, hah!
+   ifany slope, mountain
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11995,7 +12841,9 @@ at island.sw
       fin
       respond slope, up, mountain, you.cant.climb, 1
    fin
-   respond slope, mountain, hah!
+   ifany slope, mountain
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -12018,7 +12866,9 @@ at island.w
          call follow.it, island.nw, north, island.sw, south
       fin
    fin
-   respond slope, outcrop, mountain, hah!
+   ifany slope, outcrop, mountain
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -12040,7 +12890,9 @@ at island.nw
          call follow.it, island.n, ne, island.w, sw
       fin
    fin
-   respond slope, mountain, hah!
+   ifany slope, mountain
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -12064,7 +12916,9 @@ at island.n
          call follow.it, island.ne, east, island.nw, west
       fin
    fin
-   respond slope, outcrop, mountain, hah!
+   ifany slope, outcrop, mountain
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -12107,7 +12961,9 @@ at island.ne
          call follow.it, island.n, nw, island, se
       fin
    fin
-   respond jumble, rock, outcrop, stream, mountain, soil, hah!
+   ifany jumble, rock, outcrop, stream, mountain, soil
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -12143,8 +12999,12 @@ at ridge
          fin
       fin
    fin
-   respond beach, edge, ridge, slope, mountain, caldera, swamp, hah!
-   respond waterfall, shoulder, hah!
+   ifany beach, edge, ridge, slope, mountain, caldera, swamp
+      flag context, arg2.here
+   fin
+   ifany waterfall, shoulder
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -12159,7 +13019,10 @@ at below.ridge
       respond bank, ridge.bank
       proceed
    fin
-   respond jump, hah!
+   ifkey jump
+      flag context, arg2.here
+      proceed
+   fin
    ifany cross, in
       and
    ifkey swamp
@@ -12181,8 +13044,12 @@ at below.ridge
          quip need.footware
       fin 
    fin
-   respond, caldera, swamp, mountain, vegetation, plants, grass, hah!
-   respond edge, bank, hah!
+   ifany, caldera, swamp, mountain, vegetation, plants, grass
+      flag context, arg2.here
+   fin
+   ifany edge, bank
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -12228,7 +13095,9 @@ at caldera
       fin
       respond mountain, no.climbing, 1
    fin
-   respond swamp, caldera, wall, cliffs, edge, waterfall, hah!
+   ifany swamp, caldera, wall, cliffs, edge, waterfall
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -12255,7 +13124,9 @@ at by.waterfall
          quip into.waterfall?
       fin
    fin
-   respond mountain, rock, waterfall, chunks, cliffs, hah!
+   ifany mountain, rock, waterfall, chunks, cliffs
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -12297,11 +13168,14 @@ at waterfall
       fin
       respond nw, in, door.in.the.way, nw
    fin
-   respond debris, waterfall, overhang, ceiling, inscription, spray, mist, hah!
+   ifany debris, waterfall, overhang, ceiling, inscription, spray, mist
+      flag context, arg2.here
+   fin
    ifany passage, tunnel, corridor, mine
       and
    ifgt waterfall, 0
-       quip hah!
+      flag context, arg2.here
+      proceed
    fin
 #
 #=====================================================================
@@ -12342,7 +13216,9 @@ at mine
       fin
       move nw, u, tunnel, passage, mine, mine.1
    fin
-   respond tunnel, passage, corridor, mine, exit, hah!
+   ifany tunnel, passage, corridor, mine, exit
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -12365,7 +13241,9 @@ at mine.1
       fin
       respond fork, you.are.there
    fin
-   respond tunnel, corridor, passage, fork, hah!
+   ifany tunnel, corridor, passage, fork
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -12380,7 +13258,9 @@ at mine.dead.end.1
    ifeq status, 1
       move out, sw, corridor, tunnel, passage, mine.1
    fin
-   respond tunnel, passage, corridor, rockfall, hah!
+   ifany tunnel, passage, corridor, rockfall
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -12404,7 +13284,9 @@ at mine.2
       fin
       respond fork, you.are.there
    fin
-   respond fork, tunnel, passage, corridor, hah!
+   ifany fork, tunnel, passage, corridor
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -12416,7 +13298,8 @@ at steps.to.abyss
          quip island.exit
       fin
       respond rub, nothing
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifkey look
       respond shaft, opening, hole, no.see.down.there, 0
@@ -12440,7 +13323,9 @@ at steps.to.abyss
       smove d, climb, hole, shaft, opening, square.shaft.bottom, tiring.climb
       move sw, passage, tunnel, corridor, mine.2
    fin
-   respond footholds, shaft, passage, tunnel, corridor, hole, opening, hah!
+   ifany footholds, shaft, passage, tunnel, corridor, hole, opening
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -12470,7 +13355,9 @@ at square.shaft.bottom
       fin
       move east, tunnel, passage, corridor, abyss
    fin
-   respond handholds, shaft, wall, tunnel, passage, corridor, hole, opening, hah!
+   ifany handholds, shaft, wall, tunnel, passage, corridor, hole, opening
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -12504,7 +13391,9 @@ at abyss
          call coroner
       fin
    fin
-   respond edge, ceiling, tunnel, passage, corridor, platform, hah!
+   ifany edge, ceiling, tunnel, passage, corridor, platform
+      flag context, arg2.here
+   fin
    lda throw.here, ylem
    lda throw.text, throw.abyss
 #
@@ -12591,7 +13480,9 @@ at above.glow
       proceed
    fin
    call abyss.stuff, 3
-   quip glow, hah!
+   ifany glow
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -12605,7 +13496,8 @@ at above.volcano
    fin
    ifkey volcano
       respond listen, volcano.roar
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifkey jump
       and
@@ -12623,7 +13515,9 @@ at above.volcano
          call coroner
       fin
    fin
-   respond ceiling, volcano, fountains, glow, hah!
+   ifany ceiling, volcano, fountains, glow
+      flag context, arg2.here
+   fin
    lda throw.here, ylem
    lda drop.here, ylem
    lda throw.text, throw.abyss
@@ -12651,7 +13545,9 @@ at mine.3
       respond passage, tunnel, corridor, too.many.exits, passage
       respond fork, you.are.there
    fin
-   respond corridor, tunnel, fork, passage, hah!
+   ifany corridor, tunnel, fork, passage
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -12661,7 +13557,8 @@ at mine.dead.end.2
          quip stone.table
       otherwise
       respond climb, no.point
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifkey look
       ifkey chamber
@@ -12677,7 +13574,9 @@ at mine.dead.end.2
        move out, tunnel, passage, corridor, se, mine.3
        respond chamber, you.are.there
    fin
-   respond folds, cloth, passage, tunnel, corridor, chamber, hah!
+   ifany folds, cloth, passage, tunnel, corridor, chamber
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -12702,8 +13601,12 @@ at mine.exit
       smove foliage, crawl, path, track, island.02, exiting.the.mine
       move ne, tunnel, passage, corridor, in, mine, mine.3
    fin
-   respond mine, tunnel, passage, corridor, crawl, opening, hah!
-   respond foliage, mountain, slope, path, track, hah!
+   ifany mine, tunnel, passage, corridor, crawl, opening
+      flag context, arg2.here
+   fin
+   ifany foliage, mountain, slope, path, track
+      flag context, arg2.here
+   fin
    lda throw.here, island.02
    lda throw.text, chuck.down.slope
 #
@@ -12728,7 +13631,9 @@ at island.01
       respond beach, its.out.of.reach, 0
       respond outcrop you.are.there
    fin
-   respond beach, outcrop, mountain, slope, hah!
+   ifany beach, outcrop, mountain, slope
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -12796,7 +13701,9 @@ at island.02
          move island.01
       fin
    fin
-   respond mountain, slope, fold, trees, bushes, hah!
+   ifany mountain, slope, fold, trees, bushes
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -12818,7 +13725,9 @@ at island.03
       move s, island.04
       respond beach, its.out.of.reach, 0
    fin
-   respond beach, slope, mountain, hah!
+   ifany beach, slope, mountain
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -12851,8 +13760,12 @@ at island.04
       respond beach, its.out.of.reach, 0
       respond waterfall, stream, not.from.here
    fin
-   respond beach, sea, horizon, swamp, caldera, slope, mountain, hah!
-   respond stream, waterfall, volcano, hah!
+   ifany beach, sea, horizon, swamp, caldera, slope, mountain
+      flag context, arg2.here
+   fin
+   ifany stream, waterfall, volcano
+      flag context, arg2.here
+   fin
    lda throw.here, ylem
    lda throw.text, throw.into.swamp
 #
@@ -12918,7 +13831,8 @@ at island.05
          ifeq pine, fallen
             smove island.06, pine.is.bridge
          else
-            quip hah!
+         flag context, arg2.here
+         proceed
          fin
       fin
    fin
@@ -12928,7 +13842,9 @@ at island.05
       move e, trail, island.08
       smove south, cross, climb, island.06, pine.is.bridge
    fin
-   respond slope, mountain, ravine, trail, hah!
+   ifany slope, mountain, ravine, trail
+      flag context, arg2.here
+   fin
    lda throw.here, ylem
    lda throw.text, throw.into.ravine
 #
@@ -12966,7 +13882,8 @@ at island.06
          ifeq pine, fallen
             smove island.05, pine.is.bridge
          else
-            quip hah!
+            flag context, arg2.here
+            proceed
          fin
       fin
       ifkey water
@@ -12979,7 +13896,9 @@ at island.06
       smove n, climb, cross, island.05, pine.is.bridge
       move e, trail, temple, by.temple
    fin
-   respond ravine, mountain, bridge, trail, hah!
+   ifany ravine, mountain, bridge, trail
+      flag context, arg2.here
+   fin
    lda throw.here, ylem
    lda throw.text, throw.into.ravine
 #
@@ -13003,7 +13922,9 @@ at island.07
       move nw, down, island.n
       move se, up, island.08
    fin
-   respond mountain, slope, soil, vegetation, sea, cliff, hah!
+   ifany mountain, slope, soil, vegetation, sea, cliff
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -13046,7 +13967,9 @@ at island.08
          quip sounds.of.stream
       fin
    fin
-   respond trail, mountain, ravine, slope, sea, vegetation, hah!
+   ifany trail, mountain, ravine, slope, sea, vegetation
+      flag context, arg2.here
+   fin
    lda throw.here, by.stream.1
    lda throw.text, throw.to.stream
 #
@@ -13087,7 +14010,9 @@ at island.09
          fin
       fin
    fin
-   respond trail, mountain, fir, undergrowth, hah!
+   ifany trail, mountain, fir, undergrowth
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -13132,7 +14057,9 @@ at by.temple
       respond beach, its.out.of.reach, 0
       respond caldera, swamp, cant.get.to.bog
    fin
-   respond temple, vista, doorway, beach, caldera, swamp, slope, hah!
+   ifany temple, vista, doorway, beach, caldera, swamp, slope
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -13250,10 +14177,17 @@ at temple
       fin
    fin
    ifeq temple, vault.open
-      respond steps, hah!
+      and
+   ifkey steps
+      flag context, arg2.here
+      proceed
    fin
-   respond columns, roof, ceiling, wall, window, floor, doorway, marble, hah!
-   respond periphery, hah!
+   ifany columns, roof, ceiling, wall, window, floor, doorway, marble
+      flag context, arg2.here
+   fin
+   ifany periphery
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -13309,7 +14243,9 @@ at by.stream.1
    ifkey cross
       call arg1
    fin
-   respond stream, vegetation, stones, rock, cliff, slope, hah!
+   ifany stream, vegetation, stones, rock, cliff, slope
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -13340,7 +14276,9 @@ at by.stream.2
    ifany cross
       call arg1
    fin
-   respond stream, gorge, banks, cliff, bend, hah!
+   ifany stream, gorge, banks, cliff, bend
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -13383,8 +14321,12 @@ at bog.edge
       fin
       respond edge, you.are.there
    fin
-   respond stones, boulders, chunks, edge, rock, cliff, hah!
-   respond swamp, stream, gorge, hah!
+   ifany stones, boulders, chunks, edge, rock, cliff
+      flag context, arg2.here
+   fin
+   ifany swamp, stream, gorge
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -13422,7 +14364,9 @@ at viewpoint
       lda throw.here, ylem
    fin
    lda throw.text, throw.into.swamp
-   respond swamp, caldera, ridge, shelf, rock, hah!
+   ifany swamp, caldera, ridge, shelf, rock
+      flag context, arg2.here
+   fin
 #  
 #=====================================================================
 #
@@ -13460,8 +14404,12 @@ at viewpoint.2
       respond sea, water, horizon, sea.horizon
       respond vista, view, looks.magnificent, arg2
    fin
-   respond beach, sea, ridge, track, trail, horizon, mountain, cliffs, hah!
-   respond edge, vista, slope, platform, hah!
+   ifany beach, sea, ridge, track, trail, horizon, mountain, cliffs
+      flag context, arg2.here
+   fin
+   ifany edge, vista, slope, platform
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -13511,7 +14459,9 @@ at wrong.venue
       respond swim, water, no.swim, 0
    fin
    respond torch, torches.too.high
-   respond stream, gap, ceiling, hah!
+   ifany stream, gap, ceiling
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -13535,7 +14485,9 @@ at ne.repository
       move sw, sw.repository
       respond repository, you.are.there
    fin
-   respond repository, torch, hah!
+   ifany repository, torch
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -13556,7 +14508,9 @@ at blasted.repository
       move ne, hole, opening, dark.hole
       respond repository, you.are.there
    fin
-   respond repository, heaps, floor, rubble, hole, opening, wall, hah!
+   ifany repository, heaps, floor, rubble, hole, opening, wall
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -13590,7 +14544,9 @@ at sw.repository
       respond repository, you.are.there
       respond pit, no.go.snake.pit
    fin
-   respond repository, pit, torch, hah!
+   ifany repository, pit, torch
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -13973,7 +14929,8 @@ at imaze.book
       ifany push, pull
          quip no.move.book, arg1
       fin
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifkey look
       call abyss.view, 0

@@ -239,6 +239,8 @@ flags variable
 #
 flags variable
       joke.over       # Set on solving the little joke.
+      arg2.here       # ARG2 designated pseudo object *is* here
+      arg2.distant    # ARG2 can be seen but is out of reach
 #
 # Define thirst parameters.
 #

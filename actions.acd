@@ -212,7 +212,6 @@ action get        # Generalized last-case "get" routine
    fin
    ifnear arg2
    else
-#      quip i.dont.see, arg2
       call bail.out
    fin
    ifkey dung
@@ -549,7 +548,7 @@ action oil
          and
          not
       ifnear arg2
-         quip i.dont.see, arg2
+         call bail.out
       fin
    fin
    ifany door1, door2, door3
@@ -1254,6 +1253,18 @@ action look                # Can't look in the dark!
 #
 #=====================================================================
 #
+action look pyramid
+   ifnear pyramid
+      describe pyramid
+      ifeq pyramid, 0
+         add pyramid, 1
+      fin
+      quit
+   fin
+   call bail.out
+#
+#=====================================================================
+#
 action look oil
    ifnear bottle, full.of.oil
       or
@@ -1348,7 +1359,7 @@ action look
       ifat arg2
          quip no.enlightenment
       fin
-      quip i.dont.see, arg2
+      call bail.out
    fin
    ifkey sea
       ifat stupendous.view, above.sea, by.temple, sea.view
@@ -1661,7 +1672,7 @@ action open pentagram        # Weird case - opening a place!
       fin
       quip pentagram.empty
    fin
-   quip i.dont.see, arg2
+   call bail.out
 #
 #=====================================================================
 #
@@ -1685,7 +1696,6 @@ action open                  # General opening routine
       and
       not
    ifnear arg2
-#      quip i.dont.see, arg2
       call bail.out
    fin
    anyof bottle, bag, chest, cage, clam, oyster, vial, keys, gates
@@ -1729,7 +1739,7 @@ action open
          and
          not
       ifat crypt
-         quip i.dont.see, lid
+         call bail.out
       fin
       ifany coffin, lid
          ifeq vampire, asleep
@@ -2478,7 +2488,6 @@ action feed
             call feed.unicorn
          fin
       fin
-#      quip i.dont.see, arg2
       call bail.out
 #
 #=====================================================================
@@ -2486,7 +2495,12 @@ action feed
 action feed
    ifeq status, 1
    else
-      quip hah!
+      ifflag arg2, object
+         and
+      ifnear arg2
+         quip hah!
+      fin
+      call bail.out
    fin
 #
 #=====================================================================
@@ -2663,7 +2677,7 @@ action find
             ifinrange here, island, mine.exit
                quip no.coconuts
             fin
-            quip i.dont.see, coconuts
+            call bail.out
          fin
          ifflag admin, olorin
             ifhave arg2
@@ -3266,7 +3280,7 @@ action curtains
    ifat soft, curtain.entrance, bare.cavern
       quip comfort
    fin
-   quip i.dont.see, curtains
+   call bail.out
 #
 #=====================================================================
 #
@@ -3425,7 +3439,7 @@ action taste
       and
    ifnear arg2
    else
-      quip i.dont.see, arg2
+      call bail.out
    fin
    respond mushroom, eat.it
    ifkey food
@@ -3435,7 +3449,7 @@ action taste
    ifany bottle, flask, bucket
       call drink
    fin
-   quip hah!
+   call bail.out
 #
 #=====================================================================
 #
@@ -3597,15 +3611,12 @@ action read notice
    fin
    ifat stupendous.view
       describe notice
-#      flag status, detaildisplay
-#      say notice
-#      unflag status, detaildisplay
       ifeq notice, unread
          set notice, examined
       fin
       quit
    fin
-   quip i.dont.see, arg2
+   call bail.out
 #
 #=====================================================================
 #
@@ -3643,7 +3654,7 @@ action read
          ifat arabesque
             quip just.a.fixture, arg2
          fin
-         quip i.dont.see, arg2
+         call bail.out
       fin
       ifkey tablet
          and
@@ -3675,7 +3686,7 @@ action read
             fin
          fin
       else
-         quip hah!
+         call bail.out
       fin
    fin
 #
@@ -4076,7 +4087,7 @@ action cut
    fin
    ifflag arg2, object
    else
-      quip hah!
+      call bail.out
    fin
    ifkey palms
       and
@@ -4220,7 +4231,7 @@ action kick
          fin
          call coroner
       fin
-      quip hah!
+      call bail.out
    fin
 #
 #=====================================================================
@@ -4251,7 +4262,7 @@ action wake
             say dwarf.wakes
             call coroner
          fin
-         quip hah!
+         call bail.out
       fin
    fin
 #
@@ -4460,7 +4471,7 @@ action use
          fin
          call lets.knock
       fin
-      quip i.dont.see, knocker
+      call bail.out
    fin
    quip use.too.vague
 #
@@ -4502,7 +4513,7 @@ action reflect
       fin
       quip vain.reflection
    fin
-   quip hah!
+   call bail.out
 #
 #=====================================================================
 #
@@ -4510,7 +4521,7 @@ action translate
    ifeq status, 2
       ifany plaque, magazines, dwarf, documents
       else
-         quip hah!
+         call bail.out
       fin
    fin
    ifnear documents
@@ -4615,7 +4626,7 @@ action cross
       respond ogre, spider, vampire, mugs.game, arg2
       respond dwarf, cross.enough, dwarf
    fin
-   quip hah!
+   call bail.out
 #
 #=====================================================================
 #
@@ -4825,7 +4836,6 @@ action wash
       ifflag arg2, portable
          ifnear arg2
          else
-#            quip i.dont.see, arg2
             call bail.out
          fin
          ifflag here, h20.here
@@ -4861,7 +4871,7 @@ action wash
          fin
          quip nothing.to.wash.with
       fin
-      quip hah!
+      call bail.out
    fin
    ifat stream.maze.entrance, stream.maze
       and
@@ -5250,7 +5260,7 @@ action berry
    ifinrange here, forest.1, dark.forest
       quip no.berries
    fin
-   quip i.dont.see, berry
+   call bail.out
 #
 #=====================================================================
 #
@@ -5293,6 +5303,22 @@ action put
       and
    ifnear vending
       call drop
+   fin
+   ifany bottle, flask, bucket, water
+      and
+   ifflag here, h20.here
+      ifkey water
+         ifhave bottle
+            quip fill.it.you.dummy, bottle
+         fin
+         ifhave bucket
+            quip fill.it.you.dummy, bucket
+         fin
+         ifhave flask
+            quip fill.it.you.dummy, flask
+         fin
+      fin
+      quip fill.it.you.dummy, arg2
    fin
    quip no.putting, arg1
 #
@@ -5697,7 +5723,7 @@ action knock
       ifnear door3
          quip why.knock?
       fin
-      quip i.dont.see, door
+      call bail.out
    fin
 #
 #=====================================================================
@@ -6030,3 +6056,24 @@ action diagnose
    quip healthy.or.dead, 1
 #
 #=====================================================================
+#
+action dig
+   ifeq status, 1
+      or
+   ifany ground, floor, dust, ground
+      quip need.shovel
+   fin
+   ifany tree, shrub, firs, grass, bush, roses, rose, birch
+      or
+   ifany maple, saplings, vegetation, gravel
+      and
+   ifflag context, arg2.here
+      quip need.shovel
+   fin
+   ifany pine, pedestal, notice
+      and
+   ifnear arg2
+      quip need.shovel
+   fin
+#
+######################################################################

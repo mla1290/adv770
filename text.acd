@@ -667,7 +667,7 @@ TEXT TEMPLE.IS.FOLLY
     set closely under the roof's edge all around the building. The 
     entrance is a narrow rectangular doorway,
     surrounded by a pseudo-classical portico. There is no actual door.
-    Chiseled into the marble over the doorway is some lettering.
+    Chiselled into the marble over the doorway is some lettering.
 #
 TEXT CANT.SEE.IN
     You can't make out any interior details from here.
@@ -997,7 +997,7 @@ TEXT HISTORY.DATA
 
    =1. Original Adventure developed by Will Crowther.
    =
-   =2. Greatly enhanced and expanded to the 340 pt version by Don Woods.
+   =2. Greatly enhanced and expanded to the 350 pt version by Don Woods.
    =
    =3. Adventure II superset (440 pt) produced by Peter Luckett and
    =   Jack Pike.
@@ -1035,7 +1035,7 @@ TEXT BEAR.SPOTS.TROLL
     The troll steps from under the bridge, blocking your way. The bear
     which until now has been mooching aimlessly about, suddenly gives
     out a deep growl and lumbers towards the troll, who bolts out of
-    sight with a startled shreak. The bear, clearly puzzled,
+    sight with a startled shriek. The bear, clearly puzzled,
     looks around and then ambles back, away from the chasm's edge.
 #
 TEXT TIDE.RECEDES
@@ -2453,7 +2453,7 @@ FRAGMENT increment SENTRY
     door here and a notice '%DWARVES QUARTERS - NO ACCESS%'. The door is
     partly open and behind it you can see a party of dwarves arguing over
     a card game at a large oblong table amidst a chaos of dirty dishes, pewter
-    mugs and sizeable earthenware jugs. A large nasty looking dwarf is
+    mugs and sizable earthenware jugs. A large nasty looking dwarf is
     snoring on a stool by the door, resting his unshaven chin on the shaft
     of a long sharp axe. As you clear the last step, the dwarf suddenly
     opens his eyes, blinks in surprise, jumps up and with a single neat
@@ -2730,7 +2730,7 @@ TEXT assigned MUTTERS
     "Even unicorns need to eat," he says disapprovingly, and then
     is gone as inexplicably as he'd appeared./
     A small figure steps out of the shadows. Oh, no! It's the Little
-    Old Lady In Tennis Shoes - the frequent advisor to Role Playing
+    Old Lady In Tennis Shoes - the frequent adviser to Role Playing
     Gamers! What is she doing here?...
 
     Be it as it may, LOLITS clears her throat and says: "Hisself is
@@ -3246,7 +3246,7 @@ TEXT TREASURE.2
     carelessly about!
 
     There are diamonds, rubies, sapphires, emeralds, opals, pearls, and
-    fabulous sculptures and ornaments carved out of jade and imperishible
+    fabulous sculptures and ornaments carved out of jade and imperishable
     crystal resting on display shelves, along with rare Ming vases and
     ancient Indian turquoise beads!
 
@@ -3326,7 +3326,7 @@ TEXT assigned ORB.VISION
     As you consider the orb, it appears to expand, quickly filling your
     entire field of vision. Vague shapes seem to stir within its shadowy
     depth. Straining your eyes after the uncertain forms you begin to
-    see [spiraling showers of pale yet fiery multicoloured sparks./
+    see [spiralling showers of pale yet fiery multicoloured sparks./
     a pattern of green patches, which slowly clarifies itself into a small
     plant growing at the bottom of a dark pit./
     billowing clouds of pale colours, which gradually resolve into a giant
@@ -3364,7 +3364,7 @@ TEXT assigned ORB.VISION
     a dimly lit rock wall, with rusty stanchions, clearly intended 
     for chains./
     an inlaid chalice, dripping water from a crack in its cup./
-    a seemingly random collection of white, gray and green splodges,
+    a seemingly random collection of white, grey and green splodges,
     which tumble around, changing their shapes and sizes, until
     out of the confusion there briefly emerges the image of a green
     foliage spreading upwards, along the face of a chalk cliff./
@@ -3686,7 +3686,7 @@ TEXT VOCAB.GENERAL
     Generally I understand commands in the form of "verb" or "verb noun", 
     such as for instance ENTER or GET LAMP. If you use more words than two,
     I'll assume that you forgot to use punctuation and will do my
-    best to work out how to splt the command into two or more. There are
+    best to work out how to split the command into two or more. There are
     some exceptions to this: if getting or dropping ALL or TREASURE, you
     can use EXCEPT (or BUT) like this: DROP ALL EXCEPT LAMP BOTTLE AND KEYS.
    
@@ -3823,8 +3823,9 @@ TEXT VOCAB.TRAVEL
 #
 TEXT VOCAB.SCREEN
     There are several commands affecting screen display, though please 
-    note that these have *no* effect if the game is being run through a
-    CGI front-end (i.e. is played through a Web browser).
+    note that these have *no* effect on Glk-instrumented executables, or
+    if the game is being run through a CGI front-end (i.e. is played 
+    through a Web browser).
 
     screen (depth, scroll) followed by a number, specifies the number
     of text lines in your screen (or window) -- the default value is 24,
@@ -4054,9 +4055,9 @@ TEXT increment CHANTING.SOUND
     [perhaps hoping to catch the words of some fleeting echo of a spell or
     cantrip. But if there really anything useful to hear here, which I
     doubt, it is drowned be the soft, all-pervasive sound of chanting,
-    which seems to emanate from deep underground. The chanhting itself
+    which seems to emanate from deep underground. The chanting itself
     is really just an intricate pattern of voices, with no
-    distinguishible words to it/but there is nothing useful to be heard].
+    distinguishable words to it/but there is nothing useful to be heard].
 
 #
 TEXT SLIME.EATS
@@ -4124,7 +4125,7 @@ TEXT ITS.A.CEILING
     attractive in the purity of its lines./
     All you see is just a rough, natural stone ceiling./
     There must be a ceiling somewhere up there, but despite
-    the illimunation provided by the volcano, you can't make it
+    the illumination provided by the volcano, you can't make it
     out from here.]
 #
 TEXT increment  BUILDING.ROOF
@@ -4418,7 +4419,7 @@ TEXT PLANT.GIGANTIC
    /. The plant grows explosively, almost filling the bottom of the pit.
 #
 TEXT PLANT.SHRIVELS
-   /. You've over-watered the plant! It's shriveling up! It's, it's...
+   /. You've over-watered the plant! It's shrivelling up! It's, it's...
 #
 TEXT BEANSTALK.GROWN
     You [empty the bucket of manure/open the packet and scatter its
@@ -4666,7 +4667,7 @@ TEXT
 #
 TEXT ITS.A.WINDOW
     It's a window - a hole in the wall, if you pardon such a vulgar,
-    though apt, description. No glazing. Civilization has not 
+    though apt, description. No glazing. Civilisation has not 
     reached this far yet.
 #
 TEXT NO.GLASS
@@ -6718,7 +6719,7 @@ TEXT increment CAUGHT.ON.STAIRS
     There is a clatter of boots and loud argumentative voices from below,
     and before you can react, a large, nasty looking dwarf coming up the
     stairs nearly runs into you. "[%Well, well... Look what the cat's
-    brought in!%/%Not you again!]", he says[/ disgustedly] and without
+    brought in!%/%Not you again!%]", he says[/ disgustedly] and without
     further ado swings his large axe in a thrusting, upward motion...
 #
 TEXT DOOR.NO.KEYHOLE
@@ -6958,7 +6959,7 @@ TEXT increment NO.EVICT.IMP
      Oberon himself failed rather spectacularly, so I respectfully suggest
      you stop embarrassing yourself and just accept my plain and honest
      advice: LEAVE THE IMP ALONE, DON'T COME HERE, THERE IS NOTHING
-     TO BE GAINED BY IT, THE IMP IS JUST A NUISANCE - OK?/Oh, do
+     TO BE GAINED BY IT, THE IMP IS JUST A METAPHYSICAL NUISANCE - OK?/Oh, do
      stop being silly - you are not a miracle worker and the imp is not
      leaving here in a hurry.]
 #
@@ -7018,14 +7019,14 @@ FRAGMENT cycle TYPO
 TEXT VOCAB.WIZ
     Wizard commands:
 
-   =down <object>             - decrement object value
+   =decrement <object>        - decrement object value
    =fetch <object> (obtain)   - fetch the object from wherever
    =find <object>             - go where the object is
    =fly <location> (teleport) - go to the named location
    =glow                      - toggle magical illumination
    =mutter                    - cause immediate orc mutter
-   =next [up/down]            - go to the next higher/lower location
-   =up <object>               - increment object value
+   =next \[up/down]            - go to the next higher/lower location
+   =decrement <object>        - increment object value
 #
 TEXT increment SUNSTONE.NO.FLY
    [Sorry, I can't allow you to board the rug while in possession of the
@@ -7387,14 +7388,15 @@ TEXT cycle FIRMLY.ATTACHED
     The # is firmly attached in its place.[/ You don't need it anyway!/]
 #
 FRAGMENT AGITATED.HORSES
-    and stop in amazement, at the sight of the metal horses in the
-    gate's ironwork, pawing the imaginary ground and tossing their heads.
+    and stop in amazement, at the sight of the metal horses rearing up
+    and tossing their heads.
 #
 TEXT increment MOEBIUS.GATES
     [Ok, but don't blame me if you get arrested, or something...
    
     Anyway, you {LAMP.IN.TEETH}stick your foot into the fancy iron-work, 
-    {AGITATED.HORSES} Undeterred, you pull yourself up, and reach
+    {AGITATED.HORSES} After a while, you decide to ignore the magical
+    display, pull yourself up, and reach
     the top of the gates with an unnerving ease. You swing yourself
     over the top and jump down, landing somewhat heavily ... and are
     astonished to see the garden and the tower on the other side of the 
@@ -7415,7 +7417,7 @@ TEXT increment MOEBIUS.GATES
     all you know, next time you could end up as a toad or worse. There
     have been precedents!]
 
-    [As you stare incomprehendingly through the gates, a tall wizard in
+    [As you stare uncomprehendingly through the gates, a tall wizard in
     grey materialises on the other side. He gives you a hard, cold
     stare, nods to himself and fades away./After a while you become
     aware of the grey wizard examining you with the air of profound
@@ -7628,7 +7630,7 @@ TEXT HORSE.SHAPES
 #
 TEXT DARK.FOREST.SCENERY
     [You look up towards the sky above, but even its cheerful blue
-    colour cannot dispell the air of gloom and decay which surrounds you./
+    colour cannot dispel the air of gloom and decay which surrounds you./
     The forest floor is covered in a thin layer of dry conifer needles,
     which offer nothing of interest to your eyes.]
 #
@@ -7838,7 +7840,7 @@ TEXT LOOK.DEPRESSION
     the secrets of the cave system underneath.
 #
 TEXT VISCIOUS.LOT
-    The # look like a pretty viscious lot, not to be tangled with.
+    The # look like a pretty vicious lot, not to be tangled with.
 #
 TEXT WILD.ROCKERY
     The rock jumble would be hard enough to climb even without
@@ -8172,7 +8174,7 @@ FRAGMENT ISLAND.VIEW
    volcanic origin, surrounded by a strip of golden sand.
    Dense vegetation starts beyond the sandy beach and climbs
    the mountain slopes, gradually changing to darker hues of
-   green, before giving way to gray and brown rock./is mostly
+   green, before giving way to grey and brown rock./is mostly
    a massive mountain rising out of the sea and surrounded by
    a thin yellow line - presumably a sandy beach./still too far
    to be seen with any clarity.]
@@ -8301,7 +8303,7 @@ TEXT VIAL.DWARF
 
    [/The dwarf catches a lungful of the cloud, gags audibly and 
    stumbles out of the room retching, sneezing, and cursing up a storm./
-   The dwarves blanche in horror and dash away as fast as their brief
+   The dwarves blanch in horror and dash away as fast as their brief
    and misshapen legs can carry them.]
 #
 TEXT VIAL.EFFECT
@@ -8436,7 +8438,7 @@ TEXT ITS.A.LOCK
 #
 TEXT increment DOWN.THE.BEANSTALK
    You [push aside beanstalk's lush foliage, get a firm hold of its stem,
-   and/ ]climb down[/ the beanstalk].
+   and /]climb down[/ the beanstalk].
 
 #
 TEXT NO.CLIMB.CLIFF
@@ -8524,16 +8526,17 @@ TEXT SWAMP.PLANTS
 TEXT JUST.GENERIC
    It's just generic #.
 #
-TEXT MIGHT.BE.POISON
-   I advise against. You never know what might be poisonous to humans.
+TEXT increment MIGHT.BE.POISON
+   I advise against. You never know what might be poisonous to 
+   humans.[ A bit of a fragile species, humans./]
 #
 TEXT BENDY.TRAIL
    The trail [stops at the edge of the ravine/runs east, bending around
    the mountain to the ][/north/south].
 #
 TEXT HEALTHY.OR.DEAD
-   [Your health i/I]n this game, [/the health of various creatures ] is
-   a binary affair - either 100% healthy or 100% dead. I don't think
+   In this game, [your health/health of various creatures] is
+   a binary affair - either 100\% healthy or 100\% dead. I don't think
    you need to worry about failing to spot the difference between the two.
 #
 TEXT RESTFUL.SHADE
@@ -8897,23 +8900,23 @@ TEXT increment LAVA.TUBE
    behind just the solidified tubular shell./]
 #
 TEXT LAVA.SLIDE
-   The lava tube leeds steeply down and in fact forms a kind of a slide.
+   The lava tube leads steeply down and in fact forms a kind of a slide.
    So much so that climbing up it look pretty much impossible.
 #
 TEXT THIS.IS.LAVA
-   Lava is a the molten rock spewed out by volcanos, which solidifies
+   Lava is a the molten rock spewed out by volcanoes, which solidifies
    as it cools down. The resulting rock can vary in hardness, depending
    on the amount of gas trapped within it. This lot here, for example, is
    pretty hard.
 #
 TEXT SEDIMENTARY.ROCK
    As the word suggests, sedimentary rock consists of petrified
-   sediments that had accumulated at the bottom of a sizeable body of
+   sediments that had accumulated at the bottom of a sizable body of
    water. It is therefore not unusual to find embedded in it remnants
    of water-living creatures, shells being particularly frequent because
    of their non-organic composition. Around here, though, the abundance
    of small shells in the rock is quite astounding - it suggests
-   huge colonies of molluscs, living for millennia in a sheltered
+   huge colonies of mollusks, living for millenia in a sheltered
    nook.
 #
 TEXT ITS.SHELLS
@@ -9028,7 +9031,7 @@ TEXT ITS.EMPTY
 #
 TEXT increment NO.SWAG
    There's no # here.[ In any case, there is no need to use such ugly
-   slang words: # is just something stolen by thiefs - which is of
+   slang words: # is just something stolen by thieves - which is of
    course not at all the same as stuff pilfered by adventurers./]
 #
 TEXT ITS.SWAG
@@ -9270,11 +9273,11 @@ TEXT SEA.OF.DUNES
 #
 TEXT RECEDING.GIANT
    [You can't see the giant from here - he's left 
-   far/=/][, far//][behind!/=//][//The fast receding giant is waving
+   far/=/][, far//][ behind!/=/][//The fast receding giant is waving
    a friendly good-bye.]
 #
 TEXT RUG.UNDER.YOU
-   It is probably not a goof idea to concentrate on the somewhat
+   It is probably not a good idea to concentrate on the somewhat
    threadbare rug. It might remind you that there is nothing else
    between you and the sea waves. In any case, it looks no different
    just because you happen to sit on it.
@@ -9439,7 +9442,7 @@ TEXT LARGE.FRACTURE
    It's large enough for you to crawl through, should you so wish.
 #
 TEXT SLIMEY.BRICKS
-   The bricks of the culvert are old an slimey. It's best to leave them
+   The bricks of the culvert are old an slimy. It's best to leave them
    alone.
 #
 TEXT TIDE.LEVEL
@@ -9584,7 +9587,7 @@ TEXT NARROW.EXIT
    through it, provided you leave any bulky stuff behind.
 #
 TEXT CRYSTAL.WALLS
-   The walls are composed of thousands of crystals of smokey quartz.
+   The walls are composed of thousands of crystals of smoky quartz.
    They are dark, almost black in colour.
 #
 TEXT TEETH.LIKE.CRYSTALS

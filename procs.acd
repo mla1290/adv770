@@ -4,6 +4,313 @@
 #
 #=====================================================================
 #
+proc handle.oil
+   ifeq status, 1
+      ifnear flask, full.of.oil
+         or
+      ifnear bottle, full.of.oil
+         or
+      ifhere oil
+         flag status, pls.clarify
+         quip do.what?, oil
+      fin
+      quip i.dont.see, oil
+   fin
+   respond get, drop, throw, pour, i.dont.see, arg2
+   quip hah!
+#
+#=====================================================================
+#
+proc handle.water
+   ifeq status, 1
+      ifnear flask, full.of.water
+         or
+      ifnear bottle, full.of.water
+         or
+      ifflag here, h20.here
+         flag status, pls.clarify
+         quip do.what?, arg1
+      fin
+      quip i.dont.see, arg1
+   fin
+   respond in, get, drop, throw, pour, drink, i.dont.see, arg2
+   quip hah!
+#
+#=====================================================================
+#
+proc generic.no.do
+   ifeq status, 1
+      or
+   ifflag arg2, object
+      proceed
+   fin
+   ifflag context, arg2.distant
+      and
+      not
+   ifkey look
+      quip too.far.off
+   fin
+   ifflag context, arg2.here
+      respond get, no.pick.up
+      respond push, pull, nothing
+      respond kill, break, no.violence
+   fin
+   ifany read, translate, fill, empty, lock, unlock, open, close
+      or
+   ifany clean, ride, feed, wear, eat, chew, drink, wake, remove
+      or
+   ifany sip, replace, fix sow, evict, tear, spill
+      ifeq nothing.doing.1, 0
+         say nothing.doing.1, arg2
+         quip nothing.doing.2, arg1
+      else
+         say nothing.doing.1, arg1
+         quip nothing.doing.2, arg2
+      fin
+   fin
+#
+#=====================================================================
+#
+proc bail.out
+   ifkey oil
+      call handle.oil
+   fin
+   ifkey water
+      call handle.water
+   fin
+   respond something, pardon?
+   ifany ceiling, roof
+      ifflag here, not.in.cave
+         or
+      ifflag here, indoors
+         quip hah!
+      fin
+   fin
+   respond minerals, minerals.aplenty
+   ifkey sun
+      ifflag here, not.in.cave
+         and
+         not
+      ifflag here, indoors
+         flag context, arg2.distant
+      fin
+   fin
+   ifany shade, shadow
+      and
+   ifflag here, not.in.cave
+      and 
+      not
+   ifinrange here, above.sea, ylem
+      quip ignore.shadows
+   fin
+   ifkey sand
+      ifnear quicksand
+         or
+      ifinrange here, island, island.ne
+         or
+      ifinrange here, desert.1, river.bed.2
+         or
+      ifinrange here, north.of.spire, west.of.spire
+         or
+      ifinrange here, cliff.foot, cliff.base.4
+         or      
+      ifinrange here, sandy.beach, beach.end
+         ifeq status, 1
+            flag  status, pls.clarify   # Request clarification
+            quip do.what?, arg1
+         otherwise
+         ifkey get
+            quip no.future.in.it, sand
+         otherwise
+         ifkey look
+            ifnear quicksand
+               describe quicksand
+               quit
+            fin
+            ifinrange here, island, island.ne
+               quip golden.sand
+            fin
+            ifinrange here, sandy.beach, beach.end
+               quip dirty.sand
+            fin
+            quip black.sand   # Only the black desert left!
+         else
+            flush
+            quip hah!
+         fin
+      fin
+   fin
+   ifany dust, dirt
+      ifflag here, not.in.cave
+      else
+         quip dirt.and.dust
+      fin
+   fin
+   ifkey sygil
+      and
+   ifnear bust
+      ifeq status, 2
+         quip hah!
+      fin
+      flag status, pls.clarify   # Request clarification
+      quip do.what?, arg1
+   fin
+   ifkey rust
+      ifat south.side.chamber, cellar, cellar.view, half.stairs, storeroom
+         or
+      ifat shelves.east, roof, immense.n/s.passages, sw.repository
+         or
+      ifnear rod
+         or
+      ifnear dynamite
+         or 
+      ifnear sheet
+         quip hah!
+      fin
+   fin
+   ifkey light
+      and
+   ifgt status, 1
+      and
+      not
+   ifkey lamp
+      quip hah!
+   fin
+   ifkey swag
+      ifis arg1, swag
+         quip no.swag, arg1
+      else
+         quip no.swag, arg2
+      fin
+   fin
+   respond elric, elric.lives
+   respond jerry, elric.preferred
+   ifeq status, 1   
+      ifflag arg1, object
+         and
+      ifnear arg1
+         and
+      ifflag arg1, mortal
+         quip what.about.them, arg1
+      fin
+      ifinrange arg1, first.clarify, last.clarify
+         or
+      ifkey say
+         flag  status, pls.clarify   # Request clarification
+         quip could.you.clarify?, arg1
+      fin
+      ifinrange arg1, first.travel, last.travel
+         quip dont.know.the.way
+      else
+         ifinrange arg1, first.pseudo, first.general
+            and
+            not
+         ifflag context, arg2.here
+            and
+            not
+         ifflag context, arg2.distant
+            quip i.dont.see, arg1
+         else
+            quip what.about.it
+         fin
+      fin
+   otherwise
+   ifkey look
+      ifkey daylight
+         and
+      ifflag here, not.in.cave
+         quip plenty.about, daylight
+      fin
+      ifkey space
+         and
+      ifflag here, not.in.cave
+         and
+         not
+      ifflag here, indoors
+         quip plenty.about, space
+      fin
+   fin
+   ifeq status, 2
+      and
+   ifflag arg2, object
+      ifkey water
+         ifflag here, h20.here
+            quip water.is.for.drinking
+         fin
+      otherwise
+      ifkey treasure
+         ifkey get
+            quip no.treasure, 0
+         otherwise
+         respond drop, no.treasure, 1
+      otherwise
+      ifkey all
+         ifkey get
+            quip no.all, 0
+         otherwise
+         respond drop, no.all, 1
+      fin
+      ifnear arg2
+         or
+      ifflag context, arg2.here
+         or
+      ifflag context, arg2.distant
+         call generic.no.do
+         say dunno.hao, arg1
+         quip such.a.thing, arg2
+      otherwise
+      ifflag arg2, seen
+         quip i.dont.see, arg2
+      else
+         quip no.understand    # Fake it!
+      fin
+   fin
+   ifis arg2, wave
+      quip i.see.no.plural, wave
+   fin
+   ifinrange arg2, first.pseudo, last.pseudo
+      respond you, dont.get.personal
+      respond me, hah!
+      ifany hit, rock, ground
+         say hah!
+      otherwise
+      ifany wall, ceiling, roof
+         and
+         not
+      ifflag here, not.in.cave
+         quip hah!
+      else
+         ifinrange arg2, first.pseudo, first.general
+            ifflag context, arg2.here
+               or
+            ifflag context, arg2.distant
+               call generic.no.do
+               quip hah!
+            else
+               say i.dont.see, arg2
+            fin
+         else
+            ifkey sky
+               ifflag here, not.in.cave
+                  and
+                  not
+               ifflag here, indoors
+               else
+                  quip i.dont.see, sky
+               fin
+            fin            
+            call generic.no.do
+            say dunno.hao, arg1
+            say such.a.thing, arg2
+         fin
+      fin
+   else
+      say no.understand
+   fin
+   quit
+#
+#=====================================================================
+#
 proc vessel.contents
    local contents
 #
@@ -243,40 +550,6 @@ proc water.door
    fin
    say you.do, water
    quip it.is, door
-#
-#=====================================================================
-#
-proc handle.oil
-   ifeq status, 1
-      ifnear flask, full.of.oil
-         or
-      ifnear bottle, full.of.oil
-         or
-      ifhere oil
-         flag status, pls.clarify
-         quip do.what?, oil
-      fin
-      quip i.dont.see, oil
-   fin
-   respond get, drop, throw, pour, i.dont.see, arg2
-   quip hah!
-#
-#=====================================================================
-#
-proc handle.water
-   ifeq status, 1
-      ifnear flask, full.of.water
-         or
-      ifnear bottle, full.of.water
-         or
-      ifflag here, h20.here
-         flag status, pls.clarify
-         quip do.what?, arg1
-      fin
-      quip i.dont.see, arg1
-   fin
-   respond in, get, drop, throw, pour, drink, i.dont.see, arg2
-   quip hah!
 #
 #=====================================================================
 #
@@ -1625,7 +1898,6 @@ proc get.score
       fin
    fin
 #
-#
 #=====================================================================
 #
 proc finis
@@ -2730,6 +3002,7 @@ proc close.the.cave
          unflag place.ptr, been.here
       fin
    eoi
+   set forest.12, 1         # Make sure the path exists!
    flag nowhere, hintable   # May have been cleared in the "joke" stage
    flag dark.forest, been.here
    flag nowhere, been.here
@@ -3012,8 +3285,8 @@ proc events                  # Administrative clock has ticked
       ifeq stage, closing.soon         # Is it near closing time?
          call closing.time
       else                             # Must be closing time!
-         ifflag admin, panicked           # Did he try to get out?
-            unflag admin, panicked        # Reset panic flag
+         ifflag admin, panicked        # Did he try to get out?
+            unflag admin, panicked     # Reset panic flag
             set clock, 15              # Let him get frantic
          else                          # If he was calm
             call close.the.cave
@@ -3021,212 +3294,6 @@ proc events                  # Administrative clock has ticked
       fin
    fin
    set lastclock, clock
-#
-#=====================================================================
-#
-proc bail.out
-   ifkey oil
-      call handle.oil
-   fin
-   ifkey water
-      call handle.water
-   fin
-   respond something, pardon?
-   ifany ceiling, roof
-      ifflag here, not.in.cave
-         or
-      ifflag here, indoors
-         quip hah!
-      fin
-   fin
-   respond minerals, minerals.aplenty
-   ifany shade, shadow
-      and
-   ifflag here, not.in.cave
-      and 
-      not
-   ifinrange here, above.sea, ylem
-      quip ignore.shadows
-   fin
-   ifkey sand
-      ifnear quicksand
-         or
-      ifinrange here, island, island.ne
-         or
-      ifinrange here, desert.1, river.bed.2
-         or
-      ifinrange here, north.of.spire, west.of.spire
-         or
-      ifinrange here, cliff.foot, cliff.base.4
-         or      
-      ifinrange here, sandy.beach, beach.end
-         ifeq status, 1
-            flag  status, pls.clarify   # Request clarification
-            quip do.what?, arg1
-         otherwise
-         ifkey get
-            quip no.future.in.it, sand
-         otherwise
-         ifkey look
-            ifnear quicksand
-               describe quicksand
-               quit
-            fin
-            ifinrange here, island, island.ne
-               quip golden.sand
-            fin
-            ifinrange here, sandy.beach, beach.end
-               quip dirty.sand
-            fin
-            quip black.sand   # Only the black desert left!
-         else
-            flush
-            quip hah!
-         fin
-      fin
-   fin
-   ifany dust, dirt
-      ifflag here, not.in.cave
-      else
-         quip dirt.and.dust
-      fin
-   fin
-   ifkey sygil
-      and
-   ifnear bust
-      ifeq status, 2
-         quip hah!
-      fin
-      flag status, pls.clarify   # Request clarification
-      quip do.what?, arg1
-   fin
-   ifkey rust
-      ifat south.side.chamber, cellar, cellar.view, half.stairs, storeroom
-         or
-      ifat shelves.east, roof, immense.n/s.passages, sw.repository
-         or
-      ifnear rod
-         or
-      ifnear dynamite
-         or 
-      ifnear sheet
-         quip hah!
-      fin
-   fin
-   ifkey light
-      and
-   ifgt status, 1
-      and
-      not
-   ifkey lamp
-      quip hah!
-   fin
-   ifkey swag
-      ifis arg1, swag
-         quip no.swag, arg1
-      else
-         quip no.swag, arg2
-      fin
-   fin
-   respond elric, elric.lives
-   respond jerry, elric.preferred
-   ifeq status, 1   
-      ifflag arg1, object
-         and
-      ifnear arg1
-         and
-      ifflag arg1, mortal
-         quip what.about.them, arg1
-      fin
-      ifinrange arg1, first.clarify, last.clarify
-         or
-      ifkey say
-         flag  status, pls.clarify   # Request clarification
-         quip could.you.clarify?, arg1
-      fin
-      ifinrange arg1, first.travel, last.travel
-         quip dont.know.the.way
-      else
-         ifinrange arg1, first.pseudo, first.general
-            quip i.dont.see, arg1
-         else
-            quip what.about.it
-         fin
-      fin
-   otherwise
-   ifkey look
-      ifkey daylight
-         and
-      ifflag here, not.in.cave
-         quip plenty.about, daylight
-      fin
-      ifkey space
-         and
-      ifflag here, not.in.cave
-         and
-         not
-      ifflag here, indoors
-         quip plenty.about, space
-      fin
-   fin
-   ifeq status, 2
-      and
-   ifflag arg2, object
-      ifkey water
-         ifflag here, h20.here
-            quip water.is.for.drinking
-         fin
-      otherwise
-      ifkey treasure
-         ifkey get
-            quip no.treasure, 0
-         otherwise
-         respond drop, no.treasure, 1
-      otherwise
-      ifkey all
-         ifkey get
-            quip no.all, 0
-         otherwise
-         respond drop, no.all, 1
-      fin
-      ifnear arg2
-         respond get, no.pick.up
-         say dunno.hao, arg1
-         quip such.a.thing, arg2
-      otherwise
-      ifflag arg2, seen
-         quip i.dont.see, arg2
-      else
-         quip no.understand    # Fake it!
-      fin
-   fin
-   ifis arg2, wave
-      quip i.see.no.plural, wave
-   fin
-   ifinrange arg2, first.pseudo, last.pseudo
-      respond you, dont.get.personal
-      respond me, hah!
-      ifany hit, rock, ground
-         say hah!
-      otherwise
-      ifany wall, ceiling, roof
-         and
-         not
-      ifflag here, not.in.cave
-         quip hah!
-      else
-         ifinrange arg2, first.pseudo, first.general
-            say i.dont.see, arg2
-         else
-            respond get, no.pick.up
-            say dunno.hao, arg1
-            say such.a.thing, arg2
-         fin
-      fin
-   else
-      say no.understand
-   fin
-   quit
 #
 #=====================================================================
 #
@@ -4631,7 +4698,8 @@ proc fake.note
    ifany notice, note, sign, message
       respond look, read, same.as.before
       respond get, break, push, pull, leave.it.alone, arg2
-      quip hah!
+      flag context, arg2.here
+      call bail.out
    fin
 #
 #=====================================================================
@@ -4647,7 +4715,8 @@ proc fake.window
       respond look, its.a.window
       respond rub, break, open, close, no.glass, arg1
       respond climb, climbing.out.risky
-      quip hah!
+      flag context, arg2.here
+      call bail.out
    fin
 #
 #=====================================================================
@@ -4715,7 +4784,7 @@ proc sculpture.stuff
 #
    ifnear sculpture
    else
-      quip i.dont.see, arg2
+      call bail.out
    fin
    set name, arg2
    lda base, first.sculpture.fake
@@ -4727,7 +4796,7 @@ proc sculpture.stuff
    ifeq sculpture, name
       lda arg2, sculpture
    else
-      quip i.dont.see, arg2
+      call bail.out
    fin
 #
 # The rest of this procedure does nothing other than stopping translator
@@ -5690,6 +5759,9 @@ proc randomise.texts
    randomise star.lights, 0
    randomise hang.on!, 0
    randomise tis.amusing, 0
+   randomise no.violence, 0
+   randomise nothing.doing.1, 0
+   set nothing.doing.2, nothing.doing.1
    randomise typo, 0             # TYPO is structured in blocks of 4
    divide typo, 4                # messages, so randomise to the start
    multiply typo, 4              # of a block.
@@ -5869,7 +5941,7 @@ proc wall.stuff
    ifkey follow
       quip no.follow.wall
    else
-      quip hah!
+      quip hah!      
    fin
 #
 #=====================================================================
@@ -5932,7 +6004,7 @@ proc beach.stuff
       ifnear palms
          quip no.palm.climbing
       fin
-      quip i.dont.see, arg2
+      call bail.out
    fin
    ifkey fill
       ifany flask, bottle, bucket
@@ -6081,7 +6153,8 @@ proc in.forest.actions
          fin
       fin
       respond sapling, birch, ash, too.young, arg2
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifkey cut
       ifany tree, maple, birch, ash, sapling, saplings
@@ -6094,7 +6167,8 @@ proc in.forest.actions
    ifany undergrowth, foliage, maple, birch, pine, sapling, saplings, ash
       or
    ifany tree, maple, ash, sapling, saplings, bushes, floor, sky, vegetation
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
 #
 #=====================================================================
@@ -6118,14 +6192,18 @@ proc in.dense.forest.actions
       ifeq status, 1
          quip forest.all.around
       fin
-      quip hah!      
+      flag context, arg2.here
+      proceed
    fin
    ifkey climb
       and
    ifany tree, conifer
       quip no.climb.fir, 0
    fin
-   respond tree, conifer, firs, undergrowth, ground, hah!
+   ifany tree, conifer, firs, undergrowth, ground
+      flag context, arg2.here
+      proceed
+   fin
 #
 #=====================================================================
 #
@@ -6156,14 +6234,18 @@ proc in.dark.forest.actions
       fin
    fin
    respond climb, no.climb.fir, 0
-   respond undergrowth, conifers, tree, ground, sky, hah!
+   ifany undergrowth, conifers, tree, ground, sky
+      flag context, arg2.here
+      proceed
+   fin
    ifkey forest
       ifany go, in
          or
       ifeq status, 1
          quip forest.all.around
       fin
-      quip hah!      
+      flag context, arg2.here
+      proceed
    fin
 #
 #=====================================================================
@@ -6182,7 +6264,8 @@ proc in.valley.actions
          proceed
       fin
       ifgt status, 1
-         quip hah!
+         flag context, arg2.here
+         proceed
       fin
    fin
    respond tree, maple, pine, no.handy.them, arg2
@@ -6287,7 +6370,8 @@ proc handle.dirt
    ifkey dig
       proceed
    fin
-   quip hah!
+   flag context, arg2.here
+   call bail.out      
 #
 #=====================================================================
 #
@@ -6422,7 +6506,8 @@ proc plants.stuff, type
    fin
    respond get, no.point.in.that
    respond eat, chew, might.be.poison
-   quip hah!
+   flag context, arg2.here
+   call bail.out
 #
 #=====================================================================
 #
@@ -6472,7 +6557,10 @@ proc ice.stuff
       fin
       proceed
    fin
-   respond ice, tunnel, passage, corridor, maze, hah!
+   ifany ice, tunnel, passage, corridor, maze
+      flag context, arg2.here
+      call bail.out
+   fin
 #
 #=====================================================================
 #
@@ -6487,7 +6575,8 @@ proc garden.stuff
       ifeq status, 1
          quip you.are.there
       fin
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifkey flower
       and
@@ -6495,26 +6584,31 @@ proc garden.stuff
    ifnear flower
       respond look, rose.flowers
       respond get, cut, no.pick.roses
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifkey roses
       respond look rose.flowers
       respond get, cut, no.pick.roses
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifany bushes, tangle
       respond look, wild.rose.bushes
       respond cut, no.cut.roses
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifkey thorns
       respond look, sharp.thorns
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifany grass, weeds
       respond look, attention.to.detail, grass
       respond get, ordinary.grass
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
    ifkey path
       ifkey look
@@ -6534,7 +6628,8 @@ proc garden.stuff
       ifkey dig
          call dig
       fin
-      quip hah!
+      flag context, arg2.here
+      proceed
    fin
 #
 #=====================================================================

@@ -133,7 +133,7 @@ verb pull
 verb push, move, shift
 verb obtain, procure, fetch
 verb dip
-verb evict
+verb evict, banish
 verb where
 verb tear
 verb spill
@@ -146,8 +146,8 @@ verb -last.clarify        # Last clarifiable 'verb'
 # Next lot does not require clarifications
 #
 verb introduction, instructions
-verb examine, =look, =l, =lokk, =x, =ex, describe, description, consider, inspect
-verb quit, =q, =end, =stop, =finish, =bye, =logout, =lo,
+verb examine, =look, =l, =x, =ex, describe, description, consider, inspect
+verb quit, =q, =end, =stop, =finish, =bye, =logout
 verb terse, fast
 verb normal, brief, default
 verb verbose, full
@@ -299,7 +299,7 @@ verb ceiling, vault
 verb bricks, brickwork, =brick-work
 verb maple, =maples, oak, =oaks
 verb birch, =birches
-verb bushes, bush, gorse, undergrowth, elder, blackthorn, scrub, rosebushes
+verb bushes, bush, shrub, gorse, undergrowth, elder, blackthorn, scrub, rosebushes
 verb fir, =firs, conifer, =conifers
 verb grass, soil, patch
 verb weeds

@@ -7,7 +7,7 @@ TEXT increment VARIOUS.SAPLINGS
     [The birch saplings look a bit sickly, but the ash ones are clearly
     thriving. Must be something about the soil../There's not much
     to say about the saplings. One day they may grow into large 
-    and picteresue trees, but for the moment, they are just sapligs/
+    and picturesque trees, but for the moment, they are just saplings/
     Saplings are juvenile trees. As such they are of even less interest
     then generic trees are].
 #
@@ -38,8 +38,8 @@ TEXT increment KNOCKER.FIXED
     wall./You've already tried that!][/// Blockhead!/]
 #
 TEXT increment KNOCKER.RING
-    [The ring is an esential part of the knocker and it doesn't look
-    like it is meant to come out of the lion's mouth/Cant't be done, 
+    [The ring is an integral part of the knocker and it doesn't look
+    like it is meant to come out of the lion's mouth/Can't be done, 
     sorry].
 #
 TEXT STONE.WALL
@@ -54,5 +54,64 @@ TEXT NO.MOVE.PEDESTALS
 #
 TEXT FORGET.GRATE
     _And this time there are no keys or dynamite handy, so forget the grate.
+#
+TEXT NO.HOLD.CLIFF
+    The cliff face is too smooth to provide any useful hand-holds.[/ Not
+    that you need any anyway...]
+#
+TEXT increment WELLHOUSE.NO.DOOR
+    [The building doesn't actually have a door - merely a doorway, that
+    is an opening for entering and exiting. But no door. Nohow.
+    Contrarywise/Look again - there's still no door here. just a 
+    doorway/You forget. No door].
+#
+FRAGMENT cycle NOTHING.DOING.1
+    [# is not something you/You may have some theory on how to 
+    "#/Perhaps I am being simple-minded, but I can't see how the verb
+     #/For all I know, to # a/Well now, let's see... Do I know how to
+     # a/#]
+#
+TEXT cycle NOTHING.DOING.2
+    [ can #. Not in this game anyway/ #", but such an action is beyond 
+    my humble comprehension/ and the object # might go together in a
+    meaningful command/ # may be a splendid idea, in a generic sort of 
+    way, but it is not what you are supposed to be doing/ #? Hmmmm...
+    Nope. Sorry/ #? Nah... Wrong - try something else..].
+
+#
+TEXT cycle NO.VIOLENCE
+    [Please save your destructive impulses for more appropriate
+    occasions!/Smashing things for no good reason is not something we 
+    do around here./If you want mayhem and destruction, please go and
+    play some other game./If somebody told you that it was the done
+    things for adventurers to smash things, they lied./Do try to conduct
+    yourself in a slightly more civilised manner, please!/Whatever 
+    for?/I have no intention of following gratuitously destructive
+    orders - from you or from anybody else!/You should be ashamed of
+    yourself for even suggesting it.]
+#
+TEXT increment ITS.YOU
+    [Come to think of it, there *is* some resemblance... Maybe it is
+    you, over there./Yes, the figure does look rather like you.]
+#
+TEXT increment NO.FEED.HORSES
+    [Er... May I point out that the horses are merely life-like, not
+    actually alive./There's no point trying to # wrought iron horse
+    cutouts!/Please get it into your head that the horses are *not*
+    actually alive!/Sigh... Don't even bother to try...]
+#
+TEXT TOWER.THROUGH.GATES
+    The white tower rises over the garden at the end of a path, which
+    runs south from the gates.
+#
+TEXT PATH.THROUGH.GATES
+    The gravel path runs south from the gates, towards the white tower.
+    Two smaller paths disappear into rose bushes to SE and SW.    
+#
+TEXT TOO.FAR.OFF
+    Not from here you don't! And you are probably being silly anyway.
+#
+TEXT FILL.IT.YOU.DUMMY
+    If you are trying to fill the #, why not just say so?
 #
 #########################################################################

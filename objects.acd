@@ -245,7 +245,7 @@ OBJECT SKELETON
    ornately encrusted with sapphires!!
 #
 OBJECT BEAR
-  %There is a [ferocious/gentle/contented-looking] cave bear [eying
+  %There is a [ferocious/gentle/contented-looking] cave bear [eyeing
    you from the far end of the room!/sitting placidly in
    one corner./wandering about nearby.]
   &A huge shaggy beast, [snarling most ferociously!/as cuddly as
@@ -344,7 +344,7 @@ OBJECT NEST, =EGGS
    light with the unmistakable gleam of pure gold.
 #
 OBJECT TRIDENT
-   Jeweled trident
+   Jewelled trident
   %There is a jewel-encrusted trident here!
   &Too over-ornamented to be functional as a weapon, but very strong. The
    sort of thing you might see in old paintings, being wielded by Neptune.
@@ -393,11 +393,18 @@ OBJECT YACHT, RUBY, RUBAIYAT
    but utterly useless toy.
 #
 OBJECT PYRAMID, =PLATINUM
-   Platinum pyramid
-  %There is a platinum pyramid here, 2 inches on a side!
-  &Valuable, yes, but otherwise very unremarkable. Who would want a plain
-   platinum pyramid?  Is it Cheops's scale model, perhaps?  Sorry, just
-   joking. It's only good for scoring points.
+   Platinum[/-plated] pyramid
+  %There is a platinum[/-plated] pyramid here, 8 inches on a side!
+  &[Um... Did I say platinum? On closer inspection it's only *plated* in
+   platinum, which is just as well, or you wouldn't be able to lift it.
+   One platinum-plated pyramid. Now there's a thing! It doesn't sound
+   hollow, so I guess there is some filling - maybe some light wood, or
+   something. Let's not worry about such details. That platinum plating
+   is clearly valuable, so the pyramid is a treasure, which is what
+   really matters./Valuable, yes, but otherwise very unremarkable.
+   Who would want a plain platinum-plated pyramid? Is it a Cheops'
+   scale model? Meant for sharpening razors? Sorry, just joking. It's
+   only good for scoring points.]
 #
 OBJECT PEARL
    Glistening pearl
@@ -638,11 +645,11 @@ OBJECT STARSTONE
 #
 OBJECT PEDESTAL, =PEDESTALS
   %There is a small pedestal here with an eight-ray design
-   chiseled into its top surface[/, each ray painted a different colour].
+   chiselled into its top surface[/, each ray painted a different colour].
   &[On close inspection, each ray of the design seems to have
    traces of pigment of some sort, but whatever colours they might
    have once shown, have long since faded under the sun's glare./The
-   eight-ray design chiseled into the pedestal has each of its rays
+   eight-ray design chiselled into the pedestal has each of its rays
    painted a different colour. Starting from the north-pointing one 
    and going clockwise, the rays are purple, red, orange, yellow, green,
    blue, magenta and black.]
@@ -790,7 +797,7 @@ OBJECT AXE
    Dwarf's axe
   %There is a little axe [here/lying beside the bear/lying just
    under the spider].
-  &It is a small, hefty weapon, marvelously balanced for throwing. Good
+  &It is a small, hefty weapon, marvellously balanced for throwing. Good
    workmanship, but of no monetary value - there are just too many of
    them about.
 #

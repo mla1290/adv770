@@ -1016,6 +1016,7 @@ repeat
 repeat
    local context.value
 #
+   unflag context, arg2.here
    ifeq context, none
       ifnear door1
          and
@@ -1526,10 +1527,6 @@ repeat
       set arg2, none
       set status, 1
    fin
-#
-# No digging, please!
-#
-   respond dig, need.shovel
 #
 # Handle 'it'.
 #
