@@ -978,9 +978,9 @@ init
    choose clock, 15, 25
    choose lamplife, 440, 460
    choose dwarfcount, 4, 8
-#   chance 90
-#      apport anteater, ylem         # Anteaters are rare!
-#   fin
+   chance 90
+      apport anteater, ylem         # Anteaters are rare!
+   fin
    chance 75
       flag admin, cameo.tried       # No cameo in this game
    fin

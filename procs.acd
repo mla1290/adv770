@@ -2360,8 +2360,10 @@ proc get.cage
       say you.do, arg1
       ifeq bird, caged
          get bird
-         flag bird, stealable   # For repository handling
-         flag cage, stealable   # Ditto
+         ifge stage, in.repository
+            flag bird, stealable   # For repository handling
+            flag cage, stealable   # Ditto
+         fin
          quip cage.with.bird
       fin
       quip it.is, arg2
@@ -5760,6 +5762,7 @@ proc randomise.texts
    randomise hang.on!, 0
    randomise tis.amusing, 0
    randomise no.violence, 0
+   randomise jerry.words, 0
    randomise nothing.doing.1, 0
    set nothing.doing.2, nothing.doing.1
    randomise typo, 0             # TYPO is structured in blocks of 4

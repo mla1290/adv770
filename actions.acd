@@ -3757,9 +3757,6 @@ action noside
       quip nothing
    fin
    ifgt stage, exits.barred
-#      or
-#      not
-#   ifflag lair, been.here
       or
       not
    ifnear lamp
@@ -3797,6 +3794,7 @@ action samoht
          say lamp.recharged
          add lamplife, 300
          set lamp, switched.on
+         flag status, light.here
       fin
    else
       say nothing

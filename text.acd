@@ -6591,9 +6591,9 @@ TEXT FOREST.POEM
 TEXT increment ORYANS.DAUGHTER
     The lettering reads:
 
-   + "IN MEMORIAM OF PATRICK O'RYAN"[
+   + "IN MEMORIAM OF PATRICK O'RYAN"
 
-    Ah! The ring of O'Ryan! Not Orion! There... I knew all that "Orion" stuff
+    [Ah! The ring of O'Ryan! Not Orion! There... I knew all that "Orion" stuff
     was just mythology!. I suppose the girl must be O'Ryan's daughter
     then. Well, well, well.../]
 #
@@ -8255,7 +8255,7 @@ TEXT
     their effects.
 #
 FRAGMENT JUMP.HINT
-    Still having problems getting the sunstone with you?_
+    Still having problems taking the sunstone with you?_
 #
 TEXT
     It is often helpful to formulate one's problem in as simple and
@@ -8294,7 +8294,7 @@ TEXT YOU.ARE.HUMAN
     humans look alike to me.
 #
 TEXT DONT.GET.PERSONAL
-    Now, now!... No need getting personal!
+    Now, now!... There's no call for getting personal!
 #
 TEXT NO.FOLLOW.YOU
     Sorry, no. That would be an abdication of my responsibilities.
@@ -8403,7 +8403,7 @@ TEXT JUMPED.INTO.SWAMP
 
    Well, it's a swamp all right, so without further ado, you start
    sinking into it. Thrashing about doesn't seem to help much, and
-   in no time at all it's...
+   in no time at all, it's...
 
   =     <glug...>
   =                   <glug...>
@@ -9654,8 +9654,13 @@ TEXT increment ELRIC.LIVES
    [Elric of Melnibone? I've never actually met him, but by all accounts
    he is a real gentlemen!/One of these days he'll visit too, perhaps.]
 #
-TEXT JERRY.WORDS
-   "Jerry Cornelius was here." So, big deal! So were many other people.
+TEXT cycle JERRY.WORDS
+   "Jerry Cornelius was here." [So, big deal! So were many other
+   people./Not sure why he thought we wanted to know./ As useless
+   a piece of information as you are likely to encounter./I guess he
+   thought we would be impressed./Not that this should concern you in
+   any way/One could speculate as to why, but it would be boring./And
+   who cares!]
 #
 TEXT MASS.OF.BOULDERS
    Any further progress along the canyon is blocked by a veritable
