@@ -10864,7 +10864,7 @@ at spire
    ifkey go
       or
    ifeq status, 1
-      ifany down, ramp
+      ifany down, ramp, back
          ifhave sunstone
             set temp.val, sunstone
             ifinrange temp.val, 2, 4
@@ -10893,9 +10893,6 @@ at spire
          set direction, word.ptr
          call consult.sunstone, direction
          say approach.edge, word.ptr
-#         ifhave sunstone
-#            call do.sunstone
-#         fin
          quit
       fin
       respond cliff, no.way.there
@@ -11669,6 +11666,11 @@ at cave.4
    ifkey jump
       call river.jump, 1
    fin
+   ifkey back
+      and
+   ifis there, cave.5
+      fakecom back, north
+   fin
    ifany north, cross, throw
       call bridge.stuff
    fin
@@ -11698,6 +11700,11 @@ at cave.5
    fin
    ifkey jump
       call river.jump, 1
+   fin
+   ifkey back
+      and
+   ifis there, cave.4
+      fakecom back, south
    fin
    ifany south, cross, throw
       call bridge.stuff
