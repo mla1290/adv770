@@ -277,8 +277,119 @@ TEXT NO.WORD.PATTERN
 TEXT increment NO.KILL.VAMPIRE
     [Killing vampires is a complex and chancy business, which requires
     some specialised equipment - wooden stakes, silver bullets and such
-    like, which in you case have not got. So let's not waste time
+    like, which in your case you have not got. So let's not waste time
     on trying/Don't even bother to try. Vampires are notoriously
-    resistent to dying].
+    averse to dying].
+#
+TEXT USE.VERBOSE
+
+    By the way, do remember that you can use the VERBOSE command, if
+    you prefer me to describe locations in full every time.
+#
+TEXT increment NO.BURN.THINGS
+    Sorry, [we don't allow adventurers to burn things. It's against
+    fire regulations/buring things is not permitted around here.
+    Besides, you have no source of fire/no burning of things - and
+    that's final].
+
+#
+TEXT increment STARSTONE.NO.IGNITE
+    [Ah, you've heard of people igniting the starstone? Well, you'll
+    have to work out the where and the how of it. Don't expect me
+    to hand you ready-made solutions on a platter!/You'll have to figure
+    it out for yourself. Sorry.]
+#
+TEXT YOU.KNOW.HOW
+    You should know by now how to do that!
+#
+TEXT increment NO.TYING
+    [You'll be tied up quite enough in this game, without having to tie
+    or untie things/Tying or untying things is not required in this
+    game][././, honest!/.]
+#
+TEXT increment DANK.WATER
+    [Ugh... Well, if you insist. It doesn't look exactly dignified,
+    but you manage to lick some water from that/Abandoning all
+    pretense of dignity, y/Y][/ou slurp a bit of nasty tasting water
+    from the] trickle on the floor.[ It tastes a bit nasty, but it 
+    probably won't kill you./]
+#
+TEXT increment LEAVE.ALARM.ALONE
+    [Perhaps you should consider the possibility that Ralph Witt had a 
+    purpose in mind, when replacing that red herring that used to adorn 
+    the doorway, with a fire alarm. Damaging it might not be a very smart
+    move/Interfering with such health and safety equipment as fire alarms,
+    is not I would ever contemplate. And neither should you/I tell you
+    three times: you don't want to damage that fire alarm. And as you
+    should know, what I tell you three times, is true/I thought I'd
+    made myself clear enough. The answer is "NO"].
+#
+TEXT OH.THAT.ALARM
+    Alarm?... Oh, that fire alarm over the door... Er, yes...
+
+#
+TEXT increment GOOD.RUG.IDEA
+    _[Were you hoping to unroll the rug over the quicksend and then
+    dash over it? Unfortunately the rug is too small, and that patch
+    of smooth sand is too large, so it's no go - but it was a good 
+    idea, I'll give you that/And it still does you no good].
+#
+FRAGMENT QUICKSAND.HINT
+    Do you need help with that patch of quicksand?_
+#
+TEXT
+    If I may state the obvious, you need to cross that quicksand. A
+    bridge over it would be handy, wouldn't it? Now, don't take me too
+    literally. I am just trying to suggest an idea. Nobody expects you
+    to start chopping trees in the forest, lugging logs here and 
+    concocting some engineering impossibility of a bridge. You'd be
+    on a completely wrong track there.
+#
+TEXT increment NO.SEE.BUTTERFLY
+    [They should be somewhere here, those blue butterflies, but what
+    with being blue, they would be hard to spot against all that blue
+    sea and sky/You strain your eyes in serach of the blue butterflies
+    allegedly wheeling over the cliff tops, but they don't seem
+    to be around at the moment/Nope, no butterflies to be seen. Sorry].
+#
+TEXT NO.BUTTERFLIES
+    [The blue butterflies might be somewhere up there over the cliff
+    tops. You certainly wouldn't be able to see them from down 
+    here!/There may well be some butterflies in all that vegetation,
+    but none to be seen right now.]    
+#
+TEXT RIGHT.NEXT.TO.IT
+    You are right next to it.
+#
+TEXT NO.WASH.PLATE
+    Cleaning up that plate might be a sensible idea, but water is
+    unlikely to help with that greasy grime.
+#
+TEXT cycle TROLL.ZORRO
+    The troll pokes his head under the bridge, [scowls at the sight of 
+    you/gives you a sour grin/mutters something under his breath/spits
+    into the chasm/rolls his eyes], and disappears again.
+
+#
+TEXT increment TOO.PUBLIC
+    [There is not much point in trying to disguise yourself quite
+    so publicly! /]Better find a quet, private place for it.
+#
+TEXT NO.APPROACH.EDGE
+    [The sapling can be only seen from the edge of the cliff, and t/T]ry as
+    you might to approach the edge[/ of the cliff], the sunstone is
+    refusing to allow movement in that direction.
+#
+TEXT WATERFALL.WALL
+    The wall is just rough rock, except for that door inset in it.
+#
+FRAGMENT cycle IT.WOULD.SEEM
+    [As far as I can see,/It would seem that/I think/It would appear
+    that/I believe/Let's see,]
+#
+FRAGMENT SAVED.GAMES
+    [Sorry, you don't seem to have any saved games that I can see.
+    Of course you may know of some you've stashed elsewhere.../{IT.WOULD.SEEM}
+    you have the following saved games: ]
 #
 #########################################################################

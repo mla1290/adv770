@@ -54,6 +54,9 @@ action get
 #=====================================================================
 #
 action get water
+   ifat beanstalk.bottom
+      quip cliff.moisture
+   fin
    ifflag here, h20.here
    else
       proceed
@@ -66,6 +69,9 @@ action get water
          else
             quip cant.scoop
          fin
+      otherwise
+      ifat beanstalk.bottom
+         quip cliff.moisture
       else
          set chalice, full
          quip chalice.leaking
@@ -1102,6 +1108,13 @@ action look                # Can't look in the dark!
       call describe.here
       unflag status, fulldisplay
       flag here, been.here
+      ifeq mlcount, 25
+         set mlcount, 100
+         quip use.verbose
+      fin
+      ifflag context, recent.move
+         add mlcount, 1
+      fin
       quit
    fin
    respond me, you.are.human
@@ -1669,6 +1682,7 @@ action light
       fin
       quit
    fin
+   call ignite
 #
 #=====================================================================
 #
@@ -2430,11 +2444,19 @@ action kill
          call kill.ogre
       otherwise
       ifkey giant
-         ifhave sword
-            or
-         ifhave trident
-            or
+         ifkey axe
+         else
+            ifhave sword
+               fakecom giant, sword
+               call weaponry
+            otherwise
+            ifhave trident
+               fakecom giant, trident
+               call weaponry
+            fin
+         fin
          ifhave axe
+            fakecom giant, axe
             call weaponry
          fin
          set context, q.kill.giant
@@ -2457,7 +2479,6 @@ action kill
       ifkey bird
          call kill.bird
       otherwise
-      quit
       ifnear arg2
          quip no.violence
       fin
@@ -2884,6 +2905,9 @@ action fill
    else
       quip you.dont.hold.vessel, vessel
    fin
+   ifat beanstalk.bottom
+      quip cliff.moisture
+   fin
 #
 #=====================================================================
 #
@@ -3005,6 +3029,9 @@ action fill chalice
          fin
          set chalice, full
          quip chalice.leaking
+      fin
+      ifat beanstalk.bottom
+         quip cliff.moisture
       fin
       quip nothing.to.fill, chalice
    fin
@@ -3435,13 +3462,30 @@ action restore
    local wiz.flag
    local outcome
    local elapsed
+   local count
 #
    iflt status, 2
-      set context, q.restore.what
-      set status, no.match
-      quip restore.what?
+      set count, 0
+      exec 34, count
+      ifeq count, 1
+         say restoring.game, arg2
+      else
+         say saved.games, count
+         ifgt count, 0
+            exec 34, count
+         else
+            say blank
+         fin
+         set context, q.restore.what
+         set status, no.match
+         add count, 1
+         quip restore.what?, count
+      fin
    fin
-   exec 31
+   ifeq status, 2
+      exec 31
+   fin
+   set status, 2
    lda text.ptr, blank
    exec 23, text.ptr
    ifflag admin, olorin
@@ -3527,10 +3571,43 @@ action drink
       set status, 1
    fin
    ifkey fountain
-      and
-      not
-   ifat rest.area, garden.se
-      proceed
+      ifat rest.area, garden.se
+         lda arg2, water
+      else
+         proceed
+      fin
+   fin
+   ifkey waterfall
+      ifat waterfall, by.waterfall
+         lda arg2, water
+      else
+         proceed
+      fin
+   fin
+   ifkey stream
+      ifat by.stream.1, by.stream.2, streampit, road, valley, slit,
+         or
+      ifat stream.maze cave.4, cave.5, cave.8, cave.9, river,
+         or
+      ifat river.north, cavern, bog.edge, island.ne
+         lda arg2, water
+      else
+         proceed
+      fin
+   fin
+   ifkey spring 
+      ifat building, streampit
+         lda arg2, water
+      else
+         proceed
+      fin
+   fin
+   ifany lake, reservoir
+      ifat reservoir, reservoir.north, wrong.venue
+         lda arg2, water
+      else
+         proceed
+      fin
    fin
    ifkey oil
       call find.oil
@@ -3575,7 +3652,7 @@ action drink
       or 
    ifany water, stream, fountain
       ifflag here, h20.here
-         ifat reservoir
+         ifat reservoir, reservoir.north
             set slurp, lake.water
          otherwise
          ifat rest.area, garden.se
@@ -3600,6 +3677,16 @@ action drink
             and
          ifhave bucket, full.of.champagne
             call drink.champagne
+         fin
+         ifeq status, 1
+            or
+         ifkey water
+            ifat dungeon, bones.room
+               quip water.drops
+            fin
+            ifat low.room
+               call water!, 200, dank.water, none
+            fin
          fin
          quip nothing.to.drink
       fin
@@ -4109,6 +4196,9 @@ action rest
 #=====================================================================
 #
 action contemplate
+   ifkey orb
+      call look
+   fin
    quip vain.contemplation
 #
 #=====================================================================
@@ -4190,6 +4280,9 @@ action cut
    ifflag arg2, object
    else
       call bail.out
+   fin
+   ifflag arg2, mortal
+      call kill
    fin
    ifkey palms
       and
@@ -4319,9 +4412,6 @@ action kick
    else
       proceed
    fin
-   ifflag arg2, verb
-      quip hah!
-   fin
    ifnear arg2
       ifkey dwarf
          and
@@ -4333,8 +4423,8 @@ action kick
          fin
          call coroner
       fin
-      call bail.out
    fin
+   call break
 #
 #=====================================================================
 #
@@ -4474,9 +4564,16 @@ action wear
          fin
       fin
       ifkey mask
-         and
-      ifgt masktime, 0
-         quip mask.still.recharging
+         ifnear troll
+            or
+         ifnear vampire
+            or
+         ifnear ogre
+            quip too.public
+         fin
+         ifgt masktime, 0
+            quip mask.still.recharging
+         fin
       fin
       deposit arg2, worn    # N.B.: for crown worn = activated!
       flag arg2, freebie
@@ -4676,6 +4773,13 @@ action translate
          quip no.translate.epns
       fin
       proceed
+   fin
+   ifany door, door1, door2, door3
+      or
+   ifeq status, 1
+      and
+   ifat waterfall, tower.upper.landing, tower.top.landing
+      quip no.speak.dwarvish
    fin
    ifeq status, 2
       ifany plaque, magazines, dwarf, documents
@@ -5033,6 +5137,9 @@ action wash
                   quip no.wash.cheap.rug, 0
                fin
             fin
+            ifkey plate
+               quip no.wash.plate
+            fin
             quip whatever.for?
          fin
          quip nothing.to.wash.with, 1
@@ -5158,7 +5265,15 @@ action unroll
          apport rug, river.bed.2
          quip rug.blown.away
       fin
-      quip rug.is.now, unrolled
+      say rug.is.now, unrolled
+      ifat arched.corridor.1
+         and
+         not
+      ifflag arched.corridor.2, been.here
+         exec 30
+         quip good.rug.idea
+      fin
+      quit
    fin
 #
 #=====================================================================
@@ -5234,6 +5349,7 @@ action give dung
 #=====================================================================
 #
 action give
+   set vessel, none
    ifkey bucket
       and
    ifat stupendous.view
@@ -5282,6 +5398,9 @@ action give
       fin
    otherwise
    ifkey water
+      ifnear vampire
+         call vampire.stuff
+      fin
       call find.water
       ifne vessel, none
          set arg2, vessel
@@ -5816,6 +5935,9 @@ action push
       and
    ifnear arg2
       ifflag arg2, mortal
+         and
+         not
+      ifany oyster, clam
          quip hah!
       fin
       ifkey coffin
@@ -6277,5 +6399,26 @@ action stir
       fin
    fin
 #
+#=====================================================================
+#
+action tie
+   quip no.tying
+#
+#=====================================================================
+#
+action ignite
+   ifany lamp, starstone
+      ifnear arg2
+         ifkey lamp
+            call light
+         fin
+         ifflag starstone, special1
+            quip you.know.how
+         fin
+         quip starstone.no.ignite
+      fin
+      quip i.dont.see, arg2
+   fin
+   quip no.burn.things
+#
 ######################################################################
-

@@ -252,7 +252,7 @@ OBJECT BEAR
   &A huge shaggy beast, [snarling most ferociously!/as cuddly as
    they come.]
 #
-OBJECT BATTERIES,BATTERY
+OBJECT BATTERIES, =BATTERY
    [/Fresh//Worn-out] batteries
   %[There is a pair of brand-new batteries in the goods tray./
    There are fresh batteries here./>$</
@@ -684,7 +684,7 @@ OBJECT OBOLUS, =OBOL   # To intercept the typo of "obul"!
   %A very small Roman coin of only a nominal value lies here!
   &{CHEAPO.COIN}
 #
-OBJECT KEYS, =SET
+OBJECT KEYS, =KEY, =SET
    Set of keys
   %There are some keys on the ground here.
   &It is a bunch of several mildly rusty keys of various sizes. Nothing

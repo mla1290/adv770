@@ -141,6 +141,7 @@ verb clean
 verb value
 verb increment
 verb decrement
+verb burn, ignite
 verb -last.clarify        # Last clarifiable 'verb'
 #
 # Next lot does not require clarifications
@@ -210,6 +211,7 @@ verb test
 verb exits
 verb next
 verb diagnose, health
+verb tie, untie
 #
 # Now the potential travel options.
 #
@@ -405,6 +407,7 @@ verb room
 verb rose
 verb roses
 verb sign
+verb butterflies, butterfly
 verb -first.sculpture.fake
 verb !pig
 verb !eel

@@ -585,6 +585,7 @@ init
    flag spire, hintable
    flag garden.n, hintable
    flag waterfall, hintable
+   flag arched.corridor.1, hintable
 #
 # Declare water-holes.
 #
@@ -635,8 +636,8 @@ init
 # Note that both the tusk and the rug start off as non-valued.
 # We still set them as such here, for clarity.
 #
-   unflag rug, valued
-   unflag tusk, valued
+   flag bag, valued
+   flag crown, valued
    flag nugget, valued
    flag diamonds, valued
    flag bars, valued
@@ -645,27 +646,27 @@ init
    flag chest, valued
    flag nest, valued
    flag trident, valued
+   flag helmet, valued
    flag vase, valued
    flag emerald, valued
-   flag pyramid, valued
-   flag pearl, valued
-   flag spices, valued
-   flag chain, valued
-   flag casket, valued
-   flag sculpture, valued
-   flag bracelet, valued
-   flag ring, valued
-   flag spyglass, valued
-   flag bag, valued
-   flag helmet, valued
-   flag crown, valued
    flag sceptre, valued
    flag yacht, valued
+   flag pyramid, valued
+   flag pearl, valued
+   unflag rug, valued
+   flag spices, valued
    flag beads, valued
+   flag chain, valued
+   flag ring, valued
+   flag spyglass, valued
+   flag sculpture, valued
+   flag bracelet, valued
+   flag casket, valued
    flag orb, valued
-   flag crucifix, valued
-   flag sapphire, valued
+   unflag tusk, valued
    flag chalice, valued
+   flag sapphire, valued
+   flag crucifix, valued
    flag starstone, valued
    flag sunstone, valued
    flag windrose, valued
@@ -673,8 +674,8 @@ init
    flag fangs, valued
    flag rosebowl, valued
    flag thurible, valued
-   flag seal, valued
    flag bust, valued
+   flag seal, valued
    flag flower, valued
 #
 # Declare unstable objects.
@@ -785,6 +786,7 @@ init
    flag dark.forest, been.here  # Force short description
    flag nowhere, been.here      # Ditto
    flag spire, special          # Haven't been to the top yet
+   flag ledge, been.here        # So that word 'ledge' is recognised
 #
 # Define sewer locations for tide management and objects
 # being thrown or dropped.
@@ -847,7 +849,7 @@ init
    apport shadow, east.window
    apport dragon, secret.n/e.canyon.1
    apport chasm, sw.of.chasm
-   apport troll, sw.of.chasm
+   apport troll2, sw.of.chasm
    apport bear, bear.room
    apport volcano, breathtaker
    apport machine, mazed.140

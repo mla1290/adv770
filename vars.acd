@@ -36,7 +36,7 @@ variable sparev12, sparev13
 variable tide
 variable sparev14, shown.vision
 variable hints, quips, island.quips
-variable sparev15 
+variable mlcount
 variable cat.factor, rest.exit, portal.exit
 variable direction
 array    c.exit, 16

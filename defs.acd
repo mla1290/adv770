@@ -71,7 +71,7 @@ flags variable
       juggled          # set by interpreter whenever we move an object
       ticked           # The main clock (CLOCK4) has just ticked
       light.here       # There's light here
-      brief.now        # Force breif descript, just this one time
+      brief.now        # Force breif description, just this one time
       vocab.prod       # May need prodding about the vocabulary command.
       show.numbers     # Show location numbers.
       desert.warn      # Just entered the desert section.
@@ -193,6 +193,8 @@ flags object
 # giant   #1 in quarters, set if the HUNGRY.GIANT message printed.
 #         #2 if pushed player out of ravine at least once.
 #
+# starstone #1 set if lit starstone seen at least once.
+#
 # During the end-game all special bits are cleared, except for
 #         #1 being set for any objects 'piled up' in NE repository and
 #         #2 similarly indicating SW repository and the unicorn, whose special
@@ -238,14 +240,14 @@ flags variable
 flags variable
       snake.pending   # The first snake hint delivered
       statue.pending  # The first Minotaur gorge hint delivered
-      SPARE.flag.1    # Spare
+      SPARE.flag.1    # Told him to use "verbose"
       helped.him      # Gave him vanilla "HELP" message once
       simple.rule     # Referred to 'simple rule' at Nowhere
       death.is.simple # Advised him how to die
       sewer.pending   # The first sewer hint delivered
       SPARE.flag.2    # Spare
       all.exits       # Told him to explore all exits past pit in maze
-      keys.listed     # The crown gave hime at least one key
+      keys.listed     # The crown gave him at least one key
 #
 # Context flags
 #
@@ -253,6 +255,7 @@ flags variable
       joke.over       # Set on solving the little joke.
       arg2.here       # ARG2 designated pseudo object *is* here
       arg2.distant    # ARG2 can be seen but is out of reach
+      recent.move     # Last turn was a move
 #
 # Define thirst parameters.
 #

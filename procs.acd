@@ -53,7 +53,7 @@ proc generic.no.do
    ifflag context, arg2.here
       respond get, no.pick.up
       respond push, pull, nothing
-      respond kill, break, no.violence
+      respond kill, break, kick, no.violence
    fin
    ifany read, translate, fill, empty, lock, unlock, open, close
       or
@@ -112,7 +112,7 @@ proc bail.out
          or
       ifinrange here, north.of.spire, west.of.spire
          or
-      ifinrange here, cliff.foot, cliff.base.4
+      ifinrange here, scree, cliff.base.4
          or      
       ifinrange here, sandy.beach, beach.end
          ifeq status, 1
@@ -142,6 +142,10 @@ proc bail.out
    fin
    ifany dust, dirt
       ifflag here, not.in.cave
+         ifeq status, 1
+            quip no.future.in.it, arg1
+         fin
+         quip no.future.in.it, arg2
       else
          quip dirt.and.dust
       fin
@@ -234,7 +238,7 @@ proc bail.out
       and
    ifflag arg2, object
       ifflag context, arg2.here
-         ifany break, kill
+         ifany kick, break, kill
             quip no.violence
          fin
          quip what?
@@ -1928,7 +1932,7 @@ proc get.score
       ifflag djinn, special1
          add scorex, 8
       fin
-      ifflag ledge, been.here
+      ifflag beater, seen # Been to the ledge! (Can't test for been.here)
          add scorex, 10
       fin
       ifflag island, been.here
@@ -2255,14 +2259,28 @@ proc here.you.can.see
       flag obj.ptr, seen
       ifflag obj.ptr, valued
       else
-         say obj.ptr
+         ifis obj.ptr, dwarf
+            or
+         ifis obj.ptr, giant
+         else
+            say obj.ptr
+         fin
       fin
    eoi
    itobj obj.ptr, here, valued
       say obj.ptr
    fin
+   ifhere dwarf
+      say dwarf
+   fin
+   ifhere giant
+      say giant
+   fin
    ifeq count, 1
       set it, single
+   fin
+   ifnear starstone, iridescent
+      flag starstone, special1   # Note we've seen it lit!
    fin
 #
 #=====================================================================
@@ -3697,6 +3715,9 @@ proc hint.logic
    otherwise
    ifinrange here, tower.base, tower.top.landing
       lda text.ptr, tower.hint   
+   otherwise
+   ifat arched.corridor.1
+      lda text.ptr, quicksand.hint
    fin
    ifeq text.ptr, 0
       proceed
@@ -4827,7 +4848,7 @@ proc do.introduction
 proc fake.note msg wrd
    ifany notice, note, sign, message, lettering, words
       respond look, read, msg, wrd
-      respond get, break, push, pull, leave.it.alone, arg2
+      respond get, break, kick, push, pull, leave.it.alone, arg2
       flag context, arg2.here
       call bail.out
    fin
@@ -4843,7 +4864,7 @@ proc fake.window
    fin
    ifkey window
       respond look, its.a.window
-      respond rub, break, open, close, no.glass, arg1
+      respond rub, break, kick, open, close, no.glass, arg1
       respond climb, climbing.out.risky
       flag context, arg2.here
       call bail.out
@@ -4980,7 +5001,14 @@ proc mask.stuff
       otherwise
       ifeq masktime, 0
          apport mask, ylem
-         say mask.goes.poof
+         ifflag bucket, seen
+            and
+            not
+         ifat bucket stupendous.view
+            say mask.goes.poof, 1
+         else
+            say mask.goes.poof, 0
+         fin
       fin
    fin
 #
@@ -5234,7 +5262,7 @@ proc vampire.stuff
    local state
 #
    set obj.ptr,0
-   ifany bucket, bottle, flask
+   ifany bottle, flask, bucket
       set obj.ptr, arg2
       ifhave obj.ptr
       else
@@ -5899,6 +5927,8 @@ proc randomise.texts
    randomise not.droppable, 0
    randomise u.turn, 0
    randomise nothing.doing.1, 0
+   randomise troll.zorro, 0
+   randomise it.would.seem, 0
    set nothing.doing.2, nothing.doing.1
    randomise typo, 0             # TYPO is structured in blocks of 4
    divide typo, 4                # messages, so randomise to the start
@@ -6170,6 +6200,14 @@ proc beach.stuff
          quit
       fin
    fin
+   ifany cliff, chalk
+      and
+   ifinrange here, rock.shelf, beanstalk.top
+      ifeq status, 1
+         quip what.about.them, cliff
+      fin
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -6263,7 +6301,7 @@ proc by.house.actions
    fin
    ifany tree, maple, pine, vegetation, roof, bricks, wall, building
       and
-   ifany kill, break
+   ifany kill, break, kick
       quip no.violence
    fin
    respond tree, maple, pine, no.handy.them, arg2
@@ -6274,7 +6312,7 @@ proc by.house.actions
       respond look, building.wall
       respond climb, no.point.in.that
       respond push, pull, get, kick, house.bricks
-      respond break, no.violence
+      respond break, kick, no.violence
       quip hah!
    fin
 #
@@ -7067,4 +7105,14 @@ proc read.the.rug
    fin
 #
 #====================================================================
-
+#
+proc sunstone.cheat msg modifier
+   local temp.val
+   ifhave sunstone
+      set temp.val, sunstone
+      ifinrange temp.val, 6, 8
+         quip msg, modifier
+      fin
+   fin
+#
+#====================================================================

@@ -1394,7 +1394,7 @@ PLACE BEANSTALK.MIDDLE
    grows from a crack in the rock a short way north, with the
    narrowest imaginable ledge leading towards it.
 #
-PLACE LEDGE
+PLACE +LEDGE
    You are miraculously clinging to the vertical cliff stretching
    far above and below you. Your only support is
    a ridiculously narrow rocky ledge which leads back south, into the
@@ -1822,7 +1822,7 @@ PLACE VERY.UNSAFE
 PLACE LOW.ROOM
    You're in the very low room.
   %You are in a very low sloping room whose roof is barely 3' from the
-   floor. At the lower end the trickle of water enters from a tunnel in
+   floor. At the lower end a trickle of water enters from a tunnel in
    the west and runs down a shaft in the floor. At the upper end the roof
    nearly meets the floor to give a narrow exit. Water drips from the
    roof making everything damp and the floor slippery. There are no signs
@@ -2359,7 +2359,7 @@ PLACE +RIDGE
    waterfalls clearly responsible for the existence of the swamp.
    To the southeast, the ground slopes down to a sandy beach.
    You could also scramble down to the swamp from here, but if you
-   do you won't be able to climb back up.
+   do, you won't be able to climb back up.
 #
 PLACE BELOW.RIDGE
    You are at the SE edge of the swamp.

@@ -501,7 +501,7 @@ TEXT cycle NOCOMPRENDE.OBJECT
     "#" is not a word I know the meaning of. Try something else?/Whatever 
     "#" might be, I have to admit to a complete ignorance about 
     it./"#"? Don't know the word. Sorry.../Unfortunately "#" is not something
-    I know about, sorry./I don't know what manner of thing "#" could be,
+    I know about, sorry./I don't know what manner of thing a "#" could be,
     I am afraid.]
 #
 TEXT random WHAT?
@@ -554,7 +554,7 @@ TEXT random URRP
 TEXT assigned SLURP
     You have taken a drink from the [stream. The water tastes strongly of
     minerals, but is not unpleasant. It is extremely cold/fountain. 
-    The water is fairly cold and has a faint rusty tang to it/spring.
+    The water is fairly cold and has a faintly rusty tang to it/spring.
     The water is so cold, it is hard to tell whether it has any 
     taste/waterfall without getting yourself too wet. The water has
     a slightly unpleasant, sulphuric tang to it/the stream. The water
@@ -1463,7 +1463,9 @@ FRAGMENT SAVE.WHAT?
     Name to save under:_
 #
 FRAGMENT RESTORE.WHAT?
-    Name of game to restore:_
+
+    [Name of the game to restore:/Tell me the name or pathname of
+    your save file:/Which of these do you want me to restore?]_
 #
 TEXT random WELL.MEET.AGAIN
 
@@ -1915,6 +1917,8 @@ TEXT RUDE.DJINN
     STAND HERE CHATTERING WHEN I COULD BE OUT EATING A SIX-INCH SIRLOIN
     STEAK. FAREWELL." With that, he somewhat rudely explodes back into
     smoke and drifts quickly out of sight.
+
+    That, if I may say so, was unwise.
 #
 TEXT DJINN.ADVICE
     The pentagram's magical barrier sparks fitfully and goes down. The
@@ -2313,12 +2317,12 @@ TEXT GROPE.MISS
     and I'll have to grope around to try to find the #.
     Well, if I must, I must.....
 
-   =                \{hunt}
+   =          \{hunt}
    =               \{search}
    =                     \{hunt}
    =         \{rummage}
    =     \{peer}
-   =         \{touch}
+   =                  \{touch}
    =         \{hunt}
    =              \>scrape\<
    =                 Youch! \{curse}
@@ -2950,7 +2954,7 @@ TEXT CHALICE.NOW.EMPTY
     anyway/all the water has leaked out].
 #
 TEXT CUT.WEB
-    With your axe you chop the web to shreds freeing the documents which
+    You chop the web to shreds with your axe, freeing the documents which
     fall to the ground with a heavy thud.
 
     Well, what do you know!... There is a large circular opening behind
@@ -2969,9 +2973,11 @@ TEXT ONLY.WIZARDS.GLOW
 TEXT NOTHING.TO.CUT.WITH
     You have no instrument that could be sensibly used for cutting.
 #
-TEXT ROPE.TOO.TOUGH
-    The rope is very tough and hard as you try, you can't make any
-    impression on it.
+TEXT increment ROPE.TOO.TOUGH
+    [T/As already noted, t/][he rope is very tough and hard as you
+    try, you can't make any impression on it/=/][//You forget/It
+    slipped your mind again][//: the
+    rope is far too tough for ][//you to be able to cut it/that].
 #
 TEXT VANDAL!
     I will commit no such act of gross vandalism!
@@ -3607,9 +3613,10 @@ TEXT DRAGON.VANQUISHED
     hands! (Unbelievable, isn't it?)
 
 #
-TEXT increment TROLL.WANTS.MORE
+TEXT increment TROLL.WANTS.TREASURE
     The troll steps out from beneath the bridge and blocks your 
-    way[/ with an air of infinite boredom/ in a bored sort of manner/].
+    way[, growling "Whassa matter honcho, can't you read?"// with an air
+    of infinite boredom/ in a bored sort of manner/].
 #
 TEXT FUNNY.NOT.CLEVER
     From beneath the bridge there sounds a muffled bellow of frustrated
@@ -5379,7 +5386,10 @@ TEXT MASK.GOES.POOF
     there is a bright flash and the mask vanishes leaving you 
     temporarily blinded. After a bit of rubbing your eyes and swearing
     under your breath (yes, I *heard* you, I happen to have excellent
-    hearing!), you recover your sight, but alas, the mask is gone for good.
+    hearing!), you recover your sight, but alas, the mask is gone for 
+    good.[/
+   /
+   /Oh dear! That's torn it... You might as well give up now.]
 #
 TEXT MASK.GETTING.WARM
 
@@ -6937,11 +6947,11 @@ TEXT DROP.ROOM
 TEXT DROPPINGS.NO.GOOD
    [I can't imagine what you would want to do with giant rat droppings.
    Nothing wholesome I wager! So leave them alone. Their only purpose here
-   is to alert you to the possible presence of unpleasant large rodents./If
-   you have in mind using the droppings as a fertilizer, that's not a bad
-   thought! But rat droppings, which is what these must be despite their
-   size, are no good for plants. Better look for some other sort of 
-   plant food.]
+   is to alert you to the possible presence of unpleasantly try large 
+   rodents./If you have in mind using the droppings as a fertilizer, that's
+   not a bad thought! But rat droppings, which is what these must be 
+   despite their size, are no good for plants. Better look for some other
+   sort of plant food.]
 #
 TEXT DROPPINGS.LARGE
    As I already noted, they look just like very large rat droppings.
@@ -7518,10 +7528,10 @@ TEXT GARDEN.THINGS
     The square white tower at the end of the southward path dominates 
     the garden./
     It's just a simple stone bench of no particular use to busy adventurers./
-    The shallow basin of the fountain is full surprisingly clean rain
+    The shallow basin of the fountain is full of surprisingly clean rain
     water. Its original water supply presumably came from the cupid
-    poised elegantly over it on one leg, but if so, the cupid must have
-    run dry a long time ago./
+    poised elegantly on one leg over the fountain, but if so, the cupid 
+    must have run dry a long time ago./
     A badly damaged, but still recognisable statue of a cupid stands
     elegantly on one leg over the far end of the fountain's basin. One can only 
     guess that it provided the original source of water. (No, don't ask!)] 
@@ -8251,7 +8261,7 @@ TEXT increment NO.PISS.PLANT
     [Ingenious, but as any gardener will tell you, raw body waste is not
     good for plants. If you ever observed patches of dead grass where a
     cat relieved itself, you'd know that without having to be told/
-    You forget - it's not good for plants.]
+    You forget - it's not good for plants].
 #
 TEXT FIND.VALUERS
     I do believe we have a free valuation service on 
@@ -9540,7 +9550,7 @@ TEXT CELLAR.VIEWING
    A large stone slab is poised over the dark exit leading north.
 #
 TEXT RUSTY.STAIRCASE
-   The spiral staircase visible through the portcullis, looks very rusty
+   The spiral staircase visible through the portcullis looks very rusty.
 #
 TEXT PORTCULLIS.CHAMBER
    The small chamber beyond the portcullis is only just large enough
@@ -9885,9 +9895,9 @@ TEXT RED.PILLARS
 TEXT JUST.THAT
    It's just ordinary #. Nothing fancy.
 #
-TEXT AUDIENCE.WALLS
+TEXT increment AUDIENCE.WALLS
    Just take my word for it - the walls are the finest marble you could
-   possibly imagine.
+   possibly imagine[, and I don't care how good your imagination is/].
 #
 TEXT AUDIENCE.FLOOR
    The slabs of onyx and bloodstone, which make up the floor of this
@@ -9981,7 +9991,7 @@ TEXT NO.BREAK.MECHANISM
 #
 TEXT DELICATE.MECHANISM
    The counterweight mechanism looks rather strange, which is only to be
-   expected is wizardly designs are involved. Its main purpose
+   expected when wizardly designs are involved. Its main purpose
    appears to be to hold that slab suspended in the air, though I would
    not swear to this being its only purpose.
 #

@@ -1118,6 +1118,9 @@ at west.pit
         call water.beanstalk
       fin
    fin
+   ifkey water, beanstalk
+        call water.beanstalk
+   fin
    ifany empty, pour
       ifkey bucket
          and
@@ -3430,7 +3433,18 @@ at sw.of.chasm
          ifgt chasm, bridged
             quip no.bridge
          fin
+         ifhave mask, worn
+            iflt troll, scared.off
+               say troll.zorro
+            fin
+            move ne.of.chasm
+         fin
          ifeq troll, wants.treasure
+            ifnear troll2
+               apport troll2, limbo
+               apport troll, here
+               quip troll.wants.treasure
+            fin
             quip troll.blocks.way
          fin
          ifeq troll, will.be.back
@@ -3438,7 +3452,7 @@ at sw.of.chasm
             apport  troll, sw.of.chasm
             flag troll, schizoid
             apport troll2, limbo
-            quip troll.wants.more
+            quip troll.wants.treasure
          fin
          ifeq troll, bought.off
             set troll, will.be.back
@@ -3465,7 +3479,13 @@ at sloping
       or
    ifeq status, 1
       move down, sw, out, low, low
-      move up, ne, chasm, sw.of.chasm
+      ifany up, ne, chasm
+         ifloc troll, sw.of.chasm
+            apport troll, limbo
+            apport troll2, sw.of.chasm
+         fin
+         move sw.of.chasm
+      fin
       ifany tunnel, passage, corridor
          call follow.it, sw.of.chasm, ne, low, sw
       fin
@@ -3648,7 +3668,18 @@ at ne.of.chasm
          ifgt chasm, bridged
             quip no.bridge
          fin
+         ifhave mask, worn
+            iflt troll scared.off
+               say troll.zorro
+            fin
+            move sw.of.chasm
+         fin
          ifeq troll, wants.treasure
+            ifnear troll2
+               apport troll, sw.of.chasm
+               apport troll2, limbo
+               quip troll.wants.treasure
+            fin
             quip troll.blocks.way
          fin
          ifeq troll, will.be.back
@@ -3661,7 +3692,7 @@ at ne.of.chasm
             apport  troll, sw.of.chasm
             flag troll, schizoid
             apport troll2, limbo
-            quip troll.wants.more
+            quip troll.wants.treasure
          fin
          ifeq troll, bought.off
             set troll, will.be.back
@@ -3710,7 +3741,13 @@ at corridor
    ifkey go
       or
    ifeq status, 1
-      move west, chasm, ne.of.chasm
+      ifany west, chasm
+         ifloc troll, sw.of.chasm
+            apport troll, limbo
+            apport troll2, sw.of.chasm
+         fin
+         move ne.of.chasm
+      fin
       move east, fork, fork
       move view, breathtaker
       move barren, barren
@@ -5511,7 +5548,7 @@ at rocky.beach
       move north, sandy.beach
       move up, steps, east, rock.shelf
    fin
-   ifany shelf, steps, outcrops
+   ifany shelf, steps, outcrops, cliff, chalk
       flag context, arg2.here
    fin
 #
@@ -5578,6 +5615,9 @@ at beanstalk.bottom
       ifkey water
          call water.beanstalk
       fin
+   fin
+   ifkey water, beanstalk
+        call water.beanstalk
    fin
    ifkey empty
       ifkey bucket
@@ -5657,6 +5697,7 @@ at beanstalk.bottom
    ifkey go
       or
    ifeq status, 1
+      respond cliff, right.next.to.it
       ifany up, climb
          ifeq beanstalk, gigantic
             smove beanstalk.middle, up.the.beanstalk
@@ -5682,6 +5723,7 @@ at beanstalk.middle
    fin
    fakearg plant, beanstalk
    ifkey look
+      respond cliff, cliff.geology
       respond ledge, narrow.ledge, north
       respond up, below.cliff, 1
       respond down, foliage.in.the.way
@@ -5728,7 +5770,7 @@ at beanstalk.middle
             ifeq sunstone, 7
                or
             ifeq sunstone, 8
-               ifflag ledge, been.here
+               ifflag beater, seen
                   move ledge
                else
                   set context, q.ledge.good
@@ -5740,7 +5782,7 @@ at beanstalk.middle
          quip ledge?
       fin
    fin
-   ifany ledge, stem, foliage
+   ifany ledge, stem, foliage, cliff
       flag context, arg2.here
    fin
    ifany sea, horizon
@@ -5758,6 +5800,7 @@ at ledge
    fakearg plant, beanstalk
    ifkey look
       respond ledge, narrow.ledge, south
+      respond cliff, cliff.geology
       respond beanstalk, foliage, bean.from.ledge
       respond down, beach.from.ledge
       respond up, below.cliff, 1
@@ -5793,7 +5836,7 @@ at ledge
       respond north, sapling.blocks
       respond jump, sw, west, nw, sunstone.saves
    fin
-   ifany ledge, crack, beanstalk
+   ifany ledge, crack, beanstalk, cliff
       flag context, arg2.here
    fin
    ifany sea, horizon, island
@@ -5820,7 +5863,7 @@ at beanstalk.top
    ifkey look
       respond grass, attention.to.detail, grass
       respond banks, banks.too.steep
-      respond down, foliage.in.the.way
+      respond down, cliff, foliage.in.the.way
       respond foliage, dull.stuff, 0
       respond up, leaves.and.sky
       respond stem, bean.stem
@@ -5831,7 +5874,7 @@ at beanstalk.top
    ifkey chew, stem
       call chew.stem
    fin
-   ifany grass, stem, foliage
+   ifany grass, stem, foliage, cliff
       flag context, arg2.here
       proceed
    fin
@@ -6132,6 +6175,10 @@ at pentagram
       set flask, in.pentagram
       quip set.flask.down
    fin
+   ifany in, pentagram
+       and
+   ifeq status, 1
+        or
    ifkey in, pentagram
       quip no.enter.pentagram
    fin
@@ -7549,6 +7596,9 @@ at beams
 #=====================================================================
 #
 at dungeon
+   ifany drink, pour
+      proceed
+   fin
    respond water, water.drops
    ifkey stone
       fakecom stone, flagstones
@@ -8380,7 +8430,7 @@ at dwarves.quarters
       respond ring, ring.clapper
       respond stool, wooden.stool
       respond table, dwarves.table
-      respond wall stone.wall
+      respond wall, stone.wall
       respond window, forest, window.view
       ifkey landing
          ifeq door3, closed
@@ -8730,7 +8780,7 @@ at outside.gates
       proceed
    fin
    ifkey horses
-      respond feed, kill, placate, no.feed.horses, arg1
+      respond feed, kill, hit, placate, no.feed.horses, arg1
       flag context, arg2.here
       proceed
    fin
@@ -8887,7 +8937,7 @@ at garden.n
       proceed
    fin
    ifkey horses
-      respond feed, kill, placate, no.feed.horses, arg1
+      respond feed, kill, hit, placate, no.feed.horses, arg1
       flag context, arg2.here
       proceed
    fin
@@ -9259,13 +9309,23 @@ at top.of.chapel
    fakearg steps, stairs
    fakearg fire, alarm   # Allow for "get fire [alarm]" etc...
    fakearg box, alarm
+   ifkey alarm
+      and
+      not
+   ifflag alarm, seen
+      set top.of.chapel, 1
+      apport alarm, here
+      flag alarm, seen
+      set alarm, 1         
+      say oh.that.alarm
+   fin
    ifany alarm, box
       and
    ifhere alarm
       respond read, cant.do.that, read
       ifkey look
       else
-         ifkey kill
+         ifany kill, hit
             set weapon, none
             ifhave trident
                lda weapon, trident
@@ -9279,6 +9339,7 @@ at top.of.chapel
             ifne weapon, none
                quip no.break.alarm, weapon
             fin
+            quip leave.alarm.alone
          fin
          quip out.of.reach
       fin
@@ -9523,6 +9584,10 @@ at very.unsafe
 #=====================================================================
 #
 at low.room
+   ifany drink, pour
+      proceed
+   fin
+   respond water, no.collect.water
    ifkey look
       respond floor, slippery.floor
       respond roof, ceiling, water, wet.ceiling
@@ -9574,6 +9639,10 @@ at low.room
 #=====================================================================
 #
 at bones.room
+   ifany drink, pour
+      proceed
+   fin
+   respond water, water.drops
    respond bones, bones.ugh
    ifkey droppings
       ifkey get
@@ -10195,6 +10264,7 @@ at stupendous.view
    ifkey look
       and
    ifany down, cliff
+      call sunstone.cheat, no.approach.edge, 1
       flag sapling, seen
       iflt stage, mirror.world
          quip sheer.cliff, beanstalk
@@ -10205,12 +10275,14 @@ at stupendous.view
       respond banks, banks.too.steep
       ifany cliff, down, beanstalk2
          ifeq beanstalk, gigantic
+            call sunstone.cheat, no.approach.edge, 1
             smove beanstalk.middle, down.the.beanstalk
          else
             ifkey beanstalk2
                ifeq beanstalk, stunted
                   quip i.dont.see, arg2
                fin
+               call sunstone.cheat, no.approach.edge, 1
                quip beanstalk.down.there
             fin
             quip suicidal
@@ -10224,6 +10296,7 @@ at stupendous.view
    ifkey sapling
       and
    ifflag sapling, seen
+      call sunstone.cheat, no.approach.edge, 0
       respond look, too.far.to.see, sapling
       quip its.too.far
    fin
@@ -10233,6 +10306,7 @@ at stupendous.view
             quip i.dont.see, beanstalk
          fin
          ifeq beanstalk, grown
+            call sunstone.cheat, no.approach.edge, 1
             quip cant.see.much, beanstalk
          fin
       fin
@@ -10295,6 +10369,7 @@ at stupendous.view
       ifany beanstalk2, plant, west
          and
       ifeq beanstalk, gigantic
+         call sunstone.cheat, no.approach.edge, 1
          smove beanstalk.top, into.beanstalk
       fin
       ifkey jump
@@ -11857,7 +11932,7 @@ at scree
       fin
       move up, se, scree, basalt.shelf.2
    fin
-   ifany slope, scree
+   ifany slope, scree, dune, sand
       flag context, arg2.here
    fin
 #
@@ -11886,7 +11961,7 @@ at scree.2
       fin
       move east, up, scree, basalt.shelf.2
    fin
-   ifany slope, scree
+   ifany slope, scree, dune, sand
       flag context, arg2.here
    fin
 #
@@ -11915,7 +11990,7 @@ at scree.3
       fin
       move up, ne, scree, basalt.shelf.2
    fin
-   ifany slope, scree
+   ifany slope, scree, dune, sand, sky, sun
       flag context, arg2.here
    fin
 #
@@ -11928,6 +12003,9 @@ at cliff.base.1
       move west, desert.1
       move sw, desert.2
       move south, scree
+   fin
+   ifany dune, sand
+      flag context, arg2.here
    fin
 #
 #=====================================================================
@@ -11942,6 +12020,9 @@ at cliff.base.2
       move sw, desert.6
       move south, cliff.base.3
    fin
+   ifany dune, sand
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -11954,6 +12035,9 @@ at cliff.base.3
       move west, desert.6
       move sw, river.bed.2
       move down, south, river.bed.1
+   fin
+   ifany dune, sand
+      flag context, arg2.here
    fin
 #
 #=====================================================================
@@ -11990,6 +12074,9 @@ at river.bed.1
    ifany riverbed
       flag context, arg2.here
    fin
+   ifany dune, sand, hole, cave
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -12004,6 +12091,9 @@ at cliff.base.4
       fin
       smove east, in, hole, opening, cave, cave.1, time.flip.1
       respond south, sw, west, dune.blocks
+   fin
+   ifany dune, sand
+      flag context, arg2.here
    fin
 #
 #=====================================================================
@@ -13264,7 +13354,7 @@ at by.waterfall
    ifkey look
       respond water, waterfall, its.a.waterfall, 0
       respond mountain, towering.mountain, 1
-      respond up, cliffs, wet.cliffs, 0
+      respond up, wall, cliffs, wet.cliffs, 0
       respond chunks, fallen.chunks
       proceed
    fin
@@ -13295,6 +13385,7 @@ at waterfall
       quip door.1.words
    fin
    ifkey look
+      respond wall, waterfall.wall
       respond door, inscription, door.1.words
       respond water, spray, mist, waterfall, its.a.waterfall, 1
       respond debris, no.future.in.it, debris

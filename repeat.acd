@@ -46,7 +46,10 @@ repeat
    local island.event
 # 
    itobj obj.ptr, schizoid, ylem
-      unflag obj.ptr, schizoid   # It must not appear INHAND!
+      ifloc obj.ptr, limbo
+      else
+         unflag obj.ptr, schizoid   # It must not appear INHAND!
+      fin
    eoi
    ifgt context, none
       proceed
@@ -223,7 +226,12 @@ repeat
       fin
       proceed
    fin
-   unflag status, moved
+   ifflag status moved
+      flag context, recent.move
+      unflag status, moved
+   else
+      unflag context, recent.move
+   fin
    lda foof, foof.random
    chance 1
       add foof, 1             # The odd foof
@@ -455,6 +463,8 @@ repeat
    ifgt cave.entered, 0
       set cave.entered, 0
       ifflag stupendous.view, been.here
+         or
+      ifflag sapphire, seen
          and
       ifflag feeder, seen
       else
@@ -1517,6 +1527,14 @@ repeat
       call tooth.stuff
    fin
 #
+# Handle "view" as a verb
+#
+   ifgt status, 1
+      and
+   ifis arg1, view
+      fakearg view, examine
+   fin
+#
 # Handle sun(s)/sunstone
 #
    ifkey sunstone
@@ -1748,6 +1766,16 @@ repeat
       and
    ifnear box
       fakecom label, box
+   fin
+#
+# Handle AXE as a verb.
+# 
+   ifgt status, 1
+      and
+   ifis arg1, axe
+      and
+   ifhave axe
+      fakecom axe, cut
    fin
 #
 # Handle non-specific get/drop cases.
@@ -2265,6 +2293,21 @@ repeat
             quip blank
          fin
          quip bleah
+      fin
+#
+# Handle butterflies (sheer frippery!)
+#
+      ifkey butterfly
+         ifinrange here, rock.shelf, ledge
+            quip no.butterflies, 0
+         otherwise
+         ifinrange here, island, island.ne
+            quip no.butterflies, 1
+         otherwise
+         ifat beanstalk.top, stupendous.view
+            quip no.see.butterfly
+         fin
+         quip i.dont.see, butterfly
       fin
 #
 # Some special responses for the sewers.
