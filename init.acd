@@ -783,6 +783,7 @@ init
 #
    flag dark.forest, been.here  # Force short description
    flag nowhere, been.here      # Ditto
+   flag spire, special          # Haven't been to the top yet
 #
 # Define sewer locations for tide management and objects
 # being thrown or dropped.

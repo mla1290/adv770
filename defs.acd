@@ -78,7 +78,7 @@ flags variable
 #
 # Hardwire the "noun" flag  value as one higher than the verb one.
 #
-constant 3, noun    # It's a noun (a pseudo-object), not a verb
+#constant 3, noun    # It's a noun (a pseudo-object), not a verb
 #
 # Next, the flag set for places
 #
@@ -106,6 +106,7 @@ flags place
 # dark.forest             set if poem quoted.
 # river.north             just moved here, heading east
 # cave.9                  ditto
+# spire                   spire top not visited yet
 #
 # Next, the objects flag set
 #

@@ -4340,15 +4340,19 @@ at insafe                    # Inside the safe - strange stuff happens here!
       lda arg2, safe
    fin
    ifkey safe
-      ifeq status, 1
-         flag status, pls.clarify
-         quip do.what?, safe
+      ifkey out
+         set status, 1
+      else
+         ifeq status, 1
+            flag status, pls.clarify
+            quip do.what?, safe
+         fin
+         respond close, no.handle
+         respond open, already.open, arg2
+         respond look, insafe.info
+         flag context, arg2.here
+         proceed
       fin
-      respond close, no.handle
-      respond open, already.open, arg2
-      respond look, insafe.info
-      flag context, arg2.here
-      proceed
    fin
    ifkey look
       proceed
@@ -11267,6 +11271,11 @@ at shed
 at basalt.shelf
    local temp.val
 #
+   ifeq basalt.shelf 1
+      or
+   ifeq basalt.shelf 2
+      flag spire, been.here
+   fin
    ifkey spire
       ifkey look
          and
@@ -11623,6 +11632,11 @@ at spire.nearly.up
          fin
          move spire.part.up
       fin
+      ifkey back
+         and
+      ifis there, spire
+         fakearg, back, up
+      fin
       ifkey ramp
          and
       ifis there, spire.part.up
@@ -11638,6 +11652,10 @@ at spire.nearly.up
                say follow.ramp, up
                quip cant.follow.ramp, south
             fin
+         fin
+         ifflag spire, special
+            unflag spire, special
+            unflag spire, been.here
          fin
          move spire
       fin
@@ -11742,6 +11760,7 @@ at spire
 #=====================================================================
 #
 at basalt.shelf.2
+   flag spire, been.here
    ifkey look
       respond scree, chunks, grit, sand, slope, its.scree
       respond shelf, crumbled.shelf

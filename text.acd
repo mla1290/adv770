@@ -5638,7 +5638,7 @@ TEXT VERY.WISE
 #
 TEXT WIND.GETS.IT
    / and to your dismay, a powerful gust of wind carries [it/them] over
-    the edge of the ledge and into the sands below.
+    the edge of the ramp and into the sands below.
 #
 FRAGMENT WIND.BLOWS.IT
     The ferocious wind blowing from the cliff picks up the # and blows 
@@ -6962,7 +6962,7 @@ TEXT increment ASTRAL.SQUATTER
      just a nuisance, really. A metaphysical squatter. Ralph Witt did try
      to have it evicted, but it would seem that Oberon's writ doesn't run
      here. They say it was quite a sight when that eviction spell misfired.
-     It was just sheer luck that there were no casualties! Sorry... I know,
+     Just sheer luck that there were no casualties! Sorry... I know,
      I am just babbling. None of this is of any interest to you. It's just
      that such metaphysical manifestations make me nervous for some reason.
      Well, for a good and obvious reason, really. Who knows *what* the imp
@@ -6974,18 +6974,21 @@ TEXT increment ASTRAL.SQUATTER
      Shut up? Er... Yes. Quite right too. Sorry. I've shut up already.
      Don't pay any attention. Just nerves. Must be over-work. One of
      those days, know what I mean? Ahem, where was I.../
-     Gives me the shivers, that imp does. But we've been through that...]
+     Gives me the shivers, that imp does. But we've been through that.../
+     An excellent idea - let's go somewhere else./
+     I'll be glad to be out of here!]
 
 #
 TEXT increment NO.EVICT.IMP
-     [I see. Evict the imp, just like that. Good one. Who exactly do
-     you think you are again? An apprentice godling? Bah!... Look here,
+     [I see. Evict the imp. Just like that. Good one. Who exactly do
+     you think you are? An apprentice godling? Bah!... Look here,
      Oberon himself failed rather spectacularly, so I respectfully suggest
-     you stop embarrassing yourself and just accept my plain and honest
-     advice: LEAVE THE IMP ALONE, DON'T COME HERE, THERE IS NOTHING
-     TO BE GAINED BY IT, THE IMP IS JUST A METAPHYSICAL NUISANCE - OK?/Oh, do
-     stop being silly - you are not a miracle worker and the imp is not
-     leaving here in a hurry.]
+     you stop embarrassing yourself, and just accept my plain, honest
+     and entirely sensible advice: LEAVE THE IMP ALONE, DON'T COME HERE,
+     THERE IS NOTHING TO BE GAINED BY IT, THE IMP IS JUST A METAPHYSICAL
+     NUISANCE - OK?/
+     Oh, do stop being silly - you are not a miracle worker and the imp
+     is not leaving here in a hurry.]
 #
 TEXT GLASS.WATERFALL
      [By all rights the falling water should be making a dreadful

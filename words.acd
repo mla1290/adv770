@@ -233,209 +233,209 @@ verb -last.travel
 #
 # Next come pseudo-verbs.
 #
-noun -first.pseudo
-noun catacombs
-noun cloak
-noun hat
-noun caviar
-noun goodies, sandwiches
-noun barrel
-noun fountain, basin, fountains
-noun tombs, vaults
-noun shelf, shelves, rack, racks
-noun couch
-noun ash, ashes, fire
-noun heelprint, =print, indentation
-noun well
-noun spring
-noun bed, streambed, stream-bed, riverbed, river-bed
-noun window, windows
-noun cliff, cliffs
-noun vegetation, =greenery, =tangle, =mass, =growth, =barrier, foliage, =leaves, =canopy, =leaf
-noun berry, berries
-noun monocle, =eye-glass, =eyeglass
-noun lid
-noun gully
-noun something, =thing, =red, =shiny       # Red for fire alarm, shiny for seal
-noun drawing, =drawings, fish, =fishy
-noun verbs
-noun nouns, objects
-noun crevice
-noun o'ryan, =oryan, patrick
-noun swamp, =bog, =marsh
-noun ivy
-noun wall, walls
-noun mist, fog, wisps
-noun ramp
-noun droppings
-noun boxes
-noun monkey, ape
-noun guybrush, threepwood
-noun jerry, cornelius
-noun elric, melnibone
-noun plug
-noun plughole
-noun tooth
-noun sea, ocean
-noun tower
-noun slits
-noun mug, =pewter, mugs, dish, dishes, jug, =earthenware, jugs
-noun sand, grit
-noun stool
-noun sewage
-noun carcass, body
-noun mountain, mountains, =range, =peaks
-noun rattle
-noun columns, =column, pillars, =pillar
-noun horses, shape, shapes, ironwork
-noun pool, whirlpool
-noun pergola
-noun bench
-noun cupid
-noun doorway, portal
-noun corner
-noun around, area
-noun ceiling, vault
-noun bricks, brickwork, =brick-work
-noun maple, =maples, oak, =oaks
-noun birch, =birches
-noun bushes, bush, shrub, gorse, undergrowth, elder, blackthorn, scrub, rosebushes
-noun fir, =firs, conifer, =conifers
-noun grass, soil, patch
-noun weeds
-noun sun
-noun stars, star
-noun moon, moons
-noun bottom
-noun shaft
-noun supports
-noun surround
-noun chalk
-noun thicket
-noun haze
-noun concrete
-noun dirt
-noun brambles
-noun nettles
-noun ferns
-noun dust
-noun planks, wood
-noun bank, banks
-noun phalanx
-noun flowers
-noun coral
-noun horizon
-noun slope, slopes, shoulder
-noun shore, shores, coast
-noun outcrop, outcrops
-noun stem
-noun numbers
-noun structure
-noun me, self, myself
-noun you, yourself
-noun sygil
-noun crabs, =crab
-noun edge, edges
-noun marble
-noun periphery
-noun trail
-noun shade
-noun fold, folds
-noun torch, torches
-noun bend
-noun words
-noun cairn
-noun spiral
-noun rib, ribs
-noun lava, basalt
-noun minerals
-noun formations
-noun remnants
-noun blockage, cavein, cave-in, rockfall, rock-fall
-noun swag, loot
-noun label
-noun aurora
-noun clouds
-noun reflections
-noun alabaster
-noun geyser, steam
-noun shadows, apparitions
-noun runes, scripts
-noun counterweights, mechanism
-noun crag, crags
-noun seam, seams
-noun heap, heaps, pile, piles
-noun feet, foot
-noun dais
-noun granite
-noun onyx, bloodstone
-noun stanchions
-noun balustrade
-noun gravel
-noun thorns
-noun snow
-noun meadows
-noun space
-noun daylight
-noun carving
-noun arch, archway
-noun timber, props
-noun crystals
-noun rust
-noun marks
-noun mould
-noun fracture
-noun pipe, pipes
-noun liquid
-noun membrane
-noun foam, flecks
-noun void
-noun table-cloth, =tablecloth, cloth
-noun foot-holds, =footholds, hand-holds, =handholds
-noun insects
-noun bat, bats
-noun hollows
-noun top
-noun dune, dunes, desert
-noun vista, landscape, scene
-noun spray
-noun overhang
-noun map
-noun room
-noun rose
-noun roses
-noun sign
-noun -first.sculpture.fake
-noun !pig
-noun !eel
-noun !emu 
-noun !elf 
-noun squirrel 
-noun vulture 
-noun rabbit 
-noun elephant
-noun snail
-noun condor
-noun lizard
-noun ibex 
-noun frog 
-noun tiger 
-noun mule 
-noun moose 
-noun !dog
-noun phoenix
-noun nymph
-noun -last.sculpture.fake
+verb -first.pseudo
+verb catacombs
+verb cloak
+verb hat
+verb caviar
+verb goodies, sandwiches
+verb barrel
+verb fountain, basin, fountains
+verb tombs, vaults
+verb shelf, shelves, rack, racks
+verb couch
+verb ash, ashes, fire
+verb heelprint, =print, indentation
+verb well
+verb spring
+verb bed, streambed, stream-bed, riverbed, river-bed
+verb window, windows
+verb cliff, cliffs
+verb vegetation, =greenery, =tangle, =mass, =growth, =barrier, foliage, =leaves, =canopy, =leaf
+verb berry, berries
+verb monocle, =eye-glass, =eyeglass
+verb lid
+verb gully
+verb something, =thing, =red, =shiny       # Red for fire alarm, shiny for seal
+verb drawing, =drawings, fish, =fishy
+verb verbs
+verb nouns, objects
+verb crevice
+verb o'ryan, =oryan, patrick
+verb swamp, =bog, =marsh
+verb ivy
+verb wall, walls
+verb mist, fog, wisps
+verb ramp
+verb droppings
+verb boxes
+verb monkey, ape
+verb guybrush, threepwood
+verb jerry, cornelius
+verb elric, melnibone
+verb plug
+verb plughole
+verb tooth
+verb sea, ocean
+verb tower
+verb slits
+verb mug, =pewter, mugs, dish, dishes, jug, =earthenware, jugs
+verb sand, grit
+verb stool
+verb sewage
+verb carcass, body
+verb mountain, mountains, =range, =peaks
+verb rattle
+verb columns, =column, pillars, =pillar
+verb horses, shape, shapes, ironwork
+verb pool, whirlpool
+verb pergola
+verb bench
+verb cupid
+verb doorway, portal
+verb corner
+verb around, area
+verb ceiling, vault
+verb bricks, brickwork, =brick-work
+verb maple, =maples, oak, =oaks
+verb birch, =birches
+verb bushes, bush, shrub, gorse, undergrowth, elder, blackthorn, scrub, rosebushes
+verb fir, =firs, conifer, =conifers
+verb grass, soil, patch
+verb weeds
+verb sun
+verb stars, star
+verb moon, moons
+verb bottom
+verb shaft
+verb supports
+verb surround
+verb chalk
+verb thicket
+verb haze
+verb concrete
+verb dirt
+verb brambles
+verb nettles
+verb ferns
+verb dust
+verb planks, wood
+verb bank, banks
+verb phalanx
+verb flowers
+verb coral
+verb horizon
+verb slope, slopes, shoulder
+verb shore, shores, coast
+verb outcrop, outcrops
+verb stem
+verb numbers
+verb structure
+verb me, self, myself
+verb you, yourself
+verb sygil
+verb crabs, =crab
+verb edge, edges
+verb marble
+verb periphery
+verb trail
+verb shade
+verb fold, folds
+verb torch, torches
+verb bend
+verb words
+verb cairn
+verb spiral
+verb rib, ribs
+verb lava, basalt
+verb minerals
+verb formations
+verb remnants
+verb blockage, cavein, cave-in, rockfall, rock-fall
+verb swag, loot
+verb label
+verb aurora
+verb clouds
+verb reflections
+verb alabaster
+verb geyser, steam
+verb shadows, apparitions
+verb runes, scripts
+verb counterweights, mechanism
+verb crag, crags
+verb seam, seams
+verb heap, heaps, pile, piles
+verb feet, foot
+verb dais
+verb granite
+verb onyx, bloodstone
+verb stanchions
+verb balustrade
+verb gravel
+verb thorns
+verb snow
+verb meadows
+verb space
+verb daylight
+verb carving
+verb arch, archway
+verb timber, props
+verb crystals
+verb rust
+verb marks
+verb mould
+verb fracture
+verb pipe, pipes
+verb liquid
+verb membrane
+verb foam, flecks
+verb void
+verb table-cloth, =tablecloth, cloth
+verb foot-holds, =footholds, hand-holds, =handholds
+verb insects
+verb bat, bats
+verb hollows
+verb top
+verb dune, dunes, desert
+verb vista, landscape, scene
+verb spray
+verb overhang
+verb map
+verb room
+verb rose
+verb roses
+verb sign
+verb -first.sculpture.fake
+verb !pig
+verb !eel
+verb !emu 
+verb !elf 
+verb squirrel 
+verb vulture 
+verb rabbit 
+verb elephant
+verb snail
+verb condor
+verb lizard
+verb ibex 
+verb frog 
+verb tiger 
+verb mule 
+verb moose 
+verb !dog
+verb phoenix
+verb nymph
+verb -last.sculpture.fake
 #
-noun -first.general
-noun imperfections
-noun rock, rocks, chunk, chunks, fragments
-noun stone, stones, boulder, boulders
-noun block
-noun bundle, !rods
-noun !plurals, !oysters, !birds, !lamps, !cages, !pillows, !bottles, !snakes, !plants, !beanstalks, !nursery, !row
-noun sky
-noun floor, ground
+verb -first.general
+verb imperfections
+verb rock, rocks, chunk, chunks, fragments
+verb stone, stones, boulder, boulders
+verb block
+verb bundle, !rods
+verb !plurals, !oysters, !birds, !lamps, !cages, !pillows, !bottles, !snakes, !plants, !beanstalks, !nursery, !row
+verb sky
+verb floor, ground
 verb -last.pseudo
 #
 # Except/but is in a category of its own!

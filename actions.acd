@@ -678,7 +678,7 @@ action throw oil
 #
 action throw champagne
    ifhave bucket, full.of.champagne
-      lda vessel, champagne
+      lda vessel, bucket
       call dispose.liquid
    else
       quip you.dont.have, champagne
@@ -1351,6 +1351,8 @@ action look water
 #=====================================================================
 #
 action look spire
+   ifflag spire, been.here
+      and
    ifinrange here, desert.12, desert.14
       or
    ifinrange here, desert.18, desert.19
@@ -3858,6 +3860,12 @@ action samoht
          add lamplife, 300
          set lamp, switched.on
          flag status, light.here
+         ifnear owl
+            call owl.flies.off
+         fin
+         set status, 1
+         set glow, 0
+         call look
       fin
    else
       say nothing

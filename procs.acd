@@ -5769,6 +5769,7 @@ proc show.nouns
    vocab snake, 0, seen, 0
    vocab spices, 0, seen, 0
    vocab spider, 0, seen, 0
+   vocab spire, spire, been.here, 0
    vocab spoon, 0, seen, 0
    vocab spyglass, 0, seen, 0
    vocab stalactite, 0, seen, 0
