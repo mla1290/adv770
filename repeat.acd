@@ -370,12 +370,6 @@ repeat
       ifflag here, not.in.cave         # Shake him off
          unflag pirate, special1
       fin
-      ifflag there, not.in.cave
-         and
-         not
-      ifflag here, not.in.cave
-         unflag pirate, special1       # Fooled him!
-      fin
       ifat swirling.mist, stream.maze, plain.2, dark.forest
          call plant.things
       fin

@@ -9979,7 +9979,7 @@ at dank.cave
 at sword.place
    ifany look, read
       and
-   ifany rock, inscription
+   ifany rock, inscription, stone
       call read.rock
    fin
    ifkey look
