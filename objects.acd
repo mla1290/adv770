@@ -419,16 +419,14 @@ OBJECT RUG, =PERSIAN, CARPET
    dirty /]Persian rug [lying/hovering/spread out][ on the 
    ground/ in the air/ on the ground]{RUG.SHREAK}
   &[The rug is rolled up, so there isn't much to be seen. It does,
-   however, appear to be in a rather poor condition./The rug
+   however, appear to be in a rather poor condition.{RUG.VALUE}/The rug
    is hovering a few inches above the ground, but not with any
    real conviction. Its corners are sagging in a manner suggesting
    weary resignation rather than a resolute defiance of gravity./Due
    to its prolonged close proximity to the dragon, the rug is in
-   a sorry state. I doubt it would fetch a good price
-   on a bazaar. Not that we run a bazaar around here, but you
-   know what I mean./After that thrashing you gave it, the rug
+   a sorry state.{RUG.VALUE}/After that thrashing you gave it, the rug
    is much cleaner, but that only makes it easier to see how
-   worn and threadbare it actually is.]
+   worn and threadbare it actually is.{RUG.VALUE}]
 #
 OBJECT SPICES
    Rare spices
@@ -500,7 +498,7 @@ OBJECT ORION         # Just a myth
 #
 OBJECT PLAQUE        # The plaque in the sandstone room
 #
-OBJECT INSCRIPTION, PATTERN, =PATTERNS, LETTERING, =LETTERS, WRITING, DESIGN, DESIGNES  # Readable stuff
+OBJECT INSCRIPTION, PATTERN, =PATTERNS, LETTERING, =LETTERS, WRITING, DESIGN, DESIGNS  # Readable stuff
 #
 OBJECT PORTCULLIS      # Intercepted in AT.ACD, so doesn't need description
   &A standard issue adventure portcullis, made of solid metal
@@ -955,8 +953,8 @@ OBJECT BUCKET
 #
 OBJECT FEEDER, TABLE, BIRDTABLE
   %A small wooden bird table on a tall wooden leg stands sheltered
-   by the wall of the house.
-  \A small pile of bird seed lies on the table.
+   by the wall of the house.[
+  /A small pile of bird seed lies on the table./]
   &It's just a few rough planks forming a flat surface and
    mounted on a tall and equally rough wooden leg sticking 
    out of the ground. On the table is a small heap of bird seed

@@ -6,11 +6,11 @@
 #
 repeat
    local cgi
-   local bugfix
-   local north.dir
-   local f.exit
-   local f.count
-   local temp.dir
+#
+# Cure a couple of problems in games saved pre-1.38.
+#
+   flag dwarves.quarters, indoors
+   unflag tower.roof, indoors
 #
    call tie.them      # Force initialisation of ties in all circumstances!! 
    ifeq status, -1
@@ -18,200 +18,6 @@ repeat
       say restoring.game, arg2
       call restore
    fin
-#
-# ================== Pre-1.03 incompatibility fix =================
-#
-   ifloc troll, ylem, limbo, sw.of.chasm
-   else
-      apport troll, ylem
-   fin
-   itobj bugfix, schizoid
-      ifloc bugfix, ylem
-         unflag bugfix, schizoid
-      fin
-   eoi
-   ifeq stage, exits.barred
-      and
-   ifne door3, closed
-      set door3, closed
-   fin   
-#
-# ================== Pre-1.07 incompatibility fix =================
-#
-   ifflag thurible, seen
-   else
-      set thurible.spiel, 0
-   fin
-   ifflag flower, seen
-   else
-      set stone.flower, 0
-   fin
-   ifflag anteater, seen
-   else
-      set anteater.quip, 0
-   fin
-   ifflag abyss, been.here
-   else
-      set starry.abyss.1, 0
-      set starry.abyss.2, 0
-      set distant.glow, 0
-      set raging.volcano, 0
-   fin
-#
-# ================== 1.06/07 incompatibility fix ==================
-#
-   set bugfix, 0
-   ifne password, 0
-      ifis password, xyzzy
-         lda password, snoeze
-         set bugfix, 2
-      otherwise
-      ifis password, plugh
-         lda password, snoeze
-         set bugfix, -2
-      otherwise
-      ifis password, noside
-         lda password, knerl
-         set bugfix, 2
-      otherwise
-      ifis password, foo
-         set bugfix, -2
-         lda password, knerl
-      otherwise
-      ifis password, melenkurion
-         lda password, klaetu
-         set bugfix, 2
-      otherwise
-      ifis password, foe
-         lda password, klaetu
-         set bugfix, -2
-      otherwise
-      ifis password, fie
-         lda password, blerbi
-         set bugfix, 2
-      else
-         set f.count, password
-         sub f.count, 2
-         ifis f.count, blerbi
-            lda password, blerbi
-            set bugfix, -2
-         fin
-      fin
-   fin
-   ifne bugfix, 0
-      lda f.exit, c.exit
-      lda north.dir, north
-      iterate f.count, 0, 15
-         eval temp.dir, f.exit
-         add temp.dir, bugfix
-         iflt temp.dir, north.dir
-            add temp.dir, 8
-         else
-            sub temp.dir, 8
-            iflt temp.dir, north.dir
-               add temp.dir, 8
-            fin
-         fin
-         deposit f.exit, temp.dir
-         add f.exit, 1
-      fin
-   fin
-#
-# Some temporary fixes, only required for beta tests. They override
-# "wrong" values saved in testers' games. This whole section can be
-# removed once testing is over.
-#
-   flag pearl, portable
-   unflag pearl, schizoid
-   flag pearl, object
-   unflag well.bottom, in.sewer
-   unflag well.bottom, in.desert
-   unflag well.bottom, damp
-   flag ring, valued
-   flag starstone, valued
-   iflt strength, carry.limit
-      set strength, carry.limit
-      add strength, 1      # He must have eaten the mushroom!
-   fin
-   ifflag island.05, smartass
-   else
-      flag island.05, hintable   # A hint has been added here.
-   fin
-   ifflag ridge, smartass
-   else
-      flag ridge, hintable
-   fin
-   ifflag abyss, smartass
-   else
-      flag abyss, hintable
-   fin
-   flag above.sea, lit
-   flag above.sea, no.dwarf
-   flag above.sea, not.in.cave
-   flag above.sea, no.back
-   ifloc rosebowl, limbo
-      apport rosebowl, garden.nw
-   fin
-   apport poster, building
-   flag gates, schizoid
-   flag door1, schizoid
-   flag door2, schizoid
-   flag door3, schizoid
-   flag trapdoor, schizoid
-   flag ladder, schizoid
-   apport ladder, storeroom
-   apport door1, waterfall
-   apport door2, tower.upper.landing
-   apport door3, tower.top.landing
-   apport trapdoor, shelves.east
-   flag door, openable
-   flag door1, openable
-   flag door2, openable
-   flag door3, openable
-   flag trapdoor, openable
-   flag door, feature
-   flag door1, feature
-   flag door2, feature
-   flag door3, feature
-   flag trapdoor, feature
-   flag door, seen
-   flag door1, seen
-   flag door2, seen
-   flag door3, seen
-   flag trapdoor, seen
-   flag rosebowl, unstable
-   ifloc rosebowl, garden.nw
-   else
-      set rosebowl, 1
-   fin
-   ifeq shoes worn
-      and
-      not
-   ifat caldera, below.ridge
-      set shoes, not.worn
-   fin
-   flag garden.se, h20.here
-   ifgt masktime, 5
-      and
-      not
-   ifeq mask, worn
-      set masktime, 0
-   fin
-   ifloc magazines, witts.end
-      and
-      not
-   ifflag witts.end, been.here
-      and
-      not
-   ifeq stage, adventuring
-      apport magazines, anteroom
-   fin
-   itplace place.ptr, ice.cave.1, ice.cave.30
-      flag place.ptr, no.dwarf
-   fin
-#
-# ====================== End of beta section ======================
-#
    ifeq context q.restored
       say save.the.image
       set context, q.keep.image
@@ -234,10 +40,14 @@ repeat
 #=====================================================================
 #
 repeat
+   local obj.ptr
    local temp.val
    local event.flag
    local island.event
-#
+# 
+   itobj obj.ptr, schizoid, ylem
+      unflag obj.ptr, schizoid   # It must not appear INHAND!
+   eoi
    ifgt context, none
       proceed
    fin
@@ -323,6 +133,8 @@ repeat
       fin
    fin
    ifflag status, moved
+      set nobody.answers, 0
+      set somebody.home, 0
       unflag seed, special1
       flag water, moved
       ifnear vampire, thirsty
@@ -761,6 +573,7 @@ repeat
 repeat
    local same.hint.loc
    local fangs.disposal
+   local query.allowed
 #
    ifgt context, none
       proceed
@@ -777,6 +590,9 @@ repeat
       fin
       ifeq last.hintable, here
          add hint.time, 1
+         exec 12, query.allowed
+         ifeq query.allowed, 1
+            and
          ifgt hint.time, 10
             call hint.logic
          fin
@@ -828,7 +644,9 @@ repeat
    ifflag here, in.sewer
       call prod.tide
    fin
-   sub giant.time, 1
+   ifgt giant.time, 0
+      sub giant.time, 1
+   fin
    ifnear giant
       call giant.stuff, 0
    otherwise
@@ -1985,7 +1803,9 @@ repeat
 #
 # A few house-keeping oddments...
 #
-   sub foobar, 1
+   ifgt foobar, 0
+      sub foobar, 1
+   fin
    add turns, 1
    ifeq turns, 20
       unflag status, vocab.prod

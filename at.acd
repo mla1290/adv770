@@ -70,7 +70,7 @@ at road
          smove slit, dark.forest, something.strange
          smove hill, building, something.strange
          smove ravine, dark.forest, something.strange
-         smove stupendous.view, dark.forest, something.strange
+         smove view, dark.forest, something.strange
       fin
       ifhave sunstone
          ifkey view
@@ -275,8 +275,7 @@ at building
       fin
    fin
    ifeq stage, mirror.world
-      respond west, road, wall.there
-      move east, road
+      respond out, east, road, wall.there
    fin
    ifany road, out, west
       lda direction, west
@@ -2253,6 +2252,12 @@ at valuers
       flag context, arg2.here
       proceed
    fin
+   ifkey ring
+       and
+   ifeq status, 1
+       set status,2
+       lda arg2, bell-pull
+   fin
    ifkey bell-pull
       and
       not
@@ -2376,6 +2381,7 @@ at valuers
             ifnear box
                apport box, ylem
                flag rug, valued
+               set rug.value, 1
                set rug.shreak, 1
                ifflag rug, special1
                   quip rug.valuable, 1
@@ -3432,6 +3438,7 @@ at sw.of.chasm
          ifeq troll, will.be.back
             set troll, wants.treasure
             apport  troll, sw.of.chasm
+            flag troll, schizoid
             apport troll2, limbo
             quip troll.wants.more
          fin
@@ -3654,6 +3661,7 @@ at ne.of.chasm
             fin
             set troll, wants.treasure
             apport  troll, sw.of.chasm
+            flag troll, schizoid
             apport troll2, limbo
             quip troll.wants.more
          fin
@@ -4289,6 +4297,7 @@ at morion
 #=====================================================================
 #
 at vault
+   fakecom door, safe
    ifkey look
       respond ceiling, vault, up, its.a.ceiling, c.vault
       respond exit, passage, tunnel, dark.exit, tunnel
@@ -4323,6 +4332,13 @@ at vault
 #=====================================================================
 #
 at insafe                    # Inside the safe - strange stuff happens here!
+   fakecom door, safe
+   ifkey close
+      and
+   ifeq status, 1
+      set status, 2
+      lda arg2, safe
+   fin
    ifkey safe
       ifeq status, 1
          flag status, pls.clarify
@@ -8167,6 +8183,9 @@ at tower.upper.landing
       proceed
    fin
    ifkey door2
+      ifkey knock
+         proceed
+      fin
       ifeq door2, closed
          ifany open, break
             quip door.not.for.breaking, arg2
@@ -8353,6 +8372,8 @@ at dwarves.quarters
    fin
    respond mug, no.touch.mug
    ifkey look
+      respond ceiling, up, its.a.ceiling, c.shelves
+      respond beams, wood, planks, rough.ceiling
       respond ring, ring.clapper
       respond stool, wooden.stool
       respond table, dwarves.table
@@ -8422,6 +8443,7 @@ at dwarves.quarters
 #=====================================================================
 #
 at tower.roof
+   fakecom door, trapdoor
    ifkey look
       respond roof, its.a.roof
       respond horizon, far.horizon
@@ -8448,6 +8470,18 @@ at tower.roof
       and
    ifany go, in
       set status, 1
+   fin
+   ifeq status, 1
+      or
+   ifany down, garden
+      and
+   ifkey jump
+      goto garden.s
+      ifhave bust
+         set bust, damaged
+      fin
+      say no.dunes.here
+      call coroner
    fin
    ifkey go
       or
@@ -8536,6 +8570,7 @@ at storeroom
 #=====================================================================
 #
 at shelves.east
+   fakecom door, trapdoor
    ifkey look
       respond ceiling, up, its.a.ceiling, c.shelves
       respond beams, wood, planks, rough.ceiling
@@ -8729,6 +8764,7 @@ at outside.gates
             lda direction, ne
             call consult.sunstone, direction
          fin
+         move hill, hill
          move road
       fin
       ifkey climb
@@ -8954,6 +8990,9 @@ at garden.sw
 #=====================================================================
 #
 at garden.s
+   ifkey look, up
+      fakearg up, tower
+   fin
    call default.read, plaque
    ifkey read
       ifeq status, 1
@@ -8970,7 +9009,7 @@ at garden.s
       fin
       quip leave.it.alone, plaque
    fin
-   ifkey tower
+   ifany tower, wall
       respond look, below.tower, 0
       ifany up, climb
       else
@@ -8987,14 +9026,18 @@ at garden.s
    ifkey back
       and
    ifis there, tower.roof
-      or
-   ifany up, climb
       call tower.climbing
    fin
-   ifkey look
-      proceed
+   ifkey climb, up
+      or   
+   ifany up, climb
+      and
+   ifeq status, 1
+      or
+   ifany tower, wall, ivy
+      call tower.climbing
    fin
-   ifany ivy
+   ifany ivy, wall
       flag context, arg2.here
    fin
    ifkey go
@@ -10112,6 +10155,9 @@ at stupendous.view
       quip no.handy.them, fir
    fin
    ifany ashes, heelprint
+      ifgt stupendous.view, 0
+         quip ashes.gone
+      fin
       ifkey look
          respond ashes, cold.ashes
          quip heelprint.info
@@ -10130,7 +10176,10 @@ at stupendous.view
       and
    ifany down, cliff
       flag sapling, seen
-      quip sheer.cliff, beanstalk
+      iflt stage, mirror.world
+         quip sheer.cliff, beanstalk
+      fin
+      quip sheer.cliff, 3
    fin
    ifkey climb
       respond banks, banks.too.steep
@@ -10202,7 +10251,7 @@ at stupendous.view
          fin
          call consult.sunstone, direction
       fin
-      ifany house, road, ravine
+      ifany house, road, path, ravine
          ifeq stage, mirror.world
             quip eek.cliff!
          fin
@@ -10413,9 +10462,6 @@ at path
          call follow.it, road, se, ravine, nw
       fin
       ifeq stage, mirror.world
-         ifkey ravine
-            smove road, something.strange
-         fin         
          smove road, building, stupendous.view, something.strange
          smove view, road, something.strange
       fin
@@ -10508,6 +10554,9 @@ at east.of.building
             quit
          fin
       fin
+   otherwise
+   ifkey seed
+      quip no.seed
    fin
    call by.house.actions
    ifkey look
@@ -11434,7 +11483,7 @@ at spire.part.up
       respond horizon, desert.horizon
       respond ramp, ramp.at.part.up
       respond down, near.desert
-      respond desert, dunes, dunes.in.desert, 1
+      respond desert, dunes, dunes.in.desert, 0
       respond up, distant.top
       proceed
    fin
@@ -11524,7 +11573,7 @@ at spire.nearly.up
       respond horizon, desert.horizon, 0
       respond ramp, ramp.at.nearly.up
       respond up, top, near.top
-      respond desert, dunes, dunes.in.desert, 1
+      respond desert, dunes, dunes.in.desert, 0
       respond down, bottom, distant.desert
       proceed
    fin
@@ -11610,7 +11659,7 @@ at spire
       respond spire, platform, you.are.on.top
       respond ramp, ramp.at.top
       respond down, far.away.desert
-      respond desert, dunes, dunes.in.desert, 0
+      respond desert, dunes, dunes.in.desert, 1
       proceed
    fin
    ifkey drop
@@ -11699,6 +11748,7 @@ at basalt.shelf.2
       respond tube, opening, hole, collapsed.tube
       respond lava, rock, no.look.rock
       respond scene, vista, view, eerie.aint.it?
+      respond dunes, dunes.in.desert, 2
       proceed
    fin
    respond beach, sea, i.dont.see, arg2
@@ -11717,8 +11767,8 @@ at basalt.shelf.2
          call consult.sunstone, direction
       fin
       move west, down, scree, scree.2
-      move sw, scree
-      move nw, scree.3
+      move nw, scree
+      move sw, scree.3
    fin
    ifany slope, scree, lava, rock, tube, opening, hole
       flag context, arg2.here
@@ -11748,7 +11798,7 @@ at scree
       move sw, desert.3
       move south, scree.2
       ifany up, se
-         call consult.sunstone, se
+         call consult.sunstone, sw
       fin
       move up, se, scree, basalt.shelf.2
    fin
@@ -13828,8 +13878,13 @@ at island.04
 #=====================================================================
 #
 at island.05
+   fakecom tree, pine
    call plants.stuff, 4
    fakecom gap, ravine
+   ifeq pine, fallen
+      set ravine.exit, 0
+      set island.05, 1
+   fin
    ifkey look
       ifkey trail
          ifeq pine fallen
@@ -13850,7 +13905,6 @@ at island.05
    ifany down, ravine
       quip steep.ravine
    fin      
-   fakearg tree, pine
    ifeq pine, fallen
       fakecom bridge, pine
    fin
@@ -13867,6 +13921,10 @@ at island.05
       ifany up, mountain, slope
          quip no.avoid.pine
       fin
+      ifeq status, 1
+         or
+      ifkey pine
+         and
       ifne pine, fallen
          quip pine.climbed
       fin
@@ -13907,8 +13965,10 @@ at island.05
 #=====================================================================
 #
 at island.06
+   fakecom tree, pine
    call plants.stuff, 4
    fakecom gap, ravine
+   set ravine.exit, 1
    ifkey look
       respond ravine, down, steep.ravine
       respond bridge, pine.bridge, pine
@@ -14444,6 +14504,9 @@ at viewpoint.2
    fin
    ifkey climb
       respond up, cliffs, mountain, upper.reaches
+      ifeq status, 1
+         lda arg2, ridge
+      otherwise
       ifany down, track, trail, edge, ridge
          set status, 1
       fin

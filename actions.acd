@@ -1222,16 +1222,8 @@ action look                # Can't look in the dark!
    fin
    ifany pattern, rug
       and
-   ifnear rug, unrolled.clean
-      ifkey look, rug
-         and
-      ifflag rug, special2
-         proceed
-      fin
-      ifany rug, pattern
-         flag rug, special2
-         quip read.rug
-      fin
+   ifnear rug
+      call read.the.rug
    fin
    ifkey dung
       and
@@ -1268,9 +1260,9 @@ action look                # Can't look in the dark!
             call list.dunes, result
             quip sentence.end
          fin
-         ifat basalt.shelf.2, spire, spire.part.up, spire.nearly.up
-            quip dunes.in.desert
-         fin
+#         ifat basalt.shelf.2, spire, spire.part.up, spire.nearly.up
+#            quip dunes.in.desert
+#         fin
          ifat river.bed.2
             quip huge.dune, 0
          fin
@@ -1589,6 +1581,14 @@ action look
       fin
       quip hah!
    fin
+   ifany words, inscription
+      ifnear flask
+         quip still.dry 
+      fin
+      ifnear lamp
+         quip still.on.off
+      fin
+   fin
 #
 #=====================================================================
 #
@@ -1778,9 +1778,13 @@ action open                  # General opening routine
 action open
    local state
 #
-   ifany grate, chain, safe, coffin, lid
+   ifany grate, chain, safe, coffin
       eval state, arg2
+      ifkey coffin
+         and
       ifge state, unlocked
+         or
+      ifeq state, unlocked
          quip already.open, arg2
       fin
       ifkey lid
@@ -2043,22 +2047,24 @@ action close
 #
 action close coffin
    ifnear coffin
-      and
-   ifgt coffin, locked
-      ifnear vampire
+      ifgt coffin, locked
+         ifnear vampire
+         else
+            set you.step.closer, 1
+            call look
+         fin
+         ifeq vampire, content
+            call vampires.gift, 0
+         fin
+         ifeq vampire, asleep
+            set coffin, locked
+            apport vampire, ylem
+            quip coffin.closed
+         else
+            quip no.close.coffin
+         fin
       else
-         set you.step.closer, 1
-         call look
-      fin
-      ifeq vampire, content
-         call vampires.gift, 0
-      fin
-      ifeq vampire, asleep
-         set coffin, locked
-         apport vampire, ylem
-         quip coffin.closed
-      else
-         quip no.close.coffin
+         quip already.closed, coffin
       fin
    fin
 #
@@ -2233,6 +2239,9 @@ action fly
             and
             not
          ifis obj.ptr, bust
+            and
+            not
+         ifis obj.ptr, orb
             quip load.too.heavy
          fin
       eoi
@@ -2321,7 +2330,11 @@ action hit
             quip rug.already.clean
          fin
          set rug, unrolled.clean
-         bis, rug, special1
+         bis rug, special1
+         ifgt you.played.before, 0
+            bis rug, special2
+            set rug.now.cleaner, 1
+         fin
          quip rug.now.cleaner
       fin
       ifflag arg2, mortal
@@ -2597,8 +2610,11 @@ action fee
    ifgt stage, closing.soon
       quip nothing
    fin
-   set foobar, 1
-   quip ok
+   ifle foobar, 0
+      set foobar, 1
+      quip ok
+   fin
+   call foo.to.you.too
 #
 #=====================================================================
 #
@@ -2608,7 +2624,6 @@ action fie
       quip ok
    fin
    call foo.to.you.too
-   quit
 #
 #=====================================================================
 #
@@ -2618,7 +2633,6 @@ action foe
       quip ok
    fin
    call foo.to.you.too
-   quit
 #
 #=====================================================================
 #
@@ -2665,6 +2679,7 @@ action foo
                fin
                set troll, wants.treasure  # Normal troll mode
                apport troll, sw.of.chasm  # Fetch him back
+               flag troll, schizoid
                apport troll2, limbo       # Discard fake troll
             fin
          fin
@@ -3662,7 +3677,7 @@ action read
       quit
    fin
    ifkey rug
-      call look
+      call read.the.rug
    fin
    ifgt status, 1
       ifkey documents
@@ -3719,10 +3734,22 @@ action read
             fin
             respond machine, machine.sign
             respond wrapper, wrapper.words
+            respond flask, still.dry
+            respond lamp, still.on.off
             ifkey packet
                call look
             fin
          fin
+      fin
+      ifany words, inscription, flask
+         and
+      ifnear flask
+         quip still.dry
+      fin
+      ifany words, inscription, lamp
+         and
+      ifnear lamp
+         quip still.on.off
       fin
    fin
    call bail.out
@@ -3848,31 +3875,44 @@ action thurb
 #=====================================================================
 #
 action basingstoke
-   ifflag rug, special2
-      and
    ifnear rug
-      ifeq rug, rolled.up
-         quip rug.quivers, 0
+   else
+      quip nothing
+   fin
+   ifflag rug, special2
+   else
+      say you.played.before
+      set read.rug, 1
+      ifflag rug, special1
+         flag rug, special2
       fin
+   fin
+   ifflag here, not.in.cave
+   else
+      quip no.fly.underground
+   fin
+   ifhave rug
+      quip rug.quivers, 1
+   fin
+   ifeq rug, rolled.up
+      quip rug.quivers, 0
+   fin
+   ifflag rug, special2
       ifeq rug, hovering
          set rug, unrolled.clean
          quip rug.lands
       fin
-      ifhave rug
-         quip rug.quivers, 1
+      ifat spire
+         set rug, rolled.up
+         flag quips, rug.flung
+         quip grab.rug
       fin
-      ifflag here, not.in.cave
-         ifat spire
-            set rug, rolled.up
-            flag quips, rug.flung
-            quip grab.rug
-         fin
-         set rug, hovering
-         quip rug.now.hovers
-      fin
-      quip no.fly.underground
+      set rug, hovering
+      quip rug.now.hovers
+   else
+      set rug, rolled.up
+      quip rug.too.dirty
    fin
-   quip nothing
 #
 #=====================================================================
 #
@@ -5309,6 +5349,7 @@ action chew
          and
       ifnear pine, standing
          set pine, fallen
+         set island.05, 1
          flag pine, schizoid
          unflag fangs, freebie
          unflag here, hintable
@@ -5781,10 +5822,11 @@ action knock
          or
       ifnear door3, closed
          ifat tower.upper.landing
+            and
+         ifle alarm, 1
             ifeq nobody.answers, 2
-               say somebody.home, sentry
-               ifeq sentry, 0
-                  set sentry, 1
+               say somebody.home
+               ifeq somebody.home, 1
                   quit
                else
                   set nobody.answers, 0
@@ -5951,7 +5993,15 @@ action fertiliser
    ifflag seed, special1
       quip save.your.fertiliser, 0
    fin
-   quip save.your.fertiliser, status
+   ifnear packet
+      quip save.your.fertiliser, status
+   fin
+   ifnear dung
+      or
+   ifnear bucket, full.of.dung
+      quip no.fertilising, 0
+   fin
+   quip no.fertilising, 1
 #
 #=====================================================================
 #

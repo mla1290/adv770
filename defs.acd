@@ -76,6 +76,10 @@ flags variable
       show.numbers     # Show location numbers.
       desert.warn      # Just entered the desert section.
 #
+# Hardwire the "noun" flag  value as one higher than the verb one.
+#
+constant 3, noun    # It's a noun (a pseudo-object), not a verb
+#
 # Next, the flag set for places
 #
 flags place

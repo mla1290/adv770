@@ -2230,20 +2230,18 @@ PLACE ISLAND.04
 #
 PLACE ISLAND.05
    You are on the north side of mountain ravine.
-  %Here the trail bends sharply west, into a deep and narrow
-   ravine which cuts into the side of the mountain. 
+  %[The trail has bent sharply west, into a deep and narrow
+   ravine which cuts into the side of the mountain.
    Once upon a time, at its westernmost point there presumably
-   was some ledge or bridge, allowing one access to the other side
+   was some ledge or bridge, allowing one access to the south side
    of the ravine, but nothing at all remains now.
-   The trail simply stops and then continues again on the other
-   side. The only exit is east, where the trail bends to
-   the north, around the mountain.
+   The trail simply stops, and after a short gap continues again on 
+   the other side. The only exit is east, where the trail bends to
+   the north, around the mountain./{RAVINE.EXIT}]
 #
 PLACE ISLAND.06
    You are on the south side of mountain ravine.
-  %The trail leads east, bending to the right towards south,
-   out of the ravine. To the north, a fallen mountain pine
-   allows access across the gap to the north side of the ravine.
+  %{RAVINE.EXIT}
 #
 PLACE BY.TEMPLE
    You are by the marble temple.
@@ -2822,8 +2820,10 @@ PLACE STEPS.TO.ABYSS
    leading down. A closer inspection shows rough footholds cut
    into one the shaft's walls. The only other exit/
    You are by the top exit from the narrow square shaft. A
-   dark corridor] leads SW. An inscription in Dwarvish is cut 
-   into a smoothed piece of the wall above the shaft's opening.
+   dark corridor] leads SW. It would appear that a short inscription,
+   had been once cut into the wall above the 
+   shaft's opening. Unfortunately the wall's surface has crumbled away
+   and what remains of the inscription is mostly illegible.
 #
 PLACE SQUARE.SHAFT.BOTTOM
    You are at the bottom of the square shaft.
@@ -2863,9 +2863,9 @@ FRAGMENT increment STARRY.ABYSS.1
    remarkably like stars. Startled, you realise that incredible though it
    is, they *are* stars. Amazed you look up, towards the rough stone ceiling
    just a short distance above you, and then down again - and a sudden 
-   wave of nausea hits you, as your perception flips the world around, 
-   so that you are hanging upside down in mid-air, not far from the stony 
-   ground, under the blazing night sky. Shutting your eyes helps. After
+   wave of nausea hits you, as your perception flips the world around. 
+   It feels like you are hanging upside down in mid-air, not far from
+   the stony ground, under a starry sky. Shutting your eyes helps. After
    a while the direction of gravity reasserts itself as "down", and you
    are once again able to look around without getting too queasy./
    The darkness below is filled with blazing stars. Above, the

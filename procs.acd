@@ -375,7 +375,7 @@ proc dispose.liquid
 #=====================================================================
 #
 proc find.water
-   ifnear bucket
+   ifhave bucket
       ifeq bucket, full.of.water
          or
       ifge bucket, mostly.full
@@ -383,11 +383,27 @@ proc find.water
          proceed
       fin
    fin
-   ifnear bottle, full.of.water
+   ifhave bottle, full.of.water
       lda vessel, bottle
       proceed
    fin
-   ifnear flask, full.of.water
+   ifhave flask, full.of.water
+      lda vessel, flask
+      proceed
+   fin
+   ifhere bucket
+      ifeq bucket, full.of.water
+         or
+      ifge bucket, mostly.full
+         lda vessel, bucket
+         proceed
+      fin
+   fin
+   ifhere bottle, full.of.water
+      lda vessel, bottle
+      proceed
+   fin
+   ifhere flask, full.of.water
       lda vessel, flask
       proceed
    fin
@@ -531,11 +547,19 @@ proc check.wearing
 #=====================================================================
 #
 proc find.oil
-   ifnear bottle, full.of.oil
+   ifhave bottle, full.of.oil
       lda vessel, bottle
       proceed
    fin
-   ifnear flask, full.of.oil
+   ifhave flask, full.of.oil
+      lda vessel, flask
+      proceed
+   fin
+   ifhere bottle, full.of.oil
+      lda vessel, bottle
+      proceed
+   fin
+   ifhere flask, full.of.oil
       lda vessel, flask
       proceed
    fin
@@ -828,7 +852,6 @@ proc throw.it.at.orb
 # horrendous -- like 20 levels of offset? Ha!
 #
 proc visions
-   local temp.val
 #
    set orb.vision, vanilla.vision         # Set default "no vision" value
    ifflag gates, special1
@@ -920,8 +943,13 @@ proc visions
       set orb.vision, plant.vision
    fin
    ifeq orb.vision, shown.vision
-      chance 20
+      chance 75
          set orb.vision, vanilla.vision
+      else
+         randomise orb.vision, 0
+         iflt orb.vision, shown.vision
+            set orb.vision, vanilla.vision
+         fin
       fin
    else
       set shown.vision, orb.vision
@@ -2306,10 +2334,10 @@ proc special.view
          or
       ifat rocky.desert
          ifkey look
+            ifat south.of.spire, east.of.spire, north.of.spire
+               exec 30
+            fin
             say cliff.over.desert
-         otherwise
-         ifat south.of.spire, east.of.spire, north.of.spire
-            say forced.blank
          else
             say blank
          fin
@@ -2480,11 +2508,18 @@ proc get.starstone
 #
 proc drop.starstone
    ifhave starstone
+      ifne drop.here, here
+         and
+      ifis drop.here, beanstalk.bottom
+         lda drop.here, beach.end
+      fin
       apport starstone, drop.here
       unflag starstone, special1
       ifgt starstone, quiescent
          or
       ifat lair
+         flag status, light.here
+         set starstone, iridescent
          ifat lair
             say starstone.ignites!
             ifflag status, light.here
@@ -2494,10 +2529,21 @@ proc drop.starstone
                set result, 1
             fin
          else
-            say starstone.lights.up
+            ifne drop.here, here
+               ifnear starstone    # Has it looped back?
+                  set starstone, darkened
+               fin
+               ifinrange here, above.abyss, above.volcano
+                  say starstone.lights.up, 1
+                  quip drop.abyss, 0
+               else
+                  say starstone.lights.up, 2 
+               fin
+            else
+               say starstone.lights.up, 0
+            fin
+            quip blank
          fin
-         set starstone, iridescent
-         flag status, light.here
          ifnear owl
             call owl.flies.off
          fin
@@ -2506,10 +2552,18 @@ proc drop.starstone
             call describe.here
          fin
       else
-         ifflag status, light.here
-            say starstone.falls
+         ifne drop.here, here
+            ifinrange here, above.abyss, above.volcano
+               say starstone.bounces
+               quip drop.abyss, 0
+            fin
          else
-            say dark.starstone
+            set drop.here, none
+         fin
+         ifflag status, light.here
+            quip starstone.falls, drop.here
+         else
+            quip dark.starstone
          fin
       fin
       ifat cellar
@@ -4434,6 +4488,7 @@ proc giant.stuff, giving
       say my.deeds!
       unflag giant, special1
       apport sapphire, here
+      apport box, beanstalk.top
       flag ravine.west, hintable
       apport giant, stupendous.view
       set stupendous.view, 1
@@ -4610,12 +4665,11 @@ proc shadow.shutup
 #=====================================================================
 #
 proc foo.to.you.too
-   ifgt foobar, -1
-      say cant.you.read?
-   else
-      say nothing
-   fin
    set foobar, 0
+   ifgt foobar, 0
+      quip cant.you.read?
+   fin
+   quip nothing
 #
 #=====================================================================
 #
@@ -5804,6 +5858,7 @@ proc randomise.texts
    randomise jerry.words, 0
    randomise scruffy.vegetation, 0
    randomise not.droppable, 0
+   randomise u.turn, 0
    randomise nothing.doing.1, 0
    set nothing.doing.2, nothing.doing.1
    randomise typo, 0             # TYPO is structured in blocks of 4
@@ -6586,7 +6641,7 @@ proc abyss.view, type
       respond down, void, star.dust
    otherwise
    ifeq type, 2
-      respond bats, maybe.bats
+      respond bats, shapes, maybe.bats
       respond down, void, abyss.bat.view
       respond stars, star.dust
    fin
@@ -6895,7 +6950,9 @@ proc lets.go.back
          fin
       fin
    eoi
-   apport table, ylem
+   apport giant, ylem
+   set stupendous.view, 0
+   set feeder, 1
    unflag depression, hintable
    smove road, back.to.reality
 #
@@ -6942,6 +6999,30 @@ proc default.read what
       set arg2, what
       set status, 2
    fin
+#
+#====================================================================
+#
+proc read.the.rug
+   ifnear rug
+      ifeq rug, rolled.up
+         or
+      ifeq rug, unrolled
+         ifkey look
+            proceed
+         fin
+         quip no.read.rug, rug
+      fin
+      ifkey look
+         and
+      ifflag rug, special2
+         proceed
+      fin
+      ifany rug, pattern
+         flag rug, special2
+         quip read.rug
+      fin
+   fin
+   call bail.out
 #
 #====================================================================
 

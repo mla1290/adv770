@@ -181,10 +181,11 @@ init
    flag building, indoors
    flag shed, indoors
    flag temple, indoors
-   itplace place.ptr, tower.base, shelves.west
+   itplace place.ptr, tower.base, dwarves.quarters
       flag place.ptr, hintable
       flag place.ptr, indoors
-   fin
+   eoi
+   unflag tower.roof, indoors
    flag well.bottom, lit
    flag well.bottom, not.in.cave
    flag well.bottom, no.dwarf
@@ -229,6 +230,8 @@ init
    flag wrong.venue, lit
    flag mine.exit, lit
    flag inside.well, lit
+   flag dwarves.quarters, lit
+   flag dwarves.quarters, indoors
 #
 # Set dwarf-inhibits for appropriate places within the cave.
 #
@@ -792,6 +795,8 @@ init
    flag sewer.4, in.sewer
    flag sewer.5, in.sewer
 #
+   flag well.bottom, damp
+#
 # Now for some less generic initialisations...
 #
    lda here, limbo                # Initialise place (j.skeet fix)
@@ -912,7 +917,6 @@ init
    apport oil, east.pit
    apport beanstalk, beanstalk.bottom
    apport beanstalk2, stupendous.view
-   apport box, beanstalk.top
    apport sapling, ledge
    apport beater, ledge
    apport mask, new.den

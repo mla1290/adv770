@@ -16,8 +16,9 @@ TEXT YES.OR.NO?
     Please! Do us a favour and answer yes or no.
 
 #
-TEXT U.TURN
-    Changed your mind? Fine by me...
+TEXT cycle U.TURN
+    [Changed your mind? Fine by me.../Well, there is no shame in
+    changing your mind./Decided not to? That's OK, I don't mind.]
 #
 FRAGMENT GAME.TO.RESTORE
 
@@ -1305,9 +1306,9 @@ TEXT PIPE.TOO.NARROW
     The stream flows out through a pair of 1 foot diameter sewer pipes. It
     would be advisable to [leave via the exit/use a more obvious entrance].
 #
-TEXT WATER.PIPES
-    Standard sewer pipes, made of... hmmm.. cement? Too narrow to be of
-    any use to you.
+TEXT increment WATER.PIPES
+    Standard sewer pipes, made of[... hmmm../] cement? Too narrow to be of
+    any use to you[ whatever they are made of/].
 #
 TEXT SEWER.PIPE
     The inside of the sewer pipe[/s] is covered in muck - none of it is
@@ -1757,9 +1758,10 @@ TEXT GHOST.BANG
     brilliant flash of light and a vicious \>crack\<, and the bridge cracks
     and plummets into the gorge.
 #
-TEXT NO.KEYHOLE
-    The door to the safe has no keyhole, dial, or handle - I can't figure
-    out how to open it!
+TEXT increment NO.KEYHOLE
+    [T/As already noted, t/T]he door to the safe has no keyhole, dial, or
+    handle[ - I/, and I still] can't figure out how to open it[//, no
+    matter how often you make me try]!
 #
 TEXT ALREADY.OPEN
     The # is already open!
@@ -3077,7 +3079,8 @@ TEXT increment NO.GET.STARSTONE
 #
 TEXT STARSTONE.FALLS
     As it falls, the starstone emits a short flash of blue light and for
-    a brief moment becomes curiously unfocused.
+    a brief moment becomes curiously unfocused[/, before dropping
+    out of sight].
 #
 TEXT DARK.STARSTONE
     As it falls, the starstone emits a brief flash of blue light.
@@ -3430,7 +3433,8 @@ TEXT THANKS.TO
     development of the game.
 
     3. The star testers: Homfray-Cooper (Alpha phase), Russ Karlberg,
-    Ambrosine and Dave Payne (Beta phase), and Dave Picton (Gamma phase)
+    Ambrosine and Dave Payne (Beta phase), and Dave Picton and
+    Arnold C. Vermeulen (Gamma phase)
     for their dedication and patience. Without their sterling efforts
     the game would have remained bugged and full of holes.
 
@@ -3639,8 +3643,9 @@ TEXT increment STARSTONE.IGNITES!
     starstone on the ground, shining brightly with/ ignites with cold
     blue fire, which gradually subsides into] shimmering blue light.
 #
-TEXT STARSTONE.LIGHTS.UP
-    As it falls, the starstone suddenly lights up with iridescent blue glow!
+FRAGMENT STARSTONE.LIGHTS.UP
+    As it falls[// away], the starstone suddenly lights up with iridescent blue 
+    glow![/ Then it/]
 #
 TEXT increment HELP.WILL.COST.YOU!
     [Yeah, well, I really can't see what you hoped to achieve by getting
@@ -3721,18 +3726,17 @@ TEXT VOCAB.GENERAL
 #
 TEXT VOCAB.VERBS
     The below verb list is not complete, but with the exception of magic
-    formulae, it includes all verbs you need 
-    for the ultimate success. I've thrown in some words which 
-    are not strictly verbs, but you can use as such (e.g. EAST or 
-    TERSE). Some useful synonyms and abbreviations are given in
-    brackets.
+    formulae, it includes all verbs you need for the ultimate success.
+    I've thrown in some words which are not strictly verbs, but you can
+    use as such (e.g. EAST or TERSE). Some useful synonyms and abbreviations
+    are given in brackets.
 
     east (e), north (n), northeast (ne), northwest (nw), south (s),
     southeast (se), southwest (sw), west (w), up (u), down (d)
 
     again (repeat, r), back (b, retreat), blast, break, brief, change,
-    chew (bite), climb, close (lock), contemplate (meditate), 
-    credits (ack), cross, cut, dig, drink, downstream, drop (dr, free),
+    chew (bite), climb, close (lock), contemplate (meditate), credits (ack),
+    cross, cut, dig, drink, downstream, drop (dr, free, release, r),
     dwarvish, eat, english, enter (in), exit (out), extinguish (off),
     feed, fill, fly, go (walk, run, follow), get (g, take, t), give (offer),
     help (?), history, hit, hoot, info, inventory (i), jump, kill, knock,
@@ -4890,7 +4894,7 @@ TEXT NO.ROOM.TO.UNROLL
     There isn't enough room here to unroll the rug.
 #
 TEXT FLYING.RUG.ROLLED
-    The hovering rug clearly sense your intention and gratefully
+    The hovering rug clearly senses your intention, and gratefully
     sags to the ground. You roll it up.
 #
 TEXT increment DROP.RUG.FIRST
@@ -5136,7 +5140,7 @@ TEXT increment READ.RUG
    /It says "BASINGSTOKE". 
 
     Now there's a word teeming with meaning!/
-    It still has the word "BASINGSTOKE" woven into it in a flowing
+    It has the word "BASINGSTOKE" woven into it in a flowing
     Arabic script.]
 #
 TEXT RUG.LANDS
@@ -5165,12 +5169,14 @@ TEXT RUG.ALREADY.CLEAN
     Further beating might actually damage it, and we wouldn't want
     that to happen to something certifiably valuable, now would we?
 #
-TEXT RUG.NOW.CLEANER
+TEXT assigned RUG.NOW.CLEANER
     You lay into the rug with your carpet-beater. It is a dusty,
     sweaty work, but at the end of it, the rug is much cleaner than
-    it could have been for a very long time. Why, one can actually see
-    the intricate artistic patterns woven into it![ Though rather faded, 
-    they look quite interesting (hint, hint...)./]
+    it could have been for a very long time. [Why, one can actually
+    see t/T]he intricate artistic patterns woven into it[! Though
+    rather faded, they look quite interesting (hint, hint...)./ can
+    be now seen to spell out "BASINGSTOKE" in a flowing Arabic 
+    script - not that this is any news to you, of course!]
 #
 TEXT GOT.NO.BEATER
     You have nothing suitable with which to beat the rug.
@@ -5530,8 +5536,8 @@ TEXT JUMPED.INTO.SAND
     dig your way out shaken, but not seriously hurt.
    //
     It's a loooooong way down and though the sand at the base of the
-    spire is deep and soft, plunging from that great height, the eventual
-    landing is not much better than smashing into a rocky surface.]
+    spire is deep and soft, plunging from that great height still
+    proves to be fatal.]
 #
 TEXT increment EXPLORE.OUTDOORS
 
@@ -5834,7 +5840,7 @@ TEXT YOU.GET.SEED
 #
 FRAGMENT SCATTERED.SEED
     You scatter the few small grains on the ground. They blend in
-    to such an extent that gathering them again would be a well neigh
+    to such an extent that gathering them again would be a well nigh
     impossible task.
 #
 TEXT increment BIRD.IGNORES.SEED
@@ -5883,6 +5889,7 @@ TEXT INTO.THE.RIVER
 #
 TEXT TO.HEAR.IS.TO.OBEY
     To hear is to obey, Oh [Great Wizard/Miserable Worm]!
+
 #
 TEXT YOU.GLOW
     [Your body is surrounded by a magical glow./The glow surrounding
@@ -6254,7 +6261,7 @@ TEXT THROW.ABYSS
 #
 TEXT DROP.ABYSS
    / bounce[s/] off the invisible something under your feet and
-    disappear[s/] in the abyss below you.
+    plummet[s/] into the abyss below you.
 #
 TEXT ROD..BIRD
     [The bird, clearly frightened by your rod waving, abandons its
@@ -6623,7 +6630,7 @@ TEXT NO.SCRAMBLE.UP
 #
 TEXT SCRAMBLE.DOWN
     The downwards slope to the east gets progressively stonier and steeper.
-    In the end you half scramble half, slide down, narrowly avoiding
+    In the end you half scramble, half slide down, narrowly avoiding
     an injury on the rock and boulders below.
 
 #
@@ -6677,7 +6684,7 @@ TEXT increment NO.DRAG
 TEXT increment NO.FLY.BACK
     {YOU.BOARD.RUG} takes off [with some difficulty. It/and] circles
     briefly, [presumably in search of a thermal, but fails to find one.
-    Rather than continue losing hight, it sets out to the east, dodges
+    Rather than continue losing height, it sets out to the east, dodges
     an inconvenient mountain shoulder and ends up skimming down the slope
     over the dense cover of tropical vegetation. Things look dodgy for
     a few moments, but the rug does make it to the beach and even manages
@@ -6751,7 +6758,7 @@ TEXT increment  NOBODY.ANSWERS
     as hard as you can, but there is still no reply. I guess there's
     nobody home.]
 #
-TEXT SOMEBODY.HOME
+TEXT cycle SOMEBODY.HOME
     You bang on the door with all your might and [a guttural voice
     from upstairs shouts: "%Will ya stop that racket! A body is trying 
     to get some sleep here!%"/several large, heavily armed dwarves 
@@ -7559,7 +7566,9 @@ TEXT
     Or something to that effect.
 #
 TEXT increment ISLAND.EXIT
-    It [/still ]says: "%TO THE MAINLAND%".
+    [Well, if I try really hard, the first word could be "%TO%",
+    but after that, your guess is as good as mine./It still seems to say
+    "%TO%", or something like it, followed by something illegible.]
 #
 TEXT RUG.NEEDS.SHEER.DROP
 
@@ -7790,7 +7799,8 @@ TEXT NO.CROSS.ROAD
     You are not a chicken, so you don't need to cross the road.
 #
 TEXT increment WALL.THERE
-    Ooops! [This is most irregular... /]There's a wall there!
+    Ooops! [This is most irregular... The way out should be to the
+    west, but t/T]here is a wall there!
 #
 TEXT EEK.CLIFF!
     Oh dear! Somehow, you nearly managed to walk off the cliff's edge!
@@ -7948,9 +7958,10 @@ TEXT IT.WONT.GROW
 TEXT SHEER.CLIFF
     Standing recklessly near the edge of the cliff, you look straight
     down along the sheer, dirty-white cliff face. There isn't much to
-    be seen, except for [/the beanstalk growing][/ part/ all 
-    the][/ way up the cliff, and ]a small sapling of some sort, 
-    clinging to the rock some way below you.
+    be seen, except for [/the beanstalk growing/=/][/ part/ all 
+    the/=/][/ way up the cliff, and /=/][a small sapling of some sort, 
+    clinging to the rock some way below you/=/=/some scruffy vegetation,
+    far below at the foot of the cliff].
 #
 TEXT SUICIDAL
     That would be suicidal!
@@ -8984,7 +8995,7 @@ TEXT REDDISH.GLOW
 #
 TEXT TRANSLUCENT.WALL
    It's a translucent whitish mineral of some sort. Not salt, as can be
-   readily ascertained by taste. beyond that... pass. You'd need a
+   readily ascertained by taste. Beyond that... pass. You'd need a
    mineralogist to tell you any more about it.
 #
 TEXT NOT.SALT
@@ -9200,9 +9211,11 @@ FRAGMENT DUNE.TYPES
    some merely large enough to be a serious nuisance].
 #
 TEXT DUNES.IN.DESERT
-   [Except for the mighty cliff to the east, t/T]he black desert ripples
-   with dunes as far as the eye can see.[ The uniformity of the view is
-   only broken by some kind of a low rocky formation to the NE./]
+   [T/Except for the ][/mighty cliff to the east, t/black spire to
+   the west, t]he black desert ripples with dunes as far as the eye can
+   see.[/ The uniformity of the view is only broken by some kind of a low
+   rocky formation ][/to the NE./far off in a roughly north-westerly
+   direction.]
 #
 TEXT SMALL.DUNES
    Looking into the desert, you can see that the dunes nearest to
@@ -9326,11 +9339,12 @@ TEXT NOT.A.CHANCE
 #
 TEXT increment MAYBE.BATS
    Well, I assume they are bats.[ What little you can see of them
-   against the stars, suggests that they fly like bats -- i bit
-   unsteady-like, jerky, fluttery... know what I mean? *And* they seem 
-   to have bat-like wings. Hmmm... If they are not
+   against the stars, suggests that they fly like bats -- a bit
+   unsteady-like, jerky, fluttery, if you know what I mean... *And*
+   they seem to have bat-like wings. Hmmm... If they are not
    bats... well, maybe better not speculate on that one, eh?/] Anyway,
-   none of them ever come near enough for an inspection.
+   none of them ever come near enough for an inspection[, which may
+   be just as well/].
 #
 TEXT cycle STAR.LIGHTS
    As we have already established, the lights below, are in fact 
@@ -10058,8 +10072,7 @@ FRAGMENT MASSIVE.BLACK.SPIRE
   / A massive black stone spire raises over the sands to
    the [///////////////southwest/west/northwest///south/north/southeast/east].
 #
-TEXT FORCED.BLANK
-   _
+TEXT .SPARE.TEXT
 #
 TEXT increment NO.MAP
    [Um... Didn't you know? Traditionally, it's the adventurer who does 
@@ -10109,11 +10122,13 @@ TEXT cycle SCRUFFY.VEGETATION
 TEXT USELESS.BITS
    They are just useless bits of #. Please ignore.
 #
-TEXT RIGHT.NEXT.TO.YOU
-   The # is right next to you!
+FRAGMENT increment NO.BAZAAR
+   [ Not that we run a bazaar around here, but you know what I mean./]
 #
-TEXT VERY.SENSIBLE
-   A very sensible decision, if I may say so.
+FRAGMENT assigned RUG.VALUE
+   [ I doubt it would fetch a good price on a bazaar.{NO.BAZAAR}/ Still,
+   it's been certified as a treasure, so it must be valuable despite
+   its condition.]
 #
 FRAGMENT DOWN.TO.STREAMBED?
    That descent looks very treacherous. Are you sure you want to
@@ -10135,8 +10150,13 @@ TEXT FLY.TOO?
     The giant looks somewhat surprised. "[/ZORRO! ]YOU FLY TOO?!
     GOOD GOOD!" 
 #
-TEXT NO.DRINK.FLYING
-     "NO, NO," booms the giant. "NO DRINK FLYING!"
+FRAGMENT assigned RAVINE.EXIT
+    You are on the [north/south] side of the mountain ravine.
+    The trail leads east, bending to 
+    the [left/right] towards [north/south], around the
+    mountain. To the [south/north], the fallen mountain pine
+    allows access across the gap, to the [south/north] side of
+    the ravine.
 #
 TEXT increment EMPTY.YOUR.BUCKET
   / He's about to pour you more champagne, but then notices the water

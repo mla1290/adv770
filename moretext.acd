@@ -180,4 +180,61 @@ TEXT cycle NOT.DROPPABLE
     [Eh.../Um.../Pardon me, but/Don't be silly -/Surely,] # is not
     something one could carry!
 #
+TEXT VERY.SENSIBLE
+   A very sensible decision, if I may say so.
+#
+TEXT RIGHT.NEXT.TO.YOU
+   The # is right next to you!
+#
+TEXT NO.FERTILISING
+   There's nothing here worth fertilising![/ And you have no fertiliser
+   anyway.]
+#
+TEXT increment RUG.TOO.DIRTY
+   At the sound of the word, the rug twitches its corners and 
+   then[ suddenly/] rolls itself up into a tight tube. Perhaps [it is too 
+   ashamed of being so dirty. Y/y]ou should clean it up a bit, before
+   asking it to fly.
+#
+TEXT increment YOU.PLAYED.BEFORE
+   [I see you have played this game before. Or looked the word up on the
+   Net somewhere. Well, OK...
+
+  //]
+#
+TEXT NO.READ.RUG
+   I don't see anything on the[ rolled up/] rug that one could read.
+#
+TEXT NO.DRINK.FLYING
+    "NO, NO," booms the giant. "NO DRINK FLYING!"
+#
+FRAGMENT STARSTONE.BOUNCES
+    The starstone becomes curiously unfocused as it falls. It
+#
+TEXT increment ASHES.GONE
+    [There is no sign of that old fire-place here any more. The giant
+    must have tidied it up./I already told you - there's no fire-place
+    with the ashes and the indentation to be seen here any more./Get
+    it into your head, that the fire-place is gone. OK?]
+#
+TEXT cycle NO.SEED
+    The table is empty - there['s/ is really/ is honestly] no bird seed 
+    here[././!]
+#
+TEXT increment NO.DUNES.HERE
+    [Recalling your death-defying stunt in the desert, you confidently
+    leap over the edge of the roof. The tower is much lower than the
+    black spire, so the fall is quite short, and you don't have much
+    time to contemplate the unfortunate absence of deep piles of soft 
+    sand at the base of the tower/You foolishly leap over the roof's 
+    edge, presumably trusting in the truth of the saying "if at first
+    you don't succeed, try and try again!"].
+#
+TEXT STILL.DRY
+    The words on the flask still say "London Dry".
+#
+TEXT STILL.ON.OFF
+    There's nothing to read on the lamp, other than the terse words
+    "on/off" next to the switch.
+# 
 #########################################################################

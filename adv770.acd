@@ -1,13 +1,13 @@
 # Adventure770.
 # Copyleft Mike Arnautov 1984-2004.
 #
-GameID  Adv770, version 1.36 - 07 Jan 2004
+GameID  Adv770, version 1.41 - 13 Feb 2004
 Style   A-code 11
 Author  Mike Arnautov
 #
 include defs.acd
 include vars.acd
-include verbs.acd
+include words.acd
 include text.acd
 include places.acd
 include objects.acd
