@@ -5928,18 +5928,6 @@ action plant
 #
 #=====================================================================
 #
-# Let's be kind. R is REPEAT (or AGAIN), but players type R BIRD
-# meaning RELEASE BIRD (as per adv550/660). So the kernel does not
-# intercept REPEAT if R <ANYTHING> gets typed. We handle it here instead.
-#
-action again
-   fakecom again, drop
-   ifgt status, 1
-      call drop
-   fin
-#
-#=====================================================================
-#
 action numbers
    ifflag admin, olorin
       ifflag status, show.numbers

@@ -1574,6 +1574,14 @@ repeat
       call walk
    fin
 #
+# Let's be kind. R is REPEAT (or AGAIN), but players type R BIRD
+# meaning RELEASE BIRD (as per adv550/660). So the kernel does not
+# intercept REPEAT if R <ANYTHING> gets typed. We handle it here instead.
+#
+   ifkey again
+      fakecom again, drop
+   fin
+#
 # Now for the rest of it...
 #
    respond search, cant.search
@@ -1775,6 +1783,20 @@ repeat
    ifkey light, fire
       quip no.fires
    fin
+#
+# Handle roses.
+#
+   ifkey rose
+      ifinrange here, garden.n, garden.se
+         fakearg rose, roses
+      otherwise
+      ifnear windrose
+         fakecom rose, windrose
+      else
+         quip i.dont.see, roses
+      fin
+   fin
+#
 #
 # Handle packet/wrapper.
 #
@@ -2093,6 +2115,17 @@ repeat
          or 
       ifnear beanstalk2    # Fudge beanstalk to be a plant!
          fakearg plant, beanstalk
+      fin
+   fin
+#
+# Both obolus and drachma are coins, OK?
+#
+   ifkey coins
+      ifnear drachma
+         fakecom coins, drachma
+      otherwise
+      ifnear obolus
+         fakecom coins, obolus
       fin
    fin
 #

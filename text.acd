@@ -2798,7 +2798,8 @@ TEXT HUGE.PIT
 #
 TEXT ITS.A.SAPLING
    It's a small sapling of some sort, growing out of a crack in the
-   cliff. There seems to be something wedged between the sapling and the rock.
+   cliff.[ There seems to be something wedged between the sapling and
+   the rock./]
 #
 TEXT NO.OPEN.BOX
    There is no point opening the box. It would only make a sugary mess
@@ -3733,7 +3734,7 @@ FRAGMENT VOCAB.NOUNS
     and beings which you have already encountered in the game, and 
     to which you can sensibly refer, and may (or may not) be able to
     manipulate. For your convenience I include the two generic nouns
-    ALL and TREASURE, and some basic adventuring items even though you
+    ALL and TREASURE, and some ubiquitous adventuring items even though you
     may not have seen them yet. Here's the current list:
 
     all (everything), it, treasure (tr, valuables),_
@@ -4076,7 +4077,7 @@ TEXT cycle LOOK.AROUND
     [Exits they want! How about looking around and noting what
     exits there are? Sounds simple enough to me.../Just look around and
     see what exits there are. Or did you expect some pre-digested summary
-    of exits and locations to which they lead? Sorry... This is a quality
+    of exits and locations to which they lead? Sorry... This is a quality,
     hand-crafted game, not some common MUD!/Exits in this game are
     generally easy to observe, so please trouble yourself to do some
     observing! How? Just look around and *read* what the description says.]
@@ -5471,7 +5472,7 @@ TEXT APPROACH.EDGE
     to be seen from here. A strong gust of wind slams into you,
     making you retreat back to the pedestal.
 #
-TEXT cycle  BAD.IDEA
+TEXT cycle BAD.IDEA
     I think that would be a [remarkably/stupendously/*very*] bad idea!
 #
 TEXT SUNSTONE.SAVES.YOU
@@ -6275,11 +6276,12 @@ TEXT PINE.IS.BRIDGE
     You use the fallen pine to climb over the gap.
 
 #
-TEXT NO.JUMP.GORGE
-    The gap is narrow, but not *that* narrow. It is not in the
+TEXT increment NO.JUMP.GORGE
+    [The gap is narrow, but not *that* narrow. It is not in the
     direction of the ledge, so you can't take a run at it - it
-    would have to be more or less a standing jump. You can't
-    get over by just jumping. That would be far too easy.
+    would have to be more or less a standing jump, and the gap
+    is too wide for that/You can't just jump over to the other side.
+    That would be far too easy].
 #
 FRAGMENT ITS.NO.GO.BOG
     What, into that bog? You wouldn't be able to get back up here
@@ -6397,6 +6399,7 @@ TEXT CULPABILITY.NOAKES
 #
 TEXT increment PRACTICE.DWARVISH
     [You would like to practice your Dwarvish? What a scrumptious idea!
+    Hang on, let me swap to my Dwarvish dictionary...
     %I could do with some practice too.%/Oh good! Let's practice our
     Dwarvish again!/Practice makes perfect, or so they say./Right you
     are...] %Just say whenever you want to switch back to English.%
@@ -6697,7 +6700,8 @@ TEXT increment DOOR.OPENS
 TEXT cycle DOOR.IN.THE.WAY
     [Er... there is a closed door in the way!/The way # is blocked
     by the closed door!/The door's shut, so you can't go that way./You
-    aren't a wizard - you can't walk through closed doors.]
+    aren't a wizard - you can't walk through closed doors./It may
+    be a good idea to open that door, before trying to walk through it.]
 #
 TEXT cycle IT.WONT.BUDGE
     [T/T/Despite all your efforts, t/Try as you might, t]he door [stubbornly
@@ -6867,7 +6871,7 @@ FRAGMENT cycle GAS.QUOTE
 #
 FRAGMENT cycle GET.ON.WITH.IT
    Let's [talk about something else./get on with adventuring./concentrate
-   on essentials!/]
+   on essentials!]
 #
 TEXT cycle JUST.SCENERY
    [Not my area of expertise, #./Getting distracted by # doesn't
@@ -7169,7 +7173,7 @@ TEXT NO.COUNTING
 TEXT cycle YOU.JUMP
     You [leap into the air in a display of youthful exuberance/jump
     into the air, presumably just for the fun of it./hop about a bit]. 
-    [//I dare say you needed the exercise./]
+    [//I dare say you needed the exercise.]
 #
 TEXT ISLAND.TOO.FAR
     The island is too far from here to make out any details, but it
@@ -7352,7 +7356,7 @@ TEXT increment NO.DAMAGE.ALARM
     OK?/Aw, don't bother!.. I won't get you anywhere.]
 #
 TEXT assigned ANGRY.VOICES
-    [You can't make out the words, but it sounds like dwarves having an
+    [You can't make out the words, but it sounds like dwarves having a
     protracted argument./You strain your ears, but all you can hear from
     above is an ominous silence./There's nothing to be heard - I think
     the dwarves are all gone.]
@@ -7878,7 +7882,8 @@ TEXT DUSTY.SHED
 #    The # {IS/ARE} of no actual interest to you.
 #
 FRAGMENT cycle CREAKY.SHED.DOOR
-    Behind you, the door slowly swings shut with a [tired/weary/quiet] creak.
+    Behind you, the door slowly swings shut with 
+    a [tired/weary/quiet/sad/slow] creak.
 #
 TEXT THROUGH.SHED.DOOR
     You [pull/push] the shed door open and [walk in/step out].
@@ -9308,7 +9313,7 @@ TEXT increment MAYBE.BATS
 #
 TEXT cycle STAR.LIGHTS
    As we have already established, the lights below, are in fact 
-   stars.[ And very pretty they look too./]
+   stars.[ And very pretty they look too.//It's quite a sight!/]
 #
 TEXT ABYSS.WALL
    The irregular stone wall plunges down into fathomless darkness.
@@ -9755,9 +9760,8 @@ TEXT ROSE.FLOWERS
 #
 TEXT increment NO.PICK.ROSES
    Better not - you might prick yourself, with who knows what
-   consequences.[ Blood poisoning, for example./] Besides, you don't
-   need rose flowers.[ There are only a few of them, even without
-   you picking off some more./]
+   consequences. [Blood poisoning, for example. Or worse... 
+   Besides,/And] you don't need rose flowers[/ anyway].
 #
 TEXT NO.CUT.ROSES
    Look, this is an archetypal wild rose garden. You wouldn't want to 
@@ -10108,9 +10112,8 @@ TEXT increment EMPTY.YOUR.BUCKET
     in the bucket. "[OH, /]NO MIX DRINKS! NO, NO.[ MIX DRINKS BAD, ZORRO
     BAD BOY!/]"
 #
-TEXT DRINK.UP
-
-    The giant casts a glance at your bucket and booms: "DRINK UP! HAVE MORE!"
+FRAGMENT assigned RUG.SHREAK
+    [./!]
 #
 #######################################################################
 #

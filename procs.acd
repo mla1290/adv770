@@ -1918,8 +1918,14 @@ proc here.you.can.see
          fin
       fin
       flag obj.ptr, seen
-      say obj.ptr
+      ifflag obj.ptr, valued
+      else
+         say obj.ptr
+      fin
    eoi
+   itobj obj.ptr, here, valued
+      say obj.ptr
+   fin
    ifeq count, 1
       set it, single
    fin
@@ -5582,6 +5588,7 @@ proc show.nouns
    vocab ring, 0, seen, 0
    vocab rod, 0, seen, 0
    vocab rope, 0, seen, 0
+   vocab rose, tower.roof, been.here, 0
    vocab rosebowl, 0, seen, 0
    vocab rug, 0, seen, 0
    vocab safe, 0, seen, 0
@@ -5660,6 +5667,29 @@ proc randomise.texts
    randomise dark.exit, 0
    randomise dark.exits, 0
    randomise well.worn.steps, 0
+   randomise door.in.the.way, 0
+   randomise bad.idea, 0
+   randomise look.around, 0
+   randomise you.have.it, 0
+   randomise be.serious!, 0
+   randomise pacifist, 0
+   randomise which.way?, 0
+   randomise hah!, 0
+   randomise dont.know.the.way, 0
+   randomise no.enlightenment, 0
+   randomise nothing.to.climb, 0
+   randomise do.what?, 0
+   randomise it.wont.budge, 0
+   randomise get.on.with.it, 0
+   randomise you.jump, 0
+   randomise its.just.a, 0
+   randomise attention.to.detail, 0
+   randomise not.a.hope, 0
+   randomise creaky.shed.door, 0
+   randomise no.more.to.say, 0
+   randomise star.lights, 0
+   randomise hang.on!, 0
+   randomise tis.amusing, 0
    randomise typo, 0             # TYPO is structured in blocks of 4
    divide typo, 4                # messages, so randomise to the start
    multiply typo, 4              # of a block.
@@ -6467,21 +6497,18 @@ proc garden.stuff
       respond get, cut, no.pick.roses
       quip hah!
    fin
-   ifkey rose
-      and
-      not
-   ifnear flower
+   ifkey roses
       respond look rose.flowers
       respond get, cut, no.pick.roses
       quip hah!
    fin
-   ifkey thorns
-      respond look, sharp.thorns
-      quip hah!
-   fin
-   ifkey bushes, tangle
+   ifany bushes, tangle
       respond look, wild.rose.bushes
       respond cut, no.cut.roses
+      quip hah!
+   fin
+   ifkey thorns
+      respond look, sharp.thorns
       quip hah!
    fin
    ifany grass, weeds
@@ -6673,6 +6700,7 @@ proc tie.them
    tie pine, no.water.pine
    tie beanstalk, no.climb.cliff, patch.of.soil
    tie mists, dome.state
+   tie beater, its.a.sapling
 #
 #=====================================================================
 #

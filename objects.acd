@@ -409,7 +409,7 @@ OBJECT RUG, =PERSIAN, CARPET
    Rolled up Persian rug
   %There is a [rolled up/rather frayed] [/magic /and very 
    dirty /]Persian rug [lying/hovering/spread out][ on the 
-   ground/ in the air/ on the ground]!
+   ground/ in the air/ on the ground]{RUG.SHREAK}
   &[The rug is rolled up, so there isn't much to be seen. It does,
    however, appear to be in a rather poor condition./The rug
    is hovering a few inches above the ground, but not with any
@@ -523,7 +523,7 @@ OBJECT -FAKE.ORB    # The orb as seen through the portcullis
 #
 OBJECT TUSK, =IVORY
    Ivory tusk
-  %A large ivory tusk lies here!
+  %A large ivory tusk lies here[./!]
   &Large and yellow with age. Elephant's, I think - nothing exotic.
 #
 OBJECT CHALICE, =INLAID
@@ -660,10 +660,11 @@ OBJECT SUNSTONE
 #
 OBJECT MOUSE   # Mouse?  What mouse?
 #
-FRAGMENT CHEAPO.COIN
-   A very small Roman coin. Probably a relic of the days when the Roman
-   Empire extended well into the Faerie realms... I doubt if it is worth
-   much, anyway.
+FRAGMENT increment CHEAPO.COIN
+   A very small Roman coin of only a nominal value. Probably a relic of
+   the days when the Roman Empire extended well into the Faerie 
+   realms...[ What? You didn't know Romans got this far? Well, you
+   know now./]  
 #
 OBJECT DRACHMA
    Worn drachma
@@ -672,9 +673,9 @@ OBJECT DRACHMA
   &{CHEAPO.COIN} What? Ah, er... yes, Roman... I suppose it must be
    an obolus then.
 #
-OBJECT OBOLUS
+OBJECT OBOLUS, =OBOL   # To intercept the typo of "obul"!
    Worn obolus
-  %A very small Roman coin of only a nominal value!
+  %A very small Roman coin of only a nominal value lies here!
   &{CHEAPO.COIN}
 #
 OBJECT KEYS, =SET
@@ -987,7 +988,7 @@ OBJECT TURKISH-DELIGHT, =DELIGHT, =TURKISHDELIGHT, BOX, RAKHAT-LUKUM
 #
 OBJECT MUSTAFA, =GENTLEMAN
 #
-OBJECT WINDROSE, =ROSE
+OBJECT WINDROSE
    Windrose
   %A [splendid/black/pearly-white] windrose lies [here, partly buried in a
    small drift of fine sand accumulated at the base of a boulder/on the 

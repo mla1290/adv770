@@ -31,15 +31,25 @@ TEXT increment NO.LITTER.PLEASE
     like litterbugs. Well, consider yourself educated, and count the
     experience cheap at the price. Not everybody is so favoured.]
 
+#
 TEXT increment KNOCKER.FIXED
     [The knocker is firmly fixed to the wall in some manner, and won't
     come off./Nothing doing. It's firmly attached to a solid stone 
     wall./You've already tried that!][/// Blockhead!/]
+#
 TEXT increment KNOCKER.RING
     [The ring is an esential part of the knocker and it doesn't look
     like it is meant to come out of the lion's mouth/Cant't be done, 
     sorry].
+#
 TEXT STONE.WALL
     Tower walls are made of massive stone blocks.
+#
+TEXT DRINK.UP
+
+    The giant casts a glance at your bucket and booms: "DRINK UP! HAVE MORE!"
+#
+TEXT NO.MOVE.PEDESTALS
+    The pedestals are too heavy for you to move.
 #
 #########################################################################

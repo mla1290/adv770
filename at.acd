@@ -249,6 +249,7 @@ at building
       ifflag tusk, valued
          drop tusk
          flag tusk, valued
+         set tusk, 1
          quip tusk.quip, arg2
       fin
       ifkey rug
@@ -2264,6 +2265,7 @@ at valuers
             ifnear box
                apport box, ylem
                flag rug, valued
+               set rug.shreak, 1
                ifflag rug, special1
                   quip rug.valuable, 1
                else
@@ -8166,19 +8168,17 @@ at outside.gates
 at garden.nw
    ifkey pedestal
       respond look, garden.things, 0
+      respond get, push, pull, no.move.pedestals
       quip hah!
    fin
-   ifkey bushes
+   ifany bushes, roses
       respond look, dead.rose.bushes
-      quip hah!
-   fin
-   ifany rose, flower
-      proceed
    fin
    ifkey tower
       respond look, tower.over.roses
       quip hah!
    fin
+   respond roses, i.dont.see, roses
    call garden.stuff
    ifkey wall
       call wall.stuff
@@ -11682,7 +11682,7 @@ at cave.4
       fin
       respond cave, you.are.there
    fin
-   respond opening, passage, tunnel, corridor, cave, hah!
+   respond membrane, opening, passage, tunnel, corridor, cave, hah!
    respond river, stream, shelf, flow, foam, flecks, bank, shore, edge, hah!
 #
 #=====================================================================
@@ -11714,7 +11714,7 @@ at cave.5
          move river.north
       fin
    fin
-   respond corridor, passage, tunnel, hah!
+   respond membrane, corridor, passage, tunnel, hah!
    respond river, stream, shelf, flow, foam, flecks, bank, shore, edge, hah!
 #
 #=====================================================================
