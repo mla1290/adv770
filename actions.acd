@@ -3520,32 +3520,22 @@ action restore
    local wiz.flag
    local outcome
    local elapsed
-   local count
 #
    iflt status, 2
       ifcgi             # CGI mode?
          set context, q.restore.what
          quip restore.what?, 0
       fin
-      set count, 0
-      exec 34, count
-      ifeq count, 1
-         say restoring.game, arg2
-      else
-         say saved.games, count
-         ifgt count, 0
-            exec 34, count
-         else
-            say blank
-         fin
-         set context, q.restore.what
-         set status, no.match
-         add count, 1
-         quip restore.what?, count
-      fin
-   fin
+      call which.to.restore?
+  else
+     set arg2, 0     # Allow REESTORE QUIT
+  fin
    ifeq status, 2
       verbatim arg2
+   fin
+   ifkey quit
+      say as.you.wish
+      stop
    fin
    set status, 2
    lda text.ptr, blank
@@ -3588,10 +3578,7 @@ action restore
       fin
       quit
    else                  # Checksum failed!
-      exec 7, outcome
-      iflt outcome, 2
-         exec 28
-      fin
+      exec 28            # Recover from bad restore
       set context, q.bad.image
       quip explosion     # Well-house blew up
    fin
@@ -4465,14 +4452,15 @@ action kick
       fin
       quip nothing
    fin
+   ifeq status, 2
+   else
+      proceed
+   fin
+   respond rock, stone, no.kick.it, arg2
    ifany door, door1, door2, door3
       and
    ifnear arg2
       quip kick.door
-   fin
-   ifeq status, 2
-   else
-      proceed
    fin
    ifnear arg2
       ifkey dwarf

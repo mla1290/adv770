@@ -36,6 +36,7 @@ repeat
          call initialise
       fin
       set context q.initial
+      call which.to.restore?
       set status, no.match    # Suppress all vocab matching for this loop
       quip game.to.restore
    fin
@@ -132,7 +133,7 @@ repeat
       ifeq nugget.room, 0
          and
          not
-      ifhave gold
+      ifhave nugget
          set mists, steps.present
       else
          set mists, steps.gone
@@ -1440,6 +1441,28 @@ repeat
       call walk
    fin
 #
+# Handle various materials
+#
+   ifnear nugget
+      call material, nugget, gold
+   else
+      call material, crucifix, gold
+   fin
+   call material, bars, silver
+   call material, seal, quartz
+   call material, gong, bronze
+   call material, crown, iridium
+   call material, pyramid, platinum
+   call material, beads, turquoise
+   call material, ring, mithril
+   call material, bracelet, jade
+   call material, tusk, ivory
+   call material, crucifix, amethyst
+   call material, flower, metal
+   call material, wrapper, paper
+   call material, packet, paper   # Can't clash with wrapper!
+   call material, knocker, brass
+#
 # Let's be kind. R is REPEAT (or AGAIN), but players type R BIRD
 # meaning RELEASE BIRD (as per adv550/660). So the kernel does not
 # intercept REPEAT if R <ANYTHING> gets typed. We handle it here instead.
@@ -1703,20 +1726,15 @@ repeat
 #
 # Handle packet/wrapper.
 #
-   ifkey paper
-      and
-   ifnear packet
-      fakecom paper, packet
-   otherwise
    ifkey packet
       and
-   ifnear paper
+   ifnear wrapper
       respond open, pour, empty, torn.packet
       ifany plant, beanstalk
          or
       ifat beanstalk.bottom
       else
-         fakecom packet, paper
+         fakecom packet, wrapper
       fin
    fin
 #
@@ -2073,17 +2091,6 @@ repeat
          quit
       fin 
       fakecom rattle, thurible
-   fin
-#
-# Generally gold means the nugget, but it may mean the crucifix.
-#
-   ifkey gold
-      and
-   ifnear crucifix
-      and
-      not
-   ifnear nugget
-      fakecom gold, crucifix
    fin
 #
 # Fiddle doorway to mean doors, if near doors.

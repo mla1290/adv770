@@ -613,7 +613,7 @@ constant show.banner
          mirror.world        # Back outside cave
          victory!            # Wins game!
 #
-# Special status values.
+# Special mandatory status values.
 #
 constant 99, no.amatch       # Suppress approximate matching
 constant 98, no.match        # Suppress all vocabulary matching

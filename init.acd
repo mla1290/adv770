@@ -1036,12 +1036,8 @@ init
    flag rope, seen
    flag notice, seen
    flag note, seen
-   flag tablet, seen
-   flag plaque, seen
    flag tree, seen  
-   flag palms, seen
    flag pine, seen
-   flag rug, seen
    flag shadow, seen
    flag plant, seen    # So that he can refer to various scenery plants
    flag pattern, seen

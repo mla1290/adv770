@@ -410,6 +410,20 @@ verb rose
 verb roses
 verb sign
 verb butterflies, butterfly
+verb gold
+verb silver
+verb quartz
+verb bronze
+verb iridium
+verb platinum
+verb turquoise
+verb mithril
+verb jade
+verb ivory
+verb amethyst
+verb metal
+verb paper
+verb brass
 verb -first.sculpture.fake
 verb !pig
 verb !eel
@@ -434,8 +448,8 @@ verb -last.sculpture.fake
 #
 verb -first.general
 verb imperfections
-verb rock, rocks, chunk, chunks, fragments
-verb stone, stones, boulder, boulders
+verb rock, =rocks, chunk, chunks, fragments
+verb stone, =stones, boulder, =boulders
 verb block
 verb bundle, !rods
 verb !plurals, !oysters, !birds, !lamps, !cages, !pillows, !bottles, !snakes, !plants, !beanstalks, !nursery, !row

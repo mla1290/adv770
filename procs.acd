@@ -277,9 +277,16 @@ proc bail.out
          quip such.a.thing, arg2
       otherwise
       ifflag arg2, seen
+         or
+      ifany plant, mirror, seal, tablet, plaque
          quip i.dont.see, arg2
       else
          quip no.understand    # Fake it!
+      fin
+   fin
+   ifflag arg2, place
+      ifkey island
+         quip i.dont.see, arg2
       fin
    fin
    ifis arg2, wave
@@ -5858,7 +5865,7 @@ proc show.nouns
    vocab gates, 0, seen, 0
    vocab giant, 0, seen, 0
    vocab goblins, 0, seen, 0
-   vocab gold, 0, seen, gold.voc
+   vocab nugget, 0, seen, gold.voc
    vocab gong, 0, seen, 0
    vocab grate, 0, seen, 0
    vocab grill, 0, seen, 0
@@ -5912,7 +5919,7 @@ proc show.nouns
    vocab sculpture, 0, seen, 0
    vocab seal, 0, seen, 0
    vocab shoes, 0, seen, shoes.voc
-   vocab silver, 0, seen, silver.voc
+   vocab bars, 0, seen, silver.voc
    vocab skeleton, 0, seen, 0
    vocab skull, 0, seen, 0
    vocab slime, 0, seen, 0
@@ -6019,6 +6026,7 @@ proc randomise.texts
    randomise fiddle.ignore, 0
    randomise we.have.light, 0
    randomise nothing.to.undo, 0
+   randomise no.kick.it, 0
    set nothing.doing.2, nothing.doing.1
    randomise typo, 0             # TYPO is structured in blocks of 4
    divide typo, 4                # messages, so randomise to the start
@@ -6389,9 +6397,13 @@ proc by.house.actions
    ifany tree, maple, pine, vegetation, roof, bricks
       exec 11
    fin
+   ifkey kick
+      respond building, wall, bricks, no.kick.it, wall
+      respond maple, pine, tree, no.kick.it, tree
+   fin
    ifany tree, maple, pine, vegetation, roof, bricks, wall, building
       and
-   ifany kill, break, kick
+   ifany kill, break
       quip no.violence
    fin
    respond tree, maple, pine, no.handy.them, arg2
@@ -6405,8 +6417,8 @@ proc by.house.actions
    ifkey wall
       respond look, building.wall
       respond climb, no.point.in.that
-      respond push, pull, get, kick, house.bricks
-      respond break, kick, no.violence
+      respond push, pull, get, house.bricks
+      respond break, no.violence
       quip hah!
    fin
 #
@@ -7211,6 +7223,43 @@ proc sunstone.cheat msg modifier
       ifinrange temp.val, 6, 8
          quip msg, modifier
       fin
+   fin
+#
+#====================================================================
+#
+proc which.to.restore?
+   local count
+
+   set count, 0
+   exec 34, count
+   ifeq count, 1
+      and
+   ifeq context, none
+      say restoring.game, arg2
+      proceed
+   fin
+   say saved.games, count
+   ifgt count, 0
+      and
+      not
+   ifcgi
+      exec 34, count
+   fin
+   ifeq context, none      
+      set context, q.restore.what
+      set status, no.match
+#      add count, 1
+      quip restore.what?, count
+   fin
+   say blank
+#
+#====================================================================
+#
+proc material, thing, substance
+   ifkey substance
+      and
+   ifnear thing
+      fakecom substance, thing
    fin
 #
 #====================================================================

@@ -83,9 +83,8 @@ TEXT increment BAD.OMEN
    
     {REST.AWHILE}
 
-    [There,
-    how's that for total recall?/Any better?/Now, do get on with it.
-    It's dead boring being stuck around here!]
+    [There, how's that for total recall?/Any better?/Now, do get on with 
+    that contemplating. It's dead boring being stuck around here!]
 #
 TEXT increment NEARLY.RIGHT
     [You are beginning to get the idea, but a bit more thinking
@@ -239,7 +238,7 @@ TEXT cycle DARK.WARNING
     too likely/
     I wouldn't try moving about here without a light, if I were you/
     It's safer not to walk about in the darkness/
-    Better get some light, or you might stumble and break you neck].
+    Better get some light, or you might stumble and break your neck].
 #
 FRAGMENT BIRD.HINT
     Are you trying to catch the bird?_
@@ -3783,9 +3782,9 @@ FRAGMENT VOCAB.NOUNS
     The below list of nouns is largely confined to things 
     and beings which you have already encountered in the game, and 
     to which you can sensibly refer, and may (or may not) be able to
-    manipulate. For your convenience I include the two generic nouns
-    ALL and TREASURE, and some ubiquitous adventuring items even though you
-    may not have seen them yet. Here's the current list:
+    manipulate. For your convenience I include the three generic nouns
+    ALL, IT and TREASURE, and some ubiquitous adventuring items even 
+    though you may not have seen them yet. Here's the current list:
 
     all (everything), it, treasure (tr, valuables),_
 #
@@ -6625,7 +6624,7 @@ TEXT NO.SEE.UP.THERE
 TEXT ITS.A.GULLY
      It's just a gully running away to the south. Its presence here is 
      of no particular significance, other than that it channels the 
-     stream emerging from the building.
+     stream emerging from the building through a pair of pipes.
 #
 TEXT BASILISK.SLEEPS
      The basilisk is asleep, and for your own sake I hope it stays

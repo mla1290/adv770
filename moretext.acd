@@ -84,7 +84,7 @@ TEXT cycle NO.VIOLENCE
     occasions!/Smashing things for no good reason is not something we 
     do around here./If you want mayhem and destruction, please go and
     play some other game./If somebody told you that it was the done
-    things for adventurers to smash things, they lied./Do try to conduct
+    thing for adventurers to smash things, they lied./Do try to conduct
     yourself in a slightly more civilised manner, please!/Whatever 
     for?/I have no intention of following gratuitously destructive
     orders - from you or from anybody else!/You should be ashamed of
@@ -388,9 +388,10 @@ FRAGMENT cycle IT.WOULD.SEEM
     that/I believe/Let's see,]
 #
 FRAGMENT SAVED.GAMES
-    [Sorry, you don't seem to have any saved games that I can see.
-    Of course you may know of some you've stashed elsewhere.../{IT.WOULD.SEEM}
-    you have the following saved games: ]
+     {IT.WOULD.SEEM} you [don't have any saved games, though of course you may
+     have some stashed away elsewhere.../have ][/just one saved game: /the
+     following saved games:
+   /]
 #
 FRAGMENT DESERT.OUTCROP
    / To the NW, some kind of low basalt outcrop breaks the monotony of
@@ -618,5 +619,30 @@ TEXT UNDO.CURRENTLY.OFF
 #
 TEXT YOU.DO.IT
    You {ARG1} the {ARG2}.
+#
+TEXT SHALLOW.STREAMBED
+   To the north, the streambed is filled with the stream, which
+   disappears down the slit with a merry gurgle. To the south it is
+   shallow and quite dry.
+#
+TEXT increment DRY.STREAMBED
+   The dry streambed is mostly dirt, with some protruding bits of
+   rock.[ There used to be some water-worn pebbles in it too, but they
+   got all pinched for souvenirs by passing adventurers./]
+#
+TEXT cycle NO.KICK.IT
+   Kicking #s is [plain silly/liable to cause injury/not going
+   to achieve anything/pretty pointless/not likely to get you very 
+   far/of course a traditional, though quite ineffectual, method of
+   demonstrating the falsity of solipsistic theories of the world, but 
+   I fail to see its relevance to the simple task of exploring a cave 
+   and collecting some treasure].
+#
+TEXT ANCIENT.RIVERBED
+   The ancient river-bed [stretches away/=/] to 
+   the [east/west/south/north][. It/=/ of you] is [partially filled
+   with fine black sand. A few black boulders are scattered around,
+   their smooth, worn surfaces etched by the blowing
+   sands/mostly dark, matt basalt, surprisingly free of sand].
 #
 #########################################################################

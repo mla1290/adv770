@@ -37,7 +37,7 @@ at road
       respond path, path.info
       respond road, track, road.info
       respond hill, hill.info
-      respond gully, its.a.gully
+      respond gully, streambed, its.a.gully
       respond stream bubbly.stream, south
       proceed
    fin
@@ -108,7 +108,7 @@ at road
       move nw, path, path
       respond pipe, upstream, pipe.too.narrow, 1
    fin
-   ifkey pipe
+   ifany pipe, wall, streambed
       flag context, arg2.here
    fin
 #
@@ -313,7 +313,7 @@ at building
       call drink
    fin
    respond pipe, stream, downstream, pipe.too.narrow, 0
-   ifany note, notice, message, words, corner
+   ifany note, notice, message, words, corner, streambed, wall
       flag context, arg2.here
    fin
 #
@@ -386,10 +386,14 @@ at valley
          move south.of.building
       fin
    fin
+   ifkey streambed
+      flag context, arg2.here
+   fin
 #=====================================================================
 #
 at slit
    ifkey look
+      respond streambed, shallow.streambed
       respond stream, its.tears.are.wet, stream
       respond slit, look.slit
       respond valley, green.valley, 0
@@ -461,12 +465,16 @@ at slit
          quit
       fin
    fin
+   ifkey streambed
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
 at depression
    respond grass, attention.to.detail, grass
    ifkey look
+      respond streambed, dry.streambed
       respond dirt, ground, its.dirt, 1
       respond depression, look.depression
       respond concrete, crumbly.concrete
@@ -542,6 +550,9 @@ at depression
          fin
          quip cant.pass.grate
       fin
+   fin
+   ifkey streambed
+      flag context, arg2.here
    fin
 #
 #=====================================================================
@@ -714,7 +725,7 @@ at pit
    ifeq nugget.room, 0
       and
       not
-   ifhave gold
+   ifhave nugget
       apport steps, pit
    else
       apport steps, limbo
@@ -7421,11 +7432,6 @@ at rest.area
 #=====================================================================
 #
 at half.stairs
-   ifkey gold
-      and
-   ifnear gold
-      proceed
-   fin
    ifkey look
       ifany steps, stairs
          say spiral.stair
@@ -12096,6 +12102,9 @@ at cliff.base.2
 #=====================================================================
 #
 at cliff.base.3
+   ifkey look
+      respond riverbed, streambed, ancient.riverbed, 2
+   fin
    ifkey go
       or
    ifeq status, 1
@@ -12105,7 +12114,7 @@ at cliff.base.3
       move sw, river.bed.2
       move down, south, river.bed.1
    fin
-   ifany dune, sand
+   ifany dune, sand, riverbed, streambed
       flag context, arg2.here
    fin
 #
@@ -12115,9 +12124,7 @@ at river.bed.1
    ifkey look
       respond cave, opening, cut.river
       respond river, river.gone
-      ifkey riverbed
-         set status, 1
-      fin
+      respond riverbed, ancient.riverbed, 1
       proceed
    fin
    ifkey go
@@ -12140,16 +12147,16 @@ at river.bed.1
       respond east, in, hole, opening, cave, time.river
       respond riverbed, you.are.there
    fin
-   ifany riverbed
-      flag context, arg2.here
-   fin
-   ifany dune, sand, hole, cave
+   ifany dune, sand, hole, cave, riverbed
       flag context, arg2.here
    fin
 #
 #=====================================================================
 #
 at cliff.base.4
+   ifkey look
+      respond riverbed, streambed, ancient.riverbed, 3
+   fin
    ifkey go
       or
    ifeq status, 1
@@ -12161,7 +12168,7 @@ at cliff.base.4
       smove east, in, hole, opening, cave, cave.1, time.flip.1
       respond south, sw, west, dune.blocks
    fin
-   ifany dune, sand
+   ifany dune, sand, riverbed
       flag context, arg2.here
    fin
 #
@@ -12301,9 +12308,7 @@ at river.bed.2
    ifkey look
       respond river, river.gone
       respond boulder, river.boulder
-      ifkey riverbed
-         set status, 1
-      fin
+      respond riverbed, ancient.riverbed, 0
       proceed
    fin
    ifkey go

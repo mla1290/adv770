@@ -156,7 +156,7 @@ OBJECT BASILISK
    not very funny. Anyway, he's turned himself into a very
    life-like (and very ugly) but quite harmless granite statue.]
 #
-OBJECT GONG, =BRONZE
+OBJECT GONG
   %There is a large bronze gong fastened to the wall here.
   &A large bronze affair ornamented with exotic patterns. Looks vaguely
    Oriental, in an noncommittal sort of way.
@@ -292,14 +292,14 @@ OBJECT MUD-SHOES, =SHOES, =MUDSHOES
    rope fastening for a foot in the middle. Useful in a bog, if
    one can avoid tripping over them or over other things.
 #
-OBJECT CROWN, =IRIDIUM
+OBJECT CROWN
    Iridium crown[// (worn)]
   %There is a massive [crown made of solid iridium floating in 
    midair/iridium crown here]!
   &Undoubtedly very valuable. There is, however something strange about it.
    A vague air of malevolent alienness, or something...
 #
-OBJECT NUGGET, =GOLD
+OBJECT NUGGET
    Large gold nugget
   %There is a large sparkling nugget of gold here!
   &Gold is gold... ductile, malleable and soluble in aqua regia.
@@ -311,7 +311,7 @@ OBJECT DIAMONDS
   &They sparkle and shine in the light as only large stones of the first
    water can do!
 #
-OBJECT BARS, =SILVER
+OBJECT BARS
    Bars of silver
   %There are bars of silver here!
   &Each bar has a small assay mark on a side - must be valuable!
@@ -393,7 +393,7 @@ OBJECT YACHT, RUBY, RUBAIYAT
   &One of Faberge's wilder flights of fancy. An intricately expensive,
    but utterly useless toy.
 #
-OBJECT PYRAMID, =PLATINUM
+OBJECT PYRAMID
    Platinum[/-plated] pyramid
   %There is a platinum[/-plated] pyramid here, 8 inches on a side!
   &[Um... Did I say platinum? On closer inspection it's only *plated* in
@@ -435,7 +435,7 @@ OBJECT SPICES
    odours. With such a collection of adjectives, who would doubt their
    high market value?
 #
-OBJECT BEADS, =INDIAN, =STRING, =TURQUOISE
+OBJECT BEADS, =INDIAN, =STRING
    Turquoise beads[// (worn)]
   %There is a string of ancient Indian turquoise beads [draped casually
    over the edge of the balcony/here]!
@@ -449,7 +449,7 @@ OBJECT CHAIN
    There is a golden chain locked to the wall!]
   &Very expensive. Not a thing you would expect a bear to wear!
 #
-OBJECT RING,=MITHRIL
+OBJECT RING
    {WHAT.RING}[// (worn)]
   %There is a shiny ring (crafted of the finest mithril) lying here!
   &A flawless mithril band. It has a faint aura of magic about it, but
@@ -482,7 +482,7 @@ OBJECT SCULPTURE, =CRYSTALLINE
    old, but valuable nonetheless. It is carved out of metamorphic
    crystal - a mineral, I am told, geologically unique to this area.
 #
-OBJECT BRACELET, =JADE
+OBJECT BRACELET
    Jade bracelet[// (worn)]
   %There is an ancient Chinese jade bracelet here!
   &Intricately carved from a single piece of green jade.
@@ -527,7 +527,7 @@ OBJECT ORB, GLOBE
 OBJECT -FAKE.ORB    # The orb as seen through the portcullis
   %A glistening globe lies in a small depression on the sloping cellar floor.
 #
-OBJECT TUSK, =IVORY
+OBJECT TUSK
    Ivory tusk
   %A large ivory tusk lies here[./!]
   &Large and yellow with age. Elephant's, I think - nothing exotic.
@@ -575,11 +575,11 @@ OBJECT SPIDER  # The spider in the Web Maze
    but who gives a damn for a poor cave sprite's arachnophobia?
    Just use your imagination, if it's all right with you...
 #
-OBJECT DOCUMENTS,=LEGAL,=DEEDS,PAPERS,PLANS
+OBJECT DOCUMENTS, =LEGAL, =DEEDS, PAPERS, PLANS
    Legal documents
   %There are some legal documents here.
 #
-OBJECT SPOON,=TARNISHED
+OBJECT SPOON, =TARNISHED
    Tarnished spoon
   %A tarnished spoon lies here.
   &It's a [tarnished old teaspoon with some writing on its handle/
@@ -605,7 +605,7 @@ OBJECT MASK
   &It is a half-face mask made of black velvet. A bit worn but still
    usable.
 #
-OBJECT CRUCIFIX, =AMETHYST
+OBJECT CRUCIFIX
    Amethyst crucifix
   %An amethyst encrusted crucifix of white gold lies in the dust!
   %There is an amethyst encrusted crucifix of white gold here!
@@ -1077,7 +1077,7 @@ OBJECT BUST, =OBERON
    repair. This makes it pretty worthless, despite the Oberon's sygil
    still identifiable on its base].
 #
-OBJECT SEAL, =INTAGLIO, =QUARTZ, =TITANIA
+OBJECT SEAL, =INTAGLIO, =TITANIA
    A quartz seal
   %[Something small and shiny lies in one corner/A smoky quartz
    intaglio seal lies on the ground]!
@@ -1106,7 +1106,7 @@ FRAGMENT increment STONE.FLOWER
    alive, are now all in the employ of the Mistress Of The Copper 
    Mountain Inc., and the rates *they* charge you just wouldn't believe./]
 #
-OBJECT FLOWER, =METAL
+OBJECT FLOWER
    A metal flower
   %A delicate[/ly fashioned metal] flower lies on the [stone 
    table/ground]!
@@ -1132,7 +1132,7 @@ OBJECT PACKET, =FERTILISER, =FERTILIZER
   +       Patent pending
   +           Made in Shangri-La]
 #
-OBJECT WRAPPER, =PAPER
+OBJECT WRAPPER
    Paper wrapper
   %A torn paper wrapper from the packet of fertiliser 
    lies here
@@ -1186,7 +1186,7 @@ OBJECT IMP, =ASTRAL
    something utterly incomprehensible on the water surface.
    The green fiery letters {IMPS.LEGEND}.
 #
-OBJECT KNOCKER, =DOOR-KNOCKER, =LION, =HEAD, =BRASS, =CLAPPER
+OBJECT KNOCKER, =DOOR-KNOCKER, =LION, =HEAD, =CLAPPER
   %Mounted on a nearby wall is a large brass door-knocker, shaped
    as a lion's head holding the clapper ring in its mouth.
   &It is a very old-fashioned kind of knocker, shaped as a lion's head,
