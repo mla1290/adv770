@@ -291,7 +291,7 @@ action drop
          apport wrapper, ylem
          quip wrapper.blown.away
       fin
-      chance 90
+      chance 95
          flag quips, litterbug    # George doesn't happen to be about.
       else
          say no.litter.please     # Null text, but triggers George into action
@@ -3262,17 +3262,18 @@ action curtains
 #=====================================================================
 #
 action say
-   ifeq status, 1
-      quip i.say, arg1
-   fin
-   ifkey all
-      quit
-   fin
    ifkey dwarvish
       call dwarvish
    fin
    ifkey english
       call english
+   fin
+   ifeq status, 1
+      quip i.say, arg1
+   fin
+   exec 27    # Pre-say!
+   ifkey all
+      quit
    fin
    respond plughole, no.plughole
    ifnear basilisk
@@ -5258,14 +5259,14 @@ action dwarvish
       set dwarven, 1
       quit
    else
-      quip already.using, dwarvish
+      quip already.using, 1
    fin
 #
 #=====================================================================
 #
 action english
    ifeq dwarven, 0
-      quip already.using, english
+      quip already.using, 0
    else
       set dwarven, 0
       quip back.to.english

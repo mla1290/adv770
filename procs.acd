@@ -6010,6 +6010,11 @@ proc by.house.actions
       fin
       quip hah!
    fin
+   ifeq status, 1
+      and
+   ifany tree, maple, pine, vegetation,roof, bricks
+      exec 11
+   fin
    respond tree, maple, pine, no.handy.them, arg2
    respond vegetation, dull.stuff, 0
    respond roof, building.roof

@@ -2,7 +2,7 @@
 #
 # Words to be ignored
 #
-noise and, the, a, an, that, this, to, at, with, awhile, about, from
+noise and, then, the, a, an, that, this, to, at, with, awhile, about, from
 #
 # Time we defined some verbs. Start with specials, not requiring
 # validation of ARG2.
@@ -122,7 +122,7 @@ verb fill
 verb lift                   # Mostly, but not always, same as 'get'
 verb read, peruse, scan
 verb replace, change, exchange
-verb break, shatter, smash, disable, jam
+verb break, shatter, smash, disable, jam, ram
 verb ride, mount, board, boards  # For 'l boards' by dinghy
 verb fix, repair
 verb scatter, sow

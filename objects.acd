@@ -924,7 +924,7 @@ OBJECT NOTE
 #
 OBJECT BELL-PULL, =BELLPULL, =BELL
   %There is a discreet bell-pull on the wall just by the niche.
-  &A cheap bronze affair sticking out of the wall. Inscribed
+  &A cheap brass affair sticking out of the wall. Inscribed
    underneath are the words: "Please ring for valuation assistance."
 #
 OBJECT BUCKET
@@ -1179,11 +1179,11 @@ OBJECT IMP, =ASTRAL
    something utterly incomprehensible on the water surface.
    The green fiery letters {IMPS.LEGEND}.
 #
-OBJECT KNOCKER, =LION
-  %Mounted on a nearby wall is a large bronze door-knocker, shaped
+OBJECT KNOCKER, =DOOR-KNOCKER, =LION, =HEAD, =BRASS, =CLAPPER
+  %Mounted on a nearby wall is a large brass door-knocker, shaped
    as a lion's head holding the clapper ring in its mouth.
   &It is a very old-fashioned kind of knocker, shaped as a lion's head,
-   or rather as a lion's face mounted on the oblong bronze knocker-plate,
+   or rather as a lion's face mounted on the oblong brass knocker-plate,
    with the ring-shaped clapper hinged in the lion's mouth. A somewhat
    unusual arrangement in my experience: door knockers are commonly mounted
    on doors, not on walls!

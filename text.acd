@@ -1302,7 +1302,7 @@ TEXT CRACK.INFO
 #
 TEXT PIPE.TOO.NARROW
     The stream flows out through a pair of 1 foot diameter sewer pipes. It
-    would be advisable to leave via the exit.
+    would be advisable to [leave via the exit/use a more obvious entrance].
 #
 TEXT WATER.PIPES
     Standard sewer pipes, made of... hmmm.. cement? Too narrow to be of
@@ -4010,8 +4010,8 @@ TEXT CAGE.WITH.BIRD
 TEXT NO.PLURAL.PLEASE
     Now, let's not get too ambitious - one at a time, please.
 #
-TEXT PARDON?
-    Pardon?
+TEXT random PARDON?
+    [Pardon/Sorry/Eh]?
 #
 FRAGMENT BASILISK.HINT
     Unsure how to avoid getting stoned?_
@@ -4129,14 +4129,15 @@ TEXT ITS.A.CEILING
 TEXT increment  BUILDING.ROOF
     [Well spotted! The building does indeed have a roof. Most buildings
     do, in my experience, and most of them are singularly dull. This 
-    particular one is no exception/It's a roof]. I suggest we ignore it.
+    particular one is no exception/It's a roof. There's nothing
+    on it]. I suggest we ignore it.
 #
 TEXT increment HOUSE.BRICKS
     [As one might expect, brick walls consist of bricks. And bricks are
-    sometimes loose and may indeed be removed or pushed or pulled,
+    sometimes loose and may even be removed or pushed or pulled,
     revealing secret niches, or causing hidden doors to open, or
     triggering hidden crossbows to shoot poison arrows at hapless
-    adventurers. All that is indeed possible. But it so happens that
+    adventurers. All that is indeed possible, but it so happens that
     this particular brickwork conceals no such tricks. Sorry/It's
     just bricks. Leave them alone].
 #
@@ -4342,7 +4343,7 @@ TEXT increment RUG.DOESNT.FIT
     [The rug is just too large and won't fit into the niche. You
     huff and puff trying to force it in, this way and that way, but
     it is no use. Finally you give up and in doing so, suddenly notice
-    a discrete bronze bell-pull on the wall right next to the niche./
+    a discrete brass bell-pull on the wall right next to the niche./
     You've already tried that, remember? The rug didn't fit in the niche
     the last time, and you don't have to be a genius to
     realise that this means it won't fit this time either.]
@@ -5438,10 +5439,10 @@ TEXT increment KNOCK.KNOCK
     dwarves assaulting you for misuse of their property./]
 #
 TEXT increment DONT.KNOCK
-    {YOU.KNOCK} [Suddenly the knocker's bronze lion head opens its eyes,
+    {YOU.KNOCK} [Suddenly the knocker's brass lion head opens its eyes,
     makes a nasty grimace at you and mouthes awkwardly through the ring
     fixed in its mouth: "%Shtop it! It'sh done already, sho get
-    losht!...%"/The bronze lion opens its eyes and glares at you: 
+    losht!...%"/The brass lion opens its eyes and glares at you: 
     "%It'sh done alshready, sho shove off, will ya?%".]
 #
 FRAGMENT COLOURS
@@ -6406,7 +6407,7 @@ TEXT increment BACK.TO.ENGLISH
     Any time you want more Dwarvish practice, just say...
 #
 TEXT ALREADY.USING
-    Sorry, I don't follow... Aren't we already using #?!
+    Sorry, I don't follow... Aren't we already using [English/Dwarvish]?!
 #
 TEXT BEACH.GLIDE
     {YOU.BOARD.RUG} perks up and clearly sensing an easy opportunity,
@@ -6624,7 +6625,7 @@ TEXT increment THROUGH.WATERFALL
     [Noting the way water cascades from the heights above, you
     sidle up to the rock wall and manage to squeeze along it without
     getting too wet. It'll probably come as no great surprise that
-    you find yourself in a kind of a hollow concealed behind the
+    you find yourself in a kind of a hollow, concealed behind the
     waterfall./You squeeze along the rock wall to the hollow space
     behind the waterfall, managing to avoid most of the falling water.]     
 
@@ -6693,10 +6694,10 @@ TEXT increment DOOR.OPENS
     [Oh! Now there's a thing! All by itself, t/Ah... T/T]he door [has
     decided to open!/opens all by itself.]
 #
-TEXT random DOOR.IN.THE.WAY
+TEXT cycle DOOR.IN.THE.WAY
     [Er... there is a closed door in the way!/The way # is blocked
-    by the closed door!/You'd have to open that door first./You aren't
-    a wizard - you can't walk through closed doors.]
+    by the closed door!/The door's shut, so you can't go that way./You
+    aren't a wizard - you can't walk through closed doors.]
 #
 TEXT cycle IT.WONT.BUDGE
     [T/T/Despite all your efforts, t/Try as you might, t]he door [stubbornly
@@ -9108,7 +9109,7 @@ TEXT STONY.RIDGE
    The small stony ridge should be very easy to climb.
 #
 TEXT LOOKS.MAGNIFICENT
-   I hope you agree that it looks absolutely magnificent!
+   The # looks absolutely magnificent!
 #
 TEXT SLIGHT.TILT
    The stone platform on which you are standing, slopes very gently
@@ -10146,4 +10147,3 @@ TEXT ERROR
     to Mike Arnautov: mla@britishlibrary.net.
 #
 ###################################################################
-

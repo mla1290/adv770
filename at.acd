@@ -26,6 +26,7 @@ at road
       call handle.dirt
    fin
    ifkey look
+      respond pipe, water.pipes
       respond path, path.info
       respond road, track, road.info
       respond hill, hill.info
@@ -45,7 +46,7 @@ at road
       call cross
    fin
    ifkey in
-      ifkey house
+      ifany in, house
          set status, 1
       otherwise
       ifgt status, 1
@@ -98,7 +99,9 @@ at road
       move se, south.of.building
       move sw, forest.14
       move nw, path, path
+      respond pipe, upstream, pipe.too.narrow, 1
    fin
+   respond pipe, hah!
 #
 #=====================================================================
 #
@@ -287,7 +290,7 @@ at building
    ifkey stream, drink
       call drink
    fin
-   respond stream, downstream, pipe.too.narrow
+   respond pipe, stream, downstream, pipe.too.narrow, 0
 #
 #=====================================================================
 #
@@ -7450,6 +7453,7 @@ at causeway
 #
 at tower.base
    ifkey look
+      respond wall, stone.wall
       respond steps, well.worn.steps
       respond arch, doorway, arched.doorway
       respond light, daylight, daylight.above
@@ -7479,6 +7483,7 @@ at tower.base
 #
 at tower.steps
    ifkey look
+      respond wall, stone.wall
       respond steps, well.worn.steps
       proceed
    fin
@@ -7508,6 +7513,7 @@ at tower.steps
 at tower.lower.window
    call fake.window
    ifkey look
+      respond wall, stone.wall
       respond steps, well.worn.steps
       respond out, view, lake, meadows, mountains, snow, romantic.view, 0
       proceed
@@ -7537,6 +7543,7 @@ at tower.lower.window
 #
 at landing
    ifkey look
+      respond wall, stone.wall
       respond steps, well.worn.steps
       ifkey landing
          set status, 1
@@ -7569,6 +7576,7 @@ at landing
 at tower.upper.window
    call fake.window
    ifkey look
+      respond wall, stone.wall
       respond steps, well.worn.steps
       respond out, view, ravine, stream, romantic.view, 1
       proceed
@@ -7604,6 +7612,7 @@ at tower.upper.landing
    call fake.note
    fakearg door, door2
    ifkey look
+      respond wall, stone.wall
       respond steps, well.worn.steps
       ifkey landing
          set status, 1
@@ -7670,6 +7679,7 @@ at tower.top.window
       set angry.voices, 1
    fin
    ifkey look
+      respond wall, stone.wall
       respond out, sea, cliff, view, romantic.view, 2
       respond steps, well.worn.steps
       proceed
@@ -7725,6 +7735,7 @@ at tower.top.landing
       fin
    fin
    ifkey look
+      respond wall, stone.wall
       respond steps, well.worn.steps
       ifkey door3
          ifeq stage, exits.barred
@@ -7774,6 +7785,7 @@ at dwarves.quarters
       respond ring, ring.clapper
       respond stool, wooden.stool
       respond table, dwarves.table
+      respond wall stone.wall
       respond window, forest, window.view
       ifkey landing
          ifeq door3, closed
@@ -7786,6 +7798,15 @@ at dwarves.quarters
       fin
       proceed
    fin
+   ifkey get
+      respond knocker, knocker.fixed
+      ifkey ring
+         and
+         not
+      ifhere ring
+         quip knocker.ring
+      fin
+   fin
    ifany pull, push
       and
    ifany ring, knocker
@@ -7797,7 +7818,10 @@ at dwarves.quarters
          set status, 1
          proceed
       fin
-      quip hah!
+         not
+      ifnear ring
+         quip hah!
+      fin
    fin
    respond table, leave.it.alone, table
    respond stool, leave.it.alone, stool
@@ -7826,7 +7850,7 @@ at tower.roof
       respond garden, tower.down.view, 1
       respond bush, path, no.handy.them, arg2
       respond sea, sea.info
-      respond view, vista, looks.magnificent
+      respond view, vista, looks.magnificent, arg2
       respond forest, forest.view
       respond ravine, gates,cant.see.much, arg2
       respond crag, craggy.rocks
@@ -9418,6 +9442,11 @@ at stupendous.view
       respond get, no.pick.flowers
    fin
    respond chalk, no.future.in.it, chalk
+   ifeq status, 1
+      respond view, vista, sea, looks.magnificent, arg1
+      respond island, island.too.far
+      respond banks, bushes, gorse, flower, flowers, beach, sea, rollers, pardon?
+   fin
    respond banks, bushes, gorse, flower, flowers, beach, sea, rollers, hah!
    ifkey in, beanstalk2
       set status, 1
@@ -9467,7 +9496,7 @@ at stupendous.view
       fin
       move ravine, path, out, se, ravine.west
    fin
-   respond ravine, view, vista, island, reflections, hah!
+   respond ravine, view, vista, island, sea, reflections, hah!
 #
 #=====================================================================
 #
@@ -12824,6 +12853,7 @@ at island.04
 #
 at island.05
    call plants.stuff, 4
+   fakecom gap, ravine
    ifkey look
       ifkey trail
          ifeq pine fallen
@@ -12845,6 +12875,9 @@ at island.05
       quip steep.ravine
    fin      
    fakearg tree, pine
+   ifeq pine, fallen
+      fakecom bridge, pine
+   fin
    ifany south, cross
       and
    ifeq pine, standing
@@ -12861,6 +12894,11 @@ at island.05
       ifne pine, fallen
          quip pine.climbed
       fin
+   fin
+   ifkey cross
+      and
+   ifkey ravine
+      set status, 1
    fin
    ifkey pine
       ifany cross, climb
@@ -12883,7 +12921,7 @@ at island.05
       move e, trail, island.08
       smove south, cross, climb, island.06, pine.is.bridge
    fin
-   respond slope, mountain, ravine, bridge, trail, hah!
+   respond slope, mountain, ravine, trail, hah!
    lda throw.here, ylem
    lda throw.text, throw.into.ravine
 #
@@ -12891,8 +12929,9 @@ at island.05
 #
 at island.06
    call plants.stuff, 4
+   fakecom gap, ravine
    ifkey look
-      respond ravine, gap, down, steep.ravine
+      respond ravine, down, steep.ravine
       respond bridge, pine.bridge, pine
       respond mountain, towering.mountain, 1
       respond trail, bendy.trail, 2
@@ -12904,12 +12943,18 @@ at island.06
       quip steep.ravine
    fin      
    respond jump, no.jump.gorge
-   ifkey palms
+   ifkey bridge
+      fakecom bridge, pine
+   fin
+   ifkey cross
       and
-   ifany cross, climb
+   ifany ravine, pine
       set status, 1
    fin
    ifkey pine
+      ifkey climb
+         set status, 1
+      fin
       ifkey enter
          ifeq pine, fallen
             smove island.05, pine.is.bridge
@@ -13382,7 +13427,7 @@ at viewpoint.2
       respond cliffs, distant.cliffs
       respond down, edge, track, trail, n/s.track
       respond ridge, stony.ridge
-      respond vista, looks.magnificent
+      respond vista, looks.magnificent, arg2
       respond slope, slight.tilt
       respond platform, rock.platform
       proceed
@@ -13404,6 +13449,10 @@ at viewpoint.2
    fin
    lda throw.here, island.08
    lda throw.text, chuck.from.view
+   ifeq status 1
+      respond sea, water, horizon, sea.horizon
+      respond vista, view, looks.magnificent, arg2
+   fin
    respond beach, sea, ridge, track, trail, horizon, mountain, cliffs, hah!
    respond edge, vista, slope, platform, hah!
 #

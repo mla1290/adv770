@@ -242,8 +242,9 @@ flags variable
 #
 # Define thirst parameters.
 #
-constant 1800  min.thirst
-          300  base.thirst
+constant 1800,  min.thirst
+          300,  base.thirst
+#
 # Define administrative control parameters
 #
 constant 10,   min.time    # # of minutes you must wait after SAVE
