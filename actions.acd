@@ -1394,6 +1394,18 @@ action look cliff
 #
 #=====================================================================
 #
+action look basalt
+   ifat basalt.shelf, river.bed.1
+      or
+   ifinrange here, scree, basalt.shelf.2
+      quip basalt.geology
+   fin
+   ifat desert.11, rocky.desert
+      quip basalt.outcrop
+   fin
+#
+#=====================================================================
+#
 # NB, Island vegetation is handled on individual locations.
 #
 action look vegetation
@@ -5933,6 +5945,11 @@ action decrement
    else
       quip no.understand
    fin      
+#
+#=====================================================================
+#
+action laugh
+   quip tis.amusing
 #
 #=====================================================================
 #

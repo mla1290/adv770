@@ -101,7 +101,7 @@ OBJECT DRAGON
   %[A huge green fierce dragon bars the way.
    The dragon is sprawled out on a Persian rug!/
    The body of a huge green dead/A decaying body of a huge/The
-   rotting carcass of a dead ][/dragon is lying off to one side.]
+   rotting carcass of a dead][/ dragon is lying off to one side.]
   &[Never seen a dragon before?  Well, enjoy it while you can - it is
    an awesome and beautiful sight!/
    Don't worry. It is well and truly dead. Still a magnificent sight,
@@ -1259,8 +1259,9 @@ OBJECT POSTER, =RECORD
     the Rocky Beach, escape from the Giant's dungeon, use the chalice,
     get down from the Basalt Shelf, get to the island visible from the
     cliff's edge, and deal with the card playing dwarves. A visit to
-    the picnicking giant may also be of benefit. And please note that
-    the Catacombs seem to be in a contrary mood of late.
+    the picnicking giant may also be of benefit. And please note that the
+    Spirit of the Catacombs appears to have developed a rather skewed
+    sense of humour of late - we apologise for any inconvenience.
 #
 OBJECT TREASURE, =TR, VALUABLES   # Dummy for TREASURE porcessing
 #

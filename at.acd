@@ -570,16 +570,17 @@ at cobbles
       move inward, dark, west, debris, debris
       move pit, pit
    fin
-   respond cobbles, crawl, light, hah!
+   respond cobbles, crawl, hah!
 #
 #=====================================================================
 #
 at debris
    ifkey note
+      respond get, pull, leave.it.alone, arg2
       respond look, read, debris.note
    fin
    ifkey look
-      respond debris, mud, no.future.in.it
+      respond debris, mud, no.future.in.it, arg2
       respond passage, tunnel, corridor, is.passage, 0
       respond canyon, is.canyon, 0
       proceed
@@ -606,7 +607,7 @@ at debris
          smove building, foof
       fin
    fin
-   respond note, debris, hah!
+   respond note, hah!
 #
 #=====================================================================
 #
@@ -1386,7 +1387,10 @@ at brink
 #=====================================================================
 #
 at streampit
-   respond slit, slits,, slits.too.narrow
+   respond slit, slits, slits.too.narrow
+   ifkey drink, stream
+      proceed
+   fin
    ifkey look
       respond stream, its.tears.are.wet, stream
       proceed
@@ -2145,7 +2149,13 @@ at valuers
       respond arch, dark.arch
       proceed
    fin
-   respond in, no.value.self
+   ifkey in
+      ifkey niche
+         or
+      ifeq status, 1
+         quip no.value.self
+      fin
+   fin
    ifkey drop
       and
    ifeq status, 2
@@ -2382,7 +2392,7 @@ at narrow.corridor
    ifkey go
       or
    ifeq status, 1
-      move east, down, climb, hole, west.pit
+      move east, plant, down, climb, hole, west.pit
       move west, corridor, giant.room
    fin
    respond tunnel, passage, corridor, plant, leaves, hole, hah!
@@ -2506,7 +2516,7 @@ at cavern
    fin
    lda throw.here, ylem
    lda throw.text, throw.whirlpool
-   ifany jump, go
+   ifany jump, go, in
       and
    ifany down, whirlpool
       set status, 1
@@ -2560,7 +2570,7 @@ at soft
       move west, out, swiss, swiss
       respond north, south, sw, nw, ne, solid.rock
    fin
-   respond moss, carpet, curtains, hah!
+   respond moss, carpet, hah!
 #
 #=====================================================================
 #
@@ -2711,6 +2721,7 @@ at plover
 #
 at dark
    ifany stone, tablet
+      respond pull, get, remove, leave.it.alone, tablet
       respond read, look, dark.room
       quip just.a.fixture, tablet
    fin
@@ -2726,7 +2737,7 @@ at dark
          move plover
       fin
    fin
-   respond tunnel, passage, corridor, tablet, stone, hah!
+   respond tunnel, passage, corridor, hah!
 #
 #=====================================================================
 #
@@ -2807,6 +2818,7 @@ at culdesac
       move up, out, corridor, ragged.corridor
       move shell, shell
    fin
+   respond tunnel, corridor, passage, hah!
 #
 #=====================================================================
 #
@@ -3044,7 +3056,7 @@ at reservoir.north
    ifeq status, 1
       move north, passage, chamber
       move balcony, balcony
-      respond swim, cant.swim
+      respond swim, tracks, cant.swim
       ifany water, reservoir, south, cross
          ifnear turtle
             apport turtle, limbo
@@ -3053,6 +3065,7 @@ at reservoir.north
          quip cant.swim
       fin
    fin
+   respond hole, stream, reservoir, mist, tracks, passage, tunnel, corridor, hah!
    lda throw.text, throw.reservoir
    lda throw.here, ylem
 #
@@ -3085,6 +3098,7 @@ at chamber
 at balcony
    ifany plaque, plaque, words, inscription
       respond look, read, balcony.plaque
+      respond get, pull, remove, leave.it.alone, plaque
       ifeq status, 1
          flag status, pls.clarify
          quip do.what?, plaque
@@ -3321,7 +3335,7 @@ at secret.n/e.canyon.2
          call follow.it, secret.n/s.canyon.1, n, secret.e/w.canyon, e
       fin
    fin
-   respond canyon, rug, dragon, hah!
+   respond canyon, hah!
 #
 #=====================================================================
 #
@@ -4123,7 +4137,7 @@ at division.in.passage
       move east, cubicle
       respond passage, tunnel, corridor, need.a.direction
    fin
-   respond tunnel, passage, corridor, passage, tunnel, hah!
+   respond corridor, passage, tunnel, hah!
 #
 #=====================================================================
 #
@@ -4991,8 +5005,9 @@ at arched.corridor.1
       fin
       respond fork, blocked.fork
    fin
-   ifkey get, coral
-      quip not.required
+   ifkey get
+      respond sand, coral, not.required
+      respond debris, no.future.in.it, debris
    fin
    respond fork, debris, arch, arched, passage, coral, hah!
 #
@@ -5028,8 +5043,8 @@ at arched.corridor.2
          move arched.corridor.1
       fin
    fin
-   ifkey get, coral
-      quip not.required
+   ifkey get
+      respond sand, coral not.required
    fin
    respond coral, passage, bend, patch, sand, quicksand, arch, arched, hah!
 #
@@ -5079,14 +5094,14 @@ at fourier
       fin
    fin
    ifkey get, coral
-      quip coral, not.required
+      respond coral, not.required
    fin
    respond passage, tunnel, corridor, fourier, coral, hah!
 #
 #=====================================================================
 #
 at rock.shelf
-   respond chalk, no.future.in.it
+   respond chalk, no.future.in.it, chalk
    ifkey look
       respond steps, beach.steps
       respond coral, its.coral
@@ -5121,7 +5136,8 @@ at rock.shelf
 #
 at rocky.beach
    set dinghy, 1       # Don't repeat the long descripton
-   respond boards, no.use.boards
+   respond planks, wood, boards, no.use.boards
+   respond debris, no.future.in.it, debris
    ifkey look
       respond shelf, shelf.from.beach
       respond steps, beach.steps
@@ -5229,7 +5245,6 @@ at beanstalk.bottom
          set status, 1
       fin
    fin
-   respond cliff, hah!
    ifkey beanstalk
       ifany feed, fertiliser
          ifnear bucket, full.of.dung
@@ -5257,10 +5272,16 @@ at beanstalk.bottom
    iflt beanstalk, gigantic
       flag here, hintable
    fin
+   ifkey chalk
+      respond get, look, no.future.in.it, chalk
+      quip hah!
+   fin
    ifkey look
+      respond cliff, white.cliffs
       respond patch, patch.of.soil, beanstalk
       respond moisture, cliff.moisture
       respond up, below.cliff, beanstalk
+      respond vegetation, scruffy.vegetation
       ifgt beanstalk, 0
          respond stem, bean.stem
          respond foliage, dull.stuff, 0
@@ -5405,7 +5426,7 @@ at beanstalk.top
       quip no.point.in.that
    fin
    fakearg plant, beanstalk
-   respond chalk, no.future.in.it
+   respond chalk, no.future.in.it, chalk
    ifkey look
       respond grass, attention.to.detail, grass
       respond banks, banks.too.steep
@@ -6157,6 +6178,7 @@ at loopy.passage
          call follow.it, by.figure, nw, golden.chamber, north
       fin
    fin
+   respond passage, tunnel, corridor, hah!
 #
 #=====================================================================
 #
@@ -6175,7 +6197,7 @@ at golden.chamber
       move ne, arabesque, arabesque
       move nw, translucent, translucent
       move south, loopy.passage
-      quip chamber, you.are.there
+      respond chamber, you.are.there
    fin
    respond chamber, hah!
 #
@@ -7370,7 +7392,7 @@ at curtain.entrance
       move up, pantry
       move nw, in, soft, entrance, curtains, soft
    fin
-   respond steps, entrance, curtains, hah!
+   respond steps, entrance, hah!
 #
 #=====================================================================
 #
@@ -8109,6 +8131,7 @@ at outside.gates
       move north, track, track
       move east, west, ne, nw, dark.forest
    fin
+   respond garden, hah!
 #
 #=====================================================================
 #
@@ -8383,7 +8406,7 @@ at dungeon.exit
 #
 at well.bottom
    ifkey look
-      respond up, patch, daylight, well, up.well.view
+      respond up, patch, light, daylight, well, up.well.view
       respond passage, tunnel, corridor, dark.exit, passage
       respond wall, well.wall
       ifkey chamber
@@ -8849,7 +8872,7 @@ at phoney.shaft
          move low.room
       fin
    fin
-   respond sewage, shaft, slime, sewage, liquid, hah!
+   respond shaft, slime, sewage, liquid, hah!
    lda throw.here, sea.view
    lda throw.text, into.sewage
    set drop.here, throw.here
@@ -8887,7 +8910,7 @@ at in.shaft
       fin
       move up, out, climb, low.room
    fin
-   respond sewage, shaft, sewage, water, liquid, culvert, slime, hah!
+   respond shaft, sewage, water, liquid, culvert, slime, hah!
    lda throw.here, sea.view
    lda throw.text, into.sewage
    set drop.here, throw.here
@@ -9046,7 +9069,7 @@ at sewer.4
       fin
       respond junction, you.are.there
    fin
-   respond stream, sewage, junction, fracture, hah!
+   respond stream, pipe, sewage, junction, fracture, hah!
 #
 #=====================================================================
 #
@@ -9149,7 +9172,7 @@ at bare.cavern
       move north, passage, low.passage
       respond cavern, you.are.there
    fin
-   respond opening, hole, curtains, tunnel, corridor, passage, cavern, hah!
+   respond opening, hole, tunnel, corridor, passage, cavern, hah!
 #
 #=====================================================================
 #
@@ -9347,17 +9370,16 @@ at stupendous.view
       quip hah!
    fin
    ifkey ravine
-      and
-      not
-   ifany in, go
       respond look, its.ravine, 0
-      quip hah!
+      ifkey in
+         set status, 1
+      fin
    fin
    ifkey look
       and
    ifany down, cliff
       flag sapling, seen
-      quip sheer.cliff, beanstalk2
+      quip sheer.cliff, beanstalk
    fin
    ifkey climb
       respond banks, banks.too.steep
@@ -9390,7 +9412,7 @@ at stupendous.view
    ifany flower, flowers
       respond get, no.pick.flowers
    fin
-   respond chalk, no.future.in.it
+   respond chalk, no.future.in.it, chalk
    respond banks, bushes, gorse, flower, flowers, beach, sea, rollers, hah!
    ifkey in, beanstalk2
       set status, 1
@@ -9440,7 +9462,7 @@ at stupendous.view
       fin
       move ravine, path, out, se, ravine.west
    fin
-   respond view, vista, island, reflections, hah!
+   respond ravine, view, vista, island, reflections, hah!
 #
 #=====================================================================
 #
@@ -9496,7 +9518,7 @@ at above.sea
    else
       quip flight.regulations
    fin
-   respond cliff, horizon, island, rug, sea, giant, reflections, slope, hah!
+   respond cliff, horizon, island, sea, reflections, slope, hah!
    respond sand, beach, beanstalk, mountain, volcano, vegetation, hah!
 #
 #=====================================================================
@@ -9514,6 +9536,11 @@ at ravine
       or
    ifeq status, 1
       ifany path, ravine
+         ifkey ravine
+            and
+         ifis there, road
+            lda there, path
+         fin
          call follow.it, path, se, ravine.west, west
       fin
       ifeq stage, mirror.world
@@ -9536,11 +9563,13 @@ at ravine
          fin      
          call consult.sunstone, direction
       fin
+      respond ferns, its.ferns
       move road, building, road
       move view, stupendous.view
       move west, ravine.west
       move se, path
    fin
+   respond path, ferns, ravine, banks, hah!
 #
 #=====================================================================
 #
@@ -9586,7 +9615,9 @@ at ravine.west
       move building, road, road
       move east, ravine
       move nw, stupendous.view
+      respond ferns, its.ferns
    fin
+   respond path, ferns, ravine, banks, hah!
 #
 #=====================================================================
 #
@@ -9594,7 +9625,7 @@ at path
    respond grass, attention.to.detail, grass
    ifkey look
       respond path, path.in.ravine, 0
-      respond ravine, too.far.to.see
+      respond ravine, too.far.to.see, ravine
       proceed
    fin
    ifkey go
@@ -9629,7 +9660,7 @@ at path
          fin
          call consult.sunstone, direction
       fin
-      move nw, ravine
+      move nw, ravine, ravine
       move north, forest, forest.1
       move ne, forest.5
       move east, forest.4
@@ -9638,6 +9669,7 @@ at path
       move sw, west, forest.2
       move view, stupendous.view
    fin
+   respond path, ravine, hah!
 #
 #=====================================================================
 #
@@ -9817,7 +9849,7 @@ at end.of.valley
 #
 at forest.1
    ifkey look
-      respond path, ravine, too.far.to.see
+      respond path, ravine, too.far.to.see, arg2
       proceed
    fin
    ifkey go
@@ -9832,14 +9864,15 @@ at forest.1
       move north, ne, west, nw, dark.forest
       move east, forest.5
       move se, forest.4
-      move south, sw, path
+      move south, sw, path, ravine, path
    fin
+   respond path, ravine, hah!
 #
 #=====================================================================
 #
 at forest.2
    ifkey look
-      respond path, ravine, too.far.to.see
+      respond path, ravine, too.far.to.see, arg2
       proceed
    fin
    ifkey go
@@ -9855,16 +9888,17 @@ at forest.2
          call consult.sunstone, direction
       fin
       move south, track, track
-      move ne, east, path
+      move ne, east, path, ravine, path
       move se, hill
       move sw, west, nw, dark.forest
    fin
+   respond path, ravine, hah!
 #
 #=====================================================================
 #
 at forest.4
    ifkey look
-      respond road, too.far.to.see
+      respond road, too.far.to.see, road
       proceed
    fin
    ifkey go
@@ -9889,6 +9923,7 @@ at forest.4
       move west, path
       move nw, forest.1
    fin
+   respond road, hah!
 #
 #=====================================================================
 #
@@ -10321,7 +10356,7 @@ at clearing
       move north, ne, east, se, south, west, dark.forest
    fin
    respond grass, clearing, forest, tree, conifer, well, shaft, hah!
-   respond shed, path, track, ground, stone, supports, door4, hah!
+   respond shed, path, track, ground, stone, supports, hah!
    respond window, roof, wall, planks, hah!
    lda throw.here, well.bottom
    lda throw.text, well.drop
@@ -10498,6 +10533,7 @@ at north.of.spire
       move sw, west.of.spire
       respond south, spire.there, south
    fin
+   respond ramp, hah!
 #
 #=====================================================================
 #
@@ -10520,7 +10556,6 @@ at east.of.spire
       move sw, south.of.spire
       respond west, spire.there, west
    fin
-   respond ramp, shade, shadow, hah!
 #
 #=====================================================================
 #
@@ -12194,7 +12229,7 @@ at waterfall
    ifkey look
       respond door, inscription, door.1.words
       respond water, spray, mist, waterfall, its.a.waterfall, 1
-      respond debris, no.future.in.it
+      respond debris, no.future.in.it, debris
       respond overhang, ceiling, waterfall.overhang
       ifgt waterfall, 0
          respond passage, tunnel, corridor, no.see.into.mine
@@ -12202,7 +12237,7 @@ at waterfall
       proceed
    fin
    ifkey get, debris
-      quip no.future.in.it
+      quip no.future.in.it, debris
    fin
    fakearg door, door1
    set door1, outside.view
@@ -12547,6 +12582,7 @@ at above.volcano
          call coroner
       fin
    fin
+   respond ceiling, volcano, fountains, glow, hah!
    lda throw.here, ylem
    lda drop.here, ylem
    lda throw.text, throw.abyss
@@ -13240,7 +13276,7 @@ at by.stream.2
    ifany cross
       call arg1
    fin
-   respond stream, hah!
+   respond stream, gorge, banks, cliff, bend, hah!
 #
 #=====================================================================
 #

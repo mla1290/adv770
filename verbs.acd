@@ -15,6 +15,7 @@ verb rest, wait                  # In case players type REST MYGAME
 verb contemplate, meditate
 verb sorry, thanks
 verb say, =talk, chant, sing, utter, mumble, shout, speak, yell
+verb laugh, =heheheheheheh, smirk, grin, smile
 verb !length, =!line, =!width
 verb !scroll, =!screen, =!depth
 verb !margin, =!offset
@@ -400,7 +401,6 @@ verb vista, landscape, scene
 verb spray
 verb overhang
 verb map
-verb sparevrb05
 verb sparevrb06
 verb sparevrb07
 verb sparevrb08

@@ -250,8 +250,8 @@ constant 10,   min.time    # # of minutes you must wait after SAVE
 #
 # Define temple states
 #
-state 3, vault.magicked
-         vault.open
+state 3, vault.magicked 
+         vault.open 
          vault.locked
 #
 # Define bottle/flask/bucket states

@@ -657,6 +657,7 @@ proc owl.flies.off
 #
 proc owl.comes, no.chance, some.chance
    local obj.ptr
+   local mistake
 #
    ifnear chasm
       and
@@ -703,8 +704,12 @@ proc owl.comes, no.chance, some.chance
          call kill.some.dwarves
       otherwise
       ifnear dragon, on.rug
-         say owl.v.dragon
          apport owl, ylem
+         ifflag documents, seen
+            quip owl.v.dragon, 0
+         else
+            quip owl.v.dragon, 1
+         fin
       else
          say owl.arrives
       fin
@@ -1355,7 +1360,7 @@ proc stop.cheating
 #
 proc debris.quip
    ifat debris, sea.view, arched.corridor.1, blasted.repository
-      quip no.future.in.it
+      quip no.future.in.it, debris
    fin
    quip where?, debris
 #
@@ -3029,7 +3034,7 @@ proc bail.out
             quip do.what?, arg1
          otherwise
          ifkey get
-            quip no.future.in.it
+            quip no.future.in.it, sand
          otherwise
          ifkey look
             ifnear quicksand
@@ -5850,6 +5855,15 @@ proc beach.stuff
          quip salt.h20.bad
       fin
    fin
+   ifat sandy.beach, wide.beach, beach.end
+      ifkey beanstalk
+         and
+      ifgt beanstalk, stunted
+         quip too.far.to.see, beanstalk
+      fin
+      respond debris, no.future.in.it, arg2
+      respond wood, useless.bits, wood
+   fin
    ifkey look
       respond sea, waves, water, sea.vista
       respond view, horizon, far.horizon
@@ -5859,14 +5873,6 @@ proc beach.stuff
          call look
          quit
       fin
-      proceed
-   fin
-   ifat sandy.beach, wide.beach, beach.end
-      and
-   ifkey beanstalk
-      and
-   ifgt beanstalk, stunted
-      quip too.far.to.see, beanstalk
    fin
 #
 #=====================================================================

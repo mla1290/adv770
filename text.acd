@@ -34,7 +34,7 @@ FRAGMENT INSTRUCTIONS?
 #
 TEXT HI.THERE
 
-    Welcome to Adventure! (770 point MLA version 0.99.30 beta - 19 Feb 03)
+    Welcome to Adventure! (770 point MLA version 1.02, 19 Mar 03)
 
 #
 FRAGMENT REST.AWHILE
@@ -921,8 +921,8 @@ TEXT
     have an opportunity to garner many more points in the master's
     section.
 
-    Do remember to examine things. It is not essential to do so, but
-    sometimes my responses may suggest particular properties or
+    Do remember to examine things. Even where this is not essential,
+    my responses may sometimes suggest particular properties or
     limitations of objects you find in the cave. If you seem to be
     having trouble, I may occasionally offer hints. If I do, I'll
     warn you in advance how much it will affect your score.
@@ -3149,7 +3149,7 @@ TEXT KABOOM
 #
 TEXT NO.FUTURE.IN.IT
     Plenty of it about, but somehow I don't think there is much future
-    in it.
+    in #.
 #
 TEXT ALREADY.HAD.ONE
     You already had one! I really don't think you need another #.
@@ -3665,6 +3665,9 @@ TEXT OWL.V.DRAGON
     You hear a flurry of wingbeats and sounds of a brief battle...
 
    +(rustle .. HOOT! .. hisss .. WHOOSH .. hoot? ... Chomp, Chomp...)
+
+    [/And if I may say so, that was a serious mistake. You might as well
+    wrap it up now.]
 #
 TEXT ABSOLUTELY.NOTHING
     With a deafening silence absolutely nothing happens.
@@ -5917,6 +5920,10 @@ TEXT BASALT.GEOLOGY
     basalt. It hurts my brain even to think about the geological 
     processes that might have been involved in its creation.
 #
+TEXT increment BASALT.OUTCROP
+    The basalt of the outcrop looks very much like that of the black
+    cliff.[ In a word - completely incomprehensible. Yeah, OK, two words./]
+#
 TEXT random WAND.MISFIRES
     [Nothing hap... WHAT?!?!? There's a bowl of petunias just
     materialised at your feet out of the thin air!! This is
@@ -7393,7 +7400,8 @@ TEXT increment MOEBIUS.GATES
     and climb down back onto the track./Don't even bother to try,
     you'd only wind up back here again. And let's not forget that
     wizard, who is clearly minded to persecute would be trespassers - for
-    all you know, next time you could end up as a toad or worse!]
+    all you know, next time you could end up as a toad or worse. There
+    have been precedents!]
 
     [As you stare incomprehendingly through the gates, a tall wizard in
     grey materialises on the other side. He gives you a hard, cold
@@ -7908,9 +7916,9 @@ TEXT IT.WONT.GROW
 TEXT SHEER.CLIFF
     Standing recklessly near the edge of the cliff, you look straight
     down along the sheer, dirty-white cliff face. There isn't much to
-    be seen, except for [/the beanstalk growing][/ all the/ part][/
-    way up the cliff, and ]a small sapling of some sort, clinging to 
-    the rock some way below you.
+    be seen, except for [/the beanstalk growing][/ part/ all 
+    the][/ way up the cliff, and ]a small sapling of some sort, 
+    clinging to the rock some way below you.
 #
 TEXT SUICIDAL
     That would be suicidal!
@@ -10017,7 +10025,7 @@ TEXT FORCED.BLANK
 #
 TEXT increment NO.MAP
    [Um... Didn't you know? Traditionally, it's the adventurer who does 
-   the mapping! And we do our level best to be traditional here./Maps
+   the mapping! And we do our level best to be traditional around here./Maps
    are for townie rats! Of course, if you drew one yourself - that would
    be acceptable. Traditional even./No, no... *You* do the mapping in 
    this game.]
@@ -10045,6 +10053,18 @@ TEXT NO.EXCEPT
 #
 TEXT STATE.IS.NOW
    The state is now #.
+#
+TEXT cycle TIS.AMUSING
+   [Glad to know you find this an amusing experience./Something's funny?
+   Oh well, I am not very good at spotting this human humour thing.../That's
+   the spirit! Laughter is the only healthy response to life's
+   adversities.]
+#
+TEXT SCRUFFY.VEGETATION
+   Scruffy is the only word to describe it.
+#
+TEXT USELESS.BITS
+   They are just useless bits of #. Please ignore.
 #
 #######################################################################
 #

@@ -206,6 +206,9 @@ repeat
    ifeq stage, in.repository
       call stop.cheating    # Return fake object to where it belongs
    fin
+   ifat east.of.building
+      flag seed, seen
+   fin
    ifat wrong.venue
       and
    ifeq wrong.venue, 2
