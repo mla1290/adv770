@@ -2680,7 +2680,7 @@ proc close.the.cave
    itobj obj.ptr
       unflag obj.ptr, stealable
       ifis obj.ptr, djinn
-         else
+      else
          unflag obj.ptr, special1
          unflag obj.ptr, special2
       fin
@@ -4222,21 +4222,57 @@ proc prod.tide
 #
 #=====================================================================
 #
-proc giant.stuff
+proc giant.stuff, giving
    local obj.ptr
    local count
    local state
+   local zorro
 #
+   ifhave mask
+      and
+   ifeq mask, worn
+      set zorro, 1
+   fin
    ifgt giant, hurt         # I.e. picnicking or watching
-      ifhave mask
+      ifflag giant, big     # Have we just arrived?
+         unflag giant, big
+      else
+         proceed
+      fin
+      ifnear rug
          and
-      ifeq mask, worn
-         ifflag giant, big
-            unflag giant, big
-         else
-            proceed
+      ifflag beater, seen
+         ifeq giving, 1
+            say no.drink.flying
+         otherwise         
+         ifeq giant, picnicking
+            set giant, watching
+            ifeq giant.will.watch, -1
+               say fly.time, zorro
+               set giant.will.watch, zorro
+            otherwise
+            ifeq giant.will.watch, zorro
+               say fly.soon
+            otherwise
+            iflt giant.will.watch, 2
+               say fly.too?, zorro
+               set giant.will.watch, 2
+            else
+               say fly.soon
+            fin
          fin
-         say zorro.friend
+         proceed
+      otherwise
+      ifeq zorro, 1
+         ifhave bucket
+            ifeq bucket, full.of.water
+               or
+            ifeq bucket, full.of.champagne
+               say drink.up
+               proceed
+            fin
+         fin
+         say zorro.friend, giving
          unflag ravine.west, hintable
          ifhave bucket
             ifeq bucket, dirtied
@@ -4248,7 +4284,7 @@ proc giant.stuff
                set bucket, full.of.champagne
                say have.some.more
             else
-               say blank
+               say empty.your.bucket
             fin
             proceed
          fin
@@ -4267,16 +4303,6 @@ proc giant.stuff
             fin
          else
             say bring.your.bucket
-         fin
-      otherwise
-      ifnear rug
-         and
-      ifflag beater, seen
-         ifeq giant, picnicking
-            set giant, watching
-            ifhave rug
-               say fly.time
-            fin
          fin
       else
          smove ravine.west, buzz.off
@@ -5653,9 +5679,8 @@ proc early.restore
       say lets.be.prudent, 0
    fin
    exec 18              # Restore memory image
-   iflt stage, adventuring
-      stop
-   fin
+   set context, none
+   quit
 #
 #=====================================================================
 #
@@ -5953,8 +5978,7 @@ proc by.house.actions
          ifat road
             proceed
          fin
-         flag status, pls.clarify
-         quip do.what?, building
+         quip right.next.to.you, arg1
       fin
       respond look, house.info
       respond climb, no.point.in.that

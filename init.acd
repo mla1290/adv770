@@ -778,8 +778,8 @@ init
    flag bucket, big
    flag bust, big
 #
-   Flag dark.forest, been.here      # Force short description
-   flag nowhere, been.here          # Ditto
+   flag dark.forest, been.here  # Force short description
+   flag nowhere, been.here      # Ditto
 #
 # Define sewer locations for tide management and objects
 # being thrown or dropped.
@@ -1007,6 +1007,7 @@ init
       deposit place.ptr, state
       add state, 1
    eoi
+   set giant.will.watch, -1
    set scree.2, 1
    set scree.3, 2
    set river, 1

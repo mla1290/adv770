@@ -57,6 +57,7 @@ constant none              # No context -- must be 1st!
          q.delete          # Delete pre-existing image?
          q.waterfall       # What, into the waterfall?
          q.really.fly?     # Is he sure he got everything?
+         q.streambed       # Really down to streambed?
 #
 #        Bit flags set for the 'status' variable
 #
@@ -445,7 +446,6 @@ state resting
       hurt
       picnicking
       watching
-#      still.picnicking
 #
 # Define statue states.
 #

@@ -20,6 +20,7 @@ TEXT U.TURN
     Changed your mind? Fine by me...
 #
 FRAGMENT GAME.TO.RESTORE
+
     Game to restore (or press ENTER for a brand new game):_
 #
 FRAGMENT REINCARNATE?
@@ -34,7 +35,7 @@ FRAGMENT INSTRUCTIONS?
 #
 TEXT HI.THERE
 
-    Welcome to Adventure! (770 point MLA version 1.05, 26 Mar 03)
+    Welcome to Adventure! ({.VERSION})
 
 #
 FRAGMENT REST.AWHILE
@@ -1005,7 +1006,7 @@ TEXT HISTORY.DATA
    =   and game language (A-code) developed by Dave Platt.
    =
    =5. The two supersets combined (with extensions) by Mike Arnautov,
-   =   using DP's A-code into Adventure4+ (660pt), also known as adv660,
+   =   using DP's A-code into Adventure4+ (660pt), also known as Adv660,
    =
    =6. Adventure4+ extended by popular demand into this 770 pt version
    =   by Mike Arnautov.
@@ -2740,8 +2741,21 @@ TEXT assigned MUTTERS
 #
 TEXT FLY.TIME
 
-    "OI!" says the giant, "YOU HAD...", but then his eyes fall on the
-    rug you are carrying: "OOOOH... FLY TIME? I WATCH, OK!"
+    ["OI!" says the giant, "YOU HAD..."/"ZORRO!" the giant bellows], but
+    then his eyes fall on the rug you are carrying: "OOOOH... FLY TIME?
+    I WATCH, OK!"
+#
+TEXT FLY.SOON
+
+    "FLY SOON?" enquires the giant hopefully.
+#
+TEXT FLY.TOO?
+
+    The giant looks somewhat surprised. "[/ZORRO! ]YOU FLY TOO?!
+    GOOD GOOD!" 
+#
+TEXT NO.DRINK.FLYING
+     "NO, NO," booms the giant. "NO DRINK FLYING!"
 #
 TEXT BECAUSE
     That's for me to know, and for you to discover.
@@ -3407,7 +3421,7 @@ TEXT THANKS.TO
 
     1. The UK Branch of the Adventure Tastefulness Committee (you know
     who you are gentlemen) for a pleasant evening in the Czech Club,
-    where the seeds of adv770 were planted and watered by a quantity of
+    where the seeds of Adv770 were planted and watered by a quantity of
     Czech Budvar (i.e. the real thing, as opposed to that other alleged
     beer that goes by a similar name).
 
@@ -3419,9 +3433,9 @@ TEXT THANKS.TO
     for their dedication and patience. Without their sterling efforts
     the game would have remained bugged and full of holes.
 
-    4. All the fans of adv660 (a.k.a. Adventure4+) who kept wistfully
-    asking about a sequel. Without them adv770 would not have been born
-    and all the loose ends of adv660 would have remained loose!
+    4. All the fans of Adv660 (a.k.a. Adventure4+) who kept wistfully
+    asking about a sequel. Without them Adv770 would not have been born
+    and all the loose ends of Adv660 would have remained loose!
 #
 TEXT random TRAPDOOR.IN.THE.WAY
     [Sorry/Tiresome though it is/Unfortunately/You can't], there is a
@@ -3458,7 +3472,7 @@ TEXT CAUGHT.ROOF
 #
 TEXT CAUGHT.STOREROOM
     You can hear voices and sounds of heavy boots climbing the tower 
-    stairs [and group of dwarves comes into the view on the landing.
+    stairs [and a group of dwarves comes into the view on the landing.
     They briefly freeze at the sight of the open door and then the
     dwarf nearest to you/outside the door. The clatter of boots and
     the voices stop just outside the door, and there is a brief moment
@@ -5257,7 +5271,7 @@ TEXT NO.POUR.DUNG
     The dung isn't liquid enough to be poured.
 #
 FRAGMENT WASTE.OF.CHAMPAGNE
-    What a waste of good champagne! Still, if you insist..._
+    What a waste of champagne! Still, if you insist..._
 #
 TEXT DISTANT.EXPLOSION
     
@@ -5299,7 +5313,7 @@ FRAGMENT increment ZORRO.FRIEND
     ["OI!" says the giant, "YOU HAD YOUR...", but then a wide
     grin splits his face: "ZORRO! IT YOU! BEEN A LON' TIME! HERE,
     HAVE DRINK..."./The giant bellows: "ZORRO, ME FRIEN, HAVE MORE
-    DRINK!!"]
+    DRINK!!"/The giant shouts: "HAVE MORE DRINK!"]
 #
 TEXT HAVE.A.DRINK
    / He looks around, grabs an empty champagne bucket, pours
@@ -5318,6 +5332,15 @@ TEXT GIANT.PUT.OFF
     the manure smell hits him. "UG!! WASH! THEN HAVE MORE!", he says
     making a face, and gently pushes you into the ravine.
 
+#
+TEXT increment EMPTY.YOUR.BUCKET
+   / He's about to pour you more champagne, but then notices the water
+     in the bucket. "[OH, /]NO MIX DRINKS! NO, NO.[ MIX DRINKS BAD, ZORRO
+     BAD BOY!/]"
+#
+TEXT DRINK.UP
+
+     The giant casts a glance at your bucket and booms: "DRINK UP! HAVE MORE!"
 #
 FRAGMENT ZORRO.ILLUSION
     You try to feel your new clothing, but quickly realise that
@@ -5377,7 +5400,7 @@ TEXT HANDS.OFF
 #
 TEXT SIP.CHAMPAGNE
     You take a small sip of champagne from the bucket. It's not exactly
-    a great vintage and a bit flat, but it could be worse.
+    a great vintage and it's a bit flat, but it could be worse.
 #
 TEXT NO.SIP.CHAMPAGNE
     No, enough is enough. Taking lots of small sips is a well known
@@ -5882,10 +5905,11 @@ TEXT increment MEMORY.IMAGE
     OK... I've fixed the state of the world in my mind.[ Just ask me
     to recall it whenever the need is upon you, and it shall be done./]
 #
-TEXT OLD.IMAGE
-    Now, give me a moment to concentrate...
+TEXT increment OLD.IMAGE
+    Now, give me a moment to concentrate...[
 
-    Yes! I do believe I've recalled the former state of the world.
+    Yes! I do believe I've recalled the former state of the 
+    world./ Right!.../ Done.]
 
 #
 TEXT NO.MEMORY.IMAGE
@@ -10066,6 +10090,23 @@ TEXT SCRUFFY.VEGETATION
 #
 TEXT USELESS.BITS
    They are just useless bits of #. Please ignore.
+#
+TEXT RIGHT.NEXT.TO.YOU
+   The # is right next to you!
+#
+TEXT VERY.SENSIBLE
+   A very sensible decision, if I may say so.
+#
+FRAGMENT DOWN.TO.STREAMBED?
+   That descent looks very treacherous. Are you sure you want to
+   try getting down there?_
+#
+TEXT ROOM.ENOUGH
+   [Got an attack of claustrophobia? It is a bit tight here, I agree.
+   Still, the cure is in your own hands - go somewhere else./I know
+   caves can feel a bit claustrophobic, but there's surely room
+   enough here!/Room? Plenty of room above ground. It's not like
+   down in the cave...]
 #
 #######################################################################
 #

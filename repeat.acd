@@ -223,6 +223,9 @@ repeat
       fin
       flag giant, big        # Only matters when he is picnicking
       ifgt giant, picnicking
+         and
+         not
+      ifnear rug
          set giant, picnicking
       fin
       add moves, 1
@@ -722,7 +725,10 @@ repeat
    fin
    sub giant.time, 1
    ifnear giant
-      call giant.stuff
+      call giant.stuff, 0
+   otherwise
+   ifeq giant, watching
+      set giant, picnicking
    fin
    ifgt giant, resting
       and
@@ -1315,6 +1321,7 @@ repeat
       fin
       quip if.not.not
    fin
+#
    ifeq context, q.really.fly?
       set context, none
       ifkey yes
@@ -1336,6 +1343,19 @@ repeat
          smove above.abyss, over.abyss
       fin
       respond n, no, if.not.not
+      quip lets.be.prudent, 0
+   fin
+#
+   ifeq context, q.streambed
+      set context, none
+      ifkey yes
+         say on.streambed
+         goto ylem
+         call coroner
+      fin
+      ifany n, no
+         quip very.sensible
+      fin
       quip lets.be.prudent, 0
    fin
 #
@@ -1371,6 +1391,29 @@ repeat
       respond fuck, no.piss.plant
    else
       respond fuck, no.fucking
+   fin
+#
+# We generally ignore "room"
+#
+   ifkey room
+      ifeq status, 1
+         ifflag here, not.in.cave
+            and
+            not
+         ifflag here, indoors
+            quip room.enough, 2
+         otherwise
+         ifflag here, small
+            quip room.enough, 0
+         else
+            quip room.enough, 1
+         fin
+      fin
+      ifis arg1, room
+         exec 29           # Swap arg1 and arg2.
+      fin
+      set arg2, none
+      set status, 1
    fin
 #
 # No digging, please!
@@ -2118,10 +2161,7 @@ repeat
       ifat  arg1
          quip you.are.there
       else
-         ifflag arg1, been.here
-            quip dont.know.the.way
-         fin
-         quip no.understand
+         quip dont.know.the.way
       fin
    else
 #

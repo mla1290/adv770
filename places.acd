@@ -1541,7 +1541,7 @@ PLACE CAUSEWAY.WEST
    stone causeway leading across. The ground is nearly covered by wisps of
    white mist, which slowly drift eastwards and dissipate over the gap.
 #
-PLACE CAUSEWAY
+PLACE +CAUSEWAY
    You're east of the causeway.
   %To the west of you, just discernible in the gloom, lies an old stream-bed
    which has been long dry and you can just determine that there is a

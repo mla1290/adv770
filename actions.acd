@@ -3320,6 +3320,9 @@ action restore
    else
       set wiz.flag, 0
    fin
+   iflt stage, little.joke
+      add wiz.flag, 2
+   fin
    exec 6, wiz.flag    # Save value of wiz.flag over restore attempt
    exec 17             # Save memory image
    exec 2, outcome     # Attempt to restore image
@@ -3329,6 +3332,8 @@ action restore
    ifeq outcome, 0     # All well
       exec 7, outcome  # Restore pushed value
       ifeq outcome, 1
+         or
+      ifeq outcome, 3
          flag admin, olorin
       else
          unflag admin, olorin
@@ -3340,19 +3345,21 @@ action restore
          set context, q.early.restore
          quip really.restore?
       fin
-   else
-      ifeq outcome, 1       # No file, or no image
-         say no.image
-         set context, none
-         ifgt turns, 0
-            sub turns, 1    # Let him try again
-         fin
-         quit
-      else                  # Checksum failed!
-         exec 18
-         set context, q.bad.image
-         quip explosion     # Well-house blew up
+   otherwise
+   ifeq outcome, 1       # No file, or no image
+      say no.image
+      set context, none
+      ifgt turns, 0
+         sub turns, 1    # Let him try again
       fin
+      quit
+   else                  # Checksum failed!
+      exec 7, outcome
+      iflt outcome, 2
+         exec 18
+      fin
+      set context, q.bad.image
+      quip explosion     # Well-house blew up
    fin
    call restore.it
 #
@@ -5013,6 +5020,15 @@ action give dung
 #=====================================================================
 #
 action give
+   ifkey bucket
+      and
+   ifat stupendous.view
+      and
+   ifhere giant
+      flag giant, big
+      call giant.stuff, 1
+      quit
+   fin
    ifkey drink
       ifhave bucket, full.of.champagne
          or

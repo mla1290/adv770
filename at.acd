@@ -86,8 +86,8 @@ at road
          fin
          call consult.sunstone, direction
       fin
+      move enter, east, building, building
       move road, track, west, up, hill, hill
-      move enter, east, building
       move downstream, stream, gully, south, down, valley, valley
       move depression, grate, depression
       move slit, slit
@@ -3963,13 +3963,14 @@ at sandstone
       respond steps, well.worn.steps
       respond sandstone, wall, red.sandstone
       respond rock, just.a.fixture, rock
+      respond plaque, plaque.info
       respond opening, to.mists
       ifkey chamber
          set status, 1
       fin
       proceed
    fin
-   ifkey read
+   ifany read
       ifkey plaque
          or
       ifeq status, 1
@@ -5612,7 +5613,10 @@ at plain.1
       or
    ifeq status, 1
       move south, out, passage, by.figure
-      move north, in, plain.2
+      ifany north, ne, nw, in
+         call phog
+         move plain.2
+      fin
    fin
    respond passage, tunnel, corridor, hah!
 #
@@ -7404,9 +7408,13 @@ at causeway.west
       proceed
    fin
    ifkey jump
-      and
-   ifany down, streambed, bottom
-      set status, 1
+      ifany down, stream, streambed, bottom
+         or
+      ifeq status, 1
+         say on.streambed
+         goto ylem
+         call coroner
+      fin
    fin
    ifkey go
       or
@@ -7414,9 +7422,8 @@ at causeway.west
       move east, cross, causeway, causeway
       move west, north, south, nw, sw, swirling.mist
       ifany down, streambed, bottom, gap
-         say on.streambed
-         goto ylem
-         call coroner
+         set context, q.streambed
+         quip down.to.streambed?
       fin
    fin
    respond mist, bottom, streambed, causeway, gap, hah!
@@ -7431,15 +7438,23 @@ at causeway
       respond causeway, stone.causeway
       proceed
    fin
+   ifkey jump
+      ifeq status, 1
+         or
+      ifany down, bottom, stream, streambed
+         say on.streambed
+         goto ylem
+         call coroner
+      fin
+   fin
    ifkey go
       or
    ifeq status, 1
       move west, cross, causeway, causeway.west
       move south, se, east, reservoir, reservoir
-      ifany down, jump, bottom, streambed, gap
-         say on.streambed
-         goto ylem
-         call coroner
+      ifany down, streambed, bottom, gap
+         set context, q.streambed
+         quip down.to.streambed?
       fin
    fin
    respond mist, bottom, streambed, causeway, gap, hah!
@@ -7638,13 +7653,6 @@ at tower.upper.landing
             quip door.in.the.way, east
          fin
          ifeq door2, ajar
- value .of, alarm
-            ifeq alarm, 5
-               and
-               not
-            ifflag storeroom, been.here
-               set alarm, 6
-            fin
             say into.storeroom
          fin
          set door2, opened

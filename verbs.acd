@@ -2,7 +2,7 @@
 #
 # Words to be ignored
 #
-noise and, the, a, an, that, this, to, at, with, room, awhile, about, from
+noise and, the, a, an, that, this, to, at, with, awhile, about, from
 #
 # Time we defined some verbs. Start with specials, not requiring
 # validation of ARG2.
@@ -20,6 +20,8 @@ verb !length, =!line, =!width
 verb !scroll, =!screen, =!depth
 verb !margin, =!offset
 verb restart, initialise
+verb define
+verb undefine
 verb why
 verb !fuck, !piss, !pee, !screw, !shit, urinate, !wank, !bugger, !fart, !crap, defecate
 verb -last.special         # Mark end of special verbs
@@ -401,9 +403,7 @@ verb vista, landscape, scene
 verb spray
 verb overhang
 verb map
-verb sparevrb06
-verb sparevrb07
-verb sparevrb08
+verb room
 verb sparevrb09
 verb -first.sculpture.fake
 verb !pig
