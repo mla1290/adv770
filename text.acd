@@ -1,6 +1,6 @@
-# Copyleft Mike Arnautov 1984-2002.
+# Copyleft Mike Arnautov 1984-2003.
 #
-#   "Random" texts.
+# "Random" texts.
 #
 TEXT SOK!
 #
@@ -34,7 +34,7 @@ FRAGMENT INSTRUCTIONS?
 #
 TEXT HI.THERE
 
-    Welcome to Adventure! (770 point MLA version 0.99.22 beta - 30 Dec 02)
+    Welcome to Adventure! (770 point MLA version 0.99.30 beta - 19 Feb 03)
 
 #
 FRAGMENT REST.AWHILE
@@ -273,8 +273,8 @@ TEXT CRUNCH
 TEXT CANT.DO.THAT
     You can't # that!
 #
-TEXT YOU.HAVE.IT
-    You are already carrying the #!
+TEXT cycle YOU.HAVE.IT
+    You [are already carrying/already have] the #!
 #
 TEXT cycle BE.SERIOUS!
     [You can't be serious!/I am sure you are not being serious!/An
@@ -292,8 +292,8 @@ TEXT NEED.CAGE
 TEXT YOU.ARENT.CARRYING
     You aren't carrying the #!
 #
-TEXT I.DONT.SEE
-    I see no # here.
+TEXT cycle I.DONT.SEE
+    [I see no # here./There's no # to be seen here./#? What #?]
 #
 TEXT BIRD.V.ENEMY
     [The little bird attacks the green snake, and in an astounding flurry
@@ -469,16 +469,21 @@ TEXT FIND.IT.YOURSELF
     I can only tell you what you see as you move about and manipulate
     things. I cannot tell you where remote things or places are.
 #
+TEXT cycle NOCOMPRENDE.VERB
+    [My ignorance shames me, but I do not know what action might be
+    signified by "#"./Alas, my vocabulary is too limited to encompass "#".
+    Try some other verb?/Very remiss of me to be sure, but I've never
+    learned to "#"./To my shame, I have no idea what you mean by
+    "#"./"#"? Sorry, I don't what it means./I am afraid "#" is not a 
+    verb I've ever learned./Ahem... "#" is not in my dictionary.
+    Would you care to re-phrase?/Regrettably, that is not something I
+    know how to do.]
+#
 TEXT cycle NOCOMPRENDE
-    [My ignorance shames me, but I do not know what action might
-    be signified by "#"./Alas, my vocabulary is too limited to
-    encompass "#". Try some other verb?/Very remiss of me to be 
-    sure, but I've never learned to "#"./Sorry to disappoint you, 
-    but I haven't got a clue how to "#" something./I am afraid "#" is not a 
-    verb I've ever learned./Unfortunately I don't know how to "#" something. 
-    I expect it isn't really required around here./Ahem... "#" is
-    not in my dictionary. Would you care to re-phrase?/Regrettably,
-    that is not something I know how to do.]
+    [Sorry to disappoint you, but I haven't got a clue how to "#"
+    something./Unfortunately I don't know how to "#" something. 
+    I expect it isn't really required around here./"#ing" things is
+    not something I've ever learned, sorry...]
 #
 TEXT cycle NOCOMPRENDE.OBJECT
     [Er... "#" is not in my dictionary. Would you mind re-phrasing?/Your
@@ -543,7 +548,7 @@ TEXT assigned SLURP
     You have taken a drink from the [stream. The water tastes strongly of
     minerals, but is not unpleasant. It is extremely cold/fountain. 
     The water is fairly cold and has a faint rusty tang to it/spring.
-    The water is so cold, it is hard to say whether it has any 
+    The water is so cold, it is hard to tell whether it has any 
     taste/waterfall without getting yourself too wet. The water has
     a slightly unpleasant, sulphuric tang to it/the stream. The water
     is quite warm and has an unpleasant taste to it, suggestive of
@@ -574,10 +579,10 @@ FRAGMENT POUR.LIQUID.1
     The # pours out
 #
 FRAGMENT POUR.LIQUID.2
-    _of your #.
+   / of your #.
 #
 TEXT POUR.LIQUID.3
-    _It makes the ground rather damp.
+   / It makes the ground rather damp.
 #
 FRAGMENT YOU.POUR
     You pour #
@@ -852,29 +857,29 @@ TEXT random BEAR.FOLLOWS
     bear is following your every footstep.]
 #
 TEXT INFO.FIRST
-    This is Mike Arnautov's 770 point version of the one and only
-    Adventure. (type HISTORY for a brief summary of its
-    development, and CREDITS for acknowledgements). The game now has
-    475 locations and an untold treasure of snide remarks (over
-    460Kb of text altogether).
+    This is Mike Arnautov's 770 point version of the one and only Adventure
+    (type HISTORY for a brief summary of its development, and CREDITS for
+    acknowledgements). The game now has 475 locations, masses of snide
+    remarks (well over 460Kb of text altogether) and a vocabulary of
+    over 1000 words.
 
-    Adv770 accepts only simple verb/noun commands. It is,
-    however, possible to specify several objects with a single
-    verb. For instance GET KEYS AND LAMP will pick up both,
-    though it still counts as two turns. Commas can be used in place
-    of ANDs to save typing. If you are really lazy, GET ALL and DROP
+    Command format is generally verb/noun, but you can specify several
+    objects with a single verb: e.g. GET KEYS AND LAMP picks up both,
+    but it still counts as two turns. Commas can be used in place
+    of ANDs to save typing. If you are lazy, GET ALL and DROP
     ALL also work, again taking the appropriate number of turns, as do
-    GET TREASURE and DROP TREASURE. You can also use IT (or THEM) to
-    refer to the last object mentioned by you, or to the single object
-    listed in the location description, or in your inventory. Some 
-    words (A, AN, THAT, THE, THIS...) are ignored, making GET THE AXE
+    GET TREASURE and DROP TREASURE - all of these may be followed by
+    EXCEPT and a list of objects to be excepted. You can also use IT 
+    (or THEM) to refer to the last object mentioned by you, or to the 
+    single object listed in the location description, or in your inventory.
+    Some words (A, AN, THAT, THE, THIS...) are ignored, making GET THE AXE
     a legal command. Some verbs (e.g. GET) do not need a noun, provided
-    there is only one object to which the verb can be applied.
+    there is only one suitable object.
 
-    Commands can be chained together with full stops or with
-    semicolons (e.g. THROW AXE.GET AXE). The special verb REPEAT (or R) can
-    be used to repeat the previous command line, or, when embedded in
-    a longer command sequence, the previous command in the sequence.
+    You can chain commands with full stops or with semicolons (e.g.
+    THROW AXE.GET AXE). The special verb REPEAT (or R) can be used to
+    repeat the previous command line, or, when embedded in a longer
+    command sequence, the previous command in the sequence.
 #
 TEXT
     All words can be abbreviated to the shortest unambiguous length.
@@ -958,15 +963,18 @@ TEXT VASE.SHATTERS
 TEXT NO.CAN.FIX
     It is beyond your power to do that.
 #
-TEXT DUNNO.HOW
-    I don't know how.
+TEXT cycle DUNNO.HOW
+    I [don't know/have no idea/wouldn't know/haven't a clue as to] how.
 #
 TEXT TOO.FAR.UP
     The # is too far up for you to reach.
 #
+FRAGMENT random DWARF.SMOKE
+    [greasy/evil smelling/billowing/dense/roiling/fragrant]
+#
 TEXT random DWARF.POOF
     You killed a little dwarf. The body vanishes in a cloud of
-    greasy [black/white/yellow/green/purplish/grey] smoke.
+    {DWARF.SMOKE} [black/white/yellow/green/purplish/grey] smoke.
 #
 TEXT CRAB.MEAT
     You have mortally injured a little dwarf with your #. The dwarf
@@ -1084,7 +1092,7 @@ TEXT BEAR.WRECKS.BRIDGE
     and fall into the chasm.
 #
 TEXT BEAR.CHASES.TROLL
-    _It lumbers toward the troll, who lets out a startled shriek and
+   / It lumbers toward the troll, who lets out a startled shriek and
     scurries away. The bear soon gives up the pursuit and wanders back.
 #
 TEXT AXE.NOW.BY.BEAR
@@ -1140,7 +1148,7 @@ FRAGMENT
     could then make a map that would let you find your way around.
 #
 TEXT TRY.CHEATING
-    _Though if you *really* can't stick this traditional method,
+   / Though if you *really* can't stick this traditional method,
     you can always try cheating. Not that I would approve, of
     course - what was good enough for Crowther, should be good
     enough for you.
@@ -1325,6 +1333,10 @@ TEXT BEAR.GUARDS.AXE
 TEXT DRAGON.GUARDS.RUG
     I think it would be prudent to deal with the dragon first.
 #
+TEXT RUG.UNDER.DRAGON
+    You can't really see much of the rug, what with that dragon
+    sprawling all over it. It does look Persian, though.
+#
 FRAGMENT YOU.SCORED
 
     You have scored [zero/one/#] point[s//s]
@@ -1333,7 +1345,7 @@ FRAGMENT SHOULD.YOU.QUIT
     You have so far scored [zero/one/#] point[s//s]
 #
 FRAGMENT LESS.PENALTIES
-    _and forfeited [/one/#] penalty point[//s]
+   / and forfeited [/one/#] penalty point[//s]
 #
 FRAGMENT STRICTLY.SPEAKING
     .
@@ -1341,16 +1353,16 @@ FRAGMENT STRICTLY.SPEAKING
     Hence your overall score is [zero/one/#] point[s//s]
 #
 FRAGMENT MAXIMAL.SCORE
-    _out of the possible maximum of #,
+   / out of the possible maximum of #,
 #
 TEXT MOVE.COUNT
-    _using [/one/#] turn[//s].
+   / using [/one/#] turn[//s].
 #
 TEXT DWARF.QUITS
     The dwar[/f/ves] quickly scuttle[/s/] off into the gloom.
 #
-TEXT SAID
-    Ok - "#".
+#TEXT SAID
+#    Ok - "#".
 #
 TEXT AMATEUR
     You are obviously a rank amateur. Better luck next time.
@@ -1430,7 +1442,7 @@ FRAGMENT TOO.SOON
     This game was saved less than # minutes ago. 
 #
 TEXT RESTORE.WOULD.COST
-    _To restore it now would cost you # points.
+   / To restore it now would cost you # points.
 
 #
 FRAGMENT REALLY.RESTORE?
@@ -1468,10 +1480,10 @@ TEXT CONTINUE.NOW?
 
 #
 FRAGMENT FROM.YOUR
-    _from your #
+   / from your #
 #
 TEXT DOUSED.DWARF
-    _flies through the air and thoroughly drenches the
+   / flies through the air and thoroughly drenches the
     dwar[/f. He/ves. They] shake[/s himself/ themselves] and
     curse[/s/] violently; [/he/they] *REALLY* look[/s/] angry now!
 #
@@ -1504,7 +1516,7 @@ TEXT TOO.DARK.TO.FIGHT
     am I supposed to fight anybody if I can't see to the tip of my nose?
 #
 TEXT DROP.TO.DARKNESS
-    _disappear[s/] in the darkness below.
+   / disappear[s/] in the darkness below.
 #
 TEXT HOURS.ARE
     The Colossal Cave is open all hours.
@@ -1969,7 +1981,7 @@ FRAGMENT INTO.THE.WHIRLPOOL
     [ into pitch darkness/].
 #
 TEXT STRONG.CURRENT
-    _The current is incredibly strong, and [everything
+   / The current is incredibly strong, and [everything
     you were carrying is ripped/you barely manage to hold
     onto your lamp; everything else is pulled] from your grasp and
     is lost in the swirling waters.
@@ -2333,11 +2345,11 @@ TEXT increment ORB.OUT.OF.REACH
     of reach].
 #
 TEXT DOWN.THE.DRAIN
-    _land[s/] near the round drain in the cellar, slide[s/] towards it and
+   / land[s/] near the round drain in the cellar, slide[s/] towards it and
     drop[s/] in!
 #
 TEXT HIT.ORB
-    _strike[s/] the orb a glancing blow and slide[s/] off into the drain.
+   / strike[s/] the orb a glancing blow and slide[s/] off into the drain.
     The orb rocks slightly and then slowly rolls towards the drain and
     disappears also.
 #
@@ -2914,10 +2926,10 @@ FRAGMENT CATACOMBS.HINT
     Are you thoroughly confused?_
 #
 TEXT
-    The catacombs have been possessed by a contrary spirit of late, but
-    at least it is a consistent one. Those who comprehend it, can get
-    away with a bare minimum of mapping. Those who don't, may have to
-    map and map again.
+    The catacombs have been of late possessed by a spirit with a rather 
+    skewed, though simple-minded sense of humour. Those who
+    comprehend it, can get away with a bare minimum of mapping. Those
+    who don't, may have to map and map again.
 #
 TEXT CHALICE.NOW.EMPTY
     The chalice is now quite empty - [it only had a few drops in it
@@ -3231,7 +3243,7 @@ TEXT TREASURE.2
     carelessly about!
 
     There are diamonds, rubies, sapphires, emeralds, opals, pearls, and
-    fabulous sculptures and ornaments carved out of jade and imperishable
+    fabulous sculptures and ornaments carved out of jade and imperishible
     crystal resting on display shelves, along with rare Ming vases and
     ancient Indian turquoise beads!
 
@@ -3363,7 +3375,7 @@ TEXT assigned ORB.VISION
     a small sapling, clinging to the face of a sheer cliff./
     a myriad of unfocused lights on a blue background.
     As the image gradually becomes sharper, you realise that the lights
-    are sun reflections sparling off the surface of a sea. Where the sea
+    are sun reflections sparkling off the surface of a sea. Where the sea
     meets the sky, a distant island seems to float on the sea surface./
     a small white building, perching on the shoulder of a huge mountain./
     narrow stone steps curving up to a small landing with a window.
@@ -3665,12 +3677,12 @@ TEXT PEA.SOUPER
     A real pea-souper. Dead easy to get lost in.
 #
 TEXT VOCAB.GENERAL
-    I understand commands in the form of "verb" or "verb noun", 
-    such as for instance ENTER or GET LAMP. I ignore any
-    words after the first two, not counting "noise" words
-    such as A or THE. E.g. I'll treat GIVE THE COINS TO
-    THE TROLL simply as GIVE COINS, and if the troll is
-    about, I'll just assume you mean to give the coins to him.
+    Generally I understand commands in the form of "verb" or "verb noun", 
+    such as for instance ENTER or GET LAMP. If you use more words than two,
+    I'll assume that you forgot to use punctuation and will do my
+    best to work out how to splt the command into two or more. There are
+    some exceptions to this: if getting or dropping ALL or TREASURE, you
+    can use EXCEPT (or BUT) like this: DROP ALL EXCEPT LAMP BOTTLE AND KEYS.
    
     In practice this means
     that if you think that you need a command consisting of a verb and
@@ -3882,7 +3894,7 @@ FRAGMENT SOOTHING.WAVES
     positively hypnotic.
 #
 TEXT HOMER
-    _Some people find that it reminds them of the cadence of
+   / Some people find that it reminds them of the cadence of
     Homer's hexameters and it has been suggested that the blind
     poet may have been listening to the sound of sea waves as he
     composed his epics.  (Who said adventuring wasn't educational?)
@@ -3894,7 +3906,7 @@ FRAGMENT BAD.ALL.1
     What, #
 #
 TEXT BAD.ALL.2
-    _#, just like that? That's a pretty cavalier way of doing
+   / #, just like that? That's a pretty cavalier way of doing
     things! How about trying to be a bit less wholesale?
 #
 TEXT FANCY.THAT
@@ -3917,10 +3929,10 @@ FRAGMENT YOU.DO
     You #
 #
 TEXT IT.IS
-    _the #.
+   / the #.
 #
 FRAGMENT IT.IS...
-    _the #
+   / the #
 #
 TEXT YOU.FREE
     You free the #.
@@ -3963,7 +3975,7 @@ FRAGMENT cycle DUNNO.HAO
     but/My apologies, but] I don't know how to "#
 #
 TEXT SUCH.A.THING
-    _#".
+   / #".
 #
 TEXT random WELL.THERE.IT.IS
     [Oh/Ah/I should have known/I see/Is that so/Well fancy that].
@@ -3988,7 +4000,7 @@ TEXT
     occur in the cave. I really can't be more explicit than that.
 #
 TEXT CAGE.WITH.BIRD
-    _the cage with the bird in it.
+   / the cage with the bird in it.
 #
 TEXT NO.PLURAL.PLEASE
     Now, let's not get too ambitious - one at a time, please.
@@ -4305,10 +4317,10 @@ FRAGMENT ANOTHER.VALUATION
     hissing and whirring routine. When the cover finally snaps open, a
 #
 TEXT VALUATION.END
-    _large sign lights up briefly on the wall above, saying
+   / large sign lights up briefly on the wall above, saying
 #
 FRAGMENT RUFFLED.BIRD
-    _ruffled little bird hops out and flies off, chirping angrily.
+   / ruffled little bird hops out and flies off, chirping angrily.
     A
 #
 TEXT NO.VALUE.SELF
@@ -4464,11 +4476,11 @@ TEXT SEALED.FLASK.INFO
     advisable.
 #
 TEXT DOWN.THE.SHAFT
-    _reside[s/] momentarily on the slippery surface, then slide[s/] down
+   / reside[s/] momentarily on the slippery surface, then slide[s/] down
     the shaft and disappear[s/].
 #
 TEXT DOWN.THE.DSHAFT
-    _reside[s/] momentarily on the sloping surface, then slide[s/] down
+   / reside[s/] momentarily on the sloping surface, then slide[s/] down
     the drain and disappear[s/].
 #
 TEXT NO.CAP
@@ -4674,7 +4686,7 @@ FRAGMENT YOU.WAVE
     You wave your hand in the air.
 #
 TEXT NO.ONE.WAVES.BACK
-    _Nobody waves back. Amazing, isn't it?
+   / Nobody waves back. Amazing, isn't it?
 #
 TEXT THIS.WAY.OUT
     There's no actual "#" here. Just an insubstantial illusion of glowing 
@@ -4811,7 +4823,7 @@ TEXT GOOD
     Good!
 #
 FRAGMENT UP.THE.DOME
-    _sail[s/] through the air and lands in the passage at the top
+   / sail[s/] through the air and lands in the passage at the top
     of the dome.[  /]
 #
 TEXT NO.FOOL.STEPS
@@ -4878,15 +4890,16 @@ TEXT PORTCULLIS.NOW.OILY
     wouldn't call it a great achievement. It's still firmly stuck.
 #
 TEXT increment SPOON.STILL.TARNISHED
-    You rub the spoon, [and it becomes marginally cleaner, but not
+    You rub the spoon[, and it becomes marginally cleaner, but not
     any less tarnished. Ravages of age cannot be undone with a rub or two,
-    as you will doubtless discover with years to come../but it is
+    as you will doubtless discover with years to come../, but it is
     already as clean as it could be, though just as tarnished as
     before. Why this compulsive interest in a worthless spoon? Were
     you hoping to discover that it was a rare example of a Bohemian Ear
     Spoon? Sorry... it's just a piece of old junk, washed up on the shores
     of this game by tides of the sea - or tides of sewage, as the case
-    may be/and nothing happens].
+    may be/ and nothing happens. I hope this doesn't come as a 
+    surprise/. Nothing happens].
 #
 TEXT CHALICE.NOW.DRUNK
     You drain the remnants of water from the chalice and briefly feel
@@ -4949,7 +4962,7 @@ FRAGMENT CHEATING.COSTS
     I'd have to charge you # points.
 #
 FRAGMENT REALLY.CHEAT?
-    _Are you quite sure you dislike the traditional maze mapping 
+   / Are you quite sure you dislike the traditional maze mapping 
     technique strongly enough?_
 #
 TEXT YOU.ARE.NOW.CHEATING
@@ -5201,22 +5214,23 @@ FRAGMENT YOUR.OBJECT
     Your #
 #
 TEXT IS.NOW
-    _is now [//empty/full of water/full of oil].
+   / is now [//empty/full of water/full of oil].
 #
 TEXT IS.ALREADY
-    _is already [//empty/full of water/full of oil].
+   / is already [//empty/full of water/full of oil].
 #
 TEXT NO.OIL.IN.BUCKET
     The bucket is far too big for that! Try something smaller.
 #
 TEXT YOU.DEPOSIT
-    You carefully deposit the full # on the ground.
+    You carefully deposit the [///////mostly /half /quarter /ERROR ]full # on
+    the ground.
 #
 TEXT DOWN.THE.FOLIAGE
-    _drop[s/] out of sight through the beanstalk foliage.
+   / drop[s/] out of sight through the beanstalk foliage.
 #
 TEXT DOWN.TO.THE.BEACH
-    _plummet[s/] down to the foot of the cliff.
+   / plummet[s/] down to the foot of the cliff.
 #
 TEXT CHAMPAGNE.HAS.NO.EFFECT
     Well, you've just wasted a lot of quite decent champagne to no
@@ -5285,19 +5299,19 @@ FRAGMENT increment ZORRO.FRIEND
     DRINK!!"]
 #
 TEXT HAVE.A.DRINK
-    _He looks around, grabs an empty champagne bucket, pours
+   / He looks around, grabs an empty champagne bucket, pours
     a whole bottle of champagne into it, and [thrusts it into your
     hands./seeing that you arms are full, parks it in front of you.]
 #
 TEXT HAVE.SOME.MORE
-    _He grabs a bottle of champagne and empties it into your bucket.
+   / He grabs a bottle of champagne and empties it into your bucket.
 #
 TEXT BRING.YOUR.BUCKET
-    _He looks around for another champagne bucket and not finding one
+   / He looks around for another champagne bucket and not finding one
     waves a huge hand at you, saying "BRIN BUCKET, HAVE DRINK!".
 #
 TEXT GIANT.PUT.OFF
-    _He's about to pour more champagne into your bucket, when
+   / He's about to pour more champagne into your bucket, when
     the manure smell hits him. "UG!! WASH! THEN HAVE MORE!", he says
     making a face, and gently pushes you into the ravine.
 
@@ -5416,7 +5430,7 @@ TEXT increment KNOCK.KNOCK
     {YOU.KNOCK}[ The sound of your knocks reverberates through the air
     in a highly portentous manner, and... it would seem that nothing
     else happens. The good news is, this includes no 
-    dwarves assaulting you for misuse of their property,/]
+    dwarves assaulting you for misuse of their property./]
 #
 TEXT increment DONT.KNOCK
     {YOU.KNOCK} [Suddenly the knocker's bronze lion head opens its eyes,
@@ -5464,24 +5478,20 @@ TEXT SUNSTONE.PREVENTS.YOU
 TEXT SUNSTONE.NO.THROW
     The sunstone firmly refuses to be thrown over the precipice.   
 #
-TEXT increment SUNSTONE.FLASH
-    [To your surprise, t/Curiously enough, t/T]he sunstone [in your 
-    hand /=/=/]emits a brief flash of {COLOURS} light.
-#
 FRAGMENT increment BLACK.FLASH
     [
    /Yes, I did say "black". You have a problem with that?
    //]
 #
 TEXT CLIFF.OVER.DESERT
-    _All view to the east is cut off by an immense black cliff towering
+   / All view to the east is cut off by an immense black cliff towering
     over the desert. It seems to be right on top of you, but that's
     merely an illusion generated by its unbelievable size. The dark sand
     around you keeps moving, driven by the unceasing swirls of powerful
     wind.
 #
 TEXT CLIFF.OVER.SPIRE
-    _Despite its size, the spire is dwarfed by the immense black
+   / Despite its size, the spire is dwarfed by the immense black
     cliff which rises out of the desert to the east and extends
     north south and up, seemingly forever. The cliff's presence is
     overpowering and only the sight of dunes stretching into the
@@ -5490,15 +5500,15 @@ TEXT CLIFF.OVER.SPIRE
     threatening to knock you over.
 #
 TEXT JUMPED.INTO.SAND
-    [You bravely jump off the track into and land in the soft sand below.
+    [It's a scary leap, but you land safely in the soft sand below.
    //
-    A pretty foolhardy leap, but you are saved by the sand piled up
-    around the base of the spire. You get up shaken, but not
-    seriously hurt.
+    You bravely leap into the void... and fall... and fall... and
+    are saved by the sand piled up around the base of the spire. You
+    dig your way out shaken, but not seriously hurt.
    //
-    The sand at the base of the spire is deep and quite soft, but
-    plunging from that great height, it is still not much better than
-    smashing into a rocky surface.]
+    It's a loooooong way down and though the sand at the base of the
+    spire is deep and soft, plunging from that great height, the eventual
+    landing is not much better than smashing into a rocky surface.]
 #
 TEXT increment EXPLORE.OUTDOORS
 
@@ -5598,14 +5608,14 @@ TEXT VERY.WISE
     of you.
 #
 TEXT WIND.GETS.IT
-    _and to your dismay, a powerful gust of wind carries [it/them] over
+   / and to your dismay, a powerful gust of wind carries [it/them] over
     the edge of the ledge and into the sands below.
 #
 FRAGMENT WIND.BLOWS.IT
     The ferocious wind blowing from the cliff picks up the # and blows 
 #
 TEXT BLOWS.IT.OFF
-    _[it/them] off, down the dry river bed.
+   / [it/them] off, down the dry river bed.
 #
 TEXT DONT.CHEW.YOURSELF
     With those fangs in your mouth? You'd chew yourself to shreds!
@@ -5720,7 +5730,7 @@ FRAGMENT DRINK.OFFERED
     You gingerly offer the # of water to the vampire.
 #
 TEXT VAMPIRE.NO.WATER
-    _He gazes at you reproachfully: "Ah would not call this
+   / He gazes at you reproachfully: "Ah would not call this
     here liquid exarctly ah drink, what?"
 #
 TEXT VAMPIRE.NO.OIL
@@ -5777,7 +5787,7 @@ TEXT NOBODY.HERE
     To whom? There's nobody here...
 #
 TEXT random DONT.WANT.IT
-    _[has no interest in/completely ignores your offer of/does not
+   / [has no interest in/completely ignores your offer of/does not
     seem to be interested in/shows absolutely no interest in] the #.
 #
 TEXT BIRD.DISTRUSTFUL
@@ -5790,7 +5800,7 @@ TEXT POLITE.BIRD
     seed grains you have to offer.
 #
 TEXT BIRD.NOW.TRUSTS
-    The bird looks at you inquiringly this way and that way.
+    The bird looks at you enquiringly this way and that way.
     In the end it makes up its mind that you mean to be friendly,
     hops near and polishes off the few seed grains you[ have/'d] scattered
     on the ground. Having finished, the bird bursts into song again, 
@@ -5805,7 +5815,7 @@ FRAGMENT SCATTERED.SEED
     impossible task.
 #
 TEXT increment BIRD.IGNORES.SEED
-    _The bird wouldn't have any such problem, of course, but it seems to
+   / The bird wouldn't have any such problem, of course, but it seems to
     be too frightened by something right now to be seduced by a few
     seed grains like that.[/ Is it perhaps something about you that
     it doesn't like?/]
@@ -5978,7 +5988,19 @@ TEXT SHED.INFO
     The old wooden shed has not been treated well by time and
     weather, but it is still managing to hold together and keep the
     elements out, despite apparently having been abandoned a long
-    time ago.  
+    time ago. 
+#
+TEXT increment SHED.PLANKS
+    The sturdy wood planks are well fitted together, as they need to be
+    for the shed to last through the seasons.[ You spend a few moments
+    admiring the workmanship of the carpenter, before turning your
+    mind to other matters./]
+#
+TEXT increment SHED.ROOF
+    [You jump up to have a look at the shed's roof, but like other roofs
+    in this game, it turns out not to be of any interest/Inspect the
+    roof however often you like, there's still nothing there/Nope, still
+    nothing there].
 #
 TEXT WELL.INFO
     [Once upon a time it was clearly a well built well, with a
@@ -6201,7 +6223,7 @@ TEXT THROW.ABYSS
     You hurl the # into the void beneath your feet.
 #
 TEXT DROP.ABYSS
-    _bounce[s/] off the invisible something under your feet and
+   / bounce[s/] off the invisible something under your feet and
     disappear[s/] in the abyss below you.
 #
 TEXT ROD..BIRD
@@ -6862,7 +6884,7 @@ TEXT increment EXITING.THE.MINE
 
 #
 TEXT DROP.ROOM
-   _clatter[/s] on the floor below.
+  / clatter[/s] on the floor below.
 #
 TEXT DROPPINGS.NO.GOOD
    [I can't imagine what you would want to do with giant rat droppings.
@@ -7306,9 +7328,13 @@ TEXT RIVER.INFO
     edges of the river banks are quite smooth, strongly suggesting that
     the water level sometimes rises above them.]
 #
-TEXT NO.DAMAGE.ALARM
-    Better be careful with that #! You might damage the alarm above the
-    door, and that would never do.
+TEXT increment NO.DAMAGE.ALARM
+    [Better be careful with that #! You might damage the alarm above the
+    door, and that would never do./I think I already suggested that
+    trying to hit that fire alarm is not too bright an idea./Listen,
+    bud, if I told you once, I've told you three times: stop engaging
+    in actions liable to cause damage to health and safety equipment! /
+    OK?/Aw, don't bother!.. I won't get you anywhere.]
 #
 TEXT assigned ANGRY.VOICES
     [You can't make out the words, but it sounds like dwarves having an
@@ -7525,7 +7551,7 @@ TEXT BIRD.IS.FREE
     table's edge, and bursts into a complicated bird-song cadenza/hops out
     of the cage, but instead of flying off, settles itself on the ground
     and starts singing/is clearly not hungry - it ignores the feeder table
-    and flies off in a quick flurry of wings/looks at you inquiringly,
+    and flies off in a quick flurry of wings/looks at you enquiringly,
     decides you really do mean it, and flies off].
 #
 TEXT NO.SHAKE.RUG
@@ -7609,10 +7635,16 @@ TEXT PATH.IN.RAVINE
 #
 TEXT EXAMINE.CAVE
     Draw yourself a good map and then you can examine the cave to your
-    hearts content.
+    heart's content.
 #
 TEXT NO.TREASURE
     [There's no treasure here/You aren't carrying any treasure]!
+#
+TEXT NO.OTHER.TREASURE
+    But [there's no/you aren't carrying any] other treasure[ here/]!
+#
+TEXT NO.OTHER.OBJECTS
+    But [there's no/you don't have any]thing else [here to pick up/to drop]!
 #
 TEXT NO.ALL
     [There is nothing here that you could pick up/You aren't carrying
@@ -7752,7 +7784,7 @@ TEXT MUGS.GAME
     Crossing #s is a mugs game! I won't even try.
 #
 TEXT CROSS.ENOUGH
-    The dar[/f is/ves are] already quite cross enough!
+    The dwar[/f is/ves are] already quite cross enough!
 #
 TEXT NOTHING.INTERESTING
     There's nothing interesting about the #.
@@ -7814,7 +7846,7 @@ TEXT ITS.RAVINE
     grow in profusion on both sides of the path].
 #
 TEXT WOODEN.SHED
-    The shed [walls/floor/ceiling/door] [are/is] made of
+    The [/dusty /]shed [walls/floor/ceiling/door] [are/is] made of
     well fitted wood planks, which despite their age still appear to be
     wind- and rain-proof.[/// Set into the door is a tiny and very dirty
     window][///, which provides a dim illumination to the shed's interior./.]
@@ -7823,11 +7855,11 @@ TEXT DUSTY.SHED
     The thick layer of dust offers nothing of significance to your
     probing gaze.
 #
-FRAGMENT assigned IS/ARE
-    [is/are]
+#FRAGMENT assigned IS/ARE
+#    [is/are]
 #
-TEXT NO.INTEREST
-    The # {IS/ARE} of no actual interest to you.
+#TEXT NO.INTEREST
+#    The # {IS/ARE} of no actual interest to you.
 #
 FRAGMENT cycle CREAKY.SHED.DOOR
     Behind you, the door slowly swings shut with a [tired/weary/quiet] creak.
@@ -7884,7 +7916,7 @@ TEXT SUICIDAL
     That would be suicidal!
 #
 TEXT BEACH.FROM.ABOVE
-    The beach far below is is simply a wide strip of sand between the
+    The beach far below is simply a wide strip of sand between the
     sea and the [sparse, scruffy vegetation at the cliff's foot/foot
     of the mountain].
 #
@@ -7903,8 +7935,11 @@ TEXT increment NO.PICK.FLOWERS
     Picking flowers is not what you are here for![ You'd be picking
     your nose next!/]
 #
-TEXT WELL.WORN.STEPS
-    The stone steps are well worn by feet of countless adventurers.
+TEXT cycle WELL.WORN.STEPS
+    The stone steps are well worn[ by feet of countless 
+    adventurers/. This is not entirely surprising, given the
+    number of visitor we get here/ by generations of adventurers in
+    pursuit of treasure and glory/ by many an adventuring foot].
 #
 TEXT RED.SANDSTONE
     It's well compacted, rather hard sandstone, somewhat reddish in colour.
@@ -7982,7 +8017,7 @@ TEXT increment BEAN.STEM
     in texture.[ I guess it needs to be, to support all that weight!/]
 #
 TEXT increment NO.CHEW.STEM
-    [Hmmm... An interesting idea! But doing so might not be te smartest
+    [Hmmm... An interesting idea! But doing so might not be the smartest
     thing in the world. /]I suggest you save the fangs for a better occasion.
 #
 TEXT NO.GRAB.BEANSTALK
@@ -8152,9 +8187,6 @@ TEXT TASTY.FOOD
 TEXT EAT.IT
     No half measures, please. Either eat it, or not!
 #
-TEXT FORCED.BLANK
-    _
-#
 TEXT increment NO.PISS.PLANT
     [Ingenious, but as any gardener will tell you, raw body waste is not
     good for plants. If you ever observed patches of dead grass where a
@@ -8195,8 +8227,9 @@ FRAGMENT SPIRE.HINT
     Are you trying to leave, taking the sunstone with you?_
 #
 TEXT
-    I'd pay attention to its colours, if I were you - there is quite
-    enough room here for experimenting with their effects.
+    I'd pay attention to its colours, if I were you - there is just 
+    enough room for moving about here, so you could experiment with
+    their effects.
 #
 FRAGMENT JUMP.HINT
     Still having problems getting the sunstone with you?_
@@ -8619,7 +8652,7 @@ TEXT NO.ENTER.GAP
 #
 TEXT increment WATERY.GAP
    The three-foot gap in the wall is spouting a noisy stream of water 
-   into the the chamber.
+   into the chamber.
 #
 TEXT NO.SEE.TORCH
    The few torches are quite high up the walls, and whatever little
@@ -8675,12 +8708,19 @@ TEXT IS.CANYON
 TEXT ORANGE.WALLS
    A most peculiar formation. Looks quite pretty in its way!
 #
-TEXT DARK.EXITS
-   Your light isn't strong enough for you to see into the #s leading
-   away from here.
+TEXT cycle DARK.EXITS
+   [Your light isn't strong enough for you to see into the #s leading
+   away from here/The #s are dark. There's nothing to be seen in 
+   them/It's dark there/Stare as hard as you care, there's just darkness
+   there in them #s/All that can be seen in the #s is an impenetrable 
+   darkness].
 #
-TEXT DARK.EXIT
-   It's dark in that #.
+TEXT cycle DARK.EXIT
+   [It's dark in that #/It's too dark in there to see anything/There's
+   nothing but darkness to be seen in that #/It's
+   dark in there/You can't see anything in the #, it's dark in 
+   there/It's too dark in there to see anything/You peer into the 
+   dark #, but there is nothing but darkness to be seen].
 #
 TEXT TOO.MANY.EXITS
    There are too many #s about. Please tell my in which direction
@@ -8840,7 +8880,7 @@ TEXT LAVA.SLIDE
    So much so that climbing up it look pretty much impossible.
 #
 TEXT THIS.IS.LAVA
-   Lava is a the the molten rock spewed out by volcanos, which solidifies
+   Lava is a the molten rock spewed out by volcanos, which solidifies
    as it cools down. The resulting rock can vary in hardness, depending
    on the amount of gas trapped within it. This lot here, for example, is
    pretty hard.
@@ -8874,7 +8914,7 @@ TEXT increment STREAM.HOLE
 TEXT assigned RESERVOIR.INFO
    This underground lake is in fact a pretty substantial body of water.
    One can't really tell by looking, because the water surface is rather
-   churned up the the stream crashing into it, but it is quite deep 
+   churned up the stream crashing into it, but it is quite deep 
    too.[ Who knows what monsters may live down there.../]
 #
 TEXT assigned  DARWINS.TRACKS
@@ -9002,7 +9042,7 @@ TEXT NO.MORE.IT
    If there ever was a # there, it is long gone.
 #
 TEXT STREAM.BEND
-   The stream flowing from the NW performs a 90 degree turn here and
+   The stream flowing from the NW performs a 90 degree turn here, and
    continues NE.
 #
 TEXT NO.SEE.INTO.MINE
@@ -9093,29 +9133,34 @@ TEXT DARK.ARCH
    The arched doorway leading out of this room is rather narrow,
    but not so narrow as to make it difficult for you to get through.
 #
-TEXT increment NO.BIG.DUNES
-   None of the dunes around here are *really* large, and you may be
-   able to traverse some of them.[ As to which ones, that's impossible to
-   tell just by looking - trial, error and patience is what it 
-   takes./=/=/=/=/]
+FRAGMENT NO.BIG.DUNES
+   None of the dunes around here are exceptionally large, [and you should be
+   able to traverse any of them./though I don't like the looks of the
+   ones to the]
 #
 FRAGMENT PERMANENT.DUNES
    [NE, north, NW and west/northwest///southwest/west and
-    southwest/north//southwest/south, SW and west/east, NE, north and
-    west/in all directions except to the southeast/northeast and
-    northwest//south/north//southeast and southwest/east, SE, south, SW
-    and west/east, NE, north, NW and west/northeast and northwest/south,
-    SW and west/north, NW, west and SW/NW, west, SW and south]
+   southwest/north//southwest/south, SW and west/east, NE, north and
+   west/in all directions except to the southeast/northeast and
+   northwest//south/north//southeast and southwest/east, SE, south, SW
+   and west/east, NE, north, NW and west/northeast and northwest/south,
+   SW and west/north, NW, west and SW/NW, west, SW and south]
 #
-TEXT increment SOME.BIG.DUNES
+FRAGMENT SOME.BIG.DUNES
    There are really big, permanent looking dunes to the
-   {PERMANENT.DUNES}. The rest doesn't look quite so forbidding and
-   may or may not be traversible[, but unfortunately that's not something
-   you can determine just by looking - trial, error and some patience
-   is the only answer/=/=/=/=/].
+   {PERMANENT.DUNES}[. The rest doesn't look quite so forbidding,
+   and you should have no problems in traversing them./, and I wouldn't
+   be too sure about crossing the ones to the]
+#
+FRAGMENT DUNE.TYPES
+  / [none of which look particularly large/some of them look large
+   enough to be a real obstacle/some of them really huge/some huge,
+   some merely large enough to be a serious nuisance].
 #
 TEXT DUNES.IN.DESERT
-   The black desert ripples with dunes as far as the eye can see.
+   [Except for the mighty cliff to the east, t/T]he black desert ripples
+   with dunes as far as the eye can see.[ The uniformity of the view is
+   only broken by some kind of a low rocky formation to the NE./]
 #
 TEXT SMALL.DUNES
    Looking into the desert, you can see that the dunes nearest to
@@ -9245,8 +9290,9 @@ TEXT increment MAYBE.BATS
    bats... well, maybe better not speculate on that one, eh?/] Anyway,
    none of them ever come near enough for an inspection.
 #
-TEXT STAR.LIGHTS
-   As we have already established, the lights below, are in fact stars.
+TEXT cycle STAR.LIGHTS
+   As we have already established, the lights below, are in fact 
+   stars.[ And very pretty they look too./]
 #
 TEXT ABYSS.WALL
    The irregular stone wall plunges down into fathomless darkness.
@@ -9376,12 +9422,12 @@ TEXT SLIMEY.BRICKS
    alone.
 #
 TEXT TIDE.LEVEL
-   It still says "CAUTION - HIGH TIDE LEVEL!" - a warning you would de
+   It still says "CAUTION - HIGH TIDE LEVEL!" - a warning you would do
    well to heed!
 #
 TEXT CULVERT.TUNNEL
    The brick culvert tunnel leads south, away from the grill and the
-   sea view, into smelly darkness.
+   sea view, into a smelly darkness.
 #
 TEXT TIDE.LINE
    The line is rather ominously close to the culvert roof.
@@ -9424,7 +9470,7 @@ TEXT ICY.SLIDE
    The ice slide is steep and smooth. Not a chance of climbing it.
 #
 TEXT CELLAR.VIEWING
-   The round cellar beyond the purtcullis, is made completely of brick.
+   The round cellar beyond the portcullis, is made completely of brick.
    Its floor slopes towards a small circular drain in its center.
    A large stone slab is poised over the dark exit leading north.
 #
@@ -9513,7 +9559,7 @@ TEXT NO.COLLECT.WATER
    too slow, to be of any practical use to you. 
 #
 TEXT NARROW.EXIT
-   That # looks very narrow, but you just might be able to squeese 
+   That # looks very narrow, but you just might be able to squeeze 
    through it, provided you leave any bulky stuff behind.
 #
 TEXT CRYSTAL.WALLS
@@ -9726,7 +9772,7 @@ TEXT TOWER.TO.SOUTH
    white tower.
 #
 TEXT CAST.SHADOW
-   It's just the shadow cast by the #. Not anyhting of particular interest.
+   It's just the shadow cast by the #. Not anything of particular interest.
 #
 TEXT IGNORE.SHADOWS
    There's many a shadow around here, naturally enough. Let's not get
@@ -9896,7 +9942,7 @@ TEXT SNORING.DWARVES
    Dwarf snoring is not a beautiful sound. Let's not dwell on it.
 #
 TEXT NO.APPARITIONS
-   Well, when I say "apparitions" I don't *really* mean "apparition" - it's
+   Well, when I say "apparitions" I don't *really* mean "apparitions" - it's
    just a figure of speech, to describe the sinister, but quite natural
    shadow-play on the walls.
 #
@@ -9945,6 +9991,61 @@ TEXT RESTORING.GAME
    Restoring game # ...
 
 #
+FRAGMENT DIR.IS
+   [north/NE/east/SE/south/SW/west/NW]
+#
+FRAGMENT assigned DIR.SEP
+   [ /, / and ]{DIR.IS}
+#
+TEXT SENTENCE.END
+   .
+#
+TEXT FEROCIOUS.WIND
+  / Ferocious wind makes a strange hissing noise as it swirls
+   the sand under the enormous, red sun.
+#
+FRAGMENT TALL.BLACK.SPIRE
+  / A tall black spire can be seen above the sands some way off in 
+   the [////////////westerly/=/=////northerly/southerly/] direction.
+#
+FRAGMENT MASSIVE.BLACK.SPIRE
+  / A massive black stone spire raises over the sands to
+   the [///////////////southwest/west/northwest///south/north/southeast/east].
+#
+TEXT FORCED.BLANK
+   _
+#
+TEXT increment NO.MAP
+   [Um... Didn't you know? Traditionally, it's the adventurer who does 
+   the mapping! And we do our level best to be traditional here./Maps
+   are for townie rats! Of course, if you drew one yourself - that would
+   be acceptable. Traditional even./No, no... *You* do the mapping in 
+   this game.]
+#
+TEXT HEHEHE
+   A hollow voice says "Hehehe..."
+
+#
+TEXT increment DOME.STEPS
+   Thoroughly worn by countless novice adventurers ferrying their
+   hard-won treasure out of the cave. [Amazingly enough, some of the
+   suckers never /Strange though it may be, some losers never /Pathetic,
+   isn't it?/][suss it out./take the hint./]
+#
+TEXT cycle NO.DROP.WORN
+   [You/=/Do trouble yourself] [need to/should/to] remove objects you 
+   are wearing, before [you can drop/dropping/trying to drop] them.
+#
+FRAGMENT cycle HANG.ON!
+
+   [Wait a minute!/Sorry, boss.../Hang on!/Look again!/But...]_
+#
+TEXT NO.EXCEPT
+   I don't understand. What do you mean "except #"? Makes no sense!
+#
+TEXT STATE.IS.NOW
+   The state is now #.
+#
 #######################################################################
 #
 TEXT JUSTIFY.NOW
@@ -9980,3 +10081,4 @@ TEXT ERROR
     to Mike Arnautov: mla@britishlibrary.net.
 #
 ###################################################################
+

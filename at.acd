@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2002.
+# Copyleft Mike Arnautov 1984-2003.
 #
 # The following acode procedures are associated with
 # individual places.
@@ -152,7 +152,7 @@ at hill
          set arg1, direction
       fin
       ifeq stage, mirror.world
-         smove building, track, something.strange
+         smove building, road, track, something.strange
          smove valley, forest.2, something.strange
          smove tower, outside.gates, north.of.building, something.strange
       fin
@@ -552,10 +552,13 @@ at cobbles
    ifkey look
       respond cobbles, just.them, cobbles
       respond light, looks.like.daylight
-      ifkey passage
+      ifany tunnel, passage, corridor
          set status, 1
       fin
       proceed
+   fin
+   ifkey go, light
+      move in.cave
    fin
    ifkey go
       or
@@ -563,7 +566,7 @@ at cobbles
       ifany passage, crawl
          call follow.it in.cave, east, debris, west
       fin
-      move out, surface, entrance, east, light, in.cave
+      move out, surface, entrance, east, in.cave
       move inward, dark, west, debris, debris
       move pit, pit
    fin
@@ -577,7 +580,7 @@ at debris
    fin
    ifkey look
       respond debris, mud, no.future.in.it
-      respond passage, is.passage, 0
+      respond passage, tunnel, corridor, is.passage, 0
       respond canyon, is.canyon, 0
       proceed
    fin
@@ -638,7 +641,7 @@ at bird.chamber
          set status, 1
       fin
       respond canyon, is.canyon, 1
-      respond passage, is.passage, 1
+      respond passage, tunnel, corridor, is.passage, 1
       respond walls, stone, river, orange.walls
       proceed
    fin
@@ -664,17 +667,20 @@ at bird.chamber
 #
 at pit
    ifeq nugget.room, 0
-      ifhave nugget
-         apport steps, limbo
-      else
-         apport steps, pit
-      fin
+      and
+      not
+   ifhave gold
+      apport steps, pit
+   else
+      apport steps, limbo
    fin
    ifkey look
       respond west, crack, crack.info
       respond down, pit, no.see.down.there, 1
+      ifkey steps
+         and
       ifhere steps
-         respond steps, well.worn.steps
+         quip dome.steps
       fin
       proceed
    fin
@@ -723,15 +729,7 @@ at mists
    ifeq stage, closing.soon
       call closing.time
    fin
-   ifeq nugget.room, 0         # He hasn't been clever
-      ifhave nugget
-         apport steps, limbo
-         set mists, steps.gone
-      else
-         apport steps, pit
-         set mists, steps.present
-      fin
-   fin
+   apport steps, limbo
    ifkey look
       ifkey hall
          set status, 1
@@ -739,6 +737,11 @@ at mists
       ifkey dome
          say dome.state
          quip blank
+      fin
+      ifkey steps
+         and
+      ifeq mists, steps.present
+         quip dome.steps
       fin
       respond crack, passage, dark.exit, arg2
       respond staircase, mists.stairs
@@ -758,13 +761,13 @@ at mists
       move down, staircase, north, mtking
       move y2, jumble
       ifany climb, up, pit, dome, steps
-         ifhere steps
+         ifeq mists, steps.present
             move pit
          fin
          quip dome.unclimbable
       fin
    fin
-   respond passage, crack, staircase, hah!
+   respond passage, tunnel, corridor, crack, staircase, steps, hah!
    set throw.it, true
    lda throw.text, up.the.dome
    lda throw.here, pit
@@ -845,7 +848,7 @@ at mtking
       ifkey hall
          set status, 1
       fin
-      respond passage, dark.exits, passage
+      respond passage, tunnel, corridor, dark.exits, passage
       proceed
    fin
    set place.ptr, 0
@@ -860,7 +863,7 @@ at mtking
       ifany steps, up, east
          lda place.ptr, mists
       fin
-      respond passage, too.many.exits, passage
+      respond passage, tunnel, corridor, too.many.exits, passage
       ifkey north
          lda place.ptr, low.n/s.passage
       otherwise
@@ -927,7 +930,7 @@ at mtking
       fin
       move place.ptr
    fin
-   respond passage, steps, hall, hah!
+   respond passage, tunnel, corridor, steps, hall, hah!
 #
 #=====================================================================
 #
@@ -1018,6 +1021,8 @@ at west.pit
          lda arg1, climb
       otherwise
       ifkey climb
+         or
+      ifeq status, 1
       else
          quip hah!
       fin
@@ -1174,7 +1179,7 @@ at low.n/s.passage
    fin
    ifkey look
       respond hole, no.see.down.there, 0
-      respond passage, dark.exits, passage
+      respond passage, tunnel, corridor, dark.exits, passage
       proceed
    fin
    ifkey go
@@ -1184,13 +1189,13 @@ at low.n/s.passage
       move north, y2, y2
       move down, hole, dirty
       move hole, dirty
-      ifkey passage
+      ifany tunnel, passage, corridor
          call follow.it, y2, north, mtking, south
       fin
    fin
    lda throw.here, dirty
    lda throw.text, throw.hole
-   respond passage, hole, hah!
+   respond passage, tunnel, corridor, hole, hah!
 #
 #=====================================================================
 #
@@ -1225,7 +1230,7 @@ at west.side.chamber
       ifkey chamber
          set status, 1
       fin
-      respond passage, dark.exit, passage
+      respond passage, tunnel, corridor, dark.exit, passage
       proceed
    fin
    ifkey go
@@ -1242,7 +1247,7 @@ at west.side.chamber
 at y2
    unflag east.window, no.dwarf
    ifkey look
-      respond passage, dark.exits, passage
+      respond passage, tunnel, corridor, dark.exits, passage
       respond wall, jumble, all.broken.up
       respond y2, rock, surveyors.mark
       proceed
@@ -1274,11 +1279,11 @@ at y2
       move south, low.n/s.passage
       move east, wall, jumble, jumble
       move west, east.window
-      ifkey passage
+      ifany tunnel, passage, corridor
          call follow.it, east.window, west, low.n/s.passage, east
       fin
    fin
-   respond passage, jumble, wall, rock, y2, hah!
+   respond passage, tunnel, corridor, jumble, wall, rock, y2, hah!
 #
 #=====================================================================
 #
@@ -1311,6 +1316,7 @@ at east.window
       respond mist, this.is.mist
       respond marks, dust, cant.tell
       respond floor, misty.floor
+      respond passage, tunnel, corridor, dark.exit, passage
       proceed
    fin
    ifany go, jump
@@ -1323,9 +1329,9 @@ at east.window
    ifkey go
       or
    ifeq status, 1
-      move east, y2, y2
+      move east, passage, tunnel, corridor, y2, y2
    fin
-   respond pit, mist, marks, dust, hah!
+   respond pit, mist, marks, dust, passage, tunnel, corridor, hah!
    lda throw.here, mirror.canyon
    lda throw.text, throw.pit
 #
@@ -1400,7 +1406,7 @@ at streampit
 #
 at dusty
    ifkey look
-      respond passage dark.exit, passage
+      respond passage, tunnel, corridor dark.exit, passage
       respond hole, no.see.down.there, 0
       respond dust, rock, dusty.place
       respond crack, useless.cracks
@@ -1673,7 +1679,7 @@ at long.hall.west
       ifkey hall
          set status, 1
       fin
-      respond passage, ns.passage
+      respond passage, tunnel, corridor, ns.passage
       proceed
    fin
    ifkey go
@@ -1682,15 +1688,15 @@ at long.hall.west
       move east, hall, long.hall.east
       move north, crossover
       move south, mazed.107
-      respond passage, need.a.direction
+      respond passage, tunnel, corridor, need.a.direction
    fin
-   respond passage, hah!
+   respond passage, tunnel, corridor, hah!
 #
 #=====================================================================
 #
 at crossover
    ifkey look
-      respond passage, dark.exits, passage
+      respond passage, tunnel, corridor, dark.exits, passage
       proceed
    fin
    ifkey go
@@ -1700,9 +1706,9 @@ at crossover
       move north, dead.end.1
       move east, west.side.chamber
       move south, long.hall.west
-      respond passage, too.many.exits, passage
+      respond passage, tunnel, corridor, too.many.exits, passage
    fin
-   respond passage, hah!
+   respond passage, tunnel, corridor, hah!
 #
 #=====================================================================
 #
@@ -1723,7 +1729,7 @@ at dead.end.1
 at complex
    ifkey look
       respond crawl, dark.exit, crawl
-      respond passage, dark.exits, passage
+      respond passage, tunnel, corridor, dark.exits, passage
       respond up, no.see.up.there
       proceed
    fin
@@ -1737,7 +1743,7 @@ at complex
       move west, bedquilt, bedquilt
       move north, shell, shell
       move east, crawl, anteroom
-      ifkey passage
+      ifany tunnel, passage, corridor
          call follow.it, bedquilt, west, shell, north
       fin
    fin
@@ -1752,7 +1758,7 @@ at bedquilt
       ifkey bedquilt
          set status, 1
       fin
-      respond passage, dark.exits, passage
+      respond passage, tunnel, corridor, dark.exits, passage
       respond hole, useful.holes, 0
       proceed
    fin
@@ -1768,7 +1774,7 @@ at bedquilt
       move west, swiss
       move slab, slab
       respond bedquilt, you.are.there
-      ifkey passage
+      ifany tunnel, passage, corridor
          call follow.it, swiss, west, complex, east
       fin
       ifkey nw
@@ -1816,7 +1822,7 @@ at swiss
 #
    ifkey look
       respond block, bedrock.block
-      respond passage, dark.exits, passage
+      respond passage, tunnel, corridor, dark.exits, passage
       respond wall, hole, useful.holes, 1
       proceed
    fin
@@ -1837,7 +1843,7 @@ at swiss
             quip still.where.you.were
          fin
       fin
-      respond passage, out, too.many.exits, passage
+      respond passage, tunnel, corridor, out, too.many.exits, passage
       move ne, bedquilt
       move west, east.pit.end
       move canyon, tall.e/w.canyon
@@ -1857,7 +1863,7 @@ at swiss
 #
 at east.pit.end
    ifkey look
-      respond passage, dark.exits, passage
+      respond passage, tunnel, corridor, dark.exits, passage
       respond down, pit, pit.view, 0
       respond path, pit.path
       respond opening, hole, lotsa.holes
@@ -1871,7 +1877,7 @@ at east.pit.end
       move west, cross, path, west.pit.end
       move down, pit, east.pit
       respond opening, hole, no.way.there
-      ifkey passage
+      ifany tunnel, passage, corridor
          call follow.it, swiss, east, west.pit.end, west
       fin
    fin
@@ -1889,7 +1895,7 @@ at slab
       respond slab, slab.info
       respond ceiling, up, its.a.ceiling, c.slab.room
       respond hole, no.see.up.there
-      respond passage, dark.exits, passage
+      respond passage, tunnel, corridor, dark.exits, passage
       respond wall, may.climb.wall
       respond boulder, boulders.block
       proceed
@@ -1910,11 +1916,11 @@ at slab
       move bedquilt, bedquilt
       respond east, west, boulders, boulders.block
       respond slab, you.are.there
-      ifkey passage
+      ifany tunnel, passage, corridor
          call follow.it, bedquilt, north, west.pit.end, south
       fin
    fin
-   respond passage, ceiling, hole, boulder, wall, slab, hah!
+   respond passage, tunnel, corridor, ceiling, hole, boulder, wall, slab, hah!
 #
 #=====================================================================
 #
@@ -2107,7 +2113,10 @@ at tall.e/w.canyon
       move east, wide.n/s.canyon
       move west, dead.end.3
       move north, crawl, swiss
-      move south, light, in, arch, valuers
+      move south, in, arch, valuers
+      ifkey go, light
+         move valuers
+      fin
       ifkey canyon
          call follow.it, dead.end.3, west, wide.n/s.canyon, e
       fin
@@ -2361,7 +2370,7 @@ at narrow.corridor
    set its.a.hole, 1    # Skip the quip, if not uttered yet.
    ifkey look
       respond plant, leaves, hole, beanstalk.leaves
-      respond corridor, dark.exit, corridor
+      respond tunnel, passage, corridor, dark.exit, corridor
       proceed
    fin
    ifkey jump
@@ -2376,14 +2385,14 @@ at narrow.corridor
       move east, down, climb, hole, west.pit
       move west, corridor, giant.room
    fin
-   respond corridor, plant, leaves, hole, hah!
+   respond tunnel, passage, corridor, plant, leaves, hole, hah!
 #
 #=====================================================================
 #
 at incline
    ifkey look
       respond down, no.see.down.there, 0
-      respond passage, dark.exit, passage
+      respond passage, tunnel, corridor, dark.exit, passage
       respond incline, steep.incline
       proceed
    fin
@@ -2395,7 +2404,7 @@ at incline
       move north, cavern, passage, cavern
       smove down, climb, incline, low, oof
    fin
-   respond passage, incline, hah!
+   respond passage, tunnel, corridor, incline, hah!
    lda throw.here, low
    lda throw.text, throw.room
 #
@@ -2407,7 +2416,7 @@ at giant.room
    fin
    ifkey look
       respond ceiling, up, its.a.ceiling, c.giant.room
-      respond passage, dark.exits, passage
+      respond passage, tunnel, corridor, dark.exits, passage
       proceed
    fin
    ifkey go
@@ -2416,15 +2425,16 @@ at giant.room
       move south, corridor, narrow.corridor
       move east, irregular.tunnel
       move north, immense.n/s.passages
-      respond passage, too.many.exits, passage
+      respond passage, tunnel, corridor, too.many.exits, passage
    fin
-   respond ceiling, passage, note, notice, message, inscription, words, hah!
+   respond ceiling, note, notice, message, inscription, words, hah!
+   respond tunnel, passage, corridor, hah!
 #
 #=====================================================================
 #
 at immense.n/s.passages
    ifkey look
-      respond passage, dark.exit, passage
+      respond passage, tunnel, corridor, dark.exit, passage
       proceed
    fin
    set vessel, none
@@ -2482,7 +2492,7 @@ at immense.n/s.passages
          move cavern
       fin
    fin
-   respond passage, hah!
+   respond passage, tunnel, corridor, hah!
 #
 #=====================================================================
 #
@@ -2491,7 +2501,7 @@ at cavern
       respond waterfall, cavern.stream, 1
       respond stream, cavern.stream, 0
       respond whirlpool, cavern.stream, 2
-      respond passage, dark.exits, passage
+      respond passage, tunnel, corridor, dark.exits, passage
       respond hole, large.hole
    fin
    lda throw.here, ylem
@@ -2511,7 +2521,7 @@ at cavern
    ifeq status, 1
       move south, out, immense.n/s.passages
       move west, incline, incline
-      ifkey passage
+      ifany tunnel, passage, corridor
          call follow.it, immense.n/s.passages, south, incline, west
       fin
       ifany jump, down, whirlpool, hole      # Jumping into whirlpool
@@ -2567,7 +2577,7 @@ at oriental
       move west, crawl, low
       move north, passage, up, cavern, misty
    fin
-   respond passage, crawl, hah!
+   respond passage, tunnel, corridor, crawl, hah!
 #
 #=====================================================================
 #
@@ -2616,7 +2626,7 @@ at alcove
       ifkey alcove
          set status, 1
       fin
-      respond tunnel, passage, light, plover.light, tunnel
+      respond tunnel, passage, corridor, light, plover.light, tunnel
       respond path, plover.path
       proceed
    fin
@@ -2647,7 +2657,7 @@ at alcove
          move plover
       fin
    fin
-   respond tunnel, passage, path, alcove, hah!
+   respond tunnel, passage, corridor, path, alcove, hah!
 #
 #=====================================================================
 #
@@ -2658,7 +2668,7 @@ at plover
       ifkey chamber
          set status, 1
       fin
-      respond tunnel, corridor, dark.exit, arg2
+      respond tunnel, passage, corridor, dark.exit, arg2
       respond light, source.not.seen
       proceed
    fin
@@ -2716,7 +2726,7 @@ at dark
          move plover
       fin
    fin
-   respond corridor, tablet, stone, hah!
+   respond tunnel, passage, corridor, tablet, stone, hah!
 #
 #=====================================================================
 #
@@ -2725,7 +2735,7 @@ at arched
       ifany hall, arched, arch
          set status, 1
       fin
-      respond passage, dark.exits, passage
+      respond passage, tunnel, corridor, dark.exits, passage
       proceed
    fin
    ifkey go
@@ -2733,18 +2743,18 @@ at arched
    ifeq status, 1
       move down, se, shell, shell
       move east, up, arched.corridor.1
-      ifkey passage
+      ifany tunnel, passage, corridor
          call follow.it, shell, se, arched.corridor.1, east
       fin
       respond arched, hall, you.are.there
    fin
-   respond passage, arched, hall, arch, hah!
+   respond passage, tunnel, corridor, arched, hall, arch, hah!
 #
 #=====================================================================
 #
 at shell
    ifkey look
-      respond passage, dark.exits, passage
+      respond passage, tunnel, corridor, dark.exits, passage
       respond stone, rock, wall, floor, sedimentary.rock
       respond shell, shells, its.shells
       proceed
@@ -2754,7 +2764,7 @@ at shell
    ifeq status, 1
       move up, west, hall, arched
       move down, corridor, ragged.corridor
-      respond passage, too.many.exits, passage
+      respond passage, tunnel, corridor, too.many.exits, passage
       ifany south, complex
          ifhave clam
             quip bivalve.too.big, clam
@@ -2765,13 +2775,13 @@ at shell
          move complex
       fin
    fin
-   respond passage, stone, shell, rock, wall, floor, hah!
+   respond passage, tunnel, corridor, stone, shell, rock, wall, floor, hah!
 #
 #=====================================================================
 #
 at ragged.corridor
    ifkey look
-      ifkey corridor
+      ifany tunnel, passage, corridor
          set status, 1
       fin
       respond wall, sharp.walls
@@ -2782,7 +2792,7 @@ at ragged.corridor
    ifeq status, 1
       move up, shell, shell
       move down, culdesac
-      ifkey corridor
+      ifany tunnel, passage, corridor
          call follow.it, shell, up, culdesac, down
       fin
    fin
@@ -2806,7 +2816,7 @@ at anteroom
       ifkey anteroom
          set status, 1
       fin
-      respond passage, dark.exits, passage
+      respond passage, tunnel, corridor, dark.exits, passage
       respond remnants, digging.remnants
       proceed
    fin
@@ -2817,14 +2827,11 @@ at anteroom
       move south, chapel
       move up, complex
       move west, bedquilt
-      ifkey east
-         unflag hints, witt.help
-         move witts.end
-      fin
+      move east, witts.end
       respond anteroom, you.are.there
-      respond passage, too.many.exits, passage
+      respond passage, tunnel, corridor, too.many.exits, passage
    fin
-   respond passage, anteroom, remnants, hah!
+   respond passage, tunnel, corridor, anteroom, remnants, hah!
 #
 #=====================================================================
 #
@@ -2853,33 +2860,29 @@ at mazed.107
 #=====================================================================
 #
 at witts.end
-   local stuck
-#
+   ifle stuck, 0
+      set stuck, 65
+   fin
    ifkey look
-      respond passage, dark.exits, passage
+      respond passage, tunnel, corridor, dark.exits, passage
       proceed
    fin
    ifkey go
       or
    ifeq status, 1
-      respond passage, too.many.exits, passage
+      respond passage, tunnel, corridor, too.many.exits, passage
       ifkey  west
-         unflag hints, witt.help
          move witts.end
       fin
       ifany north, south, east, up, down, ne, nw, se, sw
-         ifflag hints, witt.help
-            set stuck, 50
-         else
-            set stuck, 90
-         fin
          chance stuck
+            sub stuck, 5
             move witts.end
          fin
          move anteroom
       fin
    fin
-   respond passage, hah!
+   respond passage, tunnel, corridor, hah!
 #
 #=====================================================================
 #
@@ -2914,6 +2917,7 @@ at west.window
       respond mist, this.is.mist
       respond marks, dust, cant.tell
       respond floor, misty.floor
+      respond passage, tunnel, corridor, dark.exit, passage
       proceed
    fin
    ifany go, jump
@@ -2926,9 +2930,9 @@ at west.window
    ifkey go
       or
    ifeq status, 1
-      move west, junction
+      move west, passage, tunnel, corridor, junction
    fin
-   respond pit, mist, marks, dust, hah!
+   respond pit, mist, marks, dust, passage, tunnel, corridor, hah!
    lda throw.here, mirror.canyon
    lda throw.text, throw.pit
 #
@@ -2996,7 +3000,7 @@ at reservoir
       respond hole, stream, stream.hole
       respond mist, this.is.mist
       respond reservoir, reservoir.info
-      respond passage, reservoir.passages, 0
+      respond passage, tunnel, corridor, reservoir.passages, 0
       respond causeway, cant.see.properly, causeway
       proceed
    fin
@@ -3023,7 +3027,7 @@ at reservoir.north
       respond hole, stream, stream.hole
       respond mist, this.is.mist
       respond reservoir, reservoir.info
-      respond passage, reservoir.passages, 1
+      respond passage, tunnel, corridor, reservoir.passages, 1
       respond tracks, ground, darwins.tracks
       proceed
    fin
@@ -3058,7 +3062,7 @@ at chamber
    ifkey look
       respond mist, this.is.mist
       respond wall, warm.wall
-      respond passage, dark.exits, passage
+      respond passage, tunnel, corridor, dark.exits, passage
       ifkey chamber
          set status, 1
       fin
@@ -3070,7 +3074,7 @@ at chamber
       move south, reservoir, reservoir.north
       move northeast, balcony, balcony
       respond chamber, you.are.there
-      ifkey passage
+      ifany tunnel, passage, corridor
          call follow.it, balcony, ne, reservoir.north, south
       fin
    fin
@@ -3103,7 +3107,7 @@ at balcony
       ifkey chamber
          set status, 1
       fin
-      respond tunnel, passage, dark.exit, tunnel
+      respond tunnel, passage, corridor, dark.exit, tunnel
       respond balcony, this.is.balcony
       respond balustrade, this.is.balustrade
       respond torches, walls, balcony.torches
@@ -3220,13 +3224,13 @@ at sw.of.chasm
          move ne.of.chasm
       fin
    fin
-   respond corridor, path, hah!
+   respond tunnel, passage, corridor, path, hah!
 #
 #=====================================================================
 #
 at sloping
    ifkey look
-      ifkey corridor
+      ifany tunnel, passage, corridor
          set status, 1
       fin
       proceed
@@ -3236,21 +3240,15 @@ at sloping
    ifeq status, 1
       move down, sw, out, low, low
       move up, ne, chasm, sw.of.chasm
-      ifkey corridor
+      ifany tunnel, passage, corridor
          call follow.it, sw.of.chasm, ne, low, sw
       fin
    fin
-   respond corridor, hah!
+   respond tunnel, passage, corridor, hah!
 #
 #=====================================================================
 #
 at secret.n/e.canyon.1
-   ifkey look
-      ifkey canyon
-         set status, 1
-      fin
-      proceed
-   fin
    ifkey carcass
       and
    ifnear dragon
@@ -3259,9 +3257,16 @@ at secret.n/e.canyon.1
       fakearg carcass, dragon
    fin
    ifkey rug
-      ifeq dragon, on.rug
-         quip dragon.guards.rug
+      and
+   ifeq dragon, on.rug
+      respond look, rug.under.dragon
+      respond get, pull, roll, wash, fly, dragon.guards.rug
+   fin
+   ifkey look
+      ifkey canyon
+         set status, 1
       fin
+      proceed
    fin
    ifkey go
       or
@@ -3286,16 +3291,17 @@ at secret.n/e.canyon.1
 #=====================================================================
 #
 at secret.n/e.canyon.2
+   ifkey rug
+      and
+   ifeq dragon, on.rug
+      respond look, rug.under.dragon
+      respond get, pull, roll, wash, fly, dragon.guards.rug
+   fin
    ifkey look
       ifkey canyon
          set status, 1
       fin
       proceed
-   fin
-   ifkey rug
-      ifeq dragon, on.rug
-         quip dragon.guards.rug
-      fin
    fin
    ifkey go
       or
@@ -3315,7 +3321,7 @@ at secret.n/e.canyon.2
          call follow.it, secret.n/s.canyon.1, n, secret.e/w.canyon, e
       fin
    fin
-   respond canyon hah!
+   respond canyon, rug, dragon, hah!
 #
 #=====================================================================
 #
@@ -3456,7 +3462,7 @@ at ne.of.chasm
 #
 at corridor
    ifkey look
-      ifkey corridor
+      ifany tunnel, passage, corridor
          set status, 1
       fin
       proceed
@@ -3468,11 +3474,11 @@ at corridor
       move east, fork, fork
       move view, breathtaker
       move barren, barren
-      ifkey corridor
+      ifany tunnel, passage, corridor
          call follow.it, ne.of.chasm, west, fork, east
       fin
    fin
-   respond corridor, hah!
+   respond tunnel, passage, corridor, hah!
 #
 #=====================================================================
 #
@@ -3490,9 +3496,9 @@ at fork
       move se, down, limestone
       move view, breathtaker
       move barren, barren
-      respond corridor, fork, too.many.exits, corridor
+      respond tunnel, passage, corridor, fork, too.many.exits, corridor
    fin
-   respond corridor, fork, hah!
+   respond tunnel, passage, corridor, fork, hah!
 #
 #=====================================================================
 #
@@ -3501,7 +3507,7 @@ at warmjunctn
       ifkey junction
          set status, 1
       fin
-      respond passage, crawl, dark.exit, arg2
+      respond passage, tunnel, corridor, crawl, dark.exit, arg2
       respond wall, warm.wall
       proceed
    fin
@@ -3527,7 +3533,7 @@ at breathtaker
       respond shadows, wall, shadows, no.apparitions
       respond volcano, gorge, volcano.sight
       respond fountains, flow, molten.lava
-      respond passage, dark.exit, passage
+      respond passage, tunnel, corridor, dark.exit, passage
       respond entrance, valley, cant.see.much, valley
       respond glow, lava, river, fire, lava.glows
       respond island, lake, geyser, hellish.scene
@@ -3624,7 +3630,7 @@ at boulder.chamber
 at limestone
    ifkey look
       respond limestone, formations, odd.formations
-      ifkey passage
+      ifany tunnel, passage, corridor
          set status, 1
       fin
       proceed
@@ -3635,11 +3641,11 @@ at limestone
       move north, up, fork, fork
       move south, down, barren, barren
       move view, breathtaker
-      ifkey passage
+      ifany tunnel, passage, corridor
          call follow.it, barren, south, fork, north
       fin
    fin
-   respond passage, limestone, formations, hah!
+   respond passage, tunnel, corridor, limestone, formations, hah!
 #
 #=====================================================================
 #
@@ -3648,7 +3654,7 @@ at barren
    call fake.note
    ifkey look
       respond in, entrance, east, dark.there, in
-      respond passage, dark.exit, passage
+      respond passage, tunnel, corridor, dark.exit, passage
       respond limestone, its.a.mineral, limestone
       proceed
    fin
@@ -3949,6 +3955,13 @@ at sandstone
       fin
       proceed
    fin
+   ifkey read
+      ifkey plaque
+         or
+      ifeq status, 1
+         quip plaque.info
+      fin
+   fin
    ifkey go
       or
    ifeq status, 1
@@ -4042,7 +4055,7 @@ at insafe                    # Inside the safe - strange stuff happens here!
 #
 at wide.n/s.corridor
    ifkey look
-      ifkey corridor
+      ifany tunnel, passage, corridor
          set status, 1
       fin
       proceed
@@ -4052,11 +4065,11 @@ at wide.n/s.corridor
    ifeq status, 1
       move south, mtking
       move north, wide.e/w.corridor
-      ifkey corridor
+      ifany tunnel, passage, corridor
          call follow.it, mtking, south, wide.e/w.corridor, north
       fin
    fin
-   respond corridor, hah!
+   respond tunnel, passage, corridor, hah!
 #
 #=====================================================================
 #
@@ -4065,7 +4078,7 @@ at wide.e/w.corridor
       ifkey bend
          set status, 1
       fin
-      respond corridor, dark.exits, corridor
+      respond tunnel, passage, corridor, dark.exits, corridor
       proceed
    fin
    ifkey go
@@ -4073,18 +4086,18 @@ at wide.e/w.corridor
    ifeq status, 1
       move south, sw, west, wide.n/s.corridor
       move north, ne, east, toolroom
-      ifkey corridor
+      ifany tunnel, passage, corridor
          call follow.it, toolroom, east, wide.n/s.corridor, west
       fin
    fin
-   respond corridor, hah!
+   respond tunnel, passage, corridor, hah!
 #
 #=====================================================================
 #
 at toolroom
    ifkey look
       respond ceiling, up, its.a.ceiling, c.toolroom
-      respond corridor, dark.exit, corridor
+      respond tunnel, passage, corridor, dark.exit, corridor
       respond wall, words, note, notice, toolroom.notice
       proceed
    fin
@@ -4093,7 +4106,7 @@ at toolroom
    ifeq status, 1
       move out, south, corridor, wide.e/w.corridor
    fin
-   respond corridor, hah!
+   respond tunnel, passage, corridor, hah!
 #
 #=====================================================================
 #
@@ -4110,7 +4123,7 @@ at division.in.passage
       move east, cubicle
       respond passage, tunnel, corridor, need.a.direction
    fin
-   respond corridor, passage, tunnel, hah!
+   respond tunnel, passage, corridor, passage, tunnel, hah!
 #
 #=====================================================================
 #
@@ -4119,7 +4132,7 @@ at cubicle
       respond steps, well.worn.steps
       respond sandstone, red.sandstone
       respond doorway, its.just.a, doorway
-      respond passage, corridor, dark.exit, passage
+      respond tunnel, passage, corridor, dark.exit, passage
       proceed
    fin
    ifkey go
@@ -4128,7 +4141,7 @@ at cubicle
       move up, steps, east, doorway, sandstone
       move south, passage, corridor, out, division.in.passage
    fin
-   respond steps, sandstone, doorway, passage, corridor, hah!
+   respond steps, sandstone, doorway, passage, corridor, tunnel, hah!
 #
 #=====================================================================
 #
@@ -4155,7 +4168,7 @@ at irregular.tunnel
    ifkey look
       respond ceiling, up, its.a.ceiling, c.irregular.tunnel
       respond blockage, partial.blockage
-      ifkey tunnel
+      ifany tunnel, passage, corridor
          set status, 1
       fin
       proceed
@@ -4165,7 +4178,7 @@ at irregular.tunnel
    ifeq status, 1
       move south, giant.room
       move north, blockage, glassy
-      ifkey tunnel
+      ifany tunnel, passage, corridor
          call follow.it, glassy, north, giant.room, south
       fin
    fin
@@ -4226,7 +4239,7 @@ at lair
       fin
       respond lair, you.are.there
    fin
-   respond stalactite, light, wall, shadow, shadows, hah!
+   respond stalactite, wall, shadow, shadows, hah!
    respond passage, tunnel, corridor, lair, hah!
 #
 #=====================================================================
@@ -4236,7 +4249,7 @@ at bottomless.brink
       respond pit, down, pit.no.bottom
       respond edge, brink, firm.edge
       respond ledge, pit.ledge, 0
-      respond passage, dark.exit, passage
+      respond passage, tunnel, corridor, dark.exit, passage
       proceed
    fin
    ifkey jump
@@ -4833,10 +4846,13 @@ at bottomless.brink.east
          call plunge
       fin
    fin
+   ifkey go, light
+      move bottomless.brink
+   fin
    ifkey go
       or
    ifeq status, 1
-      move north, ledge, passage, corridor, tunnel, light, bottomless.brink
+      move north, ledge, passage, corridor, tunnel, bottomless.brink
       move in, northeast, crack, crack.entry
    fin
    respond pit, brink, ledge, passage, tunnel, corridor, crack, hah!
@@ -4867,7 +4883,7 @@ at crack.entry
 #
 at crack.north
    ifkey look
-      respond passage, crack, dark.exit, arg2
+      respond passage, tunnel, corridor, crack, dark.exit, arg2
       proceed
    fin
    ifnear slime
@@ -5024,7 +5040,7 @@ at arched.fork
       ifany fork, arch, arched
          set status, 1
       fin
-      respond passage, dark.exits, passage
+      respond passage, tunnel, corridor, dark.exits, passage
       respond coral, its.coral
       proceed
    fin
@@ -5034,13 +5050,13 @@ at arched.fork
       move south, arched.corridor.2
       move north, fourier, fourier
       move east, jonah, jonah
-      respond passage, coral, too.many.exits, passage
+      respond passage, tunnel, corridor, coral, too.many.exits, passage
       respond fork, arch, arched, you.are.there
    fin
    ifkey get, coral
       quip not.required
    fin
-   respond passage, fork, arch, arched, coral, hah!
+   respond passage, tunnel, corridor, fork, arch, arched, coral, hah!
 #
 #=====================================================================
 #
@@ -5065,7 +5081,7 @@ at fourier
    ifkey get, coral
       quip coral, not.required
    fin
-   respond passage, fourier, coral, hah!
+   respond passage, tunnel, corridor, fourier, coral, hah!
 #
 #=====================================================================
 #
@@ -5074,7 +5090,7 @@ at rock.shelf
    ifkey look
       respond steps, beach.steps
       respond coral, its.coral
-      respond passage, dark.way, passage
+      respond passage, tunnel, corridor, dark.way, passage
       respond beach, rocky.beach.view
       respond water, horizon, sea.horizon
       respond shelf, nothing.special, shelf
@@ -5444,7 +5460,7 @@ at jonah
       fin
       respond coral, its.coral
       respond wall, ribs, ribbed.walls
-      respond passage, dark.exit, passage
+      respond passage, tunnel, corridor, dark.exit, passage
       proceed
    fin 
    ifkey go
@@ -5453,7 +5469,7 @@ at jonah
       move south, in, jonah, hall, in.jonah
       move west, out, passage, coral, fork, arched.fork
    fin
-   respond passage, coral, hall, jonah, ribs, wall, hah!
+   respond passage, tunnel, corridor, coral, hall, jonah, ribs, wall, hah!
 #
 #=====================================================================
 #
@@ -5565,7 +5581,7 @@ at by.figure
 #
 at plain.1
    ifkey look
-      respond passage, dark.exit, passage
+      respond passage, tunnel, corridor, dark.exit, passage
       proceed
    fin
    ifkey go, on
@@ -5577,7 +5593,7 @@ at plain.1
       move south, out, passage, by.figure
       move north, in, plain.2
    fin
-   respond passage, hah!
+   respond passage, tunnel, corridor, hah!
 #
 #=====================================================================
 #
@@ -5619,7 +5635,7 @@ at plain.2
 at plain.3
    call phog
    ifkey look
-      respond passage, opening, dark.exit, passage
+      respond passage, tunnel, corridor, opening, dark.exit, passage
       respond cairn, rock, glowing.caern
       proceed
    fin
@@ -5646,7 +5662,7 @@ at nondescript
       ifkey chamber 
          set status, 1
       fin
-      respond passage, crawl, dark.exit, arg2
+      respond passage, tunnel, corridor, crawl, dark.exit, arg2
       proceed
    fin
    ifkey go
@@ -5661,9 +5677,9 @@ at nondescript
 #
 at pentagram
    ifkey look
-      proceed
       respond crawl, crack, dark.exit, arg2
       respond floor, pentagram, pentagram.info
+      proceed
    fin
    ifany open, close
       proceed
@@ -5732,7 +5748,7 @@ at tube
       move down, climb, chimney, chimney
       move s, slide, tube, tube.slide
       move nw, basalt.shelf
-      ifkey light
+      ifkey go, light
          and
       ifgt tube, 1
          move, basalt.shelf
@@ -5771,7 +5787,7 @@ at tube.slide
 #
 at north.of.basilisk
    ifkey look
-      ifkey passage
+      ifany tunnel, passage, corridor
          set status, 1
       fin
       proceed
@@ -5779,7 +5795,7 @@ at north.of.basilisk
    ifkey go
       or
    ifeq status, 1
-      ifkey passage
+      ifany tunnel, passage, corridor
          ifis there, basilisk.den
             lda arg1, south
          else
@@ -5799,7 +5815,7 @@ at north.of.basilisk
          move basilisk.den
       fin
    fin
-   respond passage, hah!
+   respond passage, tunnel, corridor, hah!
 #
 #=====================================================================
 #
@@ -5816,7 +5832,7 @@ at basilisk.den
       ifeq basilisk, petrified
          quip just.that, granite
       fin
-      ifkey passage
+      ifany tunnel, passage, corridor
          set status, 1
       fin
       proceed
@@ -5824,7 +5840,7 @@ at basilisk.den
    ifkey go
       or
    ifeq status, 1
-      ifkey passage
+      ifany tunnel, passage, corridor
          ifis there, south.of.basilisk
             lda arg1, north
          else
@@ -5859,7 +5875,7 @@ at basilisk.den
 at south.of.basilisk
    ifkey look
       respond steps, well.worn.steps
-      ifkey passage
+      ifany tunnel, passage, corridor
          set status, 1
       fin
       proceed
@@ -5875,7 +5891,7 @@ at south.of.basilisk
       move north, peelgrunt, peelgrunt
       move south, basilisk.den
       move down, steps, on.steps
-      ifkey passage
+      ifany tunnel, passage, corridor
          call follow.it, basilisk.den, south, peelgrunt, north
       fin
    fin
@@ -5966,7 +5982,7 @@ at storage
 #
 at fake.y2
    ifkey look
-      respond passage, dark.exits, passage
+      respond passage, tunnel, corridor, dark.exits, passage
       respond wall, jumble, all.broken.up
       respond rock, y2, surveyors.mark
       proceed
@@ -5988,11 +6004,11 @@ at fake.y2
       move south, steps.exit
       move west, catacombs.lobby
       move east, wall, fake.jumble
-      ifkey passage
+      ifany tunnel, passage, corridor
          call follow.it, steps.exit, south, catacombs.lobby, west
       fin
    fin
-   respond passage, y2, rock, wall, jumble, hah!
+   respond passage, tunnel, corridor, y2, rock, wall, jumble, hah!
 #
 #=====================================================================
 #
@@ -6022,7 +6038,12 @@ at catacombs.lobby
       or
    ifeq status, 1
       move east, out, fake.y2
-      move south,arch, archway, in,  catacombs.entrance
+      ifany south,arch, archway, in
+         ifgt cat.factor, 0
+            say hehehe
+         fin
+         move catacombs.entrance
+      fin
    fin
    respond words, inscription, message, note, hah!
 #
@@ -6120,7 +6141,7 @@ at audience.east
 #
 at loopy.passage
    ifkey look
-      ifkey passage
+      ifany tunnel, passage, corridor
          set status, 1
       fin
       proceed
@@ -6130,7 +6151,7 @@ at loopy.passage
    ifeq status, 1
       move northwest, by.figure
       move north, golden.chamber
-      ifkey passage
+      ifany tunnel, passage, corridor
          or
       ifkey go, on
          call follow.it, by.figure, nw, golden.chamber, north
@@ -6176,7 +6197,7 @@ at arabesque
 #
 at translucent
    ifkey look
-      respond passage, dark.exit, passage
+      respond passage, tunnel, corridor, dark.exit, passage
       respond glow, reddish.glow
       respond wall, minerals, translucent.wall
       proceed
@@ -6195,7 +6216,7 @@ at translucent
          move golden.chamber
       fin
    fin
-   respond passage, glow, wall, minerals, hah!
+   respond passage, tunnel, corridor, glow, wall, minerals, hah!
 #
 #=====================================================================
 #
@@ -6365,7 +6386,7 @@ at catacombs.entrance
       ifkey catacombs
          set status, 1
       fin
-      respond tunnel, passage, dark.exits, tunnel
+      respond tunnel, passage, corridor, dark.exits, tunnel
       proceed
    fin
    ifkey go
@@ -6375,7 +6396,7 @@ at catacombs.entrance
          call catlogic
       fin
       respond catacombs, you.are.there
-      respond tunnel, passage, too.many.exits, tunnel
+      respond tunnel, passage, corridor, too.many.exits, tunnel
    fin
    respond catacombs, tunnel, hah!
 #
@@ -6386,7 +6407,7 @@ at catacombs.2
       ifkey catacombs
          set status, 1
       fin
-      respond tunnel, passage, dark.exits, tunnel
+      respond tunnel, passage, corridor, dark.exits, tunnel
       proceed
    fin
    ifkey go
@@ -6396,7 +6417,7 @@ at catacombs.2
          call catlogic
       fin
       respond catacombs, you.are.there
-      respond tunnel, passage, too.many.exits, tunnel
+      respond tunnel, passage, corridor, too.many.exits, tunnel
    fin
    respond catacombs, tunnel, hah!
 #
@@ -6407,7 +6428,7 @@ at catacombs.3
       ifkey catacombs
          set status, 1
       fin
-      respond tunnel, passage, dark.exits, tunnel
+      respond tunnel, passage, corridor, dark.exits, tunnel
       proceed
    fin
    ifkey go
@@ -6417,7 +6438,7 @@ at catacombs.3
          call catlogic
       fin
       respond catacombs, you.are.there
-      respond tunnel, passage, too.many.exits, tunnel
+      respond tunnel, passage, corridor, too.many.exits, tunnel
    fin
    respond catacombs, tunnel, hah!
 #
@@ -6428,7 +6449,7 @@ at catacombs.4
       ifkey catacombs
          set status, 1
       fin
-      respond tunnel, passage, dark.exits, tunnel
+      respond tunnel, passage, corridor, dark.exits, tunnel
       proceed
    fin
    ifkey go
@@ -6438,7 +6459,7 @@ at catacombs.4
          call catlogic
       fin
       respond catacombs, you.are.there
-      respond tunnel, passage, too.many.exits, tunnel
+      respond tunnel, passage, corridor, too.many.exits, tunnel
    fin
    respond catacombs, tunnel, hah!
 #
@@ -6449,7 +6470,7 @@ at catacombs.5
       ifkey catacombs
          set status, 1
       fin
-      respond tunnel, passage, dark.exits, tunnel
+      respond tunnel, passage, corridor, dark.exits, tunnel
       proceed
    fin
    ifkey go
@@ -6459,7 +6480,7 @@ at catacombs.5
          call catlogic
       fin
       respond catacombs, you.are.there
-      respond tunnel, passage, too.many.exits, tunnel
+      respond tunnel, passage, corridor, too.many.exits, tunnel
    fin
    respond catacombs, tunnel, hah!
 #
@@ -6470,7 +6491,7 @@ at catacombs.6
       ifkey catacombs
          set status, 1
       fin
-      respond tunnel, passage, dark.exits, tunnel
+      respond tunnel, passage, corridor, dark.exits, tunnel
       proceed
    fin
    ifkey go
@@ -6480,7 +6501,7 @@ at catacombs.6
          call catlogic
       fin
       respond catacombs, you.are.there
-      respond tunnel, passage, too.many.exits, tunnel
+      respond tunnel, passage, corridor, too.many.exits, tunnel
    fin
    respond catacombs, tunnel, hah!
 #
@@ -6491,7 +6512,7 @@ at catacombs.7
       ifkey catacombs
          set status, 1
       fin
-      respond tunnel, passage, dark.exits, tunnel
+      respond tunnel, passage, corridor, dark.exits, tunnel
       proceed
    fin
    ifkey go
@@ -6501,7 +6522,7 @@ at catacombs.7
          call catlogic
       fin
       respond catacombs, you.are.there
-      respond tunnel, passage, too.many.exits, tunnel
+      respond tunnel, passage, corridor, too.many.exits, tunnel
    fin
    respond catacombs, tunnel, hah!
 #
@@ -6512,7 +6533,7 @@ at catacombs.8
       ifkey catacombs
          set status, 1
       fin
-      respond tunnel, passage, dark.exits, tunnel
+      respond tunnel, passage, corridor, dark.exits, tunnel
       proceed
    fin
    ifkey go
@@ -6522,7 +6543,7 @@ at catacombs.8
          call catlogic
       fin
       respond catacombs, you.are.there
-      respond tunnel, passage, too.many.exits, tunnel
+      respond tunnel, passage, corridor, too.many.exits, tunnel
    fin
    respond catacombs, tunnel, hah!
 #
@@ -6533,7 +6554,7 @@ at catacombs.9
       ifkey catacombs
          set status, 1
       fin
-      respond tunnel, passage, dark.exits, tunnel
+      respond tunnel, passage, corridor, dark.exits, tunnel
       proceed
    fin
    ifkey go
@@ -6543,7 +6564,7 @@ at catacombs.9
          call catlogic
       fin
       respond catacombs, you.are.there
-      respond tunnel, passage, too.many.exits, tunnel
+      respond tunnel, passage, corridor, too.many.exits, tunnel
    fin
    respond catacombs, tunnel, hah!
 #
@@ -6554,7 +6575,7 @@ at catacombs.10
       ifkey catacombs
          set status, 1
       fin
-      respond tunnel, passage, dark.exits, tunnel
+      respond tunnel, passage, corridor, dark.exits, tunnel
       proceed
    fin
    ifkey go
@@ -6564,7 +6585,7 @@ at catacombs.10
          call catlogic
       fin
       respond catacombs, you.are.there
-      respond tunnel, passage, too.many.exits, tunnel
+      respond tunnel, passage, corridor, too.many.exits, tunnel
    fin
    respond catacombs, tunnel, hah!
 #
@@ -6575,7 +6596,7 @@ at catacombs.11
       ifkey catacombs
          set status, 1
       fin
-      respond tunnel, passage, dark.exits, tunnel
+      respond tunnel, passage, corridor, dark.exits, tunnel
       proceed
    fin
    ifkey go
@@ -6585,7 +6606,7 @@ at catacombs.11
          call catlogic
       fin
       respond catacombs, you.are.there
-      respond tunnel, passage, too.many.exits, tunnel
+      respond tunnel, passage, corridor, too.many.exits, tunnel
    fin
    respond catacombs, tunnel, hah!
 #
@@ -6596,7 +6617,7 @@ at catacombs.12
       ifkey catacombs
          set status, 1
       fin
-      respond tunnel, passage, dark.exits, tunnel
+      respond tunnel, passage, corridor, dark.exits, tunnel
       proceed
    fin
    ifkey go
@@ -6606,7 +6627,7 @@ at catacombs.12
          call catlogic
       fin
       respond catacombs, you.are.there
-      respond tunnel, passage, too.many.exits, tunnel
+      respond tunnel, passage, corridor, too.many.exits, tunnel
    fin
    respond catacombs, tunnel, hah!
 #
@@ -6617,7 +6638,7 @@ at catacombs.13
       ifkey catacombs
          set status, 1
       fin
-      respond tunnel, passage, dark.exits, tunnel
+      respond tunnel, passage, corridor, dark.exits, tunnel
       proceed
    fin
    ifkey go
@@ -6627,7 +6648,7 @@ at catacombs.13
          call catlogic
       fin
       respond catacombs, you.are.there
-      respond tunnel, passage, too.many.exits, tunnel
+      respond tunnel, passage, corridor, too.many.exits, tunnel
    fin
    respond catacombs, tunnel, hah!
 #
@@ -6636,7 +6657,8 @@ at catacombs.13
 at catacombs.portal
    ifkey look
       respond doorway, portal, space, entrance, dark.portal
-      respond tunnel, passage, corridor, dark.exits, tunnel
+      respond tunnel, passage, corridor, corridor, dark.exit, tunnel
+      respond entrance, dark.exit, entrance
       ifkey catacombs
          set status, 1
       fin
@@ -6650,17 +6672,9 @@ at catacombs.portal
    ifkey go
       or
    ifeq status, 1
-      move in, east, portal, doorway, entrance, space, audience
-      move west, new.den
-      ifeq portal.switch, 0
-         move north, ne, nw, catacombs.14
-         move south, se, sw, catacombs.13
-      else
-         move north, ne, nw, catacombs.13
-         move south, se, sw, catacombs.14
-      fin
-      respond catacombs, you.are.there
-      respond tunnel, passage, corridor, too.many.exits, tunnel
+      move west, entrance, new.den
+      move in, east, portal, doorway, space, audience
+      move catacombs, tunnel, passage, corridor, north, catacombs.13
    fin
    respond catacombs, portal, corridor, passage, tunnel, space, hah!
    respond doorway, entrance, hah!
@@ -6719,7 +6733,7 @@ at catacombs.14
       ifkey catacombs
          set status, 1
       fin
-      respond tunnel, passage, dark.exits, tunnel
+      respond tunnel, passage, corridor, dark.exits, tunnel
       proceed
    fin
    ifkey go
@@ -6729,7 +6743,7 @@ at catacombs.14
          call catlogic
       fin
       respond catacombs, you.are.there
-      respond tunnel, passage, too.many.exits, tunnel
+      respond tunnel, passage, corridor, too.many.exits, tunnel
    fin
    respond catacombs, tunnel, hah!
 #
@@ -6740,7 +6754,7 @@ at catacombs.15
       ifkey catacombs
          set status, 1
       fin
-      respond tunnel, passage, dark.exits, tunnel
+      respond tunnel, passage, corridor, dark.exits, tunnel
       proceed
    fin
    ifkey go
@@ -6750,7 +6764,7 @@ at catacombs.15
          call catlogic
       fin
       respond catacombs, you.are.there
-      respond tunnel, passage, too.many.exits, tunnel
+      respond tunnel, passage, corridor, too.many.exits, tunnel
    fin
    respond catacombs, tunnel, hah!
 #
@@ -6761,7 +6775,7 @@ at catacombs.exit
       ifkey catacombs
          set status, 1
       fin
-      respond tunnel, passage, dark.exits, tunnel
+      respond tunnel, passage, corridor, dark.exits, tunnel
       proceed
    fin
    ifkey go
@@ -6771,7 +6785,7 @@ at catacombs.exit
          call catlogic
       fin
       respond catacombs, you.are.there
-      respond tunnel, passage, too.many.exits, tunnel
+      respond tunnel, passage, corridor, too.many.exits, tunnel
    fin
    respond catacombs, tunnel, hah!
 #
@@ -6802,9 +6816,9 @@ at rest.area
       move out, passage, tunnel, catacombs, catacombs.entrance
       ifeq status, 2
          and 
-      ifeq arg2, lobby.exit
+      ifeq arg2, rest.exit
          or
-      ifeq arg1, lobby.exit
+      ifeq arg1, rest.exit
          move catacombs.entrance
       fin
    fin
@@ -7024,7 +7038,7 @@ at dungeon
       respond stanchions, just.scenery, stanchions
       respond ceiling, up, its.a.ceiling, c.dungeon
       respond rock, wall, impenetrable.rock
-      respond passage, dungeon.passage
+      respond passage, tunnel, corridor, dungeon.passage
       respond floor, flagstones, down, flagstone.info, dungeon
       ifkey hole, opening
          and
@@ -7093,7 +7107,7 @@ at web.maze.1
       move north, quarters
       respond maze, you.are.there
    fin
-   respond passage, maze, hah!
+   respond passage, tunnel, corridor, maze, hah!
 #
 #=====================================================================
 #
@@ -7114,7 +7128,7 @@ at web.maze.2
       move south, web.maze.3
       move up, web.maze.4
    fin
-   respond passage, maze, hah!
+   respond passage, tunnel, corridor, maze, hah!
 #
 #=====================================================================
 #
@@ -7135,7 +7149,7 @@ at web.maze.3
       move south, web.maze.4
       move up, web.maze.5
    fin
-   respond passage, maze, hah!
+   respond passage, tunnel, corridor, maze, hah!
 #
 #=====================================================================
 #
@@ -7212,7 +7226,7 @@ at web.maze.4
          move dank.cave
       fin
    fin
-   respond passage, maze, hole, opening, hah!
+   respond passage, tunnel, corridor, maze, hole, opening, hah!
 #
 #=====================================================================
 #
@@ -7233,7 +7247,7 @@ at web.maze.5
       move south, web.maze.4
       move down, web.maze.3
    fin
-   respond passage, maze, hah!
+   respond passage, tunnel, corridor, maze, hah!
 #
 #=====================================================================
 #
@@ -7254,7 +7268,7 @@ at web.maze.6
       move up, web.maze.5
       move down, web.maze.2
    fin
-   respond passage, maze, hah!
+   respond passage, tunnel, corridor, maze, hah!
 #
 #=====================================================================
 #
@@ -7436,7 +7450,7 @@ at tower.base
          move tower.steps
       fin
    fin
-   respond steps, arch, doorway, light, daylight, hah!
+   respond steps, arch, doorway, daylight, hah!
 #
 #=====================================================================
 #
@@ -7846,7 +7860,7 @@ at storeroom
       fakearg door, door2
    fin
    ifkey look
-      respond passage, shelf.passage
+      respond passage, tunnel, corridor, shelf.passage
       respond door2, door2.inside
       respond ceiling, up, its.a.ceiling, c.storeroom
       respond wall, shelf.wall
@@ -7878,7 +7892,7 @@ at storeroom
          move tower.upper.landing
       fin
    fin
-   respond passage, hah!
+   respond passage, tunnel, corridor, hah!
 #
 #=====================================================================
 #
@@ -8344,7 +8358,7 @@ at garden.se
 #
 at dungeon.exit
    ifkey look
-      ifkey passage
+      ifany tunnel, passage, corridor
          set status, 1
       fin
       respond hole, dungeon, no.see.up.there
@@ -8363,7 +8377,7 @@ at dungeon.exit
          smove dungeon, back.to.dungeon
       fin
    fin
-   respond passage, hole, hah!
+   respond passage, tunnel, corridor, hole, hah!
 #
 #=====================================================================
 #
@@ -8504,6 +8518,9 @@ at top.of.chapel
    ifany wave, throw
       and
    ifnear alarm
+      and
+      not
+   ifnear dwarf
       quip no.damage.alarm, arg2
    fin
    ifany drawings, something, box
@@ -8582,7 +8599,7 @@ at north.attic
       ifkey attic
          set status, 1
       fin
-      respond passage, dark.exit, passage
+      respond passage, tunnel, corridor, dark.exit, passage
       proceed
    fin
    ifkey go
@@ -8591,7 +8608,7 @@ at north.attic
       move south, out, attic, attic
       move north, in, passage, den
    fin
-   respond passage, attic, hah!
+   respond passage, tunnel, corridor, attic, hah!
 #
 #=====================================================================
 #
@@ -8904,7 +8921,7 @@ at sea.view
    ifkey look
       respond bricks, slimey.bricks
       respond inscription, tide.level
-      respond tunnel, passage, culvert, corridor, culvert.tunnel
+      respond tunnel, passage, corridor, culvert, corridor, culvert.tunnel
       respond sea, cant.see.much, sea
       respond roof, ceiling, culvert.roof
       respond line, tide.line
@@ -9140,7 +9157,7 @@ at low.passage
    ifkey look
       respond cavern, cant.see.much, cavern
       respond wall, ceiling, floor, rock, polished.passage
-      ifkey passage
+      ifany tunnel, passage, corridor
          set status, 1
       fin
       proceed
@@ -9150,11 +9167,11 @@ at low.passage
    ifeq status, 1
       move south, cavern, bare.cavern
       move north, large.cavern
-      ifkey passage
+      ifany tunnel, passage, corridor
          call follow.it, bare.cavern, south, large.cavern, north
       fin
    fin
-   respond passage, cavern, hah!
+   respond passage, tunnel, corridor, cavern, hah!
 #
 #=====================================================================
 #
@@ -9163,7 +9180,7 @@ at large.cavern
       respond roof, ceiling, in.shadow, arg2
       respond mist, this.is.mist
       respond opening, hole, misty.opening
-      respond passage, dark.exit, passage
+      respond passage, tunnel, corridor, dark.exit, passage
       ifkey cavern
          set status, 1
       fin
@@ -9399,7 +9416,7 @@ at stupendous.view
          fin
          call consult.sunstone, direction
       fin
-      ifany house, ravine
+      ifany house, road, ravine
          ifeq stage, mirror.world
             quip eek.cliff!
          fin
@@ -9550,7 +9567,7 @@ at ravine.west
          ifkey view
             lda direction, nw
          otherwise
-         ifany building, road
+         ifany building, road, road
             ifeq sunstone, 5
                say sunstone.stops.you, se
                move ravine
@@ -9756,7 +9773,11 @@ at south.of.building
 #
 at end.of.valley
    ifkey climb
-      respond up, out, jumble, rocks, wall, slope, not.me
+      ifeq status, 1
+         or
+      ifany up, out, jumble, rocks, wall, slope
+         quip not.me
+      fin
    fin
    call in.valley.actions
    ifkey look
@@ -9782,7 +9803,7 @@ at end.of.valley
          smove building, slit, valley, end.of.valley, something.strange
       fin
       move north, depression, depression
-      move building, road
+      move building, road, road
       move slit, slit
       move valley, valley
       move ne, forest.19
@@ -9864,7 +9885,7 @@ at forest.4
       move north, forest.5
       move ne, forest.6
       move east, north.of.building
-      move se, south, sw, building, road
+      move se, south, sw, building, road, road
       move west, path
       move nw, forest.1
    fin
@@ -10256,6 +10277,9 @@ at clearing
       respond supports, none.no.more, 1
       respond door, wooden.shed, 4
       respond window, shed.window, 0
+      respond roof, shed.roof
+      respond walls, wooden.shed, 0
+      respond planks, shed.planks
       proceed
    fin
    ifkey door
@@ -10296,6 +10320,9 @@ at clearing
       fin
       move north, ne, east, se, south, west, dark.forest
    fin
+   respond grass, clearing, forest, tree, conifer, well, shaft, hah!
+   respond shed, path, track, ground, stone, supports, door4, hah!
+   respond window, roof, wall, planks, hah!
    lda throw.here, well.bottom
    lda throw.text, well.drop
 #
@@ -10322,11 +10349,10 @@ at shed
    ifkey look
       respond walls, wooden.shed, 0
       respond floor, wooden.shed, 1
-      respond ceiling, wooden.shed, 2
+      respond ceiling, roof, wooden.shed, 2
       respond door4, wooden.shed, 3
-      respond window, shed.window, 1
-      set is/are, 1
-      respond planks, no.interest, planks
+      respond out, clearing, window, shed.window, 1
+      respond planks, shed.planks
       proceed
    fin
    ifkey window
@@ -10344,6 +10370,8 @@ at shed
          move clearing
       fin
    fin
+   respond roof, window, wall, door4, floor, planks, shed, dust, hah!
+   respond clearing, hah!
 #
 #=====================================================================
 #
@@ -10556,7 +10584,7 @@ at spire.part.up
       respond horizon, desert.horizon
       respond ramp, ramp.at.part.up
       respond down, near.desert
-      respond desert, dunes, dunes.in.desert
+      respond desert, dunes, dunes.in.desert, 1
       respond up, distant.top
       proceed
    fin
@@ -10644,7 +10672,7 @@ at spire.nearly.up
       respond horizon, desert.horizon, 0
       respond ramp, ramp.at.nearly.up
       respond up, top, near.top
-      respond desert, dunes, dunes.in.desert
+      respond desert, dunes, dunes.in.desert, 1
       respond down, bottom, distant.desert
       proceed
    fin
@@ -10728,7 +10756,7 @@ at spire
       respond spire, platform, you.are.on.top
       respond ramp, ramp.at.top
       respond down, far.away.desert
-      respond desert, dunes, dunes.in.desert
+      respond desert, dunes, dunes.in.desert, 0
       proceed
    fin
    ifkey drop
@@ -10736,6 +10764,8 @@ at spire
          default inhand
       fin
       ifkey windrose
+         and
+      ifhave windrose, 1
          set windrose, 2
          set pedestal, 1
          quip white.windrose
@@ -10794,9 +10824,9 @@ at spire
          set direction, word.ptr
          call consult.sunstone, direction
          say approach.edge, word.ptr
-         ifhave sunstone
-            call do.sunstone
-         fin
+#         ifhave sunstone
+#            call do.sunstone
+#         fin
          quit
       fin
       respond cliff, no.way.there
@@ -10860,6 +10890,9 @@ at scree
       move west, desert.2
       move sw, desert.3
       move south, scree.2
+      ifany up, se
+         call consult.sunstone, se
+      fin
       move up, se, scree, basalt.shelf.2
    fin
    respond slope, scree, hah!
@@ -10884,6 +10917,9 @@ at scree.2
       move sw, desert.4
       move west, desert.3
       move nw, desert.2
+      ifany up, east
+         call consult.sunstone, east
+      fin
       move east, up, scree, basalt.shelf.2
    fin
    respond slope, scree, hah!
@@ -10908,6 +10944,9 @@ at scree.3
       move west, desert.4
       move sw, desert.5
       move south, cliff.base.2
+      ifany up, ne
+         call consult.sunstone, ne
+      fin
       move up, ne, scree, basalt.shelf.2
    fin
    respond slope, scree, hah!
@@ -10974,7 +11013,10 @@ at river.bed.1
             move cliff.base.3
          fin
       fin
-      respond east, time.river
+      ifany east, in, hole, opening, cave
+         call consult.sunstone, east
+      fin
+      respond east, in, hole, opening, cave, time.river
       respond riverbed, you.are.there
    fin
    respond riverbed, hah!
@@ -10987,7 +11029,10 @@ at cliff.base.4
    ifeq status, 1
       move north, down, river.bed.1
       move nw, river.bed.2
-      smove east, cave.1, time.flip.1
+      ifany east, in, hole, opening, cave
+         call consult.sunstone, east
+      fin
+      smove east, in, hole, opening, cave, cave.1, time.flip.1
       respond south, sw, west, dune.blocks
    fin
 #
@@ -12206,7 +12251,7 @@ at mine
       fin
    fin
    ifkey look
-      respond tunnel, passage, mine, dark.exit, tunnel
+      respond tunnel, passage, corridor, mine, dark.exit, tunnel
       proceed
    fin
    ifkey go
@@ -12221,7 +12266,7 @@ at mine
       fin
       move nw, u, tunnel, passage, mine, mine.1
    fin
-   respond tunnel, passage, mine, exit, hah!
+   respond tunnel, passage, corridor, mine, exit, hah!
 #
 #=====================================================================
 #
@@ -12239,7 +12284,7 @@ at mine.1
       move n, mine.dead.end.1
       move d, se, mine
       move u, w, mine.2
-      ifkey tunnel
+      ifany tunnel, passage, corridor
          call follow.it, mine, se, mine.2, w
       fin
       respond fork, you.are.there
@@ -12523,10 +12568,10 @@ at mine.3
       move n, corridor, mine.dead.end.2
       move up, sw, mine.exit
       move down, ne, mine.2
-      ifkey tunnel
+      ifany tunnel, passage, corridor
          call follow.it, mine.exit, sw, mine.2, ne
       fin
-      respond passage, too.many.exits, passage
+      respond passage, tunnel, corridor, too.many.exits, passage
       respond fork, you.are.there
    fin
    respond corridor, tunnel, fork, passage, hah!
@@ -13070,10 +13115,7 @@ at temple
    fin
    ifkey look
       ifkey temple
-         flag status, fulldisplay
-         say here
-         unflag status, fulldisplay
-         quit
+         set status, 1
       fin
       respond columns, in.temple, 0
       respond roof, ceiling , in.temple, 1

@@ -1,11 +1,12 @@
-*        Copyleft Mike Arnautov 1984-2002.
-*
-*        Define some variables.
-*
+# Copyleft Mike Arnautov 1984-2003.
+#
+# Define some variables.
+#
 variable arg1, arg2
 variable here, there
 variable drop.here, drop.text, throw.here, throw.text, throw.it
-variable temp.ptr, obj.ptr, place.ptr, text.ptr, word.ptr, var.ptr
+variable temp.ptr, obj.ptr, place.ptr, text.ptr, word.ptr
+variable stuck
 variable safe.exit, snake.exit
 variable talk.next, talk.end
 variable last.owl, password
@@ -17,7 +18,7 @@ variable losses, actual.score
 variable codex.reward
 variable faked.object
 variable sparev01, sparev02, sparev03, sparev04
-*
+#
 variable status, admin, context
 variable lamplife
 variable sparev05, sparev06, sparev07, sparev08, sparev09
@@ -36,9 +37,11 @@ variable sparev12, sparev13
 variable tide
 variable sparev14, shown.vision
 variable hints, quips, island.quips
-variable forward.exit, lobby.exit, rest.exit, portal.exit, direction
+variable sparev15 
+variable cat.factor, rest.exit, portal.exit
+variable direction
 array    c.exit, 16
-variable portal.switch
+variable sparev17
 variable orc.mutter, mutter.time
 variable giant.time, mouse.time, thirst.time
 variable swag.count, swag.time

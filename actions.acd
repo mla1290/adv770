@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2002.
+# Copyleft Mike Arnautov 1984-2003.
 #
 # This module defines the actions to be taken when certain
 # verb, verb/object, verb/verb or object/object word sequences
@@ -274,6 +274,8 @@ action get        # Generalized last-case "get" routine
 #=====================================================================
 #
 action drop
+   local state
+#
    ifflag here, in.desert
       quip no.drop.in.sand
    fin
@@ -407,7 +409,6 @@ action drop               # Generalized "drop" control
       proceed
    fin
    ifhave arg2
-#      lda k, blank
       call check.wearing
       ifkey wrapper
          set wrapper, 1
@@ -783,6 +784,9 @@ action wave rug      # Well, shake, actually!
 #=====================================================================
 #
 action wave
+   local place.ptr
+   local desert.val
+#
    flag shadow, special1
    ifgt status, 1
       and
@@ -863,6 +867,9 @@ action wave
          else
             flag status, desert.warn
          fin
+         iterate place.ptr, desert.1, desert.last
+            call stir.sands, place.ptr
+         fin
          goto basalt.shelf.2
       otherwise
       ifat basalt.shelf.2
@@ -938,12 +945,22 @@ action south
 #=====================================================================
 #
 action up
-   quip no.can.go, up
+   ifeq status, 1
+      or
+   ifany go, climb
+      quip no.can.go, up
+   fin
+   quip what?
 #
 #=====================================================================
 #
 action down
-   quip no.can.go, down
+   ifeq status, 1
+      or
+   ifany go, climb
+      quip no.can.go, down
+   fin
+   quip what?
 #
 #=====================================================================
 #
@@ -1007,6 +1024,8 @@ action inventory
 #=====================================================================
 #
 action look                # Can't look in the dark!
+   local temp.val
+#
    ifeq status, 1
       ifflag status, fastmode
       else
@@ -1163,11 +1182,19 @@ action look                # Can't look in the dark!
          not
       ifat river.bed.1
          ifflag here, in.desert
+            call list.dunes, 0
             ifat desert.3, desert.4, desert.8, desert.13, desert.16
-               quip no.big.dunes
+               say no.big.dunes, result
+               set temp.val, 0
             else
-               quip some.big.dunes
+               set temp.val, 1
+               say some.big.dunes, result
             fin
+            ifeq result, 0
+               quip blank
+            fin
+            call list.dunes, result
+            quip sentence.end
          fin
          ifat basalt.shelf.2, spire, spire.part.up, spire.nearly.up
             quip dunes.in.desert
@@ -1497,7 +1524,7 @@ action light
    ifkey off
       call extinguish
    fin
-   ifkey lamp
+   ifany lamp, on
       or
    ifeq status, 1
       ifnear lamp
@@ -2971,7 +2998,7 @@ action placate
 #=====================================================================
 #
 action eat
-   ifkey pine
+   ifkey eat, pine
       call chew
    fin
    ifnear food
@@ -3189,7 +3216,7 @@ action say
    ifnear arg2, mortal
       quip ignored.by, arg2
    fin
-   say said, arg2
+#   say said, arg2
    ifany plugh, xyzzy, thurb, melenkurion, noside, samoht
       or
    ifany knerl, zorton, klaetu, snoeze, blerbi, phuggg, sesame
@@ -3208,10 +3235,12 @@ action say
 #=====================================================================
 #
 action save
+#
    iflt stage, adventuring
       quip no.point, 0
    fin
    lda text.ptr, is.this.ok?
+   exec 31
    exec 23, text.ptr
    value must.wait, min.time
    set context, q.save
@@ -3251,13 +3280,15 @@ action restore
       set status, no.match
       quip restore.what?
    fin
-   exec 23, text.ptr   # Dummy argument
+   exec 31
+   lda text.ptr, blank
+   exec 23, text.ptr
    ifflag admin, olorin
       set wiz.flag, 1
    else
       set wiz.flag, 0
    fin
-   exec 6, wiz.flag    # Save value of iv over restore attempt
+   exec 6, wiz.flag    # Save value of wiz.flag over restore attempt
    exec 17             # Save memory image
    exec 2, outcome     # Attempt to restore image
    ifeq outcome, 3     # No name specified
@@ -3550,7 +3581,6 @@ action read
             ifkey inscription
                call read.rock
             fin
-            respond plaque, plaque.info
             ifkey oyster
                call oyster.message
             fin
@@ -3940,6 +3970,7 @@ action hoot
       multiply some.chance, 2      # Chance of limited response to hooting
       call owl.comes, no.chance, some.chance
    else
+      flush
       say what?
    fin
    quit
@@ -5123,7 +5154,9 @@ action chew
          quip need.beaver.teeth
       fin
    fin
-   call eat
+   ifkey chew
+      call eat
+   fin
 #
 #=====================================================================
 #
@@ -5626,6 +5659,7 @@ action restart
 #=====================================================================
 #
 action plug
+   flush
    quip what?
 #
 #=====================================================================
@@ -5859,6 +5893,46 @@ action value
    else
       quip find.valuers, 1
    fin
+#
+#=====================================================================
+#
+action increment
+   local state
+#
+   ifflag admin, olorin
+      ifeq status, 2
+         and
+      ifflag arg2, object
+         eval state, arg2
+         add state, 1
+         deposit arg2, state
+         value state.is.now, state
+         quit
+       fin
+   else
+      quip no.understand
+   fin      
+#
+#=====================================================================
+#
+action decrement
+   local state
+#
+   ifflag admin, olorin
+      ifeq status, 2
+         and
+      ifflag arg2, object
+         eval state, arg2
+         ifgt state, 0
+            sub state, 1
+            deposit arg2, state
+         fin
+         value state.is.now, state
+         quit
+       fin
+   else
+      quip no.understand
+   fin      
 #
 #=====================================================================
 #

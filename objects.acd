@@ -1,6 +1,6 @@
-# Copyleft Mike Arnautov 1984-2002.
+# Copyleft Mike Arnautov 1984-2003.
 #
-#  Here follow the object definitions.
+# Here follow the object definitions.
 #
 OBJECT EVERYTHING, =ALL   # Dummy for ALL processing
 #
@@ -27,9 +27,6 @@ OBJECT GRATE, GRATING
    suitable key or dynamite the whole thing.
 #
 OBJECT STEPS
-  &Thoroughly worn by countless novice adventurers ferrying their
-   hard-won treasure out of the cave. Amazingly enough some of the
-   suckers never work out that they don't have to!
 #
 OBJECT DOOR, DOORS
   %The way north [is barred by/leads through] a massive, rusty, iron door.
@@ -103,12 +100,14 @@ OBJECT PIRATE    # Pirate - he never stays to visit, but runs away
 OBJECT DRAGON
   %[A huge green fierce dragon bars the way.
    The dragon is sprawled out on a Persian rug!/
-   The body of a huge green dead dragon is lying off to one side./
-   The rotting carcass of a dead dragon is lying off to one side.]
+   The body of a huge green dead/A decaying body of a huge/The
+   rotting carcass of a dead ][/dragon is lying off to one side.]
   &[Never seen a dragon before?  Well, enjoy it while you can - it is
    an awesome and beautiful sight!/
    Don't worry. It is well and truly dead. Still a magnificent sight,
    but dead. I hope you are ashamed of yourself./
+   The dead dragon still looks quite impressive, but signs of decay
+   are beginning to appear here and there on its huge body./
    Not a pretty sight. I hope you did not expect a detailed description
    of that rotting pile of dragon meat, because if you were, you
    are going to be sadly disappointed.]
@@ -645,7 +644,7 @@ OBJECT PEDESTAL, =PEDESTALS
    have once shown, have long since faded under the sun's glare./The
    eight-ray design chiseled into the pedestal has each of its rays
    painted a different colour. Starting from the north-pointing one 
-   and going clockwise, the rays are red, purple, orange, yellow, green,
+   and going clockwise, the rays are purple, red, orange, yellow, green,
    blue, magenta and black.]
 #
 OBJECT SUNSTONE
@@ -880,7 +879,7 @@ OBJECT NOTICE, SIGN
   =         \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
   =         |
   =         |  [TO ..OSE WHO CO../=/TW.. BRI.LIG, A..]
-  =         |  [AFT.. ME: THIS ./=/THE .LITHY TOVE.]
+  =         |  [AFT.. ME: THIS ../=/THE .LITHY TOVE.]
   =         |  [THE .LACE TO/=/DID .YRE AND]
   =         |  [THE S./=/IN TH.]
   =         |\_\_\_\_\_\_\_\_
@@ -1108,7 +1107,7 @@ OBJECT FLOWER, =METAL
    something like a tiger lily. Aside from its colour and texture,
    it looks amazingly life-like, but it is in fact fashioned with a
    remarkable skill out of different metals and alloys, 
-   cunningly joined and welded together. An eminently collectable,
+   cunningly joined and welded together. An eminently collectible,
    highly artistic product of high craft.{STONE.FLOWER}
 #
 OBJECT PACKET, =FERTILISER, =FERTILIZER

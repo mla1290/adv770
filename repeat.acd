@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2002.
+# Copyleft Mike Arnautov 1984-2003.
 #
 # And here, at long last, is the main program!
 #
@@ -144,7 +144,6 @@ repeat
    local temp.val
    local event.flag
    local island.event
-   local base.loc
 #
    ifgt context, none
       proceed
@@ -191,9 +190,6 @@ repeat
    fin
    ifflag here, in.desert
       call desert.stuff
-      set desert.offset, here
-      lda base.loc, desert.1
-      sub desert.offset, base.loc
    fin
    ifflag status, juggled
       and
@@ -215,6 +211,16 @@ repeat
    ifeq wrong.venue, 2
       say alternate.venue
       add wrong.venue, 1
+   fin
+   ifat mists
+      ifeq nugget.room, 0
+         and
+         not
+      ifhave gold
+         set mists, steps.present
+      else
+         set mists, steps.gone
+      fin
    fin
    ifflag status, moved
       unflag seed, special1
@@ -1345,7 +1351,8 @@ repeat
    local in.loop
    local temp.val
 #
-   ifeq status, BADSYNTAX
+   ifeq status, badsyntax
+      flush
       ifinrange arg1, first.magic, last.magic
          or
       ifkey say
@@ -1415,52 +1422,6 @@ repeat
    fin
 #
 # Now for the rest of it...
-#
-   set typo.check, 0
-   ifgt stage, little.joke
-      exec 30, typo.check
-   fin
-   ifeq typo.check, 1
-      ifflag arg1, object
-         ifflag arg1, seen
-            set typo.check, 0
-         fin
-      otherwise
-      ifflag arg1, place
-         ifflag arg1, been.here
-            set typo.check, 0
-         fin
-      else
-         set typo.check, 0
-      fin
-      ifeq typo.check, 0
-         call check.typo, 1
-      else
-         quip nocomprende, arg1
-      fin
-   fin
-   ifgt status, 1
-      and
-   ifeq typo.check, 2
-      set typo.check, 0
-      ifflag arg2, object
-         ifflag arg2, seen
-            set typo.check, 0
-         fin
-      otherwise
-      ifflag arg2, place
-         ifflag arg2, been.here
-            set typo.check, 0
-         fin
-      else
-         set typo.check, 0
-      fin
-      ifeq typo.check, 0
-         call check.typo, 2
-      else
-         quip nocomprende.object, arg2
-      fin
-   fin
 #
 # Can we see anything?
 #
@@ -1766,7 +1727,25 @@ repeat
       fin
    otherwise
    ifkey all
+      ifge arg3, badword
+         call shadow.shutup
+         ifeq arg3, badsyntax
+            quip no.except, arg3
+         fin
+         ifeq arg3, ambigword
+            quip tell.me.more, arg3
+         fin
+         ifeq arg3, badword
+            flush
+            quip nocomprende.object, arg3
+         fin
+         ifeq arg3, ambigtypo
+            quip is.it.a.typo? arg3
+         fin
+      fin
       ifany drop, down
+         call except.check
+         call drop.check, 0
          doall inhand
       otherwise
       ifkey get
@@ -1777,6 +1756,7 @@ repeat
             apport seed, here
          fin
          ifflag status, light.here
+            call except.check
             doall here, portable
          else
             quip cant.see.anything, 1
@@ -1788,9 +1768,12 @@ repeat
 #
    ifkey treasure
       ifany drop, down
+         call except.check
+         call drop.check, 1
          doall inhand, valued
       otherwise
       ifkey get
+         call except.check
          doall here, valued
       else
          quip one.at.a.time
@@ -1842,7 +1825,16 @@ repeat
       or
    ifeq arg1, ambigtypo
       ifeq arg1, badword
-         say nocomprende, arg1
+         flush
+         ifgt status, 1
+            chance 33
+               say nocomprende, arg1
+            else
+               say nocomprende.verb, arg1
+            fin
+         else
+            say nocomprende, arg1
+         fin
          ifflag status, vocab.prod
             say use.vocabulary
             unflag status, vocab.prod
@@ -1895,6 +1887,7 @@ repeat
                say tell.me.more, arg2
             otherwise
             ifeq arg2, badword
+               flush
                say nocomprende.object, arg2
                ifflag status, vocab.prod
                   say use.vocabulary
@@ -2028,36 +2021,6 @@ repeat
    fin
    ifeq stage, mirror.world
       call swap.directions
-   fin
-#
-# Handle special meaning of up and down for wizards.
-#
-   ifany down, up
-      and
-   ifgt status, 1
-      ifflag arg2, object
-         ifflag admin,olorin
-            eval temp.val, arg2
-            ifkey up
-               add temp.val, 1
-            else
-               sub temp.val, 1
-               iflt temp.val, 0
-                  set temp.val, 0
-               fin
-            fin
-            value .of, temp.val
-            deposit arg2, temp.val
-            quip ok!
-         fin
-         ifflag arg2, portable
-            ifkey down
-               call drop
-            else
-               call get
-            fin
-         fin
-      fin
    fin
 #
 # The sculpture changes it's shape and hence name.
@@ -2206,6 +2169,16 @@ repeat
          quip pat.oryan,1
       fin
 #
+# Handle map references
+#
+      ifkey map
+         ifeq status, 1
+            or
+         ifany get, find, read, look
+            quip no.map
+         fin
+      fin
+#
 # Handle references to the illusory Zorro outfit.
 #
       ifany hat, cloak
@@ -2266,6 +2239,7 @@ repeat
             say do.what?, arg1
             flag status, pls.clarify   # Request clarification
          else
+            flush
             ifflag arg1, seen
               say i.dont.see, arg1
             else

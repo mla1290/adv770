@@ -1,6 +1,6 @@
-#  Copyleft Mike Arnautov 1984-2002.
+# Copyleft Mike Arnautov 1984-2003.
 #
-#  Now for the place descriptions.
+# Now for the place descriptions.
 #
 PLACE +ROAD
    You're at end of road again.
@@ -70,7 +70,7 @@ PLACE +VALLEY
 PLACE +SLIT, +GAP
    You're at slit in streambed.
   %At your feet all the water of the stream splashes into
-   a three-[inch/foot] slit in the rock. Downstream the
+   a five-[inch/foot] slit in the rock. Downstream the
    streambed is bare rock.
 #
 PLACE +DEPRESSION, HOLLOW
@@ -858,17 +858,16 @@ PLACE REST.AREA
   %You are in a small room designated as the catacomb rest area.
    It is really just a dead end with a complimentary drinking
    fountain, provided by popular demand. The only exit 
-   leads [south/SW/west/NW/north/NE/east/SE].
+   leads [north/NE/east/SE/south/SW/west/NW].
 #
 #  CATACOMBS.PORTAL must be the first in the contiguous block 
 #  of CATACOMBS.
 #
 PLACE CATACOMBS.PORTAL
-   You are in the catacombs by the stone portal.
-  %You are in the catacombs. Enchanted tunnels lead in all directions,
-   except to the east, where a large carved portal opens into an
-   echoing space, and to the west where a narrow entrance leads
-   into a room beyond.
+   You are at the stone portal.
+  %You are in at the end of a catacombs tunnel leading north.  A large 
+   carved portal to the east opens into an echoing space, while a narrow
+   entrance to the west leads into a room beyond.
 #
 FRAGMENT CATACOMBS.DESCRIPTION
    You are in the catacombs. Enchanted tunnels lead in all directions.
@@ -2377,7 +2376,7 @@ PLACE BELOW.RIDGE
 #
 PLACE +CALDERA, CRATER
    You are on the NW edge of the swamp.
-  %You are on the northeasterly edge of the swamp. Above you,
+  %You are on the north-easterly edge of the swamp. Above you,
    weathered cliffs rise to the sky. Chunks of rock fallen from
    above offer a tricky but firm footing. A short distance to the
    northeast, a small waterfall cascades noisily into the swamp.
@@ -2543,73 +2542,54 @@ PLACE +SPIRE
  !`the spire, initially heading north and then bending to the NW.
 #
 FRAGMENT AMONG.DUNES
-   You are wandering among dark sand dunes
+   You are wandering among dark sand dunes.
 #
-FRAGMENT FEROCIOUS.WIND
-   You are surrounded by shifting dunes of fine, very dark sand.
-   Ferocious wind makes a strange hissing noise as it swirls
-   the sand under the enormous, red sun.
-#
-FRAGMENT TALL.BLACK.SPIRE
-   A tall black spire can be seen above the sands some way off in 
-   the [////////////westerly/=/=////northerly/southerly/] direction.
-#
-FRAGMENT MASSIVE.STONE.SPIRE
-   A massive black stone spire raises over the sands to
-   the [///////////////southwest/west/northwest///south/north/southeast/east].
-#
-FRAGMENT DUNES.GROW
-   which grow forbiddingly large to the {PERMANENT.DUNES}.
-#
-FRAGMENT FORBIDDING.DUNES
-   The dunes grow forbiddingly large to the {PERMANENT.DUNES}.
+FRAGMENT AMONG.DARK.DUNES
+   You are surrounded by shifting dunes of fine, very dark sand,
 #
 PLACE DESERT.1
-   {AMONG.DUNES} {DUNES.GROW}
-  %!`{FEROCIOUS.WIND} The dunes seem somewhat lower
-   to the east, but grow forbiddingly large to the {PERMANENT.DUNES}.
+   {AMONG.DUNES}
+  %!`{AMONG.DARK.DUNES}
 #
 PLACE DESERT.2
-   {AMONG.DUNES} {DUNES.GROW}
-  %!`{FEROCIOUS.WIND} The dunes seem somewhat lower to
-   the east, but grow forbiddingly large to the {PERMANENT.DUNES}.
+   {AMONG.DUNES}
+  %!`{AMONG.DARK.DUNES}
 #
 PLACE DESERT.3
-   {AMONG.DUNES}.
-  %!`{FEROCIOUS.WIND}
+   {AMONG.DUNES}
+  %!`{AMONG.DARK.DUNES}
 #
 PLACE DESERT.4
-   {AMONG.DUNES}.
-  %!`{FEROCIOUS.WIND}
+   {AMONG.DUNES}
+  %!`{AMONG.DARK.DUNES}
 #
 PLACE DESERT.5
-   {AMONG.DUNES} {DUNES.GROW}
-  %!`{FEROCIOUS.WIND} {FORBIDDING.DUNES}
+   {AMONG.DUNES}
+  %!`{AMONG.DARK.DUNES}
 #
 PLACE DESERT.6
-   {AMONG.DUNES} {DUNES.GROW}
-  %!`{FEROCIOUS.WIND} {FORBIDDING.DUNES}
+   {AMONG.DUNES}
+  %!`{AMONG.DARK.DUNES}
 #
 PLACE DESERT.7
-   {AMONG.DUNES} {DUNES.GROW}
-  %!`{FEROCIOUS.WIND} {FORBIDDING.DUNES}
+   {AMONG.DUNES}
+  %!`{AMONG.DARK.DUNES}
 #
 PLACE DESERT.8
-   {AMONG.DUNES}.
-  %!`{FEROCIOUS.WIND}
+   {AMONG.DUNES}
+  %!`{AMONG.DARK.DUNES}
 #
 PLACE DESERT.9
-   {AMONG.DUNES} {DUNES.GROW}
-  %!`{FEROCIOUS.WIND} {FORBIDDING.DUNES}
+   {AMONG.DUNES}
+  %!`{AMONG.DARK.DUNES}
 #
 PLACE DESERT.10
-   {AMONG.DUNES} {DUNES.GROW}
-  %!`{FEROCIOUS.WIND} {FORBIDDING.DUNES}
+   {AMONG.DUNES}
+  %!`{AMONG.DARK.DUNES}
 #
 PLACE DESERT.11
-   You are standing next to a basalt outcrop, among dunes {DUNES.GROW}
-  %!`{FEROCIOUS.WIND} {FORBIDDING.DUNES}
-   but a basalt outcrop rises out of the sand to the northwest.
+   You are standing next to a basalt outcrop.
+  %!`{AMONG.DARK.DUNES}
 #
 PLACE ROCKY.DESERT
    You are standing among boulders on a rocky outcrop in 
@@ -2620,52 +2600,52 @@ PLACE ROCKY.DESERT
    to the southeast the dunes appear to be somewhat lower.
 #
 PLACE DESERT.12
-   {AMONG.DUNES} {DUNES.GROW} {TALL.BLACK.SPIRE}
-  %!`{FEROCIOUS.WIND} {FORBIDDING.DUNES} {TALL.BLACK.SPIRE}
+   {AMONG.DUNES}
+  %!`{AMONG.DARK.DUNES}
 #
 PLACE DESERT.13
-   {AMONG.DUNES}. {TALL.BLACK.SPIRE}
-  %!`{FEROCIOUS.WIND} {TALL.BLACK.SPIRE}
+   {AMONG.DUNES}
+  %!`{AMONG.DARK.DUNES}
 #
 PLACE DESERT.14
-   {AMONG.DUNES} {DUNES.GROW} {TALL.BLACK.SPIRE}
-  %!`{FEROCIOUS.WIND} {FORBIDDING.DUNES} {TALL.BLACK.SPIRE}
+   {AMONG.DUNES}
+  %!`{AMONG.DARK.DUNES}
 #
 PLACE DESERT.15
-   {AMONG.DUNES} {DUNES.GROW} {MASSIVE.STONE.SPIRE}
-  %!`{FEROCIOUS.WIND} {FORBIDDING.DUNES} {MASSIVE.STONE.SPIRE}
+   {AMONG.DUNES}
+  %!`{AMONG.DARK.DUNES}
 #
 PLACE DESERT.16
-   {AMONG.DUNES}. {MASSIVE.STONE.SPIRE}
-  %!`{FEROCIOUS.WIND} {MASSIVE.STONE.SPIRE}
+   {AMONG.DUNES}
+  %!`{AMONG.DARK.DUNES}
 #
 PLACE DESERT.17
-   {AMONG.DUNES} {DUNES.GROW} {MASSIVE.STONE.SPIRE}
-  %!`{FEROCIOUS.WIND} {FORBIDDING.DUNES} {MASSIVE.STONE.SPIRE}
+   {AMONG.DUNES}
+  %!`{AMONG.DARK.DUNES}
 #
 PLACE DESERT.18
-   {AMONG.DUNES} {DUNES.GROW} {TALL.BLACK.SPIRE}
-  %!`{FEROCIOUS.WIND} {FORBIDDING.DUNES} {TALL.BLACK.SPIRE}
+   {AMONG.DUNES}
+  %!`{AMONG.DARK.DUNES}
 #
 PLACE DESERT.19
-   {AMONG.DUNES} {DUNES.GROW} {TALL.BLACK.SPIRE}
-  %!`{FEROCIOUS.WIND} {FORBIDDING.DUNES} {TALL.BLACK.SPIRE}
+   {AMONG.DUNES}
+  %!`{AMONG.DARK.DUNES}
 #
 PLACE DESERT.20
-   {AMONG.DUNES} {DUNES.GROW} {MASSIVE.STONE.SPIRE}
-  %!`{FEROCIOUS.WIND} {FORBIDDING.DUNES} {MASSIVE.STONE.SPIRE}
+   {AMONG.DUNES}
+  %!`{AMONG.DARK.DUNES}
 #
 PLACE DESERT.21
-   {AMONG.DUNES} {DUNES.GROW} {MASSIVE.STONE.SPIRE}
-  %!`{FEROCIOUS.WIND} {FORBIDDING.DUNES} {MASSIVE.STONE.SPIRE}
+   {AMONG.DUNES}
+  %!`{AMONG.DARK.DUNES}
 #
 PLACE DESERT.22
-   {AMONG.DUNES} {DUNES.GROW} {MASSIVE.STONE.SPIRE}
-  %!`{FEROCIOUS.WIND} {FORBIDDING.DUNES} {MASSIVE.STONE.SPIRE}
+   {AMONG.DUNES}
+  %!`{AMONG.DARK.DUNES}
 #
 PLACE DESERT.LAST
-   {AMONG.DUNES} {DUNES.GROW} {MASSIVE.STONE.SPIRE}
-  %!`{FEROCIOUS.WIND} {FORBIDDING.DUNES} {MASSIVE.STONE.SPIRE}
+   {AMONG.DUNES}
+  %!`{AMONG.DARK.DUNES}
 #
 PLACE RIVER.BED.1
    You are on the dry river-bed, by the cave of winds.

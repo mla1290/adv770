@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2002.
+# Copyleft Mike Arnautov 1984-2003.
 #
 # Time to do some run-time initialisation.
 #
@@ -269,8 +269,7 @@ init
    flag storage, no.dwarf
    flag fake.y2, no.dwarf
    flag fake.jumble, no.dwarf
-   flag rest.area, no.dwarf
-   itplace place.ptr, catacombs.portal, catacombs.exit
+   itplace place.ptr, catacombs.lobby, catacombs.exit
       flag place.ptr, no.dwarf
    eoi
    flag audience, no.dwarf
@@ -319,6 +318,7 @@ init
    flag stream.maze, no.dwarf
    flag crypt, no.dwarf
    flag wrong.venue, no.dwarf
+   flag valuers, no.dwarf
    flag storeroom, no.dwarf     # So that nicked objects do not get nicked.
    flag hidey.hole, no.dwarf    # Ditto for things lost in the mist.
 #
@@ -358,7 +358,6 @@ init
    flag small.chamber, one.exit
    flag den, one.exit
    flag new.den, one.exit
-#   flag stable, one.exit    # We commented STABLE out - remember?
    flag crypt, one.exit
    flag vestry, one.exit
    flag dank.cave, one.exit
@@ -376,13 +375,13 @@ init
          flag place.ptr, no.back
       fin
    eoi
-   bic mazea.42, no.back
+   unflag mazea.42, no.back
    itplace place.ptr, mazed.107, mazed.140
       flag place.ptr, in.maze
       flag place.ptr, no.back
       flag place.ptr, hintable
    eoi
-   bic mazed.107, no.back
+   unflag mazed.107, no.back
    itplace place.ptr, web.maze.1, web.maze.6
       flag place.ptr, in.maze
       flag place.ptr, no.dwarf
@@ -632,8 +631,8 @@ init
 # Note that both the tusk and the rug start off as non-valued.
 # We still set them as such here, for clarity.
 #
-   bic rug, valued
-   bic tusk, valued
+   unflag rug, valued
+   unflag tusk, valued
    flag nugget, valued
    flag diamonds, valued
    flag bars, valued
@@ -1048,7 +1047,7 @@ init
    tie pine, no.water.pine
    tie beanstalk, no.climb.cliff, patch.of.soil
    tie mists, dome.state
-   tie desert.offset, tall.black.spire, massive.stone.spire, permanent.dunes
+   tie desert.offset, tall.black.spire, massive.black.spire, permanent.dunes
 #
 # Randomise some of the cycling texts.
 #

@@ -1,4 +1,8 @@
-# Copyleft Mike Arnautov 1984-2002.
+# Copyleft Mike Arnautov 1984-2003.
+#
+# Words to be ignored
+#
+noise and, the, a, an, that, this, to, at, with, room, awhile, about, from
 #
 # Time we defined some verbs. Start with specials, not requiring
 # validation of ARG2.
@@ -71,6 +75,9 @@ verb -last.compass.point
 verb up, =u, upward, above, ascend
 verb down, =d, downwards, descend
 verb -last.direction
+#
+# Other movement verbs.
+#
 verb in, inward, inside, enter
 verb out, outside, outdoors, exit, leave
 verb go, walk, run, travel, proceed, explore, follow, scramble
@@ -131,6 +138,8 @@ verb tear
 verb spill
 verb clean
 verb value
+verb increment
+verb decrement
 verb -last.clarify        # Last clarifiable 'verb'
 #
 # Next lot does not require clarifications
@@ -171,7 +180,7 @@ verb use
 verb reflect
 verb scry, gaze
 verb vocabulary, =commands, dictionary
-verb yes, =y
+verb yes, =y, ok
 verb no
 verb maybe, perhaps, possibly
 verb !runout        # Wizards only. Invokes 'clock4' immediately.
@@ -235,7 +244,7 @@ verb tombs, vaults
 verb shelf, shelves, rack, racks
 verb couch
 verb ash, ashes, fire
-verb heelprint, indentation
+verb heelprint, =print, indentation
 verb well
 verb spring
 verb bed, streambed, riverbed
@@ -390,10 +399,7 @@ verb dune, dunes, desert
 verb vista, landscape, scene
 verb spray
 verb overhang
-verb sparevrb01
-verb sparevrb02
-verb sparevrb03
-verb sparevrb04
+verb map
 verb sparevrb05
 verb sparevrb06
 verb sparevrb07
@@ -431,6 +437,10 @@ verb !plurals, !oysters, !birds, !lamps, !cages, !pillows, !bottles, !snakes, !p
 verb sky
 verb floor, ground
 verb -last.pseudo
+#
+# Except/but is in a category of its own!
+#
+verb except, but
 #
 # Finally, the administrator mode sequence
 #

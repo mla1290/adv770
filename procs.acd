@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2002.
+# Copyleft Mike Arnautov 1984-2003.
 #
 # Procedures.
 #
@@ -174,15 +174,16 @@ proc feed.beanstalk
 #
 proc check.wearing
    local state
+   local all.loop
 #
+   exec 26, all.loop
    ifflag arg2, wearable
       eval state, arg2
       ifgt state, not.worn
-         ifkey ring
-            set ring, not.worn
-         else
-            quip remove.it.first, arg2
+         ifeq all.loop, 0
+            say remove.it.first, arg2
          fin
+         quit
       fin
    fin
 #
@@ -716,100 +717,88 @@ proc owl.comes, no.chance, some.chance
 #
 proc catlogic
    local temp.val
+   local current.exit
    local north.dir
+   local forward.exit
+   local place.ptr
 #
-# Catacombs logic is this... Their topology is completely linear, with
-# one "right" direction leading to the next location and all the rest leading
-# to the previous one, with two exceptions. (a) Start location loops back
-# to itself for all "wrong" directions, except north, which leads  back
-# to the catacombs' lobby and south, which is where the
-# "rest area" is, (b) Catacombs portal has hardwired exit west to the
-# Audience Hall and east to the thieve's den. The real trick is that the
-# geography of all this is not fixed and gets fixed by the player as he
-# goes through the catacombs. Adv660 fixed player's first move in a location
-# as the "right" move. Adv770 is more devious and fixes the *opposite*
-# move instead. The audience hall location at portal exit is fixed as
-# 90 degrees clockwise from the "right" direction. (Which is why the two
-# special cases have two opposite hardwired exits!)
+# Catacombs logic goes like this:
 #
-   set direction, arg2
    ifeq status, 1
       or
    ifinrange arg1, first.direction, last.compass.point
       set direction, arg1
+   else
+      set direction, arg2
    fin
    set temp.val, here
    lda place.ptr, catacombs.entrance
    sub temp.val, place.ptr
-   lda var.ptr, c.exit
-   add var.ptr, temp.val
-   eval forward.exit, var.ptr
+   lda current.exit, c.exit
+   add current.exit, temp.val
+   eval forward.exit, current.exit
+   lda north.dir, north
    ifeq forward.exit, none
       flag here, hintable
       set forward.exit, direction
-      lda north.dir, north
-      sub forward.exit, north.dir
-      add forward.exit, 4
-      ifgt forward.exit, 7
-         sub forward.exit, 8
+      deposit current.exit, direction
+      set cat.factor, 0
+   else
+      add forward.exit, cat.factor
+      sub forward.exit, 8
+      iflt forward.exit, north.dir
+         add forward.exit, 8
       fin
-      ifat catacombs.entrance
-         set rest.exit, forward.exit
-         add rest.exit, 6
-         ifgt rest.exit, 7
-            sub rest.exit, 8
-         fin
-         ifgt rest.exit, 3
-            sub rest.exit, 4
-         fin
-         set rest.area, rest.exit
-         add rest.exit, north.dir
-         set lobby.exit, rest.exit
-         add lobby.exit, 4
-      fin
-      ifat catacombs.13
-         set portal.switch, 0
-         chance 50
-            set portal.switch, 1
-         fin
-         set portal.exit, forward.exit
-         add portal.exit, 6
-         ifgt portal.exit, 7
-            sub portal.exit, 8
-         fin
-         ifgt portal.exit, 3
-            sub portal.exit, 4
-         fin
-         add portal.exit, north.dir
-      fin
-      add forward.exit, north.dir
-      deposit var.ptr, forward.exit
    fin
-   ifat catacombs.13
-      and
-   ifeq direction, portal.exit
-      move catacombs.portal
-   fin
-   ifeq direction, forward.exit
+   ifeq forward.exit, direction
       ifat catacombs.exit
+         add cat.factor, 1
+         ifgt cat.factor, 7
+            sub cat.factor, 8
+         fin
          move fake.y2
       fin
       set place.ptr, here
       add place.ptr, 1
       move place.ptr
-   fin
+   otherwise
+   ifat catacombs.13
+      ifeq portal.exit, none
+         set portal.exit, direction
+         set temp.val, direction
+      else
+         set temp.val, portal.exit
+         add temp.val, cat.factor
+         sub temp.val, 8
+         iflt portal.exit, north.dir
+            add temp.val, 8
+         fin
+      fin
+      ifeq temp.val, direction
+         move catacombs.portal
+      else
+         move catacombs.12
+      fin
+   otherwise
    ifat catacombs.entrance
-      ifeq direction, lobby.exit
-         move catacombs.lobby
+      set rest.exit, forward.exit
+      sub rest.exit, 4
+      iflt rest.exit, north.dir
+         add rest.exit, 8
       fin
-      ifeq direction, rest.exit
+      ifeq rest.exit, direction
+         set rest.exit, forward.exit
+         set rest.area, rest.exit
+         sub rest.area, north.dir
          move rest.area
+      else
+         move catacombs.entrance
       fin
-      move catacombs.entrance
+   else
+      set place.ptr, here
+      sub place.ptr, 1
+      move place.ptr
    fin
-   set place.ptr, here
-   sub place.ptr, 1
-   move place.ptr
 #
 #=====================================================================
 #
@@ -1174,6 +1163,7 @@ proc get.swag
    fin
    set loot, 0
    flag starstone, big    # Temporarily - to avoid unnecessary complications
+   flag food big          # We don't want dwarves stealing food!
    ifloc magazines, witts.end
       flag magazines, big # Don't steal them from the LLP location
    fin
@@ -1212,6 +1202,7 @@ proc get.swag
    eoi
    unflag starstone, big                  # Shrink it again
    unflag magazines, big
+   unflag food, big
    ifgt loot, 0
       random count, loot
       add count, 1
@@ -1388,6 +1379,7 @@ proc rod.special.stuff
             proceed
          fin
       fin
+      flag dynamite, seen
       iflt invct, strength
          get dynamite
          flag dynamite, stealable
@@ -1490,6 +1482,7 @@ proc get.score
          fin
       else
          ifflag obj.ptr, seen
+# say it.is, obj.ptr
             add scorex, seen.value
          fin
       fin
@@ -1911,8 +1904,68 @@ proc here.you.can.see
 #
 #=====================================================================
 #
+proc list.dunes, dune.count
+   local mask
+   local counter
+   local dir
+   local locval
+#
+   set mask, 1
+   set result, 0
+   eval locval, here
+   ifeq locval, 0
+      proceed
+   fin
+   iterate counter, 1, 8
+      eval locval, here
+      intersect locval, mask
+      ifne locval, 0
+         add result, 1
+         ifgt dune.count, 0
+            ifeq result, 1
+               set dir.sep, 0
+            otherwise
+            ifeq result, dune.count
+               set dir.sep, 2
+            else
+               set dir.sep, 1
+            fin
+            say dir.sep, dir
+         fin
+      fin
+      add dir, 1
+      add mask, mask
+   eoi
+#
+#=====================================================================
+#
 proc special.view
+   local temp.val
+#
    ifflag status, fulldisplay
+      ifinrange here, desert.1, desert.last
+         ifat desert.3, desert.4, desert.8, desert.13, desert.16
+            set temp.val, 0
+         else
+            set temp.val, 1
+         fin
+         call list.dunes, 0
+         ifgt result, 0
+            add temp.val, 2
+         fin
+         say dune.types, temp.val
+         ifinrange here, desert.12, desert.last
+            ifat desert.12, desert.13, desert.14, desert.18, desert.19
+               say tall.black.spire
+            else
+               say massive.black.spire
+            fin
+         fin
+         ifkey look
+         else
+            say ferocious.wind
+         fin
+      fin
       ifflag here, in.desert
          or
       ifinrange here, north.of.spire, south.of.spire
@@ -1920,19 +1973,21 @@ proc special.view
       ifat rocky.desert
          ifkey look
             say cliff.over.desert
-         else
+         otherwise
+         ifat south.of.spire, east.of.spire, north.of.spire
             say forced.blank
-         fin
-      else
-         ifat spire.nearly.up, spire
-            say cliff.over.spire
          else
-            ifat pit
-               and
-            ifeq mists, steps.present
-               say rough.steps
-            fin
+            say blank
          fin
+         unflag here, been.here
+      otherwise
+      ifat spire.nearly.up, spire
+         say cliff.over.spire
+      otherwise
+      ifat pit
+         and
+      ifeq mists, steps.present
+         say rough.steps
       fin
    fin
    ifflag here, damp
@@ -2142,13 +2197,9 @@ proc drop.sunstone
    else
       proceed
    fin
-   ifat spire
-      add sunstone, 3
-      ifgt sunstone, 8
-         sub sunstone, 8
-      fin
-   else
-      choose sunstone, 1, 8
+   add sunstone, 3
+   ifgt sunstone, 8
+      sub sunstone, 8
    fin
    drop sunstone
    say sunstone.drops, sunstone
@@ -2420,6 +2471,8 @@ proc dragon.slayer
       apport teeth, here
       apport rug, here
       apport dragon, here
+      choose dragtime, 0, 5
+      add dragtime, 5
       unflag dragon, schizoid
       set rug, unrolled
       say dragon.vanquished
@@ -2810,10 +2863,14 @@ proc events                  # Administrative clock has ticked
       ifgt sword, in.stone
          randomise sword, 1
       fin
-      ifeq dragon, dead.body
-         sub dragtime, lastclock
-         iflt dragtime, 0
-            set dragon, rotting.carcass
+      ifgt dragon, on.rug
+         and
+      iflt dragon, rotting.carcass
+         sub dragtime, 1
+         ifeq dragtime, 4
+            or
+         ifeq dragtime, 0
+            add dragon, 1
          fin
       fin
       ifflag djinn, special1
@@ -2987,6 +3044,7 @@ proc bail.out
             fin
             quip black.sand   # Only the black desert left!
          else
+            flush
             quip hah!
          fin
       fin
@@ -3018,6 +3076,14 @@ proc bail.out
       ifnear sheet
          quip hah!
       fin
+   fin
+   ifkey light
+      and
+   ifgt status, 1
+      and
+      not
+   ifkey lamp
+      quip hah!
    fin
    respond elric, elric.lives
    respond jerry, elric.preferred
@@ -3511,7 +3577,9 @@ proc hint.action
             unflag peelgrunt, hintable
          fin
          ifat witts.end
-            flag hints, witt.help
+            and
+         ifgt stuck, 30
+            set stuck, 30
          fin
          ifinrange here, slide, ice.cave.30
             or
@@ -3576,6 +3644,10 @@ proc hint.action
 #=====================================================================
 #
 proc no.move.possible
+   ifeq status, 2
+      flush
+      quip what?
+   fin
    ifkey go
       set text.ptr, arg2
    else
@@ -4305,14 +4377,24 @@ proc thirst.factor
    local temp.val
 #
    ifeq water, desperate
-      sub thirst.time, 1
+      ifflag water, moved
+         sub thirst.time, invct
+      else
+         sub thirst.time, 1
+      fin
+      ifinrange here, north.of.spire, basalt.shelf.2
+         sub thirst.time, 1
+      fin
       iflt thirst.time, 1
          say youve.collapsed
          call coroner
       fin
-      say iam.thirsty!
+      iflt thirst.time, 3
+         say iam.thirsty!
+      fin
       proceed
    fin
+#
    ifflag water, moved
       set temp.val, invct
       divide temp.val, 3
@@ -4322,19 +4404,18 @@ proc thirst.factor
    fin
    add temp.val, temp.val
    unflag water, moved
-   ifflag here, in.desert
+   ifinrange here, north.of.spire, basalt.shelf.2
       add temp.val, temp.val
    fin
    sub thirst.time, temp.val
-   iflt thirst.time, 40
+#
+  iflt thirst.time, 40
       iflt water, desperate
          say iam.thirsty!
          set water, desperate
-         set thirst.time, temp.val
-         multiply thirst.time, temp.val
-         ifge thirst.time, 40
-            set thirst.time, 30
-         fin
+         set thirst.time, invct
+         add thirst.time, 2
+         add thirst.time, thirst.time
       fin
    otherwise
    iflt thirst.time, 140
@@ -4678,11 +4759,73 @@ proc consult.sunstone, direction
 #
 #=====================================================================
 #
-proc stir.sands
-   local temp.val
+proc stir.sands, where
+   local desval
 #
-   choose temp.val, 1, 254
-   deposit here, temp.val
+   choose desval, 1, 255
+   ifis where, desert.1
+      intersect desval, 48    # S and SW
+   otherwise
+   ifis where, desert.2
+      intersect desval, 93    # N, S, SW and W
+   otherwise
+   ifis where, desert.3
+      or
+   ifis where, desert.4
+      intersect desval, 241   # N, S, SW, W and NW
+   otherwise
+   ifis where, desert.5
+      intersect desval, 209   # N, S, W and NW
+   otherwise
+   ifis where, desert.6
+      intersect desval, 129
+   otherwise
+   ifis where, desert.7,
+      intersect desval, 254   # All bar N
+   otherwise
+   ifis where, desert.9
+      intersect desval, 223   # All bar SW
+   otherwise
+   ifis where, desert.10
+      intersect desval, 143   # N, NE, E, SE, NW
+   otherwise
+   ifis where, desert.11, 
+      intersect desval, 56    # SE, S, SW
+   otherwise
+   ifis where, desert.12
+      intersect desval, 125   # N, E, SE, S, SW, W
+   otherwise
+   ifis where, desert.14
+      intersect desval, 239   # All bar S
+   otherwise
+   ifis where, desert.15
+      intersect desval, 222   # All bar N and SW
+   otherwise
+   ifis where, desert.16
+      intersect desval, 191   # All bar W
+   otherwise
+   ifis where, desert.17
+      intersect desval, 87    # N, NE, E, S, W
+   otherwise
+   ifis where, desert.18
+      intersect desval, 131   # N, NE, NW
+   otherwise
+   ifis where, desert.19
+      intersect desval, 56    # SE, S, SW
+   otherwise
+   ifis where, desert.20
+      intersect desval, 109   # N, E, SE, SW, W
+   otherwise
+   ifis where, desert.21
+      intersect desval, 142   # NE, E, SE, NW
+   otherwise
+   ifis where, desert.22
+      intersect desval, 22    # NE, E, S
+   otherwise
+   ifis where, desert.last
+      intersect desval, 11    # N, NE, SE
+   fin
+   deposit, where, desval
 #
 #=====================================================================
 #
@@ -4695,7 +4838,7 @@ proc blow.sands
    ifflag status, moved
       say blank
    fin
-   call stir.sands
+   call stir.sands, here
    set desloc, 0
 #
 #=====================================================================
@@ -4706,17 +4849,14 @@ proc desert.stuff
    local dir
    local state
 #
-   ifflag here, been.here
-   else
-      itplace place.ptr, desert.1, desert.last
-         flag place.ptr, been.here
-      eoi
-      unflag here, been.here
-   fin
+   set desert.offset, here
+   lda temp.val, desert.1
+   sub desert.offset, temp.val
+   unflag here, been.here
    ifflag status, moved
       eval state, here
       ifeq state, 0
-         call stir.sands
+         call stir.sands, here
       fin
    fin
    ifflag desloc, moved
@@ -4750,7 +4890,7 @@ proc desert.stuff
       set desbit, 1
       ifgt state, 0
          iterate counter, 1, state
-            multiply desbit, 2
+            add desbit, desbit
          eoi
       fin
       eval desmask, there
@@ -4767,8 +4907,8 @@ proc desert.stuff
       else
          set desdir, 0
          set desloc, there
-         call stir.sands
-         deposit here, state
+         call stir.sands, here
+#         deposit here, state
       fin
    otherwise
    chance 33
@@ -5009,7 +5149,7 @@ proc whirlpool.dive
          eval obj.val, obj.ptr
          ifflag obj.ptr, wearable
             and
-         ifne obj.val, worn
+         ifeq obj.val, worn
             or
          ifis  obj.ptr, lamp
          else
@@ -5131,7 +5271,7 @@ proc save.it
          exec 24, text.ptr
          iflt status, 2
             set context, q.save.what
-            set status, no.amatch      # No approx matching on the reply!
+            set status, no.match      # No matching on the reply!
             quip save.what?
          fin
          call save.this
@@ -5439,6 +5579,7 @@ proc randomise.texts
    randomise it.is.now.dark, 0
    randomise no.fucking, 0
    randomise nocomprende, 0
+   randomise nocomprende.verb, 0
    randomise nocomprende.object, 0
    randomise no.understand, 0
    randomise no.can.go, 0
@@ -5454,6 +5595,9 @@ proc randomise.texts
    randomise dunno.hao, 0
    randomise not.much.of.it, 0
    randomise no.pick.up, 0
+   randomise dark.exit, 0
+   randomise dark.exits, 0
+   randomise well.worn.steps, 0
    randomise typo, 0             # TYPO is structured in blocks of 4
    divide typo, 4                # messages, so randomise to the start
    multiply typo, 4              # of a block.
@@ -5474,14 +5618,17 @@ proc early.restore
    ifeq status, 0
       or
    ifkey yes
-      add penalties, 20
+      add penalties, hint.cost
       call restore.it
    fin
-   exec 18              # Restore memory image
    ifany no, n
-      quip ok
+      say ok
    else
-      quip lets.be.prudent, 0
+      say lets.be.prudent, 0
+   fin
+   exec 18              # Restore memory image
+   iflt stage, adventuring
+      stop
    fin
 #
 #=====================================================================
@@ -5586,7 +5733,7 @@ proc close.mine.door
       or
    ifkey bknrd             # "Close" in Humanish
       ifis arg1, bknrd
-         say nocomprende, arg1
+         say nocomprende.verb, arg1
       otherwise
       ifgt status, 1
          say nocomprende.object, arg2
@@ -5655,37 +5802,6 @@ proc feed.unicorn
 #
 #=====================================================================
 #
-proc do.sunstone
-   ifflag here, not.in.cave
-      and
-      not
-   ifflag here indoors
-      ifat spire, ledge
-         say blank
-      otherwise
-      ifis there, beanstalk.bottom
-         or
-      ifis there, ledge
-         and
-      ifat beanstalk.middle
-         say blank
-      fin
-      sub sunstone, 1
-      iflt sunstone, 1
-         set sunstone, 8
-      fin
-      say sunstone.flash, sunstone
-      ifeq sunstone, 8
-         say black.flash
-      fin
-      ifat spire
-      else
-         say blank
-      fin
-   fin
-#
-#=====================================================================
-#
 proc tooth.stuff
    ifnear teeth
    else
@@ -5706,20 +5822,6 @@ proc tooth.stuff
       quip you.dont.have, teeth
    fin
    quip teeth.plural, arg1
-#
-#=====================================================================
-#
-proc check.typo, which.arg
-   lda text.ptr, typo
-   ifeq which.arg, 1
-      exec 27, text.ptr
-   else
-      exec 28, text.ptr
-   fin
-   ifeq text.ptr, 1
-      say blank
-      say blank
-   fin
 #
 #=====================================================================
 #
@@ -6337,6 +6439,132 @@ proc garden.stuff
       fin
       quip hah!
    fin
+#
+#=====================================================================
+#
+proc drop.check, t.only
+   local obj.ptr
+   local no.drop.count
+   local state
+#
+   itobj obj.ptr, inhand
+      ifeq t.only, 0
+         or
+      ifflag obj.ptr, valued
+         ifflag obj.ptr, wearable
+            eval state, obj.ptr
+            ifeq state, worn
+               add no.drop.count, 1
+            else
+               proceed     # There is something to drop!
+            fin
+         else
+            proceed
+         fin
+      fin
+   eoi
+   ifeq no.drop.count, 0
+      ifkey treasure
+         quip no.treasure, 1
+      fin
+      quip no.all, 1
+   fin
+   quip no.drop.worn
+#
+#=====================================================================
+#
+proc except.check
+   local obj.ptr
+   local tmp.ptr
+   local where
+   local loot
+   local do.count
+   local except.count
+   local worn.count
+   local state
+#
+   ifkey treasure
+      set loot, 1
+   fin
+   lda where, inhand
+   ifkey get
+      set where, here
+   fin
+   itobj obj.ptr
+      set tmp.ptr, obj.ptr
+      exec 32, tmp.ptr
+      ifeq tmp.ptr, 1
+         ifany drop, down
+            ifhave obj.ptr
+            else
+               say hang.on!
+               chance 50
+                  quip you.arent.carrying, obj.ptr
+               fin
+               quip you.dont.have, obj.ptr
+            fin
+         else
+            ifhave obj.ptr
+               quip you.have.it, obj.ptr
+            fin
+            ifnear obj.ptr
+            else
+               quip i.dont.see, obj.ptr
+            fin
+         fin
+      fin
+      ifloc obj.ptr, where
+         ifeq loot, 0
+            or
+         ifflag obj.ptr, valued
+            and
+         ifflag obj.ptr, portable
+            ifeq tmp.ptr, 1
+               add except.count, 1
+            else
+               set state, none
+               ifkey drop
+                  and
+               ifflag obj.ptr, wearable            
+                  eval state, obj.ptr
+               fin
+               ifeq state, worn
+                  add worn.count, 1
+               else
+                  add do.count, 1
+               fin
+            fin
+         fin
+      fin
+   eoi
+   ifgt do.count, 0
+      proceed
+   fin
+   ifgt worn.count, 0
+      quip no.drop.worn
+   fin
+   ifeq where, here
+      ifeq except.count, 0
+         ifeq loot, 1
+            quip, no.treasure, 0
+         fin
+         quip no.all, 0
+      fin
+      ifeq loot, 1
+         quip no.other.treasure, 0
+      fin
+      quip no.other.objects, 0
+   fin
+   ifeq except.count, 0
+      ifeq loot, 1
+         quip no.treasure, 1
+      fin
+      quip no.all, 1
+   fin
+   ifeq loot, 1
+      quip no.other.treasure, 1
+   fin
+   quip no.other.objects, 1
 #
 #=====================================================================
 #
