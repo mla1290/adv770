@@ -166,15 +166,18 @@ at hill
       ifeq stage, mirror.world
          smove building, road, track, something.strange
          smove valley, forest.2, something.strange
-         smove tower, outside.gates, north.of.building, something.strange
+         smove tower, north.of.building, something.strange
       fin
       ifhave sunstone
          ifkey tower
-            and
-         ifeq sunstone, 5
-            say sunstone.stops.you, sw
-            move track
+            ifeq sunstone, 4
+               or
+            ifeq sunstone, 5
+               say sunstone.stops.you, sw
+               move track
+            fin
          fin
+      fin
          ifany road, down, building
             lda direction, east
          otherwise
@@ -198,12 +201,18 @@ at hill
       move nw, forest.2
       move west, track, track
       move thicket, dark.forest
+      ifkey tower
+         ifhave bust
+            move garden.s
+         else
+            move outside.gates
+      fin
    fin
 #
 #=====================================================================
 #
 at building
-   call house.inventory       # Check the treasure collection
+   call house.inventory, 0       # Check the treasure collection
    ifkey go
    else
       respond door, doorway, no.door, out
@@ -245,6 +254,7 @@ at building
       proceed
    fin
    ifkey look
+      respond corner, wall.corners, 1
       respond pipe, water.pipes
       respond stream, stream.flows.out
       respond building, house.info
@@ -303,7 +313,7 @@ at building
       call drink
    fin
    respond pipe, stream, downstream, pipe.too.narrow, 0
-   ifany note, notice, message, words
+   ifany note, notice, message, words, corner
       flag context, arg2.here
    fin
 #
@@ -2683,7 +2693,8 @@ at cavern
             call whirlpool.dive
          fin
          lda text.ptr, whirlpool?
-         exec 23, text.ptr
+#         exec 23, text.ptr
+         save command, text.ptr
          set context, q.whirlpool
          quip text.ptr
       fin
@@ -5686,7 +5697,9 @@ at beanstalk.bottom
       proceed
    fin
    ifgt beanstalk, 0
-      ifkey chew, stem
+      ifkey chew
+         and
+      ifany stem, beanstalk
          call chew.stem
       fin
       ifany stem, foliage
@@ -5746,7 +5759,9 @@ at beanstalk.middle
          quip no.hold.cliff, 0
       fin
    fin
-   ifkey chew, stem
+   ifkey chew
+      and
+   ifany stem, beanstalk
       call chew.stem
    fin
    ifany stem, foliage
@@ -5771,6 +5786,9 @@ at beanstalk.middle
                or
             ifeq sunstone, 8
                ifflag beater, seen
+                  ifeq sunstone, 8
+                     quip sunstone.stops.you, north
+                  fin
                   move ledge
                else
                   set context, q.ledge.good
@@ -5826,6 +5844,24 @@ at ledge
       goto beanstalk.bottom
       call splatter
    fin
+   ifkey sapling
+      ifany cut
+         say vandal!
+         ifhave axe
+            or
+         ifhave sword
+         else
+            append nothing.to.cut.with, 1
+         fin
+         quit
+      fin
+      ifkey chew
+         ifhave fangs, worn
+            quip no.point.in.that
+         fin
+         quip hah!
+      fin
+   fin
    ifkey jump
       set status, 1
    fin
@@ -5871,7 +5907,9 @@ at beanstalk.top
       respond, island, island.too.far
       proceed
    fin
-   ifkey chew, stem
+   ifkey chew
+      and
+   ifany stem, beanstalk
       call chew.stem
    fin
    ifany grass, stem, foliage, cliff
@@ -8333,7 +8371,8 @@ at tower.top.window
              move tower.top.landing
          fin
          ifeq sentry, welcoming.commettee
-            exec 23, text.ptr
+#            exec 23, text.ptr
+            save command, text.ptr
             set context, q.sentry
             quip sentry.will.kill
          fin
@@ -8516,6 +8555,18 @@ at tower.roof
       ifeq status, 1
          or
       ifany down, garden, ground, tower
+         ifeq trapdoor, opened
+            and
+         ifne door2, closed
+            set door2, closed
+            set trapdoor closed
+            say caught.climbing
+            goto garden.s
+            ifhave thurible
+               apport thurible, road   # So he can try again
+            fin
+            call coroner
+         fin
          call tower.climbing
       fin
    fin
@@ -8889,6 +8940,7 @@ at garden.nw
       call wall.stuff
    fin
    ifkey look
+      respond look, wall.corners, 1
       proceed
    fin
    ifkey go
@@ -8896,7 +8948,7 @@ at garden.nw
    ifeq status, 1
       move south, path, garden.sw
    fin
-   ifany path
+   ifany path, corner
       flag context, arg2.here
    fin
 #
@@ -8990,6 +9042,7 @@ at garden.ne
       call wall.stuff
    fin
    ifkey look
+      respond corner, wall.corners, 1
       proceed
    fin
    ifkey go
@@ -8997,7 +9050,7 @@ at garden.ne
    ifeq status, 1
       move south, garden.se
    fin
-   ifany path
+   ifany path, corner
       flag context, arg2.here
    fin
 #
@@ -9025,6 +9078,7 @@ at garden.sw
    fin
    call garden.stuff
    ifkey look
+      respond look, wall.corners, 0
       proceed
    fin
    ifkey go
@@ -9036,7 +9090,7 @@ at garden.sw
          call follow.it, garden.nw, north, garden.n, ne
       fin
    fin
-   ifany path
+   ifany path, corner
       flag context, arg2.here
    fin
 #
@@ -9098,10 +9152,7 @@ at garden.s
    ifeq status, 1
       move north, path, garden.n
    fin
-   ifany path
-      flag context, arg2.here
-   fin
-   ifany plaque, message, inscription, note, notice
+   ifany path, plaque, message, inscription, note, notice, shadow, shade
       flag context, arg2.here
    fin
 #
@@ -9132,6 +9183,7 @@ at garden.se
    fin
    call garden.stuff
    ifkey look
+      respond corner, wall.corners, 0
       respond shadow, shade, cast.shadow, tower
       proceed
    fin
@@ -9144,7 +9196,7 @@ at garden.se
          call follow.it, garden.n, nw, garden.ne, north
       fin
    fin
-   ifany path, shadow, shade
+   ifany path, shadow, shade, corner
       flag context, arg2.here
    fin
 #
@@ -10177,6 +10229,7 @@ at sword.place
 at stupendous.view
    local temp.val
 #
+   call house.inventory, 0    # He may be dropping the starstone here.
    ifkey read
       and
    ifeq status, 1
@@ -10435,6 +10488,16 @@ at above.sea
          or
       ifany edges, rug
          quip rug.clutching
+      fin
+   fin
+   ifkey fly
+      ifeq status, 1
+         or
+      ifkey west
+         quip rug.is.flying
+      fin
+      ifinrange arg2, first.direction, last.direction
+         quip no.steer.rug
       fin
    fin
    respond wait, you.sit.still
@@ -13203,10 +13266,11 @@ at island.ne
    ifeq status, 1
       move se, island
       move nw, island.n
-      move sw, stream, by.stream.1
+      move sw, upstream, stream, by.stream.1
       ifany beach, shore
          call follow.it, island.n, nw, island, se
       fin
+      respond downstream, no.swim, 3
    fin
    ifany jumble, rock, outcrop, stream, mountain, soil
       flag context, arg2.here
@@ -14442,7 +14506,7 @@ at temple
    ifkey go
       or
    ifeq status, 1
-      move out, east, by.temple
+      move out, back, east, by.temple
       ifkey go, temple
          quip already.inside, temple
       fin
@@ -14588,7 +14652,7 @@ at bog.edge
    ifeq status, 1
       move stream, down, downstream, stones, gorge, se, by.stream.2
       move up, climb, viewpoint
-      ifany west, sw, nw, swamp
+      ifany west, upstream, sw, nw, swamp
          ifhave shoes
             ifflag viewpoint, special
                quip not.from.here, 2
@@ -14722,6 +14786,7 @@ at wrong.venue
       add wrong.venue, 1
    fin
    ifkey look
+      respond wall, nothing.special, wall
       respond water, shallow.water
       respond torch, no.see.torch
       respond gap, stream, watery.gap
@@ -14735,12 +14800,13 @@ at wrong.venue
       or
    ifeq status, 1
       smove xyzzy, plugh, house, zapping.out
-      respond n, ne, e, se, s, sw, w, nw, no.go
-      respond back, gap, stream, no.enter.gap
+      respond n, ne, e, se, s, sw, w, nw, wall, no.go
+      respond back, upstream, gap, stream, no.enter.gap
       respond swim, water, no.swim, 0
+      respond downstream, no.downstream
    fin
    respond torch, torches.too.high
-   ifany stream, gap, ceiling
+   ifany stream, gap, ceiling, wall
       flag context, arg2.here
    fin
 #

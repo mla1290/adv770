@@ -73,7 +73,8 @@ proc generic.no.do
 #
 proc bail.out
    ifkey oil
-      call handle.oil
+#      call handle.oil
+       handle.oil
    fin
    ifkey water
       call handle.water
@@ -149,6 +150,12 @@ proc bail.out
       else
          quip dirt.and.dust
       fin
+   fin
+   ifkey corner
+      and
+      not
+   ifflag here, not.in.cave
+      quip nooks.and.crannies
    fin
    ifkey sygil
       and
@@ -543,7 +550,9 @@ proc check.wearing
    local state
    local all.loop
 #
-   exec 26, all.loop
+   ifdoall
+      set all.loop, 1
+   fin
    ifflag arg2, wearable
       eval state, arg2
       ifgt state, not.worn
@@ -856,6 +865,62 @@ proc throw.it.at.orb
 #
 #=====================================================================
 #
+proc house.inventory, testing
+   local missing.rose
+   local obj.ptr
+#
+   set result,0
+   ifeq stage, mirror.world
+      proceed
+   fin
+   set missing.rose, 0
+   unflag starstone, valued   # To avoid problems - starstones being funny
+   unflag ring, valued        # in case he is wearing it
+   itobj obj.ptr, valued
+      ifloc obj.ptr, building     # If where it should be...
+            or
+      ifloc obj.ptr, ylem         # ... or gone for good
+      else
+         ifis obj.ptr, windrose
+            and
+            not
+         ifflag windrose, seen
+            set missing.rose, 1
+         else
+            flag ring, valued
+            flag starstone, valued
+            proceed
+        fin
+      fin
+   eoi
+   flag ring, valued
+   flag starstone, valued
+   ifloc starstone, building  # We allow it to be in the building, 
+      or                      # Even though it does not score there
+   ifloc starstone, stupendous.view
+      or
+   ifloc starstone, ylem
+   else
+      proceed
+   fin
+   ifhave ring               # Ring temporarily non-valuable
+      or                     # in order to allow the adventurer
+   ifloc ring, building      # to lug it around with him.
+      or                     # Seems like everybody does this!
+   ifloc ring, ylem          # He won't score for it, of course...
+      ifeq missing.rose, 0
+         ifeq testing, 0
+            set stage, closing.soon       # Cave may close!
+         else
+            set result, closing.soon
+         fin
+      else
+         set result, -1      # Just the windrose missing.
+      fin
+   fin
+#
+#=====================================================================
+#
 # Visions are processed in the revers order, so that the vision
 # corresponding to the lowest unsolved problem is set. Yes, I 
 # could have done it forward too, but the nesting structure would have
@@ -864,6 +929,16 @@ proc throw.it.at.orb
 proc visions
 #
    set orb.vision, vanilla.vision         # Set default "no vision" value
+   call house.inventory, 1
+   ifeq result, closing.soon
+      set orb.vision, repository.vision
+   else
+      set orb.vision, hoard.vision
+   fin
+   ifflag windrose, seen
+   else
+      set orb.vision, rose.vision
+   fin
    ifflag gates, special1
    else
       set orb.vision, gates.vision
@@ -2338,8 +2413,10 @@ proc special.view
          ifgt result, 0
             add temp.val, 2
          fin
-         exec 30        # Strip off trailing LF! 
-         say dune.types, temp.val
+         append dune.types, temp.val
+         ifat desert.11
+            say desert.outcrop
+         fin
          ifinrange here, desert.12, desert.last
             set desert.offset, here
             lda temp.val, desert.1
@@ -2362,7 +2439,7 @@ proc special.view
       ifat rocky.desert
          ifkey look
             ifat south.of.spire, east.of.spire, north.of.spire
-               exec 30
+               append null
             fin
             say cliff.over.desert
          else
@@ -2526,11 +2603,10 @@ proc get.starstone
          quip got.starstone
       fin
       ifloc starstone, here
-         exec 26, ret.val    # Check for a "do all" loop
-         ifeq ret.val, 0
-            quip no.get.starstone
+         ifdoall    # Check for a "do all" loop
+            quip no.get.all.starstone
          fin
-         quip no.get.all.starstone
+         quip no.get.starstone
       fin
    fin
 #
@@ -2874,7 +2950,8 @@ proc kill.dragon
       quip it.is.dead
    fin
    lda text.ptr, with.what?
-   exec 23, text.ptr
+#   exec 23, text.ptr
+   save command, text.ptr
    set context, q.dragon
    quip text.ptr
 #
@@ -2883,7 +2960,8 @@ proc kill.dragon
 proc dragon.slayer
    set context, none
    ifkey yes
-      exec 24, text.ptr
+#      exec 24, text.ptr
+      restore command, text.ptr
       set dragon, dead.body
       ifat secret.n/e.canyon.2
          lda here, secret.n/e.canyon.1
@@ -2901,7 +2979,8 @@ proc dragon.slayer
       quip teeth
    fin
    ifany quit, no, n
-      exec 24, text.ptr
+#      exec 24, text.ptr
+      restore command, text.ptr
       say use.a.weapon, arg1
       quip kill.the.whatever, arg2
    fin
@@ -2921,7 +3000,8 @@ proc kill.bird
 proc kill.dwarf
    set context, q.dwarf
    lda text.ptr, with.bare.hands?
-   exec 23, text.ptr
+#   exec 23, text.ptr
+   save command, text.ptr
    quip text.ptr, dwarf
 #
 #=====================================================================
@@ -2931,7 +3011,8 @@ proc dwarf.slayer
 #
    set context, none
    ifkey yes
-      exec 24, text.ptr
+#      exec 24, text.ptr
+      restore command, text.ptr
       set luck, strength
       sub luck, invct
       add luck, 2
@@ -2949,7 +3030,8 @@ proc dwarf.slayer
       call coroner
    fin
    ifany quit, no, n
-      exec 24, text.ptr
+#      exec 24, text.ptr
+      restore command, text.ptr
       say use.a.weapon, arg1
       quip kill.the.whatever, dwarf
    fin
@@ -2960,7 +3042,8 @@ proc dwarf.slayer
 proc kill.ogre
    set context, q.ogre
    lda text.ptr, with.bare.hands?
-   exec 23, text.ptr
+#   exec 23, text.ptr
+   save command, text.ptr
    quip text.ptr, ogre
 #
 #=====================================================================
@@ -2968,7 +3051,8 @@ proc kill.ogre
 proc ogre.slayer
    set context, none
    ifkey yes
-      exec 24, text.ptr
+#      exec 24, text.ptr
+      restore command, text.ptr
       chance   50
          quip ogre.too.tough
       fin
@@ -2976,7 +3060,8 @@ proc ogre.slayer
       call coroner
    fin
    ifany quit, no, n
-      exec 24, text.ptr
+#      exec 24, text.ptr
+      restore command, text.ptr
       say use.a.weapon, arg1
       quip kill.the.whatever, ogre
    fin
@@ -3127,44 +3212,6 @@ proc close.the.cave
    set clock, 999
    set there, 0             # Invalidate return location
    move ne.repository
-#
-#=====================================================================
-#
-proc house.inventory
-   local obj.ptr
-#
-   ifeq stage, mirror.world
-      proceed
-   fin
-   unflag starstone, valued   # To avoid problems - starstones being funny
-   unflag ring, valued        # in case he is wearing it
-   itobj obj.ptr, valued
-      ifloc obj.ptr, building     # If where it should be...
-            or
-      ifloc obj.ptr, ylem         # ... or gone for good
-      else
-         flag ring, valued
-         flag starstone, valued
-         proceed
-      fin
-   eoi
-   flag ring, valued
-   flag starstone, valued
-   ifloc starstone, building  # We allow it to be in the building, 
-      or                      # Even though it does not score there
-   ifloc starstone, stupendous.view
-      or
-   ifloc starstone, ylem
-   else
-      proceed
-   fin
-   ifhave ring               # Ring temporarily non-valuable
-      or                     # in order to allow the adventurer
-   ifloc ring, building      # to lug it around with him.
-      or                     # Seems like everybody does this!
-   ifloc ring, ylem          # He won't score for it, of course...
-      set stage, closing.soon
-   fin
 #
 #=====================================================================
 #
@@ -3761,6 +3808,10 @@ proc hint.action
          unflag here, hintable
          unflag here, smartass
          sub text.ptr, 1
+         ifis text.ptr, windrose.help
+            flag hints, windrose.hinted
+            quit
+         fin
          ifat stream.maze, stream.maze.entrance
             flag hints, sewer.pending
             unflag stream.maze, hintable
@@ -5218,7 +5269,8 @@ proc spire.drop
    fin
    lda text.ptr, really.spire.drop?
    set context, q.spire.drop
-   exec 23, text.ptr
+#   exec 23, text.ptr
+   save command, text.ptr
    quip text.ptr
 #
 #=====================================================================
@@ -5229,7 +5281,8 @@ proc do.spire.drop
    ifeq status, 0
       or
    ifkey yes
-      exec 24, text.ptr
+#      exec 24, text.ptr
+      restore command, text.ptr
       set context, none
       ifkey sunstone
          or
@@ -5252,7 +5305,8 @@ proc do.spire.drop
       choose qualifier, 0, 4
       quip very.wise, qualifier
    fin
-   exec 24, text.ptr
+#   exec 24, text.ptr
+   restore command, text.ptr
    say yes.or.no?
    quip text.ptr
 #
@@ -5435,7 +5489,8 @@ proc whirlpool.dive
    ifeq status, 0
       or
    ifkey yes
-      exec 24, text.ptr     
+#      exec 24, text.ptr     
+      restore command, text.ptr     
       unflag reservoir, hintable
       ifhave bird
          apport bird, ylem
@@ -5471,7 +5526,8 @@ proc whirlpool.dive
       set context, none
       quip ok
    fin
-   exec 24, text.ptr
+#   exec 24, text.ptr
+   restore command, text.ptr
    say yes.or.no?
    quip text.ptr
 #
@@ -5542,14 +5598,16 @@ proc save.this
    ifgt alarm, 0
       add alarm, 1
    fin
-   exec 1, result              # Save program image
+#   exec 1, result              # Save program image
+   save file, result           # Save program image
    ifeq result, 0
       set context, q.continue
       value continue.now?, hint.cost
       quip want.to.continue?
    fin 
    ifeq result, 2              # Already have such save!
-      exec 23, text.ptr
+#      exec 23, text.ptr
+      save command, text.ptr
       set context, q.delete
       quip delete.image?
    else
@@ -5566,7 +5624,8 @@ proc save.it
       ifeq status, 0
          or
       ifkey yes
-         exec 24, text.ptr
+#         exec 24, text.ptr
+         restore command, text.ptr
          iflt status, 2
             set context, q.save.what
             set status, no.match      # No matching on the reply!
@@ -5601,7 +5660,8 @@ proc art.of.memory
       ifeq status, 0
          or
       ifany yes, remember
-         exec 17, ret.val
+#         exec 17, ret.val
+         save memory, ret.val
          ifeq ret.val, 0
             quip memory.image
          else
@@ -5615,7 +5675,7 @@ proc art.of.memory
       ifeq status, 0
          or
       ifkey yes
-         exec 18, ret.val
+         restore memory, ret.val
          ifeq ret.val, 0
             add penalties, 1
             flag status, moved
@@ -5703,7 +5763,8 @@ proc resurrection.shuffle
 proc sentry.kills
    local obj.ptr
 #
-   exec 24, text.ptr
+#   exec 24, text.ptr
+   restore command, text.ptr
    say sentry
    itobj obj.ptr, inhand
       ifflag obj.ptr, valued
@@ -5929,6 +5990,8 @@ proc randomise.texts
    randomise nothing.doing.1, 0
    randomise troll.zorro, 0
    randomise it.would.seem, 0
+   randomise vandal!, 0
+   randomise caught.climbing, 0
    set nothing.doing.2, nothing.doing.1
    randomise typo, 0             # TYPO is structured in blocks of 4
    divide typo, 4                # messages, so randomise to the start
@@ -5958,7 +6021,8 @@ proc early.restore
    else
       say lets.be.prudent, 0
    fin
-   exec 18              # Restore memory image
+#   exec 18        # Surely a mistake -- should have been 28!?!
+   exec 28              # Restore temporary memory save
    set context, none
    quit
 #
@@ -5973,7 +6037,8 @@ proc restored
       say ok
    otherwise
    ifany no, n
-      exec 24
+#      exec 24
+      restore command
       exec  3, result             # Flush the image
       ifeq result, 0
          say its.gone
@@ -6308,6 +6373,10 @@ proc by.house.actions
    respond vegetation, dull.stuff, 0
    respond roof, building.roof
    respond bricks, house.bricks
+   ifkey corner
+      respond look, wall.corners, 2
+      flag context, arg2.here
+   fin
    ifkey wall
       respond look, building.wall
       respond climb, no.point.in.that

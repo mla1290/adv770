@@ -5,7 +5,6 @@
 #=====================================================================
 #
 repeat
-   local cgi
 #
 # Cure a couple of problems in games saved pre-1.38.
 #
@@ -13,8 +12,8 @@ repeat
    unflag tower.roof, indoors
 #
    call tie.them      # Force initialisation of ties in all circumstances!! 
-   ifeq status, -1
-      set status, 2
+   ifeq status, -1    # This signals game restore (we actually have 2 args!)
+      set status, 2   # Restore the arg count
       say restoring.game, arg2
       call restore
    fin
@@ -28,8 +27,12 @@ repeat
       proceed
    fin
    ifeq stage, query.restore
-      exec 25, cgi            # Are we running in the CGI mode?
-      ifgt cgi, 0
+#
+# Need to initialise in CGI mode, because we are restoring from file
+# and the game might have been upgraded under our feet. This way we
+# set even those values which didn't exist when the game was saved.
+#
+      ifcgi            # Are we running in the CGI mode?
          call initialise
       fin
       set context q.initial
@@ -959,7 +962,8 @@ repeat
       ifeq status, 0
          or
       ifkey yes
-         exec 24, text.ptr
+#         exec 24, text.ptr
+         restore command, text.ptr
          exec 3
          call save.this
       fin
@@ -1140,6 +1144,9 @@ repeat
             goto beanstalk.bottom
             call coroner
          else
+            ifeq sunstone, 8
+               quip sunstone.stops.you, north
+            fin
             unflag here, hintable
             smove ledge, sunstone.helps
          fin
@@ -1217,7 +1224,8 @@ repeat
       ifeq status, 0
          or
       ifkey yes
-         exec 24
+#         exec 24
+         restore command
          exec 3                 # Delete the save file
       otherwise
       ifany no, n

@@ -449,8 +449,9 @@ TEXT CANT.HELP.YOU
     [Well, you do seem to be having problems, don't you? Unfortunately, I'm
     not allowed to help you out; you got yourself into this, and you'll
     have to find a solution to your problems yourself./
-    I'm afraid right now I can't tell you anything more that would 
-    be useful; you'll have to figure out what to do on your own.]
+    I'm afraid right here and now, I can't tell you anything more that would 
+    be useful][/; you'll have to figure out what to do on your 
+    own./. Just get on with collecting treasures in the well house.]
 #
 TEXT SAVE.YOUR.FERTILISER
     [Birdseed farming is not a suitable preoccupation for an adventurer!/
@@ -2424,9 +2425,9 @@ TEXT DARK.THERE
     It is too dark # there to see anything.
 #
 TEXT NO.SWIM
-    Sorry, I've never learned to swim.[/ Besides, there's not enough
-    water here for swimming./ And in any case, there is no
-    water around here!]
+    Sorry,[/// that's the sea over there, and] I've never learned to 
+    swim.[/ Besides, there's not enough water here for swimming./ And
+    in any case, there is no water around here!/]
 #
 TEXT OPEN.IT.FIRST
     You'd have to open the # first!
@@ -2971,7 +2972,8 @@ TEXT ONLY.WIZARDS.GLOW
     Only wizards can glow!
 #
 TEXT NOTHING.TO.CUT.WITH
-    You have no instrument that could be sensibly used for cutting.
+    [Y/ In any case, y]ou have no instrument that could be sensibly used
+    for cutting.
 #
 TEXT increment ROPE.TOO.TOUGH
     [T/As already noted, t/][he rope is very tough and hard as you
@@ -2979,8 +2981,17 @@ TEXT increment ROPE.TOO.TOUGH
     slipped your mind again][//: the
     rope is far too tough for ][//you to be able to cut it/that].
 #
-TEXT VANDAL!
-    I will commit no such act of gross vandalism!
+TEXT cycle VANDAL!
+    [That would be a sensless act of gratuitous vandalism./There's no
+    call for such destructive behaviour!/Chop, break, destroy... Is that
+    all you can think of? For shame!/Why is it that your typical
+    adventurer seems to delight in being a loutish vandal? No, don't
+    bother to explain. That was a rhetorical question. I am not really
+    interested in pathetic self-justifications./I will commit no such
+    act of pointelss vandalism!/That kind of destructive, negative
+    attitude won't help you here./As the sage said, lashing out in
+    sensless anger, is a sure sign of an inferior mind. Save your
+    agression for situations in which it is truly called for.]
 #
 TEXT IT.IS.IN.SHREDS
     There is hardly any point in that - it is already in shreds.
@@ -3409,7 +3420,13 @@ TEXT assigned ORB.VISION
     Sunlight pours in through the window, and you can see dust
     motes dancing in the air, brightly lit against the dark stone walls./
     wrought iron gates, and beyond them a track leading away, into a
-    dense forest.]
+    dense forest./
+    a black roiling, which you gradually realise is simply black sand
+    swirling over a low basaltic outcrop./
+    the inside of the well-house, with treasures and other objects
+    heaped upon each other without rhyme or reason./
+    a some flickering lights, which by their feeble efforts appear to
+    define a vast, dark space.]
 
     After a few moments the vision fades, leaving you somewhat giddy and
     none the wiser for the experience.

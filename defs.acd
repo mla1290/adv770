@@ -248,6 +248,7 @@ flags variable
       SPARE.flag.2    # Spare
       all.exits       # Told him to explore all exits past pit in maze
       keys.listed     # The crown gave him at least one key
+      windrose.hinted # He was told to look for the windrose
 #
 # Context flags
 #
@@ -361,6 +362,9 @@ constant vanilla.vision
          temple.vision
          tower.vision
          gates.vision
+         rose.vision
+         hoard.vision
+         repository.vision
 #
 # Define orc mutters
 #

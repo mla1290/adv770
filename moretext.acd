@@ -366,8 +366,8 @@ TEXT NO.WASH.PLATE
     unlikely to help with that greasy grime.
 #
 TEXT cycle TROLL.ZORRO
-    The troll pokes his head under the bridge, [scowls at the sight of 
-    you/gives you a sour grin/mutters something under his breath/spits
+    The troll pokes his head from under the bridge, [scowls at the sight
+    of you/gives you a sour grin/mutters something under his breath/spits
     into the chasm/rolls his eyes], and disappears again.
 
 #
@@ -391,5 +391,65 @@ FRAGMENT SAVED.GAMES
     [Sorry, you don't seem to have any saved games that I can see.
     Of course you may know of some you've stashed elsewhere.../{IT.WOULD.SEEM}
     you have the following saved games: ]
+#
+FRAGMENT DESERT.OUTCROP
+   / To the NW, some kind of low basalt outcrop breaks the monotony of
+    the dunes.
+#
+TEXT increment RUG.IS.FLYING
+     [In case you haven't noticed, the rug is flying all by itself.
+     There is no call for you to flap you arms like that./What exactly
+     do you think you *are* doing right now? Just sit quietly, please,
+     and admire my descriptive prose!/That's very kind of you, 
+     trying to help out like that, but please don't bother. All that arm
+     flapping is not doing any good, and you might fall off the rug, if
+     you aren't careful./Sigh... You *ARE* flying, OK?/Yes, yes... If
+     you don't mind, we'll continue just as we are.]
+#
+TEXT increment NO.STEER.RUG
+     [Since neither of us has any idea how to control the flight of
+     a magic rug,/We don't know how to steer the rug, remember? So/][ I
+     suggest you just sit tight, enjoy the view, and hope for the
+     best./=/Just don't bother, OK?]
+#
+TEXT WALL.CORNERS
+     [The corner is formed by the garden wall meeting the wall of the tower.
+     Neither of these looks like offering any chance of climbing/As is 
+     customary, the ][/wall/house][/ corner is formed by two walls meeting
+     each other at an angle. The right angle in this particular case. Hope
+     this satisfies your curiosity].
+#
+TEXT NOOKS.AND.CRANNIES
+     There are plenty of corners, nooks and crannies all over this
+     blessed place. None of them are in themselves of importance to you.
+#
+FRAGMENT WINDROSE.HELP
+     I think you've missed one treasure. Would you like a hint
+     where to look for it?_
+#
+TEXT
+     Desert view from the top of the black spire could be of interest.
+#
+TEXT increment NO.DOWNSTREAM
+     [The water doesn't seem to be flowing anywhere. I expect it must 
+     be draining somehow from this place, but it isn't at all clear
+     where. On the other hand, maybe it isn't draining... Now there's
+     a worrying thought! I suggest we get out of here without undue
+     delay./There is no obvious downstream here to follow. I respectfully
+     suggest we stop piddling about, and get out before the water gets
+     any higher./There ain't no downstream here, matey. And it's best to
+     be getting out of here!/NO DOWNSTREAM HERE. COMPRENDE?/Forget it...]
+#
+TEXT cycle CAUGHT.CLIMBING
+     As you carefully lower yourself over the edge of the roof, several 
+     burly dwarves erupt out of the open trapdoor. [In your haste to
+     duck out of sight, you lose your hold and find yourself falling,
+     falling... and it's a long way down!.../With a triumphant yell of
+     "%Told ya!..%", the one in front swings his axe through the air and
+     let's go. A really professional throw, if you don't mind me saying so.
+     It gets you neatly between the eyes./They waste no time in assessing
+     the situation, and before you have any chance to get out of reach, 
+     they are upon you, yelling loudly and swinging their gleaming axes.]
+
 #
 #########################################################################

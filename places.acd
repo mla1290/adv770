@@ -1620,7 +1620,7 @@ PLACE +STOREROOM
    rusty ladder affixed to the narrow eastern wall. {DOOR2.IS}
 #
 PLACE SHELVES.EAST
-   You're at the top of the shelves, under the trapdoor.
+   You're at the top of the shelves, under the {ROOF.TRAP} trapdoor.
   %You are at the top of the shelves at their eastern end.
    Just above you is the wooden ceiling with a 
    rusty trapdoor set into it. The equally rusty ladder leads

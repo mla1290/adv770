@@ -1279,11 +1279,12 @@ action look                # Can't look in the dark!
                quip blank
             fin
             call list.dunes, result
-            quip sentence.end
+            say sentence.end
+            ifat desert.11
+               say desert.outcrop
+            fin
+            quip blank
          fin
-#         ifat basalt.shelf.2, spire, spire.part.up, spire.nearly.up
-#            quip dunes.in.desert
-#         fin
          ifat river.bed.2
             quip huge.dune, 0
          fin
@@ -2166,6 +2167,15 @@ action help
    fin
    call hint.logic      # Try to locate hint for here
    ifgt hint.time, 0    # If no hint for this place...
+      call house.inventory, 1
+      iflt result, 0
+         and
+         not
+      ifflag hints, windrose.hinted
+         lda text.ptr, windrose.help
+         set context, q.help
+         quip text.ptr
+      fin
       ifnear dwarf
          or
       ifnear dragon
@@ -2190,7 +2200,11 @@ action help
          say cant.help.you, 0
       else
          ifflag hints, helped.him
-            say cant.help.you, 1
+            ifeq result, 0
+               quip cant.help.you, 2
+            else
+               quip cant.help.you, 1
+            fin
          else
             flag hints, helped.him
             call keep.talking, help.data, help.data.end
@@ -3422,11 +3436,13 @@ action save
       quip no.point, 0
    fin
    lda text.ptr, is.this.ok?
-   exec 31
-   exec 23, text.ptr
+#   exec 31
+   verbatim arg2
+#   exec 23, text.ptr
+   save command, text.ptr
    value must.wait, min.time
    set context, q.save
-   quip text.ptr
+   quip is.this.ok?
 #
 #=====================================================================
 #
@@ -3465,6 +3481,10 @@ action restore
    local count
 #
    iflt status, 2
+      ifcgi             # CGI mode?
+         set context, q.restore.what
+         quip restore.what?, 0
+      fin
       set count, 0
       exec 34, count
       ifeq count, 1
@@ -3483,11 +3503,13 @@ action restore
       fin
    fin
    ifeq status, 2
-      exec 31
+#      exec 31
+      verbatim arg2
    fin
    set status, 2
    lda text.ptr, blank
-   exec 23, text.ptr
+#   exec 23, text.ptr
+   save command, text.ptr
    ifflag admin, olorin
       set wiz.flag, 1
    else
@@ -3496,16 +3518,19 @@ action restore
    iflt stage, little.joke
       add wiz.flag, 2
    fin
-   exec 6, wiz.flag    # Save value of wiz.flag over restore attempt
-   exec 2, outcome     # Attempt to restore image
+#   exec 6, wiz.flag    # Save value of wiz.flag over restore attempt
+   save value, wiz.flag      # Save value of wiz.flag over restore attempt
+#   exec 2, outcome     # Attempt to restore image
+   restore file, outcome     # Attempt to restore image
    ifeq outcome, 3     # No name specified
       quit
    fin
    ifeq outcome, 0     # All well
-      exec 7, outcome  # Restore pushed value
-      ifeq outcome, 1
+#      exec 7, wiz.flag  # Restore pushed value
+      restore value, wiz.flag    # Restore pushed value
+      ifeq wiz.flag, 1
          or
-      ifeq outcome, 3
+      ifeq wiz.flag, 3
          flag admin, olorin
       else
          unflag admin, olorin
@@ -4265,7 +4290,7 @@ action cut
       or
    ifhave axe
    else
-      quip nothing.to.cut.with
+      quip nothing.to.cut.with, 0
    fin
    ifany tree, palms, pine, fir
       and
