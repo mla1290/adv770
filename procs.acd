@@ -234,6 +234,9 @@ proc bail.out
       and
    ifflag arg2, object
       ifflag context, arg2.here
+         ifany break, kill
+            quip no.violence
+         fin
          quip what?
       fin
       ifkey water
@@ -6255,8 +6258,13 @@ proc by.house.actions
    fin
    ifeq status, 1
       and
-   ifany tree, maple, pine, vegetation,roof, bricks
+   ifany tree, maple, pine, vegetation, roof, bricks
       exec 11
+   fin
+   ifany tree, maple, pine, vegetation, roof, bricks, wall, building
+      and
+   ifany kill, break
+      quip no.violence
    fin
    respond tree, maple, pine, no.handy.them, arg2
    respond vegetation, dull.stuff, 0
@@ -6266,6 +6274,7 @@ proc by.house.actions
       respond look, building.wall
       respond climb, no.point.in.that
       respond push, pull, get, kick, house.bricks
+      respond break, no.violence
       quip hah!
    fin
 #
@@ -6315,7 +6324,6 @@ proc in.forest.actions
       or
    ifany tree, maple, ash, sapling, saplings, bushes, floor, sky, vegetation
       flag context, arg2.here
-      proceed
    fin
 #
 #=====================================================================
@@ -6349,7 +6357,6 @@ proc in.dense.forest.actions
    fin
    ifany tree, conifer, firs, undergrowth, ground
       flag context, arg2.here
-      proceed
    fin
 #
 #=====================================================================

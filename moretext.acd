@@ -273,5 +273,12 @@ TEXT JUST.PATTERN
 #
 TEXT NO.WORD.PATTERN
     There are no words to read in the patterns on the #.
-# 
+#
+TEXT increment NO.KILL.VAMPIRE
+    [Killing vampires is a complex and chancy business, which requires
+    some specialised equipment - wooden stakes, silver bullets and such
+    like, which in you case have not got. So let's not waste time
+    on trying/Don't even bother to try. Vampires are notoriously
+    resistent to dying].
+#
 #########################################################################

@@ -1014,8 +1014,8 @@ TEXT HISTORY.DATA
    =5. The two supersets combined (with extensions) by Mike Arnautov,
    =   using DP's A-code into Adventure4+ (660pt), also known as Adv660,
    =
-   =6. Adventure4+ extended by popular demand into this 770 pt version
-   =   by Mike Arnautov.
+   =6. Adventure4+ further extended by popular demand into this 770 pt
+   =   version by Mike Arnautov.
 
     What? You mean you wanted to know WHEN did it all happen?! In
     illo tempore, my friend, in "time before time"...
@@ -1025,7 +1025,7 @@ TEXT IGNORE.THEM
 #
 TEXT VOLCANO.ROAR
     The volcano roar is pretty loud and it makes no difference whether
-    you are listening to it or not. It is steady, deafening roar,
+    you are listening to it or not. It is a steady, deafening roar,
     occasionally punctuated by cracks of explosions.
 #
 TEXT THIRSTY.PLANT
@@ -5605,7 +5605,7 @@ TEXT NO.DROP.IN.SAND
 #
 TEXT NO.CLIMB.SPIRE
     Climbing the obsidian spire would require some pretty fancy
-    climbing equipment, which in your case, you haven't got.
+    climbing equipment, which in your case, you have not got.
 #
 TEXT NO.CROSS.SAND
     You attempt to move #, but dunes in that direction are just too big

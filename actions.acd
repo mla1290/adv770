@@ -2374,6 +2374,8 @@ action hit
 #=====================================================================
 #
 action kill
+   local obj.ptr
+
    ifflag status, light.here
    else
       ifeq status, 1
@@ -2398,16 +2400,17 @@ action kill
    fin
    default mortal      # Find default enemy in one exists
    ifeq status, 1
-      ifeq arg2, badword
-         quip pacifist
-      fin
-      proceed
+      quip pacifist
    fin
-   anyof troll, dwarf, dragon, snake, bird, bear, oyster, clam, ogre, blob
-   anyof djinn, goblins, basilisk, giant, unicorn, spider, rats, darwin, imp
-   anyof vampire
-   near arg2
+#   ifany troll, dwarf, dragon, snake, bird, bear, oyster, clam, ogre, blob
+#      or
+#   ifany djinn, goblins, basilisk, giant, unicorn, spider, rats, darwin
+#      or
+#   ifany imp, vampire
+#      and
+   ifnear arg2
       respond troll, troll.data
+      respond vampire, no.kill.vampire
       respond imp, no.kill.imp
       respond snake, cant.kill.snake
       respond blob, blob.rubbery
@@ -2454,26 +2457,10 @@ action kill
       ifkey bird
          call kill.bird
       otherwise
-      ifkey vampire
-         quip no.point.in.that
-      fin
       quit
-#
-#=====================================================================
-#
-action kill
-   ifgt status, 1
-      and
-   ifnear arg2
-      itobj obj.ptr
-         ifnear obj.ptr
-            ifflag obj.ptr, mortal
-               quip no.understand
-            fin
-            quip hah!
-         fin
-      eoi   
-      quip no.point.in.that
+      ifnear arg2
+         quip no.violence
+      fin
    fin
 #
 #=====================================================================
@@ -2799,40 +2786,43 @@ action swim
 #
 #=====================================================================
 #
-action break vase
-   near vase
-      apport vase, ylem
-      apport shards, here
-      quip throw.vase
-#
-#=====================================================================
-#
-action break vial
-   near vial
-      call break.vial
-#
-#=====================================================================
-#
-action break mirror
-   near  mirror
-      ifeq stage, in.repository
-         say break.mirror
-         call coroner
-      fin
-      quip out.of.reach
-#
-#=====================================================================
-#
 action break
-   ifany pine, tree
+   ifgt status, 1
       and
-   ifnear pine
-      ifeq pine, standing
-         quip no.break.pine
-      else
-         quip no.point.in.that
+   ifflag arg2, object
+      ifnear arg2
+         ifkey vase
+            apport vase, ylem
+            apport shards, here
+            quip throw.vase
+         fin
+         ifkey vial
+            call break.vial
+         fin
+         ifkey mirror
+            ifeq stage, in.repository
+               say break.mirror
+               call coroner
+            fin
+            quip out.of.reach
+         fin
+         ifkey pine
+            ifeq pine, standing
+               quip no.break.pine
+            else
+               quip no.point.in.that
+            fin
+         fin
       fin
-   fin      
+      respond rope, rope.too.tough
+      quip no.violence
+   fin
+   ifeq status, 1
+      or
+      not
+   ifflag status, arg2.here
+      quip no.violence
+   fin
 #
 #=====================================================================
 #
