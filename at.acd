@@ -152,7 +152,7 @@ at hill
    ifkey go
       or
    ifeq status, 1
-      ifkey track
+      ifany track, road
          call follow.it, track, west, road, east
       otherwise
       ifkey forest
@@ -192,7 +192,7 @@ at hill
          fin
          call consult.sunstone, direction
       fin
-      move road, building, down, east, road
+      move building, down, east, road
       move north, path, path
       move ne, forest, forest.4
       move se, valley, valley
@@ -8772,7 +8772,7 @@ at track
    ifkey go
       or
    ifeq status, 1
-      ifkey track
+      ifany track, road
          call follow.it, outside.gates, sw, hill, east         
       fin
       ifhave sunstone
@@ -8788,7 +8788,7 @@ at track
          smove house, road, hill, dark.forest, something.strange
          smove tower, gates, forest.2, something.strange
       fin
-      move house, road, road
+      move house, road
       move east, up, hill, hill
       move north, ne, forest.2
       move nw, west,  dark.forest
@@ -8868,13 +8868,14 @@ at outside.gates
    ifkey go
       or
    ifeq status, 1
-      ifany house, hill, road
+      ifany house, hill, road, track, north
          ifhave sunstone
             lda direction, ne
             call consult.sunstone, direction
          fin
          move hill, hill
-         move road
+         move road, north, track, track
+         move house, road
       fin
       ifkey climb
          respond wall, dont.bother
@@ -8909,11 +8910,8 @@ at outside.gates
          quip no.pass.gate
       fin
       ifeq stage, mirror.world
-         smove building, road, hill, outside.gates, something.strange
+         smove building, hill, outside.gates, something.strange
       fin
-      move building, road, road
-      move hill, hill
-      move north, track, track
       move east, west, ne, nw, dark.forest
    fin
    ifany notice, note, message, words, inscription

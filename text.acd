@@ -1592,6 +1592,7 @@ TEXT LAMP.RECHARGED
     blue aura forms about your lantern, and small sparks jump from the
     lantern to the ground. The aura fades away after several seconds, and
     your lamp is once again shining brightly.
+
 #
 TEXT GOT.THE.SWORD
     The singing sword slides easily out of the rock.
@@ -2573,7 +2574,8 @@ TEXT increment THROUGH.THE.GATES
 #
 TEXT TUSK.QUIP
     Hm.... #.... #.... #.... That's not on the list! I suppose
-    it must be valuable..... Ok, we'll give you the benefit of the doubt.
+    it must be valuable..... Ok, we'll give you the benefit of the doubt
+    and count the tusk as a treasure.
 #
 TEXT CANT.SCOOP
     The water is trickling down the wall in a corner and you cannot get
