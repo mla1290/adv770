@@ -2976,7 +2976,6 @@ proc kill.dragon
       quip it.is.dead
    fin
    lda text.ptr, with.what?
-#   exec 23, text.ptr
    save command, text.ptr
    set context, q.dragon
    quip text.ptr
@@ -2986,7 +2985,6 @@ proc kill.dragon
 proc dragon.slayer
    set context, none
    ifkey yes
-#      exec 24, text.ptr
       restore command, text.ptr
       set dragon, dead.body
       ifat secret.n/e.canyon.2
@@ -3005,7 +3003,6 @@ proc dragon.slayer
       quip teeth
    fin
    ifany quit, no, n
-#      exec 24, text.ptr
       restore command, text.ptr
       say use.a.weapon, arg1
       quip kill.the.whatever, arg2
@@ -3026,7 +3023,6 @@ proc kill.bird
 proc kill.dwarf
    set context, q.dwarf
    lda text.ptr, with.bare.hands?
-#   exec 23, text.ptr
    save command, text.ptr
    quip text.ptr, dwarf
 #
@@ -3037,7 +3033,6 @@ proc dwarf.slayer
 #
    set context, none
    ifkey yes
-#      exec 24, text.ptr
       restore command, text.ptr
       set luck, strength
       sub luck, invct
@@ -3056,7 +3051,6 @@ proc dwarf.slayer
       call coroner
    fin
    ifany quit, no, n
-#      exec 24, text.ptr
       restore command, text.ptr
       say use.a.weapon, arg1
       quip kill.the.whatever, dwarf
@@ -3068,7 +3062,6 @@ proc dwarf.slayer
 proc kill.ogre
    set context, q.ogre
    lda text.ptr, with.bare.hands?
-#   exec 23, text.ptr
    save command, text.ptr
    quip text.ptr, ogre
 #
@@ -3077,7 +3070,6 @@ proc kill.ogre
 proc ogre.slayer
    set context, none
    ifkey yes
-#      exec 24, text.ptr
       restore command, text.ptr
       chance   50
          quip ogre.too.tough
@@ -3086,7 +3078,6 @@ proc ogre.slayer
       call coroner
    fin
    ifany quit, no, n
-#      exec 24, text.ptr
       restore command, text.ptr
       say use.a.weapon, arg1
       quip kill.the.whatever, ogre
@@ -4627,6 +4618,7 @@ proc giant.stuff, giving
       say my.deeds!
       unflag giant, special1
       apport sapphire, here
+      flag sapphire, seen
       apport box, beanstalk.top
       flag ravine.west, hintable
       apport giant, stupendous.view
@@ -5298,7 +5290,6 @@ proc spire.drop
    fin
    lda text.ptr, really.spire.drop?
    set context, q.spire.drop
-#   exec 23, text.ptr
    save command, text.ptr
    quip text.ptr
 #
@@ -5310,7 +5301,6 @@ proc do.spire.drop
    ifeq status, 0
       or
    ifkey yes
-#      exec 24, text.ptr
       restore command, text.ptr
       set context, none
       ifkey sunstone
@@ -5334,7 +5324,6 @@ proc do.spire.drop
       choose qualifier, 0, 4
       quip very.wise, qualifier
    fin
-#   exec 24, text.ptr
    restore command, text.ptr
    say yes.or.no?
    quip text.ptr
@@ -5518,7 +5507,6 @@ proc whirlpool.dive
    ifeq status, 0
       or
    ifkey yes
-#      exec 24, text.ptr     
       restore command, text.ptr     
       unflag reservoir, hintable
       ifhave bird
@@ -5555,7 +5543,6 @@ proc whirlpool.dive
       set context, none
       quip ok
    fin
-#   exec 24, text.ptr
    restore command, text.ptr
    say yes.or.no?
    quip text.ptr
@@ -5627,7 +5614,6 @@ proc save.this
    ifgt alarm, 0
       add alarm, 1
    fin
-#   exec 1, result              # Save program image
    save file, result           # Save program image
    ifeq result, 0
       set context, q.continue
@@ -5635,7 +5621,6 @@ proc save.this
       quip want.to.continue?
    fin 
    ifeq result, 2              # Already have such save!
-#      exec 23, text.ptr
       save command, text.ptr
       set context, q.delete
       quip delete.image?
@@ -5653,7 +5638,6 @@ proc save.it
       ifeq status, 0
          or
       ifkey yes
-#         exec 24, text.ptr
          restore command, text.ptr
          iflt status, 2
             set context, q.save.what
@@ -5689,7 +5673,6 @@ proc art.of.memory
       ifeq status, 0
          or
       ifany yes, remember
-#         exec 17, ret.val
          save memory, ret.val
          ifeq ret.val, 0
             quip memory.image
@@ -5797,7 +5780,6 @@ proc resurrection.shuffle
 proc sentry.kills
    local obj.ptr
 #
-#   exec 24, text.ptr
    restore command, text.ptr
    say sentry
    itobj obj.ptr, inhand
@@ -6055,7 +6037,6 @@ proc early.restore
    else
       say lets.be.prudent, 0
    fin
-#   exec 18        # Surely a mistake -- should have been 28!?!
    exec 28              # Restore temporary memory save
    set context, none
    quit
@@ -6071,9 +6052,8 @@ proc restored
       say ok
    otherwise
    ifany no, n
-#      exec 24
       restore command
-      exec  3, result             # Flush the image
+      exec 3, result             # Flush the image
       ifeq result, 0
          say its.gone
       else

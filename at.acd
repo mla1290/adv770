@@ -2693,7 +2693,6 @@ at cavern
             call whirlpool.dive
          fin
          lda text.ptr, whirlpool?
-#         exec 23, text.ptr
          save command, text.ptr
          set context, q.whirlpool
          quip text.ptr
@@ -8371,7 +8370,6 @@ at tower.top.window
              move tower.top.landing
          fin
          ifeq sentry, welcoming.commettee
-#            exec 23, text.ptr
             save command, text.ptr
             set context, q.sentry
             quip sentry.will.kill

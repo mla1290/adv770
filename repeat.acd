@@ -26,7 +26,7 @@ repeat
    ifgt context, none
       proceed
    fin
-   ifeq stage, query.restore
+   ifle stage, query.restore
 #
 # Need to initialise in CGI mode, because we are restoring from file
 # and the game might have been upgraded under our feet. This way we
@@ -962,7 +962,6 @@ repeat
       ifeq status, 0
          or
       ifkey yes
-#         exec 24, text.ptr
          restore command, text.ptr
          exec 3
          call save.this
@@ -1230,7 +1229,6 @@ repeat
       ifeq status, 0
          or
       ifkey yes
-#         exec 24
          restore command
          exec 3                 # Delete the save file
       otherwise

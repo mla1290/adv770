@@ -2670,7 +2670,7 @@ action sesame
 #=====================================================================
 #
 action fee
-   ifgt stage, closing.soon
+   ifgt stage, exits.barred
       quip nothing
    fin
    ifle foobar, 0
@@ -2682,7 +2682,7 @@ action fee
 #=====================================================================
 #
 action fie
-   ifgt stage, closing.soon
+   ifgt stage, exits.barred
       quip nothing
    fin
    ifeq foobar, 0
@@ -2694,7 +2694,7 @@ action fie
 #=====================================================================
 #
 action foe
-   ifgt stage, closing.soon
+   ifgt stage, exits.barred
       quip nothing
    fin
    ifeq foobar, 1
@@ -2706,7 +2706,7 @@ action foe
 #=====================================================================
 #
 action foo
-   ifgt stage, closing.soon
+   ifgt stage, exits.barred
       quip nothing
    fin
    ifeq status, 2
@@ -3469,9 +3469,7 @@ action save
       quip no.point, 0
    fin
    lda text.ptr, is.this.ok?
-#   exec 31
    verbatim arg2
-#   exec 23, text.ptr
    save command, text.ptr
    value must.wait, min.time
    set context, q.save
@@ -3536,12 +3534,10 @@ action restore
       fin
    fin
    ifeq status, 2
-#      exec 31
       verbatim arg2
    fin
    set status, 2
    lda text.ptr, blank
-#   exec 23, text.ptr
    save command, text.ptr
    ifflag admin, olorin
       set wiz.flag, 1
@@ -3551,15 +3547,12 @@ action restore
    iflt stage, little.joke
       add wiz.flag, 2
    fin
-#   exec 6, wiz.flag    # Save value of wiz.flag over restore attempt
    save value, wiz.flag      # Save value of wiz.flag over restore attempt
-#   exec 2, outcome     # Attempt to restore image
    restore file, outcome     # Attempt to restore image
    ifeq outcome, 3     # No name specified
       quit
    fin
    ifeq outcome, 0     # All well
-#      exec 7, wiz.flag  # Restore pushed value
       restore value, wiz.flag    # Restore pushed value
       ifeq wiz.flag, 1
          or
