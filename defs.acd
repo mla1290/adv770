@@ -178,6 +178,9 @@ flags object
 #            is thirsty.
 #
 # spoon   #1 spoon writing noted.
+#         #2 tried getting dung with it.
+#
+# helmet  #2 tried getting dung with it.
 #
 # giant   #1 in quarters, set if the HUNGRY.GIANT message printed.
 #         #2 if pushed player out of ravine at least once.
@@ -234,6 +237,7 @@ flags variable
       sewer.pending   # The first sewer hint delivered
       SPARE.flag.2    # Spare
       all.exits       # Told him to explore all exits past pit in maze
+      keys.listed     # The crown gave hime at least one key
 #
 # Context flags
 #

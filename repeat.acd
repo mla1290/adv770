@@ -945,6 +945,9 @@ repeat
             or
          ifkey listen
             add crown, 1
+            ifeq crown, chanting
+               flag hints, keys.listed
+            fin
             ifgt crown, killing
                call coroner
             fin
@@ -952,8 +955,7 @@ repeat
          fin
       else
          ifgt crown dormant
-            iflt crown, speaking
-            else
+            ifge crown, speaking
                say voices
             fin
             set crown, dormant
@@ -1203,7 +1205,11 @@ repeat
          apport unicorn, here
          flag unicorn, seen
          set context, none
-         quip gosh.unicorn!
+         chance 20
+            quip gosh.unicorn!, 1  # Give him the "land war in Asia" quip
+         else
+            quip gosh.unicorn!, 0
+         fin
       fin
       ifany quit, no, n
          set context, none
@@ -1478,12 +1484,8 @@ repeat
 #
    ifeq status, badsyntax
       flush
-      ifinrange arg1, first.magic, last.magic
-         or
-      ifkey say
-         and
-      ifinrange arg2, first.magic, last.magic
-         quip one.at.a.time
+      ifkey put
+         call put
       fin
       respond again, no.understand
       quip bad.syntax
@@ -1799,10 +1801,13 @@ repeat
    ifkey packet
       and
    ifnear paper
-      ifany open, pour, empty
-         quip torn.packet
+      respond open, pour, empty, torn.packet
+      ifany plant, beanstalk
+         or
+      ifat beanstalk.bottom
+      else
+         fakecom packet, paper
       fin
-      fakecom packet, paper
    fin
 #
 # Handle mud/mudshoes
@@ -1935,6 +1940,9 @@ repeat
 # Handle treasure.
 #
    ifkey treasure
+      and
+      not
+   ifkey say
       ifany drop, down
          call except.check
          call drop.check, 1
@@ -2376,6 +2384,24 @@ repeat
          else
             quip pardon?
          fin
+      fin
+#
+# Handle "spoon dung"
+#
+      ifkey spoon, dung
+         and
+      ifnear spoon
+         and
+      ifnear dung
+         ifflag spoon, special2
+            quip again.no.ruin.it
+         fin
+         ifflag beanstalk, seen
+            flag spoon, special2
+            say no.spoon.dung
+            quip blank
+         fin
+         quip bleah
       fin
 #
 # Some special responses for the sewers.

@@ -436,29 +436,58 @@ proc feed.beanstalk
    ifnear plant
       quip plant.not.hungry
    fin
+   ifnear beanstalk, gigantic
+      quip beanstalk.sated
+   fin
    ifhave bucket, full.of.dung
+      or
+   ifhave packet
+   else
+      quip no.food.for.it
+   fin
+   ifhave packet
       and
       not
-   ifkey packet
+   ifany bucket, dung
+      ifeq packet, stupe.gro
+         or
+      ifany open, tear
+      else
+         say got.fertiliser
+      fin   
+      apport packet, ylem
+      get wrapper
+      set qualifier, use.fertiliser
+   else
       set bucket, dirtied
       apport unicorn, ylem
       set last.hintable, 0
       set qualifier, use.dung
-   else
-      ifhave packet
-         ifeq packet, stupe.gro
-            or
-         ifkey packet
-         else
-            say got.fertiliser
-         fin
-         apport packet, ylem
-         get wrapper
-         set qualifier, use.fertiliser
-      else
-         quip no.food.for.it
-      fin
    fin
+   set last.hintable, 0
+#   ifhave bucket, full.of.dung
+#      and
+#      not
+#   ifkey packet
+#      set bucket, dirtied
+#      apport unicorn, ylem
+#      set last.hintable, 0
+#      set qualifier, use.dung
+#   else
+#      ifhave packet
+#         ifeq packet, stupe.gro
+#            or
+#         ifkey packet
+#         else
+#            say got.fertiliser
+#         fin
+#         apport packet, ylem
+#         get wrapper
+#         set qualifier, use.fertiliser
+#      else
+#         quip no.food.for.it
+#      fin
+#   fin
    ifeq beanstalk, stunted
       say beanstalk.grown, qualifier
       set beanstalk, grown
@@ -4111,6 +4140,12 @@ proc pass.phrase
          fin
       fin
    fin
+   ifnear gates
+      and
+   ifflag hints, keys.listed
+      quip safe.keys
+   fin
+
    quip nothing
 #
 #=====================================================================
@@ -5763,6 +5798,7 @@ proc randomise.texts
    randomise tis.amusing, 0
    randomise no.violence, 0
    randomise jerry.words, 0
+   randomise scruffy.vegetation, 0
    randomise nothing.doing.1, 0
    set nothing.doing.2, nothing.doing.1
    randomise typo, 0             # TYPO is structured in blocks of 4
@@ -6087,7 +6123,13 @@ proc lets.knock
 #=====================================================================
 #
 proc by.house.actions
-   respond grass, attention.to.detail, grass
+   ifkey grass
+      ifis arg1, grass
+         respond grass, attention.to.detail, arg1
+      else
+         respond grass, attention.to.detail, arg2
+      fin
+   fin
    ifkey building
       ifeq status, 1
          ifat road
@@ -6134,7 +6176,13 @@ proc by.house.actions
 #=====================================================================
 #
 proc in.forest.actions
-   respond grass, attention.to.detail, grass
+   ifkey grass
+      ifis arg1, grass
+         respond grass, attention.to.detail, arg1
+      else
+         respond grass, attention.to.detail, arg2
+      fin
+   fin
    respond berries, no.berries
    ifkey look
       respond forest, around, in.forest
@@ -6254,7 +6302,13 @@ proc in.dark.forest.actions
 #=====================================================================
 #
 proc in.valley.actions
-   respond grass, attention.to.detail, grass
+   ifkey grass
+      ifis arg1, grass
+         respond grass, attention.to.detail, arg1
+      else
+         respond grass, attention.to.detail, arg2
+      fin
+   fin
    ifkey look, valley
       ifat end.of.valley
          quip green.valley, 1

@@ -15,7 +15,7 @@ verb rest, wait                  # In case players type REST MYGAME
 verb contemplate, meditate
 verb sorry, thanks
 verb say, =talk, chant, sing, utter, mumble, shout, speak, yell
-verb laugh, =heheheheheheh, smirk, grin, smile
+verb laugh, =heheheheheheh, =hahahahaha, =hohohohoho, =heeheeheeheehee, smirk, grin, smile
 verb !length, =!line, =!width
 verb !scroll, =!screen, =!depth
 verb !margin, =!offset
@@ -90,7 +90,7 @@ verb cross, across, over
 # Now for general verbs which may require clarification
 #
 verb -first.clarify
-verb get, =g, carry, take, =t, pickup, keep, hold, catch, grip, clutch, steal, capture, tote
+verb get, =g, carry, take, =t, pickup, keep, hold, catch, grip, clutch, steal, capture, tote, scoop
 verb drop, =dr, =discard, =dump, =fall, =abandon, free, =release, =let
 verb open, force
 verb unlock                 # Mostly, but not always, same as 'open'
@@ -194,7 +194,7 @@ verb unroll, spread
 verb cheat
 verb dwarvish
 verb english
-verb put
+verb put insert
 verb attach
 verb justify
 verb think

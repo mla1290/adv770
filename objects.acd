@@ -28,7 +28,7 @@ OBJECT GRATE, GRATING
 #
 OBJECT STEPS
 #
-OBJECT DOOR, DOORS
+OBJECT DOOR, DOORS         # The old, rusty door
   %The way north [is barred by/leads through] a massive, rusty, iron door.
   &The massive door is constructed out of a number of iron plates, joined
    by rows of enormous rivets. Rust has been eating into it for some time
@@ -87,7 +87,7 @@ OBJECT BLOB    # Rover, to all you "The Prisoner" fans
   &Oh for goodness' sake!  What a time to indulge your curiosity!  Remember
    what it did to the proverbial cat?
 #
-OBJECT  -DOOR1
+OBJECT  -DOOR1       # The door to the mines
   &The door is on a small size, probably meant for dwarves rather
    than humans. It is made of some ancient wood, weathered to a
    rich, nearly black colour. It looks *very* solid.[ There is no
@@ -212,8 +212,8 @@ TEXT VENDING.INFO
   +"Drop coins here to receive fresh batteries." 
 #
 OBJECT MACHINE, =VENDING
-  %There is a massive vending machine here.[/ The instructions on it read:
-   {VENDING.INFO}]
+  %There is a massive vending machine here.[ The instructions on it read:
+   {VENDING.INFO}/]
   &A classic fifties' artifact!  All chrome and heavy plastic and
    rounded corners. It has a coin slot and a goods tray. A separate
    little tray is provided for reject coins and, conceivably, change
@@ -583,9 +583,9 @@ OBJECT DOCUMENTS,=LEGAL,PAPERS,DEEDS,PLANS
 OBJECT SPOON,=TARNISHED
    Tarnished spoon
   %A tarnished spoon lies here.
-  &[It's a tarnished old teaspoon with some writing on its handle./
-   It's a tarnished old teaspoon of no value whatever. Beats me why you
-   are so interested in it.]
+  &It's a [tarnished old teaspoon with some writing on its handle/
+   tarnished old teaspoon of no value whatever. Beats me why you
+   are so interested in it].
 #
 OBJECT HORN, =LITTLE
    Little horn
@@ -1196,7 +1196,7 @@ OBJECT KNOCKER, =DOOR-KNOCKER, =LION, =HEAD, =BRASS, =CLAPPER
    unusual arrangement in my experience: door knockers are commonly mounted
    on doors, not on walls!
 #
-OBJECT  -DOOR2    # Dwarves' stores door
+OBJECT  -DOOR2       # Dwarves' stores door
   &The door is made of solid oak, darkened with age, and reinforced with
    iron strips. It is [firmly locked and quite possibly bound into place
    by a powerful spell for good measure. Dwarves usually say what they
@@ -1220,7 +1220,7 @@ FRAGMENT assigned NO.ACCESS
    [ Clearly the "NO ACCESS" notice is an injunction, rather than a
    statement of fact./]
 #
-OBJECT -DOOR3
+OBJECT -DOOR3                     # The door to dwarves' quarters
   &A[ closed/n opened] door of plain wood, with no handle and no catch
    or lock.{NO.ACCESS} 
 #
@@ -1274,7 +1274,7 @@ OBJECT POSTER, =RECORD
 #
 OBJECT TREASURE, =TR, VALUABLES   # Dummy for TREASURE porcessing
 #
-OBJECT -DOOR4                     # Described in location description
+OBJECT -DOOR4               # Shed door, described in location description
 #
 OBJECT CODEX, =OMEGA, BOOK, =TOME # Described in location description
 #

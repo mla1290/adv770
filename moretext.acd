@@ -114,4 +114,44 @@ TEXT TOO.FAR.OFF
 TEXT FILL.IT.YOU.DUMMY
     If you are trying to fill the #, why not just say so?
 #
+TEXT NO.GET.SOIL
+    The soil is here for the beanstalk's benefit, not yours, so don't
+    waste your time on it.
+#
+FRAGMENT NO.SPOON.DUNG
+    Nice to see an inventive adventurer for once! But let's face
+    it, ferrying this heap to the beanstalk one teaspoon at a time,
+    would take ages! Besides, unicorn dung is notoriously corrosive
+    and would eat up the spoon in no time flat.
+#
+FRAGMENT HELMET.NO.DUNG
+    Ingenious. Definitely ingenious. Unfortunately unicorn dung is
+    extremelu corrosive. It would simply ruin the helmet. Better find
+    something else for carrying the dung.
+#
+TEXT DUNG.INGENUITY
+    _Or did you have in mind using the [helmet? {HELMET.NO.DUNG}/
+    spoon? {NO.SPOON.DUNG}]
+#
+TEXT increment NO.RUIN.IT
+    [_And if you had in mind using the #, we've already established that
+    it doesn't work./]
+#
+TEXT AGAIN.NO.RUIN.IT
+    You tried that already, remember? You'll need to find something
+    else for transporting the dung.
+#
+TEXT increment NO.TRANSLATE.EPNS
+    There is nothing to translate[!/.] The letters EPNS on the spoon 
+    stand for Electro-Plated Nickel Silver[, meaning the spoon is
+    just about worthless. I thought *everybody* knew what EPNS meant!/.]
+#
+TEXT BEANSTALK.SATED
+    The beanstalk doesn't seem to be hungry any more. And in any case,
+    you are out of fertiliser.
+#
+TEXT increment SAFE.KEYS
+    Nothing happens[, which is not entirely surprising. That's one of
+    the safe "skeleton keys". Nothing to do with the gates!/. Surprise!]
+#
 #########################################################################

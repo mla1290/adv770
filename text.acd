@@ -416,8 +416,8 @@ TEXT HELP.DATA
 #
 TEXT HELP.DATA.END
     Remember that I only understand commands of one or two words. Novice
-    players often forget that, for example, THROW AXE AT DWARF is not
-    going to do anything different from what THROW AXE would achieve.
+    players often type commands like THROW AXE AT DWARF. Use THROW AXE
+    instead, and I'll do my best to work out where you want to throw it.
     Usually people trying unsuccessfully to manipulate an object are
     attempting something beyond their (or my) capabilities and should try
     a completely different tack.
@@ -2610,10 +2610,12 @@ TEXT GOSH.UNICORN!
     As you admire the creature, there is a roll of thunder and from
     a cloud of smoke steps a horned gentleman with a pointed tail. 
     "Here's a free piece of advice," he says with heavy sarcasm, 
-    "Don't get involved in metaphysical disputes, particularly ones 
+    "[K/Never get involved in a land war in Asia, never go against a
+    Sicilian when death is on the line, and k]eep your nose out of
+    metaphysical disputes, particularly ones 
     you have no hope of understanding. Just you stick to pilfering a few
-    treasures and you won't come to much harm! And in case you
-    don't get my message, I will personally ensure that this 
+    treasures and you won't come to much harm. And in case you
+    don't get my message, I will personally ensure that this here
     wretched parody of an animal does not carry you anywhere you 
     may wish to go. Better believe it, kiddo!" With that he screws his 
     tail into a tight spiral and disappears.
@@ -2624,8 +2626,9 @@ TEXT HOLLOW.LAUGH
 #
 TEXT RIDE.TO.HELL
 
-    With you aboard, the unicorn gallops off at a furious pace.
-    The tunnel walls flash past dimly illuminated by an ethereal
+    With you aboard, the unicorn gallops off at a furious pace. [T/It
+    quickly grows dark and you become aware of t]unnel
+    walls flash[/ing] past, dimly illuminated by an ethereal
     glow. Suddenly tunnel walls, unicorn and everything disappear
     and you fly on in pitch blackness. Far below you a door opens,
     revealing a dull red glow, and grotesque figures pour forth and
@@ -5248,8 +5251,9 @@ TEXT EMPTY.BUCKET.FIRST
     The bucket would be quite suitable for scooping up the dung,
     but you'd need to empty it first.
 #
-TEXT NEED.BUCKET.FOR.DUNG
-    You don't have anything suitable for scooping up that smelly heap!
+FRAGMENT NEED.BUCKET.FOR.DUNG
+    You don't have anything suitable for scooping up that smelly 
+    heap!
 #
 TEXT GOT.DUNG
     You neatly scoop the dung into the champagne bucket.
@@ -10078,10 +10082,15 @@ TEXT cycle TIS.AMUSING
    [Glad to know you find this an amusing experience./Something's funny?
    Oh well, I am not very good at spotting this human humour thing.../That's
    the spirit! Laughter is the only healthy response to life's
-   adversities.]
+   adversities./Laughing at your troubles is a sign of mental health,
+   but it doesn't actually solve anything./You know, you are almost cute
+   when you laugh like that./Laugh away, but remember that around here
+   it is usually Ralph Witt who has the last laugh!]
 #
-TEXT SCRUFFY.VEGETATION
-   Scruffy is the only word to describe it.
+TEXT cycle SCRUFFY.VEGETATION
+   [Scruffy is the only word to describe it/There's nothing noteworthy
+   about that scruffy lot/Unpreposessing is too mild a word for it.
+   Downwright scruffy is more accurate].
 #
 TEXT USELESS.BITS
    They are just useless bits of #. Please ignore.

@@ -5558,24 +5558,24 @@ at beanstalk.bottom
    fin
    ifkey beanstalk
       ifany feed, fertiliser
-         ifnear bucket, full.of.dung
-            or
-         ifnear packet
-            call feed.beanstalk
-         else
-            quip no.food.for.it
-         fin
-      otherwise
+         call feed.beanstalk
+      fin
       respond get, pull, roots.too.deep, beanstalk
       ifany climb, up
          set status, 1
       fin
    fin
+   respond soil, no.get.soil
    ifany open, empty, tear, spill, scatter
       and
    ifkey packet
       and
    ifnear packet
+      call feed.beanstalk
+   fin
+   ifeq status, 1
+      and
+   ifany packet, feed
       call feed.beanstalk
    fin
    ifkey help
@@ -6764,9 +6764,6 @@ at nowhere
       ifkey say
          set arg1, arg2
          set status, 1
-      fin
-      ifgt status, 1    # Only 1 magic word?
-         quip one.at.a.time
       fin
       set temp.val, arg1
       lda marker, first.magic
@@ -10580,7 +10577,7 @@ at end.of.valley
       move west, forest, forest.17
       move nw, forest.16
    fin
-   ifany wall, slope
+   ifany wall, slope, soil
       flag context, arg2.here
    fin
 #
@@ -12916,7 +12913,7 @@ at island.n
          call follow.it, island.ne, east, island.nw, west
       fin
    fin
-   ifany slope, outcrop, mountain
+   ifany slope, outcrop, mountain, soil
       flag context, arg2.here
    fin
 #
@@ -13922,7 +13919,7 @@ at island.07
       move nw, down, island.n
       move se, up, island.08
    fin
-   ifany mountain, slope, soil, vegetation, sea, cliff
+   ifany mountain, slope, soil, vegetation, sea, cliff, soil
       flag context, arg2.here
    fin
 #

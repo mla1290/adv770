@@ -225,7 +225,32 @@ action get        # Generalized last-case "get" routine
       ifhave bucket
          quip empty.bucket.first
       fin
-      quip need.bucket.for.dung
+      say need.bucket.for.dung
+      ifflag beanstalk, seen
+      else
+         quip blank
+      fin
+      ifhave helmet
+         and
+         not
+      ifflag helmet, special2
+         flag helmet, special2
+         quip dung.ingenuity, 0
+      fin
+      ifhave spoon
+         and
+         not
+      ifflag spoon, special2
+         flag spoon, special2
+         quip dung.ingenuity, 1
+      fin
+      ifhave helmet
+         quip no.ruin.it, helmet
+      fin
+      ifhave spoon
+         quip no.ruin.it, spoon
+      fin
+      quip blank
    fin
    ifflag arg2, portable
    else
@@ -2432,6 +2457,7 @@ action verbose
 #=====================================================================
 #
 action feed
+   default mortal
    anyof bear, troll, bird, snake, dwarf, dragon, basilisk
    anyof goblins, unicorn, beanstalk
       ifnear arg2
@@ -2547,13 +2573,6 @@ action fee
    ifgt stage, closing.soon
       quip nothing
    fin
-   anyof fie, foe, foo, fum
-      set foobar, 0
-      quip one.at.a.time
-#
-#=====================================================================
-#
-action fee
    set foobar, 1
    quip ok
 #
@@ -3751,7 +3770,6 @@ action melenkurion
 #=====================================================================
 #
 action noside
-   respond samoht, one.at.a.time
    ifflag admin, edison
       unflag admin, edison
       quip nothing
@@ -3907,7 +3925,11 @@ action ride
       ifeq stage, in.repository
          call mirror.jump
       fin
-      say ride.to.hell
+      ifflag here, not.in.cave
+         say ride.to.hell, 1
+      else
+         say ride.to.hell, 0
+      fin
       stop
    fin
 #
@@ -4471,6 +4493,27 @@ action use
       fin
       call bail.out
    fin
+   ifany spoon, helmet
+      and
+   ifnear dung
+      and
+   ifnear arg2
+      ifflag beanstalk, seen
+      else
+         respond spoon, bleah
+         quip use.too.vague
+      fin
+      ifflag arg2, special2
+         quip again.no.ruin.it
+      fin
+      flag arg2, special2
+      ifkey spoon
+         say no.spoon.dung
+      else
+         say helmet.no.dung
+      fin
+      quip blank
+   fin
    quip use.too.vague
 #
 #=====================================================================
@@ -4516,6 +4559,12 @@ action reflect
 #=====================================================================
 #
 action translate
+   ifany spoon, inscription
+      ifnear spoon
+         quip no.translate.epns
+      fin
+      proceed
+   fin
    ifeq status, 2
       ifany plaque, magazines, dwarf, documents
       else
