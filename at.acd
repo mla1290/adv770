@@ -576,9 +576,7 @@ at cobbles
    ifkey look
       respond cobbles, just.them, cobbles
       respond light, looks.like.daylight
-      ifany tunnel, passage, corridor
-         set status, 1
-      fin
+      respond passage, tunnel, corridor, is.passage, 0
       proceed
    fin
    ifkey go, light
@@ -6359,6 +6357,7 @@ at south.of.basilisk
 #=====================================================================
 #
 at peelgrunt
+   fakecom door, safe
    ifkey in, safe
       set status, 1
    fin
@@ -9255,6 +9254,8 @@ at crypt
 #=====================================================================
 #
 at top.of.chapel
+   local weapon
+
    fakearg steps, stairs
    fakearg fire, alarm   # Allow for "get fire [alarm]" etc...
    fakearg box, alarm
@@ -9264,6 +9265,21 @@ at top.of.chapel
       respond read, cant.do.that, read
       ifkey look
       else
+         ifkey kill
+            set weapon, none
+            ifhave trident
+               lda weapon, trident
+            otherwise
+            ifhave sword
+               lda weapon, sword
+            otherwise
+            ifhave axe
+               lda weapon, axe
+            fin
+            ifne weapon, none
+               quip no.break.alarm, weapon
+            fin
+         fin
          quip out.of.reach
       fin
    fin
@@ -10072,7 +10088,7 @@ at sword.place
    call default.read, rock
    ifany look, read
       and
-   ifany rock, inscription, stone, words
+   ifany rock, inscription, stone, words, pattern
       call read.rock
    fin
    ifkey look
@@ -10191,7 +10207,12 @@ at stupendous.view
          ifeq beanstalk, gigantic
             smove beanstalk.middle, down.the.beanstalk
          else
-            respond beanstalk2, i.dont.see, arg2
+            ifkey beanstalk2
+               ifeq beanstalk, stunted
+                  quip i.dont.see, arg2
+               fin
+               quip beanstalk.down.there
+            fin
             quip suicidal
          fin
       fin
@@ -10207,11 +10228,20 @@ at stupendous.view
       quip its.too.far
    fin
    ifkey look
+      ifkey beanstalk2
+         ifeq beanstalk, stunted
+            quip i.dont.see, beanstalk
+         fin
+         ifeq beanstalk, grown
+            quip cant.see.much, beanstalk
+         fin
+      fin
       respond beach, beach.from.above, 0
       respond view, vista, sea, rollers, sea.from.cliff
       respond reflections, sea.reflections, 1
       respond gorse, bushes, flowers, flower, flowering.gorse
       respond banks, banks.too.steep
+      respond horizon, sea.horizon
       proceed
    fin
    ifany flower, flowers
@@ -10307,6 +10337,12 @@ at above.sea
       fin
    fin
    ifkey look
+      ifeq status, 1
+         and
+         not
+      ifflag island, been.here
+         quit                    # Full description will be given anyway
+      fin
       respond reflections, sea.reflections, 1
       respond island, island.ahead
       respond horizon, sea.horizon
@@ -11817,7 +11853,7 @@ at scree
       move sw, desert.3
       move south, scree.2
       ifany up, se
-         call consult.sunstone, sw
+         call consult.sunstone, se
       fin
       move up, se, scree, basalt.shelf.2
    fin
@@ -13901,7 +13937,6 @@ at island.05
    call plants.stuff, 4
    fakecom gap, ravine
    ifeq pine, fallen
-      set ravine.exit, 0
       set island.05, 1
    fin
    ifkey look
@@ -13962,6 +13997,7 @@ at island.05
       fin
       ifkey enter
          ifeq pine, fallen
+            set ravine.exit, 1
             smove island.06, pine.is.bridge
          else
          flag context, arg2.here
@@ -13973,7 +14009,10 @@ at island.05
       or
    ifeq status, 1
       move e, trail, island.08
-      smove south, cross, climb, island.06, pine.is.bridge
+      ifany south, cross, climb, 
+         set ravine.exit, 1
+         smove island.06, pine.is.bridge
+      fin
    fin
    ifany slope, mountain, ravine, trail
       flag context, arg2.here
@@ -13987,7 +14026,6 @@ at island.06
    fakecom tree, pine
    call plants.stuff, 4
    fakecom gap, ravine
-   set ravine.exit, 1
    ifkey look
       respond ravine, down, steep.ravine
       respond bridge, pine.bridge, pine
@@ -14015,6 +14053,7 @@ at island.06
       fin
       ifkey enter
          ifeq pine, fallen
+            set ravine.exit, 0
             smove island.05, pine.is.bridge
          else
             flag context, arg2.here
@@ -14028,7 +14067,10 @@ at island.06
    ifkey go
       or
    ifeq status, 1
-      smove n, climb, cross, island.05, pine.is.bridge
+      ifany n, climb, cross
+         set ravine.exit, 0
+         smove island.05, pine.is.bridge
+      fin
       move e, trail, temple, by.temple
    fin
    ifany ravine, mountain, bridge, trail
@@ -14087,11 +14129,15 @@ at island.08
       ifis there, viewpoint.2
          quip no.jump.back
       fin
-      move s, up, ravine, island.05
+      ifany s, up, ravine
+         set ravine.exit, 0
+         move island.05
+      fin
       move n, down, island.07
       move nw, island.09
       smove e, by.stream.1, scramble.down
       ifkey trail
+         set ravine.exit, 0
          call follow.it, island.09, nw, island.05, s
       fin
    fin
@@ -14188,8 +14234,11 @@ at by.temple
    ifkey go
       or
    ifeq status, 1
-      move in, w, temple
-      move n, island.06
+      move in, w, temple, temple
+      ifkey north,
+         set ravine.exit, 1
+         move island.06
+      fin
       respond beach, its.out.of.reach, 0
       respond caldera, swamp, cant.get.to.bog
    fin

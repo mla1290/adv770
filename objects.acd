@@ -498,7 +498,7 @@ OBJECT ORION         # Just a myth
 #
 OBJECT PLAQUE        # The plaque in the sandstone room
 #
-OBJECT INSCRIPTION, PATTERN, =PATTERNS, LETTERING, =LETTERS, WRITING, DESIGN, DESIGNS  # Readable stuff
+OBJECT INSCRIPTION, LETTERING, =LETTERS, WRITING  # Readable stuff
 #
 OBJECT PORTCULLIS      # Intercepted in AT.ACD, so doesn't need description
   &A standard issue adventure portcullis, made of solid metal
@@ -1281,7 +1281,7 @@ OBJECT STAIRS, STAIRCASE          # Various staircases
 #
 OBJECT GORGE                      # Split off from VOLCANO!
 #
-OBJECT SPARE09
+OBJECT PATTERN, =PATTERNS, DESIGN, =DESIGNS # Different readable stuff
 #
 OBJECT SPARE10
 #

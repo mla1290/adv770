@@ -1110,6 +1110,14 @@ action look                # Can't look in the dark!
    ifinrange arg2, first.direction, last.compass.point
       quip no.look.direction, arg2
    fin
+   ifkey pattern
+      ifnear gong
+         quip no.word.pattern, gong
+      fin
+      ifnear thurible
+         quip no.word.pattern, thurible
+      fin
+   fin
    ifkey valley
       and
    ifinrange here, forest.14, forest.20
@@ -1211,7 +1219,12 @@ action look                # Can't look in the dark!
    ifany mask, fangs, crown
       call check.wearing
    fin
-   ifany notice, documents, inscription, magazines, plaque
+   ifany pattern, rug
+      and
+   ifnear rug
+      call read.the.rug
+   fin
+   ifany notice, pattern, documents, inscription, magazines, plaque
       call read
       quit
    fin
@@ -1219,11 +1232,6 @@ action look                # Can't look in the dark!
       and
    ifat storeroom, shelves.east, shelves.west
       quip old.shelves
-   fin
-   ifany pattern, rug
-      and
-   ifnear rug
-      call read.the.rug
    fin
    ifkey dung
       and
@@ -1681,7 +1689,7 @@ action extinguish
                say glow
             fin
          else
-            say it.is.now.dark
+            call too.dark.for.safety, 0
          fin
       else
          ifkey lamp
@@ -2419,6 +2427,13 @@ action kill
          call kill.ogre
       otherwise
       ifkey giant
+         ifhave sword
+            or
+         ifhave trident
+            or
+         ifhave axe
+            call weaponry
+         fin
          set context, q.kill.giant
          quip with.what?
       otherwise
@@ -3669,6 +3684,20 @@ action epns
 #=====================================================================
 #
 action read
+   ifkey rug
+      call read.the.rug
+   fin
+   ifkey pattern
+      ifnear gong
+         quip just.pattern, gong
+      fin
+      ifnear thurible
+         quip just.pattern, thurible
+      fin
+      ifat arabesque
+         quip just.pattern, wall
+      fin
+   fin
    ifat stupendous.view
       and
    ifany notice, note, words, message, inscription
@@ -3677,9 +3706,6 @@ action read
          set notice, examined
       fin
       quit
-   fin
-   ifkey rug
-      call read.the.rug
    fin
    ifgt status, 1
       ifkey documents
@@ -3848,7 +3874,7 @@ action samoht
             call is.it.dark?
             ifflag status, light.here
             else
-               say it.is.now.dark
+               call too.dark.for.safety, 0
             fin
          else
             say lamp.explodes
@@ -4336,6 +4362,30 @@ action replace batteries
 #
 action fuck
    quip no.fucking
+#
+#=====================================================================
+#
+# Stir and wake are the same verb!
+#
+action stir
+   ifkey bucket
+      ifnear bucket
+         and
+      ifgt bucket, emptied
+         quip no.point.in.that
+      fin
+      quip nothing.in.it, bucket
+   fin
+   ifkey champagne
+      ifnear bucket, full.of.champagne
+         quip no.point.in.that
+      fin
+      ifnear giant
+         and
+      ifge giant, picnicking
+         quip hands.off
+      fin
+   fin
 #
 #=====================================================================
 #
@@ -5532,7 +5582,7 @@ action glow
                quip glow
             fin
          else
-            quip it.is.now.dark
+            call too.dark.for.safety, 1
          fin
          quit
       fin
@@ -6215,4 +6265,27 @@ action dig
       quip need.shovel
    fin
 #
+#=====================================================================
+#
+action stir
+   ifkey bucket
+      ifnear bucket
+         and
+      ifgt bucket, emptied
+         quip no.point.in.that
+      fin
+      quip nothing.in.it, bucket
+   fin
+   ifkey champagne
+      ifnear bucket, full.of.champagne
+         quip no.point.in.that
+      fin
+      ifnear giant
+         and
+      ifge giant, picnicking
+         quip hands.off
+      fin
+   fin
+#
 ######################################################################
+

@@ -223,6 +223,7 @@ init
    flag platform, lit
    flag balcony, lit
    flag sea.view, lit
+   flag tall.e/w.canyon, lit
    flag valuers, lit
    flag ne.repository, lit
    flag blasted.repository, lit
@@ -1041,6 +1042,7 @@ init
    flag rug, seen
    flag shadow, seen
    flag plant, seen    # So that he can refer to various scenery plants
+   flag pattern, seen
 #
 # Randomise some of the cycling texts.
 #

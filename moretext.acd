@@ -236,5 +236,42 @@ TEXT STILL.DRY
 TEXT STILL.ON.OFF
     There's nothing to read on the lamp, other than the terse words
     "on/off" next to the switch.
+#
+TEXT BEANSTALK.DOWN.THERE
+    The beanstalk is down there, and you are up here. I don't quite see how
+    you are proposing to climb it from here.
+#
+TEXT increment NO.UPSET.GIANT
+    [Better not. The giant could get upset by such disrespect for his
+    hospitality./I strongly advise against offending a giant!]
+#
+TEXT increment ANNOYED.GIANT
+    [That would not be too smart. The giant is quite friendly at the
+    moment, but that's unlikely to last if he decides that you are
+    trying to attack him with the #./Let's not provoke the giant. He
+    could easily squash you, # or no #.
+#
+TEXT NO.BREAK.ALARM
+    [Oi! Careful with that #!/No.] You might break the alarm[, and you
+    really, but really don't want to do that!/, and I can guarantee you'd
+    regret it later./.]
+#
+TEXT DARK.PLACE
+    It is now quite dark[ - you can't see anything except for some
+    distant dim light to the west/
+    . A small amount of dim light filters in from a passage to the west,
+    but it is too meagre to be of any practical use/
+    , despite some very weak, diffuse light filtering in from the east].
+    {DARK.WARNING}
+#
+TEXT CANT.DO.THAT
+    You can't # that!
+#
+TEXT JUST.PATTERN
+    The pattern on the # is just that -- a pattern with no deeper 
+    significance.
+#
+TEXT NO.WORD.PATTERN
+    There are no words to read in the patterns on the #.
 # 
 #########################################################################

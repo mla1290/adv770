@@ -212,7 +212,7 @@ TEXT IN.FROM.OUT
     want to look into].
 #
 TEXT VIAL.SEALED
-    How? It is tightly sealed.
+    How? It is tightly sealed.    
 #
 TEXT cycle NATURALLY.NOTHING
     [Naturally enough,/As should come as no surprise,/I hope it comes
@@ -227,14 +227,19 @@ TEXT cycle ONE.AT.A.TIME
     with one at a time[ - there is only one of me, you know..// - it's 
     not as easy as you seem to imagine].
 #
-TEXT cycle IT.IS.NOW.DARK
-    It is now pitch dark. [You'll have to move carefully if you want to
-    avoid painful bruises, or worse/If you proceed you will likely fall 
-    into a pit/Trying to walk about without a light is not likely to be
-    very safe/ If I may be so bold, I would advise against walking
-    about without a light/Exploring without a light is often very 
-    unhealthy/I advise against blundering about in darkness - accidents
-    are only too likely].
+TEXT cycle DARK.WARNING
+    [You'll have to move carefully if you want to avoid painful bruises,
+    or worse/
+    If you proceed you will likely fall into a pit/
+    Trying to walk about without a light is not likely to be very safe/
+    If I may be so bold, I would advise against walking about without
+    a light/
+    Remember that exploring without a light is often very unhealthy/
+    I advise against blundering about in darkness - accidents are only
+    too likely/
+    I wouldn't try moving about here without a light, if I were you/
+    It's safer not to walk about in the darkness/
+    Better get some light, or you might stumble and break you neck].
 #
 FRAGMENT BIRD.HINT
     Are you trying to catch the bird?_
@@ -272,8 +277,8 @@ TEXT CRUNCH
     [Ouch! That was something hard/You fell into a pit and broke every
     bone in your body]!
 #
-TEXT CANT.DO.THAT
-    You can't # that!
+TEXT IT.IS.NOW.DARK
+    It is now pitch dark. {DARK.WARNING}
 #
 TEXT cycle YOU.HAVE.IT
     You [are already carrying/already have] the #!
@@ -3281,7 +3286,7 @@ TEXT TREASURE.3
 #
 TEXT TREASURE.4
 
-    A multitude of elves raise from tables laden with a mouth-watering
+    A multitude of elves rise from tables laden with a mouth-watering
     selection of delicacies and with great joy proclaim you to be an
     all conquering adventurer grandmaster.
 
@@ -5240,10 +5245,10 @@ FRAGMENT YOUR.OBJECT
     Your #
 #
 TEXT IS.NOW
-   / is now [//empty/full of water/full of oil].
+   / is now [//empty/full of ][///water/oil/dung].
 #
 TEXT IS.ALREADY
-   / is already [//empty/full of water/full of oil].
+   / is already [//empty/full of ][///water/full/oil/dung].
 #
 TEXT NO.OIL.IN.BUCKET
     The bucket is far too big for that! Try something smaller.
@@ -6936,7 +6941,7 @@ TEXT DROPPINGS.NO.GOOD
    you have in mind using the droppings as a fertilizer, that's not a bad
    thought! But rat droppings, which is what these must be despite their
    size, are no good for plants. Better look for some other sort of 
-   organic plant food.]
+   plant food.]
 #
 TEXT DROPPINGS.LARGE
    As I already noted, they look just like very large rat droppings.
@@ -8010,8 +8015,9 @@ TEXT BEACH.STEPS
     The steps are crudely cut into the rock sloping from the
     rock shelf to the beach.
 #
-TEXT SEA.HORIZON
-    The sea stretches all the way to the horizon.
+TEXT increment SEA.HORIZON
+    You gaze at the distant horizon for a while[, which is a romantic
+    but not a very useful pastime/].
 #
 TEXT DARK.WAY
     The # is too dark to see anything.
@@ -8205,7 +8211,7 @@ FRAGMENT ISLAND.VIEW
    volcanic origin, surrounded by a strip of golden sand.
    Dense vegetation starts beyond the sandy beach and climbs
    the mountain slopes, gradually changing to darker hues of
-   green, before giving way to grey and brown rock./is mostly
+   green, before giving way to grey and brown rock./=/is mostly
    a massive mountain rising out of the sea and surrounded by
    a thin yellow line - presumably a sandy beach./still too far
    to be seen with any clarity.]
@@ -9459,7 +9465,7 @@ TEXT increment OUT.OF.SEWER
 
 #
 TEXT SHELF.PASSAGE
-   The room is fairly narrow and the shelves leave adequate. but not
+   The room is fairly narrow and the shelves leave adequate, but not
    generous passage between them.
 #
 TEXT DOOR2.INSIDE
@@ -10163,7 +10169,7 @@ FRAGMENT assigned RAVINE.EXIT
 #
 TEXT increment EMPTY.YOUR.BUCKET
   / He's about to pour you more champagne, but then notices the water
-    in the bucket. "[OH, /]NO MIX DRINKS! NO, NO.[ MIX DRINKS BAD, ZORRO
+    in the bucket. "[OH, /]NO MIX DRINKS! NO, NO.[ MIX DRINKS BAD. ZORRO
     BAD BOY!/]"
 #
 FRAGMENT assigned RUG.SHREAK

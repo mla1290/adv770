@@ -339,7 +339,7 @@ repeat
          ifat above.glow
             say volcanic.glow
          else
-            say it.is.now.dark
+            call too.dark.for.safety, 0
          fin
       fin
       ifflag there, lit
@@ -378,7 +378,7 @@ repeat
             fin
          fin
       fin
-      say it.is.now.dark
+      call too.dark.for.safety, 0
    fin
    unflag status, fulldisplay
    unflag admin, ranout      # Clear "lamp just died"
@@ -762,7 +762,14 @@ repeat
          ifeq crown, incomprehensible
             or
          ifkey listen
+            or
+         chance crown.chance
             add crown, 1
+            iflt crown, incomprehensible
+               set crown.chance, 0
+            else
+               add crown.chance, 1
+            fin
             ifeq crown, chanting
                flag hints, keys.listed
             fin
@@ -921,7 +928,7 @@ repeat
          quip very.funny
       fin
       ifany quit, no, n
-         say use.a.weapon, arg1
+         say use.a.weapon, attack
          quip kill.the.whatever, arg2
       fin
       quip lets.be.prudent, 0
@@ -1481,6 +1488,28 @@ repeat
          fin
       fin
    fin      
+   ifkey champagne
+      ifnear bucket, full.of.champagne
+         flag context, arg2.here
+      otherwise
+      ifnear giant
+         and
+      ifge giant, picnicking
+         quip hands.off
+      fin
+   fin
+   ifkey pattern
+      ifnear gong
+         or
+      ifnear thurible
+         flag context, arg2.here
+      fin
+   fin
+   ifkey dung 
+      and
+   ifnear bucket, full.of.dung
+      flag context, arg2.here
+   fin
 #
 # Handle all teeth references.
 #

@@ -81,7 +81,7 @@ verb -last.direction
 #
 verb in, inward, inside, enter
 verb out, outside, outdoors, exit, leave
-verb go, walk, run, travel, proceed, explore, follow, scramble
+verb go, walk, run, travel, proceed, explore, follow, scramble, detour
 verb forward, continue, onward
 verb back, =b, return, retreat
 verb jump, leap

@@ -357,6 +357,9 @@ proc dispose.liquid
       proceed
    fin
    ifis result, champagne
+      ifnear giant
+         quip no.upset.giant
+      fin
       say waste.of.champagne
    fin
    say pour.liquid.1, result
@@ -2302,6 +2305,9 @@ proc special.view
 #
    ifflag status, fulldisplay
       ifinrange here, desert.1, desert.last
+         and
+         not
+      ifis here, rocky.desert
          ifat desert.3, desert.4, desert.8, desert.13, desert.16
             set temp.val, 0
          else
@@ -2374,6 +2380,9 @@ proc fishy.stuff
 #=====================================================================
 #
 proc describe.here
+   ifat above.sea
+      proceed
+   fin
    say here
    ifat top.of.chapel
       call fishy.stuff
@@ -4040,6 +4049,9 @@ proc weaponry    # Handle attacks with weapons
 #
    ifhave arg2
       ifkey throw
+         and
+         not
+      ifat stupendous.view
          drop arg2
       fin
       ifnear dwarf
@@ -4153,6 +4165,9 @@ proc weaponry    # Handle attacks with weapons
             call coroner
          fin
          ifnear giant
+            ifat stupendous.view
+               quip annoyed.giant, arg2
+            fin
             say enraged.giant, arg2
             call coroner
          fin
@@ -4236,6 +4251,24 @@ proc plunge                # For plunging into a bottomless pit
       say fall.&.starved
    fin
    call coroner
+#
+#=====================================================================
+#
+proc too.dark.for.safety quit.flag
+   ifat cave.2
+      say dark.place, 0
+   otherwise
+   ifat pantry
+      say dark.place, 1
+   otherwise
+   ifat catacombs.portal
+      say dark.place, 2
+   else
+      say it.is.now.dark
+   fin
+   ifne quit.flag, 0
+      quit
+   fin
 #
 #=====================================================================
 #
@@ -4337,7 +4370,7 @@ proc upchuck
       call is.it.dark?
       ifflag status, light.here
       else
-         quip it.is.now.dark
+         call too.dark.for.safety, 1
       fin
    fin
    ifat mists
@@ -4423,7 +4456,9 @@ proc giant.stuff, giving
          ifeq giant, picnicking
             set giant, watching
             ifeq giant.will.watch, -1
-               say fly.time, zorro
+               ifhave rug
+                  say fly.time, zorro
+               fin
                set giant.will.watch, zorro
             otherwise
             ifeq giant.will.watch, zorro
@@ -5810,7 +5845,7 @@ proc show.nouns
 #
 proc randomise.texts
    randomise one.at.a.time, 0
-   randomise it.is.now.dark, 0
+   randomise dark.warning, 0
    randomise no.fucking, 0
    randomise nocomprende, 0
    randomise nocomprende.verb, 0
@@ -6018,7 +6053,7 @@ proc close.mine.door
       ifflag status, light.here
       else
          say blank
-         quip it.is.now.dark
+         call too.dark.for.safety, 1
       fin
    fin
 #
@@ -7023,7 +7058,6 @@ proc read.the.rug
          quip read.rug
       fin
    fin
-   call bail.out
 #
 #====================================================================
 

@@ -18,7 +18,6 @@ variable losses, actual.score
 variable codex.reward
 variable faked.object
 variable sparev01, sparev02, sparev03, sparev04
-#
 variable status, admin, context
 variable lamplife
 variable sparev05, sparev06, sparev07, sparev08, sparev09
@@ -41,7 +40,7 @@ variable sparev15
 variable cat.factor, rest.exit, portal.exit
 variable direction
 array    c.exit, 16
-variable sparev16
+variable crown.chance
 variable orc.mutter, mutter.time
 variable giant.time, mouse.time, thirst.time
 variable swag.count, swag.time
