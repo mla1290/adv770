@@ -6736,7 +6736,6 @@ at new.den
          quip mask
       fin
       respond exit, doorway, dark.exit, doorway
-      respond swag, no.swag, arg2
       respond den, you.are.there
       proceed
    fin
@@ -6746,7 +6745,7 @@ at new.den
    ifeq status, 1
       move east, out, doorway, portal, catacombs.portal
    fin
-   respond wall, shelf, exit, swag, den, hah!
+   respond wall, shelf, exit, den, hah!
 #
 #=====================================================================
 #
@@ -7636,9 +7635,16 @@ at tower.upper.landing
    ifeq status, 1
       ifany in, east
          ifeq door2, closed
-            quip door.in.the.way
+            quip door.in.the.way, east
          fin
          ifeq door2, ajar
+ value .of, alarm
+            ifeq alarm, 5
+               and
+               not
+            ifflag storeroom, been.here
+               set alarm, 6
+            fin
             say into.storeroom
          fin
          set door2, opened
@@ -7907,7 +7913,7 @@ at storeroom
    ifeq status, 1
       ifany out, west, landing
          ifeq door2, closed
-            quip door.in.the.way
+            quip door.in.the.way, west
          fin
          set door2, opened
          set tower.upper.landing, opened
@@ -8486,9 +8492,13 @@ at crypt
             say you.do, arg1
             say it.is, arg2
             sub invct, 1
+            quit
          fin
          ifflag quips, crucifix.waved
-            quit
+            ifkey give
+               proceed
+            fin
+            quip hah!
          else
             say blank
             quip wave.crucifix?
@@ -8657,8 +8667,6 @@ at den
       fin
    fin
    ifkey look
-      respond label, its.swag
-      respond swag, no.swag, arg2
       respond shelf, its.empty, shelf
       ifkey den
          set status, 1
@@ -8679,7 +8687,7 @@ at den
 at pantry
    ifkey look
       respond stream, corner, water, just.a.trickle
-      respond shelves, just.a.fixture
+      respond shelves, just.a.fixture, arg2
       respond steps, well.worn.steps
       respond arch, arch.with.steps
       respond tunnel, corridor, passage, dark.exits, passage
@@ -12702,6 +12710,9 @@ at island.02
          ifeq status, 1
             or
          ifkey crevice
+            and
+            not
+         ifflag shoes, seen
             flag ridge, hintable
             set island.02, shoes.found
             apport shoes, here
@@ -12713,8 +12724,14 @@ at island.02
          ifeq status, 1
          else
             ifkey something
-               fakecom something, shoes
-               proceed
+               ifeq island.02, shoes.noted
+                  and
+                  not
+               ifflag shoes, seen
+                  fakecom something, shoes
+                  proceed
+               fin
+               quip pardon?
             fin
             ifkey rock
             else
@@ -13086,15 +13103,8 @@ at temple
    iflt temple, vault.open
       and
    ifnear ring
-      set temple, vault.open
-      apport ring, limbo
-      set ring, not.worn
-      flag thurible, seen
-      ifany out, east
-         quip open.vault, 0
-      else
-         quip open.vault, 1
-      fin
+      call temple.magic, 0
+      quit
    fin
    ifeq temple, vault.open
       respond out, east, better.follow.them
@@ -13144,7 +13154,10 @@ at temple
                fin
             eoi
             goto island
-            quip get.lost
+            unflag status, moved
+            say get.lost
+            call here.you.can.see
+            quit
          fin
          quip hah!
       fin

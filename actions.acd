@@ -75,9 +75,13 @@ action get water
       quip no.way.to.carry, water
    fin
    set obj.ptr, 0
-   ifhave bucket, emptied
+   ifeq bucket emptied
       or
-   ifhave bucket, dirtied
+   ifeq bucket, dirtied
+      or
+   ifge bucket, mostly.full
+      and
+   ifhave bucket
       lda obj.ptr, bucket
    otherwise
    ifhave bottle, emptied
@@ -735,6 +739,10 @@ action scatter
 #=====================================================================
 #
 action wave, thurible
+   ifhave thurible
+   else
+      proceed
+   fin
    ifflag here, not.in.cave
       quip lotsa.smoke
    fin
@@ -752,9 +760,10 @@ action wave, thurible
          flag alarm, seen
          set alarm, 1
          set top.of.chapel, 1
-         iterate place.ptr, tower.base, shelves.west
-            unflag place.ptr, hintable
-         fin
+      fin
+      iterate place.ptr, tower.base, shelves.west
+         unflag place.ptr, hintable
+         unflag place.ptr, been.here
       fin
       set door3, closed
       set dwarves.quarters, closed
@@ -1025,6 +1034,7 @@ action inventory
 #
 action look                # Can't look in the dark!
    local temp.val
+   local desert.offset
 #
    ifeq status, 1
       ifflag status, fastmode
@@ -1183,6 +1193,10 @@ action look                # Can't look in the dark!
       ifat river.bed.1
          ifflag here, in.desert
             call list.dunes, 0
+            set desert.offset, here
+            lda temp.val, desert.1
+            sub desert.offset, temp.val
+            set permanent.dunes, desert.offset
             ifat desert.3, desert.4, desert.8, desert.13, desert.16
                say no.big.dunes, result
                set temp.val, 0
@@ -2209,21 +2223,25 @@ action hit
       fin
       ifflag arg2, mortal
          call kill
+      otherwise
+      ifkey gong
+         and
+      ifnear gong
+         ifnear turtle
+            quip gong.rings
+         fin
+         set reservoir.info, 1
+         set darwins.tracks, 1
+         apport turtle, here
+         quip gong.fetch
+      otherwise
+      ifkey mirror
+         call break
+      otherwise
+      ifkey machine
+         call kick
       else
-         ifkey gong
-            and
-         ifnear gong
-            ifnear turtle
-               quip gong.rings
-            fin
-            set reservoir.info, 1
-            set darwins.tracks, 1
-            apport turtle, here
-            quip gong.fetch
-         fin
-         ifkey mirror
-            call break
-         fin
+         quip hah!
       fin
    fin
 #
@@ -2826,6 +2844,8 @@ action fill bottle
 action fill bucket
    ifhave bucket
       ifeq bucket, emptied
+         or
+      ifge bucket, mostly.full
          or
       ifeq bucket, dirtied
          ifflag here, h20.here
@@ -3922,7 +3942,7 @@ action rest
       quip you.rest, 0
    fin
    ifflag here, in.desert
-      flag desloc, moved   # Forse winds to blow!
+      flag desloc, moved   # Force winds to blow!
       say you.do, arg1
       quip you.rest, 1
    fin

@@ -34,7 +34,7 @@ FRAGMENT INSTRUCTIONS?
 #
 TEXT HI.THERE
 
-    Welcome to Adventure! (770 point MLA version 1.02, 19 Mar 03)
+    Welcome to Adventure! (770 point MLA version 1.05, 26 Mar 03)
 
 #
 FRAGMENT REST.AWHILE
@@ -3405,19 +3405,19 @@ TEXT THANKS.TO
     It is hereby recorded for posterity, that the author of this trifle,
     one Mike Arnautov, wishes to express his thanks to
 
-    1. The UK Branch of the Adventure Tastefulness Committee (you know who you
-    are gentlemen) for a pleasant evening in the Czech Club, where the seeds
-    of adv770 were planted and watered by a quantity of Czech Budvar (i.e. the
-    real thing, as opposed to that other alleged beer that goes by a 
-    similar name).
+    1. The UK Branch of the Adventure Tastefulness Committee (you know
+    who you are gentlemen) for a pleasant evening in the Czech Club,
+    where the seeds of adv770 were planted and watered by a quantity of
+    Czech Budvar (i.e. the real thing, as opposed to that other alleged
+    beer that goes by a similar name).
 
-    2. His family, who put up with him during the 
-    lengthy gestation and development of the game.
+    2. His family, who put up with him during the lengthy gestation and
+    development of the game.
 
-    3. Trevor Homfray-Cooper (the star Alpha tester), and Russ Karlberg,
-    Ambrosine and Dave Payne (the star Beta testers), for their dedication
-    and patience. Without their sterling efforts the game would have 
-    remained bugged and full of holes.
+    3. The star testers: Homfray-Cooper (Alpha phase), Russ Karlberg,
+    Ambrosine and Dave Payne (Beta phase), and Dave Picton (Gamma phase)
+    for their dedication and patience. Without their sterling efforts
+    the game would have remained bugged and full of holes.
 
     4. All the fans of adv660 (a.k.a. Adventure4+) who kept wistfully
     asking about a sequel. Without them adv770 would not have been born
@@ -6192,6 +6192,7 @@ TEXT GET.LOST
     gentleman, making an arcane gesture in the air. You feel yourself 
     lifted up and slammed back. When you regain your senses, you find... 
 
+    You are on the east-facing island beach.
 #
 TEXT increment BETTER.FOLLOW.THEM
     [I think it might be a better idea to have a look what's down there.
@@ -6439,8 +6440,8 @@ TEXT increment UP.THE.TOWER
 #
 TEXT NO.CLIMB.TOWER
     You could maybe managed it with just the lamp, but you really
-    need to ditch any other stuff before even trying to climb that
-    ivy-covered wall!
+    need to ditch any other stuff of any size, before even trying 
+    to climb that ivy-covered wall!
 #
 TEXT cycle NO.POINT.IN.THAT
     [There is no point in doing that/That would achieve exactly
@@ -6742,10 +6743,10 @@ TEXT STORES.DOOR.OPENS
 TEXT increment TOWER.CLIMB.TRICKY
     [Well, I don't know... It just might be possible to climb down the 
     outside of the tower, what with all that ivy clinging to the walls,
-    but I think you'd need to free your hands for that. You might
-    be able to manage it with the lamp, but otherwise, forget it./You need
-    your hands free for climbing down the tower - you'd get
-    yourself killed otherwise!]
+    but I think you'd need to free your hands for that. You may
+    be able to manage it with the lamp, but as for any other largish
+    objects, forget it./You need your hands free for climbing down
+    the tower - you'd get yourself killed otherwise!]
 #
 TEXT increment DOWN.THE.TOWER
     You {LAMP.IN.TEETH}[carefully lower yourself over the edge of the roof.
@@ -6786,7 +6787,7 @@ TEXT increment NEED.BEAVER.TEETH
     point out, your teeth aren't up to it].
 #
 TEXT increment NO.CUT.WITH.SWORD
-    [&^_$#"!#@???? Ah, no, forgive me. You are jesting of course. For
+    [&^_$\#"!\#@???? Ah, no, forgive me. You are jesting of course. For
     a moment there I seriously thought you were going to wield that noble 
     sword as a vulgar tree axe! Such fine sense of humour... You nearly 
     had me there!/No, really, it was funny once, but let's not overdo
@@ -9146,7 +9147,7 @@ FRAGMENT NO.BIG.DUNES
    able to traverse any of them./though I don't like the looks of the
    ones to the]
 #
-FRAGMENT PERMANENT.DUNES
+FRAGMENT assigned PERMANENT.DUNES
    [NE, north, NW and west/northwest///southwest/west and
    southwest/north//southwest/south, SW and west/east, NE, north and
    west/in all directions except to the southeast/northeast and
@@ -9447,7 +9448,7 @@ TEXT SEWAGE.DEBRIS
    Just standard sewage debris. You *really* don't want to know.
 #
 TEXT ROUGH.CEILING
-   The would of the beams and of the planks laid over them, is rather 
+   The wood of the beams and of the planks laid over them, is rather 
    rough and darkened with age.
 #
 TEXT NO.MOULD

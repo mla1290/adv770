@@ -7,6 +7,7 @@
 repeat
    local cgi
 #
+   call tie.them      # Force initialisation of ties in all circumstances!! 
    ifeq status, -1
       set status, 2
       say restoring.game, arg2
@@ -105,17 +106,6 @@ repeat
    itplace place.ptr, ice.cave.1, ice.cave.30
       flag place.ptr, no.dwarf
    fin
-   tie, shoes, swamp.hint.body
-   tie door2, door2.is, landing.door
-   tie trapdoor, near.trap, distant.trap, roof.trap, light.trap
-   tie trapdoor, storeroom.view, its.a.roof
-   tie plain.2, fogg
-   tie island.02, half.hidden.shoes
-   tie seal, pick.up.seal
-   tie blob, blob.chases
-   tie slit, look.slit
-   tie codex.reward, no.get.book
-   tie owl.grips, owl.express, no.owl.express
 #
 # ====================== End of beta section ======================
 #
@@ -893,6 +883,12 @@ repeat
    ifkey give
       unflag vampire, special1
       say vampire.still.thirsty
+   fin
+   ifat temple
+      and
+   ifeq temple, vault.magicked
+      say blank
+      call temple.magic, 1
    fin
 #
 #=====================================================================

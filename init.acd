@@ -1031,24 +1031,6 @@ init
    flag shadow, seen
    flag plant, seen    # So that he can refer to various scenery plants
 #
-   tie shoes, swamp.hint.body
-   tie door2, door2.is, landing.door, door2.inside
-   tie trapdoor, near.trap, distant.trap, roof.trap, light.trap
-   tie trapdoor, storeroom.view, its.a.roof
-   tie plain.2, fogg
-   tie island.02, half.hidden.shoes
-   tie seal, pick.up.seal
-   tie blob, blob.chases
-   tie slit, look.slit
-   tie codex.reward, no.get.book
-   tie owl.grips, owl.express, no.owl.express
-   tie above.sea, island.view, island.ahead
-   tie rats rats.here
-   tie pine, no.water.pine
-   tie beanstalk, no.climb.cliff, patch.of.soil
-   tie mists, dome.state
-   tie desert.offset, tall.black.spire, massive.black.spire, permanent.dunes
-#
 # Randomise some of the cycling texts.
 #
    call randomise.texts

@@ -9,6 +9,8 @@ proc vessel.contents
 #
    eval contents, vessel
    ifeq contents, full.of.water
+      or
+   ifge bucket, mostly.full
       lda result, water
    else
       ifeq contents, full.of.oil
@@ -287,9 +289,17 @@ proc is.it.dark?
       or
    ifnear starstone, iridescent
       flag status, light.here
-   else
-      unflag status, light.here
+      proceed
    fin
+   ifinrange here, storeroom, shelves.west
+      ifeq trapdoor, opened
+         or
+      ifeq door2, opened
+         flag status, light.here
+         proceed
+      fin
+   fin      
+   unflag status, light.here
 #
 #=====================================================================
 #
@@ -621,7 +631,6 @@ proc visions
 #
 proc owl.flies.off
    local offset
-#   local place.ptr
 #
    flag owl, seen
    ifnear lamp, switched.on
@@ -1479,15 +1488,17 @@ proc get.score
          ifis obj.ptr, skull       # on escape from nowhere
             or
          ifis obj.ptr, bust
-            and
-         ifeq obj.ptr, damaged     # Damaged is worth less
-            add scorex, 9
+            eval temp.val, obj.ptr
+            ifeq temp.val, damaged     # Damaged is worth less
+               add scorex, 9
+            else
+               add scorex, full.value
+            fin
          else
             add scorex, full.value
          fin
       else
          ifflag obj.ptr, seen
-# say it.is, obj.ptr
             add scorex, seen.value
          fin
       fin
@@ -1946,6 +1957,7 @@ proc list.dunes, dune.count
 #
 proc special.view
    local temp.val
+   local desert.offset
 #
    ifflag status, fulldisplay
       ifinrange here, desert.1, desert.last
@@ -1960,10 +1972,13 @@ proc special.view
          fin
          say dune.types, temp.val
          ifinrange here, desert.12, desert.last
+            set desert.offset, here
+            lda temp.val, desert.1
+            sub desert.offset, temp.val
             ifat desert.12, desert.13, desert.14, desert.18, desert.19
-               say tall.black.spire
+               say tall.black.spire, desert.offset
             else
-               say massive.black.spire
+               say massive.black.spire, desert.offset
             fin
          fin
          ifkey look
@@ -3089,6 +3104,13 @@ proc bail.out
       not
    ifkey lamp
       quip hah!
+   fin
+   ifkey swag
+      ifis arg1, swag
+         quip no.swag, arg1
+      else
+         quip no.swag, arg2
+      fin
    fin
    respond elric, elric.lives
    respond jerry, elric.preferred
@@ -4845,6 +4867,7 @@ proc blow.sands
    fin
    call stir.sands, here
    set desloc, 0
+   set destime, 0
 #
 #=====================================================================
 #
@@ -4854,9 +4877,6 @@ proc desert.stuff
    local dir
    local state
 #
-   set desert.offset, here
-   lda temp.val, desert.1
-   sub desert.offset, temp.val
    unflag here, been.here
    ifflag status, moved
       eval state, here
@@ -4901,22 +4921,23 @@ proc desert.stuff
       eval desmask, there
       intersect desmask, desbit
       ifgt desmask, 0
-         and
-         not
-      ifeq desdir, dir
          say no.cross.sand, dir
          goto there
          set there, desloc
          unflag status, moved
-         set desdir, dir
       else
-         set desdir, 0
          set desloc, there
          call stir.sands, here
-#         deposit here, state
       fin
-   otherwise
-   chance 33
+   fin
+   ifeq destime, 6
+      set temp.val, 100
+   else
+      set temp.val, destime
+      multiply temp.val, 5
+   fin
+   add destime, 1
+   chance temp.val
       call blow.sands
    fin
 #
@@ -5881,8 +5902,6 @@ proc climbing.check
    local obj.ptr
 #
    itobj obj.ptr, inhand, big
-      ifflag obj.ptr, freebie
-         or
       ifis obj.ptr, lamp
       else
          quip text.ptr
@@ -5912,10 +5931,15 @@ proc tower.climbing
 #=====================================================================
 #
 proc lets.knock
+   local place.ptr
+#
    ifeq door2, closed
       set door2, ajar
       set tower.upper.landing, ajar
       set alarm, 10
+      itplace place.ptr, tower.base, dwarves.quarters
+         unflag place.ptr, been.here
+      fin
       quip knock.knock
    fin
    quip dont.knock
@@ -6134,7 +6158,7 @@ proc imaze.stuff, type
          ifis arg1, go
             set arg1, arg2
          fin
-         quip no.fall.abyss
+         quip no.fall.abyss, arg1
       fin
    fin
    call abyss.hah, type
@@ -6582,4 +6606,34 @@ proc done.it!, qualifier
    quip more.good.news?
 #
 #=====================================================================
+#
+proc temple.magic, mode
+   set temple, vault.open
+   apport ring, limbo
+   set ring, not.worn
+   flag thurible, seen
+   say open.vault, mode
+#
+#=====================================================================
+#
+proc tie.them
+   tie shoes, swamp.hint.body
+   tie door2, door2.is, landing.door, door2.inside
+   tie trapdoor, near.trap, distant.trap, roof.trap, light.trap
+   tie trapdoor, storeroom.view, its.a.roof
+   tie plain.2, fogg
+   tie island.02, half.hidden.shoes
+   tie seal, pick.up.seal
+   tie blob, blob.chases
+   tie slit, look.slit
+   tie codex.reward, no.get.book
+   tie owl.grips, owl.express, no.owl.express
+   tie above.sea, island.view, island.ahead
+   tie rats rats.here
+   tie pine, no.water.pine
+   tie beanstalk, no.climb.cliff, patch.of.soil
+   tie mists, dome.state
+#
+#=====================================================================
+
 

@@ -11,7 +11,7 @@ variable safe.exit, snake.exit
 variable talk.next, talk.end
 variable last.owl, password
 variable foof, swag.to.drop
-variable desert.offset
+variable sparev00
 variable cave.entered
 variable last.hintable
 variable losses, actual.score
@@ -50,6 +50,6 @@ variable vessel
 variable sip.count
 variable result, abort, silence
 variable object.state
-variable desloc, desmask, desbit, desdir
+variable desloc, desmask, desbit, destime
 variable bridge.limit
 variable dwarven
