@@ -41,7 +41,7 @@ variable sparev15
 variable cat.factor, rest.exit, portal.exit
 variable direction
 array    c.exit, 16
-variable sparev17
+variable sparev16
 variable orc.mutter, mutter.time
 variable giant.time, mouse.time, thirst.time
 variable swag.count, swag.time

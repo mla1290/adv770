@@ -783,7 +783,7 @@ PLACE +TUBE
   %You're at the top of a narrow chimney in the rock. A cylindrical tube
    composed of hardened lava leads south and northwest[/, from where
    comes some ][/silvery /day/orange ][/light, providing a dim
-   illumination to this place.]
+   illumination to this place].
 #
 PLACE TUBE.SLIDE
    You're at steep slide in lava tube.
@@ -1469,7 +1469,8 @@ PLACE +DUNGEON
    in place. {WATER.PLOPS} The atmosphere
    is dank and clammy and there is an unusual smell in the air. A passage
    leads south to a lit room[/, and there is a narrow dark hole
-   in the far corner, where one of the flagstones has been shifted aside].
+   in the far corner, where one of the flagstones has been shifted 
+   aside/].
 #
 FRAGMENT TANGLED.WEB
    You are in a tangled web of intersecting passages.
@@ -2320,7 +2321,7 @@ PLACE BY.STREAM.2
 PLACE BOG.EDGE
    You are at the NE edge of the swamp.
   %You are standing on some water-worn boulders under a sheer
-   cliff. To the east of you stretches a large boggy area
+   cliff. To the west of you stretches a large boggy area
    covered with lush, poisonously green vegetation. This is where
    the otherwise stagnant waters of the swamp drain off, over and
    through chunks of rock fallen from above, and into a small
@@ -2376,7 +2377,7 @@ PLACE BELOW.RIDGE
 #
 PLACE +CALDERA, CRATER
    You are on the NW edge of the swamp.
-  %You are on the north-easterly edge of the swamp. Above you,
+  %You are on the north-westerly edge of the swamp. Above you,
    weathered cliffs rise to the sky. Chunks of rock fallen from
    above offer a tricky but firm footing. A short distance to the
    northeast, a small waterfall cascades noisily into the swamp.

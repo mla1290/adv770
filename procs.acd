@@ -767,8 +767,8 @@ proc catlogic
    ifeq forward.exit, direction
       ifat catacombs.exit
          add cat.factor, 1
-         ifgt cat.factor, 7
-            sub cat.factor, 8
+         ifeq cat.factor, 8
+            set cat.factor, 0
          fin
          move fake.y2
       fin
@@ -783,9 +783,12 @@ proc catlogic
       else
          set temp.val, portal.exit
          add temp.val, cat.factor
-         sub temp.val, 8
-         iflt portal.exit, north.dir
+         sub temp.val, 9
+         iflt temp.val, north.dir
             add temp.val, 8
+         fin
+         iflt temp.val, north.dir # Will happen if cat.factor is 0 and ...
+            add temp.val, 8       # ... portal.exit is north
          fin
       fin
       ifeq temp.val, direction
@@ -1314,6 +1317,9 @@ proc start.cheating
       fin
    fin
    ifkey djinn
+      proceed
+   fin
+   ifnear obj.ptr
       proceed
    fin
    ifflag obj.ptr, special1
@@ -2697,7 +2703,6 @@ proc close.the.cave
    flag beanstalk, special1
    flag oyster, special1
    set oyster, 0
-   flag oyster, unstable     # State 0 in repository means un-remarked
    unflag oyster, big          # In repository used as a 'read' flag
    flag rod, special1
    flag lamp, special1
@@ -2720,7 +2725,6 @@ proc close.the.cave
       fin
    eoi
    flag nowhere, hintable   # May have been cleared in the "joke" stage
-   set dungeon, flagstone.fixed
    flag dark.forest, been.here
    flag nowhere, been.here
    set stage, in.repository
@@ -2789,6 +2793,12 @@ proc closing.time
    flag fissure, feature
    flag volcano, feature
    apport unicorn, ylem          # Remove unicorn, if present
+   set door2, closed             # Shut dwarves' stores
+   set door3, closed             # Shut dwarves' quarters
+   set tower.top.landing, closed # ... in the location description too!
+   set tower.top.window, 1       # No angry voices!
+   set dungeon, flagstone.fixed  # Replace and fix the flagstone.
+   set alarm, 1000               # Chase away the card players
    set clock, 30                 # Time to try to leave
 #
 #=====================================================================
@@ -4037,7 +4047,7 @@ proc tick                     # Once-per-input routine
          apport blob, here
       fin
 #
-# Th blob is done separately (rather than directly via blob description)
+# The blob is done separately (rather than directly via blob description)
 # in order to separate it from list of other objects
 #
       say blob.chases
@@ -6018,7 +6028,8 @@ proc in.forest.actions
    respond berries, no.berries
    ifkey look
       respond forest, around, in.forest
-      respond tree, pine, maple, birch, ash, sapling, a.tree.is.a.tree
+      respond sapling, saplings, various.saplings
+      respond tree, pine, maple, birch, ash, a.tree.is.a.tree
       respond bushes, undergrowth, generic.undergrowth
       respond sky, up, forest.scenery, 0
       respond floor, down, forest.scenery, 1
@@ -6034,20 +6045,20 @@ proc in.forest.actions
             quip dull.view, 0
          fin
       fin
-      respond sapling, birch, too.young, arg2
+      respond sapling, birch, ash, too.young, arg2
       quip hah!
    fin
    ifkey cut
-      ifany tree, maple, birch, sapling
+      ifany tree, maple, birch, ash, sapling, saplings
          proceed
       fin
       ifany bushes, undergrowth
          quip no.point.in.that
       fin
    fin
-   ifany undergrowth, foliage, maple, birch, pine, sapling
+   ifany undergrowth, foliage, maple, birch, pine, sapling, saplings, ash
       or
-   ifany tree, maple, ash, sapling, bushes, floor, sky, vegetation
+   ifany tree, maple, ash, sapling, saplings, bushes, floor, sky, vegetation
       quip hah!
    fin
 #
@@ -6659,5 +6670,72 @@ proc tie.them
    tie mists, dome.state
 #
 #=====================================================================
-
-
+#
+proc mirror.jump
+   itobj obj.ptr
+      ifhave obj.ptr
+         apport obj.ptr, ylem
+      fin
+   eoi
+   set stage, middle.of.nowhere
+   flag nowhere, been.here             # To force brief description
+   smove nowhere, through.the.mirror
+#
+#====================================================================
+#
+proc lets.go.back
+   set stage, mirror.world
+   ifloc starstone, stupendous.view
+      apport starstone, nowhere
+   else
+      apport starstone, ylem
+   fin
+   unflag starstone, portable
+   unflag magazines, portable
+   itobj obj.ptr
+      ifflag obj.ptr, portable
+         ifloc obj.ptr, building
+            apport obj.ptr, nowhere
+         else
+            apport obj.ptr, ylem
+         fin
+      fin
+   eoi
+   apport table, ylem
+   smove road, back.to.reality
+#
+#====================================================================
+#
+proc litter.check
+   ifeq no.litter.please, 0         # Hasn't dropped wrapper in this session
+      or
+   ifflag quips, litterbug          # Got Georged already!
+      or
+      not
+   ifflag here, not.in.cave         # George is an outdoors sort of chap.
+      or
+   ifinrange here, island, ylem     # And he doesn't got to new lands
+      or
+   ifnear wrapper
+      or
+   ifloc wrapper, limbo, ylem, house    # Permitted locations
+      or
+      not
+   ifflag status, light.here        # Got to be able to see him!
+      or
+   ifne stage, adventuring
+      proceed
+   fin
+   ifloc wrapper hidey.hole
+      apport wrapper, ylem
+      flag quips, litterbug
+      add penalties, 5
+   else
+      chance 80
+         proceed
+      fin
+      apport wrapper, hidey.hole
+   fin
+   say no.litter.please
+#
+#====================================================================

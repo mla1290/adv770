@@ -6,12 +6,115 @@
 #
 repeat
    local cgi
+   local bugfix
+   local north.dir
+   local f.exit
+   local f.count
+   local temp.dir
 #
    call tie.them      # Force initialisation of ties in all circumstances!! 
    ifeq status, -1
       set status, 2
       say restoring.game, arg2
       call restore
+   fin
+#
+# ================== Pre-1.03 incompatibility fix =================
+#
+   ifloc troll, ylem, limbo, sw.of.chasm
+   else
+      apport troll, ylem
+   fin
+   itobj bugfix, schizoid
+      ifloc bugfix, ylem
+         unflag bugfix, schizoid
+      fin
+   eoi
+   ifeq stage, exits.barred
+      and
+   ifne door3, closed
+      set door3, closed
+   fin   
+#
+# ================== Pre-1.07 incompatibility fix =================
+#
+   ifflag thurible, seen
+   else
+      set thurible.spiel, 0
+   fin
+   ifflag flower, seen
+   else
+      set stone.flower, 0
+   fin
+   ifflag anteater, seen
+   else
+      set anteater.quip, 0
+   fin
+   ifflag abyss, been.here
+   else
+      set starry.abyss.1, 0
+      set starry.abyss.2, 0
+      set distant.glow, 0
+      set raging.volcano, 0
+   fin
+#
+# ================== 1.06/07 incompatibility fix ==================
+#
+   set bugfix, 0
+   ifne password, 0
+      ifis password, xyzzy
+         lda password, snoeze
+         set bugfix, 2
+      otherwise
+      ifis password, plugh
+         lda password, snoeze
+         set bugfix, -2
+      otherwise
+      ifis password, noside
+         lda password, knerl
+         set bugfix, 2
+      otherwise
+      ifis password, foo
+         set bugfix, -2
+         lda password, knerl
+      otherwise
+      ifis password, melenkurion
+         lda password, klaetu
+         set bugfix, 2
+      otherwise
+      ifis password, foe
+         lda password, klaetu
+         set bugfix, -2
+      otherwise
+      ifis password, fie
+         lda password, blerbi
+         set bugfix, 2
+      else
+         set f.count, password
+         sub f.count, 2
+         ifis f.count, blerbi
+            lda password, blerbi
+            set bugfix, -2
+         fin
+      fin
+   fin
+   ifne bugfix, 0
+      lda f.exit, c.exit
+      lda north.dir, north
+      iterate f.count, 0, 15
+         eval temp.dir, f.exit
+         add temp.dir, bugfix
+         iflt temp.dir, north.dir
+            add temp.dir, 8
+         else
+            sub temp.dir, 8
+            iflt temp.dir, north.dir
+               add temp.dir, 8
+            fin
+         fin
+         deposit f.exit, temp.dir
+         add f.exit, 1
+      fin
    fin
 #
 # Some temporary fixes, only required for beta tests. They override
@@ -154,10 +257,14 @@ repeat
             apport anteater, ylem
          fin
       fin
-      chance 5
+      chance 50
          and
       ifloc anteater, limbo
          apport anteater here
+         ifflag status, moved
+         else
+            say anteater
+         fin
          flag anteater, seen
       fin
    fin
@@ -484,6 +591,10 @@ repeat
    ifflag  here, lit
       call do.cameo
    fin
+#
+# Litter police!
+#
+   call litter.check
 #
 # Warn him about thirst in desert?
 #
@@ -1464,6 +1575,8 @@ repeat
    fin
 #
 # Now for the rest of it...
+#
+   respond search, cant.search
 #
 # Can we see anything?
 #

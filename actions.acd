@@ -21,9 +21,10 @@ action lift         # Deliberately non-synonymous with get - for grate and
 #=====================================================================
 #
 action get
-   anyof drink, inventory
+   ifany drink, inventory
       set status, 1
       call arg2
+   fin
 #
 #=====================================================================
 #
@@ -286,10 +287,15 @@ action drop
    ifkey wrapper
       and
    ifhave wrapper
-      and
-   ifinrange here, north.of.spire, basalt.shelf.2
-      apport wrapper, ylem
-      quip wrapper.blown.away
+      ifinrange here, north.of.spire, basalt.shelf.2
+         apport wrapper, ylem
+         quip wrapper.blown.away
+      fin
+      chance 90
+         flag quips, litterbug    # George doesn't happen to be about.
+      else
+         say no.litter.please     # Null text, but triggers George into action
+      fin
    fin
    ifany flask, bottle, bucket
       call drop.vessel
@@ -1834,6 +1840,9 @@ action open door2
 #
 action open door3
    ifnear door3
+      ifeq stage, exits.barred
+         quip it.wont.budge
+      fin
       ifeq door3, opened
          quip already.open, door
       fin
@@ -1892,8 +1901,34 @@ action close
    ifkey cave
       and
    ifflag admin, olorin           # Only wizards can force cave closure
+      ifflag here, not.in.cave,
+         quip nothing
+      fin
       say to.hear.is.to.obey, 0
-      call close.the.cave
+      ifeq stage, adventuring
+         flag tusk, valued
+         flag rug, valued
+         itobj obj.ptr, valued
+            flag obj.ptr, seen
+            apport obj.ptr, house
+         fin
+         set stage, closing.soon
+      otherwise
+      ifeq stage, closing.soon
+         call closing.time
+      otherwise
+      ifeq stage, exits.barred
+         call close.the.cave
+      otherwise
+      ifeq stage, in.repository
+         call mirror.jump
+      otherwise
+      ifeq stage, middle.of.nowhere
+         call lets.go.back
+      else
+         quip nothing
+      fin
+      quit
    fin
    default openable
    ifeq status, 2
@@ -3851,14 +3886,7 @@ action ride
       and
    ifnear unicorn
       ifeq stage, in.repository
-         itobj obj.ptr
-            ifhave obj.ptr
-               apport obj.ptr, ylem
-            fin
-         eoi
-         set stage, middle.of.nowhere
-         flag nowhere, been.here             # To force brief description
-         smove nowhere, through.the.mirror
+         call mirror.jump
       fin
       say ride.to.hell
       stop
@@ -4781,6 +4809,9 @@ action sorry
 #
 action wash
    ifgt status, 1
+      and
+      not
+   ifkey myself
       ifflag arg2, portable
          ifnear arg2
          else
@@ -4917,9 +4948,6 @@ action unroll
       fin
       ifat ridge
          quip no.fly.swamp, 0
-      fin
-      ifat spire
-         quip a.bit.windy.for.rug
       fin
       ifinrange here, below.ridge, waterfall
          quip no.fly.swamp, 1
@@ -5447,6 +5475,9 @@ action pull
    ifkey door3
       and
    ifnear door3
+      ifeq stage, exits.barred
+         quip it.wont.budge
+      fin
       ifat dwarves.quarters
          ifeq door3, opened
             quip already.open, door
@@ -5555,6 +5586,9 @@ action push
    ifkey door3
       and
    ifnear door3
+      ifeq stage, exits.barred
+         quip it.wont.budge
+      fin
       ifat tower.top.landing
          ifeq door3, opened
             quip already.open, door
@@ -5998,4 +6032,3 @@ action diagnose
    quip healthy.or.dead, 1
 #
 #=====================================================================
-

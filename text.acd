@@ -1724,7 +1724,7 @@ TEXT NO.ARCH
 #
 FRAGMENT HUNGRY.FUMES
     As you approach the center of the archway, hot vapours saturated with
-    brimstone drift up from the lava in the gorge beneath your feet. 
+    brimstone drift up from the lava in the gorge beneath your feet._
 #
 TEXT FUMES.BURN
     You are swiftly overcome by the foul gasses and, with your lungs
@@ -2745,18 +2745,6 @@ TEXT FLY.TIME
     then his eyes fall on the rug you are carrying: "OOOOH... FLY TIME?
     I WATCH, OK!"
 #
-TEXT FLY.SOON
-
-    "FLY SOON?" enquires the giant hopefully.
-#
-TEXT FLY.TOO?
-
-    The giant looks somewhat surprised. "[/ZORRO! ]YOU FLY TOO?!
-    GOOD GOOD!" 
-#
-TEXT NO.DRINK.FLYING
-     "NO, NO," booms the giant. "NO DRINK FLYING!"
-#
 TEXT BECAUSE
     That's for me to know, and for you to discover.
 #
@@ -3446,7 +3434,7 @@ TEXT TESTING.1.2.3
 #
 TEXT increment STORES.DOOR.SHUTS
     The door swings to, but refuses to shut altogether.[ Try as you might
-    to push it to, it stubbornly remains slightly ajar./]
+    to push it shut, it stubbornly remains slightly ajar./]
 #
 TEXT LEAVE.IT.ALONE
     I think the # is best left exactly as it is.
@@ -4183,7 +4171,7 @@ TEXT TOO.YOUNG
     The birch and ash saplings around here are too young to support
     your weight.
 #
-TEXT increment BLUE.SKY
+TEXT BLUE.SKY
     You look up and observe that the cloudless sky is a lovely blue colour.
 #
 TEXT DELICATE.STRUCTURE
@@ -5333,15 +5321,6 @@ TEXT GIANT.PUT.OFF
     making a face, and gently pushes you into the ravine.
 
 #
-TEXT increment EMPTY.YOUR.BUCKET
-   / He's about to pour you more champagne, but then notices the water
-     in the bucket. "[OH, /]NO MIX DRINKS! NO, NO.[ MIX DRINKS BAD, ZORRO
-     BAD BOY!/]"
-#
-TEXT DRINK.UP
-
-     The giant casts a glance at your bucket and booms: "DRINK UP! HAVE MORE!"
-#
 FRAGMENT ZORRO.ILLUSION
     You try to feel your new clothing, but quickly realise that
     it is just a very convincing illusion of no real substance.
@@ -5463,7 +5442,7 @@ TEXT increment DONT.KNOCK
     makes a nasty grimace at you and mouthes awkwardly through the ring
     fixed in its mouth: "%Shtop it! It'sh done already, sho get
     losht!...%"/The bronze lion opens its eyes and glares at you: 
-    "%It'sh done already, sho shove off, will ya?%".]
+    "%It'sh done alshready, sho shove off, will ya?%".]
 #
 FRAGMENT COLOURS
     [red/purple/red/orange/yellow/green/blue/magenta/black]
@@ -5892,13 +5871,13 @@ TEXT YOU.GLOW
     your body fades out.]
 #
 TEXT MEMORY.COSTS
-    My Amazing Memory Act is cheap, but not free. I[ can memorize the
+    [My Amazing Memory Act is cheap, but not free. I can memorize the
     state of the world for you at no charge, but it would cost you
-    1 point to have it recalled subsequently/t'll cost you 1 point
+    1 point to have it recalled subsequently/It'll cost you 1 point
     to have the state of the world recalled].
 #
-TEXT increment MEMORY.FAILS
-    Oh dear... I don't seem to be able to memorise the state of the
+TEXT MEMORY.FAILS
+    Oh dear... I don't seem to be able to memorize the state of the
     world right now for some reason! Terribly sorry about that...
 #
 TEXT increment MEMORY.IMAGE
@@ -6719,8 +6698,10 @@ TEXT random DOOR.IN.THE.WAY
     by the closed door!/You'd have to open that door first./You aren't
     a wizard - you can't walk through closed doors.]
 #
-TEXT IT.WONT.BUDGE
-    The door stubbornly resists your attempts to open it.
+TEXT cycle IT.WONT.BUDGE
+    [T/T/Despite all your efforts, t/Try as you might, t]he door [stubbornly
+    resists your attempts to open it/won't budge/refuses to open/remains
+    obstinately closed].
 #
 TEXT IT.OPENS.OTHER.WAY
     The # refuses to move. It's probably because it opens the other way.
@@ -6811,7 +6792,7 @@ TEXT increment NEED.BEAVER.TEETH
     point out, your teeth aren't up to it].
 #
 TEXT increment NO.CUT.WITH.SWORD
-    [&^_$\#"!\#@???? Ah, no, forgive me. You are jesting of course. For
+    [&^_\$\#"!\#@???? Ah, no, forgive me. You are jesting of course. For
     a moment there I seriously thought you were going to wield that noble 
     sword as a vulgar tree axe! Such fine sense of humour... You nearly 
     had me there!/No, really, it was funny once, but let's not overdo
@@ -6866,8 +6847,8 @@ TEXT ITS.A.WALL
 #
 TEXT increment NO.CLIMB.WALL
    [The garden wall presents too formidable an obstacle. It is tall,
-   its smooth stonework offer no purchase for climbing, and unless I am
-   very mistaken, it sharp bits of broken glass set into its top/Don't
+   its smooth stonework offers no purchase for climbing, and unless I am
+   very mistaken, it has sharp bits of broken glass set into its top/Don't
    even bother trying]. This wall was not meant to be climbed.
 #
 TEXT NO.FOLLOW.WALL
@@ -6930,9 +6911,9 @@ TEXT DROPPINGS.NO.GOOD
 TEXT DROPPINGS.LARGE
    As I already noted, they look just like very large rat droppings.
 #
-TEXT THINKING
-     This is not a deep philosophical game.
-     Thinking is only useful in so far as it suggests a course of action.
+TEXT increment THINKING
+     [This is not a deep philosophical game. /]Thinking is only useful
+     in so far as it suggests a course of action.
 #
 TEXT increment NO.GAIN.THERE.1
 
@@ -7138,8 +7119,9 @@ TEXT increment NEED.SUNSTONE
     it.// Now, if you had some means of preventing you from falling away
     from that cliff-face.../]
 #
-TEXT QUIT.AND.START
-    To # the game, use the QUIT command to quit, and then start a new game.
+TEXT increment QUIT.AND.START
+    To # the game, use the QUIT command to quit, and then start a new 
+    game.[ Simple solutions are the best, eh?./]
 #
 TEXT NO.GET.TABLE
     The bird table is clearly intended for our feathered friends. On
@@ -7165,7 +7147,7 @@ TEXT
 TEXT NO.PLUGHOLE
     Your knowledge of Adventure history does you credit, but there are
     no plugholes to be found in the Colossal Cave these days. There is,
-    of course the magic word suggested by the hollow voice - if that's 
+    of course the magic word suggested by the hollow voice... If that is
     what you have in mind, please use the exact form as given.
 #
 TEXT increment BEDROCK.BLOCK
@@ -7412,8 +7394,8 @@ TEXT increment MOEBIUS.GATES
     over the top and jump down, landing somewhat heavily ... and are
     astonished to see the garden and the tower on the other side of the 
     gates. You look around wildly, but there is no denying it: somehow
-    you managed to jump down back to the forest track, instead of to the
-    garden./
+    you managed to jump down back onto the forest track, rather than into
+    the garden./
     You {LAMP.IN.TEETH}climb up the gates, studiously ignoring the iron
     horse shapes coming to an agitated semblance of life. At the top of
     the gates you pause, making absolutely sure that there could be no
@@ -7955,7 +7937,7 @@ TEXT BEACH.FROM.ABOVE
 #
 TEXT SEA.FROM.CLIFF
     The sparkling sea is quite calm, its gentle swell rising to
-    white-headed rollers, only as it reaches the shallows by the beach.
+    white-headed rollers only as it reaches the shallows by the beach.
 #
 TEXT BANKS.TOO.STEEP
     The banks surrounding this place would be too steep to climb, even
@@ -10107,6 +10089,27 @@ TEXT ROOM.ENOUGH
    caves can feel a bit claustrophobic, but there's surely room
    enough here!/Room? Plenty of room above ground. It's not like
    down in the cave...]
+#
+TEXT FLY.SOON
+
+    "FLY SOON?" enquires the giant hopefully.
+#
+TEXT FLY.TOO?
+
+    The giant looks somewhat surprised. "[/ZORRO! ]YOU FLY TOO?!
+    GOOD GOOD!" 
+#
+TEXT NO.DRINK.FLYING
+     "NO, NO," booms the giant. "NO DRINK FLYING!"
+#
+TEXT increment EMPTY.YOUR.BUCKET
+  / He's about to pour you more champagne, but then notices the water
+    in the bucket. "[OH, /]NO MIX DRINKS! NO, NO.[ MIX DRINKS BAD, ZORRO
+    BAD BOY!/]"
+#
+TEXT DRINK.UP
+
+    The giant casts a glance at your bucket and booms: "DRINK UP! HAVE MORE!"
 #
 #######################################################################
 #

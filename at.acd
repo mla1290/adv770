@@ -192,7 +192,10 @@ at hill
 #
 at building
    call house.inventory       # Check the treasure collection
-   respond door, doorway, no.door, out
+   ifkey go
+   else
+      respond door, doorway, no.door, out
+   fin
    ifkey spring
       ifkey drink
          call drink
@@ -2969,12 +2972,14 @@ at top.of.stalactite
    ifeq status, 1
       move north, secret.n/s.canyon.2
       ifany down, stalactite
-         and
-      chance 67
-         chance    50
-            move mazea.53
+         chance 67
+            chance 50
+               move mazea.53
+            fin
+            move mazea.45
+         else
+            move mazea.50
          fin
-         move mazea.45
       fin
    fin
    respond stalactite, hah!
@@ -3587,12 +3592,12 @@ at breathtaker
                say burn.bear
                apport bear, ylem
             else
-               not
+                 not
                ifflag faces, been.here
                   unflag breathtaker, hintable
-                  say fumes.miss
                fin
-            fin
+               say fumes.miss
+          fin
             move faces
          fin
          ifhave bear
@@ -6358,25 +6363,7 @@ at nowhere
          lda marker, last.magic
          sub marker, 1
          ifeq arg1, marker
-            set stage, mirror.world
-            ifloc starstone, stupendous.view
-               apport starstone, nowhere
-            else
-               apport starstone, ylem
-            fin
-            unflag starstone, portable
-            unflag magazines, portable
-            itobj obj.ptr
-               ifflag obj.ptr, portable
-                  ifloc obj.ptr, building
-                     apport obj.ptr, nowhere
-                  else
-                     apport obj.ptr, ylem
-                  fin
-               fin
-            eoi
-            apport table, ylem
-            smove road, back.to.reality
+            call lets.go.back
          else
             say ok!
             add escape, 1
@@ -7740,7 +7727,11 @@ at tower.top.landing
    ifkey look
       respond steps, well.worn.steps
       ifkey door3
-         set no.access, 0
+         ifeq stage, exits.barred
+            set no.access, 1
+         else
+            set no.access, 0
+         fin
       fin
       ifkey landing
          set status, 1
@@ -8131,8 +8122,7 @@ at outside.gates
          or
       ifany south, in
          ifhave bust
-            set beyond.gates, 0
-            set no.pass.gate, 1
+            set beyond.gates, 1
             smove garden.n, through.the.gates
          fin      
          quip no.pass.gate
@@ -8235,8 +8225,7 @@ at garden.n
       move sw, garden.sw
       ifany north, out
          ifhave bust
-            set beyond.gates, 1
-            set no.pass.gate, 1
+            set beyond.gates, 0
             smove outside.gates, through.the.gates
          fin
          quip no.pass.gate
@@ -9543,7 +9532,7 @@ at ravine
    ifkey look
       respond path, down, ground, path.in.ravine, 1
       respond ferns, its.ferns
-      respond ravine, its.ravine
+      respond ravine, its.ravine, 1
       respond banks, steep.banks
       respond up, ravine.sky
       proceed
@@ -9593,7 +9582,7 @@ at ravine.west
    ifkey look
       respond path, down, ground, path.in.ravine, 1
       respond ferns, its.ferns
-      respond ravine, its.ravine
+      respond ravine, its.ravine, 1
       respond banks, steep.banks
       respond up, ravine.sky
       proceed
@@ -9641,7 +9630,7 @@ at path
    respond grass, attention.to.detail, grass
    ifkey look
       respond path, path.in.ravine, 0
-      respond ravine, too.far.to.see, ravine
+      respond ravine, its.ravine, 0
       proceed
    fin
    ifkey go
@@ -13033,8 +13022,10 @@ at island.09
       or
    ifeq status, 1
       respond up, down, n, ne, se, s, w, nw, slope, firs.on.slopes
-      ifany sw, down, e, trail
+      ifany sw, down, e, trail, back
          ifhere anteater
+            set anteater, 3
+            say anteater
             apport anteater, ylem
          fin
          move sw, down, island.03

@@ -1101,7 +1101,7 @@ FRAGMENT increment STONE.FLOWER
 #
 OBJECT FLOWER, =METAL
    A metal flower
-  %A delicate[/ly fashioned metal] flower lies [on the stone 
+  %A delicate[/ly fashioned metal] flower lies on the [stone 
    table/ground]!
   &The flower with its stem and several leaves, appears to be
    something like a tiger lily. Aside from its colour and texture,
@@ -1154,7 +1154,7 @@ OBJECT COCONUTS       # Complete fake -- there are no coconuts!
 #
 OBJECT NICHE
 #
-OBJECT SAPLING
+OBJECT SAPLING, SAPLINGS    # Saplings for the saplings in the forest.
   %A small sapling is growing out of the crack in the rock here.
   &It doesn't look too healthy, but that's hardly surprising,
    considering where it is trying to grow.
@@ -1224,7 +1224,8 @@ FRAGMENT increment ANTEATER.QUIP
     As I already told you, it is apparently a Corelli's Pangolin.]
 #
 OBJECT ANTEATER, PANGOLIN, AARDVARK, ANIMAL
-   %[A scaly anteater unhurriedly crosses your path, and then turns
+   %[
+   /A scaly anteater unhurriedly crosses your path, and then turns
     around to stare at you from the undergrowth./
     The anteater is peering at you curiously from the cover of dense
     undergrowth./=/

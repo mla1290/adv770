@@ -20,8 +20,6 @@ verb !length, =!line, =!width
 verb !scroll, =!screen, =!depth
 verb !margin, =!offset
 verb restart, initialise
-verb define
-verb undefine
 verb why
 verb !fuck, !piss, !pee, !screw, !shit, urinate, !wank, !bugger, !fart, !crap, defecate
 verb -last.special         # Mark end of special verbs
@@ -404,6 +402,8 @@ verb spray
 verb overhang
 verb map
 verb room
+verb sparevrb07
+verb sparevrb08
 verb sparevrb09
 verb -first.sculpture.fake
 verb !pig
@@ -450,3 +450,4 @@ verb !stew
 verb !boils
 verb !furiously
 verb -last.wiz
+#

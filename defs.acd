@@ -220,6 +220,7 @@ flags variable
       crucifix.waved    # No need to suggest doing so
       desert.rat        # He is wise in the ways of the desert
       memory.cost.noted # He's been advised re costs of memory restore
+      litterbug         # He met George.
 #
 # Define bit flags for special hint processing. (Variable 'hints').
 #

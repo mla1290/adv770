@@ -978,14 +978,14 @@ init
    choose clock, 15, 25
    choose lamplife, 440, 460
    choose dwarfcount, 4, 8
-   chance 90
-      flag anteater, seen           # Anteaters are rare!
-   fin
+#   chance 90
+#      apport anteater, ylem         # Anteaters are rare!
+#   fin
    chance 75
       flag admin, cameo.tried       # No cameo in this game
    fin
    chance 50
-      flag quips, wand.misfired
+      flag quips, wand.misfired     # No wand trouble in this game
    fin
    set chain, locked
    set invct, 0
