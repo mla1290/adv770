@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2004.
+# Copyleft Mike Arnautov 1984-2005.
 #
 # Words to be ignored
 #
@@ -22,6 +22,8 @@ verb !margin, =!offset
 verb restart, initialise
 verb why
 verb !fuck, !piss, !pee, !screw, !shit, urinate, !wank, !bugger, !fart, !crap, defecate
+verb !undo
+verb !redo
 verb -last.special         # Mark end of special verbs
 #
 # End of verbs not requiring validation of ARG2.
@@ -162,7 +164,6 @@ verb help, =?, hint
 verb !fum
 verb dig, excavate
 verb lost, confused
-verb undo
 verb info, information
 verb swim
 verb wizard

@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2004.
+# Copyleft Mike Arnautov 1984-2005.
 #
 # Procedures.
 #
@@ -843,8 +843,9 @@ proc nothing.big message, qualifier
 proc throw.it.at.orb
    ifflag arg2, big
       drop arg2
-      say you.do, arg1
-      quip it.is, arg2
+      quip you.do.it
+#      say you.do, arg1
+#      quip it.is, arg2
    fin
    lda text.ptr, down.the.drain
    chance 10
@@ -2045,14 +2046,17 @@ proc get.score
    fin
 #
    set actual.score, scorex
+   ifge undostat, 0
+      sub actual.score, undo.cost
+   fin
    ifne codex.reward, awarded
       set losses, deaths
       mult losses, 10
       add losses, penalties
       sub actual.score, losses
-      iflt actual.score, 0
-         set actual.score, 0
-      fin
+   fin
+   iflt actual.score, 0
+      set actual.score, 0
    fin
 #
 #=====================================================================
@@ -2605,8 +2609,9 @@ proc get.orb
       iflt invct, strength
          get orb
          apport fake.orb, ylem
-         say you.do, arg1
-         quip it.is, arg2
+         quip you.do.it
+#         say you.do, arg1
+#         quip it.is, arg2
       fin
       flush
       quip arms.are.full
@@ -2872,8 +2877,9 @@ proc drop.vase
    have vase
       apport vase, drop.here
       ifat soft
-         say you.do, arg1
-         say it.is, arg2
+         quip you.do.it
+#         say you.do, arg1
+#         say it.is, arg2
       else
          ifeq drop.here, here
             ifhere pillow
@@ -4270,8 +4276,9 @@ proc weaponry    # Handle attacks with weapons
             get arg2      # "thrower" logic
             proceed       # in upchuck     
          fin
-         say you.do, arg1
-         quip it.is, arg2
+         quip you.do.it
+#         say you.do, arg1
+#         quip it.is, arg2
       fin
    else
       quip you.dont.have, arg2
@@ -4987,7 +4994,7 @@ proc open.bivalve
 #=====================================================================
 #
 proc check.all
-   ifany get, drop
+   ifany get, drop, undo, redo
       proceed
    fin
    ifis arg1, all
@@ -6008,6 +6015,10 @@ proc randomise.texts
    randomise it.would.seem, 0
    randomise vandal!, 0
    randomise caught.climbing, 0
+   randomise fiddle.ok, 0
+   randomise fiddle.ignore, 0
+   randomise we.have.light, 0
+   randomise nothing.to.undo, 0
    set nothing.doing.2, nothing.doing.1
    randomise typo, 0             # TYPO is structured in blocks of 4
    divide typo, 4                # messages, so randomise to the start
@@ -7203,3 +7214,4 @@ proc sunstone.cheat msg modifier
    fin
 #
 #====================================================================
+

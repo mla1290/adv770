@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2004.
+# Copyleft Mike Arnautov 1984-2005.
 #
 # The following acode procedures are associated with
 # individual places.
@@ -9313,8 +9313,9 @@ at crypt
          fin
          ifkey drop
             drop crucifix
-            say you.do, arg1
-            say it.is, arg2
+            say you.do.it
+#            say you.do, arg1
+#            say it.is, arg2
             sub invct, 1
             quit
          fin

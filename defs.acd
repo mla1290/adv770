@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2004.
+# Copyleft Mike Arnautov 1984-2005.
 #
 # Define various flags and constants.
 #
@@ -58,6 +58,7 @@ constant none              # No context -- must be 1st!
          q.waterfall       # What, into the waterfall?
          q.really.fly?     # Is he sure he got everything?
          q.streambed       # Really down to streambed?
+         q.wimp            # Are you a wimp?
 #
 #        Bit flags set for the 'status' variable
 #
@@ -68,7 +69,7 @@ flags variable
       fulldisplay      # Display full place description
       detaildisplay    # Display detailed place/object description
       pls.clarify      # Signals missing object or verb
-      juggled          # set by interpreter whenever we move an object
+      juggled          # set by the kernel whenever we move an object
       ticked           # The main clock (CLOCK4) has just ticked
       light.here       # There's light here
       brief.now        # Force breif description, just this one time
@@ -242,12 +243,12 @@ flags variable
 flags variable
       snake.pending   # The first snake hint delivered
       statue.pending  # The first Minotaur gorge hint delivered
-      SPARE.flag.1    # Told him to use "verbose"
+      SPARE..F..1     # Spare
       helped.him      # Gave him vanilla "HELP" message once
       simple.rule     # Referred to 'simple rule' at Nowhere
       death.is.simple # Advised him how to die
       sewer.pending   # The first sewer hint delivered
-      SPARE.flag.2    # Spare
+      SPARE..F..2     # Spare
       all.exits       # Told him to explore all exits past pit in maze
       keys.listed     # The crown gave him at least one key
       windrose.hinted # He was told to look for the windrose
@@ -269,7 +270,7 @@ constant 1800,  min.thirst
 #
 constant 10,   min.time    # # of minutes you must wait after SAVE
          10,   hint.cost   # what each hint costs you
-         5000, max.game    # maximum # of moves in real games
+       6000,   max.game    # maximum number of turns
 #
 # Define temple states
 #
@@ -626,5 +627,6 @@ constant 6,  mushroom.effect # What the mushroom adds
 constant 14, full.value      # Full treasure credits
 constant 7,  seen.value      # Credits for only finding treasure
 constant 16, closure.credit  # Points per stage of closure
+constant 20, undo.cost       # One-off irrevocable charge for using undo.
 #
 #=====================================================================

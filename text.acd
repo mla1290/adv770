@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2004.
+# Copyleft Mike Arnautov 1984-2005.
 #
 # "Random" texts.
 #
@@ -36,7 +36,7 @@ FRAGMENT INSTRUCTIONS?
 #
 TEXT HI.THERE
 
-    Welcome to Adventure! ({.VERSION})
+    Welcome to Adventure! ({GAME.ID})
 
 #
 FRAGMENT REST.AWHILE
@@ -732,7 +732,7 @@ TEXT NO.WAY.ACROSS
     There is no way across the fissure.
 #
 TEXT YOU.CURRENTLY.HAVE
-    Your possessions currently consist of:
+    [Y/It's dark, but if I recall correctly, y]ou are[ currently/] carrying:
 #
 TEXT BIRD.NOT.HUNGRY
     It's probably not hungry (it's merely pinin' for the fjords). Besides,
@@ -1519,9 +1519,9 @@ TEXT WIZARD.ENDS
 
     A large cloud of green smoke appears in front of you. It clears away
     to reveal a tall wizard, clothed in grey. He fixes you with a steely
-    glare and declares, "This adventure has lasted too long." With that he
-    makes a single pass over you with his hands, and everything around you
-    fades away into a grey nothingness.
+    glare and declares, "At $ turns, this adventure has lasted too long."
+    With that he makes a single pass over you with his hands, and 
+    everything around you fades away into a grey nothingness.
 #
 TEXT TOO.DARK.TO.FIGHT
     You are not asking much, are you? It is pitch dark around here! How
@@ -2073,7 +2073,7 @@ TEXT CAVE.2.DESTROYED
     have to go through eight months of paperwork and red tape to file a new
     Environmental Impact statement!! All because you couldn't follow
     directions, you purblind and meat-brained moron! I'm rescinding all of
-    your game points and throwing you out! Out! OUT! GET OUT!$!!!\%!"
+    your game points and throwing you out! Out! OUT! GET OUT!\$!!!\%!"
 
 #
 TEXT ZOT.AXE
@@ -2377,9 +2377,9 @@ TEXT BE.OFF
     YOU!...]"
 
 #
-TEXT SPARE.TEXT.01
+TEXT SPARE..T..01
 #
-TEXT SPARE.TEXT.02
+TEXT SPARE..T..02
 #
 TEXT SLAB.SHUTS
     The slab [/once again ]swings quietly shut behind you.
@@ -3774,10 +3774,10 @@ TEXT VOCAB.VERBS
     feed, fill, fly, go (walk, run, follow), get (g, take, t), give (offer),
     help (?), history, hit, hoot, info, inventory (i), jump, kill, knock,
     lift, light (on), listen, look (l, examine, x), memorize (remember),
-    open (unlock), play, pour, quit (q), read, recall, reflect, remove,
+    open (unlock), play, pour, quit (q), read, recall, redo, reflect, remove,
     rest (wait), restore, ride, rub (polish), save, say, score (sc), scream,
     scry, sip (taste), tame (placate), terse, throw (th), translate,
-    upstream, verbose, vocabulary, wash, wave (swing), wear.
+    undo, upstream, verbose, vocabulary, wash, wave (swing), wear.
 #
 FRAGMENT VOCAB.NOUNS
     The below list of nouns is largely confined to things 
@@ -6837,10 +6837,8 @@ TEXT increment NO.PASS.GATE
     designed obstacles, there wouldn't be much point to this 
     game!/There seem to be some closed gates in the way!]
 #
-TEXT NO.UNDO
-    "Undo" is for wimps! Ask me to memorize the state of the world
-    instead, if you are about to do something you might regret later.
-
+TEXT NO.CAN.SEE
+     It is dark.
 #
 TEXT increment ARRIVING.ON.ISLAND
     [The nearer you get to the island, the more uncertain
@@ -8178,7 +8176,7 @@ TEXT NO.GET.BOOK
     to score points for even just finding it, would bust our maximal
     score limit. On the other hand, it seems churlish to deny you a
     reward for your enterprise... Um.... I know! Suppose we waive any
-    penalties you might have accrued, whenever your score gets
+    normal penalties you might have accrued, whenever your score gets
     calculated, how's that?/ I can't see why you bother. We've already
     established your reward for finding it. Yes, yes?]
 #
@@ -10234,7 +10232,7 @@ TEXT PLEASE.REPORT
     to mla@britishlibrary.net.
 #
 TEXT .OF
-    Value is #.
+    Value is $.
 #
 TEXT ERROR
     Sorry, a runtime error has occurred. Please report its context

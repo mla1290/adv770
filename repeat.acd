@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2004.
+# Copyleft Mike Arnautov 1984-2005.
 #
 # And here, at long last, is the main program!
 #
@@ -741,7 +741,7 @@ repeat
 #
    iflt turns, max.game
    else
-      say wizard.ends
+      say wizard.ends, max.game
       call finis
    fin
    unflag crown, special1
@@ -1313,7 +1313,19 @@ repeat
          call coroner
       fin
       ifany n, no
-         quip very.sensible
+         quip very.sensible, 0
+      fin
+      quip lets.be.prudent, 0
+   fin
+#
+   ifeq context, q.wimp
+      set context, none
+      ifkey yes
+         set undostat, 1
+         quip you.r.a.wimp
+      fin
+      ifany n, no
+         quip very.wise
       fin
       quip lets.be.prudent, 0
    fin

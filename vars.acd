@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2004.
+# Copyleft Mike Arnautov 1984-2005.
 #
 # Define some variables.
 #
@@ -17,24 +17,24 @@ variable last.hintable
 variable losses, actual.score
 variable codex.reward
 variable faked.object
-variable sparev01, sparev02, sparev03, sparev04
+variable spare..v..01, spare..v..02, spare..v..03, spare..v..04
 variable status, admin, context
 variable lamplife
-variable sparev05, sparev06, sparev07, sparev08, sparev09
+variable spare..v..05, spare..v..06, spare..v..07, spare..v..08, spare..v..09
 variable invct
 variable deaths, penalties, scorex, maxscore
-variable sparev10
+variable undostat
 variable turns, moves
 variable foobar
-variable dwarfcount, clock, stage, sparev11, ok
+variable dwarfcount, clock, stage, spare..v..11, ok
 variable hint.time
 variable strength, mushtime, dragtime, masktime, lastclock
 variable escape
 variable magick, backlash, fleetfoot
 variable west.count
-variable sparev12, sparev13
+variable spare..v..12, spare..v..13
 variable tide
-variable sparev14, shown.vision
+variable spare..v..14, shown.vision
 variable hints, quips, island.quips
 variable mlcount
 variable cat.factor, rest.exit, portal.exit

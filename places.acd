@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2004.
+# Copyleft Mike Arnautov 1984-2005.
 #
 # Now for the place descriptions.
 #
@@ -391,7 +391,7 @@ PLACE VESTRY
    arrogant gothic spirituality. Somehow it feels very peaceful
    in here. The only exit leads east, back into the chapel.
 #
-PLACE .SPAREP1
+PLACE SPARE..P..1
 #
 #   I am loath to delete the STABLE description. It is too good and might
 #   come in handy in some future expansion. On the other hand, it does
@@ -3035,57 +3035,57 @@ PLACE INSIDE.WELL
 #
 PLACE MAZE    # A dummy to define the word maze and make it a place.
 #
-PLACE SPAREP34
+PLACE SPARE..P..34
 #
-PLACE SPAREP35
+PLACE SPARE..P..35
 #
-PLACE SPAREP36
+PLACE SPARE..P..36
 #
-PLACE SPAREP37
+PLACE SPARE..P..37
 #
-PLACE SPAREP38
+PLACE SPARE..P..38
 #
-PLACE SPAREP39
+PLACE SPARE..P..39
 #
-PLACE SPAREP40
+PLACE SPARE..P..40
 #
-PLACE SPAREP41
+PLACE SPARE..P..41
 #
-PLACE SPAREP42
+PLACE SPARE..P..42
 #
-PLACE SPAREP43
+PLACE SPARE..P..43
 #
-PLACE SPAREP44
+PLACE SPARE..P..44
 #
-PLACE SPAREP45
+PLACE SPARE..P..45
 #
-PLACE SPAREP46
+PLACE SPARE..P..46
 #
-PLACE SPAREP47
+PLACE SPARE..P..47
 #
-PLACE SPAREP48
+PLACE SPARE..P..48
 #
-PLACE SPAREP49
+PLACE SPARE..P..49
 #
-PLACE SPAREP50
+PLACE SPARE..P..50
 #
-PLACE SPAREP51
+PLACE SPARE..P..51
 #
-PLACE SPAREP52
+PLACE SPARE..P..52
 #
-PLACE SPAREP53
+PLACE SPARE..P..53
 #
-PLACE SPAREP54
+PLACE SPARE..P..54
 #
-PLACE SPAREP55
+PLACE SPARE..P..55
 #
-PLACE SPAREP56
+PLACE SPARE..P..56
 #
-PLACE SPAREP57
+PLACE SPARE..P..57
 #
-PLACE SPAREP58
+PLACE SPARE..P..58
 #
-PLACE SPAREP59
+PLACE SPARE..P..59
 #
 PLACE HIDEY.HOLE    # Only used to store hidden objects.
    You are in the secret hidey-hole.

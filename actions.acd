@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2004.
+# Copyleft Mike Arnautov 1984-2005.
 #
 # This module defines the actions to be taken when certain
 # verb, verb/object, verb/verb or object/object word sequences
@@ -1093,6 +1093,7 @@ action inventory
    local obj.ptr
    local count
    local single
+   local mode
 #
    ifgt status, 1
       quip no.understand
@@ -1101,7 +1102,11 @@ action inventory
    itobj obj.ptr
       ifhave obj.ptr
          ifeq count, 0
-            say you.currently.have
+            ifflag status, light.here
+               say you.currently.have, 0
+            else
+               say you.currently.have, 1
+            fin
             set single, obj.ptr
          fin
          add count, 1
@@ -1666,6 +1671,9 @@ action light
    ifkey off
       call extinguish
    fin
+   ifkey undo              # ON UNDO
+      call undo
+   fin
    ifany lamp, on
       or
    ifeq status, 1
@@ -1710,6 +1718,9 @@ action light
 #=====================================================================
 #
 action extinguish
+   ifkey undo           # OFF UNDO
+      call undo
+   fin
    ifany lamp, off
       or
    ifeq status, 1
@@ -4623,8 +4634,9 @@ action wear
       flag arg2, freebie
       ifkey crown
          ifflag crown, special2
-            say you.do, arg1
-            quip it.is, arg2
+             quip you.do.it
+#            say you.do, arg1
+#            quip it.is, arg2
          else
             flag crown, special2
             quip feel.foolish
@@ -4650,9 +4662,10 @@ action wear
          fin
       fin
       respond jewelry, such.vanity, 0
-      say you.do, arg1
-      say it.is, arg2
-      quit
+      quip you.do.it
+#      say you.do, arg1
+#      say it.is, arg2
+#      quit
    fin
 #
 #=====================================================================
@@ -4725,8 +4738,9 @@ action remove
       quip mask.removed
    fin
    respond fangs, you.remove.fangs
-   say you.do, arg1
-   quip it.is, arg2
+   quip you.do.it
+#   say you.do, arg1
+#   quip it.is, arg2
 #
 #=====================================================================
 #
@@ -6068,11 +6082,6 @@ action knock
 #
 #=====================================================================
 #
-action undo
-   quip no.undo
-#
-#=====================================================================
-#
 action obtain
    ifflag admin,olorin
    else
@@ -6087,8 +6096,9 @@ action obtain
          ifflag arg2, unstable
             call unstable.pickup
          fin
-         say you.do, arg1
-         quip it.is, arg2
+         quip you.do.it
+#         say you.do, arg1
+#         quip it.is, arg2
       fin
       quip hah!
    fin   
@@ -6467,5 +6477,176 @@ action ignite
       quip i.dont.see, arg2
    fin
    quip no.burn.things
+#
+#=====================================================================
+#
+action undo
+   local which.end
+   local lhere
+   local lturns
+   local lundo
+   local losses
+   local mode
+   local got.light
+#
+   ifflag undo.status, undo.none
+      quip no.undo
+   fin
+#
+   ifkey on
+      ifflag undo.status, undo.off
+         say undo.now, 1
+      else
+         say undo.already, 1
+      fin
+      unflag undo.status, undo.off
+      quit
+   otherwise
+   ifkey off
+      ifflag undo.status, undo.off
+         say undo.already, 0
+      else
+         say undo.now, 0
+      fin
+      flag undo.status, undo.off
+      quit
+   fin
+   ifis arg1, undo
+      and
+   ifis arg2, undo
+      lda arg1, redo
+      lda arg2, all
+   fin
+#      
+   ifflag undo.status, undo.off
+      ifflag undo.status, undo.info
+         quip undo.currently.off
+      fin
+      set context, q.wimp
+      say wimps.r.us
+      say undo.conditions
+      quip are.you.a.wimp?
+   fin
+   ifflag undo.status, undo.info
+   else
+      unflag undo.status, undo.off
+      flag undo.status, undo.info
+      say first.undo
+   fin
+   ifflag status, light.here
+      set got.light, 1
+   fin
+   set lhere, here
+   set lturns, turns
+   set lundo, undo.status
+   ifflag undo.status, undo.info
+      flag lundo, undo.info
+   fin
+   set losses, penalties
+   ifkey undo
+      undo arg2
+      ifgt undo.status, 0
+         ifflag undo.status, undo.trim
+            say fiddle.less, 0
+            say fiddle.value, undo.status
+         else
+            say fiddle.undo, undo.status
+         fin
+      fin
+   else
+      redo arg2
+      ifgt status, 0
+         ifflag undo.status, undo.trim
+            say fiddle.less, 1
+            say fiddle.value, undo.status
+         fin
+         say fiddle.redo, undo.status
+      fin
+   fin
+   ifflag undo.status, undo.bad
+      quip what?
+   fin
+   ifgt undo.status, 0
+      set penalties, losses
+      set turns, lturns
+      set undo.status, lundo
+      ifflag lundo, undo.info
+         flag undo.status, undo.info
+      fin
+      set result, 0
+      ifne here, lhere
+         set result, 1
+      fin
+      ifflag undo.status, undo.inv   # Something moved in or out of INHAND
+         add result 2
+      fin
+      call is.it.dark?
+      ifeq result, 0
+         ifeq got.light, 1
+            and
+            not
+         ifflag status, light.here
+            say no.can.see
+         otherwise
+         ifeq got.light, 0
+            and
+         ifflag status, light.here
+            say we.have.light
+         fin               
+      else
+         say result.is, result
+         ifne result, 2
+            ifflag status, light.here
+               ifflag status, fastmode
+               else
+                  set mode 1
+                  flag status, fastmode
+               fin
+               say here
+               ifeq mode, 1
+                  unflag status, fastmode
+               fin
+            otherwise
+            ifeq result, 1
+               say no.can.see
+            fin
+         else
+            ifeq got.light, 1
+               and
+               not
+            ifflag status, light.here
+               say no.can.see
+            otherwise
+            ifeq got.light, 0
+               and
+            ifflag status, light.here
+               say we.have.light
+            fin               
+         fin
+         ifne result 1
+            set status, 1
+            call inventory
+         fin
+      fin
+      quit
+   otherwise
+   ifeq undo.status, 0
+      quip cannot.do.none, arg1
+   otherwise
+   ifeq undo.status, -2
+      quip not.a.value, arg1
+   otherwise
+   ifeq status, -1
+      ifkey undo
+         quip nothing.to.undo
+      else
+         quip nothing.to.redo
+      fin
+   fin
+#
+#=====================================================================
+#
+action redo
+   call undo
 #
 ######################################################################

@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2004.
+# Copyleft Mike Arnautov 1984-2005.
 #
 # Spill-over random texts. (Only necessary because I made the mistake of
 # mixing some active texts with places and objects definitions. :-(
@@ -181,7 +181,7 @@ TEXT cycle NOT.DROPPABLE
     something one could carry!
 #
 TEXT VERY.SENSIBLE
-   A very sensible decision, if I may say so.
+   A very [sensible/commendable] decision, if I may say so.
 #
 TEXT RIGHT.NEXT.TO.YOU
    The # is right next to you!
@@ -521,5 +521,102 @@ TEXT assigned TREASURE.5
      if you know what I mean.
 
      Ah, yes, before I forget]...
+#
+TEXT cycle CANNOT.DO.NONE
+     [OK, I've #ne zero steps by doing nothing at all. Good, eh?/There's
+     nothing left to #./There are no commands to #!/Nothing doing -
+     there's nothing to #.]
+#  
+TEXT NOT.A.VALUE
+     If you want to specify a number of steps to #, then please supply a
+     number!
+#
+FRAGMENT cycle NOTHING.TO.UNDO
+     [That's not possible./No can do -/Sorry,/Can't be 
+     done -] [T/t]here's nothing left to undo.
+#
+TEXT NOTHING.TO.REDO
+     There's nothing to re-do!
+#
+FRAGMENT FIDDLE.LESS
+     You can't go [back/forward] that far -
+#
+TEXT FIDDLE.VALUE
+    / [/one/$] command[//s] is the best I can do for you!
+
+#
+FRAGMENT FIDDLE.IGNORE
+     [ignore your/pretend that you never issued that/forget the]
+#
+FRAGMENT cycle FIDDLE.OK
+     [OK/Right/Fine/By all means/Very well/Hokey-dokey/Right you are boss]
+#
+TEXT FIDDLE.UNDO
+     {FIDDLE.OK}, let's {FIDDLE.IGNORE} last [//$ ]command[//s].
+
+#
+TEXT FIDDLE.REDO
+     {FIDDLE.OK}. I've reinstated your next [//$ ]command[//s].
+
+#
+TEXT RESULT.IS
+     [/You are now elsewhere//You have moved][//Y/ and y][//our 
+     possessions may have changed/=].
+
+#
+TEXT cycle WE.HAVE.LIGHT
+     [We have light/It is no longer dark/There's ligh here again]!
+#
+FRAGMENT increment WIMPS.R.US
+     [UNDO is for wimps! *Real* adventurers use SAVE\/RESTORE, or at a
+     pinch, REMEBER\/RECALL. /]
+#
+TEXT UNDO.TERMS
+    =1. Penalties remain, even if you UNDO their causes.
+    =2. Turns counter keeps ticking on, regardless of any UNDOs.
+    =3. Restoring a game will restore its "undo history", if there is one.
+    =4. Therefore you can't UNDO a game restore.
+    =5. Games saved by a version before 1.61 will have null undo history.
+    =6. You may specify the number of commands to UNDO.
+    =7. You can undo an UNDO by typing UNDO UNDO immediately afterwards.
+#
+TEXT UNDO.CONDITIONS
+   Before you decide on being a wimp, consider the following:
+
+   {UNDO.TERMS}
+#
+TEXT increment NO.UNDO
+   [{WIMPS.R.US} Besides/You forget/Remember], UNDO is no allowed in
+   this game[./!]
+#
+TEXT FIRST.UNDO
+   {WIMPS.R.US} If you insist on using the UNDO and REDO commands, remember:
+
+   {UNDO.TERMS}
+
+   Got it? Now then, let's see about your command...
+
+#
+FRAGMENT ARE.YOU.A.WIMP?
+   Do you really wish to use UNDO and be considered a wimp?_
+#
+TEXT YOU.R.A.WIMP
+   OK, you are a wimp, and I'll be tracking the UNDO history from now on.
+#
+TEXT UNDO.ALREADY
+   I am [not keeping the UNDO history anyway./already keeping the "UNDO
+   history"!]
+#
+TEXT UNDO.NOW
+   OK, I'll [stop/now start] tracking the UNDO history, so
+   you [won't/will] be able to [use UNDO from now on/undo the your
+   future rash actions].
+#
+TEXT UNDO.CURRENTLY.OFF
+   I am not tracking the UNDO history at the moment. If you want me to,
+   say UNDO ON.
+#
+TEXT YOU.DO.IT
+   You {ARG1} the {ARG2}.
 #
 #########################################################################
