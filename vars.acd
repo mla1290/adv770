@@ -1,0 +1,52 @@
+*        Copyleft Mike Arnautov 1984-2002.
+*
+*        Define some variables.
+*
+variable arg1, arg2
+variable here, there
+variable drop.here, drop.text, throw.here, throw.text, throw.it
+variable temp.ptr, obj.ptr, place.ptr, text.ptr, word.ptr, var.ptr
+variable safe.exit, snake.exit
+variable talk.next, talk.end
+variable last.owl, password
+variable foof, swag.to.drop
+variable desert.offset
+variable cave.entered
+variable last.hintable
+variable losses, actual.score
+variable codex.reward
+variable faked.object
+variable sparev01, sparev02, sparev03, sparev04
+*
+variable status, admin, context
+variable lamplife
+variable sparev05, sparev06, sparev07, sparev08, sparev09
+variable invct
+variable deaths, penalties, scorex, maxscore
+variable sparev10
+variable turns, moves
+variable foobar
+variable dwarfcount, clock, stage, sparev11, ok
+variable hint.time
+variable strength, mushtime, dragtime, masktime, lastclock
+variable escape
+variable magick, backlash, fleetfoot
+variable west.count
+variable sparev12, sparev13
+variable tide
+variable sparev14, shown.vision
+variable hints, quips, island.quips
+variable forward.exit, lobby.exit, rest.exit, portal.exit, direction
+array    c.exit, 16
+variable portal.switch
+variable orc.mutter, mutter.time
+variable giant.time, mouse.time, thirst.time
+variable swag.count, swag.time
+variable forest.block, forest.trap
+variable vessel
+variable sip.count
+variable result, abort, silence
+variable object.state
+variable desloc, desmask, desbit, desdir
+variable bridge.limit
+variable dwarven
