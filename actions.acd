@@ -12,7 +12,12 @@ action lift         # Deliberately non-synonymous with get - for grate and
          ifeq grate, unlocked
             quip already.open, grate
          fin
-         quip grate.locked, arg1
+         say grate.locked, arg1
+         ifgt stage, adventuring
+            quip forget.grate
+         else
+            quip blank
+         fin
       fin
       proceed
    fin
@@ -1738,7 +1743,9 @@ action open
          or
       ifhave keys
       else
-         respond grate, grate.locked, arg1
+         ifkey grate
+            call lift
+         fin
          quip you.dont.have, keys
       fin
    fin
@@ -1902,6 +1909,8 @@ action close
       and
    ifflag admin, olorin           # Only wizards can force cave closure
       ifflag here, not.in.cave,
+         and
+      ifle stage, adventuring
          quip nothing
       fin
       say to.hear.is.to.obey, 0

@@ -4925,9 +4925,9 @@ FRAGMENT FREED.BEAR
     You politely indicate to the bear that you no longer desire its
     permanent company. The bear seems to understand.
 #
-TEXT GRATE.LOCKED
+FRAGMENT GRATE.LOCKED
     The grate is LOCKED. As should be obvious even to a hedgehog,
-    that means that it cannot be #ed until it is UNlocked! 
+    that means that it cannot be #ed unless it is UNlocked!
 #
 TEXT PICK.IT.UP
     You'll have to pick up the # first, lazybones!

@@ -12,8 +12,6 @@ repeat
    local f.count
    local temp.dir
 #
-   value .of, there
-   value .of, here
    call tie.them      # Force initialisation of ties in all circumstances!! 
    ifeq status, -1
       set status, 2

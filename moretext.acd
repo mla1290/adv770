@@ -52,4 +52,7 @@ TEXT DRINK.UP
 TEXT NO.MOVE.PEDESTALS
     The pedestals are too heavy for you to move.
 #
+TEXT FORGET.GRATE
+    _And this time there are no keys or dynamite handy, so forget the grate.
+#
 #########################################################################
