@@ -339,8 +339,8 @@ TEXT NO.LOCK
 TEXT GRATE.NOW
     [The grate/=/I am taking the liberty of assuming that 
     you meant to unlock the grate first. It] [clicks itself/is
-    now] [locked/unlocked/unlocked and open].[/  Anticipating your
-    next wish, I've opened it for you as well./]
+    now] [locked/unlocked][/. Anticipating your next wish,
+    I've opened it for you as well/ and opened].
 #
 TEXT GRATE.STUCK
     The lock seems to be stuck - the key refuses to turn!
@@ -1400,8 +1400,9 @@ TEXT SENIOR.MASTER
 TEXT GRANDMASTER
     All of Adventuredom gives tribute to you, Adventurer Grandmaster!
 #
-TEXT CHEATER
-    You have worked your way up to the elevated rank of a Cheater.
+TEXT CHAMPION
+    I hereby confer upon you the rank of a Supreme Adventure Champion.
+
     To achieve the next higher rating would be a neat trick!!
 #
 TEXT ONLY.NEED.ONE.POINT
@@ -3227,12 +3228,13 @@ TEXT COIN.NO.GOOD
     reject slot.
 #
 TEXT OYSTER.WRITING
+
     Interesting. There seems to be something written on the underside of
     the oyster.
 #
-TEXT OYSTER.IS.HINT
+FRAGMENT OYSTER.IS.HINT
     Hmmm... this looks like a clue. I would have to charge you # points
-    for reading it.
+    for reading it._
 #
 FRAGMENT READ.OYSTER?
     Should I go ahead and read it anyway?_
@@ -3981,8 +3983,8 @@ TEXT increment IT.PLAYS.A.TUNE
 FRAGMENT YOU.DO
     You #
 #
-TEXT IT.IS
-   / the #.
+TEXT assigned IT.IS
+   / [the/a/an] #.
 #
 FRAGMENT IT.IS...
    / the #
@@ -8176,7 +8178,7 @@ TEXT NO.GET.BOOK
     reward for your enterprise... Um.... I know! Suppose we waive any
     penalties you might have accrued, whenever your score gets
     calculated, how's that?/ I can't see why you bother. We've already
-    established your reward for finding it.]
+    established your reward for finding it. Yes, yes?]
 #
 TEXT NO.MOVE.BOOK
     However hard you # the book hanging in mid-air, it serenely

@@ -150,6 +150,9 @@ action get oil
 #
 action get
    default portable
+   ifkey teeth
+      set teeth, 0
+   fin
    ifany bird, cage, chain, bear, clam, table, sand
       or
    ifany sword, sceptre, knife, orb, starstone, unicorn
@@ -213,7 +216,11 @@ action get        # Generalized last-case "get" routine
       proceed
    fin
    ifhave arg2
-      quip you.have.it, arg2
+      ifeq stage, in.repository
+         quip already.had.one, arg2
+      else
+         quip you.have.it, arg2
+      fin
    fin
    ifnear arg2
    else
@@ -308,8 +315,20 @@ action get        # Generalized last-case "get" routine
          and
       ifeq dynamite, 0
          say it.is, rod
-      else             
+      else
+         ifeq stage, in.repository     
+            and
+         ifeq arg2, faked.object
+            ifis arg2, oyster
+               set it.is, 2
+            else
+               set it.is, 1
+            fin
+         else
+            set it.is, 0
+         fin
          say it.is, arg2
+         set it.is, 0      # Just in case...
       fin
       ifany rod, dynamite
          and
@@ -335,6 +354,9 @@ action get        # Generalized last-case "get" routine
 action drop
    local state
 #
+   ifkey teeth
+      set teeth, 1
+   fin
    ifflag here, in.desert
       quip no.drop.in.sand
    fin
@@ -1999,7 +2021,8 @@ action close
       ifflag here, not.in.cave,
          and
       ifle stage, adventuring
-         quip nothing
+         goto y2
+         flag status, moved
       fin
       say to.hear.is.to.obey, 0
       ifeq stage, adventuring
@@ -2009,6 +2032,7 @@ action close
             flag obj.ptr, seen
             apport obj.ptr, house
          fin
+         apport starstone, stupendous.view
          set stage, closing.soon
       otherwise
       ifeq stage, closing.soon
@@ -2658,6 +2682,9 @@ action fee
 #=====================================================================
 #
 action fie
+   ifgt stage, closing.soon
+      quip nothing
+   fin
    ifeq foobar, 0
       set foobar, 2
       quip ok
@@ -2667,6 +2694,9 @@ action fie
 #=====================================================================
 #
 action foe
+   ifgt stage, closing.soon
+      quip nothing
+   fin
    ifeq foobar, 1
       set foobar, 3
       quip ok
@@ -2676,6 +2706,9 @@ action foe
 #=====================================================================
 #
 action foo
+   ifgt stage, closing.soon
+      quip nothing
+   fin
    ifeq status, 2
       and
       not
@@ -4494,18 +4527,11 @@ action stir
 #
 #=====================================================================
 #
+# WAKE is handled entirely in location code.
+#
 action wake
-   ifeq status, 2
-      ifnear arg2
-         ifeq stage, in.repository
-            and
-         ifkey dwarf
-            say dwarf.wakes
-            call coroner
-         fin
-         call bail.out
-      fin
-   fin
+   respond me, up, not.dreaming
+   call bail.out
 #
 #=====================================================================
 #
@@ -5374,6 +5400,9 @@ action give dung
 #=====================================================================
 #
 action give
+   ifkey up
+      call quit
+   fin
    set vessel, none
    ifkey bucket
       and

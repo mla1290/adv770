@@ -94,7 +94,8 @@ verb get, =g, carry, take, =t, pickup, keep, hold, catch, grip, clutch, steal, c
 verb drop, =dr, =discard, =dump, =fall, =abandon, free, =release, =let
 verb open, force
 verb unlock                 # Mostly, but not always, same as 'open'
-verb close, lock, shut
+verb close, lock
+verb shut                   # Allow for "shut up"
 verb wear, don
 verb remove, doff
 verb listen, hear
@@ -182,7 +183,7 @@ verb use
 verb reflect
 verb scry, gaze
 verb vocabulary, =commands, dictionary
-verb yes, =y, ok
+verb yes, =y, ok, good
 verb no
 verb maybe, perhaps, possibly
 verb !runout        # Wizards only. Invokes 'clock4' immediately.
@@ -303,8 +304,8 @@ verb maple, =maples, oak, =oaks
 verb birch, =birches
 verb bushes, bush, shrub, gorse, undergrowth, elder, blackthorn, scrub, rosebushes
 verb fir, =firs, conifer, =conifers
-verb grass, soil, patch
-verb weeds
+noun grass, soil, patch
+noun weeds
 verb sun
 verb stars, star
 verb moon, moons

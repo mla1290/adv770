@@ -8570,6 +8570,13 @@ at tower.roof
          call tower.climbing
       fin
    fin
+   ifkey rest
+      and
+   ifeq status, 1
+      and
+   iflt alarm, 2
+      respond wait, no.good.waiting, arg1
+   fin
    ifkey trapdoor
       and
    ifany go, in
@@ -8940,7 +8947,7 @@ at garden.nw
       call wall.stuff
    fin
    ifkey look
-      respond look, wall.corners, 1
+      respond corner, wall.corners, 1
       proceed
    fin
    ifkey go
@@ -9078,7 +9085,7 @@ at garden.sw
    fin
    call garden.stuff
    ifkey look
-      respond look, wall.corners, 0
+      respond corner, wall.corners, 0
       proceed
    fin
    ifkey go
@@ -9360,6 +9367,11 @@ at top.of.chapel
 
    fakearg steps, stairs
    fakearg fire, alarm   # Allow for "get fire [alarm]" etc...
+   ifkey box
+      and
+   ifnear box
+         proceed
+   fin
    fakearg box, alarm
    ifkey alarm
       and
@@ -10319,10 +10331,7 @@ at stupendous.view
    ifany down, cliff
       call sunstone.cheat, no.approach.edge, 1
       flag sapling, seen
-      iflt stage, mirror.world
-         quip sheer.cliff, beanstalk
-      fin
-      quip sheer.cliff, 3
+      quip sheer.cliff, beanstalk
    fin
    ifkey climb
       respond banks, banks.too.steep
@@ -14827,6 +14836,10 @@ at ne.repository
       respond plant,  beanstalk roots.too.deep, arg2
       respond torch, torches.too.high
    fin
+   ifkey wake dwarf
+      say dwarf.wakes
+      call coroner
+   fin
    ifkey go
       or
    ifeq status, 1
@@ -15250,10 +15263,27 @@ at imaze.wall.2
 #=====================================================================
 #
 at imaze.book
-   call default.read, book
-   ifkey look, book
+   ifgt codex, 1
+      set codex, 1
+      ifany n, no
+         set codex.reward, excessive
+         quip you.are.a.cheater
+      fin
+      ifkey yes
+         quip good
+      fin
+   fin
+   ifkey open
+      ifkey book
+         or
+      ifeq status, 1
+         fakearg open, read
+      fin
+   fin
+   ifkey book
       fakearg look, read
    fin
+   call default.read, book
    ifkey book
       or
    ifeq status, 1
@@ -15269,10 +15299,17 @@ at imaze.book
    ifeq status, 1
       and
    ifkey get
+      ifeq codex.reward, excessive
+         quip still.no.get.book
+      fin
       say no.get.book
       ifeq codex.reward, available
          set codex.reward, awarded
       fin
+      ifeq codex.reward, awarded
+         set codex, 2
+      fin
+      quit
    fin
    ifkey book
       ifany push, pull

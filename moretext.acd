@@ -451,5 +451,75 @@ TEXT cycle CAUGHT.CLIMBING
      the situation, and before you have any chance to get out of reach, 
      they are upon you, yelling loudly and swinging their gleaming axes.]
 
+FRAGMENT SHAFT.HINT
+     Are you trying to avoid drowning in that yuck down there?_
+TEXT
+     The smell, a pungent mixture of sewage and sea water, might
+     offer a clue. Think about it, and don't be too hasty in jumping to
+     conclusions.
+#
+TEXT increment NO.GOOD.WAITING
+     [You # for a while/=/=/Don't bother][, enjoying the splendid
+     view while you are at it/], [but nothing much happens, and you soon
+     get pretty bored/and just as before, nothing happens/but soon
+     conclude that it really isn't getting you anywhere/you'd be just
+     wasting a turn].
+#
+TEXT increment NO.SHUT.UP
+     [Shut up? Me? That's not a very polite suggestion! If you are really
+     tired of my company, just say QUIT and be done with it/You are
+     just trying to provoke me, so I'll ignore your rudeness].
+#
+TEXT increment NOT.DREAMING
+     [Are you perhaps under the impression that you are asleep? I have
+     news for you. You are not./But you are not asleep!]
+#
+TEXT CHEATER
+     You have worked your way up to the elevated rank of a Perfect Cheater.
+
+     Congratulations!
+#
+TEXT IMPERFECT.CHEATER
+     You now have the dubious distinction of being classified as an
+     Imprefect Cheater. Must try harder!
+#
+TEXT YOU.ARE.A.CHEATER
+     That's not a very sporting attitude! You clearly have no regard
+     to the problems this could cause to our scoring system!
+
+     Well, I suppose since you insist, I'll have have to stick to the 
+     usual rules and allow you the points for finding the book. Not 
+     that I am very happy about it, you understand. It could land me
+     in some pretty hot water, and no mistake. But as for taking the
+     book with you, that's right out!
+#
+TEXT increment STILL.NO.GET.BOOK
+     I thought I made it quite clear: the book stays here![ Just be
+     content with your selfish reward for finding it!/]
+#
+FRAGMENT CHEATED
+     (?!)
+#
+TEXT assigned TREASURE.5
+     Crowds of dwarves are seated at long tables, set out for a hearty feast.
+     At one end of the chamber, the pointy-tail gentleman is somewhat 
+     unsteadily attempting to conduct a choir of small song-birds, but his
+     efforts are entirely drowned by the dwarves, who bang their beer
+     mugs on the tables and cheer the all-conquering hero.
+
+     [Well, I'll leave you to enjoy yourself. Just a word to the wise: a
+     bit of prideful boasting is just fine with dwarves, but hubris is
+     something else, so I wouldn't be dwelling on your actual score, if
+     I were you.
+
+     Speaking of which/
+     Hello! Here's your lady-friend again, advancing upon you
+     with a radiant smile, the unicorn trailing a short distance behind
+     her. Well, I guess you are going to be otherwise occupied now, so I'll
+     leave you to the merry-making. A word to the wise, though:
+     them unicorns can have a fearful temper, so better watch yourself,
+     if you know what I mean.
+
+     Ah, yes, before I forget]...
 #
 #########################################################################

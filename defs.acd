@@ -190,6 +190,8 @@ flags object
 #
 # vase    #2 tried getting dung with it.
 #
+# codex   #2 may answer yes/no to the codex offer.
+#
 # giant   #1 in quarters, set if the HUNGRY.GIANT message printed.
 #         #2 if pushed player out of ravine at least once.
 #
@@ -567,6 +569,7 @@ state standing
 #
 state 1, available
          awarded
+         excessive
 #
 # Define various location constants for descriptionn indexing.
 #
@@ -619,7 +622,7 @@ constant 98, no.match        # Suppress all vocabulary matching
 constant 4,  lives           # How many lives has he got
 constant 7,  high.tide       # That's when he dies!
 constant 8,  carry.limit     # Number of non-freebie objects initially allowed
-constant 6,  mushroom.effect # What the mushroom addes
+constant 6,  mushroom.effect # What the mushroom adds
 constant 14, full.value      # Full treasure credits
 constant 7,  seen.value      # Credits for only finding treasure
 constant 16, closure.credit  # Points per stage of closure

@@ -962,7 +962,7 @@ OBJECT FEEDER, TABLE, BIRDTABLE
    Sadly, it does not appear to be terribly popular with the intended
    recipients.
 #
-OBJECT SEED, BIRDSEED, =SEEDS
+OBJECT SEED, BIRDSEED, =SEEDS, =GRAINS
    Some bird seed
    &It looks like a mixture of several kinds of small grains.
 #

@@ -74,7 +74,7 @@ proc generic.no.do
 proc bail.out
    ifkey oil
 #      call handle.oil
-       handle.oil
+      handle.oil
    fin
    ifkey water
       call handle.water
@@ -1711,7 +1711,16 @@ proc start.cheating
    else
       set obj.ptr, arg2
    fin
+   ifis obj.ptr, beanstalk
+      or
+   ifis obj.ptr, snake
+      or
    ifflag obj.ptr, object
+      and
+   ifflag obj.ptr, portable
+      and
+      not
+   ifflag obj.ptr, valued
    else
       proceed
    fin
@@ -1910,7 +1919,7 @@ proc get.score
             or
          ifis obj.ptr, bust
             eval temp.val, obj.ptr
-            ifeq temp.val, damaged     # Damaged is worth less
+            ifge temp.val, damaged     # Damaged is worth less
                add scorex, 9
             else
                add scorex, full.value
@@ -2028,9 +2037,15 @@ proc get.score
       add scorex, temp.val
    fin
    add maxscore, 96      # Maximal stage credit
+   set result, maxscore
+#
+   ifeq codex.reward, excessive
+      add  scorex, seen.value
+      add result, seen.value
+   fin
 #
    set actual.score, scorex
-   iflt codex.reward, awarded
+   ifne codex.reward, awarded
       set losses, deaths
       mult losses, 10
       add losses, penalties
@@ -2045,6 +2060,9 @@ proc get.score
 proc finis
    call get.score
    value you.scored, scorex
+   ifgt scorex, 770
+      say cheated
+   fin
    ifgt losses, 0
       value less.penalties, losses
       value strictly.speaking, actual.score
@@ -2089,9 +2107,17 @@ proc finis
    iflt actual.score, 770
       say grandmaster
       sub result, 770
+   otherwise
+   ifeq actual.score, 770
+      say champion
+      set result, 0
+   otherwise
+   iflt actual.score, 777
+      say imperfect.cheater
+      set result, 0
    else
       say cheater
-      set result, 0
+      set result 0
    fin
    say blank
    mult result, -1
@@ -3645,6 +3671,9 @@ proc hint.logic
    otherwise
    ifnear unicorn
       lda text.ptr, unicorn.hint
+   otherwise
+   ifat phoney.shaft
+      lda text.ptr, shaft.hint
    otherwise
    ifat stream.maze.entrance, stream.maze
       ifflag hints, sewer.pending
@@ -5692,6 +5721,7 @@ proc art.of.memory
 proc resurrection.shuffle
    local obj.ptr
    local state
+   local place.ptr
 #
    ifeq status, 0
       or
@@ -5714,6 +5744,10 @@ proc resurrection.shuffle
             not
          ifeq flask, sealed
             set flask, emptied
+         fin
+         locate place.ptr, rod
+         ifinrange place.ptr, north.of.spire, cave.8
+            apport rod, road
          fin
          itobj obj.ptr, inhand
             drop obj.ptr
@@ -7090,7 +7124,9 @@ proc lets.go.back
       apport starstone, ylem
    fin
    unflag starstone, portable
-   unflag magazines, portable
+   ifloc magazines, witts.end
+      unflag magazines, portable
+   fin
    itobj obj.ptr
       ifflag obj.ptr, portable
          ifloc obj.ptr, building
@@ -7101,6 +7137,8 @@ proc lets.go.back
       fin
    eoi
    apport giant, ylem
+   set beanstalk, 0
+   set beanstalk2, 0
    set stupendous.view, 0
    set feeder, 1
    unflag depression, hintable

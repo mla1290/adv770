@@ -1200,8 +1200,14 @@ repeat
          say treasure.2
          quip more.good.news?
       fin
-      ifgt scorex, 768
+      ifeq scorex, 770
          say treasure.4
+      otherwise
+      ifgt scorex, 770
+         ifeq scorex, result
+            set treasure.5, 1
+         fin
+         say treasure.5
       else
          say treasure.3
       fin
@@ -1342,6 +1348,13 @@ repeat
       respond fuck, no.piss.plant
    else
       respond fuck, no.fucking
+   fin
+#
+# Cater for SHUT UP
+#
+   ifkey shut
+      respond up, no.shut.up
+      fakecom shut, close
    fin
 #
 # We generally ignore "room"
@@ -1868,7 +1881,7 @@ repeat
 #
 # A few house-keeping oddments...
 #
-   ifgt foobar, 0
+   ifge foobar, 0
       sub foobar, 1
    fin
    add turns, 1

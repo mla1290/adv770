@@ -570,6 +570,7 @@ init
    flag vault, hintable
    flag peelgrunt, hintable
    flag basilisk.den, hintable
+   flag phoney.shaft, hintable
    flag stream.maze.entrance, hintable
    flag stream.maze, hintable
    flag beanstalk.bottom, hintable
@@ -685,7 +686,6 @@ init
    flag sculpture, unstable
    flag cage, unstable
    flag casket, unstable
-   flag teeth, unstable
    flag mushroom, unstable
    flag bag, unstable
    flag crown, unstable
