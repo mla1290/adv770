@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2003.
+# Copyleft Mike Arnautov 1984-2004.
 #
 # Here follow the object definitions.
 #
@@ -208,12 +208,13 @@ OBJECT SLIME
   &It looks horrible!  Except that it has no eyes, I would be inclined
    to say that it is eyeing you in a positively hungry manner!
 #
-TEXT VENDING.INFO
-  +"Drop coins here to receive fresh batteries." 
+FRAGMENT VENDING.INFO
+   "Drop coins here to receive fresh batteries." 
 #
 OBJECT MACHINE, =VENDING
   %There is a massive vending machine here.[ The instructions on it read:
-   {VENDING.INFO}/]
+
+  +{VENDING.INFO}/]
   &A classic fifties' artifact!  All chrome and heavy plastic and
    rounded corners. It has a coin slot and a goods tray. A separate
    little tray is provided for reject coins and, conceivably, change
@@ -576,7 +577,7 @@ OBJECT SPIDER  # The spider in the Web Maze
    but who gives a damn for a poor cave sprite's arachnophobia?
    Just use your imagination, if it's all right with you...
 #
-OBJECT DOCUMENTS,=LEGAL,PAPERS,DEEDS,PLANS
+OBJECT DOCUMENTS,=LEGAL,=DEEDS,PAPERS,PLANS
    Legal documents
   %There are some legal documents here.
 #
@@ -873,7 +874,7 @@ OBJECT MUSHROOM
    that's a bit unusual, isn't it?  Otherwise... I don't know. It's a
    mushroom!  Oh yes, it smells of mushrooms too.
 #
-OBJECT NOTICE, SIGN
+OBJECT NOTICE
   %Remnants of a weather-beaten wooden notice stand near the entrance
    to the ravine.
   &[It would seem that the notice was erected long ago by some master

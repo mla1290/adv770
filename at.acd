@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2003.
+# Copyleft Mike Arnautov 1984-2004.
 #
 # The following acode procedures are associated with
 # individual places.
@@ -222,13 +222,8 @@ at building
    ifany lock, unlock, close, open
       quip wellhouse.no.door
    fin
-   ifkey read
-      and
-   ifeq status, 1
-      lda arg2, poster
-      set status, 2
-   fin
-   ifkey poster
+   call default.read, poster
+   ifany poster, note, notice, words, message, words
       ifany read, look
          call look
       fin
@@ -309,6 +304,9 @@ at building
       call drink
    fin
    respond pipe, stream, downstream, pipe.too.narrow, 0
+   ifany note, notice, message, words
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #
@@ -604,8 +602,9 @@ at cobbles
 #=====================================================================
 #
 at debris
-   ifkey note
-      respond get, pull, leave.it.alone, arg2
+   call default.read, note
+   ifany note, notice, words, inscription, message
+      respond get, pull, leave.it.alone, note
       respond look, read, debris.note
    fin
    ifkey look
@@ -639,7 +638,7 @@ at debris
          smove building, foof
       fin
    fin
-   ifany note
+   ifany note, notice, words, message, inscription
       flag context, arg2.here
    fin
 #
@@ -873,7 +872,8 @@ at east.of.fissure
 #=====================================================================
 #
 at nugget.room
-   ifkey note
+   call default.read, note
+   ifany note, notice, words, inscription, message
       respond look, read, nugget.room.note, nugget.room
       flag context, arg2.here
       proceed
@@ -885,6 +885,9 @@ at nugget.room
       or
    ifeq status, 1
       move north, out, hall, mists
+   fin
+   ifany note, notice, words, inscription, message
+      flag context, arg2.here
    fin
 #
 #=====================================================================
@@ -2243,7 +2246,8 @@ at tall.e/w.canyon
 #=====================================================================
 #
 at valuers
-   ifany note, notice, message, sign
+   call default.read, sign
+   ifany note, notice, message, sign, words, inscription
       respond look, read, valuers.note
       respond get, leave.it.alone, note
       flag context, arg2.here
@@ -2390,14 +2394,15 @@ at valuers
    ifeq status, 1
       move north, out, tall.e/w.canyon
    fin
-   ifany niche, bell, note, notice, message, sign
+   ifany note, notice, message, sign, words, inscription, niche, bell
       flag context, arg2.here
    fin
 #
 #=====================================================================
 #
 at dead.end.3
-   ifany words, inscription, note, message
+   call default.read, words
+   ifany words, inscription, note, message, notice
       respond look, read, jerry.words
       flag context, arg2.here
       proceed
@@ -2412,7 +2417,7 @@ at dead.end.3
    ifeq status, 1
       move south, out, tall.e/w.canyon
    fin
-   ifany boulders
+   ifany boulders, words, inscription, note, message, notice
       flag context, arg2.here
    fin
 #
@@ -2545,6 +2550,7 @@ at incline
 #=====================================================================
 #
 at giant.room
+   call default.read, inscription
    ifany inscription, note, notice, message, words
       respond read, look, fee...foo
    fin
@@ -2865,7 +2871,8 @@ at plover
 #=====================================================================
 #
 at dark
-   ifany stone, tablet
+   call default.read, tablet
+   ifany stone, tablet, note, notice, message, inscription, words
       respond pull, get, remove, leave.it.alone, tablet
       respond read, look, dark.room
       quip just.a.fixture, tablet
@@ -2882,7 +2889,9 @@ at dark
          move plover
       fin
    fin
-   ifany tunnel, passage, corridor
+   ifany tunnel, passage, corridor, stone, tablet, note, notice, words
+      or
+   ifany message, inscription
       flag context, arg2.here
    fin
 #
@@ -2978,7 +2987,8 @@ at culdesac
 #=====================================================================
 #
 at anteroom
-   call fake.note
+   call default.read, sign
+   call fake.note same.as.before, sign
    ifkey look
       ifkey anteroom
          set status, 1
@@ -3282,7 +3292,8 @@ at chamber
 #=====================================================================
 #
 at balcony
-   ifany plaque, plaque, words, inscription
+   call default.read, plaque
+   ifany plaque, words, inscription, message, note, notice
       respond look, read, balcony.plaque
       respond get, pull, remove, leave.it.alone, plaque
       ifeq status, 1
@@ -3323,7 +3334,7 @@ at balcony
    ifany gap, stream, pool, balcony, torches, walls, balustrade
       flag context, arg2.distant
    fin
-   ifany chamber, tunnel, plaque, note, inscription, words
+   ifany plaque, words, inscription, message, note, notice, chamber, tunnel
       flag context, arg2.here
    fin
    lda throw.text, throw.room
@@ -3346,11 +3357,12 @@ at sw.of.chasm
    fin
    lda throw.text, throw.chasm
    lda throw.here, ylem
-   ifkey notice
-      respond read, look, same.as.before
-      flag context, arg2.here
-      proceed
+   ifeq chasm, bridged
+      call default.read, sign
+   else
+      call default.read, notice
    fin
+   call fake.note, same.as.before, arg2
    ifkey look
       respond path, corridor, dark.exit, corridor
       proceed
@@ -3429,6 +3441,8 @@ at sw.of.chasm
          move ne.of.chasm
       fin
    fin
+   ifkey notice, note, inscription, message, words, sign
+      or
    ifany tunnel, passage, corridor, path
       flag context, arg2.here
    fin
@@ -3542,11 +3556,12 @@ at ne.of.chasm
    ifkey bridge
       apport bridge, here
    fin
-   ifkey notice
-      respond read, look, same.as.before
-      flag context, arg2.here
-      proceed
+   ifeq chasm, bridged
+      call default.read, sign
+   else
+      call default.read, notice
    fin
+   call fake.note, nothing.more.to.read, arg2
    ifkey look
       respond path, nothing.special, path
       proceed
@@ -3671,6 +3686,9 @@ at ne.of.chasm
       fin
    fin
    ifany path
+      flag context, arg2.here
+   fin
+   ifany notice, note, inscription, message, words, sign
       flag context, arg2.here
    fin
 #
@@ -3883,7 +3901,8 @@ at limestone
 #
 at barren
    flag bear, seen    # Allow references to the bear
-   call fake.note
+   call default.read, sign
+   call fake.note, same.as.before, sign
    ifkey look
       respond in, entrance, east, dark.there, in
       respond passage, tunnel, corridor, dark.exit, passage
@@ -4167,6 +4186,13 @@ at mazed.139
 #=====================================================================
 #
 at mazed.140
+   call default.read, instructions
+   ifany instructions, note, inscription, notice, words, message
+      and
+   ifany read, look
+      say vending.info
+      quip no.change
+   fin
    ifkey look
       respond passage, tunnel, corridor, dark.exit, passage
       proceed
@@ -4185,6 +4211,8 @@ at mazed.140
    ifeq status, 1
       move north, out, passage, tunnel, corridor, mazed.112
    fin
+   ifany instructions, note, inscription, notice, words, message
+      or
    ifany passage, tunnel, corridor
       flag context, arg2.here
    fin
@@ -4201,23 +4229,21 @@ at limbo
 #=====================================================================
 #
 at sandstone
+   call default.read, plaque
+   ifany plaque, note, notice, message, words, inscription
+      and
+   ifany read, look
+      quip plaque.info
+   fin
    ifkey look
       respond steps, well.worn.steps
       respond sandstone, wall, red.sandstone
       respond rock, just.a.fixture, rock
-      respond plaque, plaque.info
       respond opening, to.mists
       ifkey chamber
          set status, 1
       fin
       proceed
-   fin
-   ifany read
-      ifkey plaque
-         or
-      ifeq status, 1
-         quip plaque.info
-      fin
    fin
    ifkey go
       or
@@ -4225,6 +4251,8 @@ at sandstone
       move down, steps, cubicle
       move west, out, hall, opening, mists, mists
    fin
+   ifany plaque, note, notice, message, words, inscription
+      or
    ifany chamber, steps, rock, wall, sandstone, opening
       flag context, arg2.here
    fin
@@ -4493,6 +4521,7 @@ at glassy
 #=====================================================================
 #
 at lair
+   call default.read, runes
    ifkey runes
       respond look, read, translate, sorcerous.runes
       flag context, arg2.here
@@ -4523,7 +4552,7 @@ at lair
    ifany stalactite
       flag context, arg2.distant
    fin
-   ifany passage, tunnel, corridor, lair, wall, shadow, shadows
+   ifany passage, tunnel, corridor, lair, wall, shadow, shadows, runes
       flag context, arg2.here
    fin
 #
@@ -5100,7 +5129,8 @@ at ice.cave.29
 #
 at ice.cave.30
    call ice.stuff
-   ifany sign, words, letters, notice, message
+   call default.read, words
+   ifany note, words, letters, notice, message
       and
    ifany look, read
       quip this.way.out, arg2
@@ -5118,10 +5148,7 @@ at ice.cave.30
       smove thurb, ice, foof
       respond chamber, you.are.there
    fin
-   ifany chamber, tunnel, passage, corridor, sign, notice, message
-      flag context, arg2.here
-   fin
-   ifany letters, words
+   ifany chamber, tunnel, passage, corridor, note, notice, message
       flag context, arg2.here
    fin
 #
@@ -6431,14 +6458,10 @@ at fake.y2
 #=====================================================================
 #
 at catacombs.lobby
-   ifany plaque
+   call default.read, plaque
+   ifany plaque, sign, message, note, notice, inscription
       ifany read, look
-         ifflag here, special
-            quip catacombs.info, 1
-         else
-            flag here, special
-            quip catacombs.info, 0
-         fin
+         quip catacombs.info, 0
       fin
       ifeq status, 1
          flag status, pls.clarify
@@ -6463,7 +6486,7 @@ at catacombs.lobby
          move catacombs.entrance
       fin
    fin
-   ifany words, inscription, message, note
+   ifany plaque, sign, message, note, notice, inscription
       flag context, arg2.here
    fin
 #
@@ -7142,7 +7165,8 @@ at new.den
    ifeq jewelry, ground.state
       fakearg, swag, jewelry
    fin   
-   ifkey label
+   call default.read, note
+   ifany label, inscription, note, notice, words, message
       respond look, read, its.swag
       respond get, leave.it.alone, label
       ifgt status, 1
@@ -7179,6 +7203,8 @@ at new.den
    ifeq status, 1
       move east, out, doorway, portal, catacombs.portal
    fin
+   ifany label, inscription, note, notice, words, message
+      or
    ifany wall, shelf, exit, den
       flag context, arg2.here
    fin
@@ -7684,7 +7710,9 @@ at web.maze.4
       quip spider.dodges
    fin
    ifkey get
-      default portable
+      ifeq status, 1
+         default portable
+      fin
       ifkey axe
          and
       ifeq axe, by.spider
@@ -7694,7 +7722,8 @@ at web.maze.4
    ifkey documents
       and
    ifeq web, with.documents
-      quip documents.stuck
+      respond look, read, get, pull, push, documents.stuck
+      quip hah!
    fin
    ifkey in
       and
@@ -7772,7 +7801,8 @@ at web.maze.6
 #=====================================================================
 #
 at basement
-   call fake.note
+   call default.read, note
+   call fake.note, nothing.more.to.read, note
    ifkey counterweights
       respond look, delicate.mechanism
       respond break, push, pull, no.break.mechanism
@@ -8125,12 +8155,8 @@ at tower.upper.window
 #=====================================================================
 #
 at tower.upper.landing
-   ifany notice, inscription
-      respond read, look, door.notice
-      flag context, arg2.here
-      proceed
-   fin
-   call fake.note
+   call default.read, notice
+   call fake.note, door.notice, notice
    fakearg door, door2
    ifkey look
       respond wall, stone.wall
@@ -8183,6 +8209,8 @@ at tower.upper.landing
       fin
       respond landing, you.are.there
    fin
+   ifany notice, inscription, sign, words, message, note
+      or
    ifany steps, landing, door
       flag context, arg2.here
    fin
@@ -8254,6 +8282,12 @@ at tower.top.window
 #=====================================================================
 #
 at tower.top.landing
+   call default.read, notice
+   ifany words, note, inscription, lettering, message, notice
+      and
+   ifany read, look
+      quip door.notice
+   fin
    ifkey door
       fakearg door, door3
    fin
@@ -8636,9 +8670,12 @@ at outside.gates
    ifkey gates
       apport gates, here
    fin
+   call default.read, notice
+   call fake.note, nothing.more.to.read, notice
    respond grass, attention.to.detail, grass
    call in.dense.forest.actions
-   ifkey notice
+   call default.read, notice
+   ifany notice, note, message, sign, words, inscription
       respond get, pull, firmly.attached, notice
       respond read, look, trespass.notice
       respond push, no.push, notice
@@ -8734,6 +8771,8 @@ at outside.gates
       move north, track, track
       move east, west, ne, nw, dark.forest
    fin
+   ifany notice, note, message, words, inscription
+      or
    ifany garden, tower, roses, bush, path
       flag context, arg2.distant
    fin
@@ -8795,6 +8834,7 @@ at garden.n
       ifkey open
          and
       ifhave bust
+         flag gates, special1
          quip automatic.gate, open
       fin
       apport gates, here
@@ -8833,6 +8873,7 @@ at garden.n
       move sw, garden.sw
       ifany north, out
          ifhave bust
+            flag gates, special1
             set beyond.gates, 0
             smove outside.gates, through.the.gates
          fin
@@ -8913,10 +8954,11 @@ at garden.sw
 #=====================================================================
 #
 at garden.s
+   call default.read, plaque
    ifkey read
       ifeq status, 1
          or
-      ifkey plaque
+      ifany plaque, message, inscription, note, notice
          quip culpability.noakes
       fin
    fin
@@ -8961,6 +9003,9 @@ at garden.s
       move north, path, garden.n
    fin
    ifany path
+      flag context, arg2.here
+   fin
+   ifany plaque, message, inscription, note, notice
       flag context, arg2.here
    fin
 #
@@ -9289,7 +9334,8 @@ at den
       fakearg corner, seal
       fakearg something, seal
    fin
-   ifkey note
+   call default.read, note
+   ifany note, notice, label, message, inscription
       respond read, look, new.premises
       quip leave.it.alone, note
    fin
@@ -9318,7 +9364,7 @@ at den
       move out, attic
       respond den, you.are.there
    fin
-   ifany note, label, shelf, den
+   ifany note, notice, label, message, inscription, shelf, den
       flag context, arg2.here
    fin
 #
@@ -9609,6 +9655,8 @@ at culvert
 #=====================================================================
 #
 at sea.view
+   call default.read, inscription
+   call fake.note, same.as.before, inscription
    respond grill, grill.solid
    ifkey look
       respond bricks, slimey.bricks
@@ -9974,9 +10022,10 @@ at dank.cave
 #=====================================================================
 #
 at sword.place
+   call default.read, rock
    ifany look, read
       and
-   ifany rock, inscription, stone
+   ifany rock, inscription, stone, words
       call read.rock
    fin
    ifkey look
@@ -9987,7 +10036,7 @@ at sword.place
    ifeq status, 1
       move north, ne, east, se, south, sw, west, nw, back, swirling.mist
    fin
-   ifany mist
+   ifany mist, inscription, stone, words
       flag context, arg2.here
    fin
 #
@@ -11122,7 +11171,7 @@ at shed
       proceed
    fin
    ifkey door
-      respond open, shed.no.stay.open, 0
+      respond open, shed.no.stay.open, 1
       respond close, already.closed, door
       fakearg door, door4
    fin
@@ -11246,7 +11295,6 @@ at basalt.shelf
          call splatter
       fin
    fin
-#.............................................
    ifany moon, opening, hole, beach, break, shelf, ocean, spire
       flag context, arg2.here
    fin
@@ -11530,7 +11578,7 @@ at spire.nearly.up
          and
       ifis there, spire.part.up
          or
-      ifany up, east, top, climb
+      ifany up, se, top, climb
          ifhave sunstone
             set temp.val, sunstone
             ifinrange temp.val, 3, 5
@@ -12569,6 +12617,12 @@ at cave.7
    ifkey look
        respond floor, smooth.floor
        respond passage, corridor, tunnel, exit, dark.exit, corridor
+       ifkey niche
+          ifeq skull, 0
+             quip skull
+          fin
+          quip skull.niche
+       fin
        ifkey cave
           set status, 1
        fin
@@ -12580,13 +12634,14 @@ at cave.7
       move out, corridor, passage, tunnel, south, cave.6
       respond cave, you.are.there
    fin
-   ifany out, corridor, passage, tunnel
+   ifany out, corridor, passage, tunnel, niche
       flag context, arg2.here
    fin
 #
 #=====================================================================
 #
 at cave.8
+   call default.read, writing
    ifkey look
       respond writing, imps.writing, read
       ifkey imp
@@ -13104,7 +13159,7 @@ at by.waterfall
    ifkey look
       respond water, waterfall, its.a.waterfall, 0
       respond mountain, towering.mountain, 1
-      respond cliffs, wet.cliffs, 0
+      respond up, cliffs, wet.cliffs, 0
       respond chunks, fallen.chunks
       proceed
    fin
@@ -13128,9 +13183,8 @@ at by.waterfall
 #=====================================================================
 #
 at waterfall
-   ifeq status, 1
-      or
-   ifany door, inscription
+   call default.read, door
+   ifany door, inscription, note, notice, words, message
       and
    ifkey read
       quip door.1.words
@@ -13165,6 +13219,8 @@ at waterfall
       fin
       respond nw, in, door.in.the.way, nw
    fin
+   ifany door, inscription, note, notice, words, message
+      or
    ifany debris, waterfall, overhang, ceiling, inscription, spray, mist
       flag context, arg2.here
    fin
@@ -13183,14 +13239,16 @@ at mine
    else
       set door1, outside.view
    fin
+   call default.read, door1
    fakearg door, door1
    ifeq mine, opened
-      ifkey inscription
-         and
-      ifany read, look
-         or
-      ifkey read, door
-         quip door.1.words
+      ifany inscription, words, note, notice, message
+         ifany read, look
+            or
+         ifkey read, door
+            quip door.1.words
+         fin
+         flag context, arg2.here
       fin
       ifeq dwarven, 0
          call close.mine.door
@@ -13288,9 +13346,8 @@ at mine.2
 #=====================================================================
 #
 at steps.to.abyss
-   ifany notice, inscription, wall
-      ifeq status, 1
-         or
+   call default.read, inscription
+   ifany notice, inscription, wall, words, message, note
       ifany read, look
          quip island.exit
       fin
@@ -13320,6 +13377,8 @@ at steps.to.abyss
       smove d, climb, hole, shaft, opening, square.shaft.bottom, tiring.climb
       move sw, passage, tunnel, corridor, mine.2
    fin
+   ifany notice, inscription, wall, words, message, note
+      or
    ifany footholds, shaft, passage, tunnel, corridor, hole, opening
       flag context, arg2.here
    fin
@@ -14015,7 +14074,8 @@ at island.09
 #
 at by.temple
    call plants.stuff, 4
-   ifkey inscription
+   call default.read, inscription
+   ifany inscription, words, note, notice, message
       ifany read, look
          set what.ring, 2
          quip oryans.daughter
@@ -14054,6 +14114,8 @@ at by.temple
       respond beach, its.out.of.reach, 0
       respond caldera, swamp, cant.get.to.bog
    fin
+   ifany inscription, words, note, notice, message
+      or
    ifany temple, vista, doorway, beach, caldera, swamp, slope
       flag context, arg2.here
    fin
@@ -14288,7 +14350,7 @@ at bog.edge
       respond cliff, steep.cliff, 2
       respond west, sw, s, swamp, dangerous.bog
       respond chunks, rocks, fallen.chunks
-      respond crack, useful.crack
+      respond up, crack, useful.crack
       ifkey edge
          set status, 1
       fin
@@ -14463,7 +14525,8 @@ at wrong.venue
 #=====================================================================
 #
 at ne.repository
-   call fake.note
+   call default.read, sign
+   call fake.note, nothing.more.to.read, sign
    ifkey look
       respond torch, massive.torches
       respond ceiling, up, its.a.ceiling, c.repository
@@ -14899,6 +14962,7 @@ at imaze.wall.2
 #=====================================================================
 #
 at imaze.book
+   call default.read, book
    ifkey look, book
       fakearg look, read
    fin
@@ -14939,6 +15003,9 @@ at imaze.book
       move east, imaze.17
    fin
    call imaze.stuff, 0
+   ifkey words
+      flag context, arg2.here
+   fin
 #
 #=====================================================================
 #

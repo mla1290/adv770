@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2003.
+# Copyleft Mike Arnautov 1984-2004.
 #
 # "Random" texts.
 #
@@ -1228,7 +1228,8 @@ TEXT cycle NO.UNDERSTAND
     My apologies, but I don't know what you mean by that.]
 #
 TEXT DARK.ROOM
-    It says, "Congratulations on bringing light into the Dark room!"
+    The tablet still says, "Congratulations on bringing light into the 
+    Dark room!"
 #
 TEXT THROW.VASE
     You have taken the vase and hurled it delicately to the ground.
@@ -2975,8 +2976,11 @@ TEXT NASTY.WEB
     I'd rather not. It wouldn't be very smart to get entangled in that
     nasty sticky web.
 #
-TEXT DOCUMENTS.STUCK
-    Sorry, the documents seem to be firmly stuck to the web.
+TEXT increment  DOCUMENTS.STUCK
+    [Sorry, the documents seem to be firmly stuck to the web./It's
+    no good, I am afraid, you'll need to free the documents somehow,
+    before you can do anything with them./You need to free the documents
+    from the web first!]
 #
 TEXT increment ZORTON.INFO
     [Hm... It's a flowing sort of script... Could be Elvish, I suppose...
@@ -3031,8 +3035,8 @@ TEXT YOUVE.COLLAPSED
 
     You have collapsed and died of thirst!
 #
-TEXT PLAQUE.INFO
-    It says%
+TEXT increment PLAQUE.INFO
+    The plaque[/ still] says%
 
    +         *******************
    +             THIS  SPACE  
@@ -3300,7 +3304,7 @@ TEXT ROD.FIDDLING
     Fooling about with rods does not appear to be amazingly productive.
 #
 TEXT SAME.AS.BEFORE
-    It says the same thing as it did before.
+    The # says the same thing as it did before.
 #
 TEXT AS.YOU.WISH
     As you wish.
@@ -3371,14 +3375,17 @@ TEXT assigned ORB.VISION
     which tumble around, changing their shapes and sizes, until
     out of the confusion there briefly emerges the image of a green
     foliage spreading upwards, along the face of a chalk cliff./
+    a wobbling splodge of red colour against a dark background. 
+    As the image gradually becomes sharper, you find yourself staring
+    at a red fez rotating in mid-air in some dimly lit space./
+    rivulets of black sand drifting in the wind towards a tall black
+    shape, which rises into the dark sky on the horizon./
+    a small sapling, clinging to the face of a sheer cliff./
     a shower of coloured droplets falling onto a dark surface and
     staining it with small splodges of colour. Slowly but surely, some
     semblance of order develops in front of your eyes, until a final
     burst of the coloured rain leaves you gazing at a somewhat blurred,
-    yet unmistakable unmistakable patterns of a Persian rug./
-    rivulets of black sand drifting in the wind towards a tall black
-    shape, which rises into the dark sky on the horizon./
-    a small sapling, clinging to the face of a sheer cliff./
+    yet unmistakable patterns of a Persian rug./
     a myriad of unfocused lights on a blue background.
     As the image gradually becomes sharper, you realise that the lights
     are sun reflections sparkling off the surface of a sea. Where the sea
@@ -3386,7 +3393,9 @@ TEXT assigned ORB.VISION
     a small white building, perching on the shoulder of a huge mountain./
     narrow stone steps curving up to a small landing with a window.
     Sunlight pours in through the window, and you can see dust
-    motes dancing in the air, brightly lit against the dark stone walls.]
+    motes dancing in the air, brightly lit against the dark stone walls./
+    wrought iron gates, and beyond them a track leading away, into a
+    dense forest.]
 
     After a few moments the vision fades, leaving you somewhat giddy and
     none the wiser for the experience.
@@ -3444,6 +3453,7 @@ TEXT LEAVE.IT.ALONE
     I think the # is best left exactly as it is.
 #
 TEXT DWARF.STARES
+
     A group of large dwarves troop past you, arguing loudly about
     something. As they disappear through the doorway to the south,
     the last one turns around and fixes you with a cold, suspicious
@@ -3645,7 +3655,7 @@ TEXT NO.DOOR
     gone. If you want to get #, why not just go #?
 #
 TEXT NOTHING.MORE.TO.READ
-    There is nothing more on it to read.
+    There is nothing more on the # to read.
 #
 TEXT cycle TELL.ME.MORE
     [I can't work out what you mean by "#". If it's meant to be an
@@ -4506,8 +4516,7 @@ TEXT KEBAB
     Hmmm... The word "kebab" spring unbidden to one's mind.
 #
 TEXT DOOR.NOTICE
-    It still says
-   +        "%DWARVES STORES - NO ACCESS%".
+    The notice still says "%DWARVES STORES - NO ACCESS%".
 #
 TEXT REMOVE.IT.FIRST
     You'd have to remove the # first.
@@ -4539,14 +4548,14 @@ TEXT CROWN.LOUD
     You pause and listen...
 #
 TEXT DEBRIS.NOTE
-    It still says "Magic word XYZZY". What did you expect?
+    The note still says "Magic word XYZZY". What did you expect?
 #
 TEXT NUGGET.ROOM.NOTE
-    It says the same as before: "[You/Ok, YOU] won't get[ it/] up
+    The note says the same as before: "[You/Ok, YOU] won't get[ it/] up
     the steps[/!]". Too true, if you ask me.
 #
 TEXT VALUERS.NOTE
-    It still reads "Drop your objects here for a free valuation".
+    The sign still says "Drop your objects here for a free valuation".
 #
 TEXT FLAGSTONE.INFO
     The large flagstones covering the floor look old and pretty solid.
@@ -4748,7 +4757,7 @@ TEXT NO.WASTE.WATER
     daft enough to waste his meagre water supply for the sake of appearances.
 #
 TEXT NOTHING.TO.WASH.WITH
-    There is nothing here suitable for washing in.
+    There is nothing here suitable for washing i[n/t].
 #
 FRAGMENT SEWER.HINT
     Bored with wandering around here?_
@@ -5396,7 +5405,7 @@ TEXT SIP.WATER
     You sip some water[/, which doesn't do anything to quench your 
     thirst].
 #
-TEXT CATACOMBS.INFO
+TEXT increment CATACOMBS.INFO
     [You squint at the plaque and your heart sinks when you see the
     inscription on it/The plaque is] headed with the dread words 
     "NEW IMPROVED RECIPE!". It continues:
@@ -5406,11 +5415,13 @@ TEXT CATACOMBS.INFO
    +         Catacombically Cryptic !
    +         Delightfully Devious !
    +         Excruciatingly Exciting !
-   +         Fabulously Fair !!
-    [
+   +         Fabulously Fair !
+   +         Gorgeously Gothic !!
 
-    Oh well... Don't mind me and go ahead. Get "excruciatingly
-    excited". I've lived through worse./]
+    [Oh well... Don't mind me and go ahead. Get "excruciatingly
+    excited". I've lived through worse./Not that you need to care about
+    these lingustic excesses of a derenged mind./Which is as may be,
+    but quite irrelevant, really./Yawn.../]
 #
 TEXT JUST.A.FOUNTAIN
     It is just a very simple drinking fountain, graciously provided
@@ -5876,6 +5887,7 @@ TEXT TO.HEAR.IS.TO.OBEY
 TEXT YOU.GLOW
     [Your body is surrounded by a magical glow./The glow surrounding
     your body fades out.]
+
 #
 TEXT MEMORY.COSTS
     [My Amazing Memory Act is cheap, but not free. I can memorize the
@@ -6821,6 +6833,7 @@ TEXT increment BALCONY.PLAQUE
 
     +       NO ADMITTANCE VIA THIS ENTRANCE!
 
+#
 TEXT PAT.ORYAN
    Old Patrick O'Ryan... Yes, there was a character! The stuff
    of legend, you might say. He passed away, quite a while ago.[/If
@@ -8794,7 +8807,7 @@ TEXT STEEP.INCLINE
    It's steep. There's not a hope of you scrambling up it from below.
 #
 TEXT increment FEE...FOO
-   It [/still ]says "Fee Fie Foe Foo"[ -- honestly! I know it's not
+   The inscription [/still ]says "Fee Fie Foe Foo"[. Yes I know it's not
    quite how it's supposed to go, but facts are facts!/].
 #
 TEXT BEANSTALK.LEAVES
@@ -9094,9 +9107,10 @@ TEXT DISTANT.CLIFFS
 TEXT VERY.ROMANTIC
    Very romantic!
 #
-TEXT USEFUL.CRACK
-   The crack is too narrow for you to squeeze in, but it should provide
-   a sufficient number of foot- and hand-holds to allow you to climb up.
+TEXT increment USEFUL.CRACK
+   You [thoughtfully survey/take another look at] the crack in the
+   cliff face, and decide that [it definitely offers some climbing
+   possibilities/you still quite like the look if it].
 #
 TEXT FALLEN.CHUNKS
    There are half-submerged chunks of rock all over the place. I guess

@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2003.
+# Copyleft Mike Arnautov 1984-2004.
 #
 # Procedures.
 #
@@ -233,6 +233,9 @@ proc bail.out
    ifeq status, 2
       and
    ifflag arg2, object
+      ifflag context, arg2.here
+         quip what?
+      fin
       ifkey water
          ifflag here, h20.here
             quip water.is.for.drinking
@@ -247,7 +250,7 @@ proc bail.out
       ifkey all
          ifkey get
             quip no.all, 0
-         otherwise
+         fin
          respond drop, no.all, 1
       fin
       ifnear arg2
@@ -828,6 +831,10 @@ proc visions
    local temp.val
 #
    set orb.vision, vanilla.vision         # Set default "no vision" value
+   ifflag gates, special1
+   else
+      set orb.vision, gates.vision
+   fin
    ifflag storeroom, been.here
    else
       set orb.vision, tower.vision
@@ -840,6 +847,10 @@ proc visions
    else
       set orb.vision, island.vision
    fin
+   ifflag rug, special1
+   else
+      set orb.vision, rug.vision
+   fin
    ifflag beater, seen
    else
       set orb.vision, sapling.vision
@@ -850,7 +861,7 @@ proc visions
    fin
    ifflag rug, valued
    else
-      set orb.vision, rug.vision
+      set orb.vision, fez.vision
    fin
    ifeq beanstalk, gigantic
    else
@@ -909,20 +920,8 @@ proc visions
       set orb.vision, plant.vision
    fin
    ifeq orb.vision, shown.vision
-      chance 66
+      chance 20
          set orb.vision, vanilla.vision
-      else
-         set temp.val, orb.vision
-         multiply temp.val, 3
-         add temp.val, 33
-         chance temp.val
-            set temp.val, orb.vision
-            randomise orb.vision, 0
-            ifgt orb.vision, temp.val
-            else
-               set orb.vision, vanilla.vision
-            fin
-         fin
       fin
    else
       set shown.vision, orb.vision
@@ -937,7 +936,7 @@ proc owl.flies.off
    flag owl, seen
    ifnear lamp, switched.on
       or
-   ifflag status, glowing     # But not if illuminatino is by starstone!
+   ifflag admin, glowing     # But not if illumination is by starstone!
       say disturbed.owl
       say blank
    fin
@@ -992,6 +991,7 @@ proc owl.comes, no.chance, some.chance
          say owl.kills
          apport spider, ylem
          set web, with.documents
+         flag documents, seen
          ifeq axe, by.spider
             set axe, ground.state
          fin
@@ -1124,7 +1124,7 @@ proc catlogic
 proc chalice.power
    local temp.val
 #
-   unflag chalice, special1
+   set chalice, 0
    ifat building, streampit, pantry, rest.area
       quip chalice.no.magic
    fin
@@ -1775,7 +1775,7 @@ proc oyster.message
       quip oyster.is.bare
    fin
    ifflag oyster, big        # Read before?
-      quip same.as.before
+      quip same.as.before, inscription
    fin
    value oyster.is.hint, hint.cost
    set context, q.oyster
@@ -2283,6 +2283,7 @@ proc special.view
          ifgt result, 0
             add temp.val, 2
          fin
+         exec 30        # Strip off trailing LF! 
          say dune.types, temp.val
          ifinrange here, desert.12, desert.last
             set desert.offset, here
@@ -4731,9 +4732,9 @@ proc do.introduction
 #
 #=====================================================================
 #
-proc fake.note
-   ifany notice, note, sign, message
-      respond look, read, same.as.before
+proc fake.note msg wrd
+   ifany notice, note, sign, message, lettering, words
+      respond look, read, msg, wrd
       respond get, break, push, pull, leave.it.alone, arg2
       flag context, arg2.here
       call bail.out
@@ -5418,6 +5419,9 @@ proc save.this
    ifis arg2, save             # Can't be just 'rest'! We wouldn't be here.
       exec 11                  # Copy 1st word to 2nd
    fin
+   ifgt alarm, 0
+      add alarm, 1
+   fin
    exec 1, result              # Save program image
    ifeq result, 0
       set context, q.continue
@@ -5799,6 +5803,7 @@ proc randomise.texts
    randomise no.violence, 0
    randomise jerry.words, 0
    randomise scruffy.vegetation, 0
+   randomise not.droppable, 0
    randomise nothing.doing.1, 0
    set nothing.doing.2, nothing.doing.1
    randomise typo, 0             # TYPO is structured in blocks of 4
@@ -6747,6 +6752,10 @@ proc except.check
             ifhave obj.ptr
             else
                say hang.on!
+               ifflag obj.ptr, portable
+               else
+                  quip not.droppable, obj.ptr
+               fin
                chance 50
                   quip you.arent.carrying, obj.ptr
                fin
@@ -6925,3 +6934,14 @@ proc litter.check
    say no.litter.please
 #
 #====================================================================
+#
+proc default.read what
+   ifkey read
+      and
+   ifeq status, 1
+      set arg2, what
+      set status, 2
+   fin
+#
+#====================================================================
+

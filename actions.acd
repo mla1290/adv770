@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2003.
+# Copyleft Mike Arnautov 1984-2004.
 #
 # This module defines the actions to be taken when certain
 # verb, verb/object, verb/verb or object/object word sequences
@@ -67,8 +67,7 @@ action get water
             quip cant.scoop
          fin
       else
-         flag chalice, special1
-         flag chalice, special2
+         set chalice, full
          quip chalice.leaking
       fin
    fin
@@ -244,11 +243,31 @@ action get        # Generalized last-case "get" routine
          flag spoon, special2
          quip dung.ingenuity, 1
       fin
+      ifhave chalice
+         and
+         not
+      ifflag chalice, special2
+         flag chalice, special2
+         quip dung.ingenuity, 2
+      fin
+      ifhave vase
+         and
+         not
+      ifflag vase, special2
+         flag vase, special2
+         quip dung.ingenuity, 3
+      fin
       ifhave helmet
          quip no.ruin.it, helmet
       fin
       ifhave spoon
          quip no.ruin.it, spoon
+      fin
+      ifhave chalice
+         quip no.ruin.it, chalice
+      fin
+      ifhave vase
+         quip no.ruin.it, vase
       fin
       quip blank
    fin
@@ -515,7 +534,11 @@ action drop               # Generalized "drop" control
       ifany treasure, all
          proceed
       fin
-      say you.arent.carrying, arg2
+      ifflag arg2, portable
+         say you.arent.carrying, arg2
+      else
+         say not.droppable, arg2
+      fin
    fin
    quit
 #
@@ -1757,7 +1780,7 @@ action open
 #
    ifany grate, chain, safe, coffin, lid
       eval state, arg2
-      ifeq state, unlocked
+      ifge state, unlocked
          quip already.open, arg2
       fin
       ifkey lid
@@ -1861,6 +1884,7 @@ action open door2
       fin
       ifeq door2, ajar
          set door2, opened
+         add alarm, 1
          set tower.upper.landing, opened
          quip stores.door.opens
       fin
@@ -2957,8 +2981,7 @@ action fill chalice
          ifat pantry
             quip cant.scoop
          fin
-         flag chalice, special1
-         flag chalice, special2
+         set chalice, full
          quip chalice.leaking
       fin
       quip nothing.to.fill, chalice
@@ -2991,8 +3014,8 @@ action empty
 #=====================================================================
 #
 action empty chalice
-   ifflag chalice, special1
-      unflag chalice, special1
+   ifge chalice, leaking
+      set chalice, 0
       quip chalice.now.empty, 0
    fin
    quip is.empty, chalice
@@ -3374,6 +3397,12 @@ action memorize
 #=====================================================================
 #
 action recall
+   local result
+
+   exec 33, result
+   ifne result, 0
+      quip no.memory.image
+   fin   
    set context, q.recall
    say memory.costs, 1
    quip is.this.ok?
@@ -3402,7 +3431,6 @@ action restore
       add wiz.flag, 2
    fin
    exec 6, wiz.flag    # Save value of wiz.flag over restore attempt
-   exec 17             # Save memory image
    exec 2, outcome     # Attempt to restore image
    ifeq outcome, 3     # No name specified
       quit
@@ -3434,7 +3462,7 @@ action restore
    else                  # Checksum failed!
       exec 7, outcome
       iflt outcome, 2
-         exec 18
+         exec 28
       fin
       set context, q.bad.image
       quip explosion     # Well-house blew up
@@ -3509,14 +3537,16 @@ action drink
    ifkey chalice
       and
    ifnear chalice
-      ifflag chalice, special1
+      ifge chalice, leaking
          call chalice.power
       fin
       quip is.empty, chalice
    fin
    ifeq status, 1
       and
-   ifnear chalice, special1
+   ifnear chalice
+      and
+   ifge chalice, leaking
       call chalice.power
    fin
    ifeq status, 1
@@ -3551,7 +3581,7 @@ action drink
          fin
          quip nothing.to.drink
       fin
-      set arg2, vessel
+      exec 10, vessel
    fin
    eval object.state, arg2
    ifeq object.state, full.of.oil
@@ -3621,30 +3651,19 @@ action epns
 #
 #=====================================================================
 #
-action read notice
-   ifat tower.upper.landing
-      quip door.notice
-   fin
-   ifat outside.gates, basement, tower.top.landing
-      quip nothing.more.to.read
-   fin
+action read
    ifat stupendous.view
+      and
+   ifany notice, note, words, message, inscription
       describe notice
       ifeq notice, unread
          set notice, examined
       fin
       quit
    fin
-   call bail.out
-#
-#=====================================================================
-#
-action read rug
-   call look
-#
-#=====================================================================
-#
-action read
+   ifkey rug
+      call look
+   fin
    ifgt status, 1
       ifkey documents
          ifnear web, with.spider
@@ -3704,10 +3723,9 @@ action read
                call look
             fin
          fin
-      else
-         call bail.out
       fin
    fin
+   call bail.out
 #
 #=====================================================================
 #
@@ -4493,7 +4511,7 @@ action use
       fin
       call bail.out
    fin
-   ifany spoon, helmet
+   ifany spoon, helmet, chalice, vase
       and
    ifnear dung
       and
@@ -4508,9 +4526,15 @@ action use
       fin
       flag arg2, special2
       ifkey spoon
-         say no.spoon.dung
-      else
+         say spoon.no.dung
+      otherwise
+      ifkey helmet
          say helmet.no.dung
+      otherwise
+      ifkey chalice
+         say chalice.no.dung
+      else
+         say vase.no.dung
       fin
       quip blank
    fin
@@ -4885,18 +4909,25 @@ action wash
          else
             call bail.out
          fin
-         ifflag here, h20.here
-            ifkey bucket
-               ifeq bucket dirtied
-                  ifat building
-                     quip no.wash.bucket
-                  else
-                     set bucket emptied
-                     quip wash.bucket
-                  fin
+         ifkey bucket
+            ifeq bucket dirtied
+               ifat building
+                  quip no.wash.bucket
                fin
+               ifinrange here, rocky.beach, beach.end
+                  quip no.wash.sea
+               fin
+               ifflag here, h20.here
+                  or
+               ifinrange here, island, island.ne
+                  set bucket emptied
+                  quip wash.bucket
+               fin
+            else
                quip bucket.is.clean
             fin
+         fin
+         ifflag here, h20.here
             ifat stream.maze, stream.maze.entrance
                and
             ifflag rats, special2
@@ -4916,7 +4947,7 @@ action wash
             fin
             quip whatever.for?
          fin
-         quip nothing.to.wash.with
+         quip nothing.to.wash.with, 1
       fin
       call bail.out
    fin
@@ -4945,7 +4976,7 @@ action wash
    ifinrange here, rocky.beach, beach.end
       quip salt.h20.bad
    fin
-   quip nothing.to.wash.with
+   quip nothing.to.wash.with, 0
 #
 #=====================================================================
 #
@@ -5462,6 +5493,9 @@ action glow
       ifflag status, light.here
       else
          flag status, light.here
+         ifnear owl
+            call owl.flies.off
+         fin
          call describe.here
       fin
       quit

@@ -1,8 +1,8 @@
-# Copyleft Mike Arnautov 1984-2003.
+# Copyleft Mike Arnautov 1984-2004.
 #
 # Words to be ignored
 #
-noise and, then, the, a, an, that, this, to, at, with, awhile, about, from
+noise and, then, the, a, an, that, this, to, at, with, !awhile, about, from
 #
 # Time we defined some verbs. Start with specials, not requiring
 # validation of ARG2.
@@ -404,7 +404,7 @@ verb map
 verb room
 verb rose
 verb roses
-verb sparevrb00
+verb sign
 verb -first.sculpture.fake
 verb !pig
 verb !eel

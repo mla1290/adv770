@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2003.
+# Copyleft Mike Arnautov 1984-2004.
 #
 # Time to do some run-time initialisation.
 #
@@ -1025,6 +1025,11 @@ init
    flag oil, seen
    flag food, seen     # Food and bottle used to be in the house
    flag bottle, seen   # so allow references to them too
+   flag rope, seen
+   flag notice, seen
+   flag note, seen
+   flag tablet, seen
+   flag plaque, seen
    flag tree, seen  
    flag palms, seen
    flag pine, seen

@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2003.
+# Copyleft Mike Arnautov 1984-2004.
 #
 # Define various flags and constants.
 #
@@ -151,11 +151,8 @@ flags object
 # eggs    #1 set if eggs in troll's possession.
 #         #2 set if eggs gone for good.
 #
-# chalice #1 set if chalice full, 
-#         #2 set if just filled.
-#
 # sunstone #1 set if black flash seen once. 
-#         #2 set if player got it off the spire.
+#          #2 set if player got it off the spire.
 #
 # crown   #1 set if whispering crown just incremented.
 #         #2 set if crown worn at least once.
@@ -163,8 +160,10 @@ flags object
 # rug     #1 set if rug cleaned up.
 #         #2 set if rug can fly.
 #
-# mask    #1 set if already commented on Zorro outfit
+# mask    #1 set if already commented on Zorro outfit.
 #
+# gates   #1 set if gates opened at least once.
+
 # rats    #1 set if can go down into sewers.
 #         #2 set if he stinks and cannot leave the stream maze.
 #
@@ -181,6 +180,10 @@ flags object
 #         #2 tried getting dung with it.
 #
 # helmet  #2 tried getting dung with it.
+#
+# chalice #2 tried filling it with dung.
+#
+# vase    #2 tried getting dung with it.
 #
 # giant   #1 in quarters, set if the HUNGRY.GIANT message printed.
 #         #2 if pushed player out of ravine at least once.
@@ -276,6 +279,11 @@ state in.pentagram       # flask only
       half.full          # bucket only
       quarter.full       # bucket only
 #
+# Define chalice states
+#
+state 1, leaking
+         full
+#
 # Define lamp states
 #
 state switched.off
@@ -337,12 +345,14 @@ constant vanilla.vision
          dungeon.vision
          chalice.vision
          beanstalk.vision
-         rug.vision
+         fez.vision
          spire.vision
          sapling.vision
+         rug.vision
          island.vision
          temple.vision
          tower.vision
+         gates.vision
 #
 # Define orc mutters
 #

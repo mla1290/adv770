@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2003.
+# Copyleft Mike Arnautov 1984-2004.
 #
 # And here, at long last, is the main program!
 #
@@ -642,11 +642,11 @@ repeat
 #
    ifgt cave.entered, 0
       set cave.entered, 0
-      ifflag notice, seen
+      ifflag stupendous.view, been.here
          and
       ifflag feeder, seen
       else
-         ifflag notice, seen
+         ifflag stupendous.view, been.here
             or
          ifflag feeder, seen
             say explore.more.outdoors
@@ -881,12 +881,12 @@ repeat
    call thirst.factor
    set fleetfoot, 25                # Not running, didn't just attack
    set backlash, 35                 # Dwarves not vengeful
-   ifflag chalice, special1         # Is chalice full?
-      ifflag chalice, special2
-         unflag chalice, special2   # Clear the 'just filled' flag
+   ifge chalice, leaking            # Any water in it?
+      ifeq chalice, full
+         set chalice, leaking       # It'll be empty soon!
       else
          flag here, damp
-         unflag chalice, special1   # Empty it
+         set chalice, 0             # Empty it
          say blank
          say chalice.now.empty, 1   # Say it is now empty
       fin
@@ -1524,6 +1524,13 @@ repeat
       set status, 1
    fin
 #
+# "Sign" is really a notice synonym, but we need to declare it
+# separately to be able to include the word "sign" in messages.
+#
+   ifkey sign
+      fakearg sign, notice
+   fin
+#
 # Handle 'it'.
 #
    ifgt it, 0
@@ -1581,6 +1588,12 @@ repeat
 #
 # Can we see anything?
 #
+   ifkey read
+      and
+      not
+   ifflag status, light.here
+      quip its.too.dark
+   fin
    ifkey look
       ifkey fog
          and
@@ -1703,6 +1716,7 @@ repeat
          else
             respond look, rusty.star, 1
          fin
+         say rusty.one
          respond get, remove, break, value, no.point.in.that
          respond rub, nothing
          ifgt status, 1
@@ -2398,7 +2412,7 @@ repeat
          fin
          ifflag beanstalk, seen
             flag spoon, special2
-            say no.spoon.dung
+            say spoon.no.dung
             quip blank
          fin
          quip bleah

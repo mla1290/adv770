@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2003.
+# Copyleft Mike Arnautov 1984-2004.
 #
 # Spill-over random texts. (Only necessary because I made the mistake of
 # mixing some active texts with places and objects definitions. :-(
@@ -97,7 +97,7 @@ TEXT increment ITS.YOU
 TEXT increment NO.FEED.HORSES
     [Er... May I point out that the horses are merely life-like, not
     actually alive./There's no point trying to # wrought iron horse
-    cutouts!/Please get it into your head that the horses are *not*
+    cut-outs!/Please get it into your head that the horses are *not*
     actually alive!/Sigh... Don't even bother to try...]
 #
 TEXT TOWER.THROUGH.GATES
@@ -118,7 +118,7 @@ TEXT NO.GET.SOIL
     The soil is here for the beanstalk's benefit, not yours, so don't
     waste your time on it.
 #
-FRAGMENT NO.SPOON.DUNG
+FRAGMENT SPOON.NO.DUNG
     Nice to see an inventive adventurer for once! But let's face
     it, ferrying this heap to the beanstalk one teaspoon at a time,
     would take ages! Besides, unicorn dung is notoriously corrosive
@@ -126,16 +126,17 @@ FRAGMENT NO.SPOON.DUNG
 #
 FRAGMENT HELMET.NO.DUNG
     Ingenious. Definitely ingenious. Unfortunately unicorn dung is
-    extremelu corrosive. It would simply ruin the helmet. Better find
-    something else for carrying the dung.
+    extremely corrosive. It would simply ruin the helmet. 
+    Better find something else for carrying the dung.
 #
-TEXT DUNG.INGENUITY
-    _Or did you have in mind using the [helmet? {HELMET.NO.DUNG}/
-    spoon? {NO.SPOON.DUNG}]
+FRAGMENT CHALICE.NO.DUNG
+    Surely you wouldn't expect anything quite so obvious! For your
+    information, unicorn dung is famously corrosive, and you don't want
+    to spoil that rather nice chalice, cracked as it is.
 #
 TEXT increment NO.RUIN.IT
-    [_And if you had in mind using the #, we've already established that
-    it doesn't work./]
+    _And if you had in mind using the #, we've already established that
+    it doesn't work.
 #
 TEXT AGAIN.NO.RUIN.IT
     You tried that already, remember? You'll need to find something
@@ -153,5 +154,30 @@ TEXT BEANSTALK.SATED
 TEXT increment SAFE.KEYS
     Nothing happens[, which is not entirely surprising. That's one of
     the safe "skeleton keys". Nothing to do with the gates!/. Surprise!]
+#
+TEXT NO.CHANGE
+    _Just as it did before.
+#
+FRAGMENT VASE.NO.DUNG
+    That's just plain silly. The vase would never survive your attempt
+    to scoop the dung with it.
+#
+TEXT DUNG.INGENUITY
+    _Or did you have in mind using the [helmet? {HELMET.NO.DUNG}/
+    spoon? {SPOON.NO.DUNG}/chalice? {CHALICE.NO.DUNG}/vase? {VASE.NO.DUNG}]
+#
+FRAGMENT increment RUSTY.ONE
+    [I take it you mean the rusty star on the rod.../The rod's star?]_
+#
+TEXT NO.WASH.SEA
+    Better not. Sea water around here may be a bit unhygienic.
+#
+TEXT increment SKULL.NICHE
+    The shallow niche in the rock is quite unremarkable[, now that it
+    no longer holds the skull/].[/ Ignore it.]
+#
+TEXT cycle NOT.DROPPABLE
+    [Eh.../Um.../Pardon me, but/Don't be silly -/Surely,] # is not
+    something one could carry!
 #
 #########################################################################

@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2003.
+# Copyleft Mike Arnautov 1984-2004.
 #
 # Now for the place descriptions.
 #
@@ -1637,7 +1637,7 @@ PLACE +ROOF, TOWER.ROOF
    tower, runs through the forest, bending to NW and finally 
    disappears over a steep hill. To the east, the forest marches
    into the distance, but to the south the ground becomes quite
-   broken by some ravines and and a somewhat romantic crag or two.
+   broken by some ravines and a somewhat romantic crag or two.
    To the west the forest stops abruptly, giving way to the blue 
    surface of the sea, which reaches all the way to the horizon.
 #
@@ -2495,6 +2495,7 @@ PLACE ABOVE.SEA
 FRAGMENT RAMP.END
    A narrow ramp climbs steeply upwards from here, soon disappearing
    around the spire's western side.
+
 #
 FRAGMENT AT.SPIRE.BOTTOM
    You are standing at the bottom of the spire, a massive
@@ -2505,15 +2506,15 @@ FRAGMENT AT.SPIRE.BOTTOM
 #
 PLACE NORTH.OF.SPIRE
    You're north of the black spire.
-  %!`{AT.SPIRE.BOTTOM}
+  %{AT.SPIRE.BOTTOM}
 #
 PLACE EAST.OF.SPIRE
    You're east of the black spire.
-  %!`{AT.SPIRE.BOTTOM}
+  %{AT.SPIRE.BOTTOM}
 #
 PLACE SOUTH.OF.SPIRE
    You're south of the black spire.
-  %!`{AT.SPIRE.BOTTOM}
+  %{AT.SPIRE.BOTTOM}
 #
 PLACE WEST.OF.SPIRE
    You're west of the black spire.
@@ -2550,103 +2551,103 @@ FRAGMENT AMONG.DARK.DUNES
 #
 PLACE DESERT.1
    {AMONG.DUNES}
-  %!`{AMONG.DARK.DUNES}
+  %{AMONG.DARK.DUNES}
 #
 PLACE DESERT.2
    {AMONG.DUNES}
-  %!`{AMONG.DARK.DUNES}
+  %{AMONG.DARK.DUNES}
 #
 PLACE DESERT.3
    {AMONG.DUNES}
-  %!`{AMONG.DARK.DUNES}
+  %{AMONG.DARK.DUNES}
 #
 PLACE DESERT.4
    {AMONG.DUNES}
-  %!`{AMONG.DARK.DUNES}
+  %{AMONG.DARK.DUNES}
 #
 PLACE DESERT.5
    {AMONG.DUNES}
-  %!`{AMONG.DARK.DUNES}
+  %{AMONG.DARK.DUNES}
 #
 PLACE DESERT.6
    {AMONG.DUNES}
-  %!`{AMONG.DARK.DUNES}
+  %{AMONG.DARK.DUNES}
 #
 PLACE DESERT.7
    {AMONG.DUNES}
-  %!`{AMONG.DARK.DUNES}
+  %{AMONG.DARK.DUNES}
 #
 PLACE DESERT.8
    {AMONG.DUNES}
-  %!`{AMONG.DARK.DUNES}
+  %{AMONG.DARK.DUNES}
 #
 PLACE DESERT.9
    {AMONG.DUNES}
-  %!`{AMONG.DARK.DUNES}
+  %{AMONG.DARK.DUNES}
 #
 PLACE DESERT.10
    {AMONG.DUNES}
-  %!`{AMONG.DARK.DUNES}
+  %{AMONG.DARK.DUNES}
 #
 PLACE DESERT.11
    You are standing next to a basalt outcrop.
-  %!`{AMONG.DARK.DUNES}
+  %{AMONG.DARK.DUNES}
 #
 PLACE ROCKY.DESERT
    You are standing among boulders on a rocky outcrop in 
    the desert.
-  %!`You are standing among some boulders on a black basaltic outcrop
+  %You are standing among some boulders on a black basaltic outcrop
    swept clean of sand by the unceasing wind. The outcrop gives
    way to a sea of forbidding dark dunes in all directions, though
    to the southeast the dunes appear to be somewhat lower.
 #
 PLACE DESERT.12
    {AMONG.DUNES}
-  %!`{AMONG.DARK.DUNES}
+  %{AMONG.DARK.DUNES}
 #
 PLACE DESERT.13
    {AMONG.DUNES}
-  %!`{AMONG.DARK.DUNES}
+  %{AMONG.DARK.DUNES}
 #
 PLACE DESERT.14
    {AMONG.DUNES}
-  %!`{AMONG.DARK.DUNES}
+  %{AMONG.DARK.DUNES}
 #
 PLACE DESERT.15
    {AMONG.DUNES}
-  %!`{AMONG.DARK.DUNES}
+  %{AMONG.DARK.DUNES}
 #
 PLACE DESERT.16
    {AMONG.DUNES}
-  %!`{AMONG.DARK.DUNES}
+  %{AMONG.DARK.DUNES}
 #
 PLACE DESERT.17
    {AMONG.DUNES}
-  %!`{AMONG.DARK.DUNES}
+  %{AMONG.DARK.DUNES}
 #
 PLACE DESERT.18
    {AMONG.DUNES}
-  %!`{AMONG.DARK.DUNES}
+  %{AMONG.DARK.DUNES}
 #
 PLACE DESERT.19
    {AMONG.DUNES}
-  %!`{AMONG.DARK.DUNES}
+  %{AMONG.DARK.DUNES}
 #
 PLACE DESERT.20
    {AMONG.DUNES}
-  %!`{AMONG.DARK.DUNES}
+  %{AMONG.DARK.DUNES}
 #
 PLACE DESERT.21
    {AMONG.DUNES}
-  %!`{AMONG.DARK.DUNES}
+  %{AMONG.DARK.DUNES}
 #
 PLACE DESERT.22
    {AMONG.DUNES}
-  %!`{AMONG.DARK.DUNES}
+  %{AMONG.DARK.DUNES}
 #
 PLACE DESERT.LAST
    {AMONG.DUNES}
-  %!`{AMONG.DARK.DUNES}
+  %{AMONG.DARK.DUNES}
 #
 PLACE RIVER.BED.1
    You are on the dry river-bed, by the cave of winds.
