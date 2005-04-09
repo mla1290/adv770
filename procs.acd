@@ -51,7 +51,7 @@ proc generic.no.do
       quip too.far.off
    fin
    ifflag context, arg2.here
-      respond get, no.pick.up
+      respond get, no.pick.up, arg2
       respond push, pull, nothing
       respond kill, break, kick, no.violence
    fin
@@ -73,8 +73,8 @@ proc generic.no.do
 #
 proc bail.out
    ifkey oil
-#      call handle.oil
-      handle.oil
+      call handle.oil
+#      handle.oil
    fin
    ifkey water
       call handle.water
@@ -95,6 +95,12 @@ proc bail.out
       ifflag here, indoors
          flag context, arg2.distant
       fin
+   fin
+   ifkey wall
+      and
+      not
+   ifflag here, not.in.cave
+      quip nothing.special, wall
    fin
    ifany shade, shadow
       and
@@ -278,7 +284,11 @@ proc bail.out
       otherwise
       ifflag arg2, seen
          or
-      ifany plant, mirror, seal, tablet, plaque
+      ifflag arg2, feature
+         or
+      ifflag arg2, mortal
+         or
+      ifkey plant
          quip i.dont.see, arg2
       else
          quip no.understand    # Fake it!
@@ -2358,6 +2368,7 @@ proc here.you.can.see
    local single
    local count
 #
+   set result 0
    itobj obj.ptr, here
       flag obj.ptr, seen
       ifflag obj.ptr, feature
@@ -2376,6 +2387,7 @@ proc here.you.can.see
          ifis obj.ptr, giant
          else
             say obj.ptr
+            add result, 1
          fin
       fin
    eoi
@@ -2393,6 +2405,12 @@ proc here.you.can.see
    fin
    ifnear starstone, iridescent
       flag starstone, special1   # Note we've seen it lit!
+   fin
+#
+   ifat sea.view
+      and
+   ifgt result, 0
+      say dirty.stuff, result
    fin
 #
 #=====================================================================
@@ -3680,6 +3698,9 @@ proc hint.logic
       lda text.ptr, shaft.hint
    otherwise
    ifat stream.maze.entrance, stream.maze
+      ifflag hints, sewer.exit
+         lda text.ptr, sewer.exit.hint
+      otherwise
       ifflag hints, sewer.pending
          lda text.ptr, sewer.hint.2
       else
@@ -3846,9 +3867,18 @@ proc hint.action
             quit
          fin
          ifat stream.maze, stream.maze.entrance
-            flag hints, sewer.pending
-            unflag stream.maze, hintable
-            unflag stream.maze.entrance, hintable
+            ifflag hints,sewer.pending
+               or
+            ifflag hints, sewer.exit
+            else
+               flag stream.maze, hintable
+               flag stream.maze.entrance, hintable
+               flag hints, sewer.pending
+            fin
+            ifflag hints, sewer.exit
+               unflag stream.maze, hintable
+               unflag stream.maze.entrance, hintable
+            fin
          fin
          ifnear snake
             ifis text.ptr, snake.hint.2
@@ -5625,7 +5655,7 @@ proc save.this
    ifis arg2, save             # Can't be just 'rest'! We wouldn't be here.
       exec 11                  # Copy 1st word to 2nd
    fin
-   ifgt alarm, 0
+   ifgt alarm, 1
       add alarm, 1
    fin
    save file, result           # Save program image
@@ -5896,9 +5926,15 @@ proc show.nouns
    fin
    vocab pearl, 0, seen, 0
    vocab pillow, 0, seen, 0
-   vocab pine, 0, seen, 0
+   vocab pine, island.05, been.here, 0
    vocab pirate, 0, seen, 0
-   vocab plant, 0, seen, plant.voc
+   ifflag plant, seen
+      or
+   ifflag beanstalk, seen
+      vocab plant, 0, seen, plant.voc
+   else
+      vocab plant, 0, object, 0
+   fin
    vocab plaque, 0, seen, 0
    vocab plate, 0, seen, 0
    vocab portcullis, 0, seen, 0
@@ -6027,6 +6063,7 @@ proc randomise.texts
    randomise we.have.light, 0
    randomise nothing.to.undo, 0
    randomise no.kick.it, 0
+   randomise indecisions, 0
    set nothing.doing.2, nothing.doing.1
    randomise typo, 0             # TYPO is structured in blocks of 4
    divide typo, 4                # messages, so randomise to the start
@@ -6357,6 +6394,54 @@ proc lets.knock
 #
 #=====================================================================
 #
+proc in.forest.actions
+   ifkey grass
+      ifis arg1, grass
+         respond grass, attention.to.detail, arg1
+      else
+         respond grass, attention.to.detail, arg2
+      fin
+   fin
+   respond berries, no.berries
+   ifkey look
+      respond forest, around, in.forest
+      respond sapling, saplings, various.saplings
+      respond tree, pine, maple, birch, ash, a.tree.is.a.tree
+      respond bushes, undergrowth, generic.undergrowth
+      respond sky, up, forest.scenery, 0
+      respond floor, down, forest.scenery, 1
+      respond vegetation, dull.stuff, 0
+   fin
+   ifkey climb
+      ifeq status, 1
+         or
+      ifany tree, maple, pine
+         ifat hill
+            quip dull.view, 1
+         else
+            quip dull.view, 0
+         fin
+      fin
+      respond sapling, birch, ash, too.young, arg2
+      flag context, arg2.here
+      proceed
+   fin
+   ifkey cut
+      ifany tree, maple, birch, ash, sapling, saplings
+         proceed
+      fin
+      ifany bushes, undergrowth
+         quip no.point.in.that
+      fin
+   fin
+   ifany undergrowth, foliage, maple, birch, pine, sapling, saplings, ash
+      or
+   ifany tree, maple, ash, sapling, saplings, bushes, floor, sky, vegetation
+      flag context, arg2.here
+   fin
+#
+#=====================================================================
+#
 proc by.house.actions
    ifkey grass
       ifis arg1, grass
@@ -6421,54 +6506,7 @@ proc by.house.actions
       respond break, no.violence
       quip hah!
    fin
-#
-#=====================================================================
-#
-proc in.forest.actions
-   ifkey grass
-      ifis arg1, grass
-         respond grass, attention.to.detail, arg1
-      else
-         respond grass, attention.to.detail, arg2
-      fin
-   fin
-   respond berries, no.berries
-   ifkey look
-      respond forest, around, in.forest
-      respond sapling, saplings, various.saplings
-      respond tree, pine, maple, birch, ash, a.tree.is.a.tree
-      respond bushes, undergrowth, generic.undergrowth
-      respond sky, up, forest.scenery, 0
-      respond floor, down, forest.scenery, 1
-      respond vegetation, dull.stuff, 0
-   fin
-   ifkey climb
-      ifeq status, 1
-         or
-      ifany tree, maple, pine
-         ifat hill
-            quip dull.view, 1
-         else
-            quip dull.view, 0
-         fin
-      fin
-      respond sapling, birch, ash, too.young, arg2
-      flag context, arg2.here
-      proceed
-   fin
-   ifkey cut
-      ifany tree, maple, birch, ash, sapling, saplings
-         proceed
-      fin
-      ifany bushes, undergrowth
-         quip no.point.in.that
-      fin
-   fin
-   ifany undergrowth, foliage, maple, birch, pine, sapling, saplings, ash
-      or
-   ifany tree, maple, ash, sapling, saplings, bushes, floor, sky, vegetation
-      flag context, arg2.here
-   fin
+   call in.forest.actions
 #
 #=====================================================================
 #

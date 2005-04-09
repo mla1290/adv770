@@ -106,9 +106,9 @@ TEXT STUCK.IN.NOWHERE
     Wandering around here may be your idea of fun, but let's get on with
     adventuring. Or are you just too proud to do as instructed?
 #
-TEXT ORIENTAL.DRAWING
-    It's just ordinary ancient oriental cave drawings of no conceivable
-    interest to a mere adventurer like you.
+TEXT increment ORIENTAL.DRAWING
+    It's just ordinary ancient oriental cave drawings[ of no conceivable
+    interest to a mere adventurer like you/].
 #
 TEXT INTRO
     Somewhere nearby is Colossal Cave, where others have found fortunes in
@@ -130,8 +130,8 @@ TEXT INTRO
     (memory save and restore) and QUIT.
 
 #
-TEXT DWARF.BLOCKS
-    A little dwarf with a big knife blocks your way.
+TEXT random DWARF.BLOCKS
+    A little dwarf with a big knife [blocks your/smartly steps in the] way.
 #
 TEXT FIRST.DWARF
 
@@ -291,9 +291,9 @@ TEXT increment BIRD.IS.SCARED
     you approach, it becomes disturbed and you cannot catch it.[/ Maybe
     it is something you are carrying?/]
 #
-TEXT NEED.CAGE
-    You might be able to catch the bird, but you have no means of
-    carrying it.
+TEXT increment NEED.CAGE
+    [Y/As I already pointed out, y]ou might be able to catch the bird, but 
+    you have no means of carrying it.
 #
 TEXT YOU.ARENT.CARRYING
     You aren't carrying the #!
@@ -354,9 +354,9 @@ TEXT LAMP.NOW
 TEXT LAMP.ALREADY
     The lamp was [not/already] lit!
 #
-TEXT CANT.GET.PAST.BEAR
-    There is no way to get past the bear to unlock the chain, which is
-    probably just as well.
+TEXT increment CANT.GET.PAST.BEAR
+    There is no way to get past the bear to unlock the chain[, which is
+    probably just as well/].
 #
 TEXT NOTHING
     Nothing happens.
@@ -370,8 +370,9 @@ TEXT cycle PACIFIST
 TEXT BIRD.IS.DEAD
     The little bird is now dead. Its body disappears.
 #
-TEXT CANT.KILL.SNAKE
-    Attacking the snake doesn't work and is also very dangerous.
+TEXT increment CANT.KILL.SNAKE
+    [A/I said: a/Didn't you listen? A/][ttacking the snake doesn't work 
+    and is also very dangerous./=/=/Forget it!]
 #
 TEXT KILLED.DWARF
     You killed a little dwarf.
@@ -385,7 +386,8 @@ TEXT increment DWARF.STABS
     with his nasty sharp knife! [I can't say I am really surprised; them
     dwarves have quite a reputation for hand to hand fighting./I take it
     you've never seen a brawl in a dwarvish tavern, or you'd think twice
-    before trying to take on a dwarf hand-to-hand./]
+    before trying to take on a dwarf hand-to-hand./All I can say is you
+    had it coming!/]
 #
 FRAGMENT WITH.WHAT?
     With your bare hands??_
@@ -393,8 +395,9 @@ FRAGMENT WITH.WHAT?
 FRAGMENT WITH.BARE.HANDS?
     Do you really mean to attack [the/=/a] # with your bare hands?_
 #
-TEXT OLDFASHIONED.MAGIC
-    Good try, but that's a worn out, old-fashioned magic word.
+TEXT cycle OLDFASHIONED.MAGIC
+    [Good try, but/Well, OK, but/Nah../Seriously,] that's a worn out, 
+    old-fashioned magic word[/, not of any practical use any more/].
 #
 TEXT HELP.DATA
     Imagine that you are somewhere else (far, far away, in a strange land
@@ -461,9 +464,9 @@ TEXT SAVE.YOUR.FERTILISER
 TEXT NO.UNLOCK.KEYS
     You can't unlock the keys.
 #
-TEXT STILL.WHERE.YOU.WERE
-    You have crawled around in some little passages and wound up back 
-    where you started from.
+TEXT cycle STILL.WHERE.YOU.WERE
+    You have crawled [around in/through/along/through] some little passages 
+    and [wound up/finished/found yourself/ended up] back where you started.
 #
 TEXT TRY.FOLLOWING.STREAM
     I don't know where the cave is, but hereabouts no stream can run on the
@@ -562,7 +565,7 @@ TEXT assigned SLURP
     decomposing vegetable matter/lake. It is cold and refreshing]. 
 #
 TEXT NO.WEAR.CRUCIFIX
-    The crucifix is not the kind you wear. It's far too lager and heavy
+    The crucifix is not the kind you wear. It's far too large and heavy
     for that anyway.
 #
 TEXT SALT.H20.BAD
@@ -712,30 +715,32 @@ TEXT CANT.GO.BACK
 TEXT ARMS.ARE.FULL
     You can't carry anything more. You'll have to drop something first.
 #
-TEXT ARMS.ARE.EMPTY
-    You're not carrying anything.
+TEXT random ARMS.ARE.EMPTY
+    You['re not carrying anything/ are empty-handed].
 #
-TEXT CANT.PASS.GRATE
-    You can't pass through a locked steel grate!
+TEXT increment CANT.PASS.GRATE
+    You can't pass through a locked steel grate![/ What makes you
+    expect ohterwise? Blind hope?/ Why don't you listen to 
+    me?!/ (Sigh...)/]
 #
 TEXT IT.IS.HERE.NOW
     I believe what you want is right here with you.
 #
-TEXT SLIT.TOO.NARROW
-    You don't fit through a five-inch slit!
+TEXT increment SLIT.TOO.NARROW
+    You[ / really / *REALLY* /]don't fit through a five-inch slit!
 #
 TEXT TRY.THE.BRIDGE
     I respectfully suggest you go across the bridge instead of jumping.
 #
-TEXT NO.WAY.ACROSS
-    There is no way across the fissure.
+TEXT increment NO.WAY.ACROSS
+    There is [/still ]no way across the fissure.[// Take my word for it!/]
 #
 TEXT YOU.CURRENTLY.HAVE
     [Y/It's dark, but if I recall correctly, y]ou are[ currently/] carrying:
 #
-TEXT BIRD.NOT.HUNGRY
-    It's probably not hungry (it's merely pinin' for the fjords). Besides,
-    you have no bird seed.
+TEXT increment BIRD.NOT.HUNGRY
+    [It might not be hungry - just pinin' for the 
+    fjords. /=/][Besides, y/In any case, y/Y]ou have no bird seed.
 #
 TEXT SNAKE.EATS.BIRD
     The snake has now devoured your bird. I think you are now stuck. 
@@ -747,8 +752,8 @@ TEXT increment IT.WONT.EAT
 TEXT FED.UP.DWARF
     You fool, dwarves eat only coal! Now you've made him *really* mad!!
 #
-TEXT NO.WAY.TO.CARRY
-    You have nothing suitable for carrying #.
+TEXT cycle NO.WAY.TO.CARRY
+    You have [nothing suitable for/no way of] carrying #.
 #
 TEXT NOTHING.TO.FILL
     There is nothing here with which to fill the #.
@@ -760,8 +765,8 @@ TEXT cycle HAH!
     [Don't be/=/=/Oh come on!/Be serious,] [ridiculous!/silly!/absurd!/Do
     get serious!/please.]
 #
-TEXT DOOR.NEEDS.OIL
-    The door is extremely rusty and refuses to open.
+TEXT increment DOOR.NEEDS.OIL
+    The door is [/still ]extremely rusty and [//stubbornly ]refuses to open.
 #
 TEXT YOU.OIL.THE.PLANT
     The plant indignantly shakes the oil off its leaves and asks, "Water?"
@@ -773,11 +778,14 @@ TEXT DOOR.NOW.OILED
     The oil has freed up the hinges so that the door will now move,
     although it requires some effort.
 #
-TEXT ROOTS.TOO.DEEP
-    The # has exceptionally deep roots and cannot be pulled free.
+TEXT increment ROOTS.TOO.DEEP
+    The # has exceptionally deep roots and cannot be pulled 
+    free[/, so don't bother trying/ - you are not the first to try,
+    nor the last to fail/].
 #
-TEXT KNIVES.GO.POOF
-    The dwarves' knives vanish as they strike the walls of the cave.
+TEXT random KNIVES.GO.POOF
+    The dwarves' knives [/magically /mysteriously /conveniently ]vanish 
+    as they strike the walls of the cave.
 #
 TEXT random SOMETHING.DOESNT.FIT
     Something you're carrying is too bulky to fit through with you. You'd
@@ -1216,15 +1224,15 @@ TEXT LAMP.GETTING.DIM
     best start wrapping this up.
 
 #
-TEXT MAG.IN.DWARVISH
-    I'm afraid the magazine is written in a form of Dwarvish runes with
-    which I am not familiar.
+TEXT random MAG.IN.DWARVISH
+    [I'm afraid/Sorry,/Regrettably,/Unfortunately,] the magazine is 
+    written in a form of Dwarvish runes with which I am not familiar.
 #
 TEXT IT.SAYS.CHEST.ELSEWHERE
     "This is not the maze where the pirate leaves his treasure chest."
 #
-TEXT MACHINE.SIGN
-    It reads, "Drop coins here to receive fresh batteries."
+TEXT increment MACHINE.SIGN
+    It [/still ]reads, "Drop coins here to receive fresh batteries."
 #
 TEXT cycle NO.UNDERSTAND
     [I'm afraid I don't understand./Eh?/Either I am being dense, 
@@ -1414,9 +1422,11 @@ TEXT NEW.BATTERIES
     The old batteries in your lamp were pretty well shot - I've taken the
     the liberty of putting in the new ones.
 #
-TEXT CANT.READ.DOCUMENTS
-    How? I don't even recognise the language the documents are in!
-    I suppose it's likely to be Giantish, but that does not exactly help.
+TEXT increment CANT.READ.DOCUMENTS
+    [How? I don't even recognise the language the documents are in!
+    I suppose it's likely to be Giantish, but that does not exactly
+    help/As I already explained, I can't read the documents. I don't 
+    even recognise the language].
 #
 TEXT NO.POINT
     There is no point in [sav/memoriz]ing the game just yet.
@@ -1499,7 +1509,7 @@ TEXT DOUSED.DWARF
     curse[/s/] violently; [/he/they] *REALLY* look[/s/] angry now!
 #
 TEXT NOTHING.TO.DRINK
-    There is nothing here that I can drink!
+    There is nothing here that one could drink!
 #
 TEXT CANT.READ.OYSTER
     There's nothing written on the oyster.
@@ -1586,11 +1596,11 @@ TEXT LAMP.EXPLODES
     nowhere and strikes your lamp. The lamp instantly explodes like a
     grenade, and you are mown down by a cloud of shrapnel.
 #
-TEXT LAMP.RECHARGED
+TEXT increment LAMP.RECHARGED
     The air fills with tension, and there is a subdued crackling sound. A
     blue aura forms about your lantern, and small sparks jump from the
     lantern to the ground. The aura fades away after several seconds, and
-    your lamp is once again shining brightly.
+    your lamp is once again shining brightly.[ Congratulations!/]
 
 #
 TEXT GOT.THE.SWORD
@@ -1624,21 +1634,17 @@ TEXT TROLLS.REVENGE
     the tunnel behind you, wearing a large backpack. "So, Mister
     Magician," he shouts, "you like to use magic to steal back my
     hard-earned toll? Let's see how you like a little of MY magic!!" With
-    that, he aims a tube running from the backpack directly at the bear and
-    pulls a trigger. A spout of magical fire roars out and singes the
-    bear's fur; the bear bellows in pain and dashes onto the bridge to
-    escape. The bridge shudders, groans, and collapses under the weight,
-    and you and the bear plunge down into the chasm.
+    that, he aims a tube running from the backpack directly at 
+    the [bear/bridge] and pulls a trigger. A spout of magical fire roars
+    out and [singes the bear's fur; the bear bellows in pain and dashes 
+    onto the bridge to escape. The bridge shudders, groans, and collapses
+    under the weight, and you and the bear plunge down into the 
+    chasm/incinerates the bridge supports, causing the bridge to sway
+    giddily and collapse into the chasm. You plunge down to your death].
 #
-TEXT TROLLS.REVENGE.2
-    As you reach the middle of the bridge, the troll appears from out of
-    the tunnel behind you, wearing a large backpack. "So, Mister
-    Magician," he shouts, "you like to use magic to steal back my
-    hard-earned toll? Let's see how you like a little of MY magic!!" With
-    that, he aims a tube running from the backpack directly at the bridge
-    and pulls a trigger. A spout of magical fire roars out and incinerates
-    the bridge supports, causing the bridge to sway giddily and collapse
-    into the chasm. You plunge down to your death.
+TEXT CRACKED.WALL
+    There's nothing remarkable about the wall, except for that crack 
+    leading #.
 #
 TEXT WEAPON.MISSES
     The # misses the bear, bounces off the wall, and lands at your
@@ -1729,9 +1735,11 @@ TEXT OGRE.RIPS.HEAD.OFF
     You attack the ogre - a brave but foolish action. He quickly grabs you
     and with a heave of his mighty arms rips your body limb from limb.
 #
-TEXT NO.ARCH
-    I'm afraid I can't go that way - walking on red-hot lava is contrary to
-    union regulations (and is bad for your health anyhow).
+TEXT increment NO.ARCH
+    [I'm afraid I can't go that way - walking on red-hot lava is contrary to
+    union regulations (and is bad for your health anyhow)./We don't go in
+    for fire-walking here, sorry!/I am not walking on lava. Not for you, 
+    not for anybody else./No. And that's my final word on the subject.]
 #
 FRAGMENT HUNGRY.FUMES
     As you approach the center of the archway, hot vapours saturated with
@@ -1880,10 +1888,10 @@ TEXT KILL.A.FEW
     You kill several of the gooseberry goblins with your #, but the others
     swarm at you, force you to the ground, and rip out your throat.
 #
-TEXT TOUGH.DJINN
-    That's not a wise thing to try - djinni are essentially immortal and
-    thus are pretty hard to hurt. Besides, this one seems rather friendly
-    - why don't you just try releasing him?
+TEXT increment TOUGH.DJINN
+    That's not a wise thing to try[ - djinni are essentially immortal and
+    thus are pretty hard to hurt/].[/ Besides, the djinn seems quite friendly
+    - why don't you just try releasing him?/]
 #
 TEXT GOBLINS.EAT.YOU
     Goblins live exclusively on human flesh, and you can't spare any of
@@ -2376,9 +2384,10 @@ TEXT BE.OFF
     YOU!...]"
 
 #
-TEXT SPARE..T..01
+FRAGMENT assigned FLOOR?
+    [floor/ground]
 #
-TEXT SPARE..T..02
+TEXT SPARE..T..03
 #
 TEXT SLAB.SHUTS
     The slab [/once again ]swings quietly shut behind you.
@@ -2507,8 +2516,8 @@ TEXT increment NO.OPEN.GATE
     can only be opened by magic./There doesn't seem to be any
     way to open the gates.]
 #
-TEXT SPOON.QUIP
-    It says EPNS in flowery script.
+TEXT increment SPOON.QUIP
+    It says EPNS in flowery script[/, just as it did before].
 #
 TEXT E.P.N.S.
     Electro-plated nickel silver. It's nearly worthless.
@@ -2664,14 +2673,14 @@ TEXT RIDE.TO.HELL
 #
 TEXT ORION.QUIP
     Orion?... That's all mythology. You['d better stick to 
-    reality/ probably mean old O'Ryan, but he's dead some years now].
+    reality/ probably mean old O'Ryan, but he's been dead for some years now].
 #
 TEXT NO.KILL.UNICORN
     Not a chance! I would not touch a thing of such pure beauty! And
     anyway, unicorns are a protected species, as you should know.
 #
-TEXT NO.FOOD.FOR.IT
-    You have nothing to feed it with.
+TEXT random NO.FOOD.FOR.IT
+    You have nothing [with which /]to feed it[/ with].
 #
 TEXT UNICORN.EATS
     The unicorn eats the food and looks around for more. On finding none,
@@ -3214,10 +3223,11 @@ TEXT increment IS.DUTCH
     There Ain't No Such Thing As A Free Lunch - I couldn't agree more!
     [ You'd be amazed, though, how many adventuring slobs think otherwise./]
 #
-TEXT CHEST.LOCKED
-    Unfortunately, the chest has a combination lock on it. Still, it is
-    obviously full of goodies, so I think we'll allow you the points
-    for just leaving it in the building.
+TEXT increment CHEST.LOCKED
+    [Unfortunately,/You forget -] the chest has a combination lock on 
+    it[. Still, it is obviously full of goodies, so I think we'll allow
+    you the points for just leaving it in the building/. But don't worry,
+    I am counting it as a treasure anyway/, but it still counts as a treasure].
 #
 TEXT USE.VOCABULARY
 
@@ -3620,9 +3630,9 @@ FRAGMENT SAFE.HINT
     Are you trying to work out how to open that safe?_
 #
 TEXT
-    Well, as an honest, hard working sprite I naturally would not know
+    Well, as an honest, hard working sprite, I naturally would not know
     much about such things, but a friend of mine works in another game
-    for Frobozz Magical Safe Company and he reckons that, given the right
+    for Frobozz Magical Safe Company, and he reckons that, given the right
     skeleton key, no safe is ever really safe, keyhole or no keyhole.
 #
 TEXT E.P.N.S.TO.YOU.TOO
@@ -3725,9 +3735,10 @@ TEXT OWL.V.DRAGON
 TEXT ABSOLUTELY.NOTHING
     With a deafening silence absolutely nothing happens.
 #
-TEXT JONAH.DEAD.END
-    If you are trying to get beyond the stalactites, I think you are
-    wasting your time. Nobody has managed it yet.
+TEXT increment JONAH.DEAD.END
+    If you are trying to get beyond the stalactites, [I think /]you are
+    wasting your time.[ Nobody has managed it yet. Perhaps it will become
+    possible next time the cave gets renovated or extended.../]
 #
 TEXT PEA.SOUPER
     A real pea-souper. Dead easy to get lost in.
@@ -3758,7 +3769,8 @@ TEXT VOCAB.GENERAL
 #
 TEXT VOCAB.VERBS
     The below verb list is not complete, but with the exception of magic
-    formulae, it includes all verbs you need for the ultimate success.
+    formulae, it includes (but is not restricted to) all verbs you need 
+    for the ultimate success.
     I've thrown in some words which are not strictly verbs, but you can
     use as such (e.g. EAST or TERSE). Some useful synonyms and abbreviations
     are given in brackets.
@@ -3768,15 +3780,15 @@ TEXT VOCAB.VERBS
 
     again (repeat, r), back (b, retreat), blast, break, brief, change,
     chew (bite), climb, close (lock), contemplate (meditate), credits (ack),
-    cross, cut, dig, drink, downstream, drop (dr, free, release, r),
-    dwarvish, eat, english, enter (in), exit (out), extinguish (off),
-    feed, fill, fly, go (walk, run, follow), get (g, take, t), give (offer),
-    help (?), history, hit, hoot, info, inventory (i), jump, kill, knock,
+    cross, cut, dig, drink, drop (dr, free, release, r), dwarvish, eat, 
+    english, enter (in), exit (out), extinguish (off), feed, fill, fly, 
+    go (walk, run, follow), get (g, take, t), give (offer), help (?), 
+    history, hit, hoot, info, inventory (i), jump, kick, kill, knock, 
     lift, light (on), listen, look (l, examine, x), memorize (remember),
-    open (unlock), play, pour, quit (q), read, recall, redo, reflect, remove,
-    rest (wait), restore, ride, rub (polish), save, say, score (sc), scream,
-    scry, sip (taste), tame (placate), terse, throw (th), translate,
-    undo, upstream, verbose, vocabulary, wash, wave (swing), wear.
+    open (unlock), play, pour, quit (q, cancel, abort), read, recall, redo,
+    reflect, remove, rest (wait), restore, ride, rub (polish), save, say,
+    score (sc), scream, scry, sip (taste), tame (placate), terse, throw (th),
+    translate, undo, upstream, verbose, vocabulary, wash, wave (swing), wear.
 #
 FRAGMENT VOCAB.NOUNS
     The below list of nouns is largely confined to things 
@@ -4223,17 +4235,18 @@ TEXT TOO.YOUNG
     The birch and ash saplings around here are too young to support
     your weight.
 #
-TEXT BLUE.SKY
-    You look up and observe that the cloudless sky is a lovely blue colour.
+TEXT increment BLUE.SKY
+    You look up and[/ once again] observe that the cloudless sky is a
+    lovely blue colour.
 #
-TEXT DELICATE.STRUCTURE
-    An exquisitely delicate structure. Looks like Bohemian crystal,
+TEXT increment DELICATE.STRUCTURE
+    An exquisitely delicate structure. [Looks like Bohemian crystal,
     but you never know nowadays, it might be plastic. I dare say it
-    is safe enough, just don't stomp too hard.
+    is/Probably] safe enough, just don't stomp too hard.
 #
-TEXT RICKETY.AFFAIR
-    A rickety contraption, quite likely to collapse one of these days.
-    I guess the troll is just too mean to have it fixed.
+TEXT increment RICKETY.AFFAIR
+    The bridge is a rickety contraption, quite likely to collapse one
+    of these days.[ I guess the troll is just too mean to have it fixed./]
 #
 TEXT BRIDGE.IS.GONE
     Whatever's left of the bridge is at the bottom of the chasm. I am not
@@ -4257,8 +4270,9 @@ TEXT INDIGNANT.BIRD
 FRAGMENT THE.IT
     The #
 #
-TEXT JUST.A.FIXTURE
-    The #? Just a fixture of no particular significance, I regret to say.
+TEXT cycle JUST.A.FIXTURE
+    The #? Just a fixture of no [particular/intrinsic/special] significance,
+    I [regret/am sorry] to say.
 #
 TEXT COLD.ASHES
     The ashes are quite cold. Except for that curious indentation, there
@@ -4449,11 +4463,11 @@ TEXT SPRING.IS.WATER
 TEXT NOT.GOING.ANYWHERE
     The # is not going anywhere.
 #
-TEXT WATER.IS.FOR.DRINKING
-    Water in this dungeon is provided primarily for quenching thirst.
-    It does, of course, have other points, e.g. in its decorative
+TEXT increment WATER.IS.FOR.DRINKING
+    Water in this dungeon is provided primarily for quenching 
+    thirst.[ It does, of course, have other points, e.g. in its decorative
     value or as a natural obstacle to bar your progress in
-    strategically chosen places.
+    strategically chosen places./]
 #
 TEXT ITS.A.PLANT
     Looks like a [stunted/pretty common/large] fairy beanstalk to me.
@@ -4483,10 +4497,11 @@ TEXT BEANSTALK.GIGANTIC
     helter-skelter growth. After a while it slows down
     and then stops with a satisfied belch.
 #
-TEXT BEANSTALK.NOT.THIRSTY
-    I take it you are no gardener... With all that damp ground
+TEXT increment BEANSTALK.NOT.THIRSTY
+    [I take it you are no gardener... With all that damp ground
     around the beanstalk, I shouldn't need to tell you that
-    water is not what is required here.
+    water is not what is required here/There's plenty of moisture in
+    the soil around the beanstalk - no need to add any more].
 #
 TEXT increment PLANT.NOT.HUNGRY
     [With all the minerals available to it around here, the plant
@@ -4503,9 +4518,10 @@ TEXT SNEAKY.CRUNCH
    =                      split your head on a
     conveniently positioned sharp stone.
 #
-TEXT NOWHERE.MIST
-    Well, not mist, really. Just a thin, pearly sort of gauze. It's only
-    here to make the description a bit more atmospheric.
+TEXT increment NOWHERE.MIST
+    [Well, not mist, really. J/It iss j]ust a thin, pearly sort of gauze. 
+    [It's only here/Its sole purpose is] to make the description a bit 
+    more atmospheric.
 #
 TEXT CURTAINED.WALLS
     You can't see the walls - they are covered by the curtains.
@@ -4518,19 +4534,19 @@ TEXT NO.OPEN.CURTAINS
     The curtains are fixed somewhere above the other side of the opening,
     but will, probably, permit passage.
 #
-TEXT NO.WALLS
-    As could be plainly inferred from the description by anybody with
+TEXT increment NO.WALLS
+    [As could be plainly inferred from the description by anybody with
     even a very modest amount of intelligence, this strange place has
     no such conventional features as walls. Before you ask, no, it
     has no floor, ceiling, doors or windows either. I hope, the
-    fact does not come as a great surprise.
+    fact does not come as a great surprise/There aren't any walls here].
 #
-TEXT SEALED.FLASK.INFO
+TEXT increment SEALED.FLASK.INFO
     It is a small earthenware flask, sealed with red wax. The seal is worn
     with time, but if you look carefully, you can still make out the shape
-    of the Solomon's Seal imprinted into it. Or rather, you could if you
+    of the Solomon's Seal imprinted into it.[ Or rather, you could if you
     knew what a Solomon's Seal was, which, in the circumstances, might be
-    advisable.
+    advisable./]
 #
 TEXT DOWN.THE.SHAFT
    / reside[s/] momentarily on the slippery surface, then slide[s/] down
@@ -4543,9 +4559,9 @@ TEXT DOWN.THE.DSHAFT
 TEXT NO.CAP
     How? The seal is broken and you have no cap to fit.
 #
-TEXT INSAFE.INFO
-    The inside of the safe is completely featureless. Look as you might,
-    you are not going to discover anything of interest.
+TEXT cycle INSAFE.INFO
+    The inside of the safe is completely featureless.[ Look as you might,
+    you are not going to discover anything of interest./]
 #
 TEXT KEBAB
 
@@ -4713,10 +4729,10 @@ TEXT
     head, but it is too late - the darkness envelops you as your mind
     is torn to shreds by the triumphant voices, swirling in for the kill.
 #
-TEXT ITS.A.WINDOW
-    It's a window - a hole in the wall, if you pardon such a vulgar,
+TEXT increment ITS.A.WINDOW
+    It's a window - a hole in the wall[, if you pardon such a vulgar,
     though apt, description. No glazing. Civilisation has not 
-    reached this far yet.
+    reached this far yet./. No glass.]
 #
 TEXT NO.GLASS
     The window is just a hole in the wall. There is nothing in it to #.
@@ -4725,9 +4741,9 @@ TEXT SPLASHING.NOISES
     You pause for a while and listen to the [//distant ]splashing 
     sounds[/ of water falling into the swamp].
 #
-TEXT HOUSE.INFO
-    It's no architectural miracle - just a simple brick structure with no
-    windows, serving as a well house for a large spring.
+TEXT increment HOUSE.INFO
+    [It's no architectural miracle - just/The house is] a simple brick
+    structure with no windows, serving as a well house for a large spring.
 #
 TEXT SLAB.INFO
     A massive hunk of stone. Nothing particularly special about it.
@@ -4788,9 +4804,11 @@ TEXT CLEAN.ENOUGH
     You splash some water on your face, but it is bitterly cold and you
     quickly decide that you are quite clean enough as you are.
 #
-TEXT NO.WASTE.WATER
-    Personal hygiene is all very well, but only a B-movie adventurer would be
-    daft enough to waste his meagre water supply for the sake of appearances.
+TEXT increment NO.WASTE.WATER
+    Personal hygiene is all very well, but [only a B-movie adventurer
+    would be daft enough to waste his meagre water supply for the sake 
+    of appearances/a real adventurer should know not to waste water
+    without real need].
 #
 TEXT NOTHING.TO.WASH.WITH
     There is nothing here suitable for washing i[n/t].
@@ -4806,11 +4824,11 @@ TEXT
     occasions.
 #
 FRAGMENT SEWER.HINT.2
-    Still can't find your way out?_
+    Still don't know how to remedy the situation?_
 #
 TEXT
-    Ever wondered about phrases such as "down in the sewer" No? Perhaps
-    you should.
+    Ever wondered why most normal people avoid wading through sewers?
+    No? Perhaps you should.
 #
 TEXT WHATEVER.FOR?
     Whatever for? There's no profit in that.
@@ -4820,8 +4838,8 @@ TEXT RAGS.DIRTY
     look any better - short of a Fairy Godmother that is, and hardened
     adventurers aren't supposed to believe in fairies.
 #
-TEXT WASH.YOURSELF
-    Half-measures won't get you anywhere, flower.
+TEXT cycle WASH.YOURSELF
+    Half-measures won't get you anywhere[, flower/].
 #
 TEXT DRAIN.OUT.OF.REACH
     The drain is on the other side of the portcullis, too far from here.
@@ -4829,9 +4847,9 @@ TEXT DRAIN.OUT.OF.REACH
 TEXT ITS.OUT.OF.REACH
     [It's/They are] too far from here.
 #
-TEXT NO.CLIMB.PORTCULLIS
-    Climb the portcullis? You'd only get rusty all over. There is no way
-    to get to the other side up there either.
+TEXT increment NO.CLIMB.PORTCULLIS
+    [Climb the portcullis? You'd only get rusty all over. T/No, t]here is
+    no way to get to the other side up there either.
 #
 TEXT increment SOMETHING.STRANGE
     [Oh... something strange here. Don't think this is where we
@@ -4887,12 +4905,12 @@ TEXT NO.FOOL.STEPS
     gentle  \>\>ping\<\< from the south. The dome itself remains
     stubbornly unclimbable.
 #
-TEXT SUICIDE.SILLY
-    Oh, come, come! Things aren't really that bad. Try to think
+TEXT increment SUICIDE.SILLY
+    Oh, come, come! Things aren't really that bad.[ Try to think
     positively! You know, the "Every day in every way I feel
     better and better!" routine. And if that doesn't help, you can
     always quit. Wouldn't it be nice if all life's problems could
-    be solved so easily? Come on, buck up.
+    be solved so easily? Come on, buck up./]
 #
 FRAGMENT REALLY.SUICIDE?
     Oh!... Are you REALLY that desperate?
@@ -4905,16 +4923,16 @@ TEXT WALK.WITHOUT.LIGHT
     you just try walking about without a light? Just don't tell
     anybody it was my idea, there's a good fellow!
 #
-TEXT FAKE.AN.ACCIDENT
-    Oh, come on! I don't have to tell you again how to fake an
+TEXT increment FAKE.AN.ACCIDENT
+    Oh, come on![ I don't have to tell you again how to fake an
     accident, do I? One can't help noticing that your intellectual
     capacity is nothing to brag about, but even that pea-size
     brainlet of yours should be able to retain sound advice a bit
-    longer than that!
+    longer than that!/]
 #
-TEXT THINGS.COULD.BE.WORSE
-    That's the spirit! Things could be considerably worse, so
-    there's no need to despair just yet.
+TEXT increment THINGS.COULD.BE.WORSE
+    That's the spirit![ Things could be considerably worse, so
+    there's no need to despair just yet./]
 #
 TEXT RUG.ALREADY.IS
     The rug is already [rolled up//unrolled].
@@ -4941,9 +4959,12 @@ TEXT increment RUG.TOO.LARGE
     this little problem as a warming up for the challenges yet to
     come./Yawn...]
 #
-TEXT PORTCULLIS.NOW.OILY
-    Well, all right. The portcullis is now oily as well as rusty. I
-    wouldn't call it a great achievement. It's still firmly stuck.
+TEXT increment PORTCULLIS.NOW.OILY
+    [Well, all right. /=/][The portcullis is now /=/=/][oily as well as 
+    rusty. I wouldn't call it a great achievement. It's still firmly 
+    stuck/even oilier, but stuck as firmly as before/very oily. I don't 
+    think this is going to work/OK. You've wasted some more oil. There
+    is no other effect.].
 #
 TEXT increment SPOON.STILL.TARNISHED
     You rub the spoon[, and it becomes marginally cleaner, but not
@@ -4957,42 +4978,46 @@ TEXT increment SPOON.STILL.TARNISHED
     may be/ and nothing happens. I hope this doesn't come as a 
     surprise/. Nothing happens].
 #
-TEXT CHALICE.NOW.DRUNK
-    You drain the remnants of water from the chalice and briefly feel
-    somewhat light-headed, but that's the only effect there is.
+TEXT increment CHALICE.NOW.DRUNK
+    You drain the remnants of water from the chalice and [/once
+    again ]briefly feel [somewhat/rather] light-headed, but [that's the
+    only effect there is/there is no other effect].
 #
-TEXT GOT.BEAR
-    Trying to pick up fully grown bears can be detrimental to one's
+TEXT increment GOT.BEAR
+    [Trying to pick up fully grown bears can be detrimental to one's
     state of health. Fortunately, this one appears to have got the
-    message and is now following your every step.
+    message and/The bear] is now following your every step.
 #
-TEXT ALREADY.GOT.BEAR
-    It is not necessary to carry bears in this game. You'll have
-    to be content with the fact that it is following you around.
+TEXT increment ALREADY.GOT.BEAR
+    [It is not necessary to carry bears in this game. You'll have
+    to be content with the fact that it is/The bear is already]
+    following you around.
 #
 FRAGMENT FREED.BEAR
     You politely indicate to the bear that you no longer desire its
     permanent company. The bear seems to understand.
 #
-FRAGMENT GRATE.LOCKED
-    The grate is LOCKED. As should be obvious even to a hedgehog,
-    that means that it cannot be #ed unless it is UNlocked!
+FRAGMENT increment GRATE.LOCKED
+    The grate is LOCKED[. As should be obvious even to a hedgehog,
+    that/, which] means that it cannot be #ed unless it is UNlocked!
 #
-TEXT PICK.IT.UP
-    You'll have to pick up the # first, lazybones!
+TEXT increment PICK.IT.UP
+    You'll have to pick up the # first[, lazybones/]!
 #
-TEXT CANT.DRINK.EMPTY
-    No matter how I examine the #, it appears to be quite empty. That
-    being so, I am unclear how you propose to drink from it.
+TEXT cycle CANT.DRINK.EMPTY
+    [No matter how I examine the #, it appears to be quite empty. That
+    being so, I am unclear how you propose to drink from it/The # is
+    empty. There's nothing in it to drink].
 #
-TEXT NO.DRINK.OIL
-    I am most dreadfully sorry, but I have this quite unreasoned
-    prejudice against drinking oil.
+TEXT increment NO.DRINK.OIL
+    [I am most dreadfully sorry, but I have this quite unreasoned
+    prejudice against/I've already told you: I have no
+    intention of] drinking oil.
 #
-TEXT OPEN.FLASK.FIRST
-    I can understand the sight of the flask clouding your wits, but
+TEXT increment OPEN.FLASK.FIRST
+    [I can understand the sight of the flask clouding your wits, but
     in order to sample its contents, it just might be useful to
-    open the flask first.
+    open the flask first./You can't drink a closed flask!]
 #
 TEXT assigned NO.OIL.NEEDED
     [Some uses of oil are more sensible than others. Oiling the #
@@ -5053,10 +5078,10 @@ TEXT LAZY.CHEAT
     this maze properly yet, even with cheating! Stop being lazy and
     get on with it.
 #
-TEXT SPIDER.ON.DOCUMENTS
-    It must have escaped your attention that the spider is sitting
-    right on top of them # and let me tell you, I am not going
-    anywhere near that horrid hairy thing.
+TEXT increment SPIDER.ON.DOCUMENTS
+    [It must have escaped your attention that the spider is sitting
+    right on top of them # and let me tell you, /]I am not going
+    anywhere near that horrid hairy thing!
 #
 TEXT OUTCROP.BLOCKS
     The way south is blocked by a rocky outcrop.
@@ -5066,9 +5091,9 @@ TEXT increment UP.THE.BEANSTALK
     climbing. It is a long and tiring slog/scramble up the beanstalk].
 
 #
-TEXT BEANSTALK.IS.HUNGRY
-    I think it might be unwise to tackle the beanstalk in its
-    current mood. You wouldn't want to wind up as fertilizer, would you?
+TEXT cycle BEANSTALK.IS.HUNGRY
+    I think it might be unwise to tackle the beanstalk in its current
+    mood.[ You wouldn't want to wind up as fertilizer, would you?/]
 #
 TEXT IT.IS.TOO.FAR
     You can't reach it from here.
@@ -5192,14 +5217,14 @@ TEXT increment RUG.NOW.HOVERS
     carrying capacity/The rug wearily drags itself a couple of feet
     into the air and hangs there somewhat unsteadily].
 #
-TEXT UNROLL.TO.BEAT
-    It may be a pure prejudice on my part, but it is customary to
-    unroll rugs before giving them a good thrashing.
+TEXT increment UNROLL.TO.BEAT
+    [It may be a pure prejudice on my part, but i/Ehm... It is customary
+    to unroll rugs before giving them a good thrashing.
 #
-TEXT RUG.ALREADY.CLEAN
-    The rug is already as dust-free as it is going to get.
-    Further beating might actually damage it, and we wouldn't want
-    that to happen to something certifiably valuable, now would we?
+TEXT increment RUG.ALREADY.CLEAN
+    The rug is already as dust-free as it is going to get.[ Further
+    beating might actually damage it, and we wouldn't want
+    that to happen to something certifiably valuable, now would we?/]
 #
 TEXT assigned RUG.NOW.CLEANER
     You lay into the rug with your carpet-beater. It is a dusty,
@@ -5265,7 +5290,7 @@ TEXT NO.CLIMB.FURTHER
 #
 TEXT GIANT.MIGHT.PUSH
     That would be unwise. The giant might decide to push you back
-    where you came from and then where'd you be. Fertilising the
+    where you came from and then where'd you be? Fertilising the
     beanstalk?
 #
 FRAGMENT YOUR.OBJECT
@@ -5290,9 +5315,10 @@ TEXT DOWN.THE.FOLIAGE
 TEXT DOWN.TO.THE.BEACH
    / plummet[s/] down to the foot of the cliff.
 #
-TEXT CHAMPAGNE.HAS.NO.EFFECT
-    Well, you've just wasted a lot of quite decent champagne to no
-    good effect. Congratulations. 
+TEXT increment CHAMPAGNE.HAS.NO.EFFECT
+    [Well, you've just wasted a lot of quite decent champagne to no
+    good effect. Congratulations/OK. All that did was to waste some
+    fairly drinkable champagne].
 #
 TEXT EMPTY.BUCKET.FIRST
     The bucket would be quite suitable for scooping up the dung,
@@ -5431,8 +5457,8 @@ TEXT JUST.AN.ILLUSION
 TEXT HANDS.OFF
     The giant thunders: "MIN!! HANS OFF!!". 
 
-    I think it's probably a good
-    idea not to go finger-pokering around his stuff without permission.
+    I think it's probably a good idea not to go finger-pokering around 
+    his stuff without permission.
 #
 TEXT SIP.CHAMPAGNE
     You take a small sip of champagne from the bucket. It's not exactly
@@ -5464,13 +5490,13 @@ TEXT increment CATACOMBS.INFO
     these lingustic excesses of a derenged mind./Which is as may be,
     but quite irrelevant, really./Yawn.../]
 #
-TEXT JUST.A.FOUNTAIN
+TEXT cycle JUST.A.FOUNTAIN
     It is just a very simple drinking fountain, graciously provided
-    by the management in response to popular demand.
+    by the management in response to popular demand.[
 
     Oh, all right, if you insist, it *is* just a crude stone basin
     into which some water is trickling out of a rusty pipe. What did
-    you expect, a marble collection of dolphins gurgling champagne?
+    you expect, a marble collection of dolphins gurgling champagne?///]
 #
 TEXT NEW.PREMISES
     The note says: "Moved to new premises."
@@ -5532,9 +5558,9 @@ TEXT APPROACH.EDGE
 TEXT cycle BAD.IDEA
     I think that would be a [remarkably/stupendously/*very*] bad idea!
 #
-TEXT SUNSTONE.SAVES.YOU
+TEXT increment SUNSTONE.SAVES.YOU
     Fortunately for you, the sunstone prevents you from leaping
-    off the precipice. That's one of your lives saved, anyway.
+    off the [precipice. That's one of your lives saved, anyway./]
 #
 TEXT SUNSTONE.PREVENTS.YOU
     You find yourself unable to jump in the #erly direction.
@@ -5544,8 +5570,7 @@ TEXT SUNSTONE.NO.THROW
 #
 FRAGMENT increment BLACK.FLASH
     [
-   /Yes, I did say "black". You have a problem with that?
-   //]
+   /Yes, I did say "black". You have a problem with that?/]
 #
 TEXT CLIFF.OVER.DESERT
    / All view to the east is cut off by an immense black cliff towering
@@ -5684,10 +5709,10 @@ TEXT BLOWS.IT.OFF
 TEXT DONT.CHEW.YOURSELF
     With those fangs in your mouth? You'd chew yourself to shreds!
 #
-TEXT NO.CHEW.BEANSTALK
-    I don't think that would be very helpful. Besides, isn't the
+TEXT increment NO.CHEW.BEANSTALK
+    I don't think that would be very helpful.[ Besides, isn't the
     beanstalk sap supposed to be poisonous? No? Well, I wouldn't
-    be too sure...
+    be too sure.../]
 #
 TEXT NO.CHEW.TREE
     This is hardly the place to indulge your eager-beaver instincts!
@@ -5780,7 +5805,7 @@ TEXT VAMPIRE.STILL.THIRSTY
     "My deah, Ah would be much obliged for ah decent drink, don't
     you know..."
 #
-TEXT INDECISIONS
+TEXT cycle INDECISIONS
     [Indecisions, indecisions.../I just love dealing
     with decisive adventurers like you!/I see you need to
     sleep on it. Well let me know when you feel like tackling
@@ -5905,15 +5930,15 @@ TEXT WEAK.BRIDGE
 
 #
 TEXT BRIDGE.COLLAPSES
-    The bridge membrane sags alarmingly under you until you reach
-    the middle of the stream, where it unexpectedly parts under your feet
+    The bridge membrane sags alarmingly under you until you reach the
+    middle of the stream, where it unexpectedly parts under your feet 
     letting you to plummet into the icy waters. Before you have a chance
-    to resist its power, the stream mercilessly smashes you
-    against overhanging rocks which
-    force it downwards at the western end of the cavern.
+    to resist its power, the stream mercilessly smashes you against 
+    overhanging rocks which force it downwards at the western end of 
+    the cavern.
 #
 TEXT STRANGE.BRIDGE
-    Well, it's not really a bridge as such. More like somebody
+    It's not really a bridge as such. More like somebody
     stretched a wide piece of thin white membrane between the two
     shores. Just why it should be sometimes referred to as the
     Value Added Tax Bridge, is beyond me. Anyway, it doesn't look 
@@ -5979,10 +6004,10 @@ TEXT increment WHITE.CLIFFS
     What? No, sorry... I have no idea why the cliffs should be
     named after some horse.../]
 #
-TEXT BASALT.GEOLOGY
+TEXT increment BASALT.GEOLOGY
     Incredibly enough, the cliff appears to be composed entirely of black
-    basalt. It hurts my brain even to think about the geological 
-    processes that might have been involved in its creation.
+    basalt.[ It hurts my brain even to think about the geological 
+    processes that might have been involved in its creation./]
 #
 TEXT increment BASALT.OUTCROP
     The basalt of the outcrop looks very much like that of the black
@@ -7468,7 +7493,7 @@ TEXT increment MOEBIUS.GATES
     the gates you pause, making absolutely sure that there could be no
     mistake as to which side of the gates is which, and start climbing
     down ... only to realise that in some mysterious fashion, the garden
-    and the tower are once again at other side, and you are climbing
+    and the tower are once again on the other side, and you are climbing
     down back to the forest track. Perplexed, you try getting over the
     top again, but the result is always the same. Eventually you give up
     and climb down back onto the track./Don't even bother to try,
@@ -7811,7 +7836,7 @@ TEXT NONE.NO.MORE
     There [isn't one/aren't any, not] any more.
 #
 TEXT IMPENETRABLE.ROCK
-    It looks very impenetrable.
+    The rock walls look very impenetrable.
 #
 TEXT cycle IGNORED.BY
 
@@ -9350,8 +9375,8 @@ TEXT RUG.UNDER.YOU
    between you and the sea waves. In any case, it looks no different
    just because you happen to sit on it.
 #
-TEXT SMOOTH.FLOOR
-   The floor is surprising smooth. Not polished, but certainly levelled
+TEXT SMOOTH.BASALT
+   The # is surprising smooth. Not polished, but certainly smoothed
    by some artificial means.
 #
 TEXT LIGHT.GLIMMER
@@ -9501,11 +9526,12 @@ TEXT DOOR2.INSIDE
    shut/wide open/slightly ajar].
 #
 TEXT SHELF.WALL
-   Just a narrow strip of stone wall, to which the ladder is firmly affixed.
+   It's just a narrow strip of stone wall, to which the ladder is 
+   firmly affixed.
 #
 TEXT cycle NO.PICK.UP
-   That's not for picking up.[ Not in this game, anyway.// At least not
-   in this game.]
+   # is not something you can [pick up/take/carry].[ Not in this game, 
+   anyway.// At least not in this game.]
 #
 TEXT LARGE.FRACTURE
    It's large enough for you to crawl through, should you so wish.
@@ -9970,8 +9996,8 @@ TEXT REFLECTIVE.MINERALS
 #
 TEXT GOLD.SEAMS
    The walls show great seams of gold-bearing rock. Unfortunately the
-   walls are out of your reach, and in any case, you don't have access to
-   any of the equipment that would be required for extracting the gold
+   they are out of your reach, and in any case, you don't have access to
+   any of the equipment that would be required for extracting gold
    from that rock. Then again, maybe there's nothing unfortunate about
    it. Just digging gold, would make for a very dull game.
 #
@@ -10109,7 +10135,7 @@ FRAGMENT MASSIVE.BLACK.SPIRE
   / A massive black stone spire raises over the sands to
    the [///////////////southwest/west/northwest///south/north/southeast/east].
 #
-TEXT .SPARE.TEXT
+TEXT SPARE..T..04
 #
 TEXT increment NO.MAP
    [Um... Didn't you know? Traditionally, it's the adventurer who does 

@@ -285,7 +285,7 @@ OBJECT MUD
 OBJECT MUD-SHOES, =SHOES, =MUDSHOES
    A pair of old mud-shoes[// (worn)]
   %There is a pair of grimy mud-shoes [half-concealed
-   in a crevice under a large boulder/lying on the ground].
+   in a crevice under a large boulder/lying on the {FLOOR?}].
   &Old and grimy as they are, the mud-shoes seem to be in a
    good nick. Each shoe is a kind of oval platter about two feet
    wide and three long, tightly woven from strong reeds, with a
@@ -352,7 +352,7 @@ OBJECT TRIDENT
 #
 OBJECT HELMET
    Encrusted helmet
-  %There is a gem-encrusted visorless helmet sitting on the floor!
+  %There is a gem-encrusted visorless helmet sitting on the {FLOOR?}!
   &Too fancy to be of any practical use. In any case it is clearly
    too small for your big head.
 #
@@ -360,14 +360,14 @@ OBJECT VASE, =MING
    Ming vase
   %[There is a delicate, precious, Ming vase here!/
    The vase is now resting, delicately, on a velvet pillow./
-   You gently set down the Ming vase on the ground, but despite
+   You gently set down the Ming vase on the {FLOOR?}, but despite
    your care, it delicately shatters in your hands.]
   &Utterly beautiful!  A real collector's item. The sort of thing a
    Rothschild might use as a table lamp.
 #
 OBJECT POTTERY, SHARDS
    Worthless shards of pottery
-  %The floor is covered with worthless shards of pottery.
+  %The {FLOOR?} is covered with worthless shards of pottery.
   &It's the remnants of a smashed Ming vase. Sadly the damage is so great
    that there is no possibility of putting them together again.
 #
@@ -380,7 +380,7 @@ OBJECT EMERALD
 OBJECT SCEPTRE   # Sceptre's 0-mode description is part of "SKELETON"
    Sapphire sceptre
   %[>$</
-   A sapphire-encrusted sceptre is lying on the ground!]
+   A sapphire-encrusted sceptre is lying on the {FLOOR?}!]
   &A strange, unearthly object of great value. Obviously a symbol of
    kingship, but I doubt if any human king ever wielded its like.
 #
@@ -389,7 +389,7 @@ OBJECT YACHT, RUBY, RUBAIYAT
   %[There is a small toy yacht sitting on the floor. It is totally
    covered with rubies, and has the words "Omar Khayyam" engraved
    on the side/The ruby yacht of Omar Khayyam is sitting on the
-   floor]!
+   {FLOOR?}]!
   &One of Faberge's wilder flights of fancy. An intricately expensive,
    but utterly useless toy.
 #
@@ -417,7 +417,7 @@ OBJECT RUG, =PERSIAN, CARPET
    Rolled up Persian rug
   %There is a [rolled up/rather frayed] [/magic /and very 
    dirty /]Persian rug [lying/hovering/spread out][ on the 
-   ground/ in the air/ on the ground]{RUG.SHREAK}
+   {FLOOR?}/ in the air/ on the {FLOOR?}]{RUG.SHREAK}
   &[The rug is rolled up, so there isn't much to be seen. It does,
    however, appear to be in a rather poor condition.{RUG.VALUE}/The rug
    is hovering a few inches above the ground, but not with any
@@ -445,7 +445,7 @@ OBJECT BEADS, =INDIAN, =STRING
 OBJECT CHAIN
    Golden chain
   %[The bear is locked to the wall with a golden chain!/
-   There is a golden chain lying in a heap on the floor!/
+   There is a golden chain here, lying in a heap on the {FLOOR?}!/
    There is a golden chain locked to the wall!]
   &Very expensive. Not a thing you would expect a bear to wear!
 #
@@ -552,7 +552,7 @@ OBJECT SAPPHIRE
    expensive.
 #
 OBJECT DUNG, TURDS
-  %There is a pile of unicorn dung on the floor here.
+  %There is a pile of unicorn dung on the {FLOOR?} here.
   &This is getting beyond the bounds of decency!
 #
 OBJECT OWL  # The owl never actually stays unless it is dark
@@ -601,7 +601,7 @@ OBJECT RATS, RAT
 OBJECT MASK
    Black velvet mask[// (worn)]
   %A black velvet mask [hangs on the wall by the shelf/
-   lies on the ground].
+   lies on the {FLOOR?}].
   &It is a half-face mask made of black velvet. A bit worn but still
    usable.
 #
@@ -675,7 +675,7 @@ FRAGMENT increment CHEAPO.COIN
 OBJECT DRACHMA
    Worn drachma
   %A small bronze drachma lies [in the coin tray of the machine/on
-   the ground]!
+   the {FLOOR?}]!
   &{CHEAPO.COIN} What? Ah, er... yes, Roman... I suppose it must be
    an obolus then.
 #
@@ -686,7 +686,7 @@ OBJECT OBOLUS, =OBOL   # To intercept the typo of "obul"!
 #
 OBJECT KEYS, =KEY, =SET
    Set of keys
-  %There are some keys on the ground here.
+  %There are some keys on the {FLOOR?} here.
   &It is a bunch of several mildly rusty keys of various sizes. Nothing
    particularly special about any of them.
 #
@@ -736,7 +736,7 @@ OBJECT DYNAMITE
 #
 OBJECT PILLOW, VELVET
    Velvet pillow
-  %A small velvet pillow lies on the floor.
+  %A small velvet pillow lies on the {FLOOR?}.
   &The pillow has seen better days. Its fine embroidery is coming apart
    and the velvet, once perhaps lime-green, looks distinctly moth-eaten
    in places.
@@ -784,7 +784,7 @@ OBJECT CHAMPAGNE           # Only described as part of vessels
 OBJECT FLASK
    [/Sealed e/Empty e/E]arthenware flask[/// full of water/ full of oil]
   %There is a [sealed earthenware flask sitting in the center of the
-   pentagram/small, tightly-sealed earthenware flask on the ground
+   pentagram/small, tightly-sealed earthenware flask on the {FLOOR?}
    here. It has the words, "London Dry" written on the side/small]
    [//, empty / ][//earthenware flask here][///, full of water/, full
    of oil/].
@@ -805,7 +805,7 @@ OBJECT SWORD, =SINGING, THROWER
   %[There is a sword here with its blade plunged deep into the rock.
    The sword is singing quietly to itself./
    There is a magic sword here, chiming out the bell-like tones of
-   "Khumbu Ice-fall" by ringing its blade against the ground./
+   "Khumbu Ice-fall" by ringing its blade against the {FLOOR?}./
    There is a sword here, singing "A Day in the Life" in a quiet,
    introspective voice./
    There is a magic sword here, singing "Cold Blue Steel and Sweet
@@ -813,13 +813,13 @@ OBJECT SWORD, =SINGING, THROWER
    There is a sharp and obviously magical sword here. It is
    quietly humming excerpts from Prokofiev's "Romeo and Juliet"
    ballet to itself./
-   There is a sword lying on the ground, jauntily whistling the
+   There is a sword lying on the {FLOOR?}, jauntily whistling the
    March from Tchaikovsky's "Nutcracker Suite"./
    There is a sharp sword lying here. It is (somehow) singing
    Tchaikovsky's "1812 Overture" in twelve parts, by itself!/
    The stirring strains of Rossini's "William Tell" overture fill
-   the room, coming from a singing sword lying on the ground./
-   There is a singing sword lying on the ground. From it resound the
+   the room, coming from a singing sword lying on the {FLOOR?}./
+   There is a singing sword lying on the {FLOOR?}. From it resound the
    massed voices of a two-hundred-singer choir, filling the air with
    the stirring sound of the Hallelujah Chorus from Handel's "Messiah"./
    There is a sharp and shiny sword here. It is somehow managing to
@@ -829,7 +829,7 @@ OBJECT SWORD, =SINGING, THROWER
    with itself./
    A singing sword lies here, merrily humming the Radecky March to
    itself./
-   An gleaming sword lies on the ground. Unnervingly, some
+   An gleaming sword lies on the {FLOOR?}. Unnervingly, some
    eldritch magic fills the air around it with the   
    pensive notes of Satie's Gnosienne I.
    There is an obviously enchanted sword here, improvising darkly on
@@ -843,13 +843,13 @@ OBJECT SWORD, =SINGING, THROWER
 #
 OBJECT TEETH
    Several dragon's teeth
-  %There are several dragon's teeth [scattered haphazardly about/in
-   a pile on the floor].
+  %There are several dragon's teeth [scattered haphazardly about/lying
+   a pile on the {FLOOR?}].
   &Rather worn and, considering their original owner, surprisingly small.
 #
 OBJECT VIAL, PHIAL
    Vial of oily liquid
-  %On the ground lies a small glass vial filled with an oily
+  %On the {FLOOR?} lies a small glass vial filled with an oily
    liquid.
   &The glass vial is hermetically sealed. The oily liquid inside
    is transparent and nearly colourless, except for a pinky-bluish
@@ -858,7 +858,7 @@ OBJECT VIAL, PHIAL
 OBJECT MUSHROOM
    Purple mushroom
   %[There is a small purple mushroom growing on the wall./
-   There is a small purple mushroom lying on the floor./
+   There is a small purple mushroom lying on the {FLOOR?}./
    As you swallow the mushroom your mouth becomes numb, and everything
    seems to swirl around you. The effect quickly passes, and you find
    that your muscles have bulged unbelievably./
@@ -919,11 +919,12 @@ OBJECT TREE, TREES
    Lots of them about. Why this sudden arboreal interest?
 #
 OBJECT RAGS
-   Some [/fairly clean/dirty] old rags
-  %[A pile of/Some fairly clean/There are some dirty] old
-   rags [lies /lie /][discarded in one corner/on the floor here].
+   Some [/fairly clean/grimy/filthy] old rags
+  %[A pile of/Some fairly clean/There are some grimy/Some filthy] old
+   rags [lies /lie /][discarded in one corner/on the {FLOOR?} here/=/float
+   in the sewage/lie here].
   &Old[ and/ and/,] tatty[, but fairly clean/, but fairly
-   clean/ and dirty].
+   clean/ and rather grimy/ and soaked in sewage... Yuck!].
 #
 OBJECT TABLET
 #
@@ -940,7 +941,7 @@ OBJECT BUCKET
    some ][///water//champagne/dung/full of water/=/water in it]
   %A[/n empty/n empty/] champagne bucket[/// full of /=/=/=/ three
    quarters full of / half full of / quarter full of ][///water//sparkling
-   champagne/unicorn dung/water][//,] is standing on the ground.
+   champagne/unicorn dung/water][//,] is standing on the {FLOOR?}.
   &It is what is known as a "champagne bucket", though such objects are in fact
    usually used for ice rather than champagne. As is traditional, this
    one has a shiny silver surface, but judging by its weight, it
@@ -998,7 +999,7 @@ OBJECT WINDROSE
    Windrose
   %A [splendid/black/pearly-white] windrose lies [here, partly buried in a
    small drift of fine sand accumulated at the base of a boulder/on the 
-   ground]!
+   {FLOOR?}]!
   &It is a superbly complex windrose, accreted over the centuries
    by the unceasing wind. It is [nearly black/almost black/pearly
    white] in colour, which is unusual [but not really/but not really/and in
@@ -1007,10 +1008,10 @@ OBJECT WINDROSE
 OBJECT SKULL, CRYSTAL
    [C/C/Badly damaged c]rystal skull
   %A [//battered chunk of ]crystal [skull stares at you from a small
-   niche in one of the walls/skull lies on the ground/vaguely
+   niche in one of the walls/skull lies on the {FLOOR?}/vaguely
    resembling a skull protrudes
    from a small drift of sand under a boulder/resembling a skull
-   lies on the ground]!
+   lies on the {FLOOR?}]!
   &It is a large chunk of volcanic 
    crystal, [delicately carved into/delicately carved into/badly 
    scratched and chipped, where it has not been abraded by exposure 
@@ -1034,7 +1035,7 @@ OBJECT FANGS
 OBJECT BOWL, =ROSEBOWL
    A silver rosebowl
   %A silver rosebowl [rests atop one of the pedestals/sits on 
-   the ground]!
+   the {FLOOR?}]!
   &A large silver bowl, with a profusion of leaves engraved all over
    it and a number of small draining holes around the bottom. A while
    back such bowls were used for decorative displays of cut roses,
@@ -1072,7 +1073,7 @@ FRAGMENT BUST.INFO
 OBJECT BUST, =OBERON
    A [//badly damaged ]marble bust
   %A [life-sized/life-sized/broken] marble bust [sits in the far
-   corner of the shelf/lies on the ground]!
+   corner of the shelf/lies on the {FLOOR?}]!
   &The [{BUST.INFO}/{BUST.INFO}/marble stallion head is damaged beyond
    repair. This makes it pretty worthless, despite the Oberon's sygil
    still identifiable on its base].
@@ -1080,7 +1081,7 @@ OBJECT BUST, =OBERON
 OBJECT SEAL, =INTAGLIO, =TITANIA
    A quartz seal
   %[Something small and shiny lies in one corner/A smoky quartz
-   intaglio seal lies on the ground]!
+   intaglio seal lies on the {FLOOR?}]!
   &It is an intaglio seal made of smoky quartz and set in a polished
    oval of obsidian. The design shows the head of a woman in a crested
    helmet. Somewhat unusually, it is incised rather than raised. I am
@@ -1109,7 +1110,7 @@ FRAGMENT increment STONE.FLOWER
 OBJECT FLOWER
    A metal flower
   %A delicate[/ly fashioned metal] flower lies on the [stone 
-   table/ground]!
+   table/{FLOOR?}]!
   &The flower with its stem and several leaves, appears to be
    something like a tiger lily. Aside from its colour and texture,
    it looks amazingly life-like, but it is in fact fashioned with a
@@ -1120,7 +1121,7 @@ OBJECT FLOWER
 OBJECT PACKET, =FERTILISER, =FERTILIZER
    [/Paper packet/Packet of fertiliser]
   %A [dusty paper /paper /]packet [//of "Stupe-Gro (TM)"
-   fertiliser ]lies [in one corner/on the floor/on the ground].
+   fertiliser ]lies [in one corner/on the {FLOOR?}].
   &It is a largish paper packet [lying in the dust on the floor.
    There is nothing remarkable about its upper side. To see the
    other side, you'd need to pick it up first./containing, by 

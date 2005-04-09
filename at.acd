@@ -512,6 +512,7 @@ at depression
          fakearg, go, in
       fin
    fin
+   respond stream, downstream, i.dont.see, stream
    ifkey go
       or
    ifeq status, 1
@@ -540,7 +541,7 @@ at depression
       move sw, forest.17
       move west, forest, forest.16
       move nw, forest.15
-      move north, slit, slit
+      move north, stream, upstream, slit, slit
       move valley, valley
       move road, building, road
       ifany in, down
@@ -732,6 +733,7 @@ at pit
    fin
    ifkey look
       respond west, crack, crack.info
+      respond wall, cracked.wall, west
       respond down, pit, no.see.down.there, 1
       ifkey steps
          and
@@ -803,6 +805,7 @@ at mists
       fin
       respond crack, passage, dark.exit, arg2
       respond staircase, mists.stairs
+      respond wall, cracked.wall, east
       proceed
    fin
    ifany climb, up
@@ -2746,7 +2749,7 @@ at soft
 #=====================================================================
 #
 at oriental
-   respond drawings, oriental.drawing  # *Any* reference!
+   respond wall, drawings, oriental.drawing  # *Any* reference!
    ifkey look
       respond crawl, passage, dark.exit, arg2
       proceed
@@ -3731,10 +3734,10 @@ at ne.of.chasm
             ifnear bear
                get bear
                set chasm, bridge.wrecked
-               say trolls.revenge
+               say trolls.revenge, 0
             else
                set chasm, bridge.burned
-               say trolls.revenge.2
+               say trolls.revenge, 1
             fin
             apport troll2, limbo
             goto ylem
@@ -3941,7 +3944,7 @@ at boulder.chamber
 #
 at limestone
    ifkey look
-      respond limestone, formations, odd.formations
+      respond wall, limestone, formations, odd.formations
       ifany tunnel, passage, corridor
          set status, 1
       fin
@@ -4341,12 +4344,15 @@ at morion
       fin
       proceed
    fin
+#   ifkey get, quartz
+#      quip no.pick.up, quartz
+#   fin
    ifkey go
       or
    ifeq status, 1
       move north, out, passage, corridor, tunnel, hall, mtking
    fin
-   ifany passage, corridor, tunnel, crystals
+   ifany passage, corridor, tunnel, crystals, quartz
       flag context, arg2.here
    fin
 #
@@ -4506,7 +4512,7 @@ at division.in.passage
 at cubicle
    ifkey look
       respond steps, well.worn.steps
-      respond sandstone, red.sandstone
+      respond wall, sandstone, red.sandstone
       respond doorway, its.just.a, doorway
       respond tunnel, passage, corridor, dark.exit, passage
       proceed
@@ -5835,6 +5841,7 @@ at ledge
       respond sea, horizon, sea.horizon
       respond crack, sapling.crack
       respond island, island.too.far
+      respond mountain, too.far.to.see, mountain
       proceed
    fin
    ifkey get
@@ -5915,6 +5922,7 @@ at beanstalk.top
       respond stem, bean.stem
       respond sea, horizon, sea.horizon
       respond, island, island.too.far
+      respond mountain, too.far.to.see, mountain
       proceed
    fin
    ifkey chew
@@ -5992,6 +6000,7 @@ at in.jonah
    fin
    fakecom teeth, stalactite
    ifkey look
+      respond wall, ribs, ribbed.walls
       respond darkness, jonah.blackness
       respond stalactites, formations, jonah.teeth
       proceed
@@ -6010,7 +6019,7 @@ at in.jonah
 #
 at faces
    ifkey look
-      respond faces, stone.faces, 0
+      respond wall, faces, stone.faces, 0
       respond volcano, gorge, volcano.sight
       respond carving, figure, cant.see.much, figure
       ifkey valley
@@ -6732,11 +6741,14 @@ at loopy.passage
 at golden.chamber
    ifkey look
       respond ceiling, up, its.a.ceiling, c.golden.chamber
-      respond walls, golden.walls
+      respond gold, walls, golden.walls
       ifkey chamber
          set status, 1
       fin
       proceed
+   fin
+   ifkey get, gold
+      quip no.gold.here
    fin
    ifkey go
       or
@@ -7444,6 +7456,9 @@ at half.stairs
       fin
       proceed
    fin
+   ifkey get, gold
+      quip gold.seams
+   fin
    ifkey go
       or
    ifeq status, 1
@@ -7655,7 +7670,7 @@ at dungeon
    ifkey look
       respond stanchions, just.scenery, stanchions
       respond ceiling, up, its.a.ceiling, c.dungeon
-      respond rock, wall, impenetrable.rock
+      respond rock, impenetrable.rock
       respond passage, tunnel, corridor, dungeon.passage
       respond floor, flagstones, down, flagstone.info, dungeon
       ifkey hole, opening
@@ -8688,6 +8703,7 @@ at shelves.east
    fakecom door, trapdoor
    ifkey look
       respond ceiling, up, its.a.ceiling, c.shelves
+      respond wall, stone.wall
       respond beams, wood, planks, rough.ceiling
       proceed
    fin
@@ -8723,6 +8739,7 @@ at shelves.west
    unflag garden.n, hintable
    ifkey look
       respond ceiling, up, its.a.ceiling, c.shelves
+      respond wall, stone.wall
       respond beams, wood, planks, rough.ceiling
       proceed
    fin
@@ -8765,16 +8782,6 @@ at track
       respond tower, too.far.to.see, tower
       proceed
    fin
-   ifany hill, tower, track
-      ifeq status, 2
-         ifkey track
-            flag context, arg2.here
-         else
-            flag context, arg2.distant
-         fin
-         proceed
-      fin
-   fin
    ifkey go
       or
    ifeq status, 1
@@ -8811,6 +8818,12 @@ at track
          fin
          quip through.thicket
       fin
+   fin
+   ifkey track
+      flag context, arg2.here    
+   fin
+   ifany hill, tower
+      flag context, arg2.distant
    fin
 #
 #=====================================================================
@@ -9832,7 +9845,8 @@ at in.shaft
 #
 at culvert
    ifkey look
-      respond bricks, slimey.bricks
+      respond bricks, wall, slimey.bricks
+      respond wall, slime, yucky.slime
       ifkey culvert
          set status, 1
       fin
@@ -9858,7 +9872,8 @@ at sea.view
    call fake.note, same.as.before, inscription
    respond grill, grill.solid
    ifkey look
-      respond bricks, slimey.bricks
+      respond bricks, wall, slimey.bricks
+      respond wall, slime, yucky.slime
       respond inscription, tide.level
       respond tunnel, passage, corridor, culvert, corridor, culvert.tunnel
       respond sea, cant.see.much, sea
@@ -9894,7 +9909,8 @@ at culvert.south
       call rats.stuff
    fin
    ifkey look
-      respond bricks, slimey.bricks
+      respond bricks, wall, slimey.bricks
+      respond wall, slime, yucky.slime
       respond pipe, sewer.pipe, 1
       respond roof, ceiling, culvert.roof
       ifkey culvert
@@ -9920,6 +9936,7 @@ at culvert.south
 at sewer.1
    ifkey look
       respond pipe, sewer.pipe, 1
+      respond wall, slime, yucky.slime
       ifkey junction
          set status, 1
       fin
@@ -9942,6 +9959,7 @@ at sewer.1
 at sewer.2
    ifkey look
       respond pipe, sewer.pipe, 1
+      respond wall, slime, yucky.slime
       ifkey junction
          set status, 1
       fin
@@ -9964,6 +9982,7 @@ at sewer.2
 at sewer.3
    ifkey look
       respond pipe, sewer.pipe, 0
+      respond wall, slime, yucky.slime
       proceed
    fin
    ifkey go
@@ -9978,8 +9997,11 @@ at sewer.3
 #=====================================================================
 #
 at sewer.4
+   local rag.loc
+
    ifkey look
       respond stream, its.tears.are.wet, stream
+      respond wall, slime, yucky.slime
       respond fracture, large.fracture
       respond pipe, sewer.pipe, 2
       ifkey junction
@@ -9993,6 +10015,10 @@ at sewer.4
       move ne, pipe, culvert, culvert.south
       ifany up, in, out, crawl, fracture
          set hint.time, 1
+         locate rag.loc, rags
+         ifinrange rag.loc, culvert, sewer.5
+            apport rags, sea.view
+         fin
          smove stream.maze.entrance, out.of.sewer
       fin
       respond junction, you.are.there
@@ -10006,6 +10032,7 @@ at sewer.4
 at sewer.5
    ifkey look
       respond pipe, sewer.pipe
+      respond wall, slime, yucky.slime
       proceed
    fin
    ifkey go
@@ -10375,6 +10402,7 @@ at stupendous.view
             quip cant.see.much, beanstalk
          fin
       fin
+      respond mountain, too.far.to.see, mountain
       respond beach, beach.from.above, 0
       respond view, vista, sea, rollers, sea.from.cliff
       respond reflections, sea.reflections, 1
@@ -12104,6 +12132,7 @@ at cliff.base.2
 at cliff.base.3
    ifkey look
       respond riverbed, streambed, ancient.riverbed, 2
+      respond river, river.gone
    fin
    ifkey go
       or
@@ -12122,7 +12151,7 @@ at cliff.base.3
 #
 at river.bed.1
    ifkey look
-      respond cave, opening, cut.river
+      respond cave, hole, opening, cut.river
       respond river, river.gone
       respond riverbed, ancient.riverbed, 1
       proceed
@@ -12147,7 +12176,7 @@ at river.bed.1
       respond east, in, hole, opening, cave, time.river
       respond riverbed, you.are.there
    fin
-   ifany dune, sand, hole, cave, riverbed
+   ifany dune, sand, hole, cave, riverbed, opening
       flag context, arg2.here
    fin
 #
@@ -12155,7 +12184,9 @@ at river.bed.1
 #
 at cliff.base.4
    ifkey look
+      respond cave, hole, tunnel, opening, dark.exit, tunnel
       respond riverbed, streambed, ancient.riverbed, 3
+      respond river, river.gone
    fin
    ifkey go
       or
@@ -12168,7 +12199,7 @@ at cliff.base.4
       smove east, in, hole, opening, cave, cave.1, time.flip.1
       respond south, sw, west, dune.blocks
    fin
-   ifany dune, sand, riverbed
+   ifany dune, sand, riverbed, hole, opening, cave, tunnel
       flag context, arg2.here
    fin
 #
@@ -12704,6 +12735,7 @@ at desert.last
 #
 at cave.1
    ifkey look
+      respond floor, wall, ceiling, smooth.basalt, arg2
       respond corridor, passage, tunnel, dark.exit, corridor
       respond beach, sea, dark.beach
       proceed
@@ -12723,6 +12755,7 @@ at cave.1
 #
 at cave.2
    ifkey look
+      respond floor, wall, ceiling, smooth.basalt, arg2
       respond light, light.glimmer
       ifany corridor, passage, tunnel
          set status, 1
@@ -12755,6 +12788,7 @@ at cave.3
       fin
    fin
    ifkey look
+      respond floor, wall, ceiling, smooth.basalt, arg2
       ifany corridor, passage, tunnel, bend
          set status, 1
       fin
@@ -12781,6 +12815,7 @@ at cave.4
       apport bridge, here
    fin
    ifkey look
+      respond floor, wall, ceiling, smooth.basalt, arg2
       respond passage, tunnel, corridor, dark.exit, passage
       respond opening, too.far.to.see, opening
       respond membrane, strange.stuff
@@ -12824,6 +12859,7 @@ at cave.5
       apport bridge, here
    fin
    ifkey look
+      respond floor, wall, ceiling, smooth.basalt, arg2
       respond passage, corridor, tunnel, dark.exit, passage
       respond membrane, strange.stuff
       proceed
@@ -12862,6 +12898,7 @@ at cave.5
 #
 at cave.6
    ifkey look
+      respond floor, wall, ceiling, smooth.basalt, arg2
       ifany corridor, slope, passage, tunnel
          set status, 1
       fin
@@ -12884,18 +12921,18 @@ at cave.6
 #
 at cave.7
    ifkey look
-       respond floor, smooth.floor
-       respond passage, corridor, tunnel, exit, dark.exit, corridor
-       ifkey niche
-          ifeq skull, 0
-             quip skull
-          fin
-          quip skull.niche
-       fin
-       ifkey cave
-          set status, 1
-       fin
-       proceed
+      respond floor, wall, ceiling, smooth.basalt, arg2
+      respond passage, corridor, tunnel, exit, dark.exit, corridor
+      ifkey niche
+         ifeq skull, 0
+            quip skull
+         fin
+         quip skull.niche
+      fin
+      ifkey cave
+         set status, 1
+      fin
+      proceed
    fin
    ifkey go
       or
@@ -12912,6 +12949,7 @@ at cave.7
 at cave.8
    call default.read, writing
    ifkey look
+      respond floor, wall, ceiling, smooth.basalt, arg2
       respond writing, imps.writing, read
       ifkey imp
          and
@@ -12973,6 +13011,10 @@ at cave.8
 #=====================================================================
 #
 at cave.9
+   ifkey look
+      respond floor, wall, ceiling, smooth.basalt, arg2
+      proceed
+   fin
    ifkey jump
       call river.jump, 0
    fin
@@ -12995,6 +13037,10 @@ at cave.9
 #=====================================================================
 #
 at river
+   ifkey look
+      respond floor, wall, ceiling, smooth.basalt, arg2
+      proceed
+   fin
    ifkey jump
       call river.jump, 0
    fin
@@ -13013,6 +13059,10 @@ at river
 #=====================================================================
 #
 at river.north
+   ifkey look
+      respond floor, wall, ceiling, smooth.basalt, arg2
+      proceed
+   fin
    ifkey jump
       call river.jump, 0
    fin
@@ -13661,6 +13711,7 @@ at square.shaft.bottom
       respond tunnel, passage, corridor, dark.exit, tunnel
       respond up, hole, opening, shaft, no.see.up.there
       respond handholds, climbing.aid, arg2
+      respond wall, climbing.aid, handholds
       proceed
    fin
    ifkey use, handholds
@@ -13691,6 +13742,7 @@ at square.shaft.bottom
 at abyss
    ifkey look
       respond ceiling, up, its.a.ceiling, c.abyss
+      respond wall, infinite.wall
       respond tunnel, passage, corridor, dark.exit, tunnel
       respond edge, abyss.edge
       respond platform, abyss.platform
@@ -13731,6 +13783,7 @@ at above.abyss
       set above.abyss, 1   # Activate the description
    fin
    ifkey look
+      respond wall, infinite.wall
       call abyss.view, 0
       proceed
    fin
@@ -15238,6 +15291,7 @@ at imaze.17
 #
 at imaze.wall.1
    ifkey look
+      respond wall, infinite.wall
       call abyss.view, 0
       proceed
    fin
@@ -15252,6 +15306,7 @@ at imaze.wall.1
 #
 at imaze.wall.2
    ifkey look
+      respond wall, infinite.wall
       call abyss.view, 0
       proceed
    fin
@@ -15321,6 +15376,7 @@ at imaze.book
       proceed
    fin
    ifkey look
+      respond wall, infinite.wall
       call abyss.view, 0
       proceed
    fin

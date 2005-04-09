@@ -546,7 +546,7 @@ TEXT FIDDLE.VALUE
     / [/one/$] command[//s] is the best I can do for you!
 
 #
-FRAGMENT FIDDLE.IGNORE
+FRAGMENT cycle FIDDLE.IGNORE
      [ignore your/pretend that you never issued that/forget the]
 #
 FRAGMENT cycle FIDDLE.OK
@@ -561,8 +561,8 @@ TEXT FIDDLE.REDO
 
 #
 TEXT RESULT.IS
-     [/You are now elsewhere//You have moved][//Y/ and y][//our 
-     possessions may have changed/=].
+     [/Your have relocated//You have relocated][//Y/ and y][//our 
+     possessions have changed/=].
 
 #
 TEXT cycle WE.HAVE.LIGHT
@@ -644,5 +644,34 @@ TEXT ANCIENT.RIVERBED
    with fine black sand. A few black boulders are scattered around,
    their smooth, worn surfaces etched by the blowing
    sands/mostly dark, matt basalt, surprisingly free of sand].
+#
+TEXT NO.GOLD.HERE
+   The walls only look golden. That doesn't make them *made* of
+   gold.[ A visiting geologist once told me that the colour was due to a
+   high content of pyrites in the rock. And no, I don't know what it 
+   means either, and I think it don't signify anyway./]
+#
+TEXT INFINITE.WALL
+   The wall stretches into the darkness, with no visible limits.
+#
+FRAGMENT increment SEWER.EXIT.HINT
+   [What's the problem? You are presentable enough now!
+
+   Or are you just un/Not ]sure how to get out of here?_
+#
+TEXT
+   Let's see... The sewer is down thataway. And clean water is
+   running from thataway. And you don't want to wind up back in the
+   sewer. Hmmm... It's a hard one, isn't it? I do wonder whether you've
+   got the brains to crack this one... 
+#
+TEXT WHICH.WAY.THATAWAY?
+   Sorry, I can't see which way you are pointing. Which way is "thataway"?
+#
+TEXT increment DIRTY.STUFF
+
+   [You'd expect things here to be quite mucky, but it's not that bad.
+   I guess an occasional flood of sea water washes off the 
+   worst./]
 #
 #########################################################################

@@ -957,7 +957,7 @@ PLACE GOLDEN.CHAMBER
 PLACE +ARABESQUE, +ARABESQUES
    You're in Arabesque room.
   %You are in a small room whose walls are covered with an elaborate
-   pattern of arabesque figures and designs.
+   pattern of arabesque figures and designs. The only exit is south.
 #
 PLACE +TRANSLUCENT
    You're in room with translucent walls.
@@ -2778,7 +2778,7 @@ PLACE CAVE.6
 #
 PLACE CAVE.7
    You are in the low round cave.
-  %You are in a low round room with a smooth floor. The only
+  %You are in a low round room with a slightly concave floor. The only
    exit leads south.
 #
 PLACE +RIVER

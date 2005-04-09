@@ -512,6 +512,7 @@ init
    flag alarm, feature
    flag oil, feature
    flag water, feature
+   flag champagne, feature
    flag steps, feature
    flag curtains, feature
    flag fissure, feature
@@ -547,6 +548,16 @@ init
    flag ladder, feature
    flag mud, feature
    flag glow, feature
+   flag tablet, feature
+   flag note, feature
+   flag orion, feature
+   flag flagstones, feature
+   flag grill, feature
+   flag bones, feature
+   flag knife, feature
+   flag coconuts, feature
+   flag gorge, feature
+   flag pattern, feature
 #
 # Set hint-exists bits.
 #
@@ -689,6 +700,7 @@ init
    flag mushroom, unstable
    flag bag, unstable
    flag crown, unstable
+   flag pillow, unstable
    flag yacht, unstable
    flag plate, unstable
    flag beads, unstable
@@ -710,6 +722,7 @@ init
    flag thurible, unstable
    flag flower, unstable
    flag rosebowl, unstable
+   flag helmet, unstable
 #
 # Declare mortal (killable) things.
 #
@@ -946,6 +959,7 @@ init
    apport glow, plain.2
    apport poster, building
    apport codex, imaze.book
+   apport mirror, mirror.canyon
 #
 # Declare schizoid objects.
 #
@@ -1035,12 +1049,8 @@ init
    flag bottle, seen   # so allow references to them too
    flag rope, seen
    flag notice, seen
-   flag note, seen
    flag tree, seen  
    flag pine, seen
-   flag shadow, seen
-   flag plant, seen    # So that he can refer to various scenery plants
-   flag pattern, seen
 #
 # Randomise some of the cycling texts.
 #

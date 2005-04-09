@@ -151,7 +151,7 @@ verb -last.clarify        # Last clarifiable 'verb'
 #
 verb introduction, instructions
 verb examine, =look, =l, =x, =ex, describe, description, consider, inspect
-verb quit, =q, =end, =stop, =finish, =bye, =logout
+verb quit, =q, =end, =stop, =finish, =bye, =logout, =cancel, =abort
 verb terse, fast
 verb normal, brief, default
 verb verbose, full
@@ -268,7 +268,7 @@ verb crevice
 verb o'ryan, =oryan, patrick
 verb swamp, =bog, =marsh
 verb ivy
-verb wall, walls
+verb wall, =walls
 verb mist, fog, wisps
 verb ramp
 verb droppings
@@ -303,7 +303,7 @@ verb ceiling, vault
 verb bricks, brickwork, =brick-work
 verb maple, =maples, oak, =oaks
 verb birch, =birches
-verb bushes, bush, shrub, gorse, undergrowth, elder, blackthorn, scrub, rosebushes
+verb bushes, bush, shrubs, gorse, undergrowth, elder, blackthorn, scrub, rosebushes, spruce
 verb fir, =firs, conifer, =conifers
 noun grass, soil, patch
 noun weeds
@@ -424,6 +424,7 @@ verb amethyst
 verb metal
 verb paper
 verb brass
+verb thataway
 verb -first.sculpture.fake
 verb !pig
 verb !eel

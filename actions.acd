@@ -506,22 +506,33 @@ action drop               # Generalized "drop" control
             set drop.here, here
          fin
       fin
+      apport arg2, drop.here
       ifat low.room, in.shaft, phoney.shaft
          or
       ifflag here, in.sewer
-         and
-      ifkey food
-         apport food, limbo
-         ifnear rats
-            say food.disappears
-            ifgt rats, 1
-               say rats.hungry
+         ifkey food
+            apport food, limbo
+            ifnear rats
+               say food.disappears
+               ifgt rats, 1
+                  say rats.hungry
+               fin
+               set rats, 0
+               quit
             fin
-            set rats, 0
-            quit
+         otherwise
+         ifkey rags
+            set rags, filthy
+            ifat sea.view, stream.maze, stream.maze.entrance
+               add rags, 1
+            fin
+         else
+            ifkey teeth
+               set teeth, 0
+            fin
+            apport arg2, sea.view
          fin
       fin
-      apport arg2, drop.here
       ifeq drop.here, here
          say you.do, arg1
          ifkey dynamite
@@ -1500,18 +1511,22 @@ action look oyster
 #
 #=====================================================================
 #
-action look cliff
-   ifat rock.shelf, beanstalk.bottom, beanstalk.middle, ledge
-      quip cliff.geology
+action look
+   ifany wall, cliff
+      ifat rock.shelf, beanstalk.bottom, beanstalk.middle, ledge
+         quip cliff.geology
+      fin
+      ifat rocky.beach, sandy.beach, wide.beach, beach.end
+         quip white.cliffs
+      fin
+      ifat basalt.shelf, river.bed.1
+         or
+      ifinrange here, scree, basalt.shelf.2
+         quip basalt.geology
+      fin
    fin
-   ifat rocky.beach, sandy.beach, wide.beach, beach.end
-      quip white.cliffs
-   fin
-   ifat basalt.shelf, river.bed.1
-      or
-   ifinrange here, scree, basalt.shelf.2
-      quip basalt.geology
-   fin
+   ifkey cliff
+      and
    ifinrange here, north.of.spire, river.bed.2
       and
       not
@@ -3013,6 +3028,8 @@ action fill flask
             quip is.now, full.of.oil
          fin
          ifflag here, in.sewer
+            or
+         ifat sea.view
             quip repulsive
          fin
          quip nothing.to.fill, flask
@@ -5196,10 +5213,14 @@ action wash
       and
    ifflag rats, special2
       unflag rats, special2
-      flag hints, sewer.pending
+      flag hints, sewer.exit
+      unflag hints, sewer.pending
       flag stream.maze.entrance, hintable
       flag stream.maze, hintable
       set stream.maze, 0
+      ifnear rags
+         set rags, 1
+      fin
       quip clean.now
    fin
    ifinrange here, sea.view, sewer.5
@@ -6409,7 +6430,7 @@ action dig
    ifany ground, floor, dust, ground
       quip need.shovel
    fin
-   ifany tree, shrub, firs, grass, bush, roses, rose, birch
+   ifany tree, bush, firs, grass, bush, roses, rose, birch
       or
    ifany maple, saplings, vegetation, gravel
       and
@@ -6547,8 +6568,9 @@ action undo
          ifflag undo.status, undo.trim
             say fiddle.less, 1
             say fiddle.value, undo.status
+         else         
+            say fiddle.redo, undo.status
          fin
-         say fiddle.redo, undo.status
       fin
    fin
    ifflag undo.status, undo.bad
