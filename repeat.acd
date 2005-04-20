@@ -1184,9 +1184,13 @@ repeat
          quip more?
       otherwise
       ifeq context, q.vocab.2
-         set context q.vocab.3
          say vocab.travel
-         quip more?
+         ifcgi       # Don't list screen handling commands in CGI mode!
+            say blank
+         else
+            set context q.vocab.3
+            quip more?
+         fin
       else
          say vocab.screen
       fin

@@ -2063,9 +2063,6 @@ proc get.score
    fin
 #
    set actual.score, scorex
-   ifge undostat, 0
-      sub actual.score, undo.cost
-   fin
    ifne codex.reward, awarded
       set losses, deaths
       mult losses, 10

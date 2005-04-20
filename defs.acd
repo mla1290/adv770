@@ -628,6 +628,5 @@ constant 6,  mushroom.effect # What the mushroom adds
 constant 14, full.value      # Full treasure credits
 constant 7,  seen.value      # Credits for only finding treasure
 constant 16, closure.credit  # Points per stage of closure
-constant 20, undo.cost       # One-off irrevocable charge for using undo.
 #
 #=====================================================================

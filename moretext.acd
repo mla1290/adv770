@@ -524,9 +524,9 @@ TEXT assigned TREASURE.5
      Ah, yes, before I forget]...
 #
 TEXT cycle CANNOT.DO.NONE
-     [OK, I've #ne zero steps by doing nothing at all. Good, eh?/There's
-     nothing left to #./There are no commands to #!/Nothing doing -
-     there's nothing to #.]
+     [There are no commands to #!/OK, I've #ne zero steps by doing nothing
+     at all. Good, eh?/There's nothing left to #./There are no commands
+     to #!/Nothing doing - there's nothing to #.]
 #  
 TEXT NOT.A.VALUE
      If you want to specify a number of steps to #, then please supply a

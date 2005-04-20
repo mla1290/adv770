@@ -1288,6 +1288,7 @@ TEXT PLUMMET
    =                   \>crunch!\</
    =Haaaaaaaaaaaaaalllllllllllllllllpppppp...........
    =                     \>smash!\<]
+
 #
 TEXT cycle SLEEPY.BLOCKS.WAY
    [Sleepy as it is/Despite being quite lethargic/Though clearly not
@@ -1575,6 +1576,7 @@ TEXT increment SCHLURP
    =                          ridiculous!
    =
    =                                 \>blop!\<]
+
 #
 TEXT SLIMED
     As you enter into the passage, you are forced to brush up against some
@@ -2818,6 +2820,7 @@ TEXT BIG.SPLASH
    =                  \>SPLASH!\<
    =
    =                                  Glug, glug, glug...
+
 #
 TEXT HUGE.PIT
    It's a huge pit with the floor dimly visible over 50 feet below.
@@ -3745,35 +3748,32 @@ TEXT PEA.SOUPER
 #
 TEXT VOCAB.GENERAL
     Generally I understand commands in the form of "verb" or "verb noun", 
-    such as for instance ENTER or GET LAMP. If you use more words than two,
+    such as for instance ENTER or LIGHT LAMP. If you use more words than two,
     I'll assume that you forgot to use punctuation and will do my
     best to work out how to split the command into two or more. There are
     some exceptions to this: if getting or dropping ALL or TREASURE, you
-    can use EXCEPT (or BUT) like this: DROP ALL EXCEPT LAMP BOTTLE AND KEYS.
+    can use EXCEPT (or BUT) like this: DROP ALL EXCEPT LAMP, BOTTLE AND KEYS.
    
-    In practice this means
-    that if you think that you need a command consisting of a verb and
-    two nouns, for example PUT BIRD IN CAGE, you are definitely on the 
-    wrong track. Instead, you should trust me to do the right thing
-    when you get it right. So if you are in a position to pick up
-    the bird, I'll put it into the cage (if you have it and if the bird
-    is amenable!) without being told to do so.
+    In practice this means that if you think that you need a command
+    consisting of a verb and two nouns, for example PUT BIRD IN CAGE,
+    you are definitely on the wrong track. Instead, you should trust me
+    to do the right thing when you get it right. So if you are in a
+    position to pick up the bird, I'll put it into the cage (if you
+    have it and if the bird is amenable!) without being told to do so.
 
-    The vocabulary display is split into five sections, of which this
-    is the first. The other four contain lists of verbs, nouns, travel
-    and screen options available to you. You can tell me to show you 
-    just one of these lists, rather than the whole lot, by specifying 
-    which list you want to see - e.g. VOCAB VERBS will only show you 
-    the bit relating to verbs, which is the one you should study most 
-    frequently and diligently.
+    The vocabulary display is split into several sections, of which this
+    is the first. Others list specific categories of words, which I 
+    understand. You can tell me to show you just one of these lists,
+    rather than the whole lot, by specifying which list you want to
+    see - e.g. VOCAB VERBS will only show you the bit relating to verbs,
+    which is the one you should study most frequently and diligently.
 #
 TEXT VOCAB.VERBS
     The below verb list is not complete, but with the exception of magic
     formulae, it includes (but is not restricted to) all verbs you need 
-    for the ultimate success.
-    I've thrown in some words which are not strictly verbs, but you can
-    use as such (e.g. EAST or TERSE). Some useful synonyms and abbreviations
-    are given in brackets.
+    for the ultimate success. I've thrown in some words which are not
+    strictly verbs, but you can use as such (e.g. EAST or TERSE). Some
+    useful synonyms and abbreviations are given in brackets.
 
     east (e), north (n), northeast (ne), northwest (nw), south (s),
     southeast (se), southwest (sw), west (w), up (u), down (d)
@@ -4690,6 +4690,7 @@ TEXT
 
    =          SNOEZE     SNOEZE...
    =             SNOEZE
+
 #
 TEXT
 
@@ -4701,6 +4702,7 @@ TEXT
    =   BLERBI           KNERL         SNOEZE
    =       KLAETU    KLAETU    SNOEZE        BLERBI
    =     KLAETU      SNOEZE            KNERL
+
 #
 TEXT
 
@@ -7104,6 +7106,7 @@ FRAGMENT cycle TYPO
 TEXT VOCAB.WIZ
     Wizard commands:
 
+   =increment <object>        - increment object value
    =decrement <object>        - decrement object value
    =fetch <object> (obtain)   - fetch the object from wherever
    =find <object>             - go where the object is
@@ -7111,7 +7114,7 @@ TEXT VOCAB.WIZ
    =glow                      - toggle magical illumination
    =mutter                    - cause immediate orc mutter
    =next \[up/down]            - go to the next higher/lower location
-   =decrement <object>        - increment object value
+
 #
 TEXT increment SUNSTONE.NO.FLY
    [Sorry, I can't allow you to board the rug while in possession of the
