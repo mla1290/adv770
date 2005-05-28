@@ -3200,8 +3200,9 @@ TEXT NO.FUTURE.IN.IT
     Plenty of it about, but somehow I don't think there is much future
     in #.
 #
-TEXT ALREADY.HAD.ONE
-    You already had one! I really don't think you need another #.
+TEXT assigned ALREADY.HAD.ONE
+    You already had [one/some]! I really don't think you 
+    need [another/more] #.
 #
 TEXT OUT.OF.REACH
     It is too high for you to reach.
@@ -5220,7 +5221,7 @@ TEXT increment RUG.NOW.HOVERS
     into the air and hangs there somewhat unsteadily].
 #
 TEXT increment UNROLL.TO.BEAT
-    [It may be a pure prejudice on my part, but i/Ehm... It is customary
+    [It may be a pure prejudice on my part, but i/Ehm... I]t is customary
     to unroll rugs before giving them a good thrashing.
 #
 TEXT increment RUG.ALREADY.CLEAN
@@ -6532,7 +6533,7 @@ TEXT increment UP.THE.TOWER
 
 #
 TEXT NO.CLIMB.TOWER
-    You could maybe managed it with just the lamp, but you really
+    You could perhaps manage it with just the lamp, but you really
     need to ditch any other stuff of any size, before even trying 
     to climb that ivy-covered wall!
 #

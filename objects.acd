@@ -757,7 +757,7 @@ OBJECT MAGAZINES, MAGS, SPELUNKER
    "Spelunker Today"
   %There are a few recent issues of "Spelunker Today" magazine here.
 #
-OBJECT KNIFE
+OBJECT KNIFE, KNIVES
 #
 OBJECT FOOD,RATIONS
    Tasty food
@@ -1154,7 +1154,7 @@ OBJECT PINE
    it should be quite possible to scramble over it with a bit
    of care].
 #
-OBJECT PALMS
+OBJECT PALM, PALMS
   &A tall, easily climbable coconut palm. Sadly, it would
    appear to be a wrong season for coconuts, for none are to be seen
    among the palm's leaves.
@@ -1329,8 +1329,9 @@ OBJECT DWARF, DWARVES
    four hostile/five threatening/six bloodthirsty/seven nasty/
    eight angry/nine hostile and nasty/ten very angry] little
    dwar[/f/ves] in the room with you!
-  &Oh for goodness' sake! What a time to indulge your
-   curiosity! Remember what it did to the proverbial cat?
+  &[The dwarves are an unattractive bunch of short, bearded individuals./
+   Oh for goodness' sake! What a time to indulge your curiosity!
+   Remember what it did to the proverbial cat?]
 #
 OBJECT GIANT  # GIANT *must* be the last object defined!
   %[//

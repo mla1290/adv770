@@ -115,7 +115,7 @@ TEXT FILL.IT.YOU.DUMMY
     If you are trying to fill the #, why not just say so?
 #
 TEXT NO.GET.SOIL
-    The soil is here for the beanstalk's benefit, not yours, so don't
+    The soil is here simply for the beanstalk's benefit, so don't
     waste your time on it.
 #
 FRAGMENT SPOON.NO.DUNG
@@ -384,11 +384,11 @@ TEXT WATERFALL.WALL
     The wall is just rough rock, except for that door inset in it.
 #
 FRAGMENT cycle IT.WOULD.SEEM
-    [As far as I can see,/It would seem that/I think/It would appear
-    that/I believe/Let's see,]
+    [Let's see.../As far as I can see,/It would seem that/I think/It
+     would appear that/I believe] [Y/y]ou
 #
 FRAGMENT SAVED.GAMES
-     {IT.WOULD.SEEM} you [don't have any saved games, though of course you may
+     {IT.WOULD.SEEM} [don't have any saved games, though of course you may
      have some stashed away elsewhere.../have ][/just one saved game: /the
      following saved games:
    /]
@@ -469,7 +469,7 @@ TEXT increment NO.GOOD.WAITING
 TEXT increment NO.SHUT.UP
      [Shut up? Me? That's not a very polite suggestion! If you are really
      tired of my company, just say QUIT and be done with it/You are
-     just trying to provoke me, so I'll ignore your rudeness].
+     just trying to provoke me, so I'll ignore your lack of manners].
 #
 TEXT increment NOT.DREAMING
      [Are you perhaps under the impression that you are asleep? I have
@@ -561,7 +561,7 @@ TEXT FIDDLE.REDO
 
 #
 TEXT RESULT.IS
-     [/Your have relocated//You have relocated][//Y/ and y][//our 
+     [/You have relocated//You have relocated][//Y/ and y][//our 
      possessions have changed/=].
 
 #
@@ -673,5 +673,15 @@ TEXT increment DIRTY.STUFF
    [You'd expect things here to be quite mucky, but it's not that bad.
    I guess an occasional flood of sea water washes off the 
    worst./]
+#
+TEXT increment NO.STEAL.KNIVES
+   [I dare say even sleeping dwarves have their knives with them, though
+   none are to be seen. But I do think it would be a mistake to risk
+   waking up the dwarves./No, you might disturb the dwarves][/. And that
+   would *not* be a good idea./!]
+#
+TEXT PINE.SOIL
+   The patch of soil is smooth and highly compacted. It's a wonder 
+   anything could grow in it.
 #
 #########################################################################

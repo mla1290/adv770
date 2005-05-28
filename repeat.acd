@@ -103,6 +103,7 @@ repeat
          say blank
       fin
       ifeq above.sea, 0
+         flag palms, seen
          smove island, arriving.on.island
       fin
    otherwise
@@ -1353,7 +1354,6 @@ repeat
    local the.it
    local typo.check
    local stone.check
-   local in.loop
    local temp.val
 #
    ifeq status, badsyntax
@@ -1439,7 +1439,19 @@ repeat
          or
       ifis arg2, it
          set the.it, it
-         fakecom it, the.it
+         ifis the.it, dynamite
+            ifkey drop
+               and
+            ifhave rod
+               or
+            ifeq dynamite, 0
+               fakecom it, rod
+            else
+               fakecom it, the.it
+            fin
+         else      
+            fakecom it, the.it
+         fin
       fin
    fin
    ifeq status, 2
@@ -1854,8 +1866,8 @@ repeat
    ifeq stage, in.repository
       set dynamite, 0
       ifkey dynamite
-         exec 26, in.loop      # Check for a "do all" loop.
-         ifeq in.loop, 0       # Not in a loop.
+         ifdoall               # Are we in a do-all loop?
+         else                  # No.
             set dynamite, 1    # He actually said "dynamite"!
          fin
       fin
@@ -2299,6 +2311,8 @@ repeat
 # Some objects are, yet are not present in the repository.
 #
       ifeq stage, in.repository
+         and
+      ifgt status, 1
          call start.cheating    # Kludge up dummy objects in repository
          ifany rod, bundle
             call rod.special.stuff

@@ -5677,7 +5677,7 @@ at beanstalk.bottom
          set status, 1
       fin
    fin
-   respond soil, no.get.soil
+   respond soil, no.get.soil, beanstalk
    ifany open, empty, tear, spill, scatter
       and
    ifkey packet
@@ -13183,7 +13183,7 @@ at island.s
    ifeq status, 1
       move e, island.se
       move w, island.sw
-      move n, mountain, slope, up, island.04
+      move n, mountain, slope, up, climb, island.04
       ifany beach, shore
          call follow.it, island.se, east, island.sw, west
       fin
@@ -13232,7 +13232,7 @@ at island.w
    ifeq status, 1
       move s, island.sw
       move n, island.nw
-      move e, up, slope, mountain, outcrop, island.01
+      move e, up, climb, slope, mountain, outcrop, island.01
       ifany beach, shore
          call follow.it, island.nw, north, island.sw, south
       fin
@@ -13282,7 +13282,7 @@ at island.n
    ifeq status, 1
       move e, island.ne
       move w, island.nw
-      move s, up, slope, mountain, island.07
+      move s, up, slope, mountain, climb, island.07
       ifany beach, shore
          call follow.it, island.ne, east, island.nw, west
       fin
@@ -14246,12 +14246,14 @@ at island.06
    call plants.stuff, 4
    fakecom gap, ravine
    ifkey look
+      respond soil, pine.soil
       respond ravine, down, steep.ravine
       respond bridge, pine.bridge, pine
       respond mountain, towering.mountain, 1
       respond trail, bendy.trail, 2
       proceed
    fin
+   respond soil, no.get.soil, pine
    ifkey climb
       and
    ifany down, ravine
@@ -14879,6 +14881,9 @@ at wrong.venue
 at ne.repository
    call default.read, sign
    call fake.note, nothing.more.to.read, sign
+   ifkey knife
+      respond get, look, no.steal.knives
+   fin
    ifkey look
       respond torch, massive.torches
       respond ceiling, up, its.a.ceiling, c.repository
@@ -14932,6 +14937,12 @@ at blasted.repository
 #
 at sw.repository
    ifkey look
+      ifkey dynamite
+         and
+         not
+      ifflag dynamite, stealable
+         fakearg dynamite, rods
+      fin
       respond ceiling, up, its.a.ceiling, c.repository
       respond pit, snake.pit
       respond torch, massive.torches

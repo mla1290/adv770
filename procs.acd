@@ -1722,23 +1722,31 @@ proc swap.directions
 #
 proc start.cheating
    local obj.ptr
+   local is.here
 #
+   ifkey rod
+      and
+   ifat sw.repository
+      proceed
+   fin
    set faked.object, 0
    ifeq status, 1
       set obj.ptr, arg1
    else
       set obj.ptr, arg2
    fin
-   ifis obj.ptr, beanstalk
-      or
-   ifis obj.ptr, snake
-      or
    ifflag obj.ptr, object
       and
    ifflag obj.ptr, portable
       and
       not
    ifflag obj.ptr, valued
+      or
+   ifis obj.ptr, beanstalk
+      or
+   ifis obj.ptr, snake
+      or
+   ifis obj.ptr, dwarf
    else
       proceed
    fin
@@ -1748,36 +1756,36 @@ proc start.cheating
    ifkey get   
       proceed
    fin
-   ifkey rod
-      ifflag rod, stealable
-         and
-      ifnear dynamite
-         and
-         not
-      ifnear rod
-         proceed
-      fin
-   fin
    ifkey djinn
       proceed
    fin
    ifnear obj.ptr
       proceed
    fin
+   set is.here, 0
    ifflag obj.ptr, special1
       and
-      not
    ifat ne.repository
-      proceed
+      set is.here, 1
    fin
    ifflag obj.ptr, special2
       and
-      not
    ifat sw.repository
-      proceed
+      set is.here, 1
+   fin
+   ifnear arg2
+      or
+   ifeq is.here, 1
+   else
+      quip i.dont.see, arg2
    fin
    ifkey get
       respond dwarf, hah!
+      ifflag arg2, plural
+         set already.had.one, 1
+      else
+         set already.had.one, 0
+      fin
       ifflag obj.ptr, stealable
          quip already.had.one, arg2
       fin
@@ -1824,6 +1832,7 @@ proc debris.quip
 #=====================================================================
 #
 proc rod.special.stuff
+   set it.is, 0
    ifkey get
       ifhere rod
          proceed
@@ -1843,11 +1852,15 @@ proc rod.special.stuff
       fin
       flag dynamite, seen
       iflt invct, strength
+         ifflag dynamite, stealable
+         else
+            flag dynamite, stealable
+            set it.is, 1
+         fin
          get dynamite
-         flag dynamite, stealable
          set faked.object, 0
          say you.do, arg1
-         ifeq dynamite,0
+         ifeq dynamite, 0
             quip it.is, rod
          else
             quip it.is, arg2
@@ -1858,6 +1871,7 @@ proc rod.special.stuff
    fin
    ifany drop, throw
       ifhave rod
+         set faked.object, 0
          proceed
       fin
       ifhave dynamite
@@ -3221,6 +3235,9 @@ proc close.the.cave
       fin
    eoi
    apport mirror, sw.repository
+   set bucket, emptied
+   set bottle, emptied
+   set flask, emptied
    flag bottle special1
    set bottle, emptied
    flag plant, special1
@@ -3248,6 +3265,7 @@ proc close.the.cave
          unflag place.ptr, been.here
       fin
    eoi
+   flag rod, seen
    set forest.12, 1         # Make sure the path exists!
    flag nowhere, hintable   # May have been cleared in the "joke" stage
    flag dark.forest, been.here
@@ -6300,11 +6318,17 @@ proc beach.stuff
       fin
       quip salt.h20.bad
    fin
-   ifkey climb, palms
-      ifnear palms
-         quip no.palm.climbing
+   ifkey climb
+      ifkey palms
+         or
+      ifeq status, 1
+         ifnear palms
+            quip no.palm.climbing
+         fin
+         ifkey palms
+            call bail.out
+         fin
       fin
-      call bail.out
    fin
    ifkey fill
       ifany flask, bottle, bucket

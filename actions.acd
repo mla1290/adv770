@@ -216,11 +216,11 @@ action get        # Generalized last-case "get" routine
       proceed
    fin
    ifhave arg2
-      ifeq stage, in.repository
-         quip already.had.one, arg2
-      else
+#      ifeq stage, in.repository
+#         quip already.had.one, arg2
+#      else
          quip you.have.it, arg2
-      fin
+#      fin
    fin
    ifnear arg2
    else
@@ -4213,6 +4213,7 @@ action phuggg
                   fin
                   flag dwarf,plural
                   call kill.some.dwarves
+                  quit
                else
                   ifeq dwarf, 1
                      say it.didnt.work.1
