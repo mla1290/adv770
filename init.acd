@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2005.
+# Copyleft Mike Arnautov 1984-2006.
 #
 # Time to do some run-time initialisation.
 #
@@ -323,6 +323,7 @@ init
    flag crypt, no.dwarf
    flag wrong.venue, no.dwarf
    flag valuers, no.dwarf
+   flag small.chamber, no.dwarf
    flag storeroom, no.dwarf     # So that nicked objects do not get nicked.
    flag hidey.hole, no.dwarf    # Ditto for things lost in the mist.
 #

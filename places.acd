@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2005.
+# Copyleft Mike Arnautov 1984-2006.
 #
 # Now for the place descriptions.
 #
@@ -380,7 +380,7 @@ PLACE +CHAPEL
 #
 PLACE +BEAMS, +BEAM
    You're in the recess in the beams.
-  %You [have climbed the rope and crawled into/in] a small recess in the
+  %You [have climbed the rope and crawled into/are in] a small recess in the
    beams.[/ A rope, as thick as your arm is securely fastened to a large
    beam, and hangs down into the dark space below.]
 #
@@ -1266,7 +1266,7 @@ PLACE ICE.CAVE.29
    {ICE.TUNNELS} east, south and northwest.
 #
 PLACE ICE.CAVE.30
-   You are in a small chamber melted out of the ice. {ICE.DEAD.END} east.
+   You are in a small chamber melted out of the ice. The only exit is east.
    Glowing letters in midair spell out the words
 
   +       "This way out".
@@ -1388,7 +1388,7 @@ PLACE BEANSTALK.BOTTOM
 #
 PLACE BEANSTALK.MIDDLE
    You're half way up the giant beanstalk.
-  %You have climbed part way up the beanstalk. To one side you can
+  %You [are/have climbed] part way [up/up/down] the beanstalk. To one side you can
    see a wide expanse of sunlit sea stretching away to the
    horizon. On the other side is a vertical cliff. A small sapling
    grows from a crack in the rock a short way north, with the
@@ -1705,10 +1705,8 @@ PLACE GARDEN.N      # Remember, gates are schizoid!
 PLACE GARDEN.NW
    You're in the NW corner of the rose garden.
   %You are in the northwest corner of the garden, in a circular area, 
-   formed by dead rose bushes. Four weathered
-   stone pedestals form a square within the circular space.
-   I guess the garden's designer had in mind some vague artistic
-   notions of squaring circles or some such nonsense. A narrow path
+   formed by dead rose bushes. Four weathered stone pedestals form a 
+   square within the circular space.{SQUARE.CIRCLE} A narrow path
    leads into a tangle of wild roses to the south.
 #
 PLACE +GARDEN, GARDEN.NE
@@ -2851,8 +2849,8 @@ FRAGMENT ABYSS.LONG
    of hollows and protruding rocks. All else is impenetrable darkness.
 #
 PLACE ABOVE.ABYSS
-   [>$</{ABYSS.SHORT}]
-  %[>$</{ABYSS.LONG}]
+   [/{ABYSS.SHORT}]
+  %[/{ABYSS.LONG}]
 #
 FRAGMENT SOMETHING.INVISIBLE
    You are standing on something invisible above a

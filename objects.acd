@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2005.
+# Copyleft Mike Arnautov 1984-2006.
 #
 # Here follow the object definitions.
 #
@@ -42,7 +42,7 @@ OBJECT SNAKE
    alert, and rather annoyed.]
 #
 OBJECT FISSURE
-  %[>$</A crystal bridge spans the fissure.]
+  %[/A crystal bridge spans the fissure.]
   &The bottom of the fissure is obscured by a mass of writhing and coiling
    mists - a fascinating but not very informative spectacle.
 #
@@ -59,7 +59,7 @@ OBJECT PLANT
    A gigantic beanstalk stretches all the way up to the hole above.]
 #
 OBJECT -PLANT2   # Phony plant (seen in Twopit room only when tall enough)
-  %[>$</
+  %[/
    The top of a 12-foot-tall beanstalk is poking out of the west pit./
    There is a huge beanstalk growing out of the west pit up to
    the hole.]
@@ -73,7 +73,7 @@ OBJECT GLOW    # Glow of light in the midst of the fog
 # VERBS file - it they aren't, incredible confusion (that is, more
 # incredible than what we're trying to create) will result.
 #
-  %[>$</]A [/glow of/flickering/faint glow of/dim/faint shimmer of/dim 
+  %[/]A [/glow of/flickering/faint glow of/dim/faint shimmer of/dim 
    glow of/glimmer of/dim flickering] light is visible [/through the fog 
    to the north/through the fog in the northeast/through the fog to 
    the east/in the southeast/to the south/in the southwest/through
@@ -179,7 +179,7 @@ OBJECT MESSAGE  # Message in second maze
   +  "This is not the maze where the pirate leaves his treasure chest."
 #
 OBJECT VOLCANO, CONE
-  %[>$</
+  %[/
    The earth begins to shudder violently, and smoke flows up from the
    gorge beneath your feet. With a violent \>GLOP!\<, the volcano
    belches out an immense blast of molten lava which flies into the
@@ -255,11 +255,11 @@ OBJECT BEAR
 OBJECT BATTERIES, =BATTERY
    [/Fresh//Worn-out] batteries
   %[There is a pair of brand-new batteries in the goods tray./
-   There are fresh batteries here./>$</
+   There are fresh batteries here.//
    Some worn-out batteries have been discarded nearby.]
   &The two batteries are just the right size and shape for the lamp.
    Both are marked as "[BRAND-NEW/FRESH//WORN-OUT]" in
-   chunky [green/red//blue] letters.
+   chunky [blue/green//red] letters.
 #
 OBJECT MOSS  # Carpet and/or moss
 #
@@ -374,12 +374,13 @@ OBJECT POTTERY, SHARDS
 OBJECT EMERALD
    Egg-sized emerald
   %There is an emerald here the size of a plover's egg!
-  &A stone of remarkable quality!  Not priceless, but definitely *very*
-   expensive.
+  &A very nice stone of the traditional "emerald cut" - rectangular,
+   with rows of step cuts along the edges and the corners. And as
+   precious stones go, it is *huge*!
 #
 OBJECT SCEPTRE   # Sceptre's 0-mode description is part of "SKELETON"
    Sapphire sceptre
-  %[>$</
+  %[/
    A sapphire-encrusted sceptre is lying on the {FLOOR?}!]
   &A strange, unearthly object of great value. Obviously a symbol of
    kingship, but I doubt if any human king ever wielded its like.
@@ -532,7 +533,7 @@ OBJECT TUSK
   %A large ivory tusk lies here[./!]
   &Large and yellow with age. Elephant's, I think - nothing exotic.
 #
-OBJECT CHALICE, =INLAID
+OBJECT CHALICE, =INLAID, =CUP
    Inlaid chalice
   %A magnificent inlaid chalice lies here!
   &Obviously of great antiquarian value, even though it is
@@ -548,8 +549,8 @@ OBJECT UNICORN
 OBJECT SAPPHIRE
    Large sapphire
   %A very large sapphire lies here!
-  &A stone of remarkable quality!  Not priceless, but definitely *very*
-   expensive.
+  &A clear blue stone of remarkable quality, enhanced by its
+   simple, oval cut.  Not priceless, but definitely *very* expensive.
 #
 OBJECT DUNG, TURDS
   %There is a pile of unicorn dung on the {FLOOR?} here.
@@ -881,16 +882,16 @@ OBJECT NOTICE
    in the passing years and by now the words carved into its wooden
    board are hardly legible. In addition, the right bottom corner is
    missing altogether - probably broken off by some adventuring 
-   vandals./]
+   vandals./]{TT.MODE.ON}
   /
   =         \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-  =         |
-  =         |  [TO ..OSE WHO CO../=/TW.. BRI.LIG, A..]
-  =         |  [AFT.. ME: THIS ../=/THE .LITHY TOVE.]
-  =         |  [THE .LACE TO/=/DID .YRE AND]
-  =         |  [THE S./=/IN TH.]
-  =         |\_\_\_\_\_\_\_\_
-
+  =         |_____________________|
+  =         | _[TO ..OSE WHO CO../=/TW.. BRI.LIG, A..]_ |
+  =         | _[AFT.. ME: THIS ./=/THE .LITHY TOVE.]|--|
+  =         | _[THE .LACE TO/=/DID .YRE AND] |--|
+  =         | _[THE S./=/IN TH.]|------|
+  =         |\_\_\_\_\_\_\_\_|
+   {TT.MODE.OFF}
 #
 OBJECT GOBLINS, =GOOSEBERRY
    [Suddenly and without warning, there appears from within the very
@@ -959,10 +960,10 @@ OBJECT FEEDER, TABLE, BIRDTABLE
   /A small pile of bird seed lies on the table./]
   &It's just a few rough planks forming a flat surface and
    mounted on a tall and equally rough wooden leg sticking 
-   out of the ground. On the table is a small heap of bird seed
+   out of the ground.[ On the table is a small heap of bird seed
    provided by some kind soul for the local avian population.
    Sadly, it does not appear to be terribly popular with the intended
-   recipients.
+   recipients./]
 #
 OBJECT SEED, BIRDSEED, =SEEDS, =GRAINS
    Some bird seed
@@ -976,7 +977,7 @@ OBJECT BEANSTALK
    the way up the cliff.]
 #
 OBJECT  -BEANSTALK2  # Phony beanstalk visible from the picnic place
-   %[>$</>$</
+   %[//
    The top of a huge beanstalk is poking up over the edge of the cliff.]
 #
 FRAGMENT increment HUM.HO
@@ -1142,7 +1143,7 @@ OBJECT WRAPPER
    plant and the words "Stupe-Gro (TM)".[ I can't think why you are 
    carrying it around with you./]
 #
-OBJECT PINE
+OBJECT PINE, =PINES
   %[A picturesque mountain pine grows at the end of the 
    trail/A fallen mountain pine bridges the gap].
   &[It is an old mountain pine, rooted in a pocket of soil near the
@@ -1184,7 +1185,7 @@ OBJECT IMP, =ASTRAL
    the same time. The imp is sitting cross-legged in
    mid-air, facing the mirror-smooth wall of falling
    water and is totally absorbed in its task of wielding a large
-   calligraphic brush, with which it writes in lightening strokes 
+   calligraphic brush, with which it writes in lightning strokes 
    something utterly incomprehensible on the water surface.
    The green fiery letters {IMPS.LEGEND}.
 #
@@ -1245,7 +1246,7 @@ OBJECT ANTEATER, PANGOLIN, AARDVARK, ANIMAL
     ]
    &{ANTEATER.QUIP}
 #
-OBJECT IT, OBJECT, THEM, HIM        # Dummy for IT processing.
+OBJECT IT, OBJ, OBJE, OBJEC, OBJECT, THEM, HIM # Dummy for IT processing.
 #
 OBJECT POSTER, =RECORD
   &+                    A RECORD OF RECENT RENOVATIONS

@@ -1,6 +1,17 @@
-# Copyleft Mike Arnautov 1984-2005.
+# Copyleft Mike Arnautov 1984-2006.
 #
 # Procedures.
+#
+#====================================================================
+#
+proc not.got, thing
+   ifflag thing, object
+      ifhere thing
+         quip not.holding, thing
+      fin
+      quip you.dont.have, thing
+   fin
+   quip hah!
 #
 #=====================================================================
 #
@@ -72,14 +83,32 @@ proc generic.no.do
 #=====================================================================
 #
 proc bail.out
+#
+# Liquids are special!
+#
    ifkey oil
       call handle.oil
-#      handle.oil
    fin
    ifkey water
       call handle.water
    fin
+#
+# Is he interested in bits of the unicorn?
+#
+   ifany hoofs, horn, mane
+      and
+   ifhere unicorn
+      respond horn, wicked.unicorn, 0
+      respond hoofs, wicked.unicorn, 1
+      respond mane, wicked.unicorn, 2
+   fin
+#
+# Whadayamean "something"?
+#
    respond something, pardon?
+#
+# Generic ceiling response (specific ones handled elsewhere).
+#
    ifany ceiling, roof
       ifflag here, not.in.cave
          or
@@ -87,7 +116,13 @@ proc bail.out
          quip hah!
       fin
    fin
+#
+# Yeah, minerals, man!
+#
    respond minerals, minerals.aplenty
+#
+# Don't look at the sun!
+#
    ifkey sun
       ifflag here, not.in.cave
          and
@@ -96,12 +131,21 @@ proc bail.out
          flag context, arg2.distant
       fin
    fin
+#
+# A general comment on wall caves.
+#
    ifkey wall
       and
       not
    ifflag here, not.in.cave
-      quip nothing.special, wall
+      respond climb, no.wall.climbing
+      respond look, nothing.special, wall
+      respond kill, hit, kick, no.break.wall
+      quip hah!
    fin
+#
+# Is he scared of shadows?
+#
    ifany shade, shadow
       and
    ifflag here, not.in.cave
@@ -110,6 +154,9 @@ proc bail.out
    ifinrange here, above.sea, ylem
       quip ignore.shadows
    fin
+#
+# There's sand on them beaches!
+#
    ifkey sand
       ifnear quicksand
          or
@@ -147,6 +194,18 @@ proc bail.out
          fin
       fin
    fin
+#
+# Assay marks need special treatment!
+#
+   ifkey marks
+      and
+   ifhave bars
+      respond look, assay.marks
+      flag context, arg2.here
+   fin
+#
+# Dust and dirt are ubiquitous...
+#
    ifany dust, dirt
       ifflag here, not.in.cave
          ifeq status, 1
@@ -157,12 +216,18 @@ proc bail.out
          quip dirt.and.dust
       fin
    fin
+#
+# We also have quite a few corners in the cave.
+#
    ifkey corner
       and
       not
    ifflag here, not.in.cave
       quip nooks.and.crannies
    fin
+#
+# The sygil on the bust!
+#
    ifkey sygil
       and
    ifnear bust
@@ -172,6 +237,9 @@ proc bail.out
       flag status, pls.clarify   # Request clarification
       quip do.what?, arg1
    fin
+#
+# Remember to allow for rusty things!
+#
    ifkey rust
       ifat south.side.chamber, cellar, cellar.view, half.stairs, storeroom
          or
@@ -185,6 +253,9 @@ proc bail.out
          quip hah!
       fin
    fin
+#
+# Only the lamp can be lit.
+#
    ifkey light
       and
    ifgt status, 1
@@ -193,6 +264,9 @@ proc bail.out
    ifkey lamp
       quip hah!
    fin
+#
+# Deal with references to swag!
+#
    ifkey swag
       ifis arg1, swag
          quip no.swag, arg1
@@ -200,8 +274,14 @@ proc bail.out
          quip no.swag, arg2
       fin
    fin
+#
+# Interact with Moorcock fans!
+#
    respond elric, elric.lives
    respond jerry, elric.preferred
+#
+# Now for some more generalised processing...
+#
    ifeq status, 1   
       ifflag arg1, object
          and
@@ -247,6 +327,7 @@ proc bail.out
          quip plenty.about, space
       fin
    fin
+   respond thumbs, hah!
    ifeq status, 2
       and
    ifflag arg2, object
@@ -378,6 +459,12 @@ proc dispose.liquid
       quip error
    fin
    call vessel.contents
+   ifis result, champagne
+      ifnear giant
+         quip no.upset.giant
+      fin
+      say waste.of.champagne
+   fin
    deposit vessel, emptied
    ifis vessel, flask
    else
@@ -386,12 +473,6 @@ proc dispose.liquid
    ifeq silence, true
       set silence, false
       proceed
-   fin
-   ifis result, champagne
-      ifnear giant
-         quip no.upset.giant
-      fin
-      say waste.of.champagne
    fin
    say pour.liquid.1, result
    say pour.liquid.2, vessel
@@ -821,6 +902,9 @@ proc wizard.evicts
          set junk, 1
       fin
    eoi
+   ifloc orb, cellar
+      apport fake.orb, cellar.view
+   fin
    say be.off, junk
    ifeq junk, 0
       move mists
@@ -1121,6 +1205,8 @@ proc owl.comes, no.chance, some.chance
       ifnear spider
          say owl.kills
          apport spider, ylem
+         set stuck.in.web, 1
+         set no.handle.web, 0
          set web, with.documents
          flag documents, seen
          ifeq axe, by.spider
@@ -1922,7 +2008,7 @@ proc rod.special.stuff
 proc oyster.message
    ifeq stage, in.repository
    else
-      quip cant.read.oyster
+      quip cant.read.it, oyster
    fin
    ifhave oyster
    else
@@ -2764,8 +2850,22 @@ proc drop.sunstone
    ifgt sunstone, 8
       sub sunstone, 8
    fin
-   drop sunstone
+   apport sunstone, drop.here
+   ifnear sunstone
+      set sunstone.drops, 0
+   otherwise
+   ifinrange here, above.abyss, above.volcano
+      set sunstone.drops, 3
+   otherwise
+   ifis drop.here, beanstalk.bottom
+      set sunstone.drops, 2
+   else
+      set sunstone.drops, 1
+   fin
    say sunstone.drops, sunstone
+   ifeq sunstone.drops, 3
+      append drop.abyss, 0
+   fin
    ifeq sunstone, 8
       and
       not
@@ -4329,11 +4429,9 @@ proc weaponry    # Handle attacks with weapons
             proceed       # in upchuck     
          fin
          quip you.do.it
-#         say you.do, arg1
-#         quip it.is, arg2
       fin
    else
-      quip you.dont.have, arg2
+      call not.got, arg2
    fin
    quit
 #
@@ -4415,7 +4513,7 @@ proc too.dark.for.safety quit.flag
    ifat pantry
       say dark.place, 1
    otherwise
-   ifat catacombs.portal
+   ifat alcove, catacombs.portal
       say dark.place, 2
    else
       say it.is.now.dark
@@ -4628,8 +4726,10 @@ proc giant.stuff, giving
          proceed
       otherwise
       ifeq zorro, 1
-         ifhave bucket
+         ifnear bucket
             ifeq bucket, full.of.water
+               or
+            ifge bucket, mostly.full
                or
             ifeq bucket, full.of.champagne
                say drink.up
@@ -4840,7 +4940,7 @@ proc thirst.factor
    iflt thirst.time, 140
       and
    ifeq water, sated
-      say thirsty.work
+      say thirsty.work, invct
       set water, parched
    fin      
 #
@@ -4855,11 +4955,12 @@ proc shadow.shutup
 #=====================================================================
 #
 proc foo.to.you.too
-   set foobar, 0
    ifgt foobar, 0
+      set foobar, 0
+      lda nuffink, sok!
       quip cant.you.read?
    fin
-   quip nothing
+   quip nuffink
 #
 #=====================================================================
 #
@@ -5397,7 +5498,7 @@ proc vampire.stuff
       set obj.ptr, arg2
       ifhave obj.ptr
       else
-         quip you.dont.have, obj.ptr
+         call not.got, obj.ptr
       fin
       eval state, obj.ptr
       ifgt state, emptied
@@ -5560,8 +5661,10 @@ proc bridge.stuff
 #
 proc whirlpool.dive
    local obj.ptr
-   local have.some
    local obj.val
+   local kept.some
+   local lost.some
+   local outcome
 #
    ifeq status, 0
       or
@@ -5573,25 +5676,40 @@ proc whirlpool.dive
       fin
       itobj obj.ptr, inhand
          eval obj.val, obj.ptr
-         ifflag obj.ptr, wearable
+         ifis obj.ptr, ring, beads
             and
          ifeq obj.val, worn
-            or
-         ifis  obj.ptr, lamp
+            set kept.some, 1
+         otherwise
+         ifis obj.ptr, lamp
          else
             apport obj.ptr, ylem
-            set have.some, 1
+            set lost.some, 1
          fin
       eoi
+      ifeq lost.some, 0
+         set kept.some, 0
+      fin
+      add outcome, lost.some
+      add outcome, kept.some
+      sub outcome, 1
+      set into.the.whirlpool, 0
       ifhave lamp
+         add outcome, 2
          set invct, 1
-         set have.some, 1
+         ifeq lost.some, 0
+            set lost.some, 1         # Only pretending!
+            set outcome, 4
+         fin
+         ifeq lamp, switched.on
+            set into.the.whirlpool, 1
+         fin
       else
          set invct, 0
       fin
-      say into.the.whirlpool, invct
-      ifgt have.some, 0
-         say strong.current, invct
+      say into.the.whirlpool
+      ifgt lost.some, 0
+         say strong.current, outcome
       else
          say blank
       fin
@@ -5600,7 +5718,7 @@ proc whirlpool.dive
    fin
    ifany quit, no, n
       set context, none
-      quip ok
+      quip ok!
    fin
    restore command, text.ptr
    say yes.or.no?
@@ -5617,7 +5735,7 @@ proc positive.vetting
          set context, q.prove.it
          quip prove.it
       fin
-      respond quit, no, n, ok
+      respond quit, no, n, ok!
 #      ifkey epns
 #      else
 #         quip lets.be.prudent, 0
@@ -5659,7 +5777,7 @@ proc maze.escape
          move ice
       fin
    fin
-   respond quit, no, n, ok
+   respond quit, no, n, ok!
    quip lets.be.prudent, 0
 #
 #=====================================================================
@@ -5712,7 +5830,7 @@ proc save.it
    ifkey yes
       add penalties, hint.cost
       set context, none
-      quip ok
+      quip ok!
    fin
    ifany quit, no, n
       say well.meet.again
@@ -6104,7 +6222,7 @@ proc early.restore
       call restore.it
    fin
    ifany no, n
-      say ok
+      say ok!
    else
       say lets.be.prudent, 0
    fin
@@ -6120,7 +6238,7 @@ proc restored
    ifeq status,0
       or
    ifkey yes
-      say ok
+      say ok!
    otherwise
    ifany no, n
       restore command
@@ -6300,13 +6418,14 @@ proc tooth.stuff
       and
       not
    ifhave teeth
-      quip you.dont.have, teeth
+      call not.got, teeth
    fin
    quip teeth.plural, arg1
 #
 #=====================================================================
 #
 proc beach.stuff
+   fakearg strips, sand
    ifany water, sea
       respond in, go, in, no.swim, 0
       respond get, salt.h20.bad
@@ -6512,7 +6631,8 @@ proc by.house.actions
    ifany kill, break
       quip no.violence
    fin
-   respond tree, maple, pine, no.handy.them, arg2
+   respond tree, no.handy.them, tree
+   respond maple, pine, no.handy.them, arg2
    respond vegetation, dull.stuff, 0
    respond roof, building.roof
    respond bricks, house.bricks
@@ -7060,7 +7180,7 @@ proc except.check
                chance 50
                   quip you.arent.carrying, obj.ptr
                fin
-               quip you.dont.have, obj.ptr
+               call not.got, obj.ptr
             fin
          else
             ifhave obj.ptr
@@ -7163,6 +7283,7 @@ proc tie.them
    tie beanstalk, no.climb.cliff, patch.of.soil
    tie mists, dome.state
    tie beater, its.a.sapling
+   tie casket, casket.shelf
 #
 #=====================================================================
 #

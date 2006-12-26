@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2005.
+# Copyleft Mike Arnautov 1984-2006.
 #
 # And here, at long last, is the main program!
 #
@@ -159,12 +159,6 @@ repeat
          flag vampire, special1
       fin
       flag giant, big        # Only matters when he is picnicking
-      ifgt giant, picnicking
-         and
-         not
-      ifnear rug
-         set giant, picnicking
-      fin
       add moves, 1
       ifat mtking
          set snake.exit, there
@@ -302,7 +296,7 @@ repeat
       ifis there, dark.forest
          and
          not
-      ifis here dark.forest
+      ifis here, dark.forest
          and
       ifany north, ne, east, se, south, sw, west, nw
          say once.is.enough
@@ -674,9 +668,6 @@ repeat
    fin
    ifnear giant
       call giant.stuff, 0
-   otherwise
-   ifeq giant, watching
-      set giant, picnicking
    fin
    ifgt giant, resting
       and
@@ -704,6 +695,7 @@ repeat
       ifeq result, 0
          say tiny.mouse
          flag mouse, seen
+         set mouse.hole, 1       # In case it is still zero.
       fin
    fin
    ifat dungeon
@@ -721,7 +713,10 @@ repeat
          fin
       eoi
    fin
-   call thirst.factor
+   ifat nowhere
+   else
+      call thirst.factor
+   fin
    set fleetfoot, 25                # Not running, didn't just attack
    set backlash, 35                 # Dwarves not vengeful
    ifge chalice, leaking            # Any water in it?
@@ -876,6 +871,10 @@ repeat
          set status, no.amatch   # No approximate matching during the "joke"
       fin
       input
+      ifflag context, prompted
+         lda ok, ok!
+         lda nuffink, nothing
+      fin
       proceed
    fin
    input null
@@ -910,7 +909,7 @@ repeat
       fin
       ifany quit, no, n
          set context, none
-         quip ok
+         quip ok!
       fin
       ifkey maybe
          set context, none
@@ -934,7 +933,7 @@ repeat
          add penalties, hint.cost
          smove road, foof
       fin
-      respond quit, no, n, ok
+      respond quit, no, n, ok!
       respond maybe, indecisions
       set context, q.forest.out
       say yes.or.no?
@@ -1007,7 +1006,7 @@ repeat
       ifany quit, no, n
          set context, none
          ifflag here, been.here
-            say ok
+            say ok!
          fin
          quit
       fin
@@ -1252,7 +1251,7 @@ repeat
       else
          quip lets.be.prudent, 0
       fin
-      quip ok
+      quip ok!
    otherwise
 #
    ifeq context, q.keep.image
@@ -1291,11 +1290,10 @@ repeat
          smove waterfall, through.waterfall
       fin
       ifany no, n
-      else
-         quip lets.be.prudent, 0
+         quip if.not.not
       fin
-      quip if.not.not
-   fin
+      quip lets.be.prudent, 0
+   otherwise
 #
    ifeq context, q.really.fly?
       set context, none
@@ -1304,10 +1302,9 @@ repeat
          call fly
       fin
       ifany no, n
-      else
-         quip lets.be.prudent, 0
+         quip if.not.not
       fin
-      quip if.not.not
+      quip lets.be.prudent, 0
    otherwise
 #
    ifeq context, q.into.abyss?
@@ -1319,7 +1316,7 @@ repeat
       fin
       respond n, no, if.not.not
       quip lets.be.prudent, 0
-   fin
+   otherwise
 #
    ifeq context, q.streambed
       set context, none
@@ -1332,7 +1329,7 @@ repeat
          quip very.sensible, 0
       fin
       quip lets.be.prudent, 0
-   fin
+   otherwise
 #
    ifeq context, q.wimp
       set context, none
@@ -1340,9 +1337,23 @@ repeat
          set undostat, 1
          quip you.r.a.wimp
       fin
-      ifany n, no
-         quip very.wise
+      respond n, no, very.wise
+      quip lets.be.prudent, 0
+   otherwise
+#
+   ifeq context, q.champagne?
+      set context, none
+      ifkey yes
+         ifhave chalice
+            set context.value, 0
+         else
+            set context.value, 1
+         fin
+         apport chalice, ylem
+         flag here, damp
+         quip poof.goes.chalice
       fin
+      respond n, no, if.not.not
       quip lets.be.prudent, 0
    fin
 #
@@ -1455,12 +1466,21 @@ repeat
       fin
    fin
    ifeq status, 2
+      and
+   iflt arg2, badword
       set it, arg2
    otherwise
    ifflag arg1, object
       or
    ifinrange arg1, first.pseudo, last.pseudo
       set it, arg1
+   fin
+#
+# "Switch" is both a verb and an object, so check it out before doing a
+# general verb processing.
+#
+   ifkey switch
+      call switch
    fin
 #
 # Handle "around"
@@ -1487,6 +1507,34 @@ repeat
       call walk
    fin
 #
+# Handle "handle"
+#
+   ifkey handle
+      ifnear sword
+         respond read, look, pommel.inlay
+         fakecom handle, sword
+      otherwise
+      ifnear spoon
+         ifany read, look
+            flag spoon, special1
+            quip spoon.quip
+         fin
+         fakecom handle, spoon
+      otherwise
+      ifnear thurible
+         respond read, look, nothing.special, handle
+         fakecom handle, thurible
+      otherwise
+      ifis arg1, handle
+         and
+         not
+      ifis arg2, handle
+         quip use.too.vague, handle
+      else
+         quip i.dont.see, handle
+      fin
+   fin
+#
 # Handle "thataway"
 #
    ifkey thataway
@@ -1501,11 +1549,8 @@ repeat
 #
 # Handle various materials
 #
-   ifnear nugget
-      call material, nugget, gold
-   else
-      call material, crucifix, gold
-   fin
+   call material, nugget, gold
+   call material, crucifix, gold
    call material, bars, silver
    call material, seal, quartz
    call material, gong, bronze
@@ -1518,8 +1563,24 @@ repeat
    call material, crucifix, amethyst
    call material, flower, metal
    call material, wrapper, paper
-   call material, packet, paper   # Can't clash with wrapper!
+   call material, packet, paper
    call material, knocker, brass
+   call material, door, iron
+   call material, ironwork, iron
+   ifnear chest
+      or
+   ifnear door2
+      and
+      not
+   ifnear gates
+      and
+      not
+   ifnear door
+      and
+   ifany iron, ironwork, strips
+      respond look, solid.strips
+      flag context, arg2.here
+   fin
 #
 # DETOUR BUSHES is a special.
 #
@@ -2472,7 +2533,7 @@ repeat
 #=====================================================================
 #
 repeat      # Dummy. Just stops translator grizzling.
-   respond furiously, crabs, boils, quark, stew, pardon?
+   respond furiously, crabs, boils, quark, stew, eyes, pardon?
 #
 #=====================================================================
 

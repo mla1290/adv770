@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2005.
+# Copyleft Mike Arnautov 1984-2006.
 #
 # Define various flags and constants.
 #
@@ -59,6 +59,7 @@ constant none              # No context -- must be 1st!
          q.really.fly?     # Is he sure he got everything?
          q.streambed       # Really down to streambed?
          q.wimp            # Are you a wimp?
+         q.champagne?      # Fill the chalice with champagne?
 #
 #        Bit flags set for the 'status' variable
 #
@@ -185,6 +186,8 @@ flags object
 # spoon   #1 spoon writing noted.
 #         #2 tried getting dung with it.
 #
+# plate   #2 tried getting dung with it.
+#
 # helmet  #2 tried getting dung with it.
 #
 # chalice #2 tried filling it with dung.
@@ -260,6 +263,7 @@ flags variable
       arg2.here       # ARG2 designated pseudo object *is* here
       arg2.distant    # ARG2 can be seen but is out of reach
       recent.move     # Last turn was a move
+      prompted        # PLayer queried for input
 #
 # Define thirst parameters.
 #

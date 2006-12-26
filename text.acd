@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2005.
+# Copyleft Mike Arnautov 1984-2006.
 #
 # "Random" texts.
 #
@@ -192,7 +192,7 @@ TEXT cycle IMPASSABLE.DESERT
     haven't noticed, there is a whopping big impassable sand
     dune in that direction!/You try to climb the steep dune to the #,
     but keep sliding back./You fail to make any progress to the #,
-    as the dunes are too soft and steep on that direction.]
+    as the dunes are too soft and steep in that direction.]
 #
 TEXT random OOF!
     [You have run into a wall of rock and can go no further in this
@@ -805,7 +805,8 @@ TEXT NO.OPEN.BIVALVE
     You don't have anything strong enough to open the #.
 #
 TEXT BIVALVE.OPENED
-    [A glistening pearl falls out of the clam and rolls away. Goodness,
+    [You lever the clam open with the trident, and a glistening pearl 
+    falls out of the clam and rolls away. Goodness,
     this must really be an oyster. (I never was very good at identifying
     bivalves.) Whatever it is, it has now snapped shut again./
     The oyster creaks open, revealing nothing but oyster inside. It
@@ -1225,7 +1226,7 @@ TEXT LAMP.GETTING.DIM
 
 #
 TEXT random MAG.IN.DWARVISH
-    [I'm afraid/Sorry,/Regrettably,/Unfortunately,] the magazine is 
+    [I'm afraid/Sorry,/Regrettably,/Unfortunately,] the magazines are 
     written in a form of Dwarvish runes with which I am not familiar.
 #
 TEXT IT.SAYS.CHEST.ELSEWHERE
@@ -1512,8 +1513,8 @@ TEXT DOUSED.DWARF
 TEXT NOTHING.TO.DRINK
     There is nothing here that one could drink!
 #
-TEXT CANT.READ.OYSTER
-    There's nothing written on the oyster.
+TEXT CANT.READ.IT
+    There's nothing written on the #.
 #
 TEXT OYSTER.IS.BARE
     There is nothing written on the top of the oyster.
@@ -1675,7 +1676,7 @@ TEXT
     \>\>sputter\<\<
    /       \>spark\<
    /\>\>\>\>\>\>phut\<
-   /  >hsssssssss
+   /  \>hsssssssss
    /        ssssss
    /            sss
    /               s
@@ -2001,15 +2002,15 @@ TEXT GONG.FETCH
 FRAGMENT WHIRLPOOL?
     What, into the whirlpool?!?_
 #
-FRAGMENT INTO.THE.WHIRLPOOL
+FRAGMENT assigned INTO.THE.WHIRLPOOL
     You plunge into the water and are sucked down by the whirlpool
     [ into pitch darkness/].
 #
 TEXT STRONG.CURRENT
-   / The current is incredibly strong, and [everything
-    you were carrying is ripped/you barely manage to hold
-    onto your lamp; everything else is pulled] from your grasp and
-    is lost in the swirling waters.
+   / The current is incredibly strong, and [everything you were carrying is
+    ripped/most of your possessions are pulled/you barely manage to hold onto
+    your lamp][ / /; /; most /.][//everything else is ripped /=/][from your
+    grasp and lost in the turbulent flow./=/=/=/]
 #
 TEXT OUT.OF.THE.WHIRLPOOL
 
@@ -2519,7 +2520,8 @@ TEXT increment NO.OPEN.GATE
     way to open the gates.]
 #
 TEXT increment SPOON.QUIP
-    It says EPNS in flowery script[/, just as it did before].
+    The writing on the spoon's handle says EPNS in flowery 
+    script[/, just as it did before].
 #
 TEXT E.P.N.S.
     Electro-plated nickel silver. It's nearly worthless.
@@ -2545,9 +2547,10 @@ TEXT increment VAIN.CONTEMPLATION
 TEXT NO.SLEEP
     It is *far* too dangerous to sleep around here!
 #
-TEXT TINY.MOUSE
+TEXT increment TINY.MOUSE
 
-    A tiny mouse appears from a small hole, sees you and hastily retreats.
+    A tiny mouse appears from [a small/the mouse] hole, sees you and 
+    hastily retreats.
 #
 TEXT HELPFUL.MOUSE
 
@@ -2592,9 +2595,10 @@ TEXT CANT.SCOOP
     the chalice to it.
 #
 TEXT CHALICE.LEAKING
-    You have scooped some water with the chalice but it is rapidly leaking
-    out through some cracks in the bottom. If you intend to drink it,
-    better do so quick, before it all runs out!
+    You have [scooped/poured] some water [with/from the bucket into] 
+    the chalice but it is rapidly leaking out through some cracks in 
+    the [/chalice ]bottom. If you intend to drink it, better do so
+    quick, before it all runs out!
 #
 TEXT IS.EMPTY
     I am sorry, but the # is already quite empty.
@@ -2969,11 +2973,11 @@ TEXT CHALICE.NOW.EMPTY
     anyway/all the water has leaked out].
 #
 TEXT CUT.WEB
-    You chop the web to shreds with your axe, freeing the documents which
-    fall to the ground with a heavy thud.
+    Taking care not to get stuck in the web, you chop it to shreds with your
+    axe. The documents fall to the ground with a heavy thud.
 
-    Well, what do you know!... There is a large circular opening behind
-    the web!
+    Well, what do you know!... There is a large circular opening in the
+    wall behind the web!
 #
 TEXT SPIDER.DODGES
     The spider dodges your axe, briefly exposing a bundle of papers stuck
@@ -3062,8 +3066,8 @@ TEXT DWARVES.COME
 #
 TEXT THIRSTY.WORK
 
-    Exploring is a thirsty work. You must soon take a drink or lighten
-    your load.
+    Exploring is a thirsty work. You must soon take a drink[/// or lighten
+    your load].
 #
 TEXT IAM.THIRSTY!
 
@@ -3442,7 +3446,7 @@ TEXT assigned ORB.VISION
     swirling over a low basaltic outcrop./
     the inside of the well-house, with treasures and other objects
     heaped upon each other without rhyme or reason./
-    a some flickering lights, which by their feeble efforts appear to
+    some flickering lights, which by their feeble efforts appear to
     define a vast, dark space.]
 
     After a few moments the vision fades, leaving you somewhat giddy and
@@ -3579,10 +3583,10 @@ TEXT SNAKE.MISSES
 
 #
 TEXT increment USE.TOO.VAGUE
-    [Use, use... I really detest this way some of you humans use 
+    [#, #... I really detest this way some of you humans use 
     the vaguest sort of instructions and expect the details to take
     care of themselves! You'll have to be more specific than that/
-    "Use" is such a vague verb! Please be more specific].
+    "#" is such a vague verb! Please be more specific].
 #
 TEXT FIGURE.WAVES
 
@@ -5238,12 +5242,17 @@ TEXT assigned RUG.NOW.CLEANER
     be now seen to spell out "BASINGSTOKE" in a flowing Arabic 
     script - not that this is any news to you, of course!]
 #
-TEXT GOT.NO.BEATER
+FRAGMENT GOT.NO.BEATER
     You have nothing suitable with which to beat the rug.
 #
-TEXT NO.FLY.UNDERGROUND
-    Surely *everybody* knows that magic rugs don't fly underground!
-#
+TEXT increment NO.FLY.UNDERGROUND
+    [Surely *everybody* knows that magic rugs don't fly underground!/
+    Well, clearly not everybody knows such basic facts. Magic rugs
+    don't fly underground, OK?/Listen, fluffy-head: underground - no
+    go. Can you hang on to that thought?/Sigh... Maybe this game is
+    too intellectual for you. Ever considered taking up tiddlywinks?/
+    Forget it. Not undergound.]
+#  
 FRAGMENT YOU.BOARD.RUG
     You climb aboard the rug and seat yourself in the middle. As soon
     as you are sitting comfortably, the rug
@@ -5303,7 +5312,7 @@ TEXT IS.NOW
    / is now [//empty/full of ][///water/oil/dung].
 #
 TEXT IS.ALREADY
-   / is already [//empty/full of ][///water/full/oil/dung].
+   / is already [//empty/full of ][///water/oil/champagne/dung].
 #
 TEXT NO.OIL.IN.BUCKET
     The bucket is far too big for that! Try something smaller.
@@ -5328,8 +5337,7 @@ TEXT EMPTY.BUCKET.FIRST
     but you'd need to empty it first.
 #
 FRAGMENT NEED.BUCKET.FOR.DUNG
-    You don't have anything suitable for scooping up that smelly 
-    heap!
+    You don't have anything suitable for scooping up that smelly heap!
 #
 TEXT GOT.DUNG
     You neatly scoop the dung into the champagne bucket.
@@ -5490,7 +5498,7 @@ TEXT increment CATACOMBS.INFO
 
     [Oh well... Don't mind me and go ahead. Get "excruciatingly
     excited". I've lived through worse./Not that you need to care about
-    these lingustic excesses of a derenged mind./Which is as may be,
+    these linguistic excesses of a deranged mind./Which is as may be,
     but quite irrelevant, really./Yawn.../]
 #
 TEXT cycle JUST.A.FOUNTAIN
@@ -6566,7 +6574,7 @@ FRAGMENT increment THURIBLE.WAVING
     about, producing lots of pungently aromatic smoke. The] cloud
 #
 TEXT LOTSA.SMOKE
-    {THURIBLE.WAVING} gradually lifts up and dissipates above you head.
+    {THURIBLE.WAVING} gradually lifts up and dissipates above your head.
 #
 TEXT LOTSA.SMOKE.ROOM
     {THURIBLE.WAVING} lifts to the ceiling, where it
@@ -6679,9 +6687,9 @@ TEXT increment ORYANS.DAUGHTER
 
    + "IN MEMORIAM OF PATRICK O'RYAN"
 
-    [Ah! The ring of O'Ryan! Not Orion! There... I knew all that "Orion" stuff
-    was just mythology!. I suppose the girl must be O'Ryan's daughter
-    then. Well, well, well.../]
+    [Ah! The ring of O'Ryan! Not Orion! There... I knew all that "Orion"
+    stuff had to be just mythology! I suppose the girl must be O'Ryan's 
+    daughter then. Well, well, well.../]
 #
 TEXT SCRAMBLE.UP
     With some difficulty, you manage to scramble up the crumbling rocks.
@@ -6993,7 +7001,7 @@ TEXT DROP.ROOM
 TEXT DROPPINGS.NO.GOOD
    [I can't imagine what you would want to do with giant rat droppings.
    Nothing wholesome I wager! So leave them alone. Their only purpose here
-   is to alert you to the possible presence of unpleasantly try large 
+   is to alert you to the possible presence of unpleasantly large 
    rodents./If you have in mind using the droppings as a fertilizer, that's
    not a bad thought! But rat droppings, which is what these must be 
    despite their size, are no good for plants. Better look for some other
@@ -7107,11 +7115,11 @@ FRAGMENT cycle TYPO
 TEXT VOCAB.WIZ
     Wizard commands:
 
-   =increment <object>        - increment object value
-   =decrement <object>        - decrement object value
-   =fetch <object> (obtain)   - fetch the object from wherever
-   =find <object>             - go where the object is
-   =fly <location> (teleport) - go to the named location
+   =increment \<object\>        - increment object value
+   =decrement \<object\>        - decrement object value
+   =fetch \<object\> (obtain)   - fetch the object from wherever
+   =find \<object\>             - go where the object is
+   =fly \<location\> (teleport) - go to the named location
    =glow                      - toggle magical illumination
    =mutter                    - cause immediate orc mutter
    =next \[up/down]            - go to the next higher/lower location
@@ -7130,8 +7138,10 @@ TEXT MIRROR.STRANGENESS
    Silly of me, I know, but I can't work out how to get there! This is
    all very confusing... 
 #
-TEXT SUNSTONE.DROPS
-    As it falls, the sunstone emits a brief flash of {COLOURS} light.
+TEXT assigned SUNSTONE.DROPS
+    As it falls, the sunstone emits a brief flash of {COLOURS}
+    light[/ before disappearing /=/][/out of sight/through the beanstalk
+    foliage/].[/// It]
 #
 TEXT SAPLING.FALL
     As you watch the sunstone drop towards the ground below, it suddenly
@@ -7736,7 +7746,7 @@ TEXT DISTANT.MOUNTAINS
 TEXT cycle ATTENTION.TO.DETAIL
     [Generally speaking, attention to detail is undoubtedly a good thing,
     but attending to minutae such as #, strikes me as taking things a 
-    but too far./It's #. This says everything you need to know
+    bit too far./It's #. This says everything you need to know
     about it. It serves no actually useful purpose in this game./
     I suggest you don't pay much attention to the # - I only mention
     such details for the sake of a descriptive verisimilitude.]
@@ -7895,7 +7905,7 @@ TEXT NOTHING.TO.CROSS
     There isn't anything here to cross.
 #
 TEXT MUGS.GAME
-    Crossing #s is a mugs game! I won't even try.
+    Crossing #s is a mug's game! I won't even try.
 #
 TEXT CROSS.ENOUGH
     The dwar[/f is/ves are] already quite cross enough!
@@ -7955,7 +7965,7 @@ TEXT increment ITS.FERNS
 #
 TEXT ITS.RAVINE
     [The entrance to the ravine reveals nothing except for a
-    fusion of greenery, encroaching on a narrow path/The ravine is deep,
+    profusion of greenery, encroaching on a narrow path/The ravine is deep,
     quite narrow and pretty damp. It seems to be suiting the ferns, which
     grow in profusion on both sides of the path].
 #
@@ -8248,13 +8258,13 @@ TEXT LOCATION.NUMBER
 FRAGMENT increment OWL.GRIPS
     There is a flurry of wingbeats and a loud "HOOT" and [your shoulders
     are suddenly, and rather painfully gripped by large talons. You
-    feel being/]
+    feel being/you]
 #
 TEXT increment OWL.EXPRESS
     {OWL.GRIPS} [lifted off the ground and carried a short distance through
     the darkness. Then your feet find the ground again, the talons let go,
     and to the accompaniment of another loud "HOOT" the sound of
-    wings/you find yourself carried a short distance through the 
+    wings/find yourself carried a short distance through the 
     air, and then dropped a few inches back to the ground. The 
     wingbeats] fade away.
 #
@@ -8499,9 +8509,9 @@ TEXT JUMPED.INTO.SWAMP
    sinking into it. Thrashing about doesn't seem to help much, and
    in no time at all, it's...
 
-  =     <glug...>
-  =                   <glug...>
-  =                                   <PLOP!>
+  =     \<glug...\>
+  =                   \<glug...\>
+  =                                   \<PLOP!\>
 
 #
 TEXT DROWNED.IN.RIVER
@@ -9624,7 +9634,7 @@ TEXT RUSTY.RUST
    It's kind of... rusty. Rust often is, in my experience.
 #
 TEXT assigned RUSTY.GAME
-   Trying to clean up[ a/] rusty #[/s] is a mugs game. Let's not bother.
+   Trying to clean up[ a/] rusty # is a mug's game. Let's not bother.
 #
 TEXT POLISHED.PASSAGE
    The floor, walls and even the ceiling of the passage have the look
@@ -9907,7 +9917,7 @@ TEXT IGNORE.SHADOWS
 #
 TEXT OLD.PERGOLA
    There's not much to be seen of the old pergola. Some of it has fallen
-   down, and the rest is thoroughly overgrown by by wild roses.
+   down, and the rest is thoroughly overgrown by wild roses.
 #
 TEXT SPIRE.NO.SUN
    You can't see the sun from here - it's behind the spire.
@@ -10033,8 +10043,8 @@ TEXT NO.MOVE.SLAB
    The slab refuses to be moved, however hard you try to # it.
 #
 TEXT NO.BREAK.MECHANISM
-   That would be exceedingly unwise. Please note that the warning, which
-   strongly suggests caution. Only a fool would try meddling with
+   That would be exceedingly unwise. Please pay attention to that warning,
+   which strongly suggests caution. Only a fool would try meddling with
    wizardly contraptions.
 #
 TEXT DELICATE.MECHANISM
@@ -10078,12 +10088,11 @@ TEXT ALABASTER.FORMATIONS
    the flickering glare of the volcano. The resulting shadow-play upon
    the walls is quite sinister.
 #
-TEXT HELLISH.SCENE
-   The bubbling, sulphurous lake, the barren island with its steam
-   geyser - it's a landscape worthy of a medieval image of hell.
+FRAGMENT assigned TT.MODE.ON
+   [/<tt>]
 #
-TEXT FLOATING.ASH
-   The volcanic ash flickers in the air, as it falls into the gorge.
+FRAGMENT assigned TT.MODE.OFF
+   [/<\/tt>]
 #
 TEXT CRYSTAL.BALL
    The orb is essentially a large crystal ball, like one of those used
@@ -10169,8 +10178,9 @@ FRAGMENT cycle HANG.ON!
 TEXT NO.EXCEPT
    I don't understand. What do you mean "except #"? Makes no sense!
 #
-TEXT STATE.IS.NOW
-   The state is now #.
+FRAGMENT increment SQUARE.CIRCLE
+   [ I guess the garden's designer had in mind some vague artistic
+   notions of squaring circles or some such nonsense./]
 #
 TEXT cycle TIS.AMUSING
    [Glad to know you find this an amusing experience./Something's funny?

@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2005.
+# Copyleft Mike Arnautov 1984-2006.
 #
 # Define some variables.
 #
@@ -26,7 +26,7 @@ variable deaths, penalties, scorex, maxscore
 variable undostat
 variable turns, moves
 variable foobar
-variable dwarfcount, clock, stage, spare..v..11, ok
+variable dwarfcount, clock, stage, nuffink, ok
 variable hint.time
 variable strength, mushtime, dragtime, masktime, lastclock
 variable escape

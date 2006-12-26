@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2005.
+# Copyleft Mike Arnautov 1984-2006.
 #
 # The following acode procedures are associated with
 # individual places.
@@ -698,6 +698,7 @@ at bird.chamber
       respond canyon, is.canyon, 1
       respond passage, tunnel, corridor, is.passage, 1
       respond walls, stone, river, orange.walls
+      respond formations, flow, stone.rivers
       proceed
    fin
    ifhere bird
@@ -1731,7 +1732,6 @@ at mazea.by.pit
       respond brink, orange.brink
       proceed
    fin
-   respond column, hah!
    ifany climb, down
       and
    ifany column, stalactite
@@ -1745,6 +1745,7 @@ at mazea.by.pit
       move north, mazea.83
       move east, mazea.84
    fin
+   respond column, hah!
    ifany column, stalactite, wall, brink
       flag context, arg2.here
    fin
@@ -4261,6 +4262,8 @@ at mazed.140
       quip no.change
    fin
    ifkey look
+      respond tray, its.a.tray
+      respond slot, its.a.slot
       respond passage, tunnel, corridor, dark.exit, passage
       proceed
    fin
@@ -4280,7 +4283,7 @@ at mazed.140
    fin
    ifany instructions, note, inscription, notice, words, message
       or
-   ifany passage, tunnel, corridor
+   ifany passage, tunnel, corridor, tray, slot
       flag context, arg2.here
    fin
 #
@@ -4655,9 +4658,13 @@ at bottomless.brink
          call plunge
       fin
    fin
+   ifkey climb, down
+      set status, 1
+   fin
    ifkey go
       or
    ifeq status, 1
+      respond down,climb, pit.is.bottomless
       move north, passage, lair, lair
       move west, bottomless.brink.south
       move east, bottomless.brink.east
@@ -4689,9 +4696,13 @@ at bottomless.brink.south
          call plunge
       fin
    fin
+   ifkey climb, down
+      set status, 1
+   fin
    ifkey go
       or
    ifeq status, 1
+      respond down, climb, pit.is.bottomless
       move north, ledge, bottomless.brink
       move southeast, tunnel, passage, corridor, ice
    fin
@@ -5252,12 +5263,16 @@ at bottomless.brink.east
          call plunge
       fin
    fin
+   ifkey climb, down
+      set status, 1
+   fin
    ifkey go, light
       move bottomless.brink
    fin
    ifkey go
       or
    ifeq status, 1
+      respond down, climb, pit.is.bottomless
       move north, ledge, passage, corridor, tunnel, bottomless.brink
       move in, northeast, crack, crack.entry
    fin
@@ -5347,6 +5362,7 @@ at crack.south
 #
 at small.chamber
    ifkey look
+      respond shelf, casket.shelf
       ifkey chamber
          set status, 1
       fin
@@ -5729,6 +5745,7 @@ at beanstalk.bottom
       respond cliff, right.next.to.it
       ifany up, climb
          ifeq beanstalk, gigantic
+            set beanstalk.middle, 1
             smove beanstalk.middle, up.the.beanstalk
          fin
          ifeq beanstalk, grown
@@ -5746,6 +5763,7 @@ at beanstalk.bottom
 #=====================================================================
 #
 at beanstalk.middle
+   set beanstalk.middle, 0
    ifkey sapling
       respond look, its.a.sapling
       quip it.is.too.far
@@ -5943,7 +5961,10 @@ at beanstalk.top
    ifkey go
       or
    ifeq status, 1
-      move climb, down, beanstalk.middle
+      ifany climb, down
+         set beanstalk.middle, 2
+         move beanstalk.middle
+      fin
       respond up, no.climb.further
       ifkey east
          ifeq giant, picnicking
@@ -6018,6 +6039,11 @@ at in.jonah
 #=====================================================================
 #
 at faces
+   ifany bridge, arch
+      and
+   ifeq volcano, 2
+      apport bridge, here
+   fin
    ifkey look
       respond wall, faces, stone.faces, 0
       respond volcano, gorge, volcano.sight
@@ -6026,11 +6052,6 @@ at faces
          set status, 1
       fin
       proceed
-   fin
-   ifany bridge, arch
-      and
-   ifeq volcano, 2
-      apport bridge, here
    fin
    ifkey volcano
       respond listen, volcano.roar
@@ -7596,6 +7617,11 @@ at quarters
       quip just.a.fixture, couch
    fin
    ifkey look
+      ifkey eggs
+         and
+      ifeq giant, blissful
+         quip eggs.being.munched
+      fin
       respond light, hidden.light
       respond opening, dark.exits, opening
       respond exit, pantry, dark.in.there, pantry
@@ -7635,6 +7661,7 @@ at beams
    ifkey look
       respond ceiling, its.a.ceiling, c.chapel
       respond beams, chapel.beams, 1
+      respond wood, beams.wood
       proceed
    fin
    ifkey go
@@ -7643,6 +7670,9 @@ at beams
       move out, climb, down, chapel
    fin
    ifany beams, ceiling
+      flag context, arg2.here
+   fin
+   ifany beams, wood
       flag context, arg2.here
    fin
    lda drop.here, chapel
@@ -7801,6 +7831,12 @@ at web.maze.3
 #
 at web.maze.4
    ifkey look
+      ifany threads
+         ifnear spider
+            quip sticky.web
+         fin
+         quip sticky.web
+      fin
       ifany hole, opening
          and
          not
@@ -7817,14 +7853,11 @@ at web.maze.4
       ifany opening, hole
          and
       ifeq web, in.shreds
-            quip dark.way, arg2
+         quip dark.way, arg2
       fin
       ifkey maze
          set status, 1
       fin
-      proceed
-   fin
-   ifkey look
       proceed
    fin
    ifkey throw, axe
@@ -7875,6 +7908,10 @@ at web.maze.4
          move dank.cave
       fin
    fin
+   ifany web, threads
+      respond get, pull, no.handle.web
+   fin
+   respond threads, hah!
    ifany passage, tunnel, corridor, maze, hole, opening
       flag context, arg2.here
    fin
@@ -9575,6 +9612,13 @@ at den
 #=====================================================================
 #
 at pantry
+   ifkey hole
+      ifany look, enter
+         set tiny.mouse, 1
+         quip mouse.hole
+      fin
+      quip hah!
+   fin
    ifkey look
       respond stream, corner, water, just.a.trickle
       respond shelves, just.a.fixture, arg2
@@ -9594,10 +9638,15 @@ at pantry
       move ne, attic
       move north, down, steps, curtain.entrance
       move west, quarters
+      ifkey mouse
+         and
+      ifeq tiny.mouse, 1
+         quip mouse.hole
+      fin
       respond pantry, you.are.there
       respond pantry, need.a.direction
    fin
-   ifany steps, stream, pantry, shelves, corner, archway, arch
+   ifany steps, stream, pantry, shelves, corner, archway, arch, hole
       flag context, arg2.here
    fin
    ifany passage, tunnel, corridor, wall
@@ -10272,6 +10321,13 @@ at stupendous.view
    local temp.val
 #
    call house.inventory, 0    # He may be dropping the starstone here.
+   ifcgi
+      set tt.mode.on, 1
+      set tt.mode.off, 1
+   else     
+      set tt.mode.on, 0
+      set tt.mode.off, 0
+   fin
    ifkey read
       and
    ifeq status, 1
@@ -10533,10 +10589,12 @@ at above.sea
    ifkey fly
       ifeq status, 1
          or
-      ifkey west
+      ifany west, island, on, forward, up
          quip rug.is.flying
       fin
       ifinrange arg2, first.direction, last.direction
+         or
+      ifkey rug
          quip no.steer.rug
       fin
    fin
@@ -10547,7 +10605,7 @@ at above.sea
       respond on, island, mountain, flying.on
       respond back, cant.go.back, 1
    fin
-   ifany inventory, score, quit, save, rest, remember, recall, say
+   ifany inventory, score, quit, save, rest, remember, recall, say, yes, no
       or
    ifany brief, verbose, terse, length, scroll, margin, listen, contemplate
       or
@@ -13504,14 +13562,16 @@ at by.waterfall
 #
 at waterfall
    call default.read, door
-   ifany door, inscription, note, notice, words, message
-      and
    ifkey read
+      and
+   ifany door, inscription, note, notice, words, message
       quip door.1.words
    fin
+   fakearg door, door1
+   set door1, outside.view
    ifkey look
       respond wall, waterfall.wall
-      respond door, inscription, door.1.words
+      respond inscription, door.1.words
       respond water, spray, mist, waterfall, its.a.waterfall, 1
       respond debris, no.future.in.it, debris
       respond overhang, ceiling, waterfall.overhang
@@ -13523,8 +13583,6 @@ at waterfall
    ifkey get, debris
       quip no.future.in.it, debris
    fin
-   fakearg door, door1
-   set door1, outside.view
    ifkey go
       or
    ifeq status, 1
@@ -13563,7 +13621,7 @@ at mine
    call default.read, door1
    fakearg door, door1
    ifeq mine, opened
-      ifany inscription, words, note, notice, message
+      ifany door, inscription, words, note, notice, message
          ifany read, look
             or
          ifkey read, door
@@ -13575,6 +13633,10 @@ at mine
          call close.mine.door
          quit
       fin
+   fin
+   respond inscription, words, note, notice, message, i.dont.see, arg2
+   ifkey read
+      respond door1, cant.read.it, door
    fin
    ifkey look
       respond tunnel, passage, corridor, mine, dark.exit, tunnel

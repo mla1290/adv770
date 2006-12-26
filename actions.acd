@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2005.
+# Copyleft Mike Arnautov 1984-2006.
 #
 # This module defines the actions to be taken when certain
 # verb, verb/object, verb/verb or object/object word sequences
@@ -74,7 +74,7 @@ action get water
          quip cliff.moisture
       else
          set chalice, full
-         quip chalice.leaking
+         quip chalice.leaking, 0
       fin
    fin
    ifhave bottle
@@ -270,6 +270,13 @@ action get        # Generalized last-case "get" routine
          flag vase, special2
          quip dung.ingenuity, 3
       fin
+      ifhave plate
+         and
+         not
+      ifflag plate, special2
+         flag plate, special2
+         quip dung.ingenuity, 4
+      fin
       ifhave helmet
          quip no.ruin.it, helmet
       fin
@@ -441,7 +448,7 @@ action drop
                set bear, unchained
                quip chain.now.unlocked
             fin
-            quip you.dont.have, keys
+            call not.got, keys
          otherwise
          ifat bear.room
             and
@@ -729,7 +736,7 @@ action throw dung
    ifhave bucket, full.of.dung
       quip no.throw.dung
    else
-      quip you.dont.have, dung
+      call not.got, dung
    fin
 #
 #=====================================================================
@@ -786,11 +793,11 @@ action throw                   # Generalized "throw" control
             call upchuck
          fin
       fin
-      ifis arg2, bottle
-         or
-      ifis arg2, flask
-         or
-      ifis arg2, bucket
+      ifis arg2, bottle, flask, bucket
+#         or
+#      ifis arg2, flask
+#         or
+#      ifis arg2, bucket
          drop arg2
          say you.do, arg1
          eval object.state, arg2
@@ -823,7 +830,7 @@ action scatter
          ifhave teeth
             call sow.teeth
          fin
-         quip you.dont.have, arg2
+         call not.got, arg2
       fin
       ifkey seed
          call drop
@@ -1337,6 +1344,7 @@ action look                # Can't look in the dark!
          quip i.dont.see, dunes
       fin
    fin
+   respond thumbs, two.thumbs
    ifkey rust
       ifat south.side.chamber, cellar, cellar.view, half.stairs, storeroom
          or
@@ -1349,6 +1357,14 @@ action look                # Can't look in the dark!
       ifnear sheet
          quip rusty.rust
       fin
+   fin
+   ifkey batteries
+      and
+   ifnear lamp
+      and
+      not
+   ifnear batteries
+      respond batteries, batteries.inside
    fin
 #
 #=====================================================================
@@ -1682,6 +1698,46 @@ action scry
 #
 #=====================================================================
 #
+action switch
+   ifkey batteries
+      fakecom switch, replace
+      call replace
+   otherwise
+   ifnear lamp
+      respond look, lamp.switch
+      ifeq status, 1
+         or
+      ifany push, flip, slide, lamp
+         ifeq lamp, switched.off
+            fakecom switch, on
+            call on
+         else
+            fakecom switch, off
+            call off
+         fin
+      else
+         quip hah!
+      fin
+   else
+      quip i.dont.see, switch
+   fin
+#
+#=====================================================================
+#
+action on
+   ifeq status, 2
+      ifflag arg1, wearable
+         or
+      ifflag arg2, wearable
+         fakecom on, wear
+         call wear
+      fin
+   fin
+   call light
+   quit
+#
+#=====================================================================
+#
 action light
    ifkey off
       call extinguish
@@ -1732,6 +1788,20 @@ action light
 #
 #=====================================================================
 #
+action off
+   ifeq status, 2
+      ifflag arg1, wearable
+         or
+      ifflag arg2, wearable
+         fakecom off, remove
+         call remove
+      fin
+   fin
+   call extinguish
+   quit
+#
+#=====================================================================
+#
 action extinguish
    ifkey undo           # OFF UNDO
       call undo
@@ -1777,7 +1847,7 @@ action unlock
       and
       not
    ifhave keys
-      quip you.dont.have, keys
+      call not.got, keys
    fin
    respond door1, door2, door3, door.no.keyhole
    call open
@@ -1824,7 +1894,7 @@ action open                  # General opening routine
       respond bottle, bottle.no.stopper
       respond bag, no.open.bag
       respond chest, chest.locked
-      respond cage, ok
+      respond cage, ok!
       ifany clam, oyster
          call open.bivalve
       fin
@@ -1881,7 +1951,7 @@ action open
          ifkey grate
             call lift
          fin
-         quip you.dont.have, keys
+         call not.got, keys
       fin
    fin
 #
@@ -1929,7 +1999,7 @@ action open door
       ifeq door, rusty
          quip door.needs.oil
       fin
-      quip ok
+      quip ok!
    fin
 #
 #=====================================================================
@@ -2407,7 +2477,19 @@ action hit
       ifkey rug
          ifhave beater
          else
-            quip got.no.beater
+            say got.no.beater
+            ifhave rod
+               and
+            ifeq rod.no.beater, 0
+               quip rod.no.beater
+            otherwise
+            ifhave trident
+               or
+            ifhave sceptre
+               quip treasure.no.beater
+            else
+               quip blank
+            fin
          fin
          ifeq rug, rolled.up
             quip unroll.to.beat
@@ -2442,7 +2524,7 @@ action hit
       ifkey mirror
          call break
       otherwise
-      ifkey machine
+      ifany machine, wall
          call kick
       else
          quip hah!
@@ -2480,12 +2562,6 @@ action kill
    ifeq status, 1
       quip pacifist
    fin
-#   ifany troll, dwarf, dragon, snake, bird, bear, oyster, clam, ogre, blob
-#      or
-#   ifany djinn, goblins, basilisk, giant, unicorn, spider, rats, darwin
-#      or
-#   ifany imp, vampire
-#      and
    ifnear arg2
       respond troll, troll.data
       respond vampire, no.kill.vampire
@@ -2701,7 +2777,9 @@ action fee
    fin
    ifle foobar, 0
       set foobar, 1
-      quip ok
+      say ok
+      lda ok, sok!
+      quit
    fin
    call foo.to.you.too
 #
@@ -2713,7 +2791,9 @@ action fie
    fin
    ifeq foobar, 0
       set foobar, 2
-      quip ok
+      say ok
+      lda ok, sok!
+      quit
    fin
    call foo.to.you.too
 #
@@ -2725,7 +2805,9 @@ action foe
    fin
    ifeq foobar, 1
       set foobar, 3
-      quip ok
+      say ok
+      lda ok, sok!
+      quit
    fin
    call foo.to.you.too
 #
@@ -3037,7 +3119,7 @@ action fill flask
       say your.object, flask
       quip is.already, flask
    fin
-   quip you.dont.have, arg2
+   call not.got, arg2
 #
 #=====================================================================
 #
@@ -3059,7 +3141,7 @@ action fill bottle
       say your.object bottle
       quip is.already bottle
    fin
-   quip you.dont.have, arg2
+   call not.got, arg2
 #
 #=====================================================================
 #
@@ -3092,25 +3174,54 @@ action fill bucket
       say your.object, bucket
       quip is.already, bucket
    fin
-   quip you.dont.have, arg2
+   call not.got, arg2
 #
 #=====================================================================
 #
 action fill chalice
-   ifhave chalice
+   ifnear chalice
       ifflag here, h20.here
-         ifat pantry
-            quip cant.scoop
+         ifhave chalice
+            ifat pantry
+               quip cant.scoop
+            fin
+            set chalice, full
+            quip chalice.leaking, 0
          fin
-         set chalice, full
-         quip chalice.leaking
+         call find.water
+         ifeq vessel, none
+            quip not.holding, chalice
+         fin
+      else
+         call find.water
+      fin
+      ifne vessel, none
+         ifis vessel bucket
+            ifeq bucket, full.of.water
+               set bucket, mostly.full
+            otherwise
+            ifeq bucket, quarter.full
+               set bucket emptied
+            else
+               add bucket,1
+            fin
+            set chalice, full
+            quip chalice.leaking,1
+         fin
+         deposit vessel, emptied
+         flag here, damp
+         quip leaky.chalice, vessel
+      fin
+      ifhave bucket, full.of.champagne
+         set context, q.champagne?
+         quip with.champagne?
       fin
       ifat beanstalk.bottom
          quip cliff.moisture
       fin
       quip nothing.to.fill, chalice
    fin
-   quip you.dont.have, arg2
+   call not.got, arg2
 #
 #=====================================================================
 #
@@ -3212,7 +3323,7 @@ action pour
          ifhave bucket, full.of.dung
             quip no.pour.dung
          else
-            quip you.dont.have, dung
+            call not.got, dung
          fin
       fin
    fin
@@ -3651,11 +3762,11 @@ action drink
       fin
    fin
    ifkey stream
-      ifat by.stream.1, by.stream.2, streampit, road, valley, slit,
+      ifat by.stream.1, by.stream.2, streampit, road, valley, slit, pantry
          or
       ifat stream.maze cave.4, cave.5, cave.8, cave.9, river,
          or
-      ifat river.north, cavern, bog.edge, island.ne
+      ifat river.north, cavern, bog.edge, island.ne, building
          lda arg2, water
       else
          proceed
@@ -3762,13 +3873,13 @@ action drink
    ifeq object.state, full.of.oil
       quip no.drink.oil
    fin            
-   ifis arg2, flask
-      or
-   ifis arg2, bottle
-      or
-   ifis arg2, vial
-      or
-   ifis arg2, bucket
+   ifis arg2, flask, bottle, vial, bucket
+#      or
+#   ifis arg2, bottle
+#      or
+#   ifis arg2, vial
+#      or
+#   ifis arg2, bucket
    else
       quip be.serious!
    fin
@@ -3878,7 +3989,6 @@ action read
          ifat arabesque
             quip just.a.fixture, arg2
          fin
-         call bail.out
       fin
       ifkey tablet
          and
@@ -3912,12 +4022,12 @@ action read
             fin
          fin
       fin
-      ifany words, inscription, flask
+      ifany words, inscription
          and
       ifnear flask
          quip still.dry
       fin
-      ifany words, inscription, lamp
+      ifany words, inscription, switch
          and
       ifnear lamp
          quip still.on.off
@@ -3987,17 +4097,17 @@ action melenkurion
 #
 action noside
    ifflag admin, edison
-      unflag admin, edison
-      quip nothing
-   fin
+      or
    ifgt stage, exits.barred
       or
       not
    ifnear lamp
+      unflag admin, edison
+      lda nuffink, sok!
       quip nothing
    fin
    flag admin, edison
-   quip ok
+   quip ok!
 #
 #=====================================================================
 #
@@ -4037,7 +4147,7 @@ action samoht
          call look
       fin
    else
-      say nothing
+      say nuffink
    fin
    quit
 #
@@ -4448,7 +4558,7 @@ action blow horn
          set backlash, 100
       fin
    else
-      say you.dont.have, arg2
+      call not.got, arg2
    fin
    quit
 #
@@ -4473,6 +4583,9 @@ action kick
    ifeq status, 2
    else
       proceed
+   fin
+   ifkey wall
+      call bail.out
    fin
    respond rock, stone, no.kick.it, arg2
    ifany door, door1, door2, door3
@@ -4630,6 +4743,8 @@ action wear
          ifnear vampire
             or
          ifnear ogre
+            or
+         ifnear giant
             quip too.public
          fin
          ifgt masktime, 0
@@ -4702,7 +4817,7 @@ action remove
    fin
    iflt invct, strength
    else
-      quip arms.are.full
+      quip arms.too.full, arg2
    fin
    ifany ring, mask, fangs, beads
    else
@@ -4760,7 +4875,7 @@ action use
       fin
       call bail.out
    fin
-   ifany spoon, helmet, chalice, vase
+   ifany spoon, helmet, chalice, vase, plate
       and
    ifnear dung
       and
@@ -4768,7 +4883,7 @@ action use
       ifflag beanstalk, seen
       else
          respond spoon, bleah
-         quip use.too.vague
+         quip use.too.vague, use
       fin
       ifflag arg2, special2
          quip again.no.ruin.it
@@ -4780,6 +4895,9 @@ action use
       ifkey helmet
          say helmet.no.dung
       otherwise
+      ifkey plate
+         say plate.no.dung
+      otherwise
       ifkey chalice
          say chalice.no.dung
       else
@@ -4787,7 +4905,7 @@ action use
       fin
       quip blank
    fin
-   quip use.too.vague
+   quip use.too.vague, use
 #
 #=====================================================================
 #
@@ -5412,7 +5530,7 @@ action give dung
       fin
       quip nobody.here
    fin
-   quip you.dont.have, dung
+   call not.got, dung
 #
 #=====================================================================
 #
@@ -5498,22 +5616,10 @@ action give
    else
       quip you.dont.have, arg2
    fin
-   ifis temp.ptr, troll
-      or
-   ifis temp.ptr, dwarf
-      or
-   ifis temp.ptr, ogre
-      or
-   ifis temp.ptr, goblins
+   ifis temp.ptr, troll, dwarf, ogre, goblins
       quip throw.not.give, 1
    fin
-   ifis temp.ptr, blob
-      or
-   ifis temp.ptr, bear
-      or
-   ifis temp.ptr, spider
-      or
-   ifis temp.ptr, rats
+   ifis temp.ptr, blob, bear, spider, rats
       quip throw.not.give, 0
    fin
    ifis temp.ptr, snake
@@ -5523,21 +5629,7 @@ action give
       fin
       quip it.wont.eat, snake
    fin
-   ifis temp.ptr, dragon
-      or
-   ifis temp.ptr, clam
-      or
-   ifis temp.ptr, oyster
-      or
-   ifis temp.ptr, bird
-      or
-   ifis temp.ptr, djinn
-      or
-   ifis temp.ptr, darwin
-      or
-   ifis temp.ptr, unicorn
-      or
-   ifis temp.ptr, giant
+   ifis temp.ptr, dragon, clam, oyster, bird, djinn, darwin, unicorn, giant
       say the.it, temp.ptr
       quip dont.want.it, arg2
    fin
@@ -5799,7 +5891,7 @@ action point
    fin
    ifhave arg2,
    else
-      quip you.dont.have, arg2
+      call not.got, arg2
    fin
    respond rod, no.point.rod
    quip no.pointing, 1

@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2005.
+# Copyleft Mike Arnautov 1984-2006.
 #
 # Spill-over random texts. (Only necessary because I made the mistake of
 # mixing some active texts with places and objects definitions. :-(
@@ -47,7 +47,7 @@ TEXT STONE.WALL
 #
 TEXT DRINK.UP
 
-    The giant casts a glance at your bucket and booms: "DRINK UP! HAVE MORE!"
+    The giant casts a glance at the bucket and booms: "DRINK UP! HAVE MORE!"
 #
 TEXT NO.MOVE.PEDESTALS
     The pedestals are too heavy for you to move.
@@ -147,9 +147,12 @@ TEXT increment NO.TRANSLATE.EPNS
     stand for Electro-Plated Nickel Silver[, meaning the spoon is
     just about worthless. I thought *everybody* knew what EPNS meant!/.]
 #
-TEXT BEANSTALK.SATED
-    The beanstalk doesn't seem to be hungry any more. And in any case,
-    you are out of fertiliser.
+FRAGMENT PLATE.NO.DUNG
+    Hmmm... That's not too silly an idea for once, but unicorn dung
+    is mightily corrosive, and as likely as not would eat even through
+    that plate before you manage to navigate all the twisting passages
+    on the way to the beanstalk. So let's not get messy even trying to 
+    get it onto the plate.
 #
 TEXT increment SAFE.KEYS
     Nothing happens[, which is not entirely surprising. That's one of
@@ -164,7 +167,8 @@ FRAGMENT VASE.NO.DUNG
 #
 TEXT DUNG.INGENUITY
     _Or did you have in mind using the [helmet? {HELMET.NO.DUNG}/
-    spoon? {SPOON.NO.DUNG}/chalice? {CHALICE.NO.DUNG}/vase? {VASE.NO.DUNG}]
+    spoon? {SPOON.NO.DUNG}/chalice? {CHALICE.NO.DUNG}/vase?
+    {VASE.NO.DUNG}/plate? {PLATE.NO.DUNG}]
 #
 FRAGMENT increment RUSTY.ONE
     [I take it you mean the rusty star on the rod.../The rod's star?]_
@@ -234,8 +238,8 @@ TEXT STILL.DRY
     The words on the flask still say "London Dry".
 #
 TEXT STILL.ON.OFF
-    There's nothing to read on the lamp, other than the terse words
-    "on/off" next to the switch.
+   The lettering is pretty fancy, but its message isn't - it simply
+   says "on/off", indicating the intended function of the switch.
 #
 TEXT BEANSTALK.DOWN.THERE
     The beanstalk is down there, and you are up here. I don't quite see how
@@ -362,7 +366,7 @@ TEXT RIGHT.NEXT.TO.IT
     You are right next to it.
 #
 TEXT NO.WASH.PLATE
-    Cleaning up that plate might be a sensible idea, but water is
+    Cleaning up the plate might be a sensible idea, but water is
     unlikely to help with that greasy grime.
 #
 TEXT cycle TROLL.ZORRO
@@ -373,7 +377,8 @@ TEXT cycle TROLL.ZORRO
 #
 TEXT increment TOO.PUBLIC
     [There is not much point in trying to disguise yourself quite
-    so publicly! /]Better find a quet, private place for it.
+    so publicly! /]Better find a quet, private place [for it/for
+    disguising yourself].
 #
 TEXT NO.APPROACH.EDGE
     [The sapling can be only seen from the edge of the cliff, and t/T]ry as
@@ -580,6 +585,7 @@ TEXT UNDO.TERMS
     =5. Games saved by a version before 1.61 will have null undo history.
     =6. You may specify the number of commands to UNDO.
     =7. You can undo an UNDO by typing UNDO UNDO immediately afterwards.
+
 #
 TEXT UNDO.CONDITIONS
    Before you decide on being a wimp, consider the following:
@@ -595,7 +601,7 @@ TEXT FIRST.UNDO
 
    {UNDO.TERMS}
 
-   Got it? Now then, let's see about your command...
+   Got that? Now then, let's see about your command...
 
 #
 FRAGMENT ARE.YOU.A.WIMP?
@@ -683,5 +689,152 @@ TEXT increment NO.STEAL.KNIVES
 TEXT PINE.SOIL
    The patch of soil is smooth and highly compacted. It's a wonder 
    anything could grow in it.
+#
+TEXT increment MOUSE.HOLE
+   [Hole? What hole? Oh, that tiny one over there in the corner? Just
+   a mouse hole, I guess. Not unusual in pantries, I believe. It isn't
+   of any use to you, if that's what you are after/The tiny mouse hole
+   in the corner is far too small to be of any use to you].
+#
+TEXT increment STICKY.WEB
+   The cobweb threads are thick, very strong and[, take my word for 
+   it,/] quite amazingly sticky.[ I strongly advise against tangling
+   up with them!/]
+#
+TEXT assigned STUCK.IN.WEB
+   [You'd be a spider snack in no time at all/We'd have to 
+   get dwarves to cut you out, and... well, you know what dwarves are
+   like once they get a chance to wave their axes about... Stuff happens]!
+#
+TEXT increment NO.HANDLE.WEB
+   No way! [{STUCK.IN.WEB}/The web is far too sticky to be handled safely.]
+#
+TEXT increment EGGS.BEING.MUNCHED
+   [You edge up to the giant to have a look at the mess he is making of
+   the eggs, but he scowls at you rather nastily. You sensibly decide that 
+   prudence being the best part of valour, you don't really need to
+   examine giant's meal./You already tried that. The giant didn't like it,
+   remember?][/ It really would not be a good idea to irritate him./]
+#
+TEXT CASKET.SHELF
+   It's just a small rock shelf, [with/on which] the casket of
+   opals [is resting/used to rest].
+#
+TEXT increment PIT.IS.BOTTOMLESS
+   [Ahem... There is no *sensible* way down here. If you really wish
+   to verify the alleged bottomlessness of the pit, which I certainly
+   don't advise, you can always try jumping./Even if it were possible
+   to climb down that bottomless pit, which it isn't, it would take
+   literally forever, yes? So don't even think of it - you haven't got
+   the time./Aw, just jump in, if you have to!/There's no way down
+   the pit - got that?]
+#
+TEXT WICKED.UNICORN
+   The unicorn's [horn is long and very sharp./hoofs may look delicate,
+   but don't be fooled - they can pack quite a punch!/mane looks really
+   healthy - long and shiny. But the unicorn doesn't look all that
+   tame to me.] Best leave [the beast/=/it] alone!
+#
+TEXT STATE.IS.NOW
+   The state is now #.
+#
+TEXT ASSAY.MARKS
+   The silver assay marks are too small to make out, and they are not
+   in themselves of importance anyway.
+#
+TEXT BEAMS.WOOD
+   Darkened with age. Hard. Nothing more to be said about it.
+#
+TEXT POMMEL.INLAY
+   The word THROWER is inlaid on the sword's pommel.
+#
+TEXT SOLID.STRIPS
+   The iron strips look pretty solid. That's because they are pretty solid.
+#
+TEXT ARMS.TOO.FULL
+   You arms are too full. You'd need a spare hand to remove the #.
+#
+TEXT BEANSTALK.SATED
+    The beanstalk doesn't seem to be hungry any more. And in any case,
+    you are out of fertiliser.
+#
+TEXT increment ITS.A.TRAY
+    Both trays are simply plastic extrusions from the body of the
+    machine, rather than separate components bolted onto it.[ Neither of
+    them has any features worth remarking upon./]
+#
+TEXT increment ITS.A.SLOT
+    You peer into the coin slot, [and see nothing at all. Not sure what 
+    made you think this would be a profitable exercise/but there's still
+    nothing to be seen in there].
+#
+TEXT increment ROD.NO.BEATER
+    [ Or were you intending to use the magic wand? That would not be
+    a good idea. You might break it./]
+#
+TEXT increment TREASURE.NO.BEATER
+    [ If you have some clever notions of using some of your
+    hard-won treasure, forget it. You might damage it, and that
+    would never do/ Treasure items do *not* make suitable rug
+    beaters].
+#
+TEXT cycle NO.BREAK.WALL
+   [Your puny attack would make no impression on the cave wall/The cave
+   walls are too sturdy for you to make any progress by trying to
+   smash them down/Bashing cave walls is a simgluarly pointless
+   activity].
+#
+TEXT NO.WALL.CLIMBING
+   Walls around here offer no handholds for climbing.
+#
+TEXT increment STONE.RIVERS
+   [OK, maybe "rivers" is putting it a bit strongly. T/As I said: t]he
+   walls look like solidifed, partially overlapping frozen flows of
+   orange stone.[ Please don't feel this fact to have any profound
+   significance. Or a non-profound one, for that matter./]
+#
+TEXT HELLISH.SCENE
+   The bubbling, sulphurous lake, the barren island with its steam
+   geyser - it's a landscape worthy of a medieval image of hell.
+#
+TEXT FLOATING.ASH
+   The volcanic ash flickers in the air, as it falls into the gorge.
+#
+TEXT increment LEAKY.CHALICE
+   You pour the water from your # into the chalice, but it leaks out
+   through the chalice cracks as fast as you can pour it in.[ The net
+   result is one empty #, one empty chalice, and a damp patch on the
+   ground. I guess scooping water from a pool or a stream is the
+   only realistic way of persuading some to stay in the chalice,
+   however briefly./]
+#
+FRAGMENT WITH.CHAMPAGNE?
+   The only suitable liquid to hand appears to be the champaigne in the
+   bucket. Do you mean to fill the chalice with that?_
+#
+TEXT POOF.GOES.CHALICE
+   You pour the champagne into the chalice, which suddenly crumbles to
+   dust [in your hand/where it stands]. Oopsie! Who would have thought
+   it was so allergic to alcohol...
+#
+TEXT NOT.HOLDING
+   You are not holding the #!
+#
+TEXT LAMP.SWITCH
+   The lamp switch has the shape of tiny hemisphere which slides easily
+   between the "on" and the "off" positions under a light push of one's
+   thumb.
+#
+TEXT increment TWO.THUMBS
+   [You have two thumbs, and examining both of them reveals that they are
+   distinctly alike in their thumbness. This is not a fact of any 
+   importance, but you are clearly being very thorough, so I thought
+   I'de better mention it, just in case../Examining your thumbs is
+   still as unproductive as it ever were].
+#
+TEXT increment BATTERIES.INSIDE
+   [The batteries are inside the lamp, and there is no point extracting
+   them just for the sake of satisfying idle curiosity/There's no point
+   getting the batteries out of the lamp].
 #
 #########################################################################
