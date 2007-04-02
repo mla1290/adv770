@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2006.
+# Copyleft Mike Arnautov 1984-2007.
 #
 # "Random" texts.
 #
@@ -122,7 +122,7 @@ TEXT INTRO
     abbreviated, usually to three or four characters, and there are
     some special one-letter abbreviations, such as W for WEST, G for
     GET, L for LOOK (or EXAMINE), and so on. (But magic words cannot be
-    abbreviated at all, of course,) Use the VOCABULARY (or just VOC)
+    abbreviated at all, of course.) Use the VOCABULARY (or just VOC)
     command for more info and for a list of words I know.
 
     Should you get stuck, typing HELP may result in some hints.
@@ -876,7 +876,7 @@ TEXT INFO.FIRST
     This is Mike Arnautov's 770 point version of the one and only Adventure
     (type HISTORY for a brief summary of its development, and CREDITS for
     acknowledgements). The game now has 475 locations, masses of snide
-    remarks (well over 460Kb of text altogether) and a vocabulary of
+    remarks (well over 500Kb of text altogether) and a vocabulary of
     over 1000 words.
 
     Command format is generally verb/noun, but you can specify several
@@ -1010,21 +1010,21 @@ TEXT DRAGON.BLOCKS.WAY
 TEXT HISTORY.DATA
     The following is a brief history of this game.
 
-   =1. Original Adventure developed by Will Crowther.
-   =
-   =2. Greatly enhanced and expanded to the 350 pt version by Don Woods.
-   =
-   =3. Adventure II superset (440 pt) produced by Peter Luckett and
-   =   Jack Pike.
-   =
-   =4. Adventure 3 (550 pt, hence known as adv550) - a different superset
-   =   and game language (A-code) developed by Dave Platt.
-   =
-   =5. The two supersets combined (with extensions) by Mike Arnautov,
-   =   using DP's A-code into Adventure4+ (660pt), also known as Adv660,
-   =
-   =6. Adventure4+ further extended by popular demand into this 770 pt
-   =   version by Mike Arnautov.
+    1. Original Adventure developed by Will Crowther.
+   
+    2. Greatly enhanced and expanded to the 350 pt version by Don Woods.
+   
+    3. Adventure II superset (440 pt, later known as Adv440) produced
+       by Peter Luckett and Jack Pike.
+   
+    4. Adventure 3 (550 pt, hence known as Adv550) - a different superset
+       and game language (A-code) developed by Dave Platt.
+   
+    5. The two supersets combined (with extensions) by Mike Arnautov,
+       using DP's A-code into Adventure4+ (660pt), also known as Adv660.
+   
+    6. Adventure4+ further extended by popular demand into this 770 pt
+       version by Mike Arnautov.
 
     What? You mean you wanted to know WHEN did it all happen?! In
     illo tempore, my friend, in "time before time"...
@@ -1278,17 +1278,17 @@ TEXT PLUMMET
 #
    [
    =Aaaaaaaaaiiiiiiiiiiieeeeeeeeee........
-   =                  \>splat!\<
+   =                                         \>splat!\<
 
     Hmmmm... Not a pretty sight, to be sure./
    =Aaaaaaaaaaaaaaaaaaahhhhhhhhhhhhhhhhhh........
-   =                      \>squish!\<
+   =                                               \>squish!\<
 
     Yetch - what a mess!/
    =Gaaaaaaaaaaaaaaaaaaaaaaaaaahhhhhh...........
-   =                   \>crunch!\</
+   =                                                \>crunch!\</
    =Haaaaaaaaaaaaaalllllllllllllllllpppppp...........
-   =                     \>smash!\<]
+   =                                                   \>smash!\<]
 
 #
 TEXT cycle SLEEPY.BLOCKS.WAY
@@ -1562,21 +1562,22 @@ TEXT increment SCHLURP
     In fact you're sinking in a lot! Oh, no - it's QUICKSAND!! HELP!!
     HELP!! HELP!!!
 
+   =     \>glub\<
    =               \>glub\<
-   =      \>glub\<
-   =                    \>glub\<
-   =                              \>blurp\</
+   =                          \>glub\<
+   =                                     \>blurp\</
+
     You know, I've heard of people who really fell in for the soft sell,
     but
 
    =     \>glub\<
-   =          this
-   =             \>glub\<
-   =                  is
-   =                     \>glub\<
-   =                          ridiculous!
+   =             this
+   =                    \>glub\<
+   =                             is
+   =                                 \>glub\<
+   =                                         ridiculous!
    =
-   =                                 \>blop!\<]
+   =                                                     \>blop!\<]
 
 #
 TEXT SLIMED
@@ -1673,30 +1674,29 @@ TEXT random FOOF.RANDOM
 
 #
 TEXT
-    \>\>sputter\<\<
-   /       \>spark\<
-   /\>\>\>\>\>\>phut\<
-   /  \>hsssssssss
-   /        ssssss
-   /            sss
-   /               s
-   /                s
-   /                 s
-   /                  .
-   /                   .
-   /                    .
+   = \>sputter\<
+   =               \>spark\<
+   =         \>phut\<
+   =                    \>hsssssssss
+   =                               ssssss
+   =                                     sss
+   =                                        s
+   =                                         s
+   =                                          s
+   =                                           .
+   =                                            .
+   =                                             .
 
     Oh, blast. Excuse me for a moment, please......
 
-   /         \{KICK!}
-
+   =                                                        \{KICK!}
     \>\>Foof!\<\<
    
 #
 TEXT OOF
    =Wheeeeeeeeeeeeeeeee..........
    =
-   =                   \>oof!\<
+   =                                        \>oof!\<
 
 #
 TEXT increment SLIDE.SLIPPERY
@@ -2210,10 +2210,10 @@ TEXT random CAMEO
 
    +    "THIS IS A FIRE ALARM TEST. THIS IS A FIRE ALARM TEST.
 
-   =               !         !        !
-   =             t          t         t
-   =           ee         ee       ee
-   =       Huee       Huee     Huee
+   =                  !            !           !
+   =                t            t           t
+   =             ee           ee          ee
+   =       Huee         Huee        Huee
 
    +      FIRE ALARM TEST COMPLETE. FIRE ALARM TEST COMPLETE."/
     From somewhere nearby come the sounds of sliding, stumbling feet. As
@@ -2308,21 +2308,20 @@ TEXT CANT.SEE.ANYTHING
 TEXT GROPE.FALL
     Hmmph - you're not asking for much, are you - it's pitch dark in here!
     Well, I'll grope around and try to find the #.....
-   = \{hunt}
-   =     \{hunt}
-   =         \{rummage}
-   =               \{trip!}
-   =           Aaaiiii
-   =                iie
-   =                  ee
-   =                    e
-   =                     e
-   =
-   =                      e
-   =
-   =                       e
-   =                        \>SPLAT!\<
 
+   = \{hunt\}
+   =         \{hunt\}
+   =                  \{rummage\}
+   =                              \{trip!\}
+   =                                       Aaaiiii
+   =                                              iie
+   =                                                 ee
+   =                                                   e
+   =                                                    e
+   =                                                    e
+   =                                                    e
+   =                                                     \>SPLAT!\<
+ 
     You stumbled into a pit and broke your back!
 #
 TEXT GROPE.MISS
@@ -2330,17 +2329,17 @@ TEXT GROPE.MISS
     and I'll have to grope around to try to find the #.
     Well, if I must, I must.....
 
-   =          \{hunt}
-   =               \{search}
-   =                     \{hunt}
-   =         \{rummage}
-   =     \{peer}
-   =                  \{touch}
-   =         \{hunt}
-   =              \>scrape\<
-   =                 Youch! \{curse}
-   =         \{hunt}
-   =                \{seek}
+   =                        \{hunt\}
+   =                                   \{search\}
+   =                                              \{hunt\}
+   =          \{rummage\}
+   = \{peer\}
+   =                  \{touch\}
+   =     \{hunt\}
+   =                         \>scrape\<
+   =                                  Youch! \{curse\}
+   =          \{hunt\}
+   =                      \{seek\}
 
     No luck - I can't find the #! If you could get me some light in here,
     maybe I'd be able to do better. Sorry....
@@ -2456,18 +2455,18 @@ TEXT GLUG.GLUG.GLUG...
     You have drowned horribly in a mixture of sea-water and sewage.
 #
 TEXT WHEEE...SPLASH
-    Wheeeeeeeeeeeeeeeee..........
-   /
-   /                        \>splash!\<
+   =Wheeeeeeeeeeeeeeeee..........
+   =
+   =                               \>splash!\<
 
 #
 TEXT ON.STREAMBED
     As you start climbing down the steep slope, a stone suddenly gives way
     under your foot...
    /
-   /    EEEEEeeeeeee!!...
-   /                Wham!!!..
-   /                      \>Rumble... rumble...\<
+   =    EEEEEeeeeeee!!...
+   =                   Wham!!!..
+   =                           \>Rumble... rumble...\<
 
     You are at the bottom of the streambed and all your bones are broken.
 #
@@ -2819,11 +2818,11 @@ TEXT TOWERING.MOUNTAIN
     It towers [over the island/above you] most majestically.
 #
 TEXT BIG.SPLASH
-   =Aaaaaaaaaiiiiiiiiiiieeeeeeeeee........
-   =
-   =                  \>SPLASH!\<
-   =
-   =                                  Glug, glug, glug...
+   / Aaaaaaaaaiiiiiiiiiiieeeeeeeeee........
+   /
+   /                          \>SPLASH!\<
+   /
+   /                                  Glug, glug, glug...
 
 #
 TEXT HUGE.PIT
@@ -3265,22 +3264,24 @@ TEXT OYSTER.MEMO
 TEXT DOWN.THE.SLIT
     You plunge into the stream and are carried down into total blackness.
    =Deeper
-   =       and deeper
-   =        you go
-   =          down into
-   =           the
-   =      very
-   =           bowels of
-   =               the earth,
-   =         until
-   =               your lungs
-   =                are aching
-   =                      with
-   =                  the need
-   =                      for fresh
-   =Suddenly,                  air.
-   =        with a violent
-   =            \>SPLASH!\<
+   =          and deeper
+   =                you go
+   =                    down into
+   =                          the
+   =                      very
+   =                            bowels of
+   =                  the earth,
+   =                         until
+   =                               your lungs
+   =                      are aching
+   =                              with
+   =                           the need
+   =                  for fresh
+   =                           air.
+
+   =Suddenly,
+   =                   with a violent
+   =                                              \>SPLASH!\<
 
     you find yourself thoroughly drenched, sitting up to your chest in water.
 
@@ -3335,7 +3336,7 @@ TEXT TREASURE.4
     feelings.
 
    =         Hail and farewell,
-   =          Oh Indomitable One!
+   =              Oh Indomitable One!
 
 #
 TEXT BACK.TO.REALITY
@@ -4519,9 +4520,8 @@ TEXT ITS.TOO.SMALL
 TEXT SNEAKY.CRUNCH
     As you creep about in the dark, you incautiously stumble over a rock
     outcrop and with an almighty
-   =           \>\>\>\>\>CRUNCH\<\<\<\<\<
-   =                      split your head on a
-    conveniently positioned sharp stone.
+   +           \>\>\>\>\>CRUNCH\<\<\<\<\<
+   split your head on a conveniently positioned sharp stone.
 #
 TEXT increment NOWHERE.MIST
     [Well, not mist, really. J/It iss j]ust a thin, pearly sort of gauze. 
@@ -4680,7 +4680,7 @@ TEXT
 
     Now three ghostly voices clamour in your ears chanting:
 
-   =    Blerbi      KNERL   KNERL
+   =     Blerbi      KNERL   KNERL
    =   Klaetu   KNERL    Blerbi      Blerbi     Klaetu
    =       KNERL      Klaetu     Blerbi      Klaetu      KNERL
    =          Blerbi          KNERL
@@ -5201,7 +5201,7 @@ TEXT increment READ.RUG
    =       Er... 
    =          Ah... 
    =             Yes! 
-   /It says "BASINGSTOKE". 
+   =It says "BASINGSTOKE". 
 
     Now there's a word teeming with meaning!/
     It has the word "BASINGSTOKE" woven into it in a flowing
@@ -5921,8 +5921,8 @@ TEXT increment BIRD.IGNORES.SEED
     it doesn't like?/]
 #
 TEXT LEAVE.SEED.FOR.BIRDS
-    Don't be greedy - the bird seed is clearly meant for birds, 
-    not for you.
+    Don't be greedy! You've got some already, and the bird seed is clearly
+    meant for birds, not for you.
 #
 TEXT TIME.FLIP.1
     As you pass through the tunnel entrance you briefly experience a
@@ -7055,7 +7055,7 @@ TEXT increment NO.EVICT.IMP
      you stop embarrassing yourself, and just accept my plain, honest
      and entirely sensible advice: LEAVE THE IMP ALONE, DON'T COME HERE,
      THERE IS NOTHING TO BE GAINED BY IT, THE IMP IS JUST A METAPHYSICAL
-     NUISANCE - OK?/
+     NUISANCE - COMPRENDE?/
      Oh, do stop being silly - you are not a miracle worker and the imp
      is not leaving here in a hurry.]
 #
@@ -10268,13 +10268,13 @@ TEXT SCREEN.SIZE
 TEXT PLEASE.REPORT
     I am sure there plenty of imperfections to be found around
     here. Just make sure you report them to the author, by e-mail
-    to mla@britishlibrary.net.
+    to mla@mipmip.org.
 #
 TEXT .OF
     Value is $.
 #
 TEXT ERROR
     Sorry, a runtime error has occurred. Please report its context
-    to Mike Arnautov: mla@britishlibrary.net.
+    to Mike Arnautov: mla@mipmip.org.
 #
 ###################################################################

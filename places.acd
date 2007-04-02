@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2006.
+# Copyleft Mike Arnautov 1984-2007.
 #
 # Now for the place descriptions.
 #
@@ -60,7 +60,7 @@ PLACE STUPENDOUS.VIEW
 PLACE +BUILDING, +HOUSE   # synonym for compatibility with Multics
    You're inside building.
   %You are inside a small building, a well house for a large spring. Fixed
-   to one wall is a large poster, titled "A RECORD OF RECENT RENOVATIONS".
+   to one wall is a large poster, titled "RECENT RENOVATIONS".
 #
 PLACE +VALLEY
    You're in valley.
@@ -97,6 +97,7 @@ PLACE +DEBRIS, RUBBLE
    and west. A note on the wall says
 
   +       "Magic word XYZZY".
+
 #
 PLACE +CANYON
    You are in an awkward sloping east/west canyon.
@@ -531,6 +532,7 @@ PLACE +DARK, +DARKNESS, +GLOOM, +BLACKNESS
    A massive stone tablet embedded in the wall reads:
 
   +      "Congratulations on bringing light into the Dark room!"
+
 #
 PLACE MISTY
    You're in misty cavern.
@@ -566,6 +568,7 @@ PLACE +ANTEROOM
   +       "Cave under construction beyond this point."
   +                   "Proceed at own risk."
   +               "\{Witt Construction Company}"
+
 #
 PLACE WITTS.END
    You're at Witt's End.
@@ -983,6 +986,7 @@ PLACE BARREN
    entrance to a large, barren room. A sign posted above the entrance reads:
 
   +       "Caution!  Bear in room!"
+
 #
 PLACE BEAR.ROOM
    You are in the barren room.
@@ -1270,6 +1274,7 @@ PLACE ICE.CAVE.30
    Glowing letters in midair spell out the words
 
   +       "This way out".
+
 #
 #  The above ICE.CAVE.30 must be the last in the block of ICE.CAVEs.
 #
@@ -1503,6 +1508,7 @@ PLACE BASEMENT
    saying
 
   +        "WIZARDS ONLY, KEEP OUT".
+
 #
 PLACE CURTAIN.ENTRANCE
    You're at the curtain entrance.
@@ -1692,6 +1698,7 @@ PLACE OUTSIDE.GATES
 
   +                "NO ADMITTANCE"
   +       "TRESPASSERS WILL BE PERSECUTED"
+
 #
 #
 PLACE GARDEN.N      # Remember, gates are schizoid!
@@ -1863,6 +1870,7 @@ PLACE SEA.VIEW
    the brick-work with a faded ornate inscription above it which reads:
 
   +         "CAUTION - HIGH TIDE LEVEL!"
+
 #
 PLACE +CULVERT
    You're in the north/south culvert.
@@ -2460,12 +2468,14 @@ FRAGMENT NICHE_SIGN
 PLACE VALUERS
    You're in the valuation room. The sign above the niche says
   +{NICHE_SIGN}
+
   %You are in a small dusty room with the only exit leading north through
    a narrow arch. The room is quite featureless except for a deep niche
    in the west wall. The niche is illuminated from the inside, filling
    the room with suffused half-light. A sign above the niche says
 
   +{NICHE_SIGN}
+
 #
 PLACE DARK.HOLE.2
    You're in a dark hole.

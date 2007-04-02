@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2006.
+# Copyleft Mike Arnautov 1984-2007.
 #
 # Procedures.
 #
@@ -2467,6 +2467,9 @@ proc here.you.can.see
 #
    set result 0
    itobj obj.ptr, here
+      ifis obj.ptr, glow
+         next
+      fin
       flag obj.ptr, seen
       ifflag obj.ptr, feature
       else
@@ -3131,6 +3134,11 @@ proc dragon.slayer
       set dragon, dead.body
       ifat secret.n/e.canyon.2
          lda here, secret.n/e.canyon.1
+         itobj obj.ptr, secret.n/e.canyon.2
+            ifflag obj.ptr, portable
+               apport obj.ptr, here
+            fin
+         fin
       fin
       apport teeth, here
       apport rug, here

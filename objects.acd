@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2006.
+# Copyleft Mike Arnautov 1984-2007.
 #
 # Here follow the object definitions.
 #
@@ -94,6 +94,7 @@ OBJECT  -DOOR1       # The door to the mines
    handle or keyhole. Carved into its surface are the words:
 
   +{DWARVES.ONLY}/]
+
 #
 OBJECT PIRATE    # Pirate - he never stays to visit, but runs away
 #
@@ -177,6 +178,7 @@ OBJECT TURTLE, TORTOISE, DARWIN
 OBJECT MESSAGE  # Message in second maze
   %There is a message scrawled in the dust in a flowery script, reading:
   +  "This is not the maze where the pirate leaves his treasure chest."
+
 #
 OBJECT VOLCANO, CONE
   %[/
@@ -385,7 +387,7 @@ OBJECT SCEPTRE   # Sceptre's 0-mode description is part of "SKELETON"
   &A strange, unearthly object of great value. Obviously a symbol of
    kingship, but I doubt if any human king ever wielded its like.
 #
-OBJECT YACHT, RUBY, RUBAIYAT
+OBJECT YACHT, =RUBY, =TOY
    Ruby-covered toy yacht
   %[There is a small toy yacht sitting on the floor. It is totally
    covered with rubies, and has the words "Omar Khayyam" engraved
@@ -981,8 +983,7 @@ OBJECT  -BEANSTALK2  # Phony beanstalk visible from the picnic place
    The top of a huge beanstalk is poking up over the edge of the cliff.]
 #
 FRAGMENT increment HUM.HO
-   [
-  /Hum, ho.../]
+  [/Hum, ho.../]
 #
 OBJECT TURKISH-DELIGHT, =DELIGHT, =TURKISHDELIGHT, BOX, RAKHAT-LUKUM
    Box of Turkish Delight.
@@ -993,7 +994,9 @@ OBJECT TURKISH-DELIGHT, =DELIGHT, =TURKISHDELIGHT, BOX, RAKHAT-LUKUM
 
   +     Genuine Viagra flavour!
   +       Makes hair grow on your chest!!
+
    {HUM.HO}
+
 #
 OBJECT MUSTAFA, =GENTLEMAN
 #
@@ -1134,6 +1137,7 @@ OBJECT PACKET, =FERTILISER, =FERTILIZER
   +       Stupe-Gro (TM)
   +       Patent pending
   +           Made in Shangri-La]
+
 #
 OBJECT WRAPPER
    Paper wrapper
@@ -1248,8 +1252,8 @@ OBJECT ANTEATER, PANGOLIN, AARDVARK, ANIMAL
 #
 OBJECT IT, OBJ, OBJE, OBJEC, OBJECT, THEM, HIM # Dummy for IT processing.
 #
-OBJECT POSTER, =RECORD
-  &+                    A RECORD OF RECENT RENOVATIONS
+OBJECT POSTER
+  &+                         RECENT RENOVATIONS
    +(as compiled by Ralph Witt Jr. for the benefit of visiting adventurers)
 
     The well house surroundings have been cleared out, allowing a reasonably

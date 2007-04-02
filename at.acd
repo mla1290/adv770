@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2006.
+# Copyleft Mike Arnautov 1984-2007.
 #
 # The following acode procedures are associated with
 # individual places.
@@ -6183,7 +6183,9 @@ at plain.2
          fin
          call phog
          say here
-         say glow
+         ifne glow, 0
+            say glow
+         fin
          quit               # Stumble around in a circle
       fin
    fin

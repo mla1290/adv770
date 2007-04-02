@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2006.
+# Copyleft Mike Arnautov 1984-2007.
 #
 # This module defines the actions to be taken when certain
 # verb, verb/object, verb/verb or object/object word sequences
@@ -1707,7 +1707,7 @@ action switch
       respond look, lamp.switch
       ifeq status, 1
          or
-      ifany push, flip, slide, lamp
+      ifany push, flip, slide, lamp, on, off
          ifeq lamp, switched.off
             fakecom switch, on
             call on

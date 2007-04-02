@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2006.
+# Copyleft Mike Arnautov 1984-2007.
 #
 # Words to be ignored
 #
@@ -208,7 +208,7 @@ verb point
 verb pqfo                   # "Open" in dwarvish
 verb knock
 verb count
-verb omar, khayyam, khayam, corelli, mandolin
+verb !omar, !rubayat, !rubaiyat, !khayyam, !khayam, !corelli, mandolin
 verb mutter
 verb bknrd, nodm, rgts, m, mn, fn, hm, mv, nts, h, hmudmsnqx # Some Humanish
 verb credits, acknowledgements
