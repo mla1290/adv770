@@ -292,7 +292,7 @@ TEXT USE.VERBOSE
 #
 TEXT increment NO.BURN.THINGS
     Sorry, [we don't allow adventurers to burn things. It's against
-    fire regulations/buring things is not permitted around here.
+    fire regulations/burning things is not permitted around here.
     Besides, you have no source of fire/no burning of things - and
     that's final].
 
@@ -377,7 +377,7 @@ TEXT cycle TROLL.ZORRO
 #
 TEXT increment TOO.PUBLIC
     [There is not much point in trying to disguise yourself quite
-    so publicly! /]Better find a quet, private place [for it/for
+    so publicly! /]Better find a quiet, private place [for it/for
     disguising yourself].
 #
 TEXT NO.APPROACH.EDGE
@@ -491,11 +491,15 @@ TEXT IMPERFECT.CHEATER
 #
 TEXT YOU.ARE.A.CHEATER
      That's not a very sporting attitude! You clearly have no regard
-     to the problems this could cause to our scoring system!
+     for the problems this could cause to our scoring system! 
 
+     Sigh... Some people are just plain greedy... Dear oh dear me,
+     I feel in my bones that I'll be in trouble for this...
      Well, I suppose since you insist, I'll have have to stick to the 
-     usual rules and allow you the points for finding the book. Not 
-     that I am very happy about it, you understand. It could land me
+     standard rules and allow you the usual for finding a run-of-the-mill
+     treasure, so forget any notions of infinite riches. 
+
+     Not that I am very happy about it, you understand. It could land me
      in some pretty hot water, and no mistake. But as for taking the
      book with you, that's right out!
 #
@@ -736,7 +740,7 @@ TEXT WICKED.UNICORN
    tame to me.] Best leave [the beast/=/it] alone!
 #
 TEXT STATE.IS.NOW
-   The state is now #.
+   The state is now $.
 #
 TEXT ASSAY.MARKS
    The silver assay marks are too small to make out, and they are not
@@ -809,7 +813,7 @@ TEXT increment LEAKY.CHALICE
    however briefly./]
 #
 FRAGMENT WITH.CHAMPAGNE?
-   The only suitable liquid to hand appears to be the champaigne in the
+   The only suitable liquid to hand appears to be the champagne in the
    bucket. Do you mean to fill the chalice with that?_
 #
 TEXT POOF.GOES.CHALICE
@@ -836,5 +840,17 @@ TEXT increment BATTERIES.INSIDE
    [The batteries are inside the lamp, and there is no point extracting
    them just for the sake of satisfying idle curiosity/There's no point
    getting the batteries out of the lamp].
+#
+TEXT increment BUMPY.LANDING
+   [Ouch! A bit of a bumpy landing there, but fortunately nothing broken./
+   OK... Oooof! Better this time, but still a bit heavy on that landing./
+   Ah, much better! You are getting the hang of it./
+   A small, neat leap and you land as lightly as a feather.../
+   OK.]
+
+#
+TEXT increment PORTCULLIS.IN.THE.WAY
+   The # is too large to be thrown through the porcullis.[ And throwing
+   things here is not a recommended approach anyway./]
 #
 #########################################################################

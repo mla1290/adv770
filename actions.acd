@@ -386,8 +386,9 @@ action drop
    ifat river.bed.1
       call wind.blows
    fin
-   anyof bird, cage, oil, water, champagne, vase, vial, djinn, bear
-   anyof drachma, obolus, starstone, sunstone, seed, dung, rod
+   ifany bird, cage, oil, water, champagne, vase, vial, djinn, bear
+      or
+   ifany drachma, obolus, starstone, sunstone, seed, dung, rod
       ifkey bird
          call drop.bird
       otherwise
@@ -490,6 +491,7 @@ action drop
             quip blank
          fin
       fin
+   fin
 #
 #=====================================================================
 #
@@ -552,9 +554,9 @@ action drop               # Generalized "drop" control
       else
          say the.it, arg2
          ifflag arg2, plural
-            value drop.text, 1
+            say drop.text, 1
          else
-            value drop.text, 0
+            say drop.text, 0
          fin
          ifis arg2, bust
             set bust, damaged
@@ -742,7 +744,7 @@ action throw dung
 #=====================================================================
 #
 action throw food
-   have food
+   ifhave food
       ifnear troll
          quip no.feed.troll
       fin
@@ -767,37 +769,36 @@ action throw food
          fin
          quit
       fin
+   fin
 #
 #=====================================================================
 #
 action throw teeth
-   have teeth
+   ifhave teeth
       call sow.teeth
+   fin
 #
 #=====================================================================
 #
 action throw vial
-   have  vial
+   ifhave vial
       call break.vial
+   fin
 #
 #=====================================================================
 #
 action throw                   # Generalized "throw" control
    ifeq status, 2
-      ifflag arg2, object         # Throwing objects
+      ifflag arg2, object      # Throwing objects
          ifhave arg2           # that you happen to be carrying
             and                # in a place where things can be
-            not
-         ifeq here, throw.here # thrown to someplace else
+            not                # thrown to someplace else
+         ifeq here, throw.here 
             call check.wearing
             call upchuck
          fin
       fin
       ifis arg2, bottle, flask, bucket
-#         or
-#      ifis arg2, flask
-#         or
-#      ifis arg2, bucket
          drop arg2
          say you.do, arg1
          eval object.state, arg2
@@ -1130,7 +1131,7 @@ action inventory
          add count, 1
          say obj.ptr
       fin
-   eoi
+   fin
    ifeq count, 0
       say arms.are.empty
    otherwise
@@ -1889,8 +1890,9 @@ action open                  # General opening routine
    ifnear arg2
       call bail.out
    fin
-   anyof bottle, bag, chest, cage, clam, oyster, vial, keys, gates
-   anyof packet, curtains
+   ifany bottle, bag, chest, cage, clam, oyster, vial, keys, gates
+      or
+   ifany packet, curtains
       respond bottle, bottle.no.stopper
       respond bag, no.open.bag
       respond chest, chest.locked
@@ -1915,6 +1917,7 @@ action open                  # General opening routine
          fin
          quip no.open.packet
       fin
+   fin
 #
 #=====================================================================
 #
@@ -2005,7 +2008,7 @@ action open door
 #=====================================================================
 #
 action open door1
-   near door1
+   ifnear door1
       ifeq dwarven, 1
          ifeq waterfall, opened
             quip already.open, door
@@ -2021,6 +2024,7 @@ action open door1
          say already.open, door
       fin
       quip it.wont.budge, door
+   fin
 #
 #=====================================================================
 #
@@ -2068,7 +2072,7 @@ action open door3
 #=====================================================================
 #
 action open safe
-   near  safe
+   ifnear safe
       ifeq safe, locked
          quip no.keyhole
       fin
@@ -2076,11 +2080,12 @@ action open safe
          quip already.open, arg2
       fin
       quip it.is.melted
+   fin
 #
 #=====================================================================
 #
 action open flask
-   near  flask
+   ifnear flask
       iflt  flask, emptied
          set flask, emptied
          ifloc flask, pentagram
@@ -2090,6 +2095,7 @@ action open flask
          quip rude.djinn
       fin
       quip already.open, arg2
+   fin
 #
 #=====================================================================
 #
@@ -2262,7 +2268,7 @@ action close
 #
 action help
    ifat dark.forest
-      value help.will.cost.you!, hint.cost
+      say help.will.cost.you!, hint.cost
       set context q.forest.out
       quip want.out?
    fin
@@ -2278,7 +2284,7 @@ action help
       ifgt scorex, 99
          quip maze.help.no.offer
       fin
-      value maze.help.offer, hint.cost
+      say maze.help.offer, hint.cost
       set context, q.maze.out
       quip want.out?
    fin
@@ -2402,7 +2408,7 @@ action fly
          ifis obj.ptr, orb
             quip load.too.heavy
          fin
-      eoi
+      fin
       ifhave bucket
          and
       ifgt bucket, emptied
@@ -2500,9 +2506,9 @@ action hit
             quip rug.already.clean
          fin
          set rug, unrolled.clean
-         bis rug, special1
+         flag rug, special1
          ifgt you.played.before, 0
-            bis rug, special2
+            flag rug, special2
             set rug.now.cleaner, 1
          fin
          quip rug.now.cleaner
@@ -2660,8 +2666,9 @@ action verbose
 #
 action feed
    default mortal
-   anyof bear, troll, bird, snake, dwarf, dragon, basilisk
-   anyof goblins, unicorn, beanstalk
+   ifany bear, troll, bird, snake, dwarf, dragon, basilisk
+      or
+   ifany goblins, unicorn, beanstalk
       ifnear arg2
          ifkey bear
             ifnear food
@@ -2717,6 +2724,7 @@ action feed
          fin
       fin
       call bail.out
+   fin
 #
 #=====================================================================
 #
@@ -2735,13 +2743,13 @@ action feed
 #
 action score
    call get.score
-   value should.you.quit, scorex
+   say should.you.quit, scorex
    ifgt losses, 0
-      value less.penalties, losses
-      value strictly.speaking, actual.score
+      say less.penalties, losses
+      say strictly.speaking, actual.score
    fin
-   value maximal.score, maxscore
-   value move.count, turns
+   say maximal.score, maxscore
+   say move.count, turns
    quit
 #
 #=====================================================================
@@ -3240,11 +3248,12 @@ action empty
 # not need to worry about watering/feeding plants -- that's been already
 # handled by the relevant AT code, if applicable.
 #
-   anyof bottle, flask, chalice, vial, bucket
+   ifany bottle, flask, chalice, vial, bucket
       ifhave arg2
       else
          quip you.dont.have, arg2
       fin
+   fin
 #
 #=====================================================================
 #
@@ -3357,10 +3366,13 @@ action pour
 #=====================================================================
 #
 action placate
-   anyof dwarf, snake, bird, dragon, troll, bear, pirate, ogre, basilisk
-   anyof goblins, unicorn
-   near  arg2
+   ifany dwarf, snake, bird, dragon, troll, bear, pirate, ogre, basilisk
+      or
+   ifany goblins, unicorn
+      and
+   ifnear arg2
       quip i.am.game
+   fin
 #
 #=====================================================================
 #
@@ -3425,14 +3437,16 @@ action eat
 #=====================================================================
 #
 action rub lamp
-   near lamp
+   ifnear lamp
       quip you.rub.lamp, arg2
+   fin
 #
 #=====================================================================
 #
 action rub spoon
-   near spoon
+   ifnear spoon
       quip spoon.still.tarnished
+   fin
 #
 #=====================================================================
 #
@@ -3597,7 +3611,7 @@ action say
       ifnear obj.ptr, mortal
          quip ignored.by, obj.ptr
       fin
-   eoi
+   fin
    quit
 #
 #=====================================================================
@@ -3610,7 +3624,7 @@ action save
    lda text.ptr, is.this.ok?
    verbatim arg2
    save command, text.ptr
-   value must.wait, min.time
+   say must.wait, min.time
    set context, q.save
    quip is.this.ok?
 #
@@ -3655,9 +3669,9 @@ action restore
          quip restore.what?, 0
       fin
       call which.to.restore?
-  else
-     set arg2, 0     # Allow REESTORE QUIT
-  fin
+   else
+      set arg2, 0     # Allow REESTORE QUIT
+   fin
    ifeq status, 2
       verbatim arg2
    fin
@@ -3692,8 +3706,8 @@ action restore
       fin
       exec 8, elapsed       # Get time (in minutes) since game dumped
       iflt elapsed, min.time
-         value too.soon, min.time
-         value restore.would.cost, hint.cost
+         say too.soon, min.time
+         say restore.would.cost, hint.cost
          set context, q.early.restore
          quip really.restore?
       fin
@@ -4544,7 +4558,7 @@ action blow horn
       iflt dwarf, dwarfcount
          set party, dwarfcount
          sub party, dwarf
-         value dwarves.come, party
+         say dwarves.come, party
          apport dwarf, here
          set dwarf, dwarfcount
          ifflag status, light.here
@@ -4552,7 +4566,7 @@ action blow horn
             say dwarf
          fin
       else
-         value dwarves.upset, dwarf
+         say dwarves.upset, dwarf
          flag dwarf, special2
          set fleetfoot, 0
          set backlash, 100
@@ -5470,7 +5484,7 @@ action cheat
    fin
    ifeq mazea.by.pit, 0
       ifinrange here, mazea.42, mazea.by.pit
-         value cheating.costs, hint.cost
+         say cheating.costs, hint.cost
          set context q.cheat
          quip really.cheat?
       fin
@@ -5605,7 +5619,7 @@ action give
          otherwise
          set temp.ptr, obj.ptr
       fin
-   eoi
+   fin
    ifeq temp.ptr, 0
       quip nobody.here
    fin
@@ -5807,8 +5821,7 @@ action length
    exec 20, outcome
    ifgt outcome, 0
       say param.set, arg1
-      value param.val, outcome
-      quit
+      quip param.val, outcome
    fin
    quip, hah!
 #
@@ -5822,8 +5835,7 @@ action offset
    fin
    exec 21, outcome
    say param.set, arg1
-   value param.val, outcome
-   quit
+   quip param.val, outcome
 #
 #=====================================================================
 #
@@ -5835,8 +5847,7 @@ action screen
    fin
    exec 22, outcome
    ifgt outcome, 0
-      value screen.size, outcome
-      quit
+      quip screen.size, outcome
    fin
    quip hah!
 #
@@ -5889,7 +5900,7 @@ action point
    ifeq status, 1
       quip no.pointing, 0
    fin
-   ifhave arg2,
+   ifhave arg2
    else
       call not.got, arg2
    fin
@@ -6472,8 +6483,7 @@ action increment
          eval state, arg2
          add state, 1
          deposit arg2, state
-         value state.is.now, state
-         quit
+         quip state.is.now, state
        fin
    else
       quip no.understand
@@ -6493,8 +6503,7 @@ action decrement
             sub state, 1
             deposit arg2, state
          fin
-         value state.is.now, state
-         quit
+         quip state.is.now, state
        fin
    else
       quip no.understand

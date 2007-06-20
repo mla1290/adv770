@@ -145,32 +145,32 @@ init
       flag place.ptr, lit
       flag place.ptr, not.in.cave
       flag place.ptr, no.dwarf
-   eoi
+   fin
    itplace place.ptr, rock.shelf, beanstalk.top
       flag place.ptr, lit
       flag place.ptr, not.in.cave
       flag place.ptr, no.dwarf
-   eoi
+   fin
    itplace place.ptr, end.of.valley, shed
       flag place.ptr, lit
       flag place.ptr, not.in.cave
       flag place.ptr, no.dwarf
-   eoi
+   fin
    itplace place.ptr, tower.base, garden.se
       flag place.ptr, lit
       flag place.ptr, not.in.cave
       flag place.ptr, no.dwarf
-   eoi
+   fin
    itplace place.ptr, catacombs.entrance, catacombs.exit
       flag place.ptr, no.dwarf
-   eoi
+   fin
    itplace place.ptr, cave.2, cave.8
       flag place.ptr, no.dwarf
-   eoi
+   fin
    itplace place.ptr, above.abyss, above.volcano
       flag place.ptr, lit
       flag place.ptr, no.dwarf
-   eoi
+   fin
    unflag storeroom, lit
    unflag shelves.west, lit
    unflag shelves.east, lit
@@ -184,7 +184,7 @@ init
    itplace place.ptr, tower.base, dwarves.quarters
       flag place.ptr, hintable
       flag place.ptr, indoors
-   eoi
+   fin
    unflag tower.roof, indoors
    flag well.bottom, lit
    flag well.bottom, not.in.cave
@@ -193,12 +193,12 @@ init
       flag place.ptr, lit
       flag place.ptr, not.in.cave
       flag place.ptr, no.dwarf
-   eoi
+   fin
    itplace place.ptr, island, waterfall
       flag place.ptr, lit
       flag place.ptr, not.in.cave
       flag place.ptr, no.dwarf
-   eoi
+   fin
    flag above.sea, lit
    flag above.sea, not.in.cave
    flag above.sea, no.dwarf
@@ -275,7 +275,7 @@ init
    flag fake.jumble, no.dwarf
    itplace place.ptr, catacombs.lobby, catacombs.exit
       flag place.ptr, no.dwarf
-   eoi
+   fin
    flag audience, no.dwarf
    flag audience.east, no.dwarf
    flag loopy.passage, no.dwarf
@@ -379,13 +379,13 @@ init
       else
          flag place.ptr, no.back
       fin
-   eoi
+   fin
    unflag mazea.42, no.back
    itplace place.ptr, mazed.107, mazed.140
       flag place.ptr, in.maze
       flag place.ptr, no.back
       flag place.ptr, hintable
-   eoi
+   fin
    unflag mazed.107, no.back
    itplace place.ptr, web.maze.1, web.maze.6
       flag place.ptr, in.maze
@@ -394,7 +394,7 @@ init
       else
          flag place.ptr, no.back
       fin
-   eoi
+   fin
    itplace place.ptr, ice.cave.1, ice.cave.30
       flag place.ptr, in.maze
       flag place.ptr, hintable
@@ -403,7 +403,7 @@ init
       else
          flag place.ptr, no.back
       fin
-   eoi
+   fin
    itplace place.ptr, catacombs.portal, catacombs.exit
       flag place.ptr, in.maze
       flag place.ptr, hintable
@@ -412,7 +412,7 @@ init
       else
          flag place.ptr, no.back
       fin
-   eoi
+   fin
    itplace place.ptr, desert.1, desert.last
       flag place.ptr, in.maze
       flag place.ptr, in.desert
@@ -421,10 +421,10 @@ init
       else
          flag place.ptr, no.back
       fin
-   eoi
+   fin
    itplace place.ptr, mine, mine.exit
       flag place.ptr, no.dwarf
-   eoi
+   fin
    unflag rocky.desert, in.desert
    set rocky.desert, 0
 #
@@ -840,7 +840,7 @@ init
    itobj obj.ptr
       apport obj.ptr, limbo
       random junk, 100              # Kick random number generator
-   eoi
+   fin
    apport keys, building
    apport lamp, building
    apport grate, depression
@@ -1024,12 +1024,12 @@ init
    iterate place.ptr, island, island.ne
       deposit place.ptr, state
       add state, 1
-   eoi
+   fin
    set state, 0
    iterate place.ptr, mazed.107, mazed.140
       deposit place.ptr, state
       add state, 1
-   eoi
+   fin
    set giant.will.watch, -1
    set scree.2, 1
    set scree.3, 2
@@ -1052,6 +1052,7 @@ init
    flag notice, seen
    flag tree, seen  
    flag pine, seen
+   flag book,seen
 #
 # Randomise some of the cycling texts.
 #

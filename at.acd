@@ -2842,7 +2842,7 @@ at alcove
             ifflag obj.ptr, freebie
                quip something.doesnt.fit
             fin
-         eoi
+         fin
          move plover
       fin
    fin
@@ -2892,7 +2892,7 @@ at plover
             ifflag obj.ptr, freebie
                quip something.doesnt.fit
             fin
-         eoi
+         fin
          move alcove
       fin
    fin
@@ -7534,12 +7534,14 @@ at cellar.view
       proceed
    fin
    respond drain, drain.out.of.reach
-   set throw.text, 1  # Dummy; actual work done by throw.it.at.orb
+   ifkey throw
+      call throw.it.at.orb
+   fin
    ifkey go
       or
    ifeq status, 1
       move up, steps, stairs, half.stairs
-      respond cellar, in, drain, portcullis.in.the.way
+      respond cellar, in, drain, no.go.portcullis
    fin
    ifany steps, stairs, portcullis, cellar
       flag context, arg2.here
@@ -8035,7 +8037,7 @@ at cellar
    ifkey go
       or
    ifeq status, 1
-      respond steps, out, chamber, portcullis.in.the.way
+      respond steps, out, chamber, no.go.portcullis
       respond drain, in, down, drain.too.small
       respond cellar, you.are.there
    fin
@@ -13904,6 +13906,11 @@ at above.abyss.6
       call abyss.view, 1
       proceed
    fin
+   ifkey go
+      or
+   ifeq status, 1
+      move sw, imaze.01
+   fin
    call abyss.stuff, 1
 #
 #=====================================================================
@@ -14602,7 +14609,7 @@ at temple
                      fin
                   fin
                fin
-            eoi
+            fin
             goto island
             unflag status, moved
             say get.lost
@@ -14864,10 +14871,14 @@ at viewpoint.2
          set status, 1
       fin
    fin
+   ifkey jump, down
+      set status, 1
+   fin
    ifkey go
       or
    ifeq status, 1
       move west, ridge, viewpoint
+      smove jump, island.08, bumpy.landing
       move down, east, edge, trail, track, island.08
       respond mountain, upper.reaches
       respond beach, its.out.of.reach, 0

@@ -839,7 +839,7 @@ proc choose.swag
             set swag.to.drop, obj.ptr
             proceed
          fin
-      eoi
+      fin
    fin
 #
 #=====================================================================
@@ -871,7 +871,7 @@ proc kill.some.dwarves
          unflag dwarf, plural
          proceed
       fin
-   eoi
+   fin
 #
 #=====================================================================
 #
@@ -901,7 +901,7 @@ proc wizard.evicts
          apport obj.ptr, where
          set junk, 1
       fin
-   eoi
+   fin
    ifloc orb, cellar
       apport fake.orb, cellar.view
    fin
@@ -919,7 +919,7 @@ proc hide.things
 #
    itobj obj.ptr, here, portable
       apport obj.ptr, hidey.hole
-   eoi
+   fin
 #
 #=====================================================================
 #
@@ -928,7 +928,7 @@ proc dump.things, where
 #
    itobj obj.ptr, hidey.hole
       apport obj.ptr, where
-   eoi
+   fin
 #
 #=====================================================================
 #
@@ -937,16 +937,20 @@ proc nothing.big message, qualifier
 #
    itobj obj.ptr, inhand, big
       quip message, qualifier
-   eoi
+   fin
 #
 #=====================================================================
 #
 proc throw.it.at.orb
+   local text.ptr
+   ifeq status, 1
+      default inhand
+      ifeq status, 1
+         proceed
+      fin
+   fin
    ifflag arg2, big
-      drop arg2
-      quip you.do.it
-#      say you.do, arg1
-#      quip it.is, arg2
+      quip portcullis.in.the.way, arg2
    fin
    lda text.ptr, down.the.drain
    chance 10
@@ -958,9 +962,9 @@ proc throw.it.at.orb
    fin
    say the.it, arg2
    ifflag arg2, plural
-      value text.ptr, 1
+      say text.ptr, 1
    else
-      value text.ptr, 0
+      say text.ptr, 0
    fin
    apport arg2, sea.view
    quit
@@ -982,6 +986,8 @@ proc house.inventory, testing
       ifloc obj.ptr, building     # If where it should be...
             or
       ifloc obj.ptr, ylem         # ... or gone for good
+            or
+      ifis obj.ptr, book
       else
          ifis obj.ptr, windrose
             and
@@ -994,7 +1000,7 @@ proc house.inventory, testing
             proceed
         fin
       fin
-   eoi
+   fin
    flag ring, valued
    flag starstone, valued
    ifloc starstone, building  # We allow it to be in the building, 
@@ -1218,7 +1224,7 @@ proc owl.comes, no.chance, some.chance
       ifgt chasm, 0
          itobj obj.ptr, inhand, big
             quip no.owl.express
-         eoi 
+         fin 
          ifat sw.of.chasm
             goto ne.of.chasm
          else
@@ -1556,7 +1562,7 @@ proc mutter.stuff
          chance 75
             or
             not
-         ifflag safe, seen
+         ifflag sceptre, seen
          else
             set orc.mutter, keys.mutter
             flag orc.mutter, keys.mutter
@@ -1735,7 +1741,7 @@ proc get.swag
             fin
          fin
       fin
-   eoi
+   fin
    unflag starstone, big                  # Shrink it again
    unflag magazines, big
    unflag food, big
@@ -1751,7 +1757,7 @@ proc get.swag
                set obj.ptr, temp.ptr      # ... and its identity
             fin
          fin
-      eoi
+      fin
       set percent, swag.count
       multiply percent, 100
       divide percent, dwarfcount
@@ -1775,7 +1781,7 @@ proc get.swag
                   apport temp.ptr, place.ptr
                fin
             fin
-         eoi
+         fin
       fin
       apport obj.ptr, storeroom
    fin
@@ -2017,7 +2023,7 @@ proc oyster.message
    ifflag oyster, big        # Read before?
       quip same.as.before, inscription
    fin
-   value oyster.is.hint, hint.cost
+   say oyster.is.hint, hint.cost
    set context, q.oyster
    quip read.oyster?
 #
@@ -2051,7 +2057,7 @@ proc get.score
          fin
       fin
       add maxscore, full.value
-   eoi
+   fin
 #
 # Now deal with the exceptions. The starstone, being schizoid, only
 # scores if its 2nd location is in the building.
@@ -2097,6 +2103,12 @@ proc get.score
       add scorex, 1
    fin
    add maxscore, 1           # Maximal mags credit
+#
+# Have we been busted?
+#
+   ifflag book, valued
+      add scorex, seen.value
+   fin
 #
    iflt stage, in.repository
       ifflag road, been.here
@@ -2177,16 +2189,16 @@ proc get.score
 #
 proc finis
    call get.score
-   value you.scored, scorex
+   say you.scored, scorex
    ifgt scorex, 770
       say cheated
    fin
    ifgt losses, 0
-      value less.penalties, losses
-      value strictly.speaking, actual.score
+      say less.penalties, losses
+      say strictly.speaking, actual.score
    fin
-   value maximal.score, maxscore
-   value move.count, turns
+   say maximal.score, maxscore
+   say move.count, turns
    say blank
    set result, scorex
    sub result, losses
@@ -2243,7 +2255,7 @@ proc finis
       ifeq result, 1
          say only.need.one.point
       else
-         value points.needed, result
+         say points.needed, result
       fin
    fin
    say blank
@@ -2391,7 +2403,7 @@ proc alarm.stuff
                   apport obj.ptr, place.ptr
                fin
             fin
-         eoi
+         fin
 #
 # But not the thurible!
 #
@@ -2490,7 +2502,7 @@ proc here.you.can.see
             add result, 1
          fin
       fin
-   eoi
+   fin
    itobj obj.ptr, here, valued
       say obj.ptr
    fin
@@ -2546,7 +2558,7 @@ proc list.dunes, dune.count
       fin
       add dir, 1
       add mask, mask
-   eoi
+   fin
 #
 #=====================================================================
 #
@@ -2881,10 +2893,12 @@ proc drop.sunstone
 #=====================================================================
 #
 proc drop.drachma
-   have arg2
-   near machine
+   ifhave arg2
+      and
+   ifnear machine
       drop arg2
       quip coin.no.good, arg2
+   fin
 #
 #=====================================================================
 #
@@ -2938,7 +2952,7 @@ proc drop.bird
    fin
    ifnear dwarf
       call zap.bird
-      value bird.v.dwarf, dwarf
+      say bird.v.dwarf, dwarf
       quit
    fin
    ifat sw.repository
@@ -2982,7 +2996,7 @@ proc drop.bird
 proc drop.cage
    local qualifier
 #
-   have cage
+   ifhave cage
       apport cage, drop.here
       say you.do, arg1
       ifhave bird
@@ -3008,12 +3022,13 @@ proc drop.cage
       ifat cellar
          call wizard.evicts
       fin
-   quit
+      quit
+   fin
 #
 #=====================================================================
 #
 proc drop.vase
-   have vase
+   ifhave vase
       apport vase, drop.here
       ifat soft
          quip you.do.it
@@ -3041,6 +3056,7 @@ proc drop.vase
          call wizard.evicts
       fin
       quit
+   fin
 #
 #=====================================================================
 #
@@ -3237,7 +3253,7 @@ proc ogre.slayer
 #=====================================================================
 #
 proc get.bear
-   near bear
+   ifnear bear
       ifhave bear
          quip already.got.bear
       fin
@@ -3248,11 +3264,12 @@ proc get.bear
       fin
       get bear
       quip got.bear
+   fin
 #
 #=====================================================================
 #
 proc get.sword
-   near sword
+   ifnear sword
       ifeq sword, in.stone
          and
       iflt invct, strength
@@ -3264,13 +3281,14 @@ proc get.sword
          fin
          quip sword.is.stuck
       fin
+   fin
 #
 #=====================================================================
 #
 proc get.sceptre
    local selector
 #
-   near sceptre
+   ifnear sceptre
       ifeq sceptre, 0
          and
       iflt invct, strength
@@ -3294,6 +3312,7 @@ proc get.sceptre
          fin
          quip blew.safe
       fin
+   fin
 #
 #=====================================================================
 #
@@ -3341,7 +3360,7 @@ proc close.the.cave
             drop obj.ptr
          fin
       fin
-   eoi
+   fin
    apport mirror, sw.repository
    set bucket, emptied
    set bottle, emptied
@@ -3372,7 +3391,7 @@ proc close.the.cave
       ifflag place.ptr, not.in.cave
          unflag place.ptr, been.here
       fin
-   eoi
+   fin
    flag rod, seen
    set forest.12, 1         # Make sure the path exists!
    flag nowhere, hintable   # May have been cleared in the "joke" stage
@@ -3391,7 +3410,7 @@ proc closing.time
    set grate, locked
    say closing.now               # Sepulchral voice
    ifnear dwarf
-      value dwarf.quits, dwarf   # Fades into the gloom
+      say dwarf.quits, dwarf   # Fades into the gloom
    fin
    apport dwarf, limbo           # Get rid of him/them
    set dwarf, 0                  # Zilch all present dwarves
@@ -3443,7 +3462,7 @@ proc pirate.encounter, force
             set got.some, 1
          fin
       fin
-   eoi
+   fin
    flag starstone, valued
    ifeq got.some, 0
       ifflag pirate, seen         # First time thru?
@@ -3645,12 +3664,12 @@ proc lamprey          # Lamp getting dim or has gone out
                say lamp.batteries
             else
                ifinrange here, mazea.42, mazea.by.pit
-                  value lamp.is.dim, 1
+                  say lamp.is.dim, 1
                else
                   ifinrange here, mazed.107, mazed.140
-                     value lamp.is.dim, 2
+                     say lamp.is.dim, 2
                   else
-                     value lamp.is.dim, 0
+                     say lamp.is.dim, 0
                   fin
                fin
             fin
@@ -3683,32 +3702,32 @@ proc wise.guy
       flag slide, smartass
       itplace place.ptr, ice.cave.1, ice.cave.30
          flag place.ptr, smartass
-      eoi
+      fin
    fin
    ifflag here, in.desert
       itplace place.ptr, desert.1, desert.last
          flag place.ptr, smartass
-      eoi
+      fin
    fin
    ifinrange here, catacombs.portal, catacombs.exit
       itplace place.ptr, catacombs.portal, catacombs.exit
          flag place.ptr, smartass
-      eoi
+      fin
    fin
    ifinrange here, web.maze.1, web.maze.6
       itplace place.ptr, web.maze.1, web.maze.6
          flag place.ptr, smartass
-      eoi
+      fin
    fin
    ifinrange here, mazea.42, mazea.by.pit
       itplace place.ptr, mazea.42, mazea.by.pit
          flag place.ptr, smartass
-      eoi
+      fin
    fin
    ifinrange here, mazed.107, mazed.140
       itplace place.ptr, mazed.107, mazed.140
          flag place.ptr, smartass
-      eoi
+      fin
    fin
    quip as.you.wish
 #
@@ -3958,7 +3977,7 @@ proc hint.action
       ifeq status, 0
          or
       ifkey yes
-         value ill.give.hint, hint.cost
+         say ill.give.hint, hint.cost
          set context, q.help.cost
          quip want.hint? 
       fin
@@ -4053,17 +4072,17 @@ proc hint.action
             unflag slide, hintable
             itplace place.ptr, ice.cave.1, ice.cave.30
                unflag place.ptr, hintable
-            eoi
+            fin
          fin
          ifinrange here, catacombs.portal, catacombs.exit
             itplace place.ptr, catacombs.portal, catacombs.exit
                unflag place.ptr, hintable
-            eoi
+            fin
          fin
          ifinrange here, web.maze.1, web.maze.6
             itplace place.ptr, web.maze.1, web.maze.6
                unflag place.ptr, hintable
-            eoi
+            fin
          fin
          ifinrange here, mazea.42, mazea.by.pit
             ifeq mazea.42, 0
@@ -4073,17 +4092,17 @@ proc hint.action
             fin
             itplace place.ptr, mazea.42, mazea.by.pit
                unflag place.ptr, hintable
-            eoi
+            fin
          fin
          ifinrange here, mazed.107, mazed.140
             itplace place.ptr, mazed.107, mazed.140
                unflag place.ptr, hintable
-            eoi
+            fin
          fin
          ifflag here, in.desert
             itplace place.ptr, desert.1, desert.last
                unflag place.ptr, hintable
-            eoi
+            fin
          fin
          ifnear shadow
             unflag east.window, hintable
@@ -4272,7 +4291,7 @@ proc dwarf.attack
          proceed               # If not, just go back
       fin
       unflag dwarf, big            # Currently not blocking
-      value knives.thrown, thrown  # Tell him that he's under attack
+      say knives.thrown, thrown    # Tell him that he's under attack
       set luck, strength           # Let's figure out how agile he is at ...
       sub luck, invct              # ... the moment....
       mult luck, 5                 # 5 points per object that he could carry
@@ -4287,17 +4306,17 @@ proc dwarf.attack
          ifgt luck, 0              # If we got a zero, it doesn't help!
             lda text.ptr, first.deflector-1
             add text.ptr, luck     # Generate address of defense message
-            value text.ptr, thrown # Tell him he's been reprieved this time
+            say text.ptr, thrown   # Tell him he's been reprieved this time
             proceed                # Let 'im off for this once
          fin
       fin
       chance fleetfoot             # Ok - did they all miss him?
          or
       ifflag dwarf, special1       # Is this the first attack recently?
-         value knives.miss, thrown # He's safe this time - whew!
+         say knives.miss, thrown   # He's safe this time - whew!
          unflag dwarf, special1    # Clear "first attack" flag
       else                         # Oh-oh - he's been stabbed!
-         value knives.got.you, thrown   # Tell him the bad news
+         say knives.got.you, thrown   # Tell him the bad news
          call coroner              # Go clean up the bloody mess on the floor
       fin
    fin
@@ -4545,24 +4564,20 @@ proc upchuck
    ifeq throw.here, here
       proceed             # What are we doing here???
    fin
-   ifat cellar.view
-      call throw.it.at.orb
-   else
-      ifeq throw.it, true
-         say the.it, arg2
-         ifflag arg2, plural
-            set qualifier, 1
-         else
-            set qualifier, 0
-         fin
-         say throw.text, qualifier
+   ifeq throw.it, true
+      say the.it, arg2
+      ifflag arg2, plural
+         set qualifier, 1
       else
-         say throw.text, arg2        # Must not be a quip!
+         set qualifier, 0
       fin
-      apport arg2, throw.here
-      ifis arg2, bust
-         set bust, damaged
-      fin
+      say throw.text, qualifier
+   else
+      say throw.text, arg2        # Must not be a quip!
+   fin
+   apport arg2, throw.here
+   ifis arg2, bust
+      set bust, damaged
    fin
    ifkey vase
       apport vase, ylem
@@ -4836,7 +4851,7 @@ proc giant.stuff, giving
                      fin
                   fin
                fin
-            eoi
+            fin
             ifnear food                      # He ate it!
                sub count, 1
             fin
@@ -5137,7 +5152,7 @@ proc unicorn.stuff
 #=====================================================================
 #
 proc open.bivalve
-   near arg2
+   ifnear arg2
       ifhave arg2
          quip drop.the.bivalve, arg2
       fin
@@ -5151,6 +5166,7 @@ proc open.bivalve
          quip bivalve.opened, 1
       fin
       quip no.open.bivalve, arg2
+   fin
 #
 #=====================================================================
 #
@@ -5193,10 +5209,13 @@ proc sculpture.stuff
 # The rest of this procedure does nothing other than stopping translator
 # grumping about unused symbols.
 #
-   anyof pig, eel, emu, elf, squirrel, vulture, rabbit
-   anyof elephant, snail, condor, lizard, ibex
-   anyof frog, tiger, mule, moose, dog, phoenix, nymph
-   quip blank
+   ifany pig, eel, emu, elf, squirrel, vulture, rabbit
+      or
+   ifany elephant, snail, condor, lizard, ibex
+      or
+   ifany frog, tiger, mule, moose, dog, phoenix, nymph
+      quip blank
+   fin
 #
 #=====================================================================
 #
@@ -5425,7 +5444,7 @@ proc desert.stuff
       ifgt state, 0
          iterate counter, 1, state
             add desbit, desbit
-         eoi
+         fin
       fin
       eval desmask, there
       intersect desmask, desbit
@@ -5594,7 +5613,7 @@ proc vampires.gift, switch
 proc wind.blows
    local qualifier
 #
-   anyof mask, magazines, spices, rags, seed
+   ifany mask, magazines, spices, rags, seed
       ifany seed, mask
          set qualifier, 0
       else
@@ -5602,6 +5621,7 @@ proc wind.blows
       fin
       say wind.blows.it, arg2
       quip blows.it.off, qualifier
+   fin
 #
 #=====================================================================
 #
@@ -5647,13 +5667,13 @@ proc bridge.stuff
       set bridge.limit, 0
       itobj obj.ptr, inhand, valued
          add bridge.limit, 1
-      eoi
+      fin
       say weak.bridge
       move cave.5
    fin
    itobj obj.ptr, inhand, valued
       add count, 1
-   eoi
+   fin
    ifgt count, bridge.limit
       say bridge.collapses
       ifhave skull,
@@ -5694,7 +5714,7 @@ proc whirlpool.dive
             apport obj.ptr, ylem
             set lost.some, 1
          fin
-      eoi
+      fin
       ifeq lost.some, 0
          set kept.some, 0
       fin
@@ -5770,7 +5790,7 @@ proc maze.escape
       add penalties, hint.cost
       itobj obj.ptr, inhand, valued
          drop obj.ptr
-      eoi
+      fin
       ifhave tusk
          drop tusk     # It may not be valuable yet!
       fin
@@ -5802,7 +5822,7 @@ proc save.this
    save file, result           # Save program image
    ifeq result, 0
       set context, q.continue
-      value continue.now?, hint.cost
+      say continue.now?, hint.cost
       quip want.to.continue?
    fin 
    ifeq result, 2              # Already have such save!
@@ -5845,7 +5865,7 @@ proc save.it
       call finis
    fin
    say yes.or.no?
-   value continue.now?, hint.cost
+   say continue.now?, hint.cost
    quip want.to.continue?
 #
 #=====================================================================
@@ -5930,7 +5950,7 @@ proc resurrection.shuffle
             ifis obj.ptr, axe
                apport obj.ptr, road
             fin
-         eoi
+         fin
          set invct, 0
          set lamp, switched.off
          goto  building
@@ -5973,7 +5993,7 @@ proc sentry.kills
       else
          drop obj.ptr
       fin
-   eoi
+   fin
    call coroner
 #
 #=====================================================================
@@ -6506,7 +6526,7 @@ proc climbing.check
       ifhave lamp
          set lamp.in.teeth, 1
       fin
-   eoi
+   fin
 #
 #=====================================================================
 #
@@ -6939,7 +6959,7 @@ proc plant.things
    set score, 1
    itobj obj.ptr, hidey.hole
       add score, 2
-   eoi
+   fin
    random count, score
    set chosen, none
    itobj obj.ptr, hidey.hole
@@ -6947,7 +6967,7 @@ proc plant.things
          set chosen, obj.ptr
       fin
       sub count, 1
-   eoi
+   fin
    ifgt chosen, none
       apport chosen, here
    fin
@@ -7145,7 +7165,7 @@ proc drop.check, t.only
             proceed
          fin
       fin
-   eoi
+   fin
    ifeq no.drop.count, 0
       ifkey treasure
          quip no.treasure, 1
@@ -7223,7 +7243,7 @@ proc except.check
             fin
          fin
       fin
-   eoi
+   fin
    ifgt do.count, 0
       proceed
    fin
@@ -7300,7 +7320,7 @@ proc mirror.jump
       ifhave obj.ptr
          apport obj.ptr, ylem
       fin
-   eoi
+   fin
    set stage, middle.of.nowhere
    flag nowhere, been.here             # To force brief description
    smove nowhere, through.the.mirror
@@ -7326,7 +7346,7 @@ proc lets.go.back
             apport obj.ptr, ylem
          fin
       fin
-   eoi
+   fin
    apport giant, ylem
    set beanstalk, 0
    set beanstalk2, 0

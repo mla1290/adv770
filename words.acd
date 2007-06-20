@@ -187,8 +187,8 @@ verb use
 verb reflect
 verb scry, gaze
 verb vocabulary, =commands, dictionary
-verb yes, =y, ok, good
-verb no
+verb yes, =y, =yup, ok, good
+verb no, =nope
 verb maybe, perhaps, possibly
 verb !runout        # Wizards only. Invokes 'clock4' immediately.
 verb tanstaafl

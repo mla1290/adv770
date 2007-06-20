@@ -11,6 +11,8 @@ repeat
    flag dwarves.quarters, indoors
    unflag tower.roof, indoors
 #
+# Now for the rest of it...
+#
    call tie.them      # Force initialisation of ties in all circumstances!! 
    ifeq status, -1    # This signals game restore (we actually have 2 args!)
       set status, 2   # Restore the arg count
@@ -54,7 +56,7 @@ repeat
       else
          unflag obj.ptr, schizoid   # It must not appear INHAND!
       fin
-   eoi
+   fin
    ifgt context, none
       proceed
    fin
@@ -290,7 +292,7 @@ repeat
          call fishy.stuff
       fin
       ifflag status, show.numbers
-         value location.number, here
+         say location.number, here
       fin
       unflag status, brief.now
       ifis there, dark.forest
@@ -711,7 +713,7 @@ repeat
          ifflag obj.ptr, freebie
             add invct, 1
          fin
-      eoi
+      fin
    fin
    ifat nowhere
    else
@@ -1132,7 +1134,7 @@ repeat
          add penalties, hint.cost
          itplace place.ptr, mazea.42, mazea.by.pit
             deposit place.ptr, 1
-         eoi
+         fin
          quip you.are.now.cheating
       fin
       ifany quit, no, n
@@ -2208,7 +2210,7 @@ repeat
 #
    ifkey rattle
       and 
-   ifnear, thurible
+   ifnear thurible
       iflt not.a.rattle, 3
          say not.a.rattle
       fin
@@ -2248,7 +2250,7 @@ repeat
       fin
    fin
 #
-# Remind hime that he need not keep saying 'go'.
+# Remind him that he need not keep saying 'go'.
 #
    ifkey west, walk
       add west.count, 1

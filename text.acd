@@ -142,7 +142,7 @@ TEXT FIRST.DWARF
 #
 TEXT KNIVES.THROWN
 
-    [/One/#] nasty sharp kni[/fe is/ves are] thrown at you!
+    [/One/$] nasty sharp kni[/fe is/ves are] thrown at you!
 #
 TEXT KNIVES.MISS
     [/It misses/They miss] you!
@@ -1150,8 +1150,8 @@ TEXT NO.FOOD
 #
 TEXT increment ILL.GIVE.HINT
     [I can give you some advice that might help you solve your problem, but
-    I'll have to charge you # points for it. TANSTAAFL, y'know!/
-    The usual charge of # points applies of course - TANSTAAFL and all that.]
+    I'll have to charge you $ points for it. TANSTAAFL, y'know!/
+    The usual charge of $ points applies of course - TANSTAAFL and all that.]
 #
 FRAGMENT WANT.HINT?
     Do you want the hint?_
@@ -1357,24 +1357,24 @@ TEXT RUG.UNDER.DRAGON
 #
 FRAGMENT YOU.SCORED
 
-    You have scored [zero/one/#] point[s//s]
+    You have scored [zero/one/$] point[s//s]
 #
 FRAGMENT SHOULD.YOU.QUIT
-    You have so far scored [zero/one/#] point[s//s]
+    You have so far scored [zero/one/$] point[s//s]
 #
 FRAGMENT LESS.PENALTIES
-   / and forfeited [/one/#] penalty point[//s]
+   / and forfeited [/one/$] penalty point[//s]
 #
 FRAGMENT STRICTLY.SPEAKING
     .
 
-    Hence your overall score is [zero/one/#] point[s//s]
+    Hence your overall score is [zero/one/$] point[s//s]
 #
 FRAGMENT MAXIMAL.SCORE
-   / out of the possible maximum of #,
+   / out of the possible maximum of $,
 #
 TEXT MOVE.COUNT
-   / using [/one/#] turn[//s].
+   / using [/one/$] turn[//s].
 #
 TEXT DWARF.QUITS
     The dwar[/f/ves] quickly scuttle[/s/] off into the gloom.
@@ -1418,7 +1418,7 @@ TEXT ONLY.NEED.ONE.POINT
     You only need one more point to reach the next level of expertise!
 #
 TEXT POINTS.NEEDED
-    To reach the next qualification level you need # more points.
+    To reach the next qualification level you need $ more points.
 #
 TEXT NEW.BATTERIES
     The old batteries in your lamp were pretty well shot - I've taken the
@@ -1439,7 +1439,7 @@ TEXT increment MUST.WAIT
     10 points to restore the saved game in less than # minutes from
     now. And it will also cost you 10 points to continue playing
     after the game is saved./Remember: 10 points for restoring a
-    saved game in less than # minutes, and 10 points for continuing
+    saved game in less than $ minutes, and 10 points for continuing
     with this game after the save.]
 #
 FRAGMENT DELETE.IMAGE?
@@ -1460,10 +1460,10 @@ FRAGMENT EXPLOSION
     Shall I get rid of it?_
 #
 FRAGMENT TOO.SOON
-    This game was saved less than # minutes ago. 
+    This game was saved less than $ minutes ago. 
 #
 TEXT RESTORE.WOULD.COST
-   / To restore it now would cost you # points.
+   / To restore it now would cost you $ points.
 
 #
 FRAGMENT REALLY.RESTORE?
@@ -1499,7 +1499,7 @@ TEXT random ITS.GONE
     getting it back now!]
 #
 TEXT CONTINUE.NOW?
-    Continuing with this game would cost you # points.
+    Continuing with this game would cost you $ points.
 
 #
 FRAGMENT FROM.YOUR
@@ -2382,7 +2382,7 @@ TEXT BE.OFF
 
     Through the portcullis steps a tall wizard clothed in grey. "BE OFF!"
     he commands raising an arm. As the scene fades, you can hear his
-    distant voice adding "...[DAMNED AMATEUR!/AND TAKE YOUR JUNK WITH 
+    distant voice adding "...[CLUELESS AMATEUR!/AND TAKE YOUR JUNK WITH 
     YOU!...]"
 
 #
@@ -3251,7 +3251,7 @@ TEXT OYSTER.WRITING
     the oyster.
 #
 FRAGMENT OYSTER.IS.HINT
-    Hmmm... this looks like a clue. I would have to charge you # points
+    Hmmm... this looks like a clue. I would have to charge you $ points
     for reading it._
 #
 FRAGMENT READ.OYSTER?
@@ -3701,7 +3701,7 @@ FRAGMENT STARSTONE.LIGHTS.UP
 TEXT increment HELP.WILL.COST.YOU!
     [Yeah, well, I really can't see what you hoped to achieve by getting
     yourself lost in the forest. I can get you out, but it will cost
-    you/Getting out of the forest the easy way costs] # points.
+    you/Getting out of the forest the easy way costs] $ points.
 #
 FRAGMENT WANT.OUT?
     Do you really want help that badly?_
@@ -4779,7 +4779,7 @@ TEXT NO.KILL.DARWIN
 TEXT MAZE.HELP.OFFER
     Well, this is strictly against the rules, but if you are really desperate
     I can get you out of here. It'll cost you, of course. The standard charge
-    is # points anyway, but on top of that you'd have to leave here any
+    is $ points anyway, but on top of that you'd have to leave here any
     valuables you happen to carry.
 
 #
@@ -5047,7 +5047,7 @@ TEXT DIRT.TRACK
     dirt-track, which cuts through the forest.
 #
 FRAGMENT CHEATING.COSTS
-    I'd have to charge you # points.
+    I'd have to charge you $ points.
 #
 FRAGMENT REALLY.CHEAT?
    / Are you quite sure you dislike the traditional maze mapping 
@@ -8215,8 +8215,8 @@ TEXT NO.GET.BOOK
     score limit. On the other hand, it seems churlish to deny you a
     reward for your enterprise... Um.... I know! Suppose we waive any
     normal penalties you might have accrued, whenever your score gets
-    calculated, how's that?/ I can't see why you bother. We've already
-    established your reward for finding it. Yes, yes?]
+    calculated, how's that?/ I can't see why you bother. We've
+    already established your reward for finding it. Yes, yes?]
 #
 TEXT NO.MOVE.BOOK
     However hard you # the book hanging in mid-air, it serenely
@@ -8253,7 +8253,7 @@ TEXT YOU.DONT.HOLD.VESSEL
 #
 TEXT LOCATION.NUMBER
 
-    I beg to report to your mightiness that this be location number #.
+    I beg to report to your mightiness that this be location number $.
 #
 FRAGMENT increment OWL.GRIPS
     There is a flurry of wingbeats and a loud "HOOT" and [your shoulders
@@ -8883,7 +8883,7 @@ TEXT MISTS.STAIRS
    Not so much a sweep of a grand staircase, as an irregular series of 
    narrow terraces leading down into the darkness.
 #
-TEXT PORTCULLIS.IN.THE.WAY
+TEXT NO.GO.PORTCULLIS
    There's the rusty portcullis in the way!
 #
 TEXT WARM.WALL
@@ -10252,7 +10252,7 @@ FRAGMENT PARAM.SET
     OK... Line # now set to_
 #
 TEXT PARAM.VAL
-    #.
+    $.
 #
 TEXT WHAT.PARAM?
     You need to specify a value for the line #!
@@ -10261,7 +10261,7 @@ TEXT WHAT.DEPTH?
     You must specify the number of lines per screenful!
 #
 TEXT SCREEN.SIZE
-    Scrolling pause now set at # lines.
+    Scrolling pause now set at $ lines.
 #
 #------------------------------------------------------------------
 #
