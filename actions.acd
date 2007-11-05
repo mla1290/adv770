@@ -634,10 +634,11 @@ action oil
    set abort,false
    call find.oil
    ifeq vessel, none
+      say you.dont.have, oil
       ifhave vial
-         quip this.is.not.oil
+         append this.is.not.oil
       fin
-      quip you.dont.have, oil
+      quit
    fin
    ifgt status, 1
       ifis arg1, oil
@@ -889,9 +890,9 @@ action wave rug      # Well, shake, actually!
          quip no.shake.rug, 0
       otherwise
       ifflag rug, special1
-         quip no.shake.rug, 2
-      else
          quip no.shake.rug, 1
+      else
+         quip no.shake.rug, 2
       fin
    fin
 #
@@ -1383,13 +1384,11 @@ action look pyramid
 #=====================================================================
 #
 action look oil
-   ifnear bottle, full.of.oil
+   call find.oil
+   ifne vessel, none
       or
    ifnear oil
       quip looks.greasy
-   fin
-   ifnear vial
-      quip this.is.not.oil
    fin
 #
 #=====================================================================
@@ -1588,6 +1587,9 @@ action look vegetation
 #=====================================================================
 #
 action look
+   ifkey box
+      set no.eat.delight, 1
+   fin
    ifkey seal
       and
       not
@@ -2840,22 +2842,21 @@ action foo
             say bit.pointless
          fin
       else
-         ifnear nest
-            set nest, 1
+         ifat giant.room
+            and
+         ifflag status, light.here
+            say nest.relocates
          else
-            ifat giant.room
+            ifhave nest
+               or
+            ifhere nest
                and
             ifflag status, light.here
-               set nest, 0
+               say eggs.relocate, 0
             else
-               set nest, 2
-            fin
+               say eggs.relocate, 1
+            fin            
          fin
-         ifhave nest
-            drop nest
-         fin
-         say nest
-         set nest, 0
          ifflag nest, special1            # If the eggs were given in toll
             unflag nest, special1
             flag troll, special1          # Can't be fooled twice
@@ -3598,7 +3599,6 @@ action say
    ifnear arg2, mortal
       quip ignored.by, arg2
    fin
-#   say said, arg2
    ifany plugh, xyzzy, thurb, melenkurion, noside, samoht
       or
    ifany knerl, zorton, klaetu, snoeze, blerbi, phuggg, sesame
@@ -3666,6 +3666,7 @@ action restore
    iflt status, 2
       ifcgi             # CGI mode?
          set context, q.restore.what
+         set status, no.match
          quip restore.what?, 0
       fin
       call which.to.restore?
@@ -3952,6 +3953,9 @@ action epns
 #=====================================================================
 #
 action read
+   ifkey box
+      call look
+   fin
    ifkey rug
       call read.the.rug
    fin
@@ -4964,6 +4968,18 @@ action reflect
 #=====================================================================
 #
 action translate
+   ifkey dwarvish
+      set status, 1
+   fin
+   ifeq status, 1
+      or
+   ifkey dwarf
+      and
+   ifflag recent.event, just.happened
+      and
+   ifeq recent.event, demanding.dwarf
+      quip no.translate.dwarvish
+   fin
    ifany spoon, inscription
       ifnear spoon
          quip no.translate.epns
@@ -4975,7 +4991,7 @@ action translate
    ifeq status, 1
       and
    ifat waterfall, tower.upper.landing, tower.top.landing
-      quip no.speak.dwarvish
+      quip no.translate.dwarvish
    fin
    ifeq status, 2
       ifany plaque, magazines, dwarf, documents
@@ -4995,7 +5011,7 @@ action translate
    ifnear magazines
       or
    ifnear dwarf
-      quip no.speak.dwarvish
+      quip no.translate.dwarvish
    fin
    quip translate.what?, arg1
 #
@@ -5551,6 +5567,13 @@ action give dung
 action give
    ifkey up
       call quit
+   fin
+   ifkey blood
+      ifnear vampire
+         quip no.donate.blood, 1
+      else
+         quip no.donate.blood, 0
+      fin
    fin
    set vessel, none
    ifkey bucket
@@ -6571,6 +6594,22 @@ action stir
 #
 action tie
    quip no.tying
+#
+#=====================================================================
+#
+action explain
+   quip no.explain
+#
+#=====================================================================
+#
+action cry
+   ifgt status, 1
+      and
+      not
+   ifkey out
+      quip huh?
+   fin
+   quip crying.no.help
 #
 #=====================================================================
 #

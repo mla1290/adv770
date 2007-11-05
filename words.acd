@@ -24,6 +24,7 @@ verb why
 verb !fuck, !piss, !pee, !screw, !shit, urinate, !wank, !bugger, !fart, !crap, defecate
 verb !undo
 verb !redo
+verb cry
 verb -last.special         # Mark end of special verbs
 #
 # End of verbs not requiring validation of ARG2.
@@ -170,7 +171,7 @@ verb lost, confused
 verb info, information
 verb swim
 verb wizard
-verb sleep, doze, snooze
+verb sleep, doze, snooze, =nap
 verb scream
 verb swear
 verb hoot
@@ -217,6 +218,7 @@ verb exits
 verb next
 verb diagnose, health
 verb tie, untie
+verb explain
 #
 # Now the potential travel options.
 #
@@ -378,6 +380,7 @@ verb heap, heaps, pile, piles
 verb feet, foot
 verb dais
 verb granite
+verb blood
 verb onyx, bloodstone
 verb stanchions
 verb balustrade

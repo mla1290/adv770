@@ -40,7 +40,7 @@ PLACE STUPENDOUS.VIEW
    You're at the magnificent view.
   %You are on a broad patch of sunlit grass, enclosed by steep
    chalk banks lined with flowering gorse bushes and topped with a
-   crowded phalanx of firs. A narrow ravine leads southeast.[ To
+   crowded phalanx of firs. A narrow ravine leads southeast. [To
    the west the banks and the grass suddenly give way to a sheer
    cliff drop of about a thousand feet. The view is quite
    magnificent: far beneath you the sea sparkles in the sun, white
@@ -49,13 +49,8 @@ PLACE STUPENDOUS.VIEW
    the sea and the sky. In the middle of the grass is a
    flattened, trampled looking area with the old remains of a fire
    in the centre. A semicircular indentation in the ashes could
-   be easily taken for a heelprint, if it were not so large. / Not
-   far from the edge of the cliff the giant is having a celebratory
-   picnic. To his right is a vast heap of sandwiches, to his left 
-   a barrelful of caviar and a whole pile of other goodies. Some flat,
-   gaudily coloured rectangular boxes spill from the pile towards 
-   the cliff edge. An enormous crate of champagne is carefully 
-   positioned in the shadow of a bush.]
+   be easily taken for a heelprint, if it were not so large./
+   {GIANTS.PICNIC}]
 #
 PLACE +BUILDING, +HOUSE   # synonym for compatibility with Multics
    You're inside building.
@@ -392,28 +387,7 @@ PLACE VESTRY
    arrogant gothic spirituality. Somehow it feels very peaceful
    in here. The only exit leads east, back into the chapel.
 #
-PLACE SPARE..P..1
-#
-#   I am loath to delete the STABLE description. It is too good and might
-#   come in handy in some future expansion. On the other hand, it does
-#   not fit at all as things are (and always were) and can only be made
-#   to fit with a considerable amount of pointless effort. (According
-#   to Jack Pike, this was Peter Luckett's contribution, presumably
-#   anticipating some further developments -- just what developments,
-#   remains unclear.)
-#
-# PLACE STABLE
-#   You're in the stable.
-#  %You are in a room that appears to be a stable for a fearsome animal.
-#   Against one wall is a battered and dirty trough that is quite empty and
-#   on the other wall is a huge harness. Beside the harness is a small
-#   window that overlooks a courtyard. The courtyard is deserted and shows
-#   no sign of any recent activity. At the far end of the stable is a
-#   wooden partition that has numerous dents and holes in it and you can
-#   see that it is securely fixed to the massive stone walls so that
-#   whatever is behind it cannot get out. If you listen carefully, you can
-#   hear the muted sounds of growling and the scratching of claws against
-#   wood. The only exit is the way you came in.
+PLACE SPARE..P..01
 #
 PLACE +BEDQUILT
    You're back at Bedquilt.
@@ -1408,11 +1382,11 @@ PLACE +LEDGE
 PLACE BEANSTALK.TOP
    You're at the top of the giant beanstalk.
   %You are clinging to the stem of the beanstalk,
-   surrounded by its foliage. The stem is quite narrow and it
-   would be too dangerous to climb it any higher. Through gaps in
-   the leaves you can see on one side a wide stretch of blue sea
-   far below, while on the other side, level with you,
-   is a trampled grassy area surrounded by steep chalk banks.
+   surrounded by its foliage. The stem is quite narrow and it would
+   be too dangerous to climb it any higher. Through gaps in the leaves
+   you can see on one side a wide stretch of blue sea far below, while
+   on the other side, level with you, is a trampled grassy area
+   surrounded by steep chalk banks. {GIANTS.PICNIC}
 #
 PLACE +REPOSITORY, NE.REPOSITORY
    You're at the northeast end of the repository.
@@ -1687,11 +1661,11 @@ PLACE +TRACK, +TRACKS
 #
 PLACE OUTSIDE.GATES
    You're outside the garden gates.
-  %You are standing at the end of a track which winds its way
-   to the north through the dense forest. The progress south is
-   blocked by wrought iron gates set in a tall stone wall. Through
-   the gates you can see some sort of a garden in a state of bad
-   neglect. The dense forest grows right up to the
+  %You are standing at the end of a track which winds its way to the
+   north through the dense forest. The progress south is blocked by
+   wrought iron gates set in a tall stone wall. Through the gates you
+   can see the white tower at the back of some sort of a garden
+   in a state of bad neglect. The dense forest grows right up to the
    wall, offering no prospect of exploring to either side along it.
 
    A notice by the gates reads

@@ -216,7 +216,7 @@ flags variable
       panicked          # He panicked during closure
       olorin            # He's a wizard
       ranout            # His lamp just died.
-      niche.used        # He had something valued by the niche
+      SPARE..V..FLAG
       fire.out          # Fire emergency cancelled
       edison            # He has just said 'noside'
       chalice.used      # He has drank the pure waters
@@ -263,7 +263,22 @@ flags variable
       arg2.here       # ARG2 designated pseudo object *is* here
       arg2.distant    # ARG2 can be seen but is out of reach
       recent.move     # Last turn was a move
-      prompted        # PLayer queried for input
+      prompted        # Player queried for input
+#
+# Recent event flags and states.
+#
+flags variable
+      just.happened        # Event occured on the previous turn
+state 1, demanding.dwarf   # Dwarf died making a peculiar demand
+#
+# Valuation results.
+#
+constant had.been.valuable
+         was.valuable
+         just.about.valuable
+         was.not.valuable
+         valuable.and.useful
+         not.valuable.or.useful
 #
 # Define thirst parameters.
 #

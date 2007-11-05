@@ -354,7 +354,7 @@ proc bail.out
          fin
          respond drop, no.all, 1
       fin
-      ifnear arg2
+     ifnear arg2
          or
       ifflag context, arg2.here
          or
@@ -3834,6 +3834,9 @@ proc hint.logic
       fin
    otherwise
    ifnear unicorn
+      and
+      not
+   ifflag dung, seen
       lda text.ptr, unicorn.hint
    otherwise
    ifat phoney.shaft
@@ -4356,6 +4359,7 @@ proc weaponry    # Handle attacks with weapons
                not
             ifflag quips, dwarf.quip
                flag quips, dwarf.quip
+               set recent.event, demanding.dwarf
                say crab.meat, arg2
              else
                say dwarf.poof
@@ -4856,6 +4860,7 @@ proc giant.stuff, giving
                sub count, 1
             fin
             say giant.picks.up, count
+            flush                            # In case we had a "let"
             ifnear food
                apport food, limbo
                smove pantry, miserable.morsel
@@ -4871,6 +4876,7 @@ proc giant.stuff, giving
       fin
       ifeq giant, getting.ready
          say giant.picks.up, 0
+         flush                               # In case we had a "let"
          ifgt giant.time, 0
             smove dungeon, stay.in.there
          fin
@@ -6171,6 +6177,7 @@ proc randomise.texts
    randomise nocomprende.object, 0
    randomise no.understand, 0
    randomise no.can.go, 0
+   randomise i.dont.see, 0
    randomise impassable.desert, 0
    randomise naturally.nothing, 0
    randomise tell.me.more, 0
@@ -6224,6 +6231,7 @@ proc randomise.texts
    randomise we.have.light, 0
    randomise nothing.to.undo, 0
    randomise no.kick.it, 0
+   randomise crying.no.help, 0
    randomise indecisions, 0
    set nothing.doing.2, nothing.doing.1
    randomise typo, 0             # TYPO is structured in blocks of 4
@@ -6419,6 +6427,7 @@ proc feed.unicorn
          apport food, limbo
          apport dung, here
          flag dung, seen
+         set unicorn, 1
          quip unicorn.eats
       else
          say the.it, unicorn

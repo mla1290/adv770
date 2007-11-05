@@ -853,4 +853,16 @@ TEXT increment PORTCULLIS.IN.THE.WAY
    The # is too large to be thrown through the porcullis.[ And throwing
    things here is not a recommended approach anyway./]
 #
+TEXT EGGS.RELOCATE
+   [The nest of golden eggs has vanished!/Done!]
+#
+TEXT NO.DONATE.BLOOD
+   That's a very noble thought, but alas, [we do not have the necessary
+   equipment/in the current circumstances also a remarkably stupid one].
+#
+TEXT increment NEST.RELOCATES
+   The nest of golden eggs has [just vanished from your hands and
+   promptly reappeared in its original place on/translocated to] 
+   the ground[!/.]
+#
 #########################################################################

@@ -254,6 +254,7 @@ at building
       proceed
    fin
    ifkey look
+      respond roof, house.ceiling 
       respond corner, wall.corners, 1
       respond pipe, water.pipes
       respond stream, stream.flows.out
@@ -1176,6 +1177,9 @@ at west.pit
          quip plant.not.hungry
       fin
       call bail.out
+   fin
+   ifkey foliage
+      flag context, arg2.here
    fin
 #
 #=====================================================================
@@ -2316,6 +2320,7 @@ at valuers
          apport bell-pull, here
          quip rug.doesnt.fit
       fin
+      set valuation.outcome,0
       ifkey tusk
          say tusk.in.niche
       else
@@ -2323,6 +2328,7 @@ at valuers
             and
          ifhave bird
             say caged.bird.in.niche
+            set valuation.outcome, 1
          else
             ifkey bird
                drop bird
@@ -2344,36 +2350,34 @@ at valuers
             fin
          fin
       fin
-      ifflag admin, niche.used
-         say another.valuation
-      else
-         say valuation.in.progress
-         flag admin, niche.used
-      fin
       ifkey cage
          and
       ifhave bird
-         say ruffled.bird
          apport bird, bird.chamber
          set bird, freed
       fin
-      say valuation.end
       ifkey tusk
          flag tusk, valued
       fin
       ifany drachma, obolus, magazines
-         say just.about.valuable
+         set valuation.result, just.about.valuable
       else
-         ifkey starstone
-            say not.sure.if.valuable
+         ifany vase, pottery
+            set valuation.result, had.been.valuable
          else
-            ifkey vase
-               say had.been.valuable
-            else
-               ifflag arg2, valued
-                  say was.valuable
+            ifflag arg2, valued
+               ifany crown, nest, trident, rug, ring, orb, chalice
+                  or
+               ifany starstone, sunstone, fangs, thurible, bust
+                  set valuation.result valuable.and.useful
                else
-                  say was.not.valuable
+                  set valuation.result, was.valuable
+               fin
+            else
+               ifany clam, spoon, wrapper
+                  set valuation.result, not.valuable.or.useful
+               else
+                  set valuation.result was.not.valuable
                fin
             fin
          fin
@@ -2382,7 +2386,8 @@ at valuers
       ifany bottle, flask, bucket
          deposit arg2, emptied
       fin
-      quit
+      say valuation.in.progress
+      quip valuation.result
    fin
    ifany ring, pull
       ifeq status, 1
@@ -9462,7 +9467,7 @@ at top.of.chapel
             fin
             quip leave.alarm.alone
          fin
-         quip out.of.reach
+         quip alarm.out.of.reach
       fin
    fin
    ifkey trident
@@ -9922,7 +9927,12 @@ at culvert
 #
 at sea.view
    call default.read, inscription
-   call fake.note, same.as.before, inscription
+   ifnear spoon
+      and
+   ifflag spoon, special1
+   else
+      call fake.note, same.as.before, inscription
+   fin
    respond grill, grill.solid
    ifkey look
       respond bricks, wall, slimey.bricks
@@ -10301,6 +10311,9 @@ at dank.cave
 #=====================================================================
 #
 at sword.place
+   ifkey climb, rock
+      quip no.point.in.that
+   fin
    call default.read, rock
    ifany look, read
       and
@@ -11949,6 +11962,13 @@ at spire.nearly.up
 at spire
    local temp.val
 #
+   ifkey design
+      fakearg design, pedestal
+      apport design, here
+   fin
+   ifkey climb, pedestal
+      quip no.point.in.that
+   fin
    ifkey look
       respond spire, platform, you.are.on.top
       respond ramp, ramp.at.top
@@ -11976,10 +11996,6 @@ at spire
          goto ylem
          call splatter
       fin
-   fin
-   ifkey design
-      fakearg design, pedestal
-      apport design, here
    fin
    ifkey get, sunstone
       ifeq sunstone, 0

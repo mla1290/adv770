@@ -6,7 +6,7 @@
 #
 repeat
 #
-# Cure a couple of problems in games saved pre-1.38.
+# Cure a few of backward compatibility problems.
 #
    flag dwarves.quarters, indoors
    unflag tower.roof, indoors
@@ -59,6 +59,14 @@ repeat
    fin
    ifgt context, none
       proceed
+   fin
+   ifne recent.event, none
+      ifflag recent.event, just.happened
+         set recent.event, none
+         unflag recent.event, just.happened
+      else
+         flag recent.event, just.happened
+      fin
    fin
    ifflag here, not.in.cave
       and
@@ -860,6 +868,7 @@ repeat
    local context.value
 #
    unflag context, arg2.here
+   unflag context, arg2.distant
    ifeq context, none
       ifnear door1
          and
@@ -1641,6 +1650,27 @@ repeat
             quip its.too.dark
          fin
          quip no.light.here
+      fin
+   fin
+#
+# Handle oil noun as a special if no oil but have the vial.
+#
+   ifgt status, 1
+      and
+   ifis arg2, oil
+      and
+      not
+   ifany where, fetch, find
+      call find.oil
+      ifeq vessel, none
+         and
+         not
+      ifnear oil
+         say i.dont.see, oil
+         ifnear vial
+            append this.is.not.oil
+         fin
+         quit
       fin
    fin
 #

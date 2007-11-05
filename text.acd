@@ -1436,7 +1436,7 @@ TEXT NO.POINT
 #
 TEXT increment MUST.WAIT
     [If you suspend your Adventure now, it will cost you
-    10 points to restore the saved game in less than # minutes from
+    10 points to restore the saved game in less than $ minutes from
     now. And it will also cost you 10 points to continue playing
     after the game is saved./Remember: 10 points for restoring a
     saved game in less than $ minutes, and 10 points for continuing
@@ -1523,8 +1523,12 @@ TEXT CANT.YOU.READ?
     What's the matter, can't you read? Now you'll have to start all
     over again...
 #
-TEXT BIT.POINTLESS
-    A bit pointless, under the circumstances, wasn't it?
+TEXT cycle BIT.POINTLESS
+    [A bit pointless, under the circumstances, wasn't it?/
+     That was a waste of a turn, if I may say so./
+     That was pretty pointless, eh?/
+     But I simply cannot imagine why you bothered./
+     And nothing useful has been achieved thereby.]
 #
 TEXT WIZARD.ENDS
 
@@ -2389,7 +2393,7 @@ TEXT BE.OFF
 FRAGMENT assigned FLOOR?
     [floor/ground]
 #
-TEXT SPARE..T..03
+TEXT SPARE..T..01
 #
 TEXT SLAB.SHUTS
     The slab [/once again ]swings quietly shut behind you.
@@ -2594,8 +2598,8 @@ TEXT CANT.SCOOP
     the chalice to it.
 #
 TEXT CHALICE.LEAKING
-    You have [scooped/poured] some water [with/from the bucket into] 
-    the chalice but it is rapidly leaking out through some cracks in 
+    You have [scooped/poured] some water [with/from the bucket into] the
+    chalice but it is rapidly leaking out through some cracks in 
     the [/chalice ]bottom. If you intend to drink it, better do so
     quick, before it all runs out!
 #
@@ -2688,8 +2692,8 @@ TEXT random NO.FOOD.FOR.IT
     You have nothing [with which /]to feed it[/ with].
 #
 TEXT UNICORN.EATS
-    The unicorn eats the food and looks around for more. On finding none,
-    it raises its tail and presents you with a neat pile of dung.
+    The unicorn eats the food daintily, gives a polite belch,
+    raises its tail and presents you with a neat pile of dung.
 #
 TEXT assigned MUTTERS
 
@@ -3556,8 +3560,9 @@ TEXT increment DOOR.NOT.FOR.BREAKING
     by some exceptionally strong magic. I would say you are wasting
     your time - and mine too./stubbornly refuses to open.]
 #
-TEXT THIS.IS.NOT.OIL
-    I hope you are not taking the contents of the vial for a vulgar lubricant!
+TEXT cycle THIS.IS.NOT.OIL
+    [_I hope you are not mistaking the contents of the vial
+    for a vulgar lubricant!///]
 #
 TEXT NO.DRINK.VIAL
     The liquid does not look particularly wholesome to me. In any case,
@@ -3605,7 +3610,7 @@ FRAGMENT SHADOW.HINT
 TEXT
     This may be the time and the place to reflect on your problems.
 #
-TEXT NO.SPEAK.DWARVISH
+TEXT NO.TRANSLATE.DWARVISH
     As an adventurer, you should know enough Dwarvish yourself!
 #
 TEXT TRANSLATE.WHAT?
@@ -3676,8 +3681,8 @@ TEXT BAD.ORDER
 TEXT increment LOOKS.GREASY
     [Well, what can I say? That oil just looks greasy. Pretty low
     quality, but you would not expect to find grade "A" stuff oozing
-    out of a rock? Would you? Oh, all right, I should have known.../That
-    little oil pool still looks greasy and visually quite uninteresting.]
+    out of a rock? Would you? Oh, all right, I should have known.../It
+    looks greasy and really quite uninteresting.]
 #
 FRAGMENT PENTAGRAM.HINT
     What?! You mean to say you are baffled by a mere pentagram?_
@@ -4334,25 +4339,35 @@ TEXT NOT.QUITE
     For a brief moment you have a feeling that something might happen,
     but then, nothing does.
 #
-TEXT WAS.VALUABLE
+TEXT assigned VALUATION.RESULT
 
-   +         "THE OBJECT WAS VALUABLE"
+    +"THE OBJECT [HAD BEEN/WAS][// MARGINALLY/ NOT// NEITHER] VALUABLE[/// BUT/ AND/ NOR][/// USEFUL]"
 #
-TEXT WAS.NOT.VALUABLE
-
-   +       "THE OBJECT WAS NOT VALUABLE"
+TEXT SPARE..T..02
 #
-TEXT JUST.ABOUT.VALUABLE
-
-   +        "THE OBJECT WAS JUST ABOUT VALUABLE"
+TEXT increment ALARM.OUT.OF.REACH
+    It's too high for you to reach. [And before you waste any time
+    on trying to reach it anyway, let me advise you quite plainly that
+    it will stay out of reach whatever you do. Tampering with safety
+    equipment is not something this game aims to encourage./And no, you
+    can't reach it by standing on things and such-like. So don't even
+    bother to try./AND WILL REMAIN SO!/(Some people just don't take a
+    hint...)/Permanently.]
 #
-TEXT HAD.BEEN.VALUABLE
-
-   +      "THE OBJECT HAD BEEN VALUABLE"
+TEXT increment HOUSE.CEILING
+    [Seen from the inside, the wellhouse roof is really its ceiling, 
+    no? There's nothing remarkable about the ceiling. No elaborate 
+    supporting structures and no decorations - not even spider 
+    webs. /]It looks to be in a good enough repair and nothing for you
+    to worry about.
 #
-TEXT NOT.SURE.IF.VALUABLE
-
-   +       "MMMM... NOT SURE... GOT ANOTHER ONE?"
+TEXT GIANTS.PICNIC
+    Not far from the edge of the cliff the giant is having a celebratory
+    picnic. To his right is a vast heap of sandwiches, to his left 
+    a barrelful of caviar and a whole pile of other goodies. Some flat,
+    gaudily coloured rectangular boxes spill from the pile towards 
+    the cliff edge. An enormous crate of champagne is carefully 
+    positioned in the shadow of a bush.
 #
 TEXT PUT.IN.NICHE
     You drop the # into the niche.
@@ -4379,26 +4394,30 @@ TEXT STARSTONE2.IN.NICHE
     You drop the starstone into the niche, and it suddenly lights up with
     iridescent blue glow.
 #
-FRAGMENT VALUATION.IN.PROGRESS
+TEXT assigned VALUATION.OUTCOME
+    [/ruffled little bird hops out and flies off, chirping angrily,
+    and a] large sign lights up briefly on the wall above, saying
+#
+FRAGMENT increment VALUATION.IN.PROGRESS
 
-    As you step back, a dark shiny cover slides noiselessly out of the wall
+    [As you step back, a dark shiny cover slides noiselessly out of the wall
     and closes the niche off. From behind it you can hear intermittent
     buzzing, hissing and whirring noises, occasionally accompanied by
     showers of sparks, dimly visible through the somewhat transparent
     cover. After a while the sounds stop and the cover snaps open releasing
-    a strong smell of ozone and revealing the inside of the niche. A
-#
-FRAGMENT ANOTHER.VALUATION
-
+    a strong smell of ozone and revealing the empty inside of the niche. A/
     The cover slides out of the wall and the niche goes through its buzzing,
-    hissing and whirring routine. When the cover finally snaps open, a
+    hissing and whirring routine. When the cover finally snaps open, a]
+    {VALUATION.OUTCOME}
 #
-TEXT VALUATION.END
-   / large sign lights up briefly on the wall above, saying
+TEXT HUH?
+    Huh?...
 #
-FRAGMENT RUFFLED.BIRD
-   / ruffled little bird hops out and flies off, chirping angrily.
-    A
+TEXT cycle CRYING.NO.HELP
+    Now, now... [No need to take things personally./Real adventurers don't
+    cry, you know./Crying isn't going to solve any problems./Bursting into
+    tears never helped anybody... Well, almost never... Oh, OK,  
+    there are exceptions, I suppose. But not around here!]
 #
 TEXT NO.VALUE.SELF
     You are too big to fit in. In any case, don't you know your own
@@ -5356,10 +5375,10 @@ TEXT DISTANT.EXPLOSION
     
     The sound of a muffled explosion reaches your ears.
 #
-TEXT NO.EAT.DELIGHT
+TEXT assigned NO.EAT.DELIGHT
     No way! Please pay attention to the advertising label stuck on 
-    the box. I shudder to imagine what might be giving it the supposed 
-    "genuine viagra flavour"!
+    the box.[/ I shudder to imagine what might be giving it the supposed 
+    "genuine viagra flavour"!]
 #
 TEXT NO.WASH.BUCKET
     You'd pollute the spring by sticking that smelly bucket into it!
@@ -10148,7 +10167,8 @@ FRAGMENT MASSIVE.BLACK.SPIRE
   / A massive black stone spire raises over the sands to
    the [///////////////southwest/west/northwest///south/north/southeast/east].
 #
-TEXT SPARE..T..04
+TEXT NO.EXPLAIN
+   Sorry, you'll have to figure it out for yourself.
 #
 TEXT increment NO.MAP
    [Um... Didn't you know? Traditionally, it's the adventurer who does 

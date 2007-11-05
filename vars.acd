@@ -34,7 +34,8 @@ variable magick, backlash, fleetfoot
 variable west.count
 variable spare..v..12, spare..v..13
 variable tide
-variable spare..v..14, shown.vision
+variable recent.event
+variable shown.vision
 variable hints, quips, island.quips
 variable mlcount
 variable cat.factor, rest.exit, portal.exit

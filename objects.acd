@@ -265,7 +265,7 @@ OBJECT BATTERIES, =BATTERY
 #
 OBJECT MOSS  # Carpet and/or moss
 #
-OBJECT DINGHY
+OBJECT DINGHY, =BOAT
   %[Lying upon the beach are the shattered remains of what must once have
    been a dinghy. The remains consist of little more than a few broken
    boards, upon one of which may be seen a crude sketch of a skull and two
@@ -340,8 +340,7 @@ OBJECT CHEST
 #
 OBJECT NEST, =EGGS
    Golden eggs
-  %[There is a large nest here, full of golden eggs!/
-   The nest of golden eggs has vanished!/Done!]
+  %There is a large nest here, full of golden eggs!
   &The nest holding the eggs is lined with some sort bird down - might
    be goose, but I am not sure. The eggs themselves gleam dully in the
    light with the unmistakable gleam of pure gold.
@@ -545,8 +544,10 @@ OBJECT UNICORN
   %A unicorn stands here pawing the ground.
   &A beautiful creature. Snow white with a long flowing mane, delicate
    silver hoofs and a long, narrow, viciously sharp, twisted golden horn.
-   It's hard to be sure with unicorns, but there seems to be a secret
-   laughter lurking in the unfathomable depths of its purple eyes.
+   It's hard to be sure with unicorns, but [there seems to be a secret
+   laughter lurking in the unfathomable depths of its purple eyes/it
+   seems to be looking rather pleased with itself - almost, dare I say
+   it, smug].
 #
 OBJECT SAPPHIRE
    Large sapphire
@@ -850,7 +851,7 @@ OBJECT TEETH
    a pile on the {FLOOR?}].
   &Rather worn and, considering their original owner, surprisingly small.
 #
-OBJECT VIAL, PHIAL
+OBJECT VIAL, =PHIAL
    Vial of oily liquid
   %On the {FLOOR?} lies a small glass vial filled with an oily
    liquid.
