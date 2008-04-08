@@ -476,7 +476,7 @@ at depression
    respond grass, attention.to.detail, grass
    ifkey look
       respond streambed, dry.streambed
-      respond dirt, ground, its.dirt, 1
+      respond dirt, ground, its.dirt
       respond depression, look.depression
       respond concrete, crumbly.concrete
       respond rock, bed, no.look.rock
@@ -5839,7 +5839,7 @@ at beanstalk.middle
          quip ledge?
       fin
    fin
-   ifany ledge, stem, foliage, cliff
+   ifany ledge, stem, foliage, beanstalk, cliff
       flag context, arg2.here
    fin
    ifany sea, horizon
@@ -5953,7 +5953,7 @@ at beanstalk.top
    ifany stem, beanstalk
       call chew.stem
    fin
-   ifany grass, stem, foliage, cliff
+   ifany grass, stem, foliage, cliff, beanstalk
       flag context, arg2.here
       proceed
    fin
@@ -9640,6 +9640,26 @@ at pantry
       fin
       proceed
    fin
+   ifkey fill
+      and
+   ifany chalice, bucket
+      and
+   ifhave arg2, emptied
+      quip cant.scoop, arg2
+   fin
+   ifhave bottle, emptied
+      or
+   ifhave flask, emptied
+   else
+      ifkey get, water
+         ifhave bucket, emptied
+            quip cant.scoop, bucket
+         otherwise
+         ifhave chalice
+            quip cant.scoop, chalice
+         fin
+      fin
+   fin          
    ifkey go
       or
    ifeq status, 1
@@ -12250,8 +12270,12 @@ at river.bed.1
       fin
       ifany east, in, hole, opening, cave
          call consult.sunstone, east
+         ifgt sunstone, 5              # I.e. no moving west!
+            quip time.river, 1
+         else
+            quip time.river, 0
+         fin
       fin
-      respond east, in, hole, opening, cave, time.river
       respond riverbed, you.are.there
    fin
    ifany dune, sand, hole, cave, riverbed, opening
@@ -13460,7 +13484,15 @@ at ridge
 #
 at below.ridge
    call plants.stuff, 3
-   respond water, drink, swampy.water
+   ifkey drink
+      and
+   ifeq status,1
+      call find.water
+      ifne vessel, none
+         proceed
+      fin
+   fin
+   respond water, drink swampy.water
    ifkey look
       respond caldera, swamp, swamp.edge, 0
       respond mountain, towering.mountain, 0
@@ -13505,6 +13537,14 @@ at below.ridge
 #
 at caldera
    call plants.stuff, 3
+   ifkey drink
+      and
+   ifeq status,1
+      call find.water
+      ifne vessel, none
+         proceed
+      fin
+   fin
    respond water, drink, brackish.water
    ifkey look
       respond swamp, caldera, swamp.edge, 1,
@@ -13537,7 +13577,7 @@ at caldera
          and 
       ifis there, below.ridge
          or
-      ifany cross, south, swamp, caldera, sw
+      ifany cross, south, swamp, caldera, se
          ifhave shoes, worn
             smove below.ridge, into.the.bog
          fin

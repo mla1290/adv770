@@ -2171,7 +2171,7 @@ PLACE ISLAND.NE
 PLACE ISLAND.01
    You are on the western outcrop of the mountain.
   %You are standing some way up the western outcrop of the mountain
-   which descends to a golden beach to the west. The calm blue sea,
+   which descends to a golden beach to the west. The calm blue sea
    stretches uninterrupted to the horizon, sparkling in the sun.
    The outcrop climbs steeply to the east, but
    there also appears to be a less steep way around the mountain
@@ -2269,7 +2269,7 @@ PLACE ISLAND.09
 #
 PLACE +TEMPLE
    You are inside the marble temple.
-  %You are in the temple. Inside it consist of a single circular room
+  %You are in the temple. Inside it consists of a single circular room
    with a smooth marble floor and columns all around the periphery. There
    are small circular windows placed between the columns near the vaulted
    ceiling. They let in daylight which diffuses through this place, giving
@@ -2464,9 +2464,9 @@ PLACE ABOVE.SEA
    is the island - a {ISLAND.VIEW}/, about 
    half-way between the mainland and the island. All around you
    the blue-green expanse of the sea sparkles merrily in the sun.
-   It seems to be getting somewhat nearer, which suggests that
-   the rug must be steadily losing altitude. Ahead of you is the 
-   island, which {ISLAND.VIEW}/ towards the 
+   Worryingly, the water seems to be getting somewhat nearer, 
+   which suggests that the rug must be steadily losing altitude.
+   Ahead of you is the island, which {ISLAND.VIEW}/ towards the 
    distant island. Behind you are the white
    cliffs of Horse Dover, the picnic place at their top where the giant
    is waving good-bye, and the stony beach at their foot.

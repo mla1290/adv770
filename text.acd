@@ -2595,7 +2595,7 @@ TEXT TUSK.QUIP
 #
 TEXT CANT.SCOOP
     The water is trickling down the wall in a corner and you cannot get
-    the chalice to it.
+    the # to it.
 #
 TEXT CHALICE.LEAKING
     You have [scooped/poured] some water [with/from the bucket into] the
@@ -3791,7 +3791,7 @@ TEXT VOCAB.VERBS
 
     again (repeat, r), back (b, retreat), blast, break, brief, change,
     chew (bite), climb, close (lock), contemplate (meditate), credits (ack),
-    cross, cut, dig, drink, drop (dr, free, release, r), dwarvish, eat, 
+    cross, cut, dig, drink, drop (dr, free, release), dwarvish, eat, 
     english, enter (in), exit (out), extinguish (off), feed, fill, fly, 
     go (walk, run, follow), get (g, take, t), give (offer), help (?), 
     history, hit, hoot, info, inventory (i), jump, kick, kill, knock, 
@@ -5713,7 +5713,10 @@ TEXT TIME.SNAP
 #
 TEXT TIME.RIVER
     As you step into the opening, you are suddenly hit by a wall of
-    cold water, which throws you back. You land painfully, gagging
+    cold water, which throws you back. [Y/Lucky for you that it is
+    pitch-dark in there, or you would have found yourself trapped
+    by the sunstone and either drowned or crushed - take your pick.
+    As it is, y]ou land painfully, gagging
     and choking, your clothes and hair dripping wet, yet the river bed
     around you is as dry as it was before. There is no sign of any water
     anywhere. The hot wind, still roaring out of the opening in the
@@ -7136,12 +7139,13 @@ TEXT VOCAB.WIZ
 
    =increment \<object\>        - increment object value
    =decrement \<object\>        - decrement object value
+   =dump                        - dump values and bits
    =fetch \<object\> (obtain)   - fetch the object from wherever
    =find \<object\>             - go where the object is
    =fly \<location\> (teleport) - go to the named location
-   =glow                      - toggle magical illumination
-   =mutter                    - cause immediate orc mutter
-   =next \[up/down]            - go to the next higher/lower location
+   =glow                        - toggle magical illumination
+   =mutter                      - cause immediate orc mutter
+   =next \[up/down]             - go to the next higher/lower location
 
 #
 TEXT increment SUNSTONE.NO.FLY
@@ -9101,8 +9105,9 @@ TEXT MINERALS.APLENTY
    your task is to pilfer treasures, not to conduct a mineralogical
    survey.
 #
-TEXT ODD.FORMATIONS
-   They are... odd.
+TEXT cycle ODD.FORMATIONS
+   The formations are... odd.[ But not in an interesting sort of way, if
+   you take my meaning.//]
 #
 TEXT ITS.A.MINERAL
    Look, I can't give you a condensed mineralogy course! # is... #, OK?
@@ -10290,11 +10295,11 @@ TEXT PLEASE.REPORT
     here. Just make sure you report them to the author, by e-mail
     to mla@mipmip.org.
 #
-TEXT .OF
-    Value is $.
-#
 TEXT ERROR
     Sorry, a runtime error has occurred. Please report its context
     to Mike Arnautov: mla@mipmip.org.
+#
+TEXT .VALUE.OF
+    Value is $.
 #
 ###################################################################

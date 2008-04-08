@@ -10,6 +10,12 @@ repeat
 #
    flag dwarves.quarters, indoors
    unflag tower.roof, indoors
+   ifgt rats, 0
+      ifinrange here, culvert, stream.maze
+      else
+         set rats, 0
+      fin
+   fin
 #
 # Now for the rest of it...
 #
@@ -35,7 +41,7 @@ repeat
 # set even those values which didn't exist when the game was saved.
 #
       ifcgi            # Are we running in the CGI mode?
-         call initialise
+         call set.it.up
       fin
       set context q.initial
       call which.to.restore?
@@ -164,7 +170,7 @@ repeat
       set nobody.answers, 0
       set somebody.home, 0
       unflag seed, special1
-      flag water, moved
+      flag water, special1
       ifnear vampire, thirsty
          flag vampire, special1
       fin
@@ -1247,6 +1253,7 @@ repeat
          say too.late
       fin
       say cave.2.destroyed
+      say blank
       stop
    otherwise
 #
@@ -1286,7 +1293,7 @@ repeat
 #
    ifeq context, q.initial
       ifeq status, 0
-         call initialise
+         call set.it.up
       else
          exec 11
          call restore
@@ -2066,6 +2073,11 @@ repeat
 #
 # A few house-keeping oddments...
 #
+   ifany fee, fie foe foo, fum
+   else
+      set foobar, 0
+   fin
+
    ifge foobar, 0
       sub foobar, 1
    fin
@@ -2075,7 +2087,7 @@ repeat
    fin
    call olorin.check
 #
-# Hmmm... Don't recall why we need to check for it here.
+# Hmmm... Don't recall why we need to check for SAVE here.
 # Safer to leave it. (Might be a remnant from before the time
 # when I introduced the range of verbs not requiring noun-checking.)
 #

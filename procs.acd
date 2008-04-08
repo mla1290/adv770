@@ -1029,10 +1029,10 @@ proc house.inventory, testing
 #
 #=====================================================================
 #
-# Visions are processed in the revers order, so that the vision
+# Visions are processed in the reverse order, so that the vision
 # corresponding to the lowest unsolved problem is set. Yes, I 
-# could have done it forward too, but the nesting structure would have
-# horrendous -- like 20 levels of offset? Ha!
+# could have done it forward too, using "otherwise", but that didn't
+# exist at the time of coding, and I didn't fancy 20 offset levels.
 #
 proc visions
 #
@@ -4469,15 +4469,32 @@ proc weaponry    # Handle attacks with weapons
 #=====================================================================
 #
 proc pass.phrase
+   local pwd
    ifnear safe
       unflag vault, hintable
       unflag peelgrunt, hintable
       ifeq safe, locked
          ifeq status, 2
-            and
-         ifeq arg2, password
-            or
-         ifeq arg1, password
+            set pwd, arg2
+         else
+            set pwd, arg1
+         fin
+#
+# A fix for the version 1.83, 1.84 idiocy!
+#
+         ifeq pwd, password
+         else
+            sub pwd, password
+            ifeq pwd, 1
+               and
+            ifgt sceptre, 0
+               set pwd, password
+            fin
+         fin
+#
+# End of fix
+#
+         ifeq pwd, password
             set safe, unlocked
             flag safe, special1
             quip safe.opens
@@ -4925,7 +4942,7 @@ proc thirst.factor
    local temp.val
 #
    ifeq water, desperate
-      ifflag water, moved
+      ifflag water, special1
          sub thirst.time, invct
       else
          sub thirst.time, 1
@@ -4943,7 +4960,7 @@ proc thirst.factor
       proceed
    fin
 #
-   ifflag water, moved
+   ifflag water, special1
       set temp.val, invct
       divide temp.val, 3
       add temp.val, 4
@@ -4951,7 +4968,7 @@ proc thirst.factor
       set temp.val, 2
    fin
    add temp.val, temp.val
-   unflag water, moved
+   unflag water, special1
    ifinrange here, north.of.spire, basalt.shelf.2
       add temp.val, temp.val
    fin
@@ -4993,7 +5010,7 @@ proc foo.to.you.too
 #
 #=====================================================================
 #
-proc unstable.pickup
+proc unstable.pick.up
    unflag arg2, unstable
    ifis arg2, bottle
       set bottle, emptied
@@ -5009,7 +5026,7 @@ proc unstable.pickup
 #
 #=====================================================================
 #
-proc pickup
+proc pick.up
    local state
 #
    ifflag arg2, wearable
@@ -5023,7 +5040,7 @@ proc pickup
       fin
    fin
    ifflag arg2, unstable
-      call unstable.pickup
+      call unstable.pick.up
    fin
 #
 #=====================================================================
@@ -5035,9 +5052,6 @@ proc rats.stuff
       respond kill, they.are.too.fast, rats
    fin
    describe rats
-#   flag status, detaildisplay
-#   say rats
-#   unflag status, detaildisplay
    quit
 #
 #=====================================================================
@@ -6293,7 +6307,7 @@ proc restored
 #
 #=====================================================================
 #
-proc initialise
+proc set.it.up
    set stage, little.joke
    exec 14, result
    ifeq result, 1
@@ -6599,7 +6613,7 @@ proc in.forest.actions
             quip dull.view, 0
          fin
       fin
-      respond sapling, birch, ash, too.young, arg2
+      respond sapling, birch, ash, too.young
       flag context, arg2.here
       proceed
    fin

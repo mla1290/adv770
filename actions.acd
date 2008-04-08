@@ -6,8 +6,8 @@
 #
 #=====================================================================
 #
-action lift         # Deliberately non-synonymous with get - for grate and
-   ifkey grate      # for the flagstone, intercepted in at dungeon
+action lift         # Deliberately non-synonymous with get - for the grate and
+   ifkey grate      # for the flagstone (intercepted in AT DUNGEON)
       ifnear grate
          ifeq grate, unlocked
             quip already.open, grate
@@ -62,20 +62,8 @@ action get water
       proceed
    fin
    ifhave chalice
-      ifat pantry
-         ifhave bottle
-            or
-         ifhave flask
-         else
-            quip cant.scoop
-         fin
-      otherwise
-      ifat beanstalk.bottom
-         quip cliff.moisture
-      else
-         set chalice, full
-         quip chalice.leaking, 0
-      fin
+      set chalice, full
+      quip chalice.leaking, 0
    fin
    ifhave bottle
       or
@@ -216,11 +204,7 @@ action get        # Generalized last-case "get" routine
       proceed
    fin
    ifhave arg2
-#      ifeq stage, in.repository
-#         quip already.had.one, arg2
-#      else
-         quip you.have.it, arg2
-#      fin
+      quip you.have.it, arg2
    fin
    ifnear arg2
    else
@@ -316,7 +300,7 @@ action get        # Generalized last-case "get" routine
          set wrapper, 0
       fin
       get arg2
-      call pickup
+      call pick.up
       say you.do, arg1
       ifkey dynamite
          and
@@ -654,7 +638,7 @@ action oil
       ifnear door2
          or
       ifnear door3
-         quip door.no.oil, 1
+         quip door.no.oil
       fin
    fin   
    ifkey plant
@@ -2845,7 +2829,13 @@ action foo
          ifat giant.room
             and
          ifflag status, light.here
-            say nest.relocates
+            ifhave nest
+               say nest.relocates
+            else
+               say eggs.relocate, 1
+               say blank
+               say eggs
+            fin
          else
             ifhave nest
                or
@@ -2887,6 +2877,7 @@ action foo
 #=====================================================================
 #
 action fum
+   set foobar, -1
    quip absolutely.nothing
 #
 #=====================================================================
@@ -3192,7 +3183,7 @@ action fill chalice
       ifflag here, h20.here
          ifhave chalice
             ifat pantry
-               quip cant.scoop
+               quip cant.scoop, chalice
             fin
             set chalice, full
             quip chalice.leaking, 0
@@ -3889,12 +3880,6 @@ action drink
       quip no.drink.oil
    fin            
    ifis arg2, flask, bottle, vial, bucket
-#      or
-#   ifis arg2, bottle
-#      or
-#   ifis arg2, vial
-#      or
-#   ifis arg2, bucket
    else
       quip be.serious!
    fin
@@ -4293,6 +4278,7 @@ action ride
       else
          say ride.to.hell, 0
       fin
+      say blank
       stop
    fin
 #
@@ -4734,7 +4720,7 @@ action wear
             or
          ifflag arg2, freebie
             get arg2
-            call pickup
+            call pick.up
          else
             quip arms.are.full
          fin
@@ -4774,8 +4760,6 @@ action wear
       ifkey crown
          ifflag crown, special2
              quip you.do.it
-#            say you.do, arg1
-#            quip it.is, arg2
          else
             flag crown, special2
             quip feel.foolish
@@ -4800,11 +4784,8 @@ action wear
             quip beaver.fangs
          fin
       fin
-      respond jewelry, such.vanity, 0
+      respond jewelry, such.vanity
       quip you.do.it
-#      say you.do, arg1
-#      say it.is, arg2
-#      quit
    fin
 #
 #=====================================================================
@@ -4878,8 +4859,6 @@ action remove
    fin
    respond fangs, you.remove.fangs
    quip you.do.it
-#   say you.do, arg1
-#   quip it.is, arg2
 #
 #=====================================================================
 #
@@ -5830,8 +5809,9 @@ action justify
    else
       quip hah!
    fin
-   exec 19, outcome
-   quip justify.now, state
+   set outcome, state
+   exec 19, state
+   quip justify.now, outcome
 #
 #=====================================================================
 #
@@ -6230,11 +6210,9 @@ action obtain
          get arg2
          flag arg2, seen
          ifflag arg2, unstable
-            call unstable.pickup
+            call unstable.pick.up
          fin
          quip you.do.it
-#         say you.do, arg1
-#         quip it.is, arg2
       fin
       quip hah!
    fin   
@@ -6493,6 +6471,15 @@ action value
    else
       quip find.valuers, 1
    fin
+#
+#=====================================================================
+#
+action dump
+   ifflag admin, olorin
+      dump
+      quit
+   fin
+   quip no.understand
 #
 #=====================================================================
 #

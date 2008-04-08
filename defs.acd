@@ -68,7 +68,7 @@ flags variable
       quickie          # BRIEF output mode in effect
       fastmode         # FAST output mode in effect
       fulldisplay      # Display full place description
-      detaildisplay    # Display detailed place/object description
+      .detaildisplay   # Display detailed place/object description
       pls.clarify      # Signals missing object or verb
       juggled          # set by the kernel whenever we move an object
       ticked           # The main clock (CLOCK4) has just ticked
@@ -200,6 +200,8 @@ flags object
 #         #2 if pushed player out of ravine at least once.
 #
 # starstone #1 set if lit starstone seen at least once.
+#
+# water   #1 is used in thirst processing.
 #
 # During the end-game all special bits are cleared, except for
 #         #1 being set for any objects 'piled up' in NE repository and

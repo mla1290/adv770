@@ -624,7 +624,7 @@ init
    flag by.stream.1, h20.here
    flag by.stream.2, h20.here
    flag bog.edge, h20.here
-   flag caldera, h20.here
+#   flag caldera, h20.here
    flag by.waterfall, h20.here
    flag waterfall, h20.here
    flag garden.se, h20.here

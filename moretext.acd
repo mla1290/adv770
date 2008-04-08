@@ -115,7 +115,7 @@ TEXT FILL.IT.YOU.DUMMY
     If you are trying to fill the #, why not just say so?
 #
 TEXT NO.GET.SOIL
-    The soil is here simply for the beanstalk's benefit, so don't
+    The soil is here simply for the #'s benefit, so don't
     waste your time on it.
 #
 FRAGMENT SPOON.NO.DUNG
@@ -862,7 +862,7 @@ TEXT NO.DONATE.BLOOD
 #
 TEXT increment NEST.RELOCATES
    The nest of golden eggs has [just vanished from your hands and
-   promptly reappeared in its original place on/translocated to] 
-   the ground[!/.]
+   promptly reappeared in its original place on/translocated to] the
+   ground[!/.]
 #
 #########################################################################
