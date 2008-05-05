@@ -992,10 +992,10 @@ init
 #
    set flask, sealed
    set bucket, emptied
-   set backlash, 35         # Normal "dwarves not vengeful"
-   set fleetfoot, 25        # Not running but didn't just attack
-   flag status, quickie     # Default output mode
-   flag status, vocab.prod  # Assume the worst!
+   set backlash, 35            # Normal "dwarves not vengeful"
+   set fleetfoot, 25           # Not running but didn't just attack
+   flag status, normal.display # Default output mode
+   flag status, vocab.prod     # Assume the worst!
    set escape, 0
    lda ok, ok!
    choose clock, 15, 25

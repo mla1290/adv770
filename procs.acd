@@ -2566,7 +2566,7 @@ proc special.view
    local temp.val
    local desert.offset
 #
-   ifflag status, fulldisplay
+   ifflag status, full.display
       ifinrange here, desert.1, desert.last
          and
          not
@@ -6346,7 +6346,7 @@ proc olorin.check
       else
          set magick, 0
       fin
-      set arg1, badword
+      set arg1, bad.word
    else
       ifgt magick, 0
          set magick, 0

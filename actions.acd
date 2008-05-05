@@ -1132,12 +1132,12 @@ action look                # Can't look in the dark!
    local desert.offset
 #
    ifeq status, 1
-      ifflag status, fastmode
+      ifflag status, terse.display
       else
-         flag status, fulldisplay
+         flag status, full.display
       fin
       call describe.here
-      unflag status, fulldisplay
+      unflag status, full.display
       flag here, been.here
       ifeq mlcount, 25
          set mlcount, 100
@@ -2339,11 +2339,11 @@ action quit
 #=====================================================================
 #
 action normal
-   ifflag status, quickie
+   ifflag status, normal.display
       quip already.display.mode, 1
    fin
-   flag status, quickie
-   unflag status, fastmode
+   flag status, normal.display
+   unflag status, terse.display
    lda ok, ok!
    quip brief.ok
 #
@@ -2619,32 +2619,32 @@ action kill
 #=====================================================================
 #
 action terse
-   ifflag status, fastmode
+   ifflag status, terse.display
       quip already.display.mode, 0
    fin
-   unflag status, quickie
-   flag status, fastmode
+   unflag status, normal.display
+   flag status, terse.display
    lda ok, sok!
    quip terse.ok
 #
 #=====================================================================
 #
 action verbose
-   ifflag status, quickie
+   ifflag status, normal.display
       or
-   ifflag status, fastmode
+   ifflag status, terse.display
    else
       quip already.display.mode, 2
    fin
-   unflag status, quickie
-   unflag status, fastmode
+   unflag status, normal.display
+   unflag status, terse.display
    lda ok, ok!
    say verbose.ok
    ifflag status, light.here
       say blank
-      flag status, fulldisplay
+      flag status, full.display
       call describe.here
-      unflag status, fulldisplay
+      unflag status, full.display
    fin
    quit
 #
@@ -6735,14 +6735,14 @@ action undo
          say result.is, result
          ifne result, 2
             ifflag status, light.here
-               ifflag status, fastmode
+               ifflag status, terse.display
                else
                   set mode 1
-                  flag status, fastmode
+                  flag status, terse.display
                fin
                say here
                ifeq mode, 1
-                  unflag status, fastmode
+                  unflag status, terse.display
                fin
             otherwise
             ifeq result, 1

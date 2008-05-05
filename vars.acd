@@ -32,7 +32,8 @@ variable strength, mushtime, dragtime, masktime, lastclock
 variable escape
 variable magick, backlash, fleetfoot
 variable west.count
-variable spare..v..12, spare..v..13
+variable spare..v..12
+variable spare..v..13
 variable tide
 variable recent.event
 variable shown.vision

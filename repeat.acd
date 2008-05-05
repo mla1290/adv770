@@ -292,13 +292,13 @@ repeat
    fin
    ifflag here, been.here
       and
-   ifflag status, quickie
+   ifflag status, normal.display
       or
-   ifflag status, fastmode
+   ifflag status, terse.display
       or
    ifflag status, brief.now
    else
-      flag status, fulldisplay
+      flag status, full.display
    fin
    ifflag status, light.here
       say here
@@ -413,7 +413,7 @@ repeat
       fin
       call too.dark.for.safety, 0
    fin
-   unflag status, fulldisplay
+   unflag status, full.display
    unflag admin, ranout      # Clear "lamp just died"
 #
 # Is it cameo time??
@@ -1385,7 +1385,7 @@ repeat
    local stone.check
    local temp.val
 #
-   ifeq status, badsyntax
+   ifeq status, bad.syntax
       flush
       ifkey put
          call put
@@ -1485,7 +1485,7 @@ repeat
    fin
    ifeq status, 2
       and
-   iflt arg2, badword
+   iflt arg2, bad.word
       set it, arg2
    otherwise
    ifflag arg1, object
@@ -2002,19 +2002,19 @@ repeat
       fin
    otherwise
    ifkey all
-      ifge arg3, badword
+      ifge arg3, bad.word
          call shadow.shutup
-         ifeq arg3, badsyntax
+         ifeq arg3, bad.syntax
             quip no.except, arg3
          fin
-         ifeq arg3, ambigword
+         ifeq arg3, ambig.word
             quip tell.me.more, arg3
          fin
-         ifeq arg3, badword
+         ifeq arg3, bad.word
             flush
             quip nocomprende.object, arg3
          fin
-         ifeq arg3, ambigtypo
+         ifeq arg3, ambig.typo
             quip is.it.a.typo? arg3
          fin
       fin
@@ -2104,12 +2104,12 @@ repeat
 #
 # Verb not understood. Try to explain.
 #
-   ifeq arg1, badword
+   ifeq arg1, bad.word
       or
-   ifeq arg1, ambigword
+   ifeq arg1, ambig.word
       or
-   ifeq arg1, ambigtypo
-      ifeq arg1, badword
+   ifeq arg1, ambig.typo
+      ifeq arg1, bad.word
          flush
          ifgt status, 1
             chance 33
@@ -2125,7 +2125,7 @@ repeat
             unflag status, vocab.prod
          fin
       otherwise
-      ifeq arg1, ambigword
+      ifeq arg1, ambig.word
          say tell.me.more, arg1
       else
          say is.it.a.typo?, arg1
@@ -2159,19 +2159,19 @@ repeat
 # If noun not understood, try to respond appropriately.
 #
    ifgt status, 1
-      ifeq arg2, badword
+      ifeq arg2, bad.word
          or
-      ifeq arg2, ambigword
+      ifeq arg2, ambig.word
          or
-      ifeq arg2, ambigtypo
+      ifeq arg2, ambig.typo
          or
-      ifeq arg2, sceneword
+      ifeq arg2, scene.word
          ifinrange arg1, first.special, last.special
          else
-            ifeq arg2, ambigword
+            ifeq arg2, ambig.word
                say tell.me.more, arg2
             otherwise
-            ifeq arg2, badword
+            ifeq arg2, bad.word
                flush
                say nocomprende.object, arg2
                ifflag status, vocab.prod
@@ -2179,7 +2179,7 @@ repeat
                   unflag status, vocab.prod
                fin
             otherwise
-            ifeq arg2, sceneword
+            ifeq arg2, scene.word
                and
             ifgt stage, little.joke
                quip just.scenery, arg2

@@ -6915,9 +6915,9 @@ at nowhere
          goto road
          unflag here, been.here
          flag status, moved
-         flag status, fulldisplay
+         flag status, full.display
          call describe.here
-         unflag status, fulldisplay
+         unflag status, full.display
          flag context, joke.over
          say btw
          set context, q.intro
