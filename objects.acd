@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2007.
+# Copyleft Mike Arnautov 1984-2010.
 #
 # Here follow the object definitions.
 #
@@ -841,9 +841,7 @@ OBJECT SWORD, =SINGING, THROWER
    There is a very strange singing sword here - it is glowing and
    vibrating, and the eerie electronic notes of Charles Wuorinen's
    "Time's Encomium" issue from its blade and fill the air.]
-  &A plain and deadly utilitarian object. Strange... There is absolutely
-   no indication how it manages to do its singing. Oh, it has "THROWER"
-   inlaid on the pommel!  I wonder if that's its name.
+  &A plain and deadly utilitarian object{THROWER.IS.NAME?}
 #
 OBJECT TEETH
    Several dragon's teeth
@@ -868,7 +866,7 @@ OBJECT MUSHROOM
    that your muscles have bulged unbelievably./
 
    A strange malaise suddenly afflicts you. You shiver with chill,
-   and your muscles seem to turn to putty;  everything around you becomes
+   and your muscles seem to turn to putty; everything around you becomes
    grey and unreal. The fit quickly passes, and you find that your body
    has degenerated back to what it was like before you ate the
    mushroom.]
@@ -886,15 +884,15 @@ OBJECT NOTICE
    board are hardly legible. In addition, the right bottom corner is
    missing altogether - probably broken off by some adventuring 
    vandals./]
-  /{TT.MODE.ON}
-  =         \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-  =         |_____________________|
-  =         | _[TO ..OSE WHO CO../=/TW.. BRI.LIG, A..]_ |
-  =         | _[AFT.. ME: THIS ./=/THE .LITHY TOVE.]|--|
-  =         | _[THE .LACE TO/=/DID .YRE AND] |--|
-  =         | _[THE S./=/IN TH.]|------|
-  =         |\_\_\_\_\_\_\_\_|
-   {TT.MODE.OFF}
+
+  ^\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+  ^|_____________________|
+  ^| _[TO ..OSE WHO CO../=/TW.. BRI.LIG, A..]_ |
+  ^| _[AFT.. ME: THIS ./=/THE .LITHY TOVE.]|--|
+  ^| _[THE .LACE TO/=/DID .YRE AND] |--|
+  ^| _[THE S./=/IN TH.]|------|
+  ^|\_\_\_\_\_\_\_\_|
+
 #
 OBJECT GOBLINS, =GOOSEBERRY
    [Suddenly and without warning, there appears from within the very
@@ -1254,7 +1252,9 @@ OBJECT ANTEATER, PANGOLIN, AARDVARK, ANIMAL
 OBJECT IT, OBJ, OBJE, OBJEC, OBJECT, THEM, HIM # Dummy for IT processing.
 #
 OBJECT POSTER
-  &+                         RECENT RENOVATIONS
+  &
+
+   +                         RECENT RENOVATIONS
    +(as compiled by Ralph Witt Jr. for the benefit of visiting adventurers)
 
     The well house surroundings have been cleared out, allowing a reasonably

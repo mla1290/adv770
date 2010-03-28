@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2007.
+# Copyleft Mike Arnautov 1984-2010.
 #
 # The following acode procedures are associated with
 # individual places.
@@ -509,9 +509,7 @@ at depression
       and
    ifany go, in, down
       set status, 1
-      ifkey go
-         fakearg, go, in
-      fin
+      fakearg go, in
    fin
    respond stream, downstream, i.dont.see, stream
    ifkey go
@@ -944,12 +942,14 @@ at mtking
             lda place.ptr, secret.e/w.canyon
          else
             ifnear snake, 0
-               say sleepy.blocks.way, sw
-               say blank
-               smove mtking, still.where.you.were
-            otherwise
+               quip sleepy.blocks.way, sw
+            fin
             ifnear snake, 1
-               quip snake.blocks.way
+               ifis snake.exit, secret.e/w.canyon
+                  set place.ptr, snake.exit
+               else
+                  quip snake.blocks.way
+               fin
             else
                flag status, moved
                quip still.where.you.were
@@ -1135,7 +1135,7 @@ at west.pit
    ifany pour, spill
       ifeq status, 1
          set vessel, none
-         call find.water
+         call find.water, false
          ifgt vessel, none
             call water.beanstalk
          fin
@@ -2051,7 +2051,7 @@ at slab
          call follow.it, bedquilt, north, west.pit.end, south
       fin
    fin
-   ifany passage, tunnel, corridor, ceiling, hole, boulder, wall, slab
+   ifany passage, tunnel, corridor, ceiling, hole, boulder, stones, wall, slab
       flag context, arg2.here
    fin
 #
@@ -2454,7 +2454,7 @@ at dead.end.3
    ifeq status, 1
       move south, out, tall.e/w.canyon
    fin
-   ifany boulders, words, inscription, note, message, notice
+   ifany boulders, stones, words, inscription, note, message, notice
       flag context, arg2.here
    fin
 #
@@ -2633,11 +2633,11 @@ at immense.n/s.passages
       fin
       ifeq status, 1
          set vessel none
-         call find.water
+         call find.water, false
          ifgt vessel, none
             call oil.door
          fin
-         call find.oil
+         call find.oil, false
          ifgt vessel, none
             call water.door
          fin
@@ -2940,7 +2940,11 @@ at arched
          set status, 1
       fin
       respond passage, tunnel, corridor, dark.exits, passage
+      respond coral, its.coral
       proceed
+   fin
+   ifkey get, coral
+      quip not.required
    fin
    ifkey go
       or
@@ -2952,7 +2956,7 @@ at arched
       fin
       respond arched, hall, you.are.there
    fin
-   ifany passage, tunnel, corridor, arched, hall, arch
+   ifany passage, tunnel, corridor, arched, hall, arch, coral
       flag context, arg2.here
    fin
 #
@@ -3272,6 +3276,11 @@ at reservoir.north
       respond tracks, ground, darwins.tracks
       proceed
    fin
+   ifkey read
+      and
+   ifnear darwin
+      respond message, inscription, back, darwin, darwin.invite
+   fin
    ifkey get, gong
       quip too.large.to.carry, gong
    fin
@@ -3340,7 +3349,7 @@ at balcony
       quip leave.it.alone, plaque
    fin
    ifany pool, slit, stream, gap
-      respond look, too.far.to.see, pool
+      respond look, too.far.to.see, arg2
       quip no.way.there
    fin
    ifkey jump
@@ -3942,7 +3951,7 @@ at boulder.chamber
       move view, breathtaker
       respond chamber, you.are.there
    fin
-   ifany boulders, chamber, wall
+   ifany boulders, stones, chamber, wall
       flag context, arg2.here
    fin
 #
@@ -5229,9 +5238,12 @@ at ice.cave.30
    call ice.stuff
    call default.read, words
    ifany note, words, letters, notice, message
-      and
-   ifany look, read
-      quip this.way.out, arg2
+      ifany look, read
+         quip this.way.out, arg2
+      fin
+      ifany get, kick, push, pull, break
+         quip insubstantial.letters
+      fin
    fin
    ifkey look
       ifkey chamber
@@ -5655,7 +5667,7 @@ at beanstalk.bottom
    ifany pour, spill
       set vessel, none
       ifeq status, 1
-         call find.water
+         call find.water, false
          ifgt vessel, none
             call water.beanstalk
          fin
@@ -6915,9 +6927,9 @@ at nowhere
          goto road
          unflag here, been.here
          flag status, moved
-         flag status, full.display
+         flag status, fulldisplay
          call describe.here
-         unflag status, full.display
+         unflag status, fulldisplay
          flag context, joke.over
          say btw
          set context, q.intro
@@ -6979,6 +6991,9 @@ at nowhere
          set escape, 0
       fin
       quit
+   fin
+   ifkey mist
+      flag context, arg2.here
    fin
 #
 #=====================================================================
@@ -7540,6 +7555,9 @@ at cellar.view
    fin
    respond drain, drain.out.of.reach
    ifkey throw
+      and
+      not
+   ifnear dwarf
       call throw.it.at.orb
    fin
    ifkey go
@@ -7555,9 +7573,7 @@ at cellar.view
 #=====================================================================
 #
 at chapel
-   ifkey steps
-      fakearg steps, stairs
-   fin
+   fakearg steps, stairs
    ifkey look
       respond ceiling, up, its.a.ceiling, c.chapel
       respond beams, chapel.beams, 0
@@ -7668,11 +7684,15 @@ at beams
       respond swing, no.use.rope, 1
    fin
    ifkey look
+      ifkey recess
+         set status, 1
+      fin
       respond ceiling, its.a.ceiling, c.chapel
       respond beams, chapel.beams, 1
       respond wood, beams.wood
       proceed
    fin
+   respond recess, you.are.there
    ifkey go
       or
    ifeq status, 1
@@ -8464,9 +8484,7 @@ at tower.top.landing
    ifany read, look
       quip door.notice
    fin
-   ifkey door
-      fakearg door, door3
-   fin
+   fakearg door, door3
    ifkey stool
       respond look, get, pull, push, lift, its.a.stool
       ifeq status, 2
@@ -8524,9 +8542,7 @@ at tower.top.landing
 #=====================================================================
 #
 at dwarves.quarters
-   ifkey door
-      fakearg door, door3
-   fin
+   fakearg door, door3
    respond mug, no.touch.mug
    ifkey look
       respond ceiling, up, its.a.ceiling, c.shelves
@@ -8700,9 +8716,7 @@ at tower.roof
 #=====================================================================
 #
 at storeroom
-   ifkey door
-      fakearg door, door2
-   fin
+   fakearg door, door2
    ifkey look
       respond passage, tunnel, corridor, shelf.passage
       respond door2, door2.inside
@@ -8724,8 +8738,8 @@ at storeroom
       flag context, arg2.here
       proceed
    fin
-   ifkey go, door
-      fakearg door, out
+   ifkey go, door2
+      fakearg door2, out
    fin
    ifkey go
       or
@@ -10337,7 +10351,7 @@ at sword.place
    call default.read, rock
    ifany look, read
       and
-   ifany rock, inscription, stone, words, pattern
+   ifany rock, inscription, stone, boulder, words, pattern
       call read.rock
    fin
    ifkey look
@@ -10348,7 +10362,7 @@ at sword.place
    ifeq status, 1
       move north, ne, east, se, south, sw, west, nw, back, swirling.mist
    fin
-   ifany mist, inscription, stone, words
+   ifany mist, inscription, stone, boulder, words
       flag context, arg2.here
    fin
 #
@@ -10358,7 +10372,7 @@ at stupendous.view
    local temp.val
 #
    call house.inventory, 0    # He may be dropping the starstone here.
-   ifcgi
+   ifhtml
       set tt.mode.on, 1
       set tt.mode.off, 1
    else     
@@ -10488,7 +10502,7 @@ at stupendous.view
    ifkey look
       ifkey beanstalk2
          ifeq beanstalk, stunted
-            quip i.dont.see, beanstalk
+            quip i.dont.see, arg2
          fin
          ifeq beanstalk, grown
             call sunstone.cheat, no.approach.edge, 1
@@ -10847,6 +10861,7 @@ at north.of.building
 #=====================================================================
 #
 at east.of.building
+   flag seed, seen
    iflt stage, mirror.world
       ifkey seed
          or
@@ -10865,6 +10880,14 @@ at east.of.building
          ifkey look
             describe seed
             quit
+         fin
+         ifeq status, 1
+            flag status, pls.clarify
+            quip do.what?, arg1
+         fin
+         ifhave seed
+         else
+           flag context, arg2.here
          fin
       fin
    otherwise
@@ -12453,7 +12476,7 @@ at river.bed.2
       move ne, cliff.base.3
       respond riverbed, you.are.there
    fin
-   ifany riverbed
+   ifany riverbed, boulder, stones
       flag context, arg2.here
    fin
 #
@@ -12582,7 +12605,7 @@ at rocky.desert
    ifany horizon, cliff, sky, sun, sand
       flag context, arg2.here
    fin
-   ifany desert, dunes, outcrop, boulders
+   ifany desert, dunes, outcrop, boulders, stones
       flag context, arg2.here
    fin
 #
@@ -13487,7 +13510,7 @@ at below.ridge
    ifkey drink
       and
    ifeq status,1
-      call find.water
+      call find.water, false
       ifne vessel, none
          proceed
       fin
@@ -13540,7 +13563,7 @@ at caldera
    ifkey drink
       and
    ifeq status,1
-      call find.water
+      call find.water, false
       ifne vessel, none
          proceed
       fin
@@ -14555,7 +14578,7 @@ at by.temple
       fin
       ifeq status, 1
          flag status, pls.clarify
-         quip do.what?, arg2
+         quip do.what?, arg1
       fin
       quip leave.it.alone, inscription
    fin
@@ -14979,6 +15002,7 @@ at inside.well
 #=====================================================================
 #
 at wrong.venue
+   flag venue, been.here
    iflt wrong.venue, 3
       add wrong.venue, 1
    fin
@@ -15469,7 +15493,7 @@ at imaze.book
          quip you.are.a.cheater
       fin
       ifkey yes
-         quip good
+         quip deal!
       fin
    fin
    ifkey open

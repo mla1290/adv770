@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2007.
+# Copyleft Mike Arnautov 1984-2010.
 #
 # And here, at long last, is the main program!
 #
@@ -292,13 +292,13 @@ repeat
    fin
    ifflag here, been.here
       and
-   ifflag status, normal.display
+   ifflag status, quickie
       or
-   ifflag status, terse.display
+   ifflag status, fastmode
       or
    ifflag status, brief.now
    else
-      flag status, full.display
+      flag status, fulldisplay
    fin
    ifflag status, light.here
       say here
@@ -413,7 +413,7 @@ repeat
       fin
       call too.dark.for.safety, 0
    fin
-   unflag status, full.display
+   unflag status, fulldisplay
    unflag admin, ranout      # Clear "lamp just died"
 #
 # Is it cameo time??
@@ -444,10 +444,10 @@ repeat
       not
    ifflag quips, desert.rat
       unflag status, desert.warn
-      call find.water
+      call find.water, false
       ifeq vessel, none
          ifhave bucket
-            say use.bucket, 0
+           say use.bucket, 0
          else
             say use.bucket, 1
          fin
@@ -1344,7 +1344,7 @@ repeat
          call coroner
       fin
       ifany n, no
-         quip very.sensible, 0
+         quip very.sensible
       fin
       quip lets.be.prudent, 0
    otherwise
@@ -1385,7 +1385,7 @@ repeat
    local stone.check
    local temp.val
 #
-   ifeq status, bad.syntax
+   ifeq status, badsyntax
       flush
       ifkey put
          call put
@@ -1457,9 +1457,7 @@ repeat
 # "Sign" is really a notice synonym, but we need to declare it
 # separately to be able to include the word "sign" in messages.
 #
-   ifkey sign
-      fakearg sign, notice
-   fin
+   fakearg sign, notice
 #
 # Handle 'it'.
 #
@@ -1483,9 +1481,22 @@ repeat
          fin
       fin
    fin
+#
+# Have to cater for style 12 as well as 11 - hence the complicated if.
+#
    ifeq status, 2
       and
-   iflt arg2, bad.word
+      not
+   ifeq arg2, badword
+      and
+      not
+   ifeq arg2, badsyntax
+      and
+      not
+   ifeq arg2, ambigtypo
+      and
+      not
+   ifeq arg2, ambigword
       set it, arg2
    otherwise
    ifflag arg1, object
@@ -1611,6 +1622,8 @@ repeat
 # intercept REPEAT if R <ANYTHING> gets typed. We handle it here instead.
 #
    ifkey again
+      and
+   ifgt status, 1
       fakecom again, drop
    fin
 #
@@ -1668,7 +1681,7 @@ repeat
       and
       not
    ifany where, fetch, find
-      call find.oil
+      call find.oil, false
       ifeq vessel, none
          and
          not
@@ -1702,7 +1715,7 @@ repeat
       ifnear vial
          fakecom liquid, vial
       else
-         call find.water
+         call find.water, false
          ifne vessel, none
             fakecom liquid, water
          otherwise
@@ -1828,46 +1841,6 @@ repeat
       fakearg fragments, shards
    fin   
 #
-# Handle stone (sun or star)
-#
-   ifkey stone
-      ifnear sunstone
-         and
-      ifnear starstone
-         set stone.check, 0
-         ifhave sunstone
-             set stone.check, 1
-         fin
-         ifhave starstone
-             add stone.check, 1
-         fin
-         ifeq stone.check, 1
-            ifkey get
-               ifhere sunstone
-                  fakecom stone, sunstone
-               else
-                  fakecom stone, starstone
-               fin
-            otherwise
-            ifany drop, throw
-               ifhave sunstone
-                  fakecom stone, sunstone
-               else
-                  fakecom stone, starstone
-               fin
-            fin
-         else
-            quip which.stone?
-         fin
-      otherwise
-      ifnear sunstone
-         fakecom stone, sunstone
-      otherwise
-      ifnear starstone
-         fakecom stone, starstone
-      fin
-   fin
-#
 # Arsonists not wanted!
 #
    ifkey light, fire
@@ -1887,6 +1860,9 @@ repeat
       fin
    fin
 #
+# Handle please
+#
+   respond please, please.not
 #
 # Handle packet/wrapper.
 #
@@ -2002,21 +1978,19 @@ repeat
       fin
    otherwise
    ifkey all
-      ifge arg3, bad.word
-         call shadow.shutup
-         ifeq arg3, bad.syntax
-            quip no.except, arg3
-         fin
-         ifeq arg3, ambig.word
-            quip tell.me.more, arg3
-         fin
-         ifeq arg3, bad.word
-            flush
-            quip nocomprende.object, arg3
-         fin
-         ifeq arg3, ambig.typo
-            quip is.it.a.typo? arg3
-         fin
+      call shadow.shutup
+      ifeq arg3, badsyntax
+         quip no.except, arg3
+      fin
+      ifeq arg3, ambigword
+         quip tell.me.more, arg3
+      fin
+      ifeq arg3, badword
+         flush
+         quip nocomprende.object, arg3
+      fin
+      ifeq arg3, ambigtypo
+         quip is.it.a.typo? arg3
       fin
       ifany drop, down
          call except.check
@@ -2104,12 +2078,12 @@ repeat
 #
 # Verb not understood. Try to explain.
 #
-   ifeq arg1, bad.word
+   ifeq arg1, badword
       or
-   ifeq arg1, ambig.word
+   ifeq arg1, ambigword
       or
-   ifeq arg1, ambig.typo
-      ifeq arg1, bad.word
+   ifeq arg1, ambigtypo
+      ifeq arg1, badword
          flush
          ifgt status, 1
             chance 33
@@ -2125,7 +2099,7 @@ repeat
             unflag status, vocab.prod
          fin
       otherwise
-      ifeq arg1, ambig.word
+      ifeq arg1, ambigword
          say tell.me.more, arg1
       else
          say is.it.a.typo?, arg1
@@ -2159,19 +2133,19 @@ repeat
 # If noun not understood, try to respond appropriately.
 #
    ifgt status, 1
-      ifeq arg2, bad.word
+      ifeq arg2, badword
          or
-      ifeq arg2, ambig.word
+      ifeq arg2, ambigword
          or
-      ifeq arg2, ambig.typo
+      ifeq arg2, ambigtypo
          or
-      ifeq arg2, scene.word
+      ifeq arg2, sceneword
          ifinrange arg1, first.special, last.special
          else
-            ifeq arg2, ambig.word
+            ifeq arg2, ambigword
                say tell.me.more, arg2
             otherwise
-            ifeq arg2, bad.word
+            ifeq arg2, badword
                flush
                say nocomprende.object, arg2
                ifflag status, vocab.prod
@@ -2179,7 +2153,7 @@ repeat
                   unflag status, vocab.prod
                fin
             otherwise
-            ifeq arg2, scene.word
+            ifeq arg2, sceneword
                and
             ifgt stage, little.joke
                quip just.scenery, arg2
@@ -2203,8 +2177,7 @@ repeat
    set drop.text, none
    set throw.text, none
    set throw.it, false
-   set abort, false          # Safety net
-   set vessel, none          # Ditto
+   set vessel, none          # Just a safety net
    set silence, false        # Ditto
 #
 # Do some command faking...
@@ -2219,9 +2192,11 @@ repeat
       fin
    fin
    ifkey plant
-      ifnear beanstalk
-         or 
       ifnear beanstalk2    # Fudge beanstalk to be a plant!
+         and 
+      ifeq beanstalk, gigantic
+         or
+      ifnear beanstalk
          fakearg plant, beanstalk
       fin
    fin
@@ -2292,6 +2267,13 @@ repeat
       fin
    fin
 #
+# Sigh... CAGE BIRD
+#
+   ifkey cage, bird
+      fakecom cage, catch
+   fin
+#
+#
 # Remind him that he need not keep saying 'go'.
 #
    ifkey west, walk
@@ -2348,8 +2330,6 @@ repeat
    else
       set direction, 0
       ifat ledge
-         and
-      ifkey back
          fakearg back, south
       fin
       ifflag here, not.in.cave
@@ -2386,6 +2366,46 @@ repeat
       call here
    fin
 #
+# Handle stone (sun or star)
+#
+   ifkey stone
+      ifnear sunstone
+         and
+      ifnear starstone
+         set stone.check, 0
+         ifhave sunstone
+             set stone.check, 1
+         fin
+         ifhave starstone
+             add stone.check, 1
+         fin
+         ifeq stone.check, 1
+            ifkey get
+               ifhere sunstone
+                  fakecom stone, sunstone
+               else
+                  fakecom stone, starstone
+               fin
+            otherwise
+            ifany drop, throw
+               ifhave sunstone
+                  fakecom stone, sunstone
+               else
+                  fakecom stone, starstone
+               fin
+            fin
+         else
+            quip which.stone?
+         fin
+      otherwise
+      ifnear sunstone
+         fakecom stone, sunstone
+      otherwise
+      ifnear starstone
+         fakecom stone, starstone
+      fin
+   fin
+#
 # Handle null jumps.
 #
    ifkey jump
@@ -2411,167 +2431,175 @@ repeat
       else
          quip dont.know.the.way
       fin
-   else
+   fin
 #
 # Some objects are, yet are not present in the repository.
 #
-      ifeq stage, in.repository
-         and
-      ifgt status, 1
-         call start.cheating    # Kludge up dummy objects in repository
-         ifany rod, bundle
-            call rod.special.stuff
-         fin
-         respond bundle, plurals, pile, no.plural.please
+   ifeq stage, in.repository
+      and
+   ifgt status, 1
+      call start.cheating    # Kludge up dummy objects in repository
+      ifany rod, bundle
+         call rod.special.stuff
       fin
+      respond bundle, plurals, pile, no.plural.please
+   fin
 # 
 # Curtains do not really exists, nor do bundles (except in the repsitory).
 #
-      ifkey curtains
-         ifat soft, curtain.entrance, bare.cavern
-            apport curtains, here
-            flag curtains, seen
-         fin
+   ifkey curtains
+      ifat soft, curtain.entrance, bare.cavern
+         apport curtains, here
+         flag curtains, seen
       fin
-      respond bundle, plurals, pardon?
+   fin
+   respond bundle, plurals, pardon?
 #
 # Some other minor quipperies...
 #
-      respond left, forward, need.a.direction
-      ifkey debris
-         call debris.quip
-         quit
-      fin
+   respond left, forward, need.a.direction
+   ifkey debris
+      call debris.quip
+      quit
+   fin
 #
 # Do we mean Orion or O'Ryan?
 #
-      ifkey orion
-         ifflag quips, oryan.quip
-            quip orion.quip, 1
-         fin
-         quip orion.quip, 0
+   ifkey orion
+      ifflag quips, oryan.quip
+         quip orion.quip, 1
       fin
-      ifkey oryan
-         ifeq temple, vault.locked
-            quip pat.oryan, 0
-         fin
-         quip pat.oryan,1
+      quip orion.quip, 0
+   fin
+   ifkey oryan
+      ifeq temple, vault.locked
+         quip pat.oryan, 0
       fin
+      quip pat.oryan,1
+   fin
 #
 # Handle map references
 #
-      ifkey map
-         ifeq status, 1
-            or
-         ifany get, find, read, look
-            quip no.map
-         fin
+   ifkey map
+      ifeq status, 1
+         or
+      ifany get, find, read, look
+         quip no.map
       fin
+   fin
 #
 # Handle references to the illusory Zorro outfit.
 #
-      ifany hat, cloak
-         ifflag mask, seen
-            ifkey hat
-               lda obj.ptr, hat
-            else
-               lda obj.ptr, cloak
-            fin
-            ifhave mask, worn
-               quip just.an.illusion, obj.ptr
-            fin
-            quip i.dont.see, obj.ptr
+   ifany hat, cloak
+      ifflag mask, seen
+         ifkey hat
+            lda obj.ptr, hat
+         else
+            lda obj.ptr, cloak
+         fin
+         ifhave mask, worn
+            quip just.an.illusion, obj.ptr
+         fin
+         quip i.dont.see, obj.ptr
+      else
+         quip pardon?
+      fin
+   fin
+#
+# Handle "spoon dung"
+#
+   ifkey spoon, dung
+      and
+   ifnear spoon
+      and
+   ifnear dung
+      ifflag spoon, special2
+         quip again.no.ruin.it
+      fin
+      ifflag beanstalk, seen
+         flag spoon, special2
+         say spoon.no.dung
+         quip blank
+      fin
+      quip bleah
+   fin
+#
+# Handle butterflies (sheer frippery!)
+#
+   ifkey butterfly
+      ifinrange here, rock.shelf, ledge
+         quip no.butterflies, 0
+      otherwise
+      ifinrange here, island, island.ne
+         quip no.butterflies, 1
+      otherwise
+      ifat beanstalk.top, stupendous.view
+         quip no.see.butterfly
+      fin
+      quip i.dont.see, butterfly
+   fin
+#
+# Some special responses for the sewers.
+#
+   ifflag here, in.sewer
+      or
+   ifat sea.view     
+      ifkey sewage
+         ifkey get
+            and
+         ifflag beanstalk, seen
+            quip sewage.h20.bad, 1
+         otherwise
+         ifkey look
+            quip no.look.sewage
+         else
+            describe dung
+            quit
+         fin
+      fin
+      ifkey get, water
+         or
+      ifkey fill
+         ifflag beanstalk, seen
+            quip sewage.h20.bad, 1
+         else
+            quip sewage.h20.bad, 0
+         fin
+      fin
+   fin
+#
+# Time to see whether the verb-specific code can handle player's command.
+#
+   call arg1
+#
+# Only come here if verb fails to deal
+#
+   call shadow.shutup
+   flush
+   ifflag arg1, object
+      set vessel, none
+      ifis arg1, water
+         call find.water, false
+         ifeq vessel, none
+            and
+         ifflag here, h20.here
+            set vessel, 1  # Just to show we have water
+         fin
+      fin
+      ifkey water
+         and
+      ifgt vessel, 0
+         or
+      ifnear arg1
+      else
+         ifflag arg1, seen
+            quip i.dont.see, arg1
          else
             quip pardon?
          fin
       fin
-#
-# Handle "spoon dung"
-#
-      ifkey spoon, dung
-         and
-      ifnear spoon
-         and
-      ifnear dung
-         ifflag spoon, special2
-            quip again.no.ruin.it
-         fin
-         ifflag beanstalk, seen
-            flag spoon, special2
-            say spoon.no.dung
-            quip blank
-         fin
-         quip bleah
-      fin
-#
-# Handle butterflies (sheer frippery!)
-#
-      ifkey butterfly
-         ifinrange here, rock.shelf, ledge
-            quip no.butterflies, 0
-         otherwise
-         ifinrange here, island, island.ne
-            quip no.butterflies, 1
-         otherwise
-         ifat beanstalk.top, stupendous.view
-            quip no.see.butterfly
-         fin
-         quip i.dont.see, butterfly
-      fin
-#
-# Some special responses for the sewers.
-#
-      ifflag here, in.sewer
-         or
-      ifat sea.view     
-         ifkey sewage
-            ifkey get
-               and
-            ifflag beanstalk, seen
-               quip sewage.h20.bad, 1
-            otherwise
-            ifkey look
-               quip no.look.sewage
-            else
-               describe dung
-               quit
-            fin
-         fin
-         ifkey get, water
-            or
-         ifkey fill
-            ifflag beanstalk, seen
-               quip sewage.h20.bad, 1
-            else
-               quip sewage.h20.bad, 0
-            fin
-         fin
-      fin
-      call arg1
-#
-# Only come here if verb fails to deal
-#
-      call shadow.shutup     
-      ifflag arg1, object
-         ifkey water
-            and
-         ifflag here, h20.here
-            or
-         ifnear arg1
-            say do.what?, arg1
-            flag status, pls.clarify   # Request clarification
-         else
-            flush
-            ifflag arg1, seen
-              say i.dont.see, arg1
-            else
-               say pardon?
-            fin
-         fin
-      else
-         call bail.out
-      fin
    fin
+   call bail.out
    quit
 #
 #=====================================================================
@@ -2580,4 +2608,3 @@ repeat      # Dummy. Just stops translator grizzling.
    respond furiously, crabs, boils, quark, stew, eyes, pardon?
 #
 #=====================================================================
-

@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2007.
+# Copyleft Mike Arnautov 1984-2010.
 #
 # This module defines the actions to be taken when certain
 # verb, verb/object, verb/verb or object/object word sequences
@@ -380,11 +380,10 @@ action drop
          call drop.cage
       otherwise
       ifany oil, water
-         set abort, true
          ifkey oil
-            call find.oil
+            call find.oil, true
          else
-            call find.water
+            call find.water, true
          fin
          call dispose.liquid
       otherwise
@@ -533,7 +532,7 @@ action drop               # Generalized "drop" control
          ifeq dynamite, 0
             say it.is, rod
          else
-            say it.is, arg2
+             say it.is, arg2
          fin
       else
          say the.it, arg2
@@ -615,9 +614,11 @@ action cave
 #=====================================================================
 #
 action oil
-   set abort,false
-   call find.oil
+   call find.oil, false
    ifeq vessel, none
+      and
+      not
+   ifat east.pit
       say you.dont.have, oil
       ifhave vial
          append this.is.not.oil
@@ -631,6 +632,10 @@ action oil
       ifnear arg2
          call bail.out
       fin
+   fin
+   ifeq status, 1
+      flag status, pls.clarify
+      call bail.out
    fin
    ifany door1, door2, door3
       ifnear door1
@@ -696,15 +701,13 @@ action throw
 #=====================================================================
 #
 action throw water
-   set abort, true
-   call find.water
+   call find.water, true
    call dispose.liquid
 #
 #=====================================================================
 #
 action throw oil
-   set abort, true
-   call find.oil
+   call find.oil, true
    call dispose.liquid
 #
 #=====================================================================
@@ -989,12 +992,9 @@ action wave
             fin
          fin
          ifeq bird, caged
-            quip rod..bird, 1
+            quip rod.scares.bird
          fin
-         ifat sw.repository
-            quip rod..bird, 2
-         fin
-         quip rod..bird, 0
+         quip rod.scares.bird.off
       otherwise
       ifflag fissure, special1
          and
@@ -1132,12 +1132,12 @@ action look                # Can't look in the dark!
    local desert.offset
 #
    ifeq status, 1
-      ifflag status, terse.display
+      ifflag status, fastmode
       else
-         flag status, full.display
+         flag status, fulldisplay
       fin
       call describe.here
-      unflag status, full.display
+      unflag status, fulldisplay
       flag here, been.here
       ifeq mlcount, 25
          set mlcount, 100
@@ -1150,7 +1150,7 @@ action look                # Can't look in the dark!
    fin
    respond me, you.are.human
    respond ground, nothing.interesting, arg2
-   respond stone, just.them, stone
+   respond stone, just.them, arg2
    ifinrange arg2, first.direction, last.compass.point
       quip no.look.direction, arg2
    fin
@@ -1368,7 +1368,7 @@ action look pyramid
 #=====================================================================
 #
 action look oil
-   call find.oil
+   call find.oil, false
    ifne vessel, none
       or
    ifnear oil
@@ -1480,6 +1480,11 @@ action look
    fin
    ifkey orb
       call scry
+   fin
+   ifkey crack
+      and
+   ifnear chalice
+      quip chalice.crack
    fin
 #
 #=====================================================================
@@ -2339,11 +2344,11 @@ action quit
 #=====================================================================
 #
 action normal
-   ifflag status, normal.display
+   ifflag status, quickie
       quip already.display.mode, 1
    fin
-   flag status, normal.display
-   unflag status, terse.display
+   flag status, quickie
+   unflag status, fastmode
    lda ok, ok!
    quip brief.ok
 #
@@ -2619,32 +2624,32 @@ action kill
 #=====================================================================
 #
 action terse
-   ifflag status, terse.display
+   ifflag status, fastmode
       quip already.display.mode, 0
    fin
-   unflag status, normal.display
-   flag status, terse.display
+   unflag status, quickie
+   flag status, fastmode
    lda ok, sok!
    quip terse.ok
 #
 #=====================================================================
 #
 action verbose
-   ifflag status, normal.display
+   ifflag status, quickie
       or
-   ifflag status, terse.display
+   ifflag status, fastmode
    else
       quip already.display.mode, 2
    fin
-   unflag status, normal.display
-   unflag status, terse.display
+   unflag status, quickie
+   unflag status, fastmode
    lda ok, ok!
    say verbose.ok
    ifflag status, light.here
       say blank
-      flag status, full.display
+      flag status, fulldisplay
       call describe.here
-      unflag status, full.display
+      unflag status, fulldisplay
    fin
    quit
 #
@@ -3003,21 +3008,17 @@ action break
 #=====================================================================
 #
 action fix
-   ifkey vase
-      ifnear pottery
-         quip no.can.fix
-      fin
-      proceed
-   fin
+   fakearg vase, pottery
+   fakearg crack, chalice
    ifeq status, 1
       or
       not
    ifnear arg2
       proceed
    fin
-   ifkey dinghy
-      quip no.can.fix
-   otherwise
+   ifany chalice, pottery, dinghy
+      quip no.can.fix, arg2
+   fin
    ifkey rug
       ifflag rug, special1
          quip no.fix.rug, 1
@@ -3188,12 +3189,12 @@ action fill chalice
             set chalice, full
             quip chalice.leaking, 0
          fin
-         call find.water
+         call find.water, false
          ifeq vessel, none
             quip not.holding, chalice
          fin
       else
-         call find.water
+         call find.water, false
       fin
       ifne vessel, none
          ifis vessel bucket
@@ -3292,9 +3293,9 @@ action pour
    local state
 #
    ifeq status, 1
-      call find.water
+      call find.water, false
       ifeq vessel, none
-         call find.oil
+         call find.oil, false
       fin
       ifeq vessel, none
          proceed
@@ -3303,13 +3304,12 @@ action pour
       set arg2, vessel
    fin
    ifany water, oil, champagne, dung
-      set abort, true
       ifkey water
-         call find.water
+         call find.water, true
          call dispose.liquid
       fin
       ifkey oil
-         call find.oil
+         call find.oil, true
          call dispose.liquid
       fin
       ifkey champagne
@@ -3422,6 +3422,8 @@ action eat
 action eat
    ifflag arg2, object         # Already quitted for status 1
       ifnear arg2
+         or
+      ifflag context, arg2.here
          quip repulsive
       fin
    fin
@@ -3793,7 +3795,7 @@ action drink
       fin
    fin
    ifkey oil
-      call find.oil
+      call find.oil, false
       ifeq vessel, none
          and
          not
@@ -3854,7 +3856,7 @@ action drink
          fin
          call water!, 800, slurp, none
       fin
-      call find.water
+      call find.water, false
       ifeq vessel, none
          ifeq status, 1
             and
@@ -4325,8 +4327,7 @@ action phuggg
                   else
                      say it.worked.2
                   fin
-                  flag dwarf,plural
-                  call kill.some.dwarves
+                  call kill.some.dwarves, 1
                   quit
                else
                   ifeq dwarf, 1
@@ -4591,7 +4592,7 @@ action kick
    ifkey wall
       call bail.out
    fin
-   respond rock, stone, no.kick.it, arg2
+   respond rock, stone, boulder, no.kick.it, arg2
    ifany door, door1, door2, door3
       and
    ifnear arg2
@@ -5357,7 +5358,7 @@ action wash
    ifflag here, h20.here
       quip clean.enough
    fin
-   call find.water
+   call find.water, false
    ifne vessel, none
       quip no.waste.water
    fin
@@ -5465,8 +5466,8 @@ action unroll
          and
          not
       ifflag arched.corridor.2, been.here
-         exec 30
-         quip good.rug.idea
+         append good.rug.idea
+         quit
       fin
       quit
    fin
@@ -5606,7 +5607,7 @@ action give
       ifnear vampire
          call vampire.stuff
       fin
-      call find.water
+      call find.water, false
       ifne vessel, none
          set arg2, vessel
       else
@@ -5809,8 +5810,8 @@ action justify
    else
       quip hah!
    fin
-   set outcome, state
    exec 19, state
+   set outcome, state
    quip justify.now, outcome
 #
 #=====================================================================
@@ -6479,7 +6480,7 @@ action dump
       dump
       quit
    fin
-   quip no.understand
+   call drop
 #
 #=====================================================================
 #
@@ -6692,7 +6693,7 @@ action undo
       fin
    else
       redo arg2
-      ifgt status, 0
+      ifgt undo.status, 0
          ifflag undo.status, undo.trim
             say fiddle.less, 1
             say fiddle.value, undo.status
@@ -6735,14 +6736,14 @@ action undo
          say result.is, result
          ifne result, 2
             ifflag status, light.here
-               ifflag status, terse.display
+               ifflag status, fastmode
                else
                   set mode 1
-                  flag status, terse.display
+                  flag status, fastmode
                fin
                say here
                ifeq mode, 1
-                  unflag status, terse.display
+                  unflag status, fastmode
                fin
             otherwise
             ifeq result, 1
@@ -6786,5 +6787,33 @@ action undo
 #
 action redo
    call undo
+#
+#=====================================================================
+#
+# Attempts to melt ice handled by ice caves' code.
+#
+action melt
+   ifeq status, 2
+      quip hah!
+   fin
+#
+#=====================================================================
+#
+# This action is a special, in that it doesn't actually handle the AGAIN
+# verb. That *has* to be done immediately by the kernel's input routine
+# (at least I see no sensible way of doing it otherwise). This action is
+# called by the kernel if (and only if!) it exists. In this game it
+# exists to cater for players who insist on using R <OBJECT> meaning 
+# DROP OBJECT. So if an object is supplied, we fake the command to be
+# DROP, thereby stopping the kernel from executing AGAIN/REPEAT.
+#
+action again
+   ifeq status, 2
+      and
+   iftyped r      # Only if he typed R rahter than AGAIN or REPEAT
+      and
+   ifflag arg2, object
+      fakecom again, drop
+   fin
 #
 ######################################################################

@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2007.
+# Copyleft Mike Arnautov 1984-2010.
 #
 # "Random" texts.
 #
@@ -727,7 +727,7 @@ TEXT IT.IS.HERE.NOW
     I believe what you want is right here with you.
 #
 TEXT increment SLIT.TOO.NARROW
-    You[ / really / *REALLY* /]don't fit through a five-inch slit!
+    You [/really /*REALLY* /]don't fit through a five-inch slit!
 #
 TEXT TRY.THE.BRIDGE
     I respectfully suggest you go across the bridge instead of jumping.
@@ -771,7 +771,7 @@ TEXT increment DOOR.NEEDS.OIL
 TEXT YOU.OIL.THE.PLANT
     The plant indignantly shakes the oil off its leaves and asks, "Water?"
 #
-TEXT HINGES..RUST
+TEXT HINGES.RUST
     The hinges are quite thoroughly rusted now and won't budge.
 #
 TEXT DOOR.NOW.OILED
@@ -976,8 +976,8 @@ TEXT NO.VASE.FILLER
 TEXT VASE.SHATTERS
     The sudden change in temperature has delicately shattered the vase.
 #
-TEXT NO.CAN.FIX
-    It is beyond your power to do that.
+TEXT increment NO.CAN.FIX
+     [T/Regrettably, t/T]here is no way to fix the #[, I am sorry to say/].
 #
 TEXT cycle DUNNO.HOW
     I [don't know/have no idea/wouldn't know/haven't a clue as to] how.
@@ -986,7 +986,7 @@ TEXT TOO.FAR.UP
     The # is too far up for you to reach.
 #
 FRAGMENT random DWARF.SMOKE
-    [greasy/evil smelling/billowing/dense/roiling/fragrant]
+    [greasy/evil smelling/billowing/dense/roiling/fragrant/whispy]
 #
 TEXT random DWARF.POOF
     You killed a little dwarf. The body vanishes in a cloud of
@@ -1277,18 +1277,18 @@ TEXT PLUMMET
 # element case for every player's life.
 #
    [
-   =Aaaaaaaaaiiiiiiiiiiieeeeeeeeee........
-   =                                         \>splat!\<
+   /   Aaaaaaaaaiiiiiiiiiiieeeeeeeeee........
+   /                                            \>splat!\<
 
     Hmmmm... Not a pretty sight, to be sure./
-   =Aaaaaaaaaaaaaaaaaaahhhhhhhhhhhhhhhhhh........
-   =                                               \>squish!\<
+   /   Aaaaaaaaaaaaaaaaaaahhhhhhhhhhhhhhhhhh........
+   /                                                  \>squish!\<
 
     Yetch - what a mess!/
-   =Gaaaaaaaaaaaaaaaaaaaaaaaaaahhhhhh...........
-   =                                                \>crunch!\</
-   =Haaaaaaaaaaaaaalllllllllllllllllpppppp...........
-   =                                                   \>smash!\<]
+   /   Gaaaaaaaaaaaaaaaaaaaaaaaaaahhhhhh...........
+   /                                                   \>crunch!\</
+   /   Haaaaaaaaaaaaaalllllllllllllllllpppppp...........
+   /                                                      \>smash!\<]
 
 #
 TEXT cycle SLEEPY.BLOCKS.WAY
@@ -1566,22 +1566,22 @@ TEXT increment SCHLURP
     In fact you're sinking in a lot! Oh, no - it's QUICKSAND!! HELP!!
     HELP!! HELP!!!
 
-   =     \>glub\<
-   =               \>glub\<
-   =                          \>glub\<
-   =                                     \>blurp\</
+   /     \>glub\<
+   /               \>glub\<
+   /                          \>glub\<
+   /                                     \>blurp\</
 
     You know, I've heard of people who really fell in for the soft sell,
     but
 
-   =     \>glub\<
-   =             this
-   =                    \>glub\<
-   =                             is
-   =                                 \>glub\<
-   =                                         ridiculous!
-   =
-   =                                                     \>blop!\<]
+   /     \>glub\<
+   /             this
+   /                    \>glub\<
+   /                             is
+   /                                 \>glub\<
+   /                                         ridiculous!
+   /
+   /                                                     \>blop!\<]
 
 #
 TEXT SLIMED
@@ -1678,18 +1678,18 @@ TEXT random FOOF.RANDOM
 
 #
 TEXT
-   = \>sputter\<
-   =               \>spark\<
-   =         \>phut\<
-   =                    \>hsssssssss
-   =                               ssssss
-   =                                     sss
-   =                                        s
-   =                                         s
-   =                                          s
-   =                                           .
-   =                                            .
-   =                                             .
+   / \>sputter\<
+   /               \>spark\<
+   /         \>phut\<
+   /                    \>hsssssssss
+   /                               ssssss
+   /                                     sss
+   /                                        s
+   /                                         s
+   /                                          s
+   /                                           .
+   /                                            .
+   /                                             .
 
     Oh, blast. Excuse me for a moment, please......
 
@@ -1698,9 +1698,9 @@ TEXT
    
 #
 TEXT OOF
-   =Wheeeeeeeeeeeeeeeee..........
-   =
-   =                                        \>oof!\<
+   /Wheeeeeeeeeeeeeeeee..........
+   /
+   /                                        \>oof!\<
 
 #
 TEXT increment SLIDE.SLIPPERY
@@ -2313,18 +2313,18 @@ TEXT GROPE.FALL
     Hmmph - you're not asking for much, are you - it's pitch dark in here!
     Well, I'll grope around and try to find the #.....
 
-   = \{hunt\}
-   =         \{hunt\}
-   =                  \{rummage\}
-   =                              \{trip!\}
-   =                                       Aaaiiii
-   =                                              iie
-   =                                                 ee
-   =                                                   e
-   =                                                    e
-   =                                                    e
-   =                                                    e
-   =                                                     \>SPLAT!\<
+   / \{hunt\}
+   /         \{hunt\}
+   /                  \{rummage\}
+   /                              \{trip!\}
+   /                                       Aaaiiii
+   /                                              iie
+   /                                                 ee
+   /                                                   e
+   /                                                    e
+   /                                                    e
+   /                                                    e
+   /                                                     \>SPLAT!\<
  
     You stumbled into a pit and broke your back!
 #
@@ -2333,17 +2333,17 @@ TEXT GROPE.MISS
     and I'll have to grope around to try to find the #.
     Well, if I must, I must.....
 
-   =                        \{hunt\}
-   =                                   \{search\}
-   =                                              \{hunt\}
-   =          \{rummage\}
-   = \{peer\}
-   =                  \{touch\}
-   =     \{hunt\}
-   =                         \>scrape\<
-   =                                  Youch! \{curse\}
-   =          \{hunt\}
-   =                      \{seek\}
+   /                          \{hunt\}
+   /                                     \{search\}
+   /                                                \{hunt\}
+   /            \{rummage\}
+   /   \{peer\}
+   /                      \{touch\}
+   /       \{hunt\}
+   /                             \>scrape\<
+   /                                        Youch! \{curse\}
+   /            \{hunt\}
+   /                          \{seek\}
 
     No luck - I can't find the #! If you could get me some light in here,
     maybe I'd be able to do better. Sorry....
@@ -2393,7 +2393,14 @@ TEXT BE.OFF
 FRAGMENT assigned FLOOR?
     [floor/ground]
 #
-TEXT SPARE..T..01
+TEXT increment THROWER.IS.NAME?
+    [. Strange... T/, its only ornamentation consisting of the word "THROWER"
+    inlaid on the pommel. Remarkably enough, t]here is [absolutely /]no
+    indication how it manages to do its singing. [Oh, it has "THROWER" inlaid
+    on the pommel! I guess that must be its name. Magical swords often 
+    have names, you know. What? Why do I think it must be magical? 
+    Well, your mileage may vary, but I've never known non-magical
+    swords to do any singing./]
 #
 TEXT SLAB.SHUTS
     The slab [/once again ]swings quietly shut behind you.
@@ -2459,18 +2466,18 @@ TEXT GLUG.GLUG.GLUG...
     You have drowned horribly in a mixture of sea-water and sewage.
 #
 TEXT WHEEE...SPLASH
-   =Wheeeeeeeeeeeeeeeee..........
-   =
-   =                               \>splash!\<
+   /Wheeeeeeeeeeeeeeeee..........
+   /
+   /                               \>splash!\<
 
 #
 TEXT ON.STREAMBED
     As you start climbing down the steep slope, a stone suddenly gives way
     under your foot...
    /
-   =    EEEEEeeeeeee!!...
-   =                   Wham!!!..
-   =                           \>Rumble... rumble...\<
+   /    EEEEEeeeeeee!!...
+   /                   Wham!!!..
+   /                           \>Rumble... rumble...\<
 
     You are at the bottom of the streambed and all your bones are broken.
 #
@@ -3267,25 +3274,25 @@ TEXT OYSTER.MEMO
 #
 TEXT DOWN.THE.SLIT
     You plunge into the stream and are carried down into total blackness.
-   =Deeper
-   =          and deeper
-   =                you go
-   =                    down into
-   =                          the
-   =                      very
-   =                            bowels of
-   =                  the earth,
-   =                         until
-   =                               your lungs
-   =                      are aching
-   =                              with
-   =                           the need
-   =                  for fresh
-   =                           air.
+   /Deeper
+   /          and deeper
+   /                you go
+   /                    down into
+   /                          the
+   /                      very
+   /                            bowels of
+   /                  the earth,
+   /                         until
+   /                               your lungs
+   /                      are aching
+   /                              with
+   /                           the need
+   /                  for fresh
+   /                           air.
 
-   =Suddenly,
-   =                   with a violent
-   =                                              \>SPLASH!\<
+   /Suddenly,
+   /                   with a violent
+   /                                              \>SPLASH!\<
 
     you find yourself thoroughly drenched, sitting up to your chest in water.
 
@@ -3339,8 +3346,8 @@ TEXT TREASURE.4
     any harsh words have been spoken between us, let there be no hard
     feelings.
 
-   =         Hail and farewell,
-   =              Oh Indomitable One!
+   /         Hail and farewell,
+   /              Oh Indomitable One!
 
 #
 TEXT BACK.TO.REALITY
@@ -3789,17 +3796,18 @@ TEXT VOCAB.VERBS
     east (e), north (n), northeast (ne), northwest (nw), south (s),
     southeast (se), southwest (sw), west (w), up (u), down (d)
 
-    again (repeat, r), back (b, retreat), blast, break, brief, change,
-    chew (bite), climb, close (lock), contemplate (meditate), credits (ack),
-    cross, cut, dig, drink, drop (dr, free, release), dwarvish, eat, 
-    english, enter (in), exit (out), extinguish (off), feed, fill, fly, 
-    go (walk, run, follow), get (g, take, t), give (offer), help (?), 
-    history, hit, hoot, info, inventory (i), jump, kick, kill, knock, 
-    lift, light (on), listen, look (l, examine, x), memorize (remember),
-    open (unlock), play, pour, quit (q, cancel, abort), read, recall, redo,
+    again (repeat, r), back (b, retreat), blast, break, brief, change, chew
+    (bite), climb, close (lock), contemplate (meditate), credits (ack), cross,
+    cut, dig, drink, drop (dr, free, release), dwarvish, eat, english, enter
+    (in), exit (out), extinguish (off), feed, fill, fly, go (walk, run,
+    follow), get (g, take, t), give (offer), help (?), history, hit, hoot,
+    info, instructions (intro), inventory (i), jump, kick, kill, knock, lift,
+    light (on), listen, look (l, examine, x), memorize (remember), open
+    (unlock), play, pour, quit (q, cancel, abort), read, recall, redo,
     reflect, remove, rest (wait), restore, ride, rub (polish), save, say,
     score (sc), scream, scry, sip (taste), tame (placate), terse, throw (th),
-    translate, undo, upstream, verbose, vocabulary, wash, wave (swing), wear.
+    translate, undo, upstream, verbose, vocabulary, wash, wave (swing),
+    wear.
 #
 FRAGMENT VOCAB.NOUNS
     The below list of nouns is largely confined to things 
@@ -4343,7 +4351,11 @@ TEXT assigned VALUATION.RESULT
 
     +"THE OBJECT [HAD BEEN/WAS][// MARGINALLY/ NOT// NEITHER] VALUABLE[/// BUT/ AND/ NOR][/// USEFUL]"
 #
-TEXT SPARE..T..02
+TEXT increment INSUBSTANTIAL.LETTERS
+    [You attempt to {ARG1} the glowing letters, only to discover that
+    there is nothing to {ARG1}. The lettering hanging in mid-air would
+    seem to be just some magical illusion/No good. The glowing letters 
+    are entirely insubstantial/I won't even bother to try].
 #
 TEXT increment ALARM.OUT.OF.REACH
     It's too high for you to reach. [And before you waste any time
@@ -4674,35 +4686,35 @@ TEXT
 TEXT
 
     A chorus of soft voices murmurs into your ears
-   +         "... four....... four....... four....... four..."
+   /         "... four....... four....... four....... four..."
 #
 TEXT
 
     A soft voice startles you by saying very clearly and distinctly
 
-   +         "Of the keys, there are FOUR..."
+   /         "Of the keys, there are FOUR..."
 #
 TEXT
 
     One of the voices begins to chant
 
-   +         "Blerbi, Blerbi, Blerbi...."
+   /         "Blerbi, Blerbi, Blerbi...."
 #
 TEXT
 
     The first voice gets gradually louder and is soon joined by another,
     chanting
 
-   +         "Klaetu, Klaetu, Klaetu..."
+   /         "Klaetu, Klaetu, Klaetu..."
 #
 TEXT
 
     Now three ghostly voices clamour in your ears chanting:
 
-   =     Blerbi      KNERL   KNERL
-   =   Klaetu   KNERL    Blerbi      Blerbi     Klaetu
-   =       KNERL      Klaetu     Blerbi      Klaetu      KNERL
-   =          Blerbi          KNERL
+   /       Blerbi      KNERL   KNERL
+   /   Klaetu   KNERL    Blerbi      Blerbi     Klaetu
+   /       KNERL      Klaetu     Blerbi      Klaetu      KNERL
+   /          Blerbi          KNERL
 
     Strangely enough, your hearing is not at all affected by the ghostly
     din.
@@ -4712,20 +4724,20 @@ TEXT
     As the chanting becomes louder and louder, a fourth voice can be heard
     in the chaotic chant:
 
-   =          SNOEZE     SNOEZE...
-   =             SNOEZE
+   /          SNOEZE     SNOEZE...
+   /             SNOEZE
 
 #
 TEXT
 
     You are surrounded by a chaos of disembodied voices chanting
 
-   =     KNERL     SNOEZE     BLERBI     KNERL
-   =    KLAETU          SNOEZE      BLERBI       BLERBI
-   = KNERL      SNOEZE      BLERBI      KLAETU
-   =   BLERBI           KNERL         SNOEZE
-   =       KLAETU    KLAETU    SNOEZE        BLERBI
-   =     KLAETU      SNOEZE            KNERL
+   /        KNERL     SNOEZE     BLERBI     KNERL
+   /      KLAETU          SNOEZE      BLERBI       BLERBI
+   / KNERL      SNOEZE      BLERBI      KLAETU
+   /     BLERBI           KNERL         SNOEZE
+   /          KLAETU    KLAETU    SNOEZE        BLERBI
+   /     KLAETU      SNOEZE            KNERL
 
 #
 TEXT
@@ -5216,11 +5228,11 @@ TEXT increment READ.RUG
     the ornamental lettering woven into its design. My Arabic is
     very rusty, but let me see... 
 
-   =Hummm... 
-   =       Er... 
-   =          Ah... 
-   =             Yes! 
-   =It says "BASINGSTOKE". 
+   /Hummm... 
+   /       Er... 
+   /          Ah... 
+   /             Yes! 
+   /It says "BASINGSTOKE". 
 
     Now there's a word teeming with meaning!/
     It has the word "BASINGSTOKE" woven into it in a flowing
@@ -5507,13 +5519,13 @@ TEXT increment CATACOMBS.INFO
     inscription on it/The plaque is] headed with the dread words 
     "NEW IMPROVED RECIPE!". It continues:
 
-   +         An Acclaimed Attraction !
-   +         Beguilingly Befuddling !
-   +         Catacombically Cryptic !
-   +         Delightfully Devious !
-   +         Excruciatingly Exciting !
-   +         Fabulously Fair !
-   +         Gorgeously Gothic !!
+   +         An Acclaimed Attraction!
+   +         Beguilingly Befuddling!
+   +         Catacombically Cryptic!
+   +         Delightfully Devious!
+   +         Excruciatingly Exciting!
+   +         Fabulously Fair!
+   +         Gorgeously Gothic!
 
     [Oh well... Don't mind me and go ahead. Get "excruciatingly
     excited". I've lived through worse./Not that you need to care about
@@ -6356,17 +6368,9 @@ TEXT DROP.ABYSS
    / bounce[s/] off the invisible something under your feet and
     plummet[s/] into the abyss below you.
 #
-TEXT ROD..BIRD
-    [The bird, clearly frightened by your rod waving, abandons its
-    song in mid-cadenza and flies off/
-    You wave the rod, but the only result is an indignant squawk
-    from the cage. The bird obviously doesn't care for rods being
-    waved about/
-    You wave the rod and are rewarded by a cacophonous chorus of 
-    indignant protests from the bird cages. This in turn results
-    in much angry hissing from the snake pit. Better be careful
-    or all that ruckus will wake the dwarves at the other end
-    of this room].
+TEXT ROD.SCARES.BIRD.OFF
+    The bird, clearly frightened by your rod waving, abandons its
+    song in mid-cadenza and flies off.
 #
 TEXT increment LEAVE.POSTER.ALONE
     [The poster is clearly intended to benefit *all* visiting adventurers,
@@ -6692,12 +6696,12 @@ TEXT FOREST.POEM
 
      As I believe one of your human poets once wrote:
 
-    =  I have come to the borders of sleep,
-    =  The unfathomable deep
-    =  Forest where all must lose
-    =  Their way, however straight,
-    =  Or winding, soon or late;
-    =  They cannot choose.
+    /  I have come to the borders of sleep,
+    /  The unfathomable deep
+    /  Forest where all must lose
+    /  Their way, however straight,
+    /  Or winding, soon or late;
+    /  They cannot choose.
 
      Well, maybe so - there's no accounting for adventurers' actions,
      but surely once should be quite enough. Now you'll just have to 
@@ -7127,25 +7131,26 @@ TEXT increment THINK.SOME.MORE
 #
 FRAGMENT cycle TYPO
     [Sorry, the word "#" is not familiar to me./ I'll just assume you
-    meant "#"/, i.e. "#"/./Regretfully, I don't have "#" in my 
-    dictionary./ But I do know "#"/, as in "#"/, so I'll assume you
-    meant that./The word "#" is not one I know./ Let's assume you
-    meant "#"/, meaning "#"/./I have no idea what "#" might be./ I
-    guess it could be mistyped "#"/, i.e. "#"/, so I'll assume that was
-    what you meant.]
+    meant "#"/, i.e. "#"/./
+    Regretfully, I don't have "#" in my dictionary./ But I do know
+    "#"/, as in "#"/, so I'll assume you meant that./
+    The word "#" is not one I know./ Let's assume you meant "#"/, 
+    meaning "#"/./
+    I have no idea what "#" might be./ I guess it could be mistyped
+    "#"/, i.e. "#"/, so I'll assume that was what you meant.]
 #
 TEXT VOCAB.WIZ
     Wizard commands:
 
-   =increment \<object\>        - increment object value
-   =decrement \<object\>        - decrement object value
-   =dump                        - dump values and bits
-   =fetch \<object\> (obtain)   - fetch the object from wherever
-   =find \<object\>             - go where the object is
-   =fly \<location\> (teleport) - go to the named location
-   =glow                        - toggle magical illumination
-   =mutter                      - cause immediate orc mutter
-   =next \[up/down]             - go to the next higher/lower location
+   /   increment \<object\>        - increment object value
+   /   decrement \<object\>        - decrement object value
+   /   dump                        - dump values and bits
+   /   fetch \<object\> (obtain)   - fetch the object from wherever
+   /   find \<object\>             - go where the object is
+   /   fly \<location\> (teleport) - go to the named location
+   /   glow                        - toggle magical illumination
+   /   mutter                      - cause immediate orc mutter
+   /   next \[up/down]             - go to the next higher/lower location
 
 #
 TEXT increment SUNSTONE.NO.FLY
@@ -7971,11 +7976,12 @@ TEXT WILD.ROCKERY
     The rock jumble would be hard enough to climb even without
     the unfriendly vegetation growing all over it.
 #
-TEXT ROMANS.ATE.NETTLES
-    I seem to recall that Romans were rather partial to nettles, but
+TEXT increment ROMANS.ATE.NETTLES
+    [I seem to recall that ancient Romans were rather partial to nettles, but
     raw nettles?? Please!... 
 
-    Eh? Yes, of course Romans were here. The nettles settle it, don't they?
+    Eh? Yes, of course Romans were here. The nettles settle it, don't they?/
+    This is getting boring. Just forget them nettles, please./No.]
 #
 TEXT WRONG.SEASON
     It's the wrong season and there are no berries on those brambles.
@@ -8107,7 +8113,7 @@ TEXT BEACH.STEPS
 #
 TEXT increment SEA.HORIZON
     You gaze at the distant horizon for a while[, which is a romantic
-    but not a very useful pastime/].
+    pastime but not, I fear, a very useful one/].
 #
 TEXT DARK.WAY
     The # is too dark to see anything.
@@ -8532,9 +8538,9 @@ TEXT JUMPED.INTO.SWAMP
    sinking into it. Thrashing about doesn't seem to help much, and
    in no time at all, it's...
 
-  =     \<glug...\>
-  =                   \<glug...\>
-  =                                   \<PLOP!\>
+  /     \<glug...\>
+  /                   \<glug...\>
+  /                                   \<PLOP!\>
 
 #
 TEXT DROWNED.IN.RIVER
@@ -8840,8 +8846,8 @@ TEXT increment FIRS.ON.SLOPES
    or down the slope. Be glad that the trail running from the southwest
    to the east, allows you to pass through.
 #
-TEXT JUST.THEM
-   # is #. Enough said.
+TEXT cycle JUST.THEM
+   # is #. [Enough said/That's all there is to it/As if you didn't know].
 #
 TEXT LOW.CRAWL
    The crawl may be low, but not *that* low. You can probably get
@@ -8918,7 +8924,7 @@ TEXT STEEP.INCLINE
 #
 TEXT increment FEE...FOO
    The inscription [/still ]says "Fee Fie Foe Foo"[. Yes I know it's not
-   quite how it's supposed to go, but facts are facts!/].
+   quite how it's supposed to go, but facts are facts!/.]
 #
 TEXT BEANSTALK.LEAVES
    The foliage filling the hole to the east, is that of the beanstalk,
@@ -9065,7 +9071,7 @@ TEXT increment STREAM.HOLE
 TEXT assigned RESERVOIR.INFO
    This underground lake is in fact a pretty substantial body of water.
    One can't really tell by looking, because the water surface is rather
-   churned up the stream crashing into it, but it is quite deep 
+   churned up by the stream crashing into it, but it is quite deep 
    too.[ Who knows what monsters may live down there.../]
 #
 TEXT assigned  DARWINS.TRACKS
@@ -9877,11 +9883,12 @@ TEXT JONAH.BLACKNESS
 #
 TEXT ROMANTIC.VIEW
    It's a highly romantic sight, though I suspect, somewhat "enhanced" in 
-   some magical way. [I don't recall a lake around here, and the meadows
-   are far too lush for the local sunny climate./We don't have enough
-   surface water for a decent torrent here, with or without rapids!/That
-   raging sea doesn't quite square with what one can see of the sea from
-   elsewhere.] In any case, it's just scenery.
+   some magical way. [I don't recall nearby mountains or lakes around here,
+   and the meadows are far too lush for the local sunny climate./A
+   ravine, yes, but we don't have enough surface water for a decent
+   torrent here, with or without rapids!/The cliff's plausible enough,
+   but that raging sea doesn't quite square with what one can see of the
+   sea from elsewhere.] In any case, it's just scenery.
 #
 TEXT SHARP.THORNS
    The thorns on the rose bushes are wickedly sharp.
@@ -10088,7 +10095,7 @@ TEXT LIQUID.LIGHT
    'Tis a wondrous sight! The stalactite is covered by veins of pulsing
    blue light, which accumulates on the stalactite's tip as 
    a bright, iridescent globule. This globule gradually elongates until
-   a large drop breaks off and sail towards the ground, vanishing
+   a large drop breaks off and floats towards the ground, vanishing
    suddenly in a puff of blue mist about half way down.
 #
 TEXT UNCAST.SHADOWS
@@ -10113,10 +10120,10 @@ TEXT ALABASTER.FORMATIONS
    the walls is quite sinister.
 #
 FRAGMENT assigned TT.MODE.ON
-   [/<tt>]
+   [/<pre>]
 #
 FRAGMENT assigned TT.MODE.OFF
-   [/<\/tt>]
+   [/<\/pre>]
 #
 TEXT CRYSTAL.BALL
    The orb is essentially a large crystal ball, like one of those used

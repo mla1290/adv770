@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2007.
+# Copyleft Mike Arnautov 1984-2010.
 #
 # Time to do some run-time initialisation.
 #
@@ -205,14 +205,15 @@ init
    flag basalt.shelf, lit
    flag basalt.shelf, not.in.cave
    flag basalt.shelf, no.dwarf
-*
-* There are a few other spontaneously lit locations.
-*
+#
+# There are a few other spontaneously lit locations.
+#
    flag quarters, lit
    flag dungeon, lit
    flag plover, lit
    flag breathtaker, lit
    flag lair, lit
+   flag ice.cave.30, lit
    flag plain.2, lit
    flag plain.3, lit
    flag faces, lit
@@ -992,10 +993,10 @@ init
 #
    set flask, sealed
    set bucket, emptied
-   set backlash, 35            # Normal "dwarves not vengeful"
-   set fleetfoot, 25           # Not running but didn't just attack
-   flag status, normal.display # Default output mode
-   flag status, vocab.prod     # Assume the worst!
+   set backlash, 35         # Normal "dwarves not vengeful"
+   set fleetfoot, 25        # Not running but didn't just attack
+   flag status, quickie     # Default output mode
+   flag status, vocab.prod  # Assume the worst!
    set escape, 0
    lda ok, ok!
    choose clock, 15, 25

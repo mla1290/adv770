@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2007.
+# Copyleft Mike Arnautov 1984-2010.
 #
 # Spill-over random texts. (Only necessary because I made the mistake of
 # mixing some active texts with places and objects definitions. :-(
@@ -184,8 +184,8 @@ TEXT cycle NOT.DROPPABLE
     [Eh.../Um.../Pardon me, but/Don't be silly -/Surely,] # is not
     something one could carry!
 #
-TEXT VERY.SENSIBLE
-   A very [sensible/commendable] decision, if I may say so.
+TEXT cycle VERY.SENSIBLE
+   A very [sensible/prudent/commendable] decision, if I may say so.
 #
 TEXT RIGHT.NEXT.TO.YOU
    The # is right next to you!
@@ -253,7 +253,7 @@ TEXT increment ANNOYED.GIANT
     [That would not be too smart. The giant is quite friendly at the
     moment, but that's unlikely to last if he decides that you are
     trying to attack him with the #./Let's not provoke the giant. He
-    could easily squash you, # or no #.
+    could easily squash you, # or no #.]
 #
 TEXT NO.BREAK.ALARM
     [Oi! Careful with that #!/No.] You might break the alarm[, and you
@@ -265,7 +265,8 @@ TEXT DARK.PLACE
     distant dim light to the west/
     . A small amount of dim light filters in from a passage to the west,
     but it is too meagre to be of any practical use/
-    , despite some very weak, diffuse light filtering in from the east].
+    , despite some very weak, diffuse light filtering in from the east/
+    except for a dim glimmer of light to north-west].
     {DARK.WARNING}
 #
 TEXT CANT.DO.THAT
@@ -390,7 +391,7 @@ TEXT WATERFALL.WALL
 #
 FRAGMENT cycle IT.WOULD.SEEM
     [Let's see.../As far as I can see,/It would seem that/I think/It
-     would appear that/I believe] [Y/y]ou
+     would appear that/I believe] [Y/y/=/=/=/=]ou
 #
 FRAGMENT SAVED.GAMES
      {IT.WOULD.SEEM} [don't have any saved games, though of course you may
@@ -543,7 +544,7 @@ TEXT NOT.A.VALUE
 #
 FRAGMENT cycle NOTHING.TO.UNDO
      [That's not possible./No can do -/Sorry,/Can't be 
-     done -] [T/t]here's nothing left to undo.
+     done -] [T/t/=/=]here's nothing left to undo.
 #
 TEXT NOTHING.TO.REDO
      There's nothing to re-do!
@@ -582,14 +583,13 @@ FRAGMENT increment WIMPS.R.US
      pinch, REMEBER\/RECALL. /]
 #
 TEXT UNDO.TERMS
-    =1. Penalties remain, even if you UNDO their causes.
-    =2. Turns counter keeps ticking on, regardless of any UNDOs.
-    =3. Restoring a game will restore its "undo history", if there is one.
-    =4. Therefore you can't UNDO a game restore.
-    =5. Games saved by a version before 1.61 will have null undo history.
-    =6. You may specify the number of commands to UNDO.
-    =7. You can undo an UNDO by typing UNDO UNDO immediately afterwards.
-
+    /  1. Penalties remain, even if you UNDO their causes.
+    /  2. Turns counter keeps ticking on, regardless of any UNDOs.
+    /  3. Restoring a game will restore its "undo history", if there is one.
+    /  4. Therefore you can't UNDO a game restore.
+    /  5. Undoing a game save does not get rid of the saved game.
+    /  6. You may specify the number of commands to UNDO.
+    /  7. You can undo an UNDO by typing UNDO UNDO immediately afterwards.
 #
 TEXT UNDO.CONDITIONS
    Before you decide on being a wimp, consider the following:
@@ -601,7 +601,8 @@ TEXT increment NO.UNDO
    this game[./!]
 #
 TEXT FIRST.UNDO
-   {WIMPS.R.US} If you insist on using the UNDO and REDO commands, remember:
+   {WIMPS.R.US} If you insist on using the UNDO and REDO commands, bear
+   in mind the following:
 
    {UNDO.TERMS}
 
@@ -623,9 +624,11 @@ TEXT UNDO.NOW
    you [won't/will] be able to [use UNDO from now on/undo the your
    future rash actions].
 #
-TEXT UNDO.CURRENTLY.OFF
+TEXT increment UNDO.CURRENTLY.OFF
    I am not tracking the UNDO history at the moment. If you want me to,
    say UNDO ON.
+
+   [{UNDO.CONDITIONS}/]
 #
 TEXT YOU.DO.IT
    You {ARG1} the {ARG2}.
@@ -783,9 +786,9 @@ TEXT increment TREASURE.NO.BEATER
     beaters].
 #
 TEXT cycle NO.BREAK.WALL
-   [Your puny attack would make no impression on the cave wall/The cave
+   [Your puny attack would make no impression on the # wall/The #
    walls are too sturdy for you to make any progress by trying to
-   smash them down/Bashing cave walls is a simgluarly pointless
+   smash them down/Bashing # walls is a simgluarly pointless
    activity].
 #
 TEXT NO.WALL.CLIMBING
@@ -865,4 +868,59 @@ TEXT increment NEST.RELOCATES
    promptly reappeared in its original place on/translocated to] the
    ground[!/.]
 #
+TEXT increment SWAG.REMAINS
+   [ 
+  \
+   The dwarf must have carried something! As the smoke dissipates, you can
+   see an object left on the floor where the body was./ Aha! The
+   dwarf was carrying something!/ But something is left behind.../]
+#
+TEXT increment PLEASE.NOT
+   [If I've learned anything in my life, it is that in the long term
+   there is no pleasing people. So "please" as you please, but it won't
+   gain you anything./Real adventurers don't plead for favours. Real
+   adventurers do as has to be done -- if they can work it out, that is./
+   I told you once, and I told you twice! /][//All special pleading is
+   ignored in this game./=/No.][// What I tell you three times is true!/]
+#
+TEXT DARWIN.INVITE
+   The lettering on the turtle's back still says "I'm Darwin - ride me!".
+#
+TEXT cycle BIRD.RUCKUS
+   You wave the rod[ and are rewarded by a cacophonous chorus of
+   indignant protests from the bird cages. This in turn results
+   in much angry hissing from the snake pit. Better be careful
+   or all that ruckus will wake the dwarves at the other end
+   of this room./, thereby again provoking loud protests from the
+   caged birds and a hissy fit from the snakes in the pit. You'd better
+   hope that those dwarves at the other end are as fast asleep as
+   their snores suggest!/ with the predictably noisy response from the
+   birds and the snakes, this time joined by some angry loud grumbles
+   from north-east.
+   
+   Well, now you've gone and done it! Several sleepy looking dwarves
+   stagger into view and on seeing you instantly become very alert. 
+   The next few seconds are a confused blur at the end of which you 
+   are very painfully and very thoroughly dead. I did warn you, didn't I?]
+#
+TEXT increment ROD.SCARES.BIRD
+    You wave the rod, but the only result is an indignant squawk
+    from the cage.[ The bird obviously doesn't care for rods being
+    waved about./]
+#
+TEXT DEAL!
+    It's a deal!
+#
+TEXT increment NO.MELTING.ICE
+    [It would take more heat than you can possibly generate to make any
+    impression on these ice walls. And in any case, i/I]t wouldn't get
+    you anywhere.
+#
+TEXT increment CHALICE.CRACK
+    [Yes, shame about that crack! It/The crack] is not very conspicuous,
+    but just large enough for any liquid contents of the chalice to leak out
+    fairly rapidly.
+#
 #########################################################################
+TEXT .NAMED.VALUE
+   The value of the # is $.

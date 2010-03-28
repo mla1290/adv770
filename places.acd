@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2007.
+# Copyleft Mike Arnautov 1984-2010.
 #
 # Now for the place descriptions.
 #
@@ -91,7 +91,7 @@ PLACE +DEBRIS, RUBBLE
    with mud and debris here, but an awkward canyon leads upward
    and west. A note on the wall says
 
-  +       "Magic word XYZZY".
+  +       "Magic word XYZZY"
 
 #
 PLACE +CANYON
@@ -1244,8 +1244,11 @@ PLACE ICE.CAVE.29
    {ICE.TUNNELS} east, south and northwest.
 #
 PLACE ICE.CAVE.30
-   You are in a small chamber melted out of the ice. The only exit is east.
-   Glowing letters in midair spell out the words
+   You're in a small ice chamber. Glowing letters in midair say "This
+   way out".
+  %You are in a small chamber melted out of the ice. The only exit is east.
+   The chamber is dimly illuminated by glowing letters hanging in midair,
+   which spell out the words
 
   +       "This way out".
 
@@ -1745,7 +1748,7 @@ PLACE CRYPT
    dead. The dust on the vaults would seem to indicate that the
    place is rarely used. High above you massive cobwebs almost cover
    the ceiling. The spiral staircase leading up is the only
-   exit. Brrr! It is *cold* down here!
+   exit. Brrr! It is really chilly down here!
 #
 FRAGMENT increment SOMETHING.FISHY
    [a red drawing of a fish. Er... Well... it's /]something red, 
@@ -3017,7 +3020,7 @@ PLACE INSIDE.WELL
 #
 PLACE MAZE    # A dummy to define the word maze and make it a place.
 #
-PLACE SPARE..P..34
+PLACE +VENUE, ALTERNATE  # A dummy to define alternate venue as a location
 #
 PLACE SPARE..P..35
 #

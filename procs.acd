@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2007.
+# Copyleft Mike Arnautov 1984-2010.
 #
 # Procedures.
 #
@@ -28,7 +28,9 @@ proc handle.oil
       quip i.dont.see, oil
    fin
    respond get, drop, throw, pour, i.dont.see, arg2
-   quip hah!
+   ifeq status, 1
+      quip hah!
+   fin
 #
 #=====================================================================
 #
@@ -38,6 +40,8 @@ proc handle.water
          or
       ifnear bottle, full.of.water
          or
+      ifnear bucket, full.of.water
+         or
       ifflag here, h20.here
          flag status, pls.clarify
          quip do.what?, arg1
@@ -45,7 +49,9 @@ proc handle.water
       quip i.dont.see, arg1
    fin
    respond in, get, drop, throw, pour, drink, i.dont.see, arg2
-   quip hah!
+   ifeq status, 1
+      quip hah!
+   fin
 #
 #=====================================================================
 #
@@ -140,7 +146,7 @@ proc bail.out
    ifflag here, not.in.cave
       respond climb, no.wall.climbing
       respond look, nothing.special, wall
-      respond kill, hit, kick, no.break.wall
+      respond kill, hit, kick, no.break.wall, cave
       quip hah!
    fin
 #
@@ -489,7 +495,7 @@ proc dispose.liquid
 #
 #=====================================================================
 #
-proc find.water
+proc find.water, abort
    ifhave bucket
       ifeq bucket, full.of.water
          or
@@ -523,7 +529,6 @@ proc find.water
       proceed
    fin
    ifeq abort, true
-      set abort, false
       quip you.dont.have, water
    fin
    set vessel, none
@@ -532,8 +537,7 @@ proc find.water
 #
 proc water.beanstalk
    ifeq vessel, none
-      set abort, true
-      call find.water
+      call find.water, true
    fin
    ifnear beanstalk
       quip beanstalk.not.thirsty
@@ -663,7 +667,7 @@ proc check.wearing
 #
 #=====================================================================
 #
-proc find.oil
+proc find.oil, abort
    ifhave bottle, full.of.oil
       lda vessel, bottle
       proceed
@@ -681,7 +685,6 @@ proc find.oil
       proceed
    fin
    ifeq abort, true
-      set abort, false
       quip you.dont.have, oil
    fin
    set vessel, none
@@ -690,8 +693,7 @@ proc find.oil
 #
 proc oil.door
    ifeq vessel, none
-      set abort, true
-      call find.oil
+      call find.oil, true
    fin
    deposit vessel, emptied
    ifis vessel flask
@@ -709,8 +711,7 @@ proc oil.door
 #
 proc water.door
    ifeq vessel, none
-      set abort, true
-      call find.water
+      call find.water, true
    fin
    deposit vessel, emptied
    ifis vessel, flask
@@ -719,7 +720,7 @@ proc water.door
    fin
    ifeq door, oiled
       set door, rusty
-      quip hinges..rust
+      quip hinges.rust
    fin
    say you.do, water
    quip it.is, door
@@ -844,31 +845,33 @@ proc choose.swag
 #
 #=====================================================================
 #
-proc kill.some.dwarves
+proc kill.some.dwarves, kill.all
    local dummy
 #
    iterate dummy, 1, 10       # Dummy counter
-      ifeq swag.to.drop, 0
-         call choose.swag
-      fin
-      ifgt swag.to.drop, 0
-         apport swag.to.drop, here
-         ifflag status, light.here
-            say swag.to.drop
+      ifne kill.all, -1       # Unless just chasing them away
+         ifeq swag.to.drop, 0
+            call choose.swag
          fin
-         set swag.to.drop, 0
+         ifgt swag.to.drop, 0
+            apport swag.to.drop, here
+            ifflag status, light.here
+               append swag.remains
+               say swag.to.drop
+            fin
+            set swag.to.drop, 0
+         fin
+         sub dwarfcount, 1
       fin
       sub dwarf, 1
-      sub dwarfcount, 1
       ifeq dwarf, 0
          apport dwarf, limbo
          proceed
       fin
-      ifflag dwarf, plural
+      ifne kill.all, 0
          and
       ifgt dwarf, 0
-      else
-         unflag dwarf, plural
+      else                    # Just one to kill
          proceed
       fin
    fin
@@ -1234,8 +1237,7 @@ proc owl.comes, no.chance, some.chance
       otherwise
       ifnear dwarf
          say owl.kills
-         flag dwarf, plural
-         call kill.some.dwarves
+         call kill.some.dwarves, 1
       otherwise
       ifnear dragon, on.rug
          apport owl, ylem
@@ -1923,112 +1925,6 @@ proc debris.quip
 #
 #=====================================================================
 #
-proc rod.special.stuff
-   set it.is, 0
-   ifkey get
-      ifhere rod
-         proceed
-      fin
-      ifhave dynamite
-         quip you.have.it, arg2
-      fin
-      ifnear dynamite
-      else
-         ifat sw.repository
-            ifflag dynamite, seen
-               quip already.had.one, arg2
-            fin
-         else
-            proceed
-         fin
-      fin
-      flag dynamite, seen
-      iflt invct, strength
-         ifflag dynamite, stealable
-         else
-            flag dynamite, stealable
-            set it.is, 1
-         fin
-         get dynamite
-         set faked.object, 0
-         say you.do, arg1
-         ifeq dynamite, 0
-            quip it.is, rod
-         else
-            quip it.is, arg2
-         fin
-      fin
-      flush
-      quip arms.are.full
-   fin
-   ifany drop, throw
-      ifhave rod
-         set faked.object, 0
-         proceed
-      fin
-      ifhave dynamite
-         drop dynamite
-         say you.do, arg1
-         ifeq dynamite,0
-            quip it.is, rod
-         else
-            quip it.is, arg2
-         fin
-      fin
-      quip you.dont.have, arg2
-   fin
-   ifkey wave
-      ifhave rod
-         or
-      ifhave dynamite
-         quip nothing
-      fin
-      quip you.dont.have, arg2
-   fin
-   ifkey look
-      ifnear rod
-         and
-      ifflag rod, stealable
-         and
-         not
-      ifhave dynamite
-         or
-      ifhave rod
-         quip nothing.special, arg2
-      otherwise
-      ifnear dynamite
-         quip rod.is.dynamite, 0
-      otherwise
-      ifat ne.repository
-         quip bundle.of.rods
-      otherwise
-      ifat sw.repository
-         quip rod.is.dynamite, 1
-      fin
-   else
-      quip rod.fiddling
-   fin
-#
-#=====================================================================
-#
-proc oyster.message
-   ifeq stage, in.repository
-   else
-      quip cant.read.it, oyster
-   fin
-   ifhave oyster
-   else
-      quip oyster.is.bare
-   fin
-   ifflag oyster, big        # Read before?
-      quip same.as.before, inscription
-   fin
-   say oyster.is.hint, hint.cost
-   set context, q.oyster
-   quip read.oyster?
-#
-#=====================================================================
-#
 proc get.score
    local obj.ptr
    local temp.val
@@ -2263,24 +2159,6 @@ proc finis
 #
 #=====================================================================
 #
-proc phog                    # Control fog and glow in fog
-   ifinrange here, plain.1, plain.3
-   else
-      proceed                # Only bother if we are at plain.2!
-   fin
-   random plain.2, 8         # Change color of fog
-   unflag plain.2, lit       # Switch off local lighting
-   call is.it.dark?          # Check for artificial light sources
-   flag plain.2, lit         # Restore local lighting
-   ifflag status, light.here # Do we have light?
-      set glow, 0            # Switch glow off
-   else
-      randomise glow, 1      # Move the glow around
-   fin
-   flag status, light.here   # Recall the natural local illumination
-#
-#=====================================================================
-#
 proc coroner
    flush
    say blank
@@ -2327,6 +2205,138 @@ proc coroner
    choose thirst.time, 600, 700
    set context, q.reincarnate
    quip you.are.dead
+#
+#=====================================================================
+#
+proc rod.special.stuff
+   set it.is, 0
+   ifkey get
+      ifhere rod
+         proceed
+      fin
+      ifhave dynamite
+         quip you.have.it, arg2
+      fin
+      ifnear dynamite
+      else
+         ifat sw.repository
+            ifflag dynamite, seen
+               quip already.had.one, arg2
+            fin
+         else
+            proceed
+         fin
+      fin
+      flag dynamite, seen
+      iflt invct, strength
+         ifflag dynamite, stealable
+         else
+            flag dynamite, stealable
+            set it.is, 1
+         fin
+         get dynamite
+         set faked.object, 0
+         say you.do, arg1
+         ifeq dynamite, 0
+            quip it.is, rod
+         else
+            quip it.is, arg2
+         fin
+      fin
+      flush
+      quip arms.are.full
+   fin
+   ifany drop, throw
+      ifhave rod
+         set faked.object, 0
+         proceed
+      fin
+      ifhave dynamite
+         drop dynamite
+         say you.do, arg1
+         ifeq dynamite,0
+            quip it.is, rod
+         else
+            quip it.is, arg2
+         fin
+      fin
+      quip you.dont.have, arg2
+   fin
+   ifkey wave
+      ifhave rod
+         or
+      ifhave dynamite
+         ifat sw.repository
+            say bird.ruckus
+            ifeq bird.ruckus, 0  # Cycled through!
+               call coroner
+            fin
+            quit
+         else
+            quip nothing
+         fin
+      fin
+      quip you.dont.have, arg2
+   fin
+   ifkey look
+      ifnear rod
+         and
+      ifflag rod, stealable
+         and
+         not
+      ifhave dynamite
+         or
+      ifhave rod
+         quip nothing.special, arg2
+      otherwise
+      ifnear dynamite
+         quip rod.is.dynamite, 0
+      otherwise
+      ifat ne.repository
+         quip bundle.of.rods
+      otherwise
+      ifat sw.repository
+         quip rod.is.dynamite, 1
+      fin
+   else
+      quip rod.fiddling
+   fin
+#
+#=====================================================================
+#
+proc oyster.message
+   ifeq stage, in.repository
+   else
+      quip cant.read.it, oyster
+   fin
+   ifhave oyster
+   else
+      quip oyster.is.bare
+   fin
+   ifflag oyster, big        # Read before?
+      quip same.as.before, inscription
+   fin
+   say oyster.is.hint, hint.cost
+   set context, q.oyster
+   quip read.oyster?
+#
+#=====================================================================
+#
+proc phog                    # Control fog and glow in fog
+   ifinrange here, plain.1, plain.3
+   else
+      proceed                # Only bother if we are at plain.2!
+   fin
+   random plain.2, 8         # Change color of fog
+   unflag plain.2, lit       # Switch off local lighting
+   call is.it.dark?          # Check for artificial light sources
+   flag plain.2, lit         # Restore local lighting
+   ifflag status, light.here # Do we have light?
+      set glow, 0            # Switch glow off
+   else
+      randomise glow, 1      # Move the glow around
+   fin
+   flag status, light.here   # Recall the natural local illumination
 #
 #=====================================================================
 #
@@ -2566,7 +2576,7 @@ proc special.view
    local temp.val
    local desert.offset
 #
-   ifflag status, full.display
+   ifflag status, fulldisplay
       ifinrange here, desert.1, desert.last
          and
          not
@@ -3206,8 +3216,7 @@ proc dwarf.slayer
       mult luck, 10
       chance luck
          say  killed.dwarf
-         unflag dwarf, plural
-         call kill.some.dwarves
+         call kill.some.dwarves, 0
          quit
       fin
       chance luck
@@ -3806,8 +3815,10 @@ proc hint.logic
    otherwise
    ifat plover, alcove, dark
       and
+   ifflag plover, been.here   # We might not be there!
+      and
       not
-   ifflag dark, been.here
+   ifflag pyramid, seen
       lda text.ptr, plover.hint
    otherwise
    ifat plain.2
@@ -4184,8 +4195,7 @@ proc break.vial
       ifnear dwarf
          say blank
          say vial.dwarf, dwarf
-         flag dwarf, plural
-         call kill.some.dwarves
+         call kill.some.dwarves, -1    # Just chase them away
          quit
       fin
       ifnear troll
@@ -4364,8 +4374,7 @@ proc weaponry    # Handle attacks with weapons
              else
                say dwarf.poof
             fin
-            unflag dwarf, plural
-            call kill.some.dwarves
+            call kill.some.dwarves, 0
             ifgt dwarf, 0
                set fleetfoot, 0
                set backlash, 100
@@ -4482,13 +4491,12 @@ proc pass.phrase
 #
 # A fix for the version 1.83, 1.84 idiocy!
 #
-         ifeq pwd, password
-         else
-            sub pwd, password
-            ifeq pwd, 1
-               and
-            ifgt sceptre, 0
-               set pwd, password
+         ifeq password, 733
+            ifis pwd, klaetu
+               lda password, klaetu
+            otherwise
+            ifis pwd, knerl
+               lda password, knerl
             fin
          fin
 #
@@ -4563,6 +4571,9 @@ proc too.dark.for.safety quit.flag
    otherwise
    ifat alcove, catacombs.portal
       say dark.place, 2
+   otherwise
+   ifat ice.cave.29
+      say dark.place, 3
    else
       say it.is.now.dark
    fin
@@ -5576,7 +5587,7 @@ proc vampire.stuff
       fin
    fin
    ifkey water
-      call find.water
+      call find.water, false
       ifeq vessel, none
          quip you.dont.have, water
       fin
@@ -6240,8 +6251,8 @@ proc randomise.texts
    randomise it.would.seem, 0
    randomise vandal!, 0
    randomise caught.climbing, 0
-   randomise fiddle.ok, 0
-   randomise fiddle.ignore, 0
+#   randomise fiddle.ok, 0       # Better not randomise!
+#   randomise fiddle.ignore, 0   # Ditto.
    randomise we.have.light, 0
    randomise nothing.to.undo, 0
    randomise no.kick.it, 0
@@ -6283,9 +6294,33 @@ proc early.restore
 #=====================================================================
 #
 proc restored
+   local tmp
    set context, none
+#
+# The following kludge is necessary to preserve upward compatibility of
+# saved games after placing the block of magic words at the top of the
+# verbs pile. This is further complicated by an earlier cock-up, which
+# actually motivates this change.
+#
+   ifinrange password, 725, 740
+      ifeq password, 738
+         or
+      ifeq password, 739
+         lda password, blerbi
+      otherwise
+      ifeq password, 734
+         lda password, klaetu
+      otherwise
+      ifeq password, 732
+         lda password, knerl
+      otherwise
+      ifle password, 727
+         lda password, snoeze
+      fin
+   fin
+#
    call randomise.texts   
-   ifeq status,0
+   ifeq status, 0
       or
    ifkey yes
       say ok!
@@ -6346,7 +6381,7 @@ proc olorin.check
       else
          set magick, 0
       fin
-      set arg1, bad.word
+      set arg1, badword
    else
       ifgt magick, 0
          set magick, 0
@@ -6482,7 +6517,7 @@ proc beach.stuff
       respond get, salt.h20.bad
    fin
    ifkey drink
-      call find.water
+      call find.water, false
       ifne vessel, none
          proceed
       fin
@@ -7082,6 +7117,12 @@ proc ice.stuff
       fin
       proceed
    fin
+   ifkey ice
+      respond get, hah!
+      respond kill, hit, kick, no.break.wall, ice
+      respond cut, push, pull, no.point.in.that
+      respond melt, no.melting.ice
+   fin
    ifkey go
       or
    ifeq status, 1
@@ -7494,4 +7535,3 @@ proc material, thing, substance
    fin
 #
 #====================================================================
-

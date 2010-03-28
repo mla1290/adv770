@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2007.
+# Copyleft Mike Arnautov 1984-2010.
 #
 # Define some variables.
 #
@@ -32,8 +32,8 @@ variable strength, mushtime, dragtime, masktime, lastclock
 variable escape
 variable magick, backlash, fleetfoot
 variable west.count
-variable spare..v..12
-variable spare..v..13
+variable spare..v..10
+variable spare..v..11
 variable tide
 variable recent.event
 variable shown.vision
@@ -49,7 +49,9 @@ variable swag.count, swag.time
 variable forest.block, forest.trap
 variable vessel
 variable sip.count
-variable result, abort, silence
+variable result, 
+variable spare..v..12
+variable silence
 variable object.state
 variable desloc, desmask, desbit, destime
 variable bridge.limit
