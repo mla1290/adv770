@@ -432,6 +432,12 @@ at slit
          ifhave sunstone
             set direction, arg1
          fin
+      otherwise
+      ifkey rock
+         lda arg1, south
+         ifhave sunstone
+            set direction, arg1
+         fin
       fin
       ifeq stage, mirror.world
          smove  road, end.of.valley, something.strange
@@ -3276,13 +3282,16 @@ at reservoir.north
       respond tracks, ground, darwins.tracks
       proceed
    fin
+   ifkey gong
+      respond get, too.large.to.carry, gong
+      ifkey ring
+         call hit
+      fin
+   fin
    ifkey read
       and
    ifnear darwin
       respond message, inscription, back, darwin, darwin.invite
-   fin
-   ifkey get, gong
-      quip too.large.to.carry, gong
    fin
    ifany in, swim, cross
       and
@@ -6922,7 +6931,8 @@ at nowhere
       ifkey contemplate
          set hint.time, 0
          say lets.start
-         exec 15, result
+         set result, 1        # Nominate persistent flag
+         exec 15, result      # Set it to true
          set vain.contemplation, 1
          goto road
          unflag here, been.here
@@ -6940,13 +6950,6 @@ at nowhere
       proceed
    fin
    respond contemplate, vain.contemplation
-   ifkey basingstoke
-      and
-   ifflag admin, olorin
-      and
-   ifeq escape, 0
-      set escape, -1
-   fin
    ifany zorton, xyzzy, thurb, snoeze, samoht, plugh, phuggg, noside,
       or
    ifany melenkurion, knerl, klaetu, foo, foe, fie, fee, blerbi, basingstoke

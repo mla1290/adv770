@@ -1331,11 +1331,12 @@ OBJECT SPARE..O..28
 #
 OBJECT DWARF, DWARVES
   %[/
-  /]There [/is/are] [/a threatening/two bloodthirsty/three nasty/
+  /There ][/is /are ][/a threatening/two bloodthirsty/three nasty/
    four hostile/five threatening/six bloodthirsty/seven nasty/
-   eight angry/nine hostile and nasty/ten very angry] little
-   dwar[/f/ves] in the room with you!
-  &[The dwarves are an unattractive bunch of short, bearded individuals./
+   eight angry/nine hostile and nasty/ten very angry][/ little
+   dwar][/f/ves][/ in the room with you!]
+  &[No dwarves here!/
+   The dwarves are an unattractive bunch of short, bearded individuals./
    Oh for goodness' sake! What a time to indulge your curiosity!
    Remember what it did to the proverbial cat?]
 #

@@ -742,8 +742,7 @@ TEXT WICKED.UNICORN
    healthy - long and shiny. But the unicorn doesn't look all that
    tame to me.] Best leave [the beast/=/it] alone!
 #
-TEXT STATE.IS.NOW
-   The state is now $.
+TEXT SPARE..T..1M
 #
 TEXT ASSAY.MARKS
    The silver assay marks are too small to make out, and they are not
@@ -920,6 +919,10 @@ TEXT increment CHALICE.CRACK
     [Yes, shame about that crack! It/The crack] is not very conspicuous,
     but just large enough for any liquid contents of the chalice to leak out
     fairly rapidly.
+#
+TEXT cycle NO.NEED.DUNG
+    [As things stand, you have/You have currently] no use for
+    anything [quite //]so [unappetising/unattractive/smelly/unhygienic/messy].
 #
 #########################################################################
 TEXT .NAMED.VALUE

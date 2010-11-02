@@ -30,10 +30,10 @@ variable dwarfcount, clock, stage, nuffink, ok
 variable hint.time
 variable strength, mushtime, dragtime, masktime, lastclock
 variable escape
-variable magick, backlash, fleetfoot
+variable spare..v..10, backlash, fleetfoot
 variable west.count
-variable spare..v..10
 variable spare..v..11
+variable spare..v..12
 variable tide
 variable recent.event
 variable shown.vision
@@ -50,7 +50,7 @@ variable forest.block, forest.trap
 variable vessel
 variable sip.count
 variable result, 
-variable spare..v..12
+variable spare..v..13
 variable silence
 variable object.state
 variable desloc, desmask, desbit, destime

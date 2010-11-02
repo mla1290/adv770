@@ -230,9 +230,6 @@ repeat
       ifflag there, one.exit
          and
       ifloc dwarf, there
-         and
-         not
-      ifflag admin, olorin    # Don't block wizards
          chance 97            # Let him through occasionally
             goto there
             unflag status, moved
@@ -304,9 +301,6 @@ repeat
       say here
       ifat top.of.chapel
          call fishy.stuff
-      fin
-      ifflag status, show.numbers
-         say location.number, here
       fin
       unflag status, brief.now
       ifis there, dark.forest
@@ -2059,7 +2053,6 @@ repeat
    ifeq turns, 20
       unflag status, vocab.prod
    fin
-   call olorin.check
 #
 # Hmmm... Don't recall why we need to check for SAVE here.
 # Safer to leave it. (Might be a remnant from before the time
@@ -2302,14 +2295,9 @@ repeat
 #
    ifkey catacombs
       and
-   ifany go, in, fly
+   ifany go, in
       ifinrange here, catacombs.portal, catacombs.exit
          quip you.are.there
-      otherwise
-      ifkey fly
-         and
-      ifflag admin, olorin
-         move catacombs.13
       otherwise
       ifat catacombs.lobby, rest.area, audience, audience.east
          quip enter.catacombs
@@ -2605,6 +2593,6 @@ repeat
 #=====================================================================
 #
 repeat      # Dummy. Just stops translator grizzling.
-   respond furiously, crabs, boils, quark, stew, eyes, pardon?
+   respond  crabs, eyes, pardon?
 #
 #=====================================================================

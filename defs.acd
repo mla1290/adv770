@@ -71,11 +71,11 @@ flags variable
       .detaildisplay   # Display detailed place/object description
       pls.clarify      # Signals missing object or verb
       juggled          # set by the kernel whenever we move an object
-      ticked           # The main clock (CLOCK4) has just ticked
+      ticked           # The events clock has just ticked
       light.here       # There's light here
       brief.now        # Force brief description, just this one time
       vocab.prod       # May need prodding about the vocabulary command
-      show.numbers     # Show location numbers
+      SPARE..F..1      # Spare flag
       desert.warn      # Just entered the desert section
 #
 # Hardwire the "noun" flag  value as one higher than the verb one.
@@ -212,18 +212,18 @@ flags object
 # Define a flag set for the 'admin' variable
 #
 flags variable
-      ticker            # Call 'tick' label after each move, if set.
+      ticker            # Call 'tick' label after each move, if set
       cameo.tried       # We have tried to do a cameo
       nomagic           # Magic words are being suppressed
       panicked          # He panicked during closure
-      olorin            # He's a wizard
-      ranout            # His lamp just died.
-      SPARE..V..FLAG
+      SPARE..F..2       # Spare flag
+      ranout            # His lamp just died
+      SPARE..F..3       # Spare flag
       fire.out          # Fire emergency cancelled
       edison            # He has just said 'noside'
       chalice.used      # He has drank the pure waters
       quest.accepted    # He accepted the chalice quest
-      glowing           # He's a glowing wizard!
+      SPARE..F..4       # Spare flag
       ok.to.fly         # He's been warned about flying
 #
 # Random quip flags. (Variable 'quips').
@@ -237,18 +237,18 @@ flags variable
       oryan.quip        # O'Ryan, not Orion!
       sunstone.examined # Examined sunstone at least once
       guybrush.quip     # Three-headed monkey is about!
-      dwarf.quip        # Dwarf insisted on his rights.
+      dwarf.quip        # Dwarf insisted on his rights
       crucifix.waved    # No need to suggest doing so
       desert.rat        # He is wise in the ways of the desert
       memory.cost.noted # He's been advised re costs of memory restore
-      litterbug         # He met George.
+      litterbug         # He met George
 #
 # Define bit flags for special hint processing. (Variable 'hints').
 #
 flags variable
       snake.pending   # The first snake hint delivered
       statue.pending  # The first Minotaur gorge hint delivered
-      SPARE..F..1     # Spare
+      SPARE..F..5     # Spare
       helped.him      # Gave him vanilla "HELP" message once
       simple.rule     # Referred to 'simple rule' at Nowhere
       death.is.simple # Advised him how to die

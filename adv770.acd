@@ -2,10 +2,10 @@
 # Copyleft Mike Arnautov 1984-2010.
 #
 Name     Adv770
-Version  1.89
-Date     19 March 2010
+Version  1.90
+Date     01 November 2010
 Author   Mike Arnautov
-Style    A-code 11       # Must stay at 11 for saved game compatibility!!
+Style    A-code 12
 #
 include  defs.acd
 include  vars.acd
@@ -15,9 +15,11 @@ include  places.acd
 include  objects.acd
 include  moretext.acd
 include  procs.acd
+include? debug.acd   # Conditional include
 include  at.acd
 include  actions.acd
 include  init.acd
 include  repeat.acd
+
 #
 ############# That's it, folks! #############

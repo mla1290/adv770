@@ -176,7 +176,7 @@ proc bail.out
          or      
       ifinrange here, sandy.beach, beach.end
          ifeq status, 1
-            flag  status, pls.clarify   # Request clarification
+            flag status, pls.clarify   # Request clarification
             quip do.what?, arg1
          otherwise
          ifkey get
@@ -300,7 +300,7 @@ proc bail.out
          or
       ifkey say
          flag  status, pls.clarify   # Request clarification
-         quip could.you.clarify?, arg1
+         quip could.you.clarify?
       fin
       ifinrange arg1, first.travel, last.travel
          quip dont.know.the.way
@@ -314,7 +314,7 @@ proc bail.out
          ifflag context, arg2.distant
             quip i.dont.see, arg1
          else
-            quip what.about.it
+            quip nocomprende.verb, arg1
          fin
       fin
    otherwise
@@ -728,8 +728,6 @@ proc water.door
 #=====================================================================
 #
 proc is.it.dark?
-   ifflag admin, glowing
-      or
    ifnear lamp, switched.on
       or
    ifflag here, lit
@@ -1159,8 +1157,6 @@ proc owl.flies.off
 #
    flag owl, seen
    ifnear lamp, switched.on
-      or
-   ifflag admin, glowing     # But not if illumination is by starstone!
       say disturbed.owl
       say blank
    fin
@@ -1386,7 +1382,7 @@ proc all.quiet?
       proceed
    fin
    set result, 0
-   ifflag status, ticked        # If clock4 has not ticked
+   ifflag status, ticked        # If clock has not ticked
       or
    ifgt stage, adventuring      # Mustn't be in endgame
       or
@@ -3513,7 +3509,7 @@ proc dwarf.encounter, force
    flag dwarf, seen
    flag axe, seen
    say first.dwarf
-   flag status, ticked         # Prevent any further events
+   flag status, ticked       # Prevent any further events
 #
 #=====================================================================
 #
@@ -4837,6 +4833,7 @@ proc giant.stuff, giving
       flag ravine.west, hintable
       apport giant, stupendous.view
       set stupendous.view, 1
+      set beanstalk.top, 1
       unflag stupendous.view, been.here
       set giant, picnicking
       apport deeds, ylem
@@ -5684,6 +5681,12 @@ proc bridge.stuff
       proceed
    fin
    ifkey throw
+      ifeq status, 1
+         or
+         not
+      ifhave arg2
+         proceed
+      fin
       ifkey skull
          set skull, damaged
          flag skull, unstable
@@ -5795,19 +5798,10 @@ proc positive.vetting
          quip prove.it
       fin
       respond quit, no, n, ok!
-#      ifkey epns
-#      else
-#         quip lets.be.prudent, 0
-#      fin
    fin      
    set context, none
-#   ifkey epns
-#      flag admin, olorin
-#   else
-      add penalties, 10
-      quip oh.pooh
-#   fin
-#   quip to.hear.is.to.obey, 0
+   add penalties, 10
+   quip oh.pooh, 0
 #
 #=====================================================================
 #
@@ -6344,8 +6338,9 @@ proc restored
 #
 proc set.it.up
    set stage, little.joke
-   exec 14, result
-   ifeq result, 1
+   set result, 1     # Nominate persistent flag
+   exec 14, result   # Get its value
+   ifne result, 1
       say spiel
       goto nowhere
       unflag status, moved
@@ -6359,33 +6354,6 @@ proc set.it.up
       say blank
       set context, q.intro
       quip instructions?
-   fin
-#
-#=====================================================================
-#
-proc olorin.check
-   local counter
-#
-   ifinrange arg1, first.wiz, last.wiz
-      lda counter, first.wiz
-      add counter, 1
-      add counter, magick
-      ifeq counter, arg1
-         add counter, 1
-         ifis counter, last.wiz
-            set magick, 0
-            flag admin, olorin
-            quip pardon?
-         fin
-         add magick, 1
-      else
-         set magick, 0
-      fin
-      set arg1, badword
-   else
-      ifgt magick, 0
-         set magick, 0
-      fin
    fin
 #
 #=====================================================================

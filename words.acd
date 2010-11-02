@@ -115,7 +115,7 @@ verb extinguish
 verb wave, =waves, shake, swing, rollers
 verb placate, calm, tame
 verb kill, =k, attack, fight, slay
-verb hit, strike, beat
+verb hit, strike, beat, bang
 verb kick
 verb blow, play
 verb pour
@@ -148,8 +148,6 @@ verb tear
 verb spill
 verb clean
 verb value
-verb increment
-verb decrement
 verb burn, ignite
 verb flip, toggle
 verb melt
@@ -195,7 +193,6 @@ verb vocabulary, =commands, dictionary
 verb yes, =y, =yup, ok, good
 verb no, =nope
 verb maybe, perhaps, possibly
-verb !runout        # Wizards only. Invokes 'clock4' immediately.
 verb tanstaafl
 verb !frobozz       # Not a magic word!
 verb wash
@@ -345,7 +342,6 @@ verb slope, slopes, shoulder
 verb shore, shores, coast
 verb outcrop, outcrops
 verb stem
-verb numbers
 verb structure
 verb me, self, myself
 verb you, yourself
@@ -485,12 +481,4 @@ verb -last.pseudo
 #
 verb except, but
 #
-# Finally, the administrator mode sequence
-#
-verb -first.wiz
-verb !quark
-verb !stew
-verb !boils
-verb !furiously
-verb -last.wiz
-#
+#=====================================================================

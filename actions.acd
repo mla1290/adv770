@@ -221,11 +221,11 @@ action get        # Generalized last-case "get" routine
       ifhave bucket
          quip empty.bucket.first
       fin
-      say need.bucket.for.dung
       ifflag beanstalk, seen
       else
-         quip blank
+         quip no.need.dung
       fin
+      say need.bucket.for.dung
       ifhave helmet
          and
          not
@@ -2108,42 +2108,6 @@ action open trapdoor
 #=====================================================================
 #
 action close
-   ifkey cave
-      and
-   ifflag admin, olorin           # Only wizards can force cave closure
-      ifflag here, not.in.cave,
-         and
-      ifle stage, adventuring
-         goto y2
-         flag status, moved
-      fin
-      say to.hear.is.to.obey, 0
-      ifeq stage, adventuring
-         flag tusk, valued
-         flag rug, valued
-         itobj obj.ptr, valued
-            flag obj.ptr, seen
-            apport obj.ptr, house
-         fin
-         apport starstone, stupendous.view
-         set stage, closing.soon
-      otherwise
-      ifeq stage, closing.soon
-         call closing.time
-      otherwise
-      ifeq stage, exits.barred
-         call close.the.cave
-      otherwise
-      ifeq stage, in.repository
-         call mirror.jump
-      otherwise
-      ifeq stage, middle.of.nowhere
-         call lets.go.back
-      else
-         quip nothing
-      fin
-      quit
-   fin
    default openable
    ifeq status, 2
       and
@@ -2357,10 +2321,6 @@ action normal
 action wizard
    ifat nowhere
       quip later!
-   fin
-   ifflag admin, olorin
-      unflag admin, olorin
-      quip to.hear.is.to.obey, 1
    else
       set context, q.wizard
       quip r.u.a.wizard?
@@ -2449,23 +2409,12 @@ action fly
 #=====================================================================
 #
 action fly
-   ifflag admin, olorin
-      ifeq status, 1
-         flag status, pls.clarify
-         quip where?, arg1
-      fin
-      ifflag arg2, place
-         flag arg2, been.here
-         smove arg2, foof
-      fin
-      quip hah!
-   fin
    ifeq status, 1
+      or
+   ifflag arg2, place
       quip only.wizards
    fin
-   ifnear arg2
-      quip hah!
-   fin
+   quip hah!
 #
 #=====================================================================
 #
@@ -2922,13 +2871,6 @@ action find
             fin
             call bail.out
          fin
-         ifflag admin, olorin
-            ifhave arg2
-               quip you.have.it, arg2
-            fin
-            locate place.ptr, arg2
-            move place.ptr
-         fin
          ifnear arg2
             ifhave arg2
                or
@@ -3241,7 +3183,7 @@ action empty
 # not need to worry about watering/feeding plants -- that's been already
 # handled by the relevant AT code, if applicable.
 #
-   ifany bottle, flask, chalice, vial, bucket
+   ifany bottle, flask, chalice, vial, bucket, packet
       ifhave arg2
       else
          quip you.dont.have, arg2
@@ -3282,6 +3224,10 @@ action empty flask
 #=====================================================================
 #
 action empty
+   ifkey packet
+      call open
+      quit
+   fin
    respond vial, vial.sealed
    ifeq status, 2
       quip hah!
@@ -3652,7 +3598,6 @@ action recall
 #=====================================================================
 #
 action restore
-   local wiz.flag
    local outcome
    local elapsed
 #
@@ -3676,28 +3621,11 @@ action restore
    set status, 2
    lda text.ptr, blank
    save command, text.ptr
-   ifflag admin, olorin
-      set wiz.flag, 1
-   else
-      set wiz.flag, 0
-   fin
-   iflt stage, little.joke
-      add wiz.flag, 2
-   fin
-   save value, wiz.flag      # Save value of wiz.flag over restore attempt
    restore file, outcome     # Attempt to restore image
    ifeq outcome, 3     # No name specified
       quit
    fin
    ifeq outcome, 0     # All well
-      restore value, wiz.flag    # Restore pushed value
-      ifeq wiz.flag, 1
-         or
-      ifeq wiz.flag, 3
-         flag admin, olorin
-      else
-         unflag admin, olorin
-      fin
       exec 8, elapsed       # Get time (in minutes) since game dumped
       iflt elapsed, min.time
          say too.soon, min.time
@@ -4159,9 +4087,6 @@ action samoht
 #=====================================================================
 #
 action thurb
-   ifflag admin, olorin
-      smove ice.cave.30, foof
-   fin
    quip nothing
 #
 #=====================================================================
@@ -4344,15 +4269,6 @@ action phuggg
       fin
    fin
    quit
-#
-#=====================================================================
-#
-action runout
-   ifflag admin, olorin     # Wizard?
-      set clock, 0
-      smove here, ok!
-   fin
-   quip what?
 #
 #=====================================================================
 #
@@ -4705,12 +4621,12 @@ action wear
       proceed
    fin
    ifnear arg2
+      respond crucifix, no.wear.crucifix
       ifflag arg2, wearable
       else
          quip be.serious!
       fin
       respond helmet, no.wear.helmet
-      respond crucifix, no.wear.crucifix
       ifhave arg2
          eval state, arg2
          ifgt state, not.worn
@@ -5022,19 +4938,10 @@ action vocabulary
    fin
    respond travel, vocab.travel
    respond screen, vocab.screen
-   ifkey wizard
-      and
-   ifflag admin, olorin
-      quip vocab.wiz
-   fin       
    ifeq status, 1
       or
    ifkey all
-      ifflag admin, olorin
-         say vocab.wiz
-      else
-         say vocab.general
-      fin
+      say vocab.general
       set context, q.vocab.0
       quip more?
    fin
@@ -5658,7 +5565,7 @@ action chew
       and
    ifnear pine
       flag status, pls.clarify
-      quip could.you.clarify?, arg1
+      quip could.you.clarify?
    fin
    ifat chapel, beams
       and
@@ -5858,34 +5765,6 @@ action screen
 #=====================================================================
 #
 action glow
-   ifflag admin,olorin
-      ifflag admin, glowing
-         unflag admin, glowing
-         say you.glow, 1
-         call is.it.dark?
-         ifflag status, light.here
-            ifat plain.2
-               call phog
-               quip glow
-            fin
-         else
-            call too.dark.for.safety, 1
-         fin
-         quit
-      fin
-      flag admin, glowing
-      say you.glow, 0
-      set glow, 0
-      ifflag status, light.here
-      else
-         flag status, light.here
-         ifnear owl
-            call owl.flies.off
-         fin
-         call describe.here
-      fin
-      quit
-   fin
    quip only.wizards.glow
 #
 #=====================================================================
@@ -6200,23 +6079,7 @@ action knock
 #=====================================================================
 #
 action obtain
-   ifflag admin,olorin
-   else
-      call get
-   fin
-   ifeq status, 2
-      ifflag arg2, object
-         and
-      ifflag arg2, portable
-         get arg2
-         flag arg2, seen
-         ifflag arg2, unstable
-            call unstable.pick.up
-         fin
-         quip you.do.it
-      fin
-      quip hah!
-   fin   
+   call get
 #
 #=====================================================================
 #
@@ -6266,10 +6129,7 @@ action omar
 #=====================================================================
 #
 action mutter
-   ifflag admin, olorin
-      set mutter.time, 0
-      quit
-   fin
+   call say
 #
 #=====================================================================
 #
@@ -6279,9 +6139,6 @@ action why
 #=====================================================================
 #
 action where
-   ifflag admin, olorin
-      call find
-   fin
    ifeq status, 1
       quip right.here
    fin
@@ -6436,19 +6293,6 @@ action plant
 #
 #=====================================================================
 #
-action numbers
-   ifflag admin, olorin
-      ifflag status, show.numbers
-         unflag status, show.numbers
-      else
-         flag status, show.numbers
-      fin
-      quip to.hear.is.to.obey
-   fin
-   quip no.understand
-#
-#=====================================================================
-#
 action value
    ifgt status, 1
       and
@@ -6476,49 +6320,7 @@ action value
 #=====================================================================
 #
 action dump
-   ifflag admin, olorin
-      dump
-      quit
-   fin
    call drop
-#
-#=====================================================================
-#
-action increment
-   local state
-#
-   ifflag admin, olorin
-      ifeq status, 2
-         and
-      ifflag arg2, object
-         eval state, arg2
-         add state, 1
-         deposit arg2, state
-         quip state.is.now, state
-       fin
-   else
-      quip no.understand
-   fin      
-#
-#=====================================================================
-#
-action decrement
-   local state
-#
-   ifflag admin, olorin
-      ifeq status, 2
-         and
-      ifflag arg2, object
-         eval state, arg2
-         ifgt state, 0
-            sub state, 1
-            deposit arg2, state
-         fin
-         quip state.is.now, state
-       fin
-   else
-      quip no.understand
-   fin      
 #
 #=====================================================================
 #

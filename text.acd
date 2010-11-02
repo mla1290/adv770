@@ -1555,8 +1555,8 @@ FRAGMENT PROVE.IT
     Prove it - say the magic word!_
 #
 TEXT OH.POOH
-    Oh, pooh - you are nothing but a charlatan! That little piece of
-    deception is going to cost you 10 points!!
+    Oh, pooh - you are nothing but a charlatan![ That little piece of
+    deception is going to cost you 10 points!!/]
 #
 TEXT NOTHING.OBVIOUS
     Nothing obvious happens[/, but..].
@@ -1993,6 +1993,8 @@ TEXT GONG.RINGS
     Darwin the Tortoise blinks in surprise at the noise, but does nothing.
 #
 TEXT GONG.FETCH
+    You strike the gong a resounding blow.
+
     +\>BONNNNNGGGGGGGGG\<
 
     A hollow voice says, "The Gallop-a-Ghost Tortoise Express is now at
@@ -2706,7 +2708,7 @@ TEXT assigned MUTTERS
 
     [Out of the gloom jumps a little figure. He looks about and says in a
     surprisingly deep voice "Chalice, chalice... Now where did I put that
-    chalice? Strange important powers it has..." With that he 
+    chalice? Strangely important powers it has..." With that he 
     scurries back into the gloom./
     A deep voice behind you says "Where do the eggs come from? There is no
     goose around and the owl can't have done it....". You turn round in
@@ -4053,8 +4055,7 @@ TEXT RATS.MIGHT.EAT.YOU
     Philanthropy is thoroughly out of place here! If you are not jolly
     careful, feeding rats is exactly what you'll be doing pretty soon.
 #
-TEXT WHAT.ABOUT.IT
-    Yeah? What about it?
+TEXT SPARE..T..1
 #
 FRAGMENT cycle DUNNO.HAO
     [Sorry,/I'm afraid/Regrettably,/Alas!/I have to confess that/Believe
@@ -5526,19 +5527,23 @@ TEXT increment CATACOMBS.INFO
    +         Excruciatingly Exciting!
    +         Fabulously Fair!
    +         Gorgeously Gothic!
+   +         Humorously Harrowing!
+   +         Incomparably Ingenious!
+   +         Jyously Jinxed!
 
-    [Oh well... Don't mind me and go ahead. Get "excruciatingly
+    [Oh well... Don't mind me. Go ahead and get yourself "excruciatingly
     excited". I've lived through worse./Not that you need to care about
-    these linguistic excesses of a deranged mind./Which is as may be,
+    these linguistic excesses of a deranged mind./Which is as it may be,
     but quite irrelevant, really./Yawn.../]
 #
 TEXT cycle JUST.A.FOUNTAIN
     It is just a very simple drinking fountain, graciously provided
     by the management in response to popular demand.[
 
-    Oh, all right, if you insist, it *is* just a crude stone basin
+    Oh, all right, if you insist, it *is* a crude stone basin
     into which some water is trickling out of a rusty pipe. What did
-    you expect, a marble collection of dolphins gurgling champagne?///]
+    you expect, a marble collection of dolphins gurgling champagne?
+    Hah!...///]
 #
 TEXT NEW.PREMISES
     The note says: "Moved to new premises."
@@ -5992,14 +5997,9 @@ TEXT STRANGE.BRIDGE
 TEXT INTO.THE.RIVER
     You toss the # into the icy waters of the underground river.
 #
-TEXT TO.HEAR.IS.TO.OBEY
-    To hear is to obey, Oh [Great Wizard/Miserable Worm]!
-
+TEXT SPARE..T..2
 #
-TEXT YOU.GLOW
-    [Your body is surrounded by a magical glow./The glow surrounding
-    your body fades out.]
-
+TEXT SPARE..T..3
 #
 TEXT MEMORY.COSTS
     [My Amazing Memory Act is cheap, but not free. I can memorize the
@@ -7139,19 +7139,7 @@ FRAGMENT cycle TYPO
     I have no idea what "#" might be./ I guess it could be mistyped
     "#"/, i.e. "#"/, so I'll assume that was what you meant.]
 #
-TEXT VOCAB.WIZ
-    Wizard commands:
-
-   /   increment \<object\>        - increment object value
-   /   decrement \<object\>        - decrement object value
-   /   dump                        - dump values and bits
-   /   fetch \<object\> (obtain)   - fetch the object from wherever
-   /   find \<object\>             - go where the object is
-   /   fly \<location\> (teleport) - go to the named location
-   /   glow                        - toggle magical illumination
-   /   mutter                      - cause immediate orc mutter
-   /   next \[up/down]             - go to the next higher/lower location
-
+TEXT SPARE..T..4
 #
 TEXT increment SUNSTONE.NO.FLY
    [Sorry, I can't allow you to board the rug while in possession of the
@@ -7380,7 +7368,7 @@ TEXT NOWHERE.TO.JUMP
     There is nowhere for me to jump to.
 #
 TEXT COULD.YOU.CLARIFY?
-    What do you want me to #?
+    What do you want me to {ARG1}?
 #
 TEXT HELP.AFTER.ALL?
     The familiar beautiful young woman appears. Looking at you imploringly,
@@ -8280,9 +8268,7 @@ TEXT YOU.DONT.HOLD.VESSEL
     There is an empty # here, true, but you should pick it up before
     trying to fill it.
 #
-TEXT LOCATION.NUMBER
-
-    I beg to report to your mightiness that this be location number $.
+TEXT SPARE..T..5
 #
 FRAGMENT increment OWL.GRIPS
     There is a flurry of wingbeats and a loud "HOOT" and [your shoulders

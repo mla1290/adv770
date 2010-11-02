@@ -954,7 +954,7 @@ PLACE +LIMESTONE
   %You are walking along a gently sloping north/south passage lined with
    oddly shaped limestone formations.
 #
-PLACE BARREN
+PLACE +BARREN
    You are at entrance of the barren room.
   %You are standing at the eastern end of a limestone passage, by the
    entrance to a large, barren room. A sign posted above the entrance reads:
@@ -1389,7 +1389,7 @@ PLACE BEANSTALK.TOP
    be too dangerous to climb it any higher. Through gaps in the leaves
    you can see on one side a wide stretch of blue sea far below, while
    on the other side, level with you, is a trampled grassy area
-   surrounded by steep chalk banks. {GIANTS.PICNIC}
+   surrounded by steep chalk banks.[/ {GIANTS.PICNIC}]
 #
 PLACE +REPOSITORY, NE.REPOSITORY
    You're at the northeast end of the repository.
