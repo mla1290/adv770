@@ -299,10 +299,12 @@ TEXT increment NO.BURN.THINGS
 
 #
 TEXT increment STARSTONE.NO.IGNITE
-    [Ah, you've heard of people igniting the starstone? Well, you'll
-    have to work out the where and the how of it. Don't expect me
-    to hand you ready-made solutions on a platter!/You'll have to figure
-    it out for yourself. Sorry.]
+    [Ah, you've heard of people igniting the starstone? Well, for your
+    information, it is not necessary to do so. If you want to do it
+    anyway, you'll have to work out for yourself the where and the how. 
+    It is not my job to advise yuo on such inessentials!/
+    If you insist on lighting up the starstone, you'll have to figure it
+    out for yourself. Sorry.]
 #
 TEXT YOU.KNOW.HOW
     You should know by now how to do that!
@@ -324,9 +326,9 @@ TEXT increment LEAVE.ALARM.ALONE
     purpose in mind, when replacing that red herring that used to adorn 
     the doorway, with a fire alarm. Damaging it might not be a very smart
     move/Interfering with such health and safety equipment as fire alarms,
-    is not I would ever contemplate. And neither should you/I tell you
-    three times: you don't want to damage that fire alarm. And as you
-    should know, what I tell you three times, is true/I thought I'd
+    is not something I would ever contemplate. And neither should you/I
+    tell you three times: you don't want to damage that fire alarm. And
+    as you should know, what I tell you three times, is true/I thought I'd
     made myself clear enough. The answer is "NO"].
 #
 TEXT OH.THAT.ALARM

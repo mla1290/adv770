@@ -292,33 +292,36 @@ proc bail.out
       ifflag arg1, object
          and
       ifnear arg1
-         and
-      ifflag arg1, mortal
-         quip what.about.them, arg1
+         ifflag arg1, mortal
+            quip what.about.them, arg1
+         else
+            flag  status, pls.clarify   # Request clarification
+            quip do.what?, arg1
+         fin
       fin
       ifinrange arg1, first.clarify, last.clarify
-         or
-      ifkey say
+            or
+         ifkey say
          flag  status, pls.clarify   # Request clarification
          quip could.you.clarify?
       fin
       ifinrange arg1, first.travel, last.travel
          quip dont.know.the.way
+      fin
+      ifinrange arg1, first.pseudo, first.general
+         and
+         not
+      ifflag context, arg2.here
+         and
+         not
+      ifflag context, arg2.distant
+         quip i.dont.see, arg1
       else
-         ifinrange arg1, first.pseudo, first.general
-            and
-            not
-         ifflag context, arg2.here
-            and
-            not
-         ifflag context, arg2.distant
-            quip i.dont.see, arg1
-         else
-            quip nocomprende.verb, arg1
-         fin
+         quip nocomprende.verb, arg1
       fin
    otherwise
    ifkey look
+   checkpoint
       ifkey daylight
          and
       ifflag here, not.in.cave
@@ -334,6 +337,7 @@ proc bail.out
       fin
    fin
    respond thumbs, hah!
+   checkpoint
    ifeq status, 2
       and
    ifflag arg2, object

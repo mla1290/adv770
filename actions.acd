@@ -2481,7 +2481,6 @@ action hit
 #
 action kill
    local obj.ptr
-
    ifflag status, light.here
    else
       ifeq status, 1
@@ -2504,9 +2503,14 @@ action kill
    ifkey machine
       call kick
    fin
-   default mortal      # Find default enemy in one exists
+   default mortal      # Find default enemy if one exists
    ifeq status, 1
-      quip pacifist
+      ifeq arg2, ambigword
+         flag status, pls.clarify
+         quip could.you.clarify?
+      else
+         quip pacifist
+      fin
    fin
    ifnear arg2
       respond troll, troll.data
