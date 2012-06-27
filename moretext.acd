@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2010.
+# Copyleft Mike Arnautov 1984-2011.
 #
 # Spill-over random texts. (Only necessary because I made the mistake of
 # mixing some active texts with places and objects definitions. :-(
@@ -926,6 +926,7 @@ TEXT cycle NO.NEED.DUNG
     [As things stand, you have/You have currently] no use for
     anything [quite //]so [unappetising/unattractive/smelly/unhygienic/messy].
 #
+TEXT NOT.AT.CLIFF.BASE
+    [Nothing to climb here. /]You are not actually at the cliff's base!
+#
 #########################################################################
-TEXT .NAMED.VALUE
-   The value of the # is $.

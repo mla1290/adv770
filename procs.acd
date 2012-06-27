@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2010.
+# Copyleft Mike Arnautov 1984-2011.
 #
 # Procedures.
 #
@@ -321,7 +321,6 @@ proc bail.out
       fin
    otherwise
    ifkey look
-   checkpoint
       ifkey daylight
          and
       ifflag here, not.in.cave
@@ -337,7 +336,6 @@ proc bail.out
       fin
    fin
    respond thumbs, hah!
-   checkpoint
    ifeq status, 2
       and
    ifflag arg2, object
@@ -7482,6 +7480,11 @@ proc which.to.restore?
       say restoring.game, arg2
       proceed
    fin
+   ifeq count, 0
+      and
+   ifcgi
+      quip "You have no saved games to restore."
+   fin
    say saved.games, count
    ifgt count, 0
       and
@@ -7499,11 +7502,53 @@ proc which.to.restore?
 #
 #====================================================================
 #
+proc do.materials
+   call material, nugget, gold
+   call material, crucifix, gold
+   call material, bars, silver
+   call material, seal, quartz
+   call material, gong, bronze
+   call material, crown, iridium
+   call material, pyramid, platinum
+   call material, beads, turquoise
+   call material, ring, mithril
+   call material, bracelet, jade
+   call material, tusk, ivory
+   call material, crucifix, amethyst
+   call material, flower, metal
+   call material, wrapper, paper
+   call material, packet, paper
+   call material, knocker, brass
+   call material, door, iron
+   call material, ironwork, iron
+   ifnear chest
+      or
+   ifnear door2
+      and
+      not
+   ifnear gates
+      and
+      not
+   ifnear door
+      and
+   ifany iron, ironwork, strips
+      respond look, solid.strips
+      flag context, arg2.here
+   fin
+#
+#====================================================================
+#
 proc material, thing, substance
    ifkey substance
       and
    ifnear thing
       fakecom substance, thing
    fin
+#
+#====================================================================
+#
+proc try.dir dir, destination
+   call consult.sunstone, dir
+   move destination
 #
 #====================================================================

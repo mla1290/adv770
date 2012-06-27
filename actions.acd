@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2010.
+# Copyleft Mike Arnautov 1984-2011.
 #
 # This module defines the actions to be taken when certain
 # verb, verb/object, verb/verb or object/object word sequences
@@ -3606,11 +3606,11 @@ action restore
    local elapsed
 #
    iflt status, 2
-      ifcgi             # CGI mode?
-         set context, q.restore.what
-         set status, no.match
-         quip restore.what?, 0
-      fin
+#      ifcgi             # CGI mode?
+#         set context, q.restore.what
+#         set status, no.match
+#         quip restore.what?, 0
+#      fin
       call which.to.restore?
    else
       set arg2, 0     # Allow REESTORE QUIT
@@ -6615,11 +6615,15 @@ action melt
 #
 action again
    ifeq status, 2
-      and
-   iftyped r      # Only if he typed R rahter than AGAIN or REPEAT
-      and
-   ifflag arg2, object
-      fakecom again, drop
+      call do.materials
+      iftyped r      # Only if he typed R rahter than AGAIN or REPEAT
+         and
+      ifflag arg2, object
+         fakecom again, drop
+      else
+         quip you.dont.have, arg2
+#         quip no.understand
+      fin
    fin
 #
 ######################################################################

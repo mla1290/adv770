@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2010.
+# Copyleft Mike Arnautov 1984-2011.
 #
 # "Random" texts.
 #
@@ -4321,7 +4321,7 @@ TEXT FOREST.TOO.DENSE
     The forest in that direction is too dense to fight your way through.
 #
 TEXT DWARF.GONE
-     The dwar[f has/ves have] vanished!
+     The dwar[/f has/ves have] vanished!
 #
 TEXT NO.DISARM.DWARF
      You make a wild grab for [/the/a] dwarf's knife, but naturally
@@ -8445,7 +8445,7 @@ TEXT VIAL.EFFECT
    into the distance./
    The spider twitches uneasily, but stands her ground./
    With a contemptuous growl the ogre waves the vapor aside./
-   The vampire twitches his nose at the vapour, but is too polite
+   The vampire twitches his nose at the vapour, but is clearly too polite
    to comment on your outlandish behaviour.]
 #
 TEXT OBERONS.SYGIL
@@ -10292,7 +10292,6 @@ TEXT ERROR
     Sorry, a runtime error has occurred. Please report its context
     to Mike Arnautov: mla@mipmip.org.
 #
-TEXT .VALUE.OF
-    Value is $.
+TEXT SPARE..T..6
 #
 ###################################################################

@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2010.
+# Copyleft Mike Arnautov 1984-2011.
 #
 # The following acode procedures are associated with
 # individual places.
@@ -289,9 +289,7 @@ at building
       respond out, east, road, wall.there
    fin
    ifany road, out, west
-      lda direction, west
-      call consult.sunstone, direction
-      move road
+      call try.dir, west, road
    fin
    ifkey go, building
       quip already.inside, building
@@ -750,7 +748,7 @@ at pit
    fin
    ifkey go, on
       quip crack.too.small
-   fin      
+   fin
    ifkey down
       and
    ifany steps, pit, climb
@@ -758,19 +756,24 @@ at pit
    ifkey in, crack
       set status, 1
    fin
-   ifkey go
+ checkpoint
+   ifany go, jump
       or
    ifeq status, 1
+ checkpoint
       move entrance, in.cave
       move debris, debris
       move passage, east, bird.chamber
+ checkpoint
       ifeq grate, unlocked
          move depression, depression
       else
          smove depression, in.cave, cant.pass.grate
       fin
       respond west, crack, crack.too.small
+ checkpoint
       ifany down, pit, steps
+ checkpoint
          ifhere steps
             move mists
          fin
@@ -778,14 +781,18 @@ at pit
          goto mists
          call coroner
       fin
+ checkpoint
       ifkey jump
+ checkpoint
          goto mists
          call splatter
       fin
    fin
+ checkpoint
    ifany crack, pit, steps
       flag context, arg2.here
    fin
+ checkpoint
    lda throw.here, mists
    lda throw.text, throw.pit
 #
@@ -1018,6 +1025,9 @@ at west.pit.end
    ifkey look
       respond down, pit, pit.view, plant
       respond hole, its.a.hole
+      ifgt plant, 1
+         respond plant, its.a.plant, plant
+      fin
       proceed
    fin
    ifkey hole
@@ -1064,6 +1074,11 @@ at west.pit.end
       move east, cross, east.pit.end
       move west, slab, slab
       move down, pit, west.pit
+   fin
+   ifkey plant
+      and
+   ifgt plant, 1
+      flag context, arg2.here
    fin
    lda throw.here, west.pit
    lda throw.text, throw.pit
@@ -5564,13 +5579,16 @@ at rock.shelf
       respond up, below.cliff, 0
       proceed
    fin
-   ifkey down, steps
+   ifany down, steps
       set status, 1
+   otherwise
+   ifkey climb
+      quip no.climb.cliff
    fin
    ifkey go
       or
    ifeq status, 1
-      ifany down, steps
+      ifany down, steps, climb, beach, west
          lda direction, west
          call consult.sunstone, direction
       fin
@@ -5604,8 +5622,11 @@ at rocky.beach
       flag context, arg2.here
       proceed
    fin
+   ifkey climb, cliff
+      quip not.at.cliff.base, 1
+   fin
    call beach.stuff
-   ifkey up, steps
+   ifkey up, steps, climb
       set status, 1
    fin
    ifkey go
@@ -5615,7 +5636,9 @@ at rocky.beach
          call follow.it, sandy.beach, north, none, none
       fin
       move north, sandy.beach
-      move up, steps, east, rock.shelf
+      ifany up, steps, climb, east
+         call try.dir, east, rock.shelf
+      fin
    fin
    ifany shelf, steps, outcrops, cliff, chalk
       flag context, arg2.here
@@ -5625,6 +5648,7 @@ at rocky.beach
 #
 at sandy.beach
    fakecom chalk, cliff      
+   respond climb, no.climb.cliff
    call beach.stuff
    ifkey go
       or
@@ -5642,6 +5666,7 @@ at sandy.beach
 at wide.beach
    fakecom chalk, cliff
    call beach.stuff
+   respond climb, not.at.cliff.base, 0
    ifkey go
       or
    ifeq status, 1
@@ -5658,6 +5683,7 @@ at wide.beach
 at beach.end
    respond jumble, no.pass.jumble
    call beach.stuff
+   respond climb, no.climb.cliff
    ifkey go
       or
    ifeq status, 1
@@ -5779,10 +5805,12 @@ at beanstalk.bottom
          fin
          quip its.too.small, beanstalk
       fin
-      move north, nw, beach.end
+      move north, beach.end
+      move nw, beach.end
       move west, wide.beach
-      move sw, sandy.beach
-      move beach, sandy.beach
+      ifany sw, beach
+         call try.dir, sw, sandy.beach
+      fin
       respond south, outcrop.blocks
    fin
 #
@@ -5999,7 +6027,7 @@ at beanstalk.top
          ifhave mask, worn
             quip giant.might.push
          fin
-         move stupendous.view
+         move east, stupendous.view
       fin
    fin
    lda drop.here, beanstalk.bottom
@@ -14577,6 +14605,7 @@ at by.temple
    ifany inscription, words, note, notice, message
       ifany read, look
          set what.ring, 2
+         flag quips, oryan.quip
          quip oryans.daughter
       fin
       ifeq status, 1

@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2010.
+# Copyleft Mike Arnautov 1984-2011.
 #
 # Here follow the object definitions.
 #
@@ -87,7 +87,7 @@ OBJECT BLOB    # Rover, to all you "The Prisoner" fans
   &Oh for goodness' sake!  What a time to indulge your curiosity!  Remember
    what it did to the proverbial cat?
 #
-OBJECT  -DOOR1       # The door to the mines
+OBJECT -DOOR1       # The door to the mines
   &The door is on a small size, probably meant for dwarves rather
    than humans. It is made of some ancient wood, weathered to a
    rich, nearly black colour. It looks *very* solid.[ There is no
@@ -977,7 +977,7 @@ OBJECT BEANSTALK
    "FERTILISER!! FERTILISER!!"/A gigantic beanstalk stretches all
    the way up the cliff.]
 #
-OBJECT  -BEANSTALK2  # Phony beanstalk visible from the picnic place
+OBJECT -BEANSTALK2  # Phony beanstalk visible from the picnic place
    %[//
    The top of a huge beanstalk is poking up over the edge of the cliff.]
 #
@@ -1201,7 +1201,7 @@ OBJECT KNOCKER, =DOOR-KNOCKER, =LION, =HEAD, =CLAPPER
    unusual arrangement in my experience: door knockers are commonly mounted
    on doors, not on walls!
 #
-OBJECT  -DOOR2       # Dwarves' stores door
+OBJECT -DOOR2       # Dwarves' stores door
   &The door is made of solid oak, darkened with age, and reinforced with
    iron strips. It is [firmly locked and quite possibly bound into place
    by a powerful spell for good measure. Dwarves usually say what they
@@ -1275,7 +1275,7 @@ OBJECT POSTER
     the Rocky Beach, escape from the Giant's dungeon, use the chalice,
     get down from the Basalt Shelf, get to the island visible from the
     cliff's edge, and deal with the card playing dwarves. A visit to
-    the picnicking giant may also be of benefit. And please note that the
+    the picnicking giant may also be of benefit. Also, please note that the
     Spirit of the Catacombs appears to have developed a rather skewed
     sense of humour of late - we apologise for any inconvenience.
 #

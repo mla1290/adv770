@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2010.
+# Copyleft Mike Arnautov 1984-2011.
 #
 # Now for the place descriptions.
 #
@@ -2003,7 +2003,7 @@ PLACE FOREST.11
 #
 PLACE FOREST.12
    {SUNLIT.FOREST} rapidly growing gloomy and dark to
-   the east and south.
+   the east and south[/; an overgrown path seems to be leading SE].
   %{SUNLIT.FOREST} rapidly growing gloomy and dark to
    the east and south.[/ Looking carefully, you can see the merest
    suggestion of an overgrown path, leading into the dark forest

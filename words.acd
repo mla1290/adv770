@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2010.
+# Copyleft Mike Arnautov 1984-2011.
 #
 # Words to be ignored
 #
@@ -51,7 +51,7 @@ verb rest, wait                  # In case players type REST MYGAME
 verb contemplate, meditate
 verb sorry, thanks
 verb say, =talk, chant, sing, utter, mumble, shout, speak, yell
-verb laugh, =lol, =rotfl, =rofl, =hehehehehe, =hahahahaha, =hohohohoho, =heeheeheeheehee, smirk, grin, smile
+verb laugh, =!lol, =!rotfl, =!rofl, =hehehehehe, =hahahahaha, =hohohohoho, =heeheeheeheehee, smirk, grin, smile
 verb !length, =!line, =!width
 verb !scroll, =!screen, =!depth
 verb !margin, =!offset
@@ -202,7 +202,7 @@ verb unroll, spread
 verb cheat
 verb dwarvish
 verb english
-verb put insert
+verb put, insert
 verb attach
 verb justify
 verb think

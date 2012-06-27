@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2010.
+# Copyleft Mike Arnautov 1984-2011.
 #
 # And here, at long last, is the main program!
 #
@@ -56,6 +56,25 @@ repeat
    local temp.val
    local event.flag
    local island.event
+#
+# Skip this section if we have a pending context (i.e. the player command
+# is an answer to a specific question).
+#
+   ifgt context, none
+      proceed
+   fin
+#
+# Make sure dwarves do not drop objects which are no longer in the
+#  store room.
+#
+   ifgt swag.to.drop, 0
+      and
+      not
+   ifloc swag.to.drop, storeroom
+      set swag.to.drop, 0
+   fin
+#
+# What's gone for good must not remain schizoid!
 # 
    itobj obj.ptr, schizoid, ylem
       ifloc obj.ptr, limbo
@@ -63,9 +82,9 @@ repeat
          unflag obj.ptr, schizoid   # It must not appear INHAND!
       fin
    fin
-   ifgt context, none
-      proceed
-   fin
+#
+# Are we ready to allow spontaneous events?
+#
    ifne recent.event, none
       ifflag recent.event, just.happened
          set recent.event, none
@@ -74,16 +93,20 @@ repeat
          flag recent.event, just.happened
       fin
    fin
+#
+# Make choice of floor/ground as appropriate.
+#
    ifflag here, not.in.cave
       and
       not
    ifflag here, indoors
       or
    ifat sea.view
-      set FLOOR?, 1
+      set floor?, 1
    else
-      set FLOOR?, 0
+      set floor?, 0
    fin
+#
    random   temp.val, 100    # Kick the random number generator
    call is.it.dark?
    ifat island.09
@@ -1460,19 +1483,37 @@ repeat
          or
       ifis arg2, it
          set the.it, it
+         ifis the.it, plant2
+            lda the.it, plant
+         otherwise
+         ifis the.it, troll2
+            lda the.it, troll
+         otherwise
+         ifis the.it, fake.orb
+            lda the.it, orb
+         otherwise
+         ifis the.it, beanstalk2
+            lda the.it, beanstalk
+         otherwise
+         ifis the.it, door1
+            or
+         ifis the.it, door2
+            or
+         ifis the.it, door3
+            or
+         ifis the.it, door4
+            lda the.it, door
+         otherwise
          ifis the.it, dynamite
             ifkey drop
                and
             ifhave rod
                or
             ifeq dynamite, 0
-               fakecom it, rod
-            else
-               fakecom it, the.it
+               lda the.it, rod
             fin
-         else      
-            fakecom it, the.it
          fin
+         fakecom it, the.it
       fin
    fin
 #
@@ -1572,38 +1613,7 @@ repeat
 #
 # Handle various materials
 #
-   call material, nugget, gold
-   call material, crucifix, gold
-   call material, bars, silver
-   call material, seal, quartz
-   call material, gong, bronze
-   call material, crown, iridium
-   call material, pyramid, platinum
-   call material, beads, turquoise
-   call material, ring, mithril
-   call material, bracelet, jade
-   call material, tusk, ivory
-   call material, crucifix, amethyst
-   call material, flower, metal
-   call material, wrapper, paper
-   call material, packet, paper
-   call material, knocker, brass
-   call material, door, iron
-   call material, ironwork, iron
-   ifnear chest
-      or
-   ifnear door2
-      and
-      not
-   ifnear gates
-      and
-      not
-   ifnear door
-      and
-   ifany iron, ironwork, strips
-      respond look, solid.strips
-      flag context, arg2.here
-   fin
+   call do.materials
 #
 # DETOUR BUSHES is a special.
 #

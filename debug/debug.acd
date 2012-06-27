@@ -72,6 +72,12 @@ text increment NO.DESTINATION
     [Yeah, OK, we can {arg1}. But y/Y]ou should also say *where* you want
     to {arg1}!
 #
+text .value.of
+    Variable value is $.
+#
+text .named.value
+    The value of # is $.
+#
 #=====================================================================
 #
 proc is.it.dark?
