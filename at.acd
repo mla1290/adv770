@@ -7497,7 +7497,7 @@ at rest.area
    ifkey rest
       and
    ifeq status, 1
-      quip you.rest
+      quip you.rest, 0
    fin
    ifkey go
       or

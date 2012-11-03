@@ -445,7 +445,7 @@ TEXT HELP.DATA.END
     in the Colossal Cave has any particular purpose, even though most
     things and beings do have one (or more).
 
-   +_______________________Good luck!
+   + _______________________Good luck!
 #
 TEXT CANT.HELP.YOU
     [Well, you do seem to be having problems, don't you? Unfortunately, I'm
@@ -2315,18 +2315,18 @@ TEXT GROPE.FALL
     Hmmph - you're not asking for much, are you - it's pitch dark in here!
     Well, I'll grope around and try to find the #.....
 
-   / \{hunt\}
-   /         \{hunt\}
-   /                  \{rummage\}
-   /                              \{trip!\}
-   /                                       Aaaiiii
-   /                                              iie
-   /                                                 ee
-   /                                                   e
-   /                                                    e
-   /                                                    e
-   /                                                    e
-   /                                                     \>SPLAT!\<
+   = \{hunt\}
+   =         \{hunt\}
+   =                  \{rummage\}
+   =                              \{trip!\}
+   =                                       Aaaiiii
+   =                                              iie
+   =                                                 ee
+   =                                                   e
+   =                                                    e
+   =                                                    e
+   =                                                    e
+   =                                                     \>SPLAT!\<
  
     You stumbled into a pit and broke your back!
 #
@@ -2335,17 +2335,17 @@ TEXT GROPE.MISS
     and I'll have to grope around to try to find the #.
     Well, if I must, I must.....
 
-   /                          \{hunt\}
-   /                                     \{search\}
-   /                                                \{hunt\}
-   /            \{rummage\}
-   /   \{peer\}
-   /                      \{touch\}
-   /       \{hunt\}
-   /                             \>scrape\<
-   /                                        Youch! \{curse\}
-   /            \{hunt\}
-   /                          \{seek\}
+   =                          \{hunt\}
+   =                                     \{search\}
+   =                                                \{hunt\}
+   =            \{rummage\}
+   =   \{peer\}
+   =                      \{touch\}
+   =       \{hunt\}
+   =                             \>scrape\<
+   =                                        Youch! \{curse\}
+   =            \{hunt\}
+   =                          \{seek\}
 
     No luck - I can't find the #! If you could get me some light in here,
     maybe I'd be able to do better. Sorry....
@@ -3806,10 +3806,10 @@ TEXT VOCAB.VERBS
     info, instructions (intro), inventory (i), jump, kick, kill, knock, lift,
     light (on), listen, look (l, examine, x), memorize (remember), open
     (unlock), play, pour, quit (q, cancel, abort), read, recall, redo,
-    reflect, remove, rest (wait), restore, ride, rub (polish), save, say,
-    score (sc), scream, scry, sip (taste), tame (placate), terse, throw (th),
-    translate, undo, upstream, verbose, vocabulary, wash, wave (swing),
-    wear.
+    reflect, remove, rest (wait), restore, ride, roll, rub (polish),
+    save, say, score (sc), scream, scry, sip (taste), tame (placate), terse,
+    throw (th), translate, undo, unroll, upstream, verbose, vocabulary, wash,
+    wave (swing), wear.
 #
 FRAGMENT VOCAB.NOUNS
     The below list of nouns is largely confined to things 
@@ -3905,9 +3905,8 @@ TEXT VOCAB.TRAVEL
 #
 TEXT VOCAB.SCREEN
     There are several commands affecting screen display, though please 
-    note that these have *no* effect on Glk-instrumented executables, or
-    if the game is being run through a CGI front-end (i.e. is played 
-    through a Web browser).
+    note that these have no effectat all if the game using a browser 
+    for display.
 
     screen (depth, scroll) followed by a number, specifies the number
     of text lines in your screen (or window) -- the default value is 24,
@@ -3924,7 +3923,8 @@ TEXT VOCAB.SCREEN
     displayed text -- the default is no justification.
 
     All of these options, and some others too, can be specified in the
-    command which invokes the game. See the README file for details.
+    command which invokes the game, or in the A-code configuration file.
+    See the README file for details.
 #
 TEXT HELLO.SAILOR
     Hello, sailor! What are you doing in THIS game?!
