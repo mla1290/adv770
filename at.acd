@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2011.
+# Copyleft Mike Arnautov 1984-2013.
 #
 # The following acode procedures are associated with
 # individual places.
@@ -756,24 +756,19 @@ at pit
    ifkey in, crack
       set status, 1
    fin
- checkpoint
    ifany go, jump
       or
    ifeq status, 1
- checkpoint
       move entrance, in.cave
       move debris, debris
       move passage, east, bird.chamber
- checkpoint
       ifeq grate, unlocked
          move depression, depression
       else
          smove depression, in.cave, cant.pass.grate
       fin
       respond west, crack, crack.too.small
- checkpoint
       ifany down, pit, steps
- checkpoint
          ifhere steps
             move mists
          fin
@@ -781,18 +776,14 @@ at pit
          goto mists
          call coroner
       fin
- checkpoint
       ifkey jump
- checkpoint
          goto mists
          call splatter
       fin
    fin
- checkpoint
    ifany crack, pit, steps
       flag context, arg2.here
    fin
- checkpoint
    lda throw.here, mists
    lda throw.text, throw.pit
 #
@@ -4305,9 +4296,14 @@ at mazed.140
       respond passage, tunnel, corridor, dark.exit, passage
       proceed
    fin
-   ifkey drop, coins
+   ifkey drop
       and
-   ifhave coins
+   ifany coins, drachma, obolus, bag
+      and
+   ifhave arg2
+      drop arg2
+      respond obolus, drachma, coin.no.good, arg2
+      respond bag, not.legal.tender
       apport coins, ylem
       apport batteries, here
       flag batteries, seen
@@ -10872,13 +10868,13 @@ at north.of.building
          call consult.sunstone, direction
       fin
       ifeq stage, mirror.world
-         smove house, road, dark.forest, something.strange
+         smove road, dark.forest, something.strange
       fin
       move north, forest, forest.6
       move ne, forest.7
       move east, forest.8
       move se, east.of.building
-      move sw, building, road, road
+      move sw, road, road
       move west, forest.4
       move nw, forest.5
       ifkey south
@@ -10949,7 +10945,7 @@ at east.of.building
       move sw, south.of.building
       move nw, north.of.building
       ifeq stage, mirror.world
-         smove building, road, forest.10, something.strange
+         smove road, forest.10, something.strange
       fin
       move building, road, road
       ifkey west
@@ -10985,10 +10981,10 @@ at south.of.building
       move south, forest, forest.18
       move sw, slit
       ifeq stage, mirror.world
-         smove building, road, forest.13, something.strange
+         smove road, forest.13, something.strange
       fin
       move west, down, valley, valley
-      move nw, building, road, road
+      move nw, road, road
       ifkey north
          chance 50
             move east.of.building

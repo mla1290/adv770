@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2011.
+# Copyleft Mike Arnautov 1984-2013.
 #
 # Spill-over random texts. (Only necessary because I made the mistake of
 # mixing some active texts with places and objects definitions. :-(
@@ -62,7 +62,7 @@ TEXT NO.HOLD.CLIFF
 TEXT increment WELLHOUSE.NO.DOOR
     [The building doesn't actually have a door - merely a doorway, that
     is an opening for entering and exiting. But no door. Nohow.
-    Contrarywise/Look again - there's still no door here. just a 
+    Contrariwise/Look again - there's still no door here. just a 
     doorway/You forget. No door].
 #
 FRAGMENT cycle NOTHING.DOING.1
@@ -302,7 +302,7 @@ TEXT increment STARSTONE.NO.IGNITE
     [Ah, you've heard of people igniting the starstone? Well, for your
     information, it is not necessary to do so. If you want to do it
     anyway, you'll have to work out for yourself the where and the how. 
-    It is not my job to advise yuo on such inessentials!/
+    It is not my job to advise you on such inessentials!/
     If you insist on lighting up the starstone, you'll have to figure it
     out for yourself. Sorry.]
 #
@@ -336,7 +336,7 @@ TEXT OH.THAT.ALARM
 
 #
 TEXT increment GOOD.RUG.IDEA
-    _[Were you hoping to unroll the rug over the quicksend and then
+    _[Were you hoping to unroll the rug over the quicksand and then
     dash over it? Unfortunately the rug is too small, and that patch
     of smooth sand is too large, so it's no go - but it was a good 
     idea, I'll give you that/And it still does you no good].
@@ -355,7 +355,7 @@ TEXT
 TEXT increment NO.SEE.BUTTERFLY
     [They should be somewhere here, those blue butterflies, but what
     with being blue, they would be hard to spot against all that blue
-    sea and sky/You strain your eyes in serach of the blue butterflies
+    sea and sky/You strain your eyes in search of the blue butterflies
     allegedly wheeling over the cliff tops, but they don't seem
     to be around at the moment/Nope, no butterflies to be seen. Sorry].
 #
@@ -464,7 +464,7 @@ FRAGMENT SHAFT.HINT
      Are you trying to avoid drowning in that yuck down there?_
 TEXT
      The smell, a pungent mixture of sewage and sea water, might
-     offer a clue. Think about it, and don't be too hasty in jumping to
+     offer a clue. Think about it and don't be too hasty in jumping to
      conclusions.
 #
 TEXT increment NO.GOOD.WAITING
@@ -490,7 +490,7 @@ TEXT CHEATER
 #
 TEXT IMPERFECT.CHEATER
      You now have the dubious distinction of being classified as an
-     Imprefect Cheater. Must try harder!
+     Imperfect Cheater. Must try harder!
 #
 TEXT YOU.ARE.A.CHEATER
      That's not a very sporting attitude! You clearly have no regard
@@ -578,11 +578,11 @@ TEXT RESULT.IS
 
 #
 TEXT cycle WE.HAVE.LIGHT
-     [We have light/It is no longer dark/There's ligh here again]!
+     [We have light/It is no longer dark/There's light here again]!
 #
 FRAGMENT increment WIMPS.R.US
      [UNDO is for wimps! *Real* adventurers use SAVE\/RESTORE, or at a
-     pinch, REMEBER\/RECALL. /]
+     pinch, REMEMBER\/RECALL. /]
 #
 TEXT UNDO.TERMS
     /  1. Penalties remain, even if you UNDO their causes.
@@ -789,7 +789,7 @@ TEXT increment TREASURE.NO.BEATER
 TEXT cycle NO.BREAK.WALL
    [Your puny attack would make no impression on the # wall/The #
    walls are too sturdy for you to make any progress by trying to
-   smash them down/Bashing # walls is a simgluarly pointless
+   smash them down/Bashing # walls is a simngluarly pointless
    activity].
 #
 TEXT NO.WALL.CLIMBING
@@ -797,7 +797,7 @@ TEXT NO.WALL.CLIMBING
 #
 TEXT increment STONE.RIVERS
    [OK, maybe "rivers" is putting it a bit strongly. T/As I said: t]he
-   walls look like solidifed, partially overlapping frozen flows of
+   walls look like solidified, partially overlapping frozen flows of
    orange stone.[ Please don't feel this fact to have any profound
    significance. Or a non-profound one, for that matter./]
 #
@@ -854,7 +854,7 @@ TEXT increment BUMPY.LANDING
 
 #
 TEXT increment PORTCULLIS.IN.THE.WAY
-   The # is too large to be thrown through the porcullis.[ And throwing
+   The # is too large to be thrown through the portcullis.[ And throwing
    things here is not a recommended approach anyway./]
 #
 TEXT EGGS.RELOCATE
@@ -928,5 +928,11 @@ TEXT cycle NO.NEED.DUNG
 #
 TEXT NOT.AT.CLIFF.BASE
     [Nothing to climb here. /]You are not actually at the cliff's base!
+#
+TEXT increment NOT.LEGAL.TENDER
+    You drop the bag[, luckily missing your foot. Were you hoping for
+    something more? I can't see why. The bag is *FAR* too big to stuff in
+    the coin slot and in any case, pieces of eight are not a legal
+    coinage around here/].
 #
 #########################################################################

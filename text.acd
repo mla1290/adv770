@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2011.
+# Copyleft Mike Arnautov 1984-2013.
 #
 # "Random" texts.
 #
@@ -720,7 +720,7 @@ TEXT random ARMS.ARE.EMPTY
 #
 TEXT increment CANT.PASS.GRATE
     You can't pass through a locked steel grate![/ What makes you
-    expect ohterwise? Blind hope?/ Why don't you listen to 
+    expect otherwise? Blind hope?/ Why don't you listen to 
     me?!/ (Sigh...)/]
 #
 TEXT IT.IS.HERE.NOW
@@ -1422,7 +1422,7 @@ TEXT POINTS.NEEDED
 #
 TEXT NEW.BATTERIES
     The old batteries in your lamp were pretty well shot - I've taken the
-    the liberty of putting in the new ones.
+    liberty of putting in the new ones.
 #
 TEXT increment CANT.READ.DOCUMENTS
     [How? I don't even recognise the language the documents are in!
@@ -2714,7 +2714,7 @@ TEXT assigned MUTTERS
     goose around and the owl can't have done it....". You turn round in
     time to see a small figure disappear muttering "Must be magic!.."./
     Suddenly, as if from nowhere, appears a little figure. He looks at you
-    quizzically and than says in a deep voice: "I'll tell you a secret.
+    quizzically and then says in a deep voice: "I'll tell you a secret.
     You can't fly or jump across the lava, but you might get across by
     using magic.". Then he hops from foot to foot chuckling to himself and
     disappears into the gloom just as suddenly as he came./
@@ -3021,7 +3021,7 @@ TEXT cycle VANDAL!
     act of pointelss vandalism!/That kind of destructive, negative
     attitude won't help you here./As the sage said, lashing out in
     sensless anger, is a sure sign of an inferior mind. Save your
-    agression for situations in which it is truly called for.]
+    aggression for situations in which it is truly called for.]
 #
 TEXT IT.IS.IN.SHREDS
     There is hardly any point in that - it is already in shreds.
@@ -3905,7 +3905,7 @@ TEXT VOCAB.TRAVEL
 #
 TEXT VOCAB.SCREEN
     There are several commands affecting screen display, though please 
-    note that these have no effectat all if the game using a browser 
+    note that these have no effect at all if the game using a browser 
     for display.
 
     screen (depth, scroll) followed by a number, specifies the number
@@ -5529,7 +5529,7 @@ TEXT increment CATACOMBS.INFO
    +         Gorgeously Gothic!
    +         Humorously Harrowing!
    +         Incomparably Ingenious!
-   +         Jyously Jinxed!
+   +         Joyously Jinxed!
 
     [Oh well... Don't mind me. Go ahead and get yourself "excruciatingly
     excited". I've lived through worse./Not that you need to care about
@@ -10211,8 +10211,8 @@ TEXT cycle TIS.AMUSING
 #
 TEXT cycle SCRUFFY.VEGETATION
    [Scruffy is the only word to describe it/There's nothing noteworthy
-   about that scruffy lot/Unpreposessing is too mild a word for it.
-   Downwright scruffy is more accurate].
+   about that scruffy lot/Unprepossessing is too mild a word for it.
+   Downright scruffy is more accurate].
 #
 TEXT USELESS.BITS
    They are just useless bits of #. Please ignore.

@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2011.
+# Copyleft Mike Arnautov 1984-2013.
 #
 # This module defines the actions to be taken when certain
 # verb, verb/object, verb/verb or object/object word sequences
@@ -59,6 +59,23 @@ action get water
    fin
    ifflag here, h20.here
    else
+      set obj.ptr, 0
+      ifhere flask, full.of.water
+         lda obj.ptr, flask
+      otherwise
+      ifhere bottle, full.of.water
+         lda obj.ptr, bottle
+      otherwise
+      ifhere bucket
+         ifeq bucket, full.of.water
+            or
+         ifge bucket, mostly.full
+            lda obj.ptr, bucket
+         fin
+      fin
+      ifne obj.ptr, 0
+         fakecom water, obj.ptr
+      fin
       proceed
    fin
    ifhave chalice
@@ -132,6 +149,17 @@ action get oil
          quip is.now, full.of.oil
       fin
       quip no.empty.containers
+   else
+      set obj.ptr, 0
+      ifnear bottle, full.of.oil
+         lda obj.ptr, bottle
+      otherwise
+      ifnear flask, full.of.oil
+         lda obj.ptr, flask
+      fin
+      ifne obj.ptr, 0
+         fakecom oil, obj.ptr
+      fin
    fin
 #
 #=====================================================================
@@ -372,7 +400,7 @@ action drop
    fin
    ifany bird, cage, oil, water, champagne, vase, vial, djinn, bear
       or
-   ifany drachma, obolus, starstone, sunstone, seed, dung, rod
+   ifany starstone, sunstone, seed, dung, rod
       ifkey bird
          call drop.bird
       otherwise
@@ -447,9 +475,6 @@ action drop
       otherwise                                                       
       ifkey starstone
          call drop.starstone
-      otherwise
-      ifany drachma, obolus
-         call drop.drachma
       otherwise
       ifkey rod
          and
@@ -1825,7 +1850,7 @@ action extinguish
    else
       quip dunno.how
    fin
-   quit
+   quip pardon?
 #
 #=====================================================================
 #
@@ -6251,25 +6276,6 @@ action clean
       respond rug, i.am.game
    fin
    call rub
-#
-#=====================================================================
-#
-action next
-   set place.ptr, here
-   ifkey up
-      or
-   ifeq status, 1
-      add place.ptr, 1
-   otherwise
-   ifkey down
-      sub place.ptr, 1
-   else
-      quip no.understand
-   fin
-   ifflag place.ptr, place
-      move place.ptr
-   fin
-   quip no.can.go, next
 #
 #=====================================================================
 #

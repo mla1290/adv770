@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2011.
+# Copyleft Mike Arnautov 1984-2013.
 #
 # Here follow the object definitions.
 #
@@ -674,7 +674,7 @@ FRAGMENT increment CHEAPO.COIN
    A very small Roman coin of only a nominal value. Probably a relic of
    the days when the Roman Empire extended well into the Faerie 
    realms...[ What? You didn't know Romans got this far? Well, you
-   know now./]  
+   do now./]  
 #
 OBJECT DRACHMA
    Worn drachma
@@ -835,7 +835,7 @@ OBJECT SWORD, =SINGING, THROWER
    itself./
    An gleaming sword lies on the {FLOOR?}. Unnervingly, some
    eldritch magic fills the air around it with the   
-   pensive notes of Satie's Gnosienne I.
+   pensive notes of Satie's Gnosienne I./
    There is an obviously enchanted sword here, improvising darkly on
    the Valkyrie theme from Wagner's Ring./
    There is a very strange singing sword here - it is glowing and

@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2011.
+# Copyleft Mike Arnautov 1984-2013.
 #
 # Procedures.
 #
@@ -1991,18 +1991,25 @@ proc get.score
       fin
    fin
 #
-   ifloc magazines, nowhere
+# The famous Last Lousy Point! But to be kind to players, we allow
+# the magazines being dropped in the house too.
+#
+   ifloc magazines, building
+      or
+   ifloc magazines, nowhere      # Well, they *were* in the house!
       or
    ifloc magazines, witts.end
       add scorex, 1
    fin
-   add maxscore, 1           # Maximal mags credit
+   add maxscore, 1               # Maximal mags credit
 #
 # Have we been busted?
 #
    ifflag book, valued
       add scorex, seen.value
    fin
+#
+# Reward him for visiting special places...
 #
    iflt stage, in.repository
       ifflag road, been.here
@@ -2050,7 +2057,7 @@ proc get.score
          add scorex, 10
       fin
    else
-      add scorex, 99
+      add scorex, 99     # He couldn't have got here otherwise
    fin
    add maxscore, 99      # Maximal exploration credit
 #
@@ -2800,7 +2807,6 @@ proc drop.starstone
       ifgt starstone, quiescent
          or
       ifat lair
-         flag status, light.here
          set starstone, iridescent
          ifat lair
             say starstone.ignites!
@@ -2823,6 +2829,12 @@ proc drop.starstone
                fin
             else
                say starstone.lights.up, 0
+               ifflag status, light.here
+               else
+                  flag status, light.here
+                  flag status, moved
+                  say blank
+               fin
             fin
             quip blank
          fin
@@ -2897,16 +2909,6 @@ proc drop.sunstone
       quip black.flash
    fin
    quit
-#
-#=====================================================================
-#
-proc drop.drachma
-   ifhave arg2
-      and
-   ifnear machine
-      drop arg2
-      quip coin.no.good, arg2
-   fin
 #
 #=====================================================================
 #

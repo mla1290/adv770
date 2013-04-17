@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2011.
+# Copyleft Mike Arnautov 1984-2013.
 #
 # Words to be ignored
 #
@@ -216,7 +216,7 @@ verb bknrd, nodm, rgts, m, mn, fn, hm, mv, nts, h, hmudmsnqx # Some Humanish
 verb credits, acknowledgements
 verb test
 verb exits
-verb next
+verb .spare.verb                  # Was 'next' -- can't just remove it!!
 verb diagnose, health
 verb tie, untie
 verb explain
