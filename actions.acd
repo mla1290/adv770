@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2013.
+# Copyleft Mike Arnautov 1984-2014.
 #
 # This module defines the actions to be taken when certain
 # verb, verb/object, verb/verb or object/object word sequences
@@ -333,6 +333,9 @@ action get        # Generalized last-case "get" routine
       ifkey dynamite
          and
       ifeq dynamite, 0
+         and
+         not
+      ifflag dynamite, seen
          say it.is, rod
       else
          ifeq stage, in.repository     
@@ -350,9 +353,11 @@ action get        # Generalized last-case "get" routine
          set it.is, 0      # Just in case...
       fin
       ifany rod, dynamite
-         and
-      ifat ne.repository
-         flag arg2, seen
+         ifat ne.repository
+            or
+         ifat sw.repository
+            flag arg2, seen
+         fin
       fin
       ifkey oyster
          and
@@ -1847,6 +1852,7 @@ action extinguish
          fin
          proceed     # The standard bailout will say catch it
       fin
+      quit
    else
       quip dunno.how
    fin
@@ -4623,7 +4629,7 @@ action blast
          say lava.flows
          call coroner
       fin
-      flag dark.hole, been.here         # Dark hole now accessible
+      flag dark.hole, been.here        # Dark hole now accessible
       lda there, blasted.repository    # In case he says back
       apport dynamite, ylem            # No more dynamiting
       apport dwarf, ylem

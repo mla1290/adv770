@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2013.
+# Copyleft Mike Arnautov 1984-2014.
 #
 # Procedures.
 #
@@ -931,6 +931,15 @@ proc dump.things, where
 #
    itobj obj.ptr, hidey.hole
       apport obj.ptr, where
+      ifis obj.ptr, cage, bird
+         and
+      ifeq bird, caged
+         ifloc cage, hidey.hole
+            apport cage, where
+         else
+            apport bird, where
+         fin
+      fin
    fin
 #
 #=====================================================================
@@ -7000,6 +7009,15 @@ proc plant.things
    fin
    ifgt chosen, none
       apport chosen, here
+      ifis chosen, cage, bird
+         and
+      ifeq bird, caged
+         ifloc cage, hidey.hole
+            apport cage, here
+         else
+            apport bird, here
+         fin
+      fin
    fin
 #
 #=====================================================================

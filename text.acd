@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2013.
+# Copyleft Mike Arnautov 1984-2014.
 #
 # "Random" texts.
 #
@@ -45,7 +45,7 @@ FRAGMENT REST.AWHILE
     thou art intent upon entering be Imperfection Incarnate. Thou
     shalt do well to temper thine Anger and cultivate thine Virtue
     of Patience, whenever it be slow of Wit or Action, or accosteth
-    thee with Spurious Messages. Though despair not - the Forces of
+    thee with Spurious Messages. Despair though not - the Forces of
     Chaos are not yet victorious..."
 #
 TEXT SPIEL
@@ -103,7 +103,7 @@ TEXT LETS.START
 #
 TEXT STUCK.IN.NOWHERE
 
-    Wandering around here may be your idea of fun, but let's get on with
+    Loitering around here may be your idea of fun, but let's get on with
     adventuring. Or are you just too proud to do as instructed?
 #
 TEXT increment ORIENTAL.DRAWING
@@ -3018,9 +3018,9 @@ TEXT cycle VANDAL!
     adventurer seems to delight in being a loutish vandal? No, don't
     bother to explain. That was a rhetorical question. I am not really
     interested in pathetic self-justifications./I will commit no such
-    act of pointelss vandalism!/That kind of destructive, negative
+    act of pointless vandalism!/That kind of destructive, negative
     attitude won't help you here./As the sage said, lashing out in
-    sensless anger, is a sure sign of an inferior mind. Save your
+    senseless anger, is a sure sign of an inferior mind. Save your
     aggression for situations in which it is truly called for.]
 #
 TEXT IT.IS.IN.SHREDS
@@ -3272,7 +3272,7 @@ FRAGMENT READ.OYSTER?
 #
 TEXT OYSTER.MEMO
     It says "There is something strange about this place which makes
-    a word you have used before to have a second meaning."
+    a word you have used before have a second meaning."
 #
 TEXT DOWN.THE.SLIT
     You plunge into the stream and are carried down into total blackness.
@@ -4556,7 +4556,7 @@ TEXT SNEAKY.CRUNCH
    split your head on a conveniently positioned sharp stone.
 #
 TEXT increment NOWHERE.MIST
-    [Well, not mist, really. J/It iss j]ust a thin, pearly sort of gauze. 
+    [Well, not mist, really. J/It is j]ust a thin, pearly sort of gauze. 
     [It's only here/Its sole purpose is] to make the description a bit 
     more atmospheric.
 #
@@ -5283,7 +5283,7 @@ TEXT increment NO.FLY.UNDERGROUND
     don't fly underground, OK?/Listen, fluffy-head: underground - no
     go. Can you hang on to that thought?/Sigh... Maybe this game is
     too intellectual for you. Ever considered taking up tiddlywinks?/
-    Forget it. Not undergound.]
+    Forget it. Not underground.]
 #  
 FRAGMENT YOU.BOARD.RUG
     You climb aboard the rug and seat yourself in the middle. As soon
@@ -6621,6 +6621,10 @@ TEXT increment EVACUATE.CAVE
    =                     ee         ee       ee
    =                 Huee       Huee     Huee
 
+  [
+
+   Oh dear! I think you must have set off the fire alarm above the door!/]
+
     As soon as the sound stops, a sepulchral voice sternly announces:
 
    +          THERE IS A FIRE CONDITION IN ZONE TWELVE
@@ -6634,9 +6638,7 @@ TEXT increment EVACUATE.CAVE
    Knowing what to expect, you get out of the way in time to avoid
    being trampled by the very large dwarves], who
    dash out of the door to the south and disappear down the
-   steps[//, muttering angrily].[
-
-   Oh dear! I think you must have set off the fire alarm above the door!/]
+   steps[//, muttering angrily].
 #
 TEXT ALARM.CANCELLED
 
@@ -7761,7 +7763,7 @@ TEXT DISTANT.MOUNTAINS
 #
 TEXT cycle ATTENTION.TO.DETAIL
     [Generally speaking, attention to detail is undoubtedly a good thing,
-    but attending to minutae such as #, strikes me as taking things a 
+    but attending to minutia such as #, strikes me as taking things a 
     bit too far./It's #. This says everything you need to know
     about it. It serves no actually useful purpose in this game./
     I suggest you don't pay much attention to the # - I only mention
@@ -8431,7 +8433,7 @@ TEXT VIAL.EFFECT
    The bear inhales some of the vapor and snarls angrily./
    The bear inhales some of the vapor and moans appreciatively./
    The snake completely ignores the vapor./
-   The bird breathes in a miniscule amount of the vapor and immediately
+   The bird breathes in a minuscule amount of the vapor and immediately
    sings a twenty-second segment of Morton Subotnik's "Sidewinder"./
    The slime filling the passage to the south blackens and shrivels
    away into nothingness./

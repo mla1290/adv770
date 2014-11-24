@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2013.
+# Copyleft Mike Arnautov 1984-2014.
 #
 # The following acode procedures are associated with
 # individual places.
@@ -11535,7 +11535,21 @@ at clearing
    ifkey jump
       and
    ifany in, well
-      call done.it!, 1
+      ifeq stage, mirror.world
+         call done.it!, 1
+      else
+        smove well.bottom, "i:Ooof!! 
+        [ A bit of a heavy landing there... Still, no harm done./]
+
+        "
+      fin
+   fin
+   ifkey enter, shed
+      or
+   ifkey climb, down
+      or
+   ifkey down well
+      set status, 1
    fin
    ifkey go
       or

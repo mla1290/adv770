@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2013.
+# Copyleft Mike Arnautov 1984-2014.
 #
 # Spill-over random texts. (Only necessary because I made the mistake of
 # mixing some active texts with places and objects definitions. :-(
@@ -789,7 +789,7 @@ TEXT increment TREASURE.NO.BEATER
 TEXT cycle NO.BREAK.WALL
    [Your puny attack would make no impression on the # wall/The #
    walls are too sturdy for you to make any progress by trying to
-   smash them down/Bashing # walls is a simngluarly pointless
+   smash them down/Bashing # walls is a singluarly pointless
    activity].
 #
 TEXT NO.WALL.CLIMBING
