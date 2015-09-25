@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2014.
+# Copyleft Mike Arnautov 1984-2015.
 #
 # "Random" texts.
 #
@@ -2507,8 +2507,13 @@ FRAGMENT increment SENTRY
 FRAGMENT SENTRY.WILL.KILL
     Hm... Are you sure it is wise?_
 #
+FRAGMENT cycle BEING.PRUDENT
+    [I'll take the prudent option of interpreting that as/
+    To be on the safe side, I'll take that to mean/
+    I think I'll assume you mean/
+    Better safe than sorry, so I'll guess that's a]
 TEXT LETS.BE.PRUDENT
-    I'll take the prudent option of interpreting that as "[no/yes]".
+    {BEING.PRUDENT} "[no/yes]".
 #
 TEXT JUST.AS.WELL
     Amen, brother.
@@ -5719,7 +5724,7 @@ TEXT SANDS.BLOW
 #
 TEXT TIME.SLIP
     You wave the rod [and for a little while nothing much happens,
-    though a sense of expectancy seems to gather in the air. Then the
+    though a sense of expectancy seems to gather in the air. Then
     the whole world shudders /]and the view changes.
 
 #
@@ -7359,7 +7364,7 @@ TEXT KICK.DOOR
     You give the door a good kick. It doesn't seem to mind.
 #
 TEXT JUST.A.TRICKLE
-    Not so much as a stream as a trickle, really. A source of water,
+    Not so much a stream as a trickle, really. A source of water,
     that's all.
 #
 TEXT STREAM.FLOWS.OUT
@@ -7408,7 +7413,7 @@ TEXT ITS.A.STOOL
     for that matter, it is securely bolted to the floor.
 #
 TEXT DWARVES.TABLE
-    the oblong table is strewn with dirty dishes, earthenware mugs and
+    The oblong table is strewn with dirty dishes, earthenware mugs and
     empty jugs. None of it of any use or value to you.
 #
 TEXT WOODEN.STOOL
@@ -7438,7 +7443,7 @@ TEXT SHELF.INFO
     out the details, but judging by its dark colour, it is composed of
     weathered debris from the black cliff./This may come as an unwelcome
     surprise, but when I described the break as too wide to cross, I
-    meant that it was too wide to cross. Comprende?]
+    meant that it was too wide to cross.]
 #
 FRAGMENT increment IMPS.LEGEND
     fall with the water and are immediately obliterated in the churning
@@ -7471,7 +7476,7 @@ TEXT increment NO.DAMAGE.ALARM
     trying to hit that fire alarm is not too bright an idea./Listen,
     bud, if I told you once, I've told you three times: stop engaging
     in actions liable to cause damage to health and safety equipment! /
-    OK?/Aw, don't bother!.. I won't get you anywhere.]
+    OK?/Aw, don't bother!.. It won't get you anywhere.]
 #
 TEXT assigned ANGRY.VOICES
     [You can't make out the words, but it sounds like dwarves having a

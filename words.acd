@@ -1,8 +1,8 @@
-# Copyleft Mike Arnautov 1984-2014.
+# Copyleft Mike Arnautov 1984-2015.
 #
 # Words to be ignored
 #
-noise and, then, the, a, an, that, this, to, at, with, !awhile, about, from
+noise and, then, the, a, an, that, this, !awhile
 #
 # Time we defined some verbs. 
 #
@@ -78,7 +78,7 @@ verb southwest, =sw
 verb west, =w
 verb northwest, =nw
 verb -last.compass.point
-verb up, =u, upward, above, ascend
+verb up, =u, upward, ascend
 verb down, =d, downwards, descend
 verb -last.direction
 #
@@ -220,6 +220,7 @@ verb .spare.verb                  # Was 'next' -- can't just remove it!!
 verb diagnose, health
 verb tie, untie
 verb explain
+verb !with, !about, !from, !into, !to, !at, !above, !under
 #
 # Now the potential travel options.
 #
@@ -250,7 +251,7 @@ verb hat
 verb caviar
 verb goodies, sandwiches
 verb barrel
-verb fountain, basin, fountains
+verb fountain, basin, !fountains
 verb tombs, vaults
 verb shelf, shelves, rack, racks
 verb couch
@@ -464,6 +465,7 @@ verb !dog
 verb phoenix
 verb nymph
 verb -last.sculpture.fake
+verb carpet
 #
 verb -first.general
 verb imperfections

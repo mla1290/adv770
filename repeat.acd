@@ -1,10 +1,11 @@
-# Copyleft Mike Arnautov 1984-2014.
+# Copyleft Mike Arnautov 1984-2015.
 #
 # And here, at long last, is the main program!
 #
 #=====================================================================
 #
 repeat
+   local count
 #
 # Cure a few of backward compatibility problems.
 #
@@ -24,6 +25,11 @@ repeat
       set status, 2   # Restore the arg count
       say restoring.game, arg2
       call restore
+   fin
+   ifeq status -2
+      set status, 0
+      call set.it.up
+      proceed
    fin
    ifeq context q.restored
       say save.the.image
@@ -46,7 +52,13 @@ repeat
       set context q.initial
       call which.to.restore?
       set status, no.match    # Suppress all vocab matching for this loop
-      quip game.to.restore
+      set count, 0
+      exec 34, count
+      ifgt count, 0
+         set context, q.restore.what
+         quip game.to.restore
+      fin
+      call set.it.up
    fin
 #
 #=====================================================================
@@ -1302,6 +1314,9 @@ repeat
    ifeq context, q.restore.what
       set context, none
       ifeq status, 0
+         ifeq stage, query.restore
+            call set.it.up
+         fin
          quip u.turn
       fin
       exec 11
@@ -1410,6 +1425,11 @@ repeat
       respond again, no.understand
       quip bad.syntax
    fin
+#
+# If necessary, remind the player to keep commands simple -- no
+# with, about, into, from, to, at, on, above or under!
+#
+  respond with, keep.it.simple
 #
 # We may need to re-order the command words.
 #
@@ -1894,6 +1914,9 @@ repeat
 #
    ifkey tube
       and
+      not
+   ifat basalt.shelf, tube, tube.slide
+      and
    ifnear rug, rolled.up
       fakecom tube, rug
    fin
@@ -2359,6 +2382,25 @@ repeat
          call in.forest.actions
       fin
 #
+# At the soft room, carpet and rug are two distinct objects.
+#
+      ifkey carpet
+         ifat soft
+            ifany drop, throw
+               and
+            ifhave rug
+               fakecom carpet, rug
+            otherwise
+            ifany roll, unroll, get
+               and
+            ifhere rug
+               fakecom carpet, rug
+            fin
+         else
+            fakecom carpet, rug
+         fin
+      fin
+
 # Finally handle all place-specific stuff.
 #
       call here

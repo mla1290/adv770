@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2014.
+# Copyleft Mike Arnautov 1984-2015.
 #
 # Procedures.
 #
@@ -1432,6 +1432,9 @@ proc mutter.stuff
    iflt mutter.time, 1
       and
    chance 25
+      ifflag here, lit
+         proceed
+      fin
       call all.quiet?
       ifeq result, 1
          proceed
@@ -7419,7 +7422,7 @@ proc litter.check
       not
    ifflag here, not.in.cave         # George is an outdoors sort of chap.
       or
-   ifinrange here, island, ylem     # And he doesn't got to new lands
+   ifinrange here, island, ylem     # And he doesn't go to new lands
       or
    ifnear wrapper
       or
@@ -7500,12 +7503,14 @@ proc which.to.restore?
       say restoring.game, arg2
       proceed
    fin
-   ifeq count, 0
-      and
-   ifcgi
-      quip "You have no saved games to restore."
-   fin
    say saved.games, count
+   ifeq count, 0
+      ifne context, none
+         say "So let's start a new one..."
+      else
+         quip blank
+      fin
+   fin
    ifgt count, 0
       and
       not

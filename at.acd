@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2014.
+# Copyleft Mike Arnautov 1984-2015.
 #
 # The following acode procedures are associated with
 # individual places.
@@ -2749,7 +2749,7 @@ at soft
    ifkey look
       respond ceiling, up, its.a.ceiling, c.soft
       respond walls, curtained.walls
-      respond moss, just.a.fixture, arg2
+      respond carpet, moss, just.a.fixture, arg2
       proceed
    fin
    ifkey go

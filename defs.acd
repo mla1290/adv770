@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2014.
+# Copyleft Mike Arnautov 1984-2015.
 #
 # Define various flags and constants.
 #
@@ -63,7 +63,7 @@ constant none              # No context -- must be 1st!
 #
 #        Bit flags set for the 'status' variable
 #
-flags variable
+flags variable         # STATUS
       moved            # Set by interpreter whenever we move
       quickie          # BRIEF output mode in effect
       fastmode         # FAST output mode in effect
@@ -170,7 +170,7 @@ flags object
 # mask    #1 set if already commented on Zorro outfit.
 #
 # gates   #1 set if gates opened at least once.
-
+#
 # rats    #1 set if can go down into sewers.
 #         #2 set if he stinks and cannot leave the stream maze.
 #
@@ -211,7 +211,7 @@ flags object
 #
 # Define a flag set for the 'admin' variable
 #
-flags variable
+flags variable          # ADMIN
       ticker            # Call 'tick' label after each move, if set
       cameo.tried       # We have tried to do a cameo
       nomagic           # Magic words are being suppressed
@@ -228,7 +228,7 @@ flags variable
 #
 # Random quip flags. (Variable 'quips').
 #
-flags variable
+flags variable          # QUIPS
       homer.quip        # Remarked on hexameters
       rug.flung         # Got rug flung at us on spire top
       fangs.worn        # He wore the fangs once
@@ -245,7 +245,7 @@ flags variable
 #
 # Define bit flags for special hint processing. (Variable 'hints').
 #
-flags variable
+flags variable        # HINTS
       snake.pending   # The first snake hint delivered
       statue.pending  # The first Minotaur gorge hint delivered
       SPARE..F..5     # Spare
@@ -260,7 +260,7 @@ flags variable
 #
 # Context flags
 #
-flags variable
+flags variable        # CONTEXT
       joke.over       # Set on solving the little joke.
       arg2.here       # ARG2 designated pseudo object *is* here
       arg2.distant    # ARG2 can be seen but is out of reach
@@ -269,7 +269,7 @@ flags variable
 #
 # Recent event flags and states.
 #
-flags variable
+flags variable             # RECENT.EVENT
       just.happened        # Event occured on the previous turn
 state 1, demanding.dwarf   # Dwarf died making a peculiar demand
 #

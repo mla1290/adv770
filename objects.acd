@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2014.
+# Copyleft Mike Arnautov 1984-2015.
 #
 # Here follow the object definitions.
 #
@@ -415,7 +415,7 @@ OBJECT PEARL
   &A perfect milky sphere suffused with a soft glow. You don't see its
    likes very often.
 #
-OBJECT RUG, =PERSIAN, CARPET
+OBJECT RUG, =PERSIAN
    Rolled up Persian rug
   %There is a [rolled up/rather frayed] [/magic /and very 
    dirty /]Persian rug [lying/hovering/spread out][ on the 
@@ -1088,7 +1088,7 @@ OBJECT SEAL, =INTAGLIO, =TITANIA
    intaglio seal lies on the {FLOOR?}]!
   &It is an intaglio seal made of smoky quartz and set in a polished
    oval of obsidian. The design shows the head of a woman in a crested
-   helmet. Somewhat unusually, it is incised rather than raised. I am
+   helmet, but somewhat unusually, it is incised rather than raised. I am
    told that this is often a mark of elvish craftsmanship, so I guess
    the seal probably depicts Queen Titania the Valiant. Then again,
    maybe not. I am not an expert on royalty. Whomever or whatever it
@@ -1101,15 +1101,16 @@ FRAGMENT increment STONE.FLOWER
    
    Actually, we used to have a stone flower, rather than a metal
    one. Much more traditional! But you'd be surprised how fragile
-   stone flowers are! It kept being smashed by clumsy adventurers
+   stone flowers are. It kept being smashed by clumsy adventurers
    and eventually the bean-counters at the head office put their
-   foot down.. or do I mean feet. Anyway, for a while it even 
+   foot down..' or do I mean feet. Anyway, for a while it even 
    looked like the Ming vase would have to go too, until Ralph Witt
    found a small pottery prepared to produce them by the dozen at a 
    very reasonable price. But replacing a stone flower is a different
-   kettle of fish altogether. What skilled malachite workers are still
-   alive, are now all in the employ of the Mistress Of The Copper 
-   Mountain Inc., and the rates *they* charge you just wouldn't believe./]
+   kettle of ... um... sea anemone altogether. What skilled malachite 
+   workers are still alive, are now all in the employ of the 
+   Mistress Of The Copper Mountain Inc., and the rates *they* charge
+   you just wouldn't believe./]
 #
 OBJECT FLOWER
    A metal flower
@@ -1141,7 +1142,7 @@ OBJECT PACKET, =FERTILISER, =FERTILIZER
 OBJECT WRAPPER
    Paper wrapper
   %A torn paper wrapper from the packet of fertiliser 
-   lies here
+   lies here.
   &It is a torn paper wrapper with a picture of an aggressively green
    plant and the words "Stupe-Gro (TM)".[ I can't think why you are 
    carrying it around with you./]
@@ -1185,12 +1186,11 @@ OBJECT IMP, =ASTRAL
   &A very angular, yet decidedly ethereal being. It's almost as
    if it were composed of slightly disjointed brush-strokes, which
    have the unnerving habit of not being completely real all at
-   the same time. The imp is sitting cross-legged in
-   mid-air, facing the mirror-smooth wall of falling
-   water and is totally absorbed in its task of wielding a large
-   calligraphic brush, with which it writes in lightning strokes 
-   something utterly incomprehensible on the water surface.
-   The green fiery letters {IMPS.LEGEND}.
+   the same time. The imp is sitting cross-legged in mid-air, facing
+   the mirror-smooth wall of falling water and is totally absorbed in
+   its task of wielding a large calligraphic brush, with which it writes
+   in lightning strokes something utterly incomprehensible on the water
+   surface. The green fiery letters {IMPS.LEGEND}.
 #
 OBJECT KNOCKER, =DOOR-KNOCKER, =LION, =HEAD, =CLAPPER
   %Mounted on a nearby wall is a large brass door-knocker, shaped

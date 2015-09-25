@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2014.
+# Copyleft Mike Arnautov 1984-2015.
 #
 # Spill-over random texts. (Only necessary because I made the mistake of
 # mixing some active texts with places and objects definitions. :-(
@@ -210,7 +210,7 @@ TEXT NO.READ.RUG
    I don't see anything on the[ rolled up/] rug that one could read.
 #
 TEXT NO.DRINK.FLYING
-    "NO, NO," booms the giant. "NO DRINK FLYING!"
+    "NO, NO," booms the giant. "NO DRINK AND FLY!"
 #
 FRAGMENT STARSTONE.BOUNCES
     The starstone becomes curiously unfocused as it falls. It
@@ -396,10 +396,8 @@ FRAGMENT cycle IT.WOULD.SEEM
      would appear that/I believe] [Y/y/=/=/=/=]ou
 #
 FRAGMENT SAVED.GAMES
-     {IT.WOULD.SEEM} [don't have any saved games, though of course you may
-     have some stashed away elsewhere.../have ][/just one saved game: /the
-     following saved games:
-   /]
+     {IT.WOULD.SEEM} [don't have any saved games.
+    //have ][/just one saved game: /{COUNT.THEM} saved games: ]
 #
 FRAGMENT DESERT.OUTCROP
    / To the NW, some kind of low basalt outcrop breaks the monotony of
@@ -934,5 +932,12 @@ TEXT increment NOT.LEGAL.TENDER
     something more? I can't see why. The bag is *FAR* too big to stuff in
     the coin slot and in any case, pieces of eight are not a legal
     coinage around here/].
+#
+FRAGMENT COUNT.THEM
+    [no/one/two/three/four/five/six/seven/eight/nine/ten/$]
+#
+TEXT KEEP.IT.SIMPLE
+    I am sorry to be so simple-minded, but when you use words such as
+    "{ARG1}", my mind just go blank.
 #
 #########################################################################
