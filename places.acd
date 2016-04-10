@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2015.
+# Copyleft Mike Arnautov 1984-2016.
 #
 # Now for the place descriptions.
 #
@@ -842,7 +842,7 @@ PLACE REST.AREA
 #
 PLACE CATACOMBS.PORTAL
    You are at the stone portal.
-  %You are in at the end of a catacombs tunnel leading north.  A large 
+  %You are at the end of a catacombs tunnel leading north.  A large 
    carved portal to the east opens into an echoing space, while a narrow
    entrance to the west leads into a room beyond.
 #

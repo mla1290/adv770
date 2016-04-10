@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2015.
+# Copyleft Mike Arnautov 1984-2016.
 #
 # And here, at long last, is the main program!
 #
@@ -51,10 +51,10 @@ repeat
       fin
       set context q.initial
       call which.to.restore?
-      set status, no.match    # Suppress all vocab matching for this loop
       set count, 0
       exec 34, count
       ifgt count, 0
+         set status, no.match    # Suppress all vocab matching for this loop
          set context, q.restore.what
          quip game.to.restore
       fin
@@ -94,6 +94,10 @@ repeat
          unflag obj.ptr, schizoid   # It must not appear INHAND!
       fin
    fin
+#
+# Call the stub routine, which is only of use in the wizard (debug) mode
+#
+   call wiz.reports
 #
 # Are we ready to allow spontaneous events?
 #
@@ -653,6 +657,9 @@ repeat
          set hint.time, 0
       fin
       ifeq last.hintable, here
+         and
+         not
+      ifdoall
          add hint.time, 1
          exec 12, query.allowed
          ifeq query.allowed, 1
@@ -904,6 +911,11 @@ repeat
 #
    unflag context, arg2.here
    unflag context, arg2.distant
+   ifeq context, q.null.turn
+      set context, none
+   else
+      add turns, 1
+   fin
    ifeq context, none
       ifnear door1
          and
@@ -1231,7 +1243,7 @@ repeat
       otherwise
       ifeq context, q.vocab.2
          say vocab.travel
-         ifcgi       # Don't list screen handling commands in CGI mode!
+         ifhtml       # Don't list screen handling commands in CGI mode!
             say blank
          else
             set context q.vocab.3
@@ -2045,7 +2057,7 @@ repeat
    ifkey treasure
       and
       not
-   ifkey say
+   ifany say, where
       ifany drop, down
          call except.check
          call drop.check, 1
@@ -2082,7 +2094,6 @@ repeat
    ifge foobar, 0
       sub foobar, 1
    fin
-   add turns, 1
    ifeq turns, 20
       unflag status, vocab.prod
    fin

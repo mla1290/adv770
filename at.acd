@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2015.
+# Copyleft Mike Arnautov 1984-2016.
 #
 # The following acode procedures are associated with
 # individual places.
@@ -10923,6 +10923,7 @@ at east.of.building
    fin
    call by.house.actions
    ifkey look
+      respond leg, planks, feeder.parts
       proceed
    fin
    ifkey go
@@ -11534,14 +11535,13 @@ at clearing
    fin
    ifkey jump
       and
-   ifany in, well
+   ifany in, well, down
       ifeq stage, mirror.world
          call done.it!, 1
       else
-        smove well.bottom, "i:Ooof!! 
+        smove well.bottom, "i:[You rashly leap into the well... /]Ooof!! 
         [ A bit of a heavy landing there... Still, no harm done./]
-
-        "
+        /"
       fin
    fin
    ifkey enter, shed
@@ -15081,6 +15081,13 @@ at ne.repository
    ifkey knife
       respond get, look, no.steal.knives
    fin
+   ifkey dwarf
+     ifkey wake
+        say dwarf.wakes
+        call coroner
+     fin
+     quip no.wake.dwarves
+   fin
    ifkey look
       respond torch, massive.torches
       respond ceiling, up, its.a.ceiling, c.repository
@@ -15093,17 +15100,13 @@ at ne.repository
       respond plant,  beanstalk roots.too.deep, arg2
       respond torch, torches.too.high
    fin
-   ifkey wake dwarf
-      say dwarf.wakes
-      call coroner
-   fin
    ifkey go
       or
    ifeq status, 1
       move sw, sw.repository
       respond repository, you.are.there
    fin
-   ifany repository, torch
+   ifany repository, torch, dwarf
       flag context, arg2.here
    fin
 #

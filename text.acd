@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2015.
+# Copyleft Mike Arnautov 1984-2016.
 #
 # "Random" texts.
 #
@@ -237,7 +237,7 @@ TEXT cycle DARK.WARNING
     I advise against blundering about in darkness - accidents are only
     too likely/
     I wouldn't try moving about here without a light, if I were you/
-    It's safer not to walk about in the darkness/
+    It's safer not to walk about in darkness/
     Better get some light, or you might stumble and break your neck].
 #
 FRAGMENT BIRD.HINT
@@ -484,7 +484,7 @@ TEXT cycle NOCOMPRENDE.VERB
     signified by "#"./Alas, my vocabulary is too limited to encompass "#".
     Try some other verb?/Very remiss of me to be sure, but I've never
     learned to "#"./To my shame, I have no idea what you mean by
-    "#"./"#"? Sorry, I don't what it means./I am afraid "#" is not a 
+    "#"./"#"? Sorry, I don't know what it means./I am afraid "#" is not a 
     verb I've ever learned./Ahem... "#" is not in my dictionary.
     Would you care to re-phrase?/Regrettably, that is not something I
     know how to do.]
@@ -3195,9 +3195,10 @@ TEXT DWARVES.WAKE
     at you! All of them hit you!!
 #
 TEXT DWARF.WAKES
+    Well, on your head so be it...
     You prod the nearest dwarf, who wakes up grumpily, takes one look at
     you, curses and grabs for his axe, and... Exit one more would be
-    adventurer grandmaster!
+    adventurer grandmaster. What a surprise!
 #
 TEXT YOU.EXPLODE
     There is a loud explosion. Being foolishly near its epicentre, you
@@ -3515,7 +3516,9 @@ TEXT random TRAPDOOR.IN.THE.WAY
     shut trapdoor in the way.
 #
 TEXT TESTING.1.2.3
-    Testing[, testing... One... Two... Three.../ over. Testing over.]
+    [/
+
+    ]Testing[, testing... One... Two... Three.../ over. Testing over.]
 #
 TEXT increment STORES.DOOR.SHUTS
     The door swings to, but refuses to shut altogether.[ Try as you might
@@ -3910,7 +3913,7 @@ TEXT VOCAB.TRAVEL
 #
 TEXT VOCAB.SCREEN
     There are several commands affecting screen display, though please 
-    note that these have no effect at all if the game using a browser 
+    note that these have no effect at all if the game is using a browser 
     for display.
 
     screen (depth, scroll) followed by a number, specifies the number
@@ -9172,7 +9175,7 @@ TEXT MISTY.PATH
 #
 TEXT BOULDERS.BLOCK
    The boulders are quite large and they solidly block the two passages
-   that once led east and west. No hope getting though there.
+   that once led east and west. No hope of getting through there.
 #
 TEXT increment MAY.CLIMB.WALL
    I would say the walls here are irregular enough to offer sufficient
@@ -9841,7 +9844,7 @@ TEXT increment UP.WELL.VIEW
    to it./]
 #
 TEXT WELL.WALL
-   The walls of the old well may be dump and crumbly, but they still
+   The walls of the old well may be damp and crumbly, but they still
    offer sufficient foot and hand-holds, should you be inclined to try
    climbing them.
 #

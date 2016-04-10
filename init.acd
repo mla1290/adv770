@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2015.
+# Copyleft Mike Arnautov 1984-2016.
 #
 # Time to do some run-time initialisation.
 #
@@ -7,10 +7,6 @@
 init
    local junk
    local state
-#
-   ifgt stage, show.banner
-      proceed
-   fin
 #
 # Initialize portability of some objects.
 #
@@ -836,6 +832,32 @@ init
       flag tube, lit
    fin
 #
+# Declare schizoid objects.
+#
+   flag grate, schizoid
+   flag steps, schizoid
+   flag fissure, schizoid
+   flag plant2, schizoid
+   flag shadow, schizoid
+   flag dragon, schizoid
+   flag chasm, schizoid
+   flag troll, schizoid
+   flag troll2, schizoid
+   flag quicksand, schizoid
+   flag safe, schizoid
+   flag volcano, schizoid
+   flag basilisk, schizoid
+   flag rope, schizoid
+   flag starstone, schizoid     # Another weird case!
+   flag portcullis, schizoid
+   flag door1, schizoid
+   flag door2, schizoid
+   flag door3, schizoid
+   flag door4, schizoid
+   flag gates, schizoid
+   flag ladder, schizoid
+   flag trapdoor, schizoid
+#
 # Move objects to their starting places.
 #
    itobj obj.ptr
@@ -963,32 +985,6 @@ init
    apport codex, imaze.book
    apport mirror, mirror.canyon
 #
-# Declare schizoid objects.
-#
-   flag grate, schizoid
-   flag steps, schizoid
-   flag fissure, schizoid
-   flag plant2, schizoid
-   flag shadow, schizoid
-   flag dragon, schizoid
-   flag chasm, schizoid
-   flag troll, schizoid
-   flag troll2, schizoid
-   flag quicksand, schizoid
-   flag safe, schizoid
-   flag volcano, schizoid
-   flag basilisk, schizoid
-   flag rope, schizoid
-   flag starstone, schizoid     # Another weird case!
-   flag portcullis, schizoid
-   flag door1, schizoid
-   flag door2, schizoid
-   flag door3, schizoid
-   flag door4, schizoid
-   flag gates, schizoid
-   flag ladder, schizoid
-   flag trapdoor, schizoid
-#
 # Now a few special tricks...
 #
    set flask, sealed
@@ -1014,7 +1010,6 @@ init
    set chain, locked
    set invct, 0
    set strength, 8
-   set stage, query.restore
 # 
 # Some locations require special values to generate correct
 # descriptions.
@@ -1055,12 +1050,18 @@ init
    flag pine, seen
    flag book,seen
 #
+   exec 17             # Remember initial locations of objects
+   ifgt stage, show.banner
+      proceed          # Restoring game in progress
+   fin
+#
 # Randomise some of the cycling texts.
 #
    call randomise.texts
 #
 # Wake up user and greet him.
 #
+   set stage, query.restore
    say hi.there
 #
 #=====================================================================

@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2015.
+# Copyleft Mike Arnautov 1984-2016.
 #
 # Procedures.
 #
@@ -280,6 +280,11 @@ proc bail.out
          quip no.swag, arg2
       fin
    fin
+
+#
+# Deal with hands, legs, etc...
+#
+   respond leg, legs no.anatomy
 #
 # Interact with Moorcock fans!
 #
@@ -1387,9 +1392,12 @@ proc chalice.power
 #=====================================================================
 #
 proc all.quiet?
-   set result, 1
    ifflag status, light.here
-   else
+      and
+      not
+   ifdoall
+   else                         # If dark or in a doall loop, then no
+      set result, 1             # cameos, mutters, spontaneous hints etc
       proceed
    fin
    set result, 0
@@ -1422,7 +1430,7 @@ proc all.quiet?
    ifgt  foobar, 0              # Or trying to do something to the eggs
       or
    ifflag crown, freebie        # Or listening to voices
-      set result, 1
+      set result, 1             # No spontaneous stuff, please!
    fin
 #
 #=====================================================================
@@ -7577,3 +7585,9 @@ proc try.dir dir, destination
    move destination
 #
 #====================================================================
+#
+proc wiz.reports # A stub routine, augmented, if necessary in debug.acd
+   proceed
+#
+#====================================================================
+

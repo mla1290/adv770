@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2015.
+# Copyleft Mike Arnautov 1984-2016.
 #
 # Define various flags and constants.
 #
@@ -12,6 +12,7 @@ constant false
 constant none              # No context -- must be 1st!
          q.input           # Skip to input -- must be 2nd!
          q.restored        # Just restored -- normal prompt -- must be 3rd!
+         q.null.turn       # Skip all housekeepin
          q.initial         # Initial restore?
          q.help            # Need help?
          q.help.cost       # Do you accept the penalty for help?

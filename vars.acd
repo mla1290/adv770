@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2015.
+# Copyleft Mike Arnautov 1984-2016.
 #
 # Define some variables.
 #
@@ -49,7 +49,7 @@ variable swag.count, swag.time
 variable forest.block, forest.trap
 variable vessel
 variable sip.count
-variable result, 
+variable result 
 variable spare..v..13
 variable silence
 variable object.state

@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2015.
+# Copyleft Mike Arnautov 1984-2016.
 #
 # This module defines the actions to be taken when certain
 # verb, verb/object, verb/verb or object/object word sequences
@@ -2725,6 +2725,7 @@ action score
    fin
    say maximal.score, maxscore
    say move.count, turns
+   set context, q.null.turn
    quit
 #
 #=====================================================================
@@ -4967,7 +4968,10 @@ action vocabulary
       call show.nouns
    fin
    respond travel, vocab.travel
-   respond screen, vocab.screen
+   ifhtml
+   else
+      respond screen, vocab.screen
+   fin
    ifeq status, 1
       or
    ifkey all
@@ -5736,6 +5740,10 @@ action justify
    local state
    local outcome
 #
+   ifhtml
+      verbatim arg1
+      quip nocomprende.verb, arg1
+   fin
    ifkey off
       set state, 0
    otherwise
@@ -5756,6 +5764,10 @@ action justify
 action length
    local outcome
 #
+   ifhtml
+      verbatim arg1
+      quip nocomprende.verb, arg1
+   fin
    ifeq status, 1
       quip what.param?, arg1
    fin
@@ -5771,6 +5783,10 @@ action length
 action offset
    local outcome
 #
+   ifhtml
+      verbatim arg1
+      quip nocomprende.verb, arg1
+   fin
    ifeq status, 1
       quip what.param?, arg1
    fin
@@ -5783,6 +5799,10 @@ action offset
 action screen
    local outcome
 #
+   ifhtml
+      verbatim arg1
+      quip nocomprende.verb, arg1
+   fin
    ifeq status, 1
       quip what.depth?
    fin

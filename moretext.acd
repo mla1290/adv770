@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2015.
+# Copyleft Mike Arnautov 1984-2016.
 #
 # Spill-over random texts. (Only necessary because I made the mistake of
 # mixing some active texts with places and objects definitions. :-(
@@ -827,7 +827,7 @@ TEXT NOT.HOLDING
    You are not holding the #!
 #
 TEXT LAMP.SWITCH
-   The lamp switch has the shape of tiny hemisphere which slides easily
+   The lamp switch has the shape of a tiny hemisphere which slides easily
    between the "on" and the "off" positions under a light push of one's
    thumb.
 #
@@ -939,5 +939,20 @@ FRAGMENT COUNT.THEM
 TEXT KEEP.IT.SIMPLE
     I am sorry to be so simple-minded, but when you use words such as
     "{ARG1}", my mind just go blank.
+#
+TEXT increment FEEDER.PARTS
+    All parts of the bird table are just rough, grayish, well-weathered
+    wood.[ That includes the {ARG2}./]
+#
+TEXT increment NO.ANATOMY
+    [This is an adventure game, not an anatomy primer. T/
+    In this game t]here is no need to examine or handle body parts[!/.]
+#
+TEXT increment NO.WAKE.DWARVES
+    [I shouldn't go anywhere near those dwarves! It might wake them up
+    with rather unfortunate consequences./A word to the wise: stay
+    away from them dwarves, lest they wake up!]
+#
+TEXT SPARE..T..2M
 #
 #########################################################################

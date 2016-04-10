@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2015.
+# Copyleft Mike Arnautov 1984-2016.
 #
 # Here follow the object definitions.
 #
@@ -341,7 +341,7 @@ OBJECT CHEST
 OBJECT NEST, =EGGS
    Golden eggs
   %There is a large nest here, full of golden eggs!
-  &The nest holding the eggs is lined with some sort bird down - might
+  &The nest holding the eggs is lined with some sort of bird down - might
    be goose, but I am not sure. The eggs themselves gleam dully in the
    light with the unmistakable gleam of pure gold.
 #
@@ -846,7 +846,7 @@ OBJECT SWORD, =SINGING, THROWER
 OBJECT TEETH
    Several dragon's teeth
   %There are several dragon's teeth [scattered haphazardly about/lying
-   a pile on the {FLOOR?}].
+   in a pile on the {FLOOR?}].
   &Rather worn and, considering their original owner, surprisingly small.
 #
 OBJECT VIAL, =PHIAL
