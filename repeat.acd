@@ -935,7 +935,7 @@ repeat
       add turns, 1
       proceed
    fin
-   input null
+   input
    ifeq context, q.input
       set context, none
    fin

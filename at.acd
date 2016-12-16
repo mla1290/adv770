@@ -1213,6 +1213,7 @@ at west.of.fissure
       ifkey hall
          set status, 1
       fin
+      respond crawl, dark.exit, crawl
       proceed
    fin
    ifkey jump

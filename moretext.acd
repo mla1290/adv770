@@ -557,7 +557,7 @@ TEXT FIDDLE.VALUE
 
 #
 FRAGMENT cycle FIDDLE.IGNORE
-     [ignore your/pretend that you never issued that/forget the]
+     [ignore your/pretend that you never issued the/forget the]
 #
 FRAGMENT cycle FIDDLE.OK
      [OK/Right/Fine/By all means/Very well/Hokey-dokey/Right you are boss]

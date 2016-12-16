@@ -1912,6 +1912,11 @@ action open                  # General opening routine
    ifnear arg2
       call bail.out
    fin
+   ifkey cage
+      and
+   ifhave bird
+      call drop.bird
+   fin
    ifany bottle, bag, chest, cage, clam, oyster, vial, keys, gates
       or
    ifany packet, curtains
@@ -6461,6 +6466,28 @@ action undo
    local mode
    local got.light
 #
+   ifflag undo.status, undo.none
+      quip no.undo
+   fin
+#
+   ifkey on
+      ifflag undo.status, undo.off
+         say undo.now, 1
+      else
+         say undo.already, 1
+      fin
+      unflag undo.status, undo.off
+      quit
+   otherwise
+   ifkey off
+      ifflag undo.status, undo.off
+         say undo.already, 0
+      else
+         say undo.now, 0
+      fin
+      flag undo.status, undo.off
+      quit
+   fin
    ifis arg1, undo
       and
    ifis arg2, undo
@@ -6468,8 +6495,18 @@ action undo
       lda arg2, all
    fin
 #      
+   ifflag undo.status, undo.off
+      ifflag undo.status, undo.info
+         quip undo.currently.off
+      fin
+      set context, q.wimp
+      say wimps.r.us
+      say undo.conditions
+      quip are.you.a.wimp?
+   fin
    ifflag undo.status, undo.info
    else
+      unflag undo.status, undo.off
       flag undo.status, undo.info
       say first.undo
    fin

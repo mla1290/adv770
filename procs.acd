@@ -960,6 +960,7 @@ proc nothing.big message, qualifier
 #
 proc throw.it.at.orb
    local text.ptr
+   local got.it
    ifeq status, 1
       default inhand
       ifeq status, 1
@@ -976,6 +977,7 @@ proc throw.it.at.orb
       lda text.ptr, hit.orb
       apport orb, sea.view
       apport fake.orb, ylem
+      set got.it, 1
    fin
    say the.it, arg2
    ifflag arg2, plural
@@ -984,6 +986,9 @@ proc throw.it.at.orb
       say text.ptr, 0
    fin
    apport arg2, sea.view
+   ifgt got.it, 0
+      say lucky.shot
+   fin
    quit
 #
 #=====================================================================
@@ -3015,7 +3020,7 @@ proc drop.bird
          fin
       fin
    fin
-   say you.free, arg2
+   say bird.is.free, 1
    ifat cellar
       call wizard.evicts
    fin

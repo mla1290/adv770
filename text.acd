@@ -8278,7 +8278,9 @@ TEXT YOU.DONT.HOLD.VESSEL
     There is an empty # here, true, but you should pick it up before
     trying to fill it.
 #
-TEXT SPARE..T..5
+TEXT LUCKY.SHOT
+
+    A lucky shot! But it wasn't necessary to do that, you know...
 #
 FRAGMENT increment OWL.GRIPS
     There is a flurry of wingbeats and a loud "HOOT" and [your shoulders
@@ -10302,6 +10304,6 @@ TEXT ERROR
     Sorry, a runtime error has occurred. Please report its context
     to Mike Arnautov: mla@mipmip.org.
 #
-TEXT SPARE..T..6
+TEXT SPARE..T..5
 #
 ###################################################################
