@@ -597,7 +597,7 @@ TEXT UNDO.CONDITIONS
    {UNDO.TERMS}
 #
 TEXT increment NO.UNDO
-   [{WIMPS.R.US} Besides/You forget/Remember], UNDO is no allowed in
+   [{WIMPS.R.US} Besides/You forget/Remember], UNDO is not allowed in
    this game[./!]
 #
 TEXT FIRST.UNDO
@@ -606,7 +606,7 @@ TEXT FIRST.UNDO
 
    {UNDO.TERMS}
 
-   Got that? Now then, let's see about your command...
+   Got that? Now then, let's see about that undoing...
 
 #
 FRAGMENT ARE.YOU.A.WIMP?

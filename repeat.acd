@@ -913,8 +913,7 @@ repeat
    unflag context, arg2.distant
    ifeq context, q.null.turn
       set context, none
-   else
-      add turns, 1
+      sub turns, 1
    fin
    ifeq context, none
       ifnear door1
@@ -933,6 +932,7 @@ repeat
          lda ok, ok!
          lda nuffink, nothing
       fin
+      add turns, 1
       proceed
    fin
    input null
@@ -940,6 +940,7 @@ repeat
       set context, none
    fin
    ifeq context, none
+      add turns, 1
       proceed
    fin
 #
@@ -2655,7 +2656,7 @@ repeat
 #
 #=====================================================================
 #
-repeat      # Dummy. Just stops translator grizzling.
+repeat # Dummy. Just stops translator grizzling.
    respond  crabs, eyes, pardon?
 #
 #=====================================================================

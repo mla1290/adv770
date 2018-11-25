@@ -11495,6 +11495,10 @@ at dark.forest
 #
 #=====================================================================
 #
+text increment RASH.LEAP
+   [You rashly leap into the well... /]Ooof!!
+   [ A bit of a heavy landing there... Still, no harm done./]
+
 at clearing
    ifkey look
       respond grass, attention.to.detail, grass
@@ -11539,9 +11543,10 @@ at clearing
       ifeq stage, mirror.world
          call done.it!, 1
       else
-        smove well.bottom, "i:[You rashly leap into the well... /]Ooof!! 
-        [ A bit of a heavy landing there... Still, no harm done./]
-        /"
+         smove well.bottom, rash.leap
+#        smove well.bottom, "i:[You rashly leap into the well... /]Ooof!! 
+#        [ A bit of a heavy landing there... Still, no harm done./]
+#        /"
       fin
    fin
    ifkey enter, shed
@@ -14126,10 +14131,11 @@ at mine.dead.end.2
    ifany slab, table
       ifkey look
          quip stone.table
-      otherwise
-      respond climb, no.point
-      flag context, arg2.here
-      proceed
+      else
+        respond climb, no.point
+        flag context, arg2.here
+        proceed
+      fin
    fin
    ifkey look
       ifkey chamber

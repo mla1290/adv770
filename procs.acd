@@ -358,7 +358,7 @@ proc bail.out
       ifkey treasure
          ifkey get
             quip no.treasure, 0
-         otherwise
+         fin
          respond drop, no.treasure, 1
       otherwise
       ifkey all
@@ -7500,6 +7500,8 @@ proc sunstone.cheat msg modifier
 #
 #====================================================================
 #
+text NEW.ONE
+   So let's start a new one...
 proc which.to.restore?
    local count
 
@@ -7514,7 +7516,8 @@ proc which.to.restore?
    say saved.games, count
    ifeq count, 0
       ifne context, none
-         say "So let's start a new one..."
+         say new.one
+#         say "So let's start a new one..."
       else
          quip blank
       fin
