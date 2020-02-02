@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2016.
+# Adventure770 -- Copyleft Mike Arnautov 1984-2018.
 #
 # The following acode procedures are associated with
 # individual places.
@@ -6955,7 +6955,7 @@ at nowhere
       respond history, remember, recall, restore, info, introduction, later!
       ifkey contemplate
          set hint.time, 0
-         say lets.start
+         resay lets.start     # Resay allows for "rest and contemplate"
          set result, 1        # Nominate persistent flag
          exec 15, result      # Set it to true
          set vain.contemplation, 1
@@ -11789,7 +11789,6 @@ at north.of.spire
 #
 at east.of.spire
    ifkey look
-      respond ramp, no.ramp.above
       respond sun, spire.no.sun
       respond shade, shadow, cast.shadow, spire
       proceed
@@ -11979,7 +11978,13 @@ at spire.nearly.up
             fin
          fin     
       fin
-      choose sunstone, 1, 8
+#
+# Must exclude sunstone value 7 to avoid player getting stuck in desert.19.
+#
+      choose sunstone, 1, 7
+      ifeq sunstone, 7
+         set sunstone, 8
+      fin
       say jumped.into.sand, 1
       flag sunstone, special2
       move north.of.spire
@@ -12618,7 +12623,7 @@ at desert.10
 #
 at desert.11
    ifkey look
-      respond outcrop, outcrop.end
+      respond outcrop, outcrop.end, 0
       proceed
    fin
    ifkey go
@@ -12792,6 +12797,7 @@ at desert.17
 #
 at desert.18
    ifkey look
+      respond outcrop, outcrop.end, 1
       proceed
    fin
    ifkey go
@@ -12801,8 +12807,51 @@ at desert.18
       move north, desert.17
       move nw, desert.21
       move ne, desert.14
+      move sw, outcrop.2
    fin
-   ifany dune, sand, sky, sun
+   ifany dune, sand, sky, sun, outcrop
+      flag context, arg2.here
+   fin
+#
+#=====================================================================
+#
+at outcrop.2
+   ifkey look
+      respond outcrop, smooth.outcrop
+      respond sea, dunes, desert, sea.of.dunes
+      respond horizon, desert.horizon
+      proceed
+   fin
+   ifkey go
+      or
+   ifeq status, 1
+      move ne, outcrop, desert, desert.18
+   fin
+   ifany horizon, cliff, sky, sun, sand
+      flag context, arg2.here
+   fin
+   ifany desert, dunes, outcrop
+      flag context, arg2.here
+   fin
+#
+#=====================================================================
+#
+at outcrop.1
+   ifkey look
+      respond outcrop, smooth.outcrop
+      respond sea, dunes, desert, sea.of.dunes
+      respond horizon, desert.horizon
+      proceed
+   fin
+   ifkey go
+      or
+   ifeq status, 1
+      move se, outcrop, desert, desert.19
+   fin
+   ifany horizon, cliff, sky, sun, sand
+      flag context, arg2.here
+   fin
+   ifany desert, dunes, outcrop
       flag context, arg2.here
    fin
 #
@@ -12810,6 +12859,7 @@ at desert.18
 #
 at desert.19
    ifkey look
+      respond outcrop, outcrop.end, 0
       proceed
    fin
    ifkey go
@@ -12819,8 +12869,9 @@ at desert.19
       move sw, desert.22
       move south, desert.20
       move se, desert.15
+      move nw, outcrop.1
    fin
-   ifany dune, sand, sky, sun
+   ifany dune, sand, sky, sun, outcrop
       flag context, arg2.here
    fin
 #

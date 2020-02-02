@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2016.
+# Adventure770 -- Copyleft Mike Arnautov 1984-2018.
 #
 # Time to do some run-time initialisation.
 #
@@ -230,6 +230,8 @@ init
    flag inside.well, lit
    flag dwarves.quarters, lit
    flag dwarves.quarters, indoors
+   flag outcrop.1, lit
+   flag outcrop.2, lit
 #
 # Set dwarf-inhibits for appropriate places within the cave.
 #
@@ -410,6 +412,10 @@ init
          flag place.ptr, no.back
       fin
    fin
+   itplace place.ptr, north.of.spire, west.of.spire
+      flag place.ptr, in.desert
+      flag place.ptr, hintable
+   fin
    itplace place.ptr, desert.1, desert.last
       flag place.ptr, in.maze
       flag place.ptr, in.desert
@@ -423,7 +429,8 @@ init
       flag place.ptr, no.dwarf
    fin
    unflag rocky.desert, in.desert
-   set rocky.desert, 0
+   unflag outcrop.1, in.desert
+   unflag outcrop.2, in.desert
 #
 # Some non-maze places also disallow "back".
 #
@@ -1033,9 +1040,7 @@ init
    chance 10
       flag quips, guybrush.quip
    fin
-   set east.of.spire, 1
-   set south.of.spire, 2
-   set west.of.spire, 3
+   set outcrop.2, 1
 #
    flag all, seen      # In case he mistypes it!
    flag door, seen     # In case door1 or door2 is encountered first!

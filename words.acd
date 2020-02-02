@@ -1,8 +1,8 @@
-# Copyleft Mike Arnautov 1984-2016.
+# Adventure770 -- Copyleft Mike Arnautov 1984-2018.
 #
 # Words to be ignored
 #
-noise and, then, the, a, an, that, this, !awhile
+noise the, that, this, !awhile
 #
 # Time we defined some verbs. 
 #
@@ -12,11 +12,7 @@ noise and, then, the, a, an, that, this, !awhile
 # code in the "AT NOWHERE" area!  If you don't do this right, 
 # people are going to have a hell of a time getting out of Nowhere
 # during cave-closure. One extra complication... adding magic words
-# can make the safe unresponsive to any of the 4 keys in saved
-# games, in which the sceptre had been obtained by the player;
-# alternatively, if the compatibility kludge in the RESTORE code
-# is preserved, it may change the key to BASINGSTOKE (better than nothing, 
-# anyway). Only magic words alphabetically lower than BASINGSTOKE are safe.
+# can make the safe unresponsive to any of the 4 keys in saved games.
 # Finally, note that the '!' prefixing magic words makes them
 # non-abbreviable - the same would work for any other dictionary 
 # word too.
@@ -483,6 +479,6 @@ noun -last.pseudo
 #
 # Except/but is in a category of its own!
 #
-verb except, but
+word except, but
 #
 #=====================================================================

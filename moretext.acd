@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2016.
+# Adventure770 -- Copyleft Mike Arnautov 1984-2018.
 #
 # Spill-over random texts. (Only necessary because I made the mistake of
 # mixing some active texts with places and objects definitions. :-(
@@ -379,20 +379,20 @@ TEXT cycle TROLL.ZORRO
 
 #
 TEXT increment TOO.PUBLIC
-    [There is not much point in trying to disguise yourself quite
-    so publicly! /]Better find a quiet, private place [for it/for
-    disguising yourself].
+     [There is not much point in trying to disguise yourself quite
+     so publicly! /]Better find a quiet, private place [for it/for
+     disguising yourself].
 #
 TEXT NO.APPROACH.EDGE
-    [The sapling can be only seen from the edge of the cliff, and t/T]ry as
-    you might to approach the edge[/ of the cliff], the sunstone is
-    refusing to allow movement in that direction.
+     [The sapling can be only seen from the edge of the cliff, and t/T]ry as
+     you might to approach the edge[/ of the cliff], the sunstone is
+     refusing to allow movement in that direction.
 #
 TEXT WATERFALL.WALL
-    The wall is just rough rock, except for that door inset in it.
+     The wall is just rough rock, except for that door inset in it.
 #
 FRAGMENT cycle IT.WOULD.SEEM
-    [Let's see.../As far as I can see,/It would seem that/I think/It
+     [Let's see.../As far as I can see,/It would seem that/I think/It
      would appear that/I believe] [Y/y/=/=/=/=]ou
 #
 FRAGMENT SAVED.GAMES
@@ -400,8 +400,8 @@ FRAGMENT SAVED.GAMES
     //have ][/just one saved game: /{COUNT.THEM} saved games: ]
 #
 FRAGMENT DESERT.OUTCROP
-   / To the NW, some kind of low basalt outcrop breaks the monotony of
-    the dunes.
+    / To the [NW/SW], some kind of low basalt outcrop breaks the monotony of
+     dunes.
 #
 TEXT increment RUG.IS.FLYING
      [In case you haven't noticed, the rug is flying all by itself.
@@ -560,7 +560,7 @@ FRAGMENT cycle FIDDLE.IGNORE
      [ignore your/pretend that you never issued the/forget the]
 #
 FRAGMENT cycle FIDDLE.OK
-     [OK/Right/Fine/By all means/Very well/Hokey-dokey/Right you are boss]
+     [Right/Fine/OK/By all means/Very well/Hokey-dokey/Right you are boss]
 #
 TEXT FIDDLE.UNDO
      {FIDDLE.OK}, let's {FIDDLE.IGNORE} last [//$ ]command[//s].
@@ -585,50 +585,35 @@ FRAGMENT increment WIMPS.R.US
 TEXT UNDO.TERMS
     /  1. Penalties remain, even if you UNDO their causes.
     /  2. Turns counter keeps ticking on, regardless of any UNDOs.
-    /  3. Restoring a game will restore its "undo history", if there is one.
-    /  4. Therefore you can't UNDO a game restore.
-    /  5. Undoing a game save does not get rid of the saved game.
-    /  6. You may specify the number of commands to UNDO.
-    /  7. You can undo an UNDO by typing UNDO UNDO immediately afterwards.
+    /  3. You cannot UNDO beyond a game restore.
+    /  4. Undoing a game save does not get rid of the saved game.
+    /  5. You may specify the number of commands to UNDO.
+    /  6. You can undo an UNDO by typing UNDO UNDO immediately afterwards.
+    /  7. You can REDO a specific number of commands imediately after an UNDO.
 #
 TEXT UNDO.CONDITIONS
    Before you decide on being a wimp, consider the following:
 
    {UNDO.TERMS}
 #
-TEXT increment NO.UNDO
-   [{WIMPS.R.US} Besides/You forget/Remember], UNDO is not allowed in
-   this game[./!]
+TEXT NO.UNDO
+   Sorry, UNDO is not allowed in this game.
 #
-TEXT FIRST.UNDO
-   {WIMPS.R.US} If you insist on using the UNDO and REDO commands, bear
-   in mind the following:
-
-   {UNDO.TERMS}
-
-   Got that? Now then, let's see about that undoing...
-
+TEXT SPARE..T..3
 #
 FRAGMENT ARE.YOU.A.WIMP?
    Do you really wish to use UNDO and be considered a wimp?_
 #
 TEXT YOU.R.A.WIMP
-   OK, you are a wimp, and I'll be tracking the UNDO history from now on.
+   OK, you are a wimp.
 #
-TEXT UNDO.ALREADY
-   I am [not keeping the UNDO history anyway./already keeping the "UNDO
-   history"!]
+TEXT UNDO.ALREADY.ON
+   UNDO is already avaliable. No need to switch it on.
 #
-TEXT UNDO.NOW
-   OK, I'll [stop/now start] tracking the UNDO history, so
-   you [won't/will] be able to [use UNDO from now on/undo the your
-   future rash actions].
+TEXT UNDO.STAYS.ON
+   Just don't use UNDO if you don't want to!
 #
-TEXT increment UNDO.CURRENTLY.OFF
-   I am not tracking the UNDO history at the moment. If you want me to,
-   say UNDO ON.
-
-   [{UNDO.CONDITIONS}/]
+TEXT SPARE..T..4
 #
 TEXT YOU.DO.IT
    You {ARG1} the {ARG2}.
@@ -742,7 +727,8 @@ TEXT WICKED.UNICORN
    healthy - long and shiny. But the unicorn doesn't look all that
    tame to me.] Best leave [the beast/=/it] alone!
 #
-TEXT SPARE..T..1M
+TEXT NO.HORIZON
+   Dunes around you block all view of the desert horizon.
 #
 TEXT ASSAY.MARKS
    The silver assay marks are too small to make out, and they are not

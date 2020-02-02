@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2016.
+# Adventure770 -- Copyleft Mike Arnautov 1984-2018.
 #
 # Define some variables.
 #
@@ -23,7 +23,7 @@ variable lamplife
 variable spare..v..05, spare..v..06, spare..v..07, spare..v..08, spare..v..09
 variable invct
 variable deaths, penalties, scorex, maxscore
-variable undostat
+variable undo.status
 variable turns, moves
 variable foobar
 variable dwarfcount, clock, stage, nuffink, ok
@@ -32,8 +32,7 @@ variable strength, mushtime, dragtime, masktime, lastclock
 variable escape
 variable spare..v..10, backlash, fleetfoot
 variable west.count
-variable spare..v..11
-variable spare..v..12
+variable blocked.dir, unblocked.dir
 variable tide
 variable recent.event
 variable shown.vision
@@ -50,7 +49,7 @@ variable forest.block, forest.trap
 variable vessel
 variable sip.count
 variable result 
-variable spare..v..13
+variable spare..v..11
 variable silence
 variable object.state
 variable desloc, desmask, desbit, destime

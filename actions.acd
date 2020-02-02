@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2016.
+# Adventure770 -- Copyleft Mike Arnautov 1984-2018.
 #
 # This module defines the actions to be taken when certain
 # verb, verb/object, verb/verb or object/object word sequences
@@ -1341,9 +1341,6 @@ action look                # Can't look in the dark!
             fin
             call list.dunes, result
             say sentence.end
-            ifat desert.11
-               say desert.outcrop
-            fin
             quip blank
          fin
          ifat river.bed.2
@@ -4321,9 +4318,13 @@ action rest
       quip you.rest, 0
    fin
    ifflag here, in.desert
-      flag desloc, moved   # Force winds to blow!
       say you.do, arg1
-      quip you.rest, 1
+      say you.rest, 1
+      set unblocked.dir, blocked.dir
+      set blocked.dir, 0
+      call blow.sands
+      unflag desloc, moved
+      quit
    fin
    quip no.rest, arg1
 #
@@ -6466,27 +6467,13 @@ action undo
    local mode
    local got.light
 #
-   ifflag undo.status, undo.none
-      quip no.undo
-   fin
-#
    ifkey on
-      ifflag undo.status, undo.off
-         say undo.now, 1
-      else
-         say undo.already, 1
-      fin
-      unflag undo.status, undo.off
-      quit
+      and
+   ifflag undo.status, undo.info
+      quip undo.already.on
    otherwise
    ifkey off
-      ifflag undo.status, undo.off
-         say undo.already, 0
-      else
-         say undo.now, 0
-      fin
-      flag undo.status, undo.off
-      quit
+      quip undo.stays.on
    fin
    ifis arg1, undo
       and
@@ -6495,21 +6482,15 @@ action undo
       lda arg2, all
    fin
 #      
-   ifflag undo.status, undo.off
-      ifflag undo.status, undo.info
-         quip undo.currently.off
-      fin
+   ifflag undo.status, undo.info
+   else
       set context, q.wimp
       say wimps.r.us
       say undo.conditions
+      save command
       quip are.you.a.wimp?
    fin
-   ifflag undo.status, undo.info
-   else
-      unflag undo.status, undo.off
-      flag undo.status, undo.info
-      say first.undo
-   fin
+#
    ifflag status, light.here
       set got.light, 1
    fin

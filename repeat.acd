@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2016.
+# Adventure770 -- Copyleft Mike Arnautov 1984-2018.
 #
 # And here, at long last, is the main program!
 #
@@ -46,7 +46,7 @@ repeat
 # and the game might have been upgraded under our feet. This way we
 # set even those values which didn't exist when the game was saved.
 #
-      ifcgi            # Are we running in the CGI mode?
+      ifcgi            # Are we running in the cloud mode?
          call set.it.up
       fin
       set context q.initial
@@ -94,10 +94,6 @@ repeat
          unflag obj.ptr, schizoid   # It must not appear INHAND!
       fin
    fin
-#
-# Call the stub routine, which is only of use in the wizard (debug) mode
-#
-   call wiz.reports
 #
 # Are we ready to allow spontaneous events?
 #
@@ -909,6 +905,10 @@ repeat
 repeat
    local context.value
 #
+# Call the stub routine, which is only of use in the wizard (debug) mode
+#
+   call wiz.reports
+#
    unflag context, arg2.here
    unflag context, arg2.distant
    ifeq context, q.null.turn
@@ -1397,8 +1397,13 @@ repeat
    ifeq context, q.wimp
       set context, none
       ifkey yes
-         set undostat, 1
-         quip you.r.a.wimp
+         say you.r.a.wimp
+         flag undo.status, undo.info
+         restore command
+         ifkey on
+            quit           
+         fin
+         call undo
       fin
       respond n, no, very.wise
       quip lets.be.prudent, 0
@@ -1552,25 +1557,30 @@ repeat
 #
 # Have to cater for style 12 as well as 11 - hence the complicated if.
 #
-   ifeq status, 2
-      and
-      not
-   ifeq arg2, badword
-      and
-      not
-   ifeq arg2, badsyntax
-      and
-      not
-   ifeq arg2, ambigtypo
-      and
-      not
-   ifeq arg2, ambigword
-      set it, arg2
-   otherwise
-   ifflag arg1, object
-      or
-   ifinrange arg1, first.pseudo, last.pseudo
-      set it, arg1
+   ifdoall
+#      or
+#   ifkey all
+   else
+      ifeq status, 2
+         and
+         not
+      ifeq arg2, badword
+         and
+         not
+      ifeq arg2, badsyntax
+         and
+         not
+      ifeq arg2, ambigtypo
+         and
+         not
+      ifeq arg2, ambigword
+         set it, arg2
+      otherwise
+      ifflag arg1, object
+         or
+      ifinrange arg1, first.pseudo, last.pseudo
+         set it, arg1
+      fin
    fin
 #
 # "Switch" is both a verb and an object, so check it out before doing a

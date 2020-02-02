@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2016.
+# Adventure770 -- Copyleft Mike Arnautov 1984-2018.
 #
 # Now for the place descriptions.
 #
@@ -2441,19 +2441,19 @@ PLACE INSAFE      # In the safe (weird case - see SAFE actions)
    You are in the safe.
   %You are inside the safe.
 #
-FRAGMENT NICHE_SIGN
+FRAGMENT NICHE.SIGN
    "Drop your objects here for a free valuation"
 #
 PLACE VALUERS
    You're in the valuation room. The sign above the niche says
-  +{NICHE_SIGN}
+  +{NICHE.SIGN}
 
   %You are in a small dusty room with the only exit leading north through
    a narrow arch. The room is quite featureless except for a deep niche
    in the west wall. The niche is illuminated from the inside, filling
    the room with suffused half-light. A sign above the niche says
 
-  +{NICHE_SIGN}
+  +{NICHE.SIGN}
 
 #
 PLACE DARK.HOLE.2
@@ -2477,33 +2477,32 @@ PLACE ABOVE.SEA
    is waving good-bye, and the stony beach at their foot.
    Far ahead is the island -- {ISLAND.VIEW}]
 #
-FRAGMENT RAMP.END
+TEXT RAMP.END
    A narrow ramp climbs steeply upwards from here, soon disappearing
    around the spire's western side.
-
 #
 FRAGMENT AT.SPIRE.BOTTOM
-   You are standing at the bottom of the spire, a massive
-   column of black stone thrusting out of the dunes to 
-   the [south/west/north/east] of you.[// {RAMP.END}/ A narrow
-   ramp seems to be climbing around the spire
-   but it is too far up to reach from here.]
+   You are standing at the bottom of the spire, a massive column of black
+   stone thrusting out of the dunes to the
 #
 PLACE NORTH.OF.SPIRE
    You're north of the black spire.
-  %{AT.SPIRE.BOTTOM}
+  %{AT.SPIRE.BOTTOM} south of you. High above, you can just about make out
+   what might be a narrow steep ramp climbing vertigonously around the spire.
 #
 PLACE EAST.OF.SPIRE
    You're east of the black spire.
-  %{AT.SPIRE.BOTTOM}
+  %{AT.SPIRE.BOTTOM} west of you.
 #
 PLACE SOUTH.OF.SPIRE
    You're south of the black spire.
-  %{AT.SPIRE.BOTTOM}
+  %{AT.SPIRE.BOTTOM} north of you. {RAMP.END}
 #
 PLACE WEST.OF.SPIRE
    You're west of the black spire.
-  %{AT.SPIRE.BOTTOM}
+  %{AT.SPIRE.BOTTOM} east of you. A narrow ramp seems to be climbing
+   ever more steeply around the spire, but it is too far up to
+   reach from here.
 #
 PLACE SPIRE.PART.UP
    You're partway up the black spire.
@@ -2581,10 +2580,6 @@ PLACE DESERT.11
 PLACE ROCKY.DESERT
    You are standing among boulders on a rocky outcrop in 
    the desert.
-  %You are standing among some boulders on a black basaltic outcrop
-   swept clean of sand by the unceasing wind. The outcrop gives
-   way to a sea of forbidding dark dunes in all directions, though
-   to the southeast the dunes appear to be somewhat lower.
 #
 PLACE DESERT.12
    {AMONG.DUNES}
@@ -3024,9 +3019,13 @@ PLACE MAZE    # A dummy to define the word maze and make it a place.
 #
 PLACE +VENUE, ALTERNATE  # A dummy to define alternate venue as a location
 #
-PLACE SPARE..P..35
+PLACE OUTCROP.1
+   You are standing on a smooth rocky outcrop in the desert.
+   %{ROCKY.OUTCROP}
 #
-PLACE SPARE..P..36
+PLACE OUTCROP.2
+   You are standing on a smooth rocky outcrop in the desert.
+   %{ROCKY.OUTCROP}
 #
 PLACE SPARE..P..37
 #

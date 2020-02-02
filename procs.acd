@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2016.
+# Adventure770 -- Copyleft Mike Arnautov 1984-2018.
 #
 # Procedures.
 #
@@ -199,6 +199,12 @@ proc bail.out
             quip hah!
          fin
       fin
+   fin
+#
+#  Desert horizon
+#
+   ifflag here, in.desert
+      respond horizon, no.horizon
    fin
 #
 # Assay marks need special treatment!
@@ -2621,9 +2627,12 @@ proc special.view
             add temp.val, 2
          fin
          append dune.types, temp.val
-         ifat desert.11
-            say desert.outcrop
+         ifat desert.11, desert.19
+            say desert.outcrop, 0
          fin
+         ifat desert.18
+            say desert.outcrop, 1
+         fin         
          ifinrange here, desert.12, desert.last
             set desert.offset, here
             lda temp.val, desert.1
@@ -2634,8 +2643,10 @@ proc special.view
                say massive.black.spire, desert.offset
             fin
          fin
+         chance 50
+            and
+            not
          ifkey look
-         else
             say ferocious.wind
          fin
       fin
@@ -2645,9 +2656,9 @@ proc special.view
          or
       ifat rocky.desert
          ifkey look
-            ifat south.of.spire, east.of.spire, north.of.spire
-               append null
-            fin
+            and
+            not
+         ifat west.of.spire
             say cliff.over.desert
          else
             say blank
@@ -2689,9 +2700,6 @@ proc describe.here
       proceed
    fin
    say here
-   ifat top.of.chapel
-      call fishy.stuff
-   fin
    ifinrange here, forest.1, dark.forest-1
       and
       not
@@ -2710,6 +2718,9 @@ proc describe.here
       say forest.poem
    fin
    call special.view
+   ifat top.of.chapel
+      call fishy.stuff
+   fin
    call here.you.can.see
    ifhave bear
       say bear.follows
@@ -2925,6 +2936,7 @@ proc drop.sunstone
    say sunstone.drops, sunstone
    ifeq sunstone.drops, 3
       append drop.abyss, 0
+      quit
    fin
    ifeq sunstone, 8
       and
@@ -5379,7 +5391,7 @@ proc stir.sands, where
       intersect desval, 48    # S and SW
    otherwise
    ifis where, desert.2
-      intersect desval, 93    # N, S, SW and W
+      intersect desval, 113    # N, S, SW and W
    otherwise
    ifis where, desert.3
       or
@@ -5437,6 +5449,7 @@ proc stir.sands, where
    ifis where, desert.last
       intersect desval, 11    # N, NE, SE
    fin
+#
    deposit, where, desval
 #
 #=====================================================================
@@ -5494,24 +5507,28 @@ proc desert.stuff
       ifeq dir, 0
          proceed
       fin
-      lda temp.val, north
-      set state, dir
-      sub state, temp.val
-      set desbit, 1
-      ifgt state, 0
-         iterate counter, 1, state
-            add desbit, desbit
+      ifne dir, unblocked.dir
+         lda temp.val, north
+         set state, dir
+         sub state, temp.val
+         set desbit, 1
+         ifgt state, 0
+            iterate counter, 1, state
+               add desbit, desbit
+            fin
          fin
-      fin
-      eval desmask, there
-      intersect desmask, desbit
-      ifgt desmask, 0
-         say no.cross.sand, dir
-         goto there
-         set there, desloc
-         unflag status, moved
+         eval desmask, there
+         intersect desmask, desbit
+         ifgt desmask, 0
+            say no.cross.sand, dir
+            goto there
+            set there, desloc
+            unflag status, moved
+            set blocked.dir, dir
+         fin
       else
          set desloc, there
+         set unblocked.dir, 0
          call stir.sands, here
       fin
    fin
@@ -5525,6 +5542,7 @@ proc desert.stuff
    chance temp.val
       call blow.sands
    fin
+   say blank
 #
 #=====================================================================
 #
@@ -5867,10 +5885,10 @@ proc maze.escape
 proc save.this
    set context, none
    unflag here, been.here
-   ifis arg2, save             # Can't be just 'rest'! We wouldn't be here.
+   ifis arg2, save             # Can't be just 'save'! We wouldn't be here.
       exec 11                  # Copy 1st word to 2nd
    fin
-   ifgt alarm, 1
+   ifgt alarm, 1               # Fire alarm keeps ticking!
       add alarm, 1
    fin
    save file, result           # Save program image
@@ -6057,154 +6075,153 @@ proc show.nouns
       set context, none
       quip as.you.wish
    fin
-   say vocab.nouns
-   vocab 0, 0, 0, 0
-   vocab alarm, 0, seen, 0
-   vocab axe, 0, 0, 0
-   vocab bag, 0, seen, 0
-   vocab basilisk, 0, seen, 0
-   vocab batteries, 0, seen, 0
-   vocab beads, 0, seen, 0
-   vocab bear, 0, seen, 0
-   vocab beater, 0, seen, 0
-   vocab bird, 0, seen, 0
-   vocab bones, bones.room, been.here, 0
+   vocab vocab.nouns
+   vocab alarm, seen
+   vocab axe
+   vocab bag, seen
+   vocab basilisk, seen
+   vocab batteries, seen
+   vocab beads, seen
+   vocab bear, seen
+   vocab beater, seen
+   vocab bird, seen
+   vocab bones, bones.room, been.here
    vocab book, imaze.book, been.here, book.voc
-   vocab bottle, 0, 0, 0
-   vocab bowl, 0, seen, bowl.voc
-   vocab box, 0, seen, box.voc
-   vocab bracelet, 0, seen, 0
-   vocab bridge, 0, seen, 0
-   vocab bucket, 0, seen, 0
-   vocab bust, 0, seen, 0
-   vocab cage, 0, seen, 0
-   vocab caviar, champagne, seen, 0
-   vocab chain, 0, seen, 0
-   vocab chalice, 0, seen, 0
-   vocab champagne, 0, seen, 0
-   vocab chasm, sw.of.chasm, been.here, 0
-   vocab chest, 0, seen, chest.voc
-   vocab clam, 0, seen, 0
-   vocab coffin, 0, seen, 0
-   vocab coins, 0, seen, 0
-   vocab crown, 0, seen, 0
-   vocab crucifix, 0, seen, 0
-   vocab curtains, 0, seen, 0
-   vocab diamonds, 0, seen, 0
-   vocab dinghy, 0, seen, 0
-   vocab djinn, 0, seen, 0
-   vocab documents, 0, seen, 0
-   vocab door, 0, seen, 0
-   vocab drachma, 0, seen, 0
-   vocab dragon, 0, seen, 0
-   vocab drain, 0, seen, 0
-   vocab dung, 0, seen, 0
-   vocab dwarf, 0, seen, dwarf.voc
-   vocab eggs, 0, seen, eggs.voc
-   vocab emerald, 0, seen, 0
-   vocab fangs, 0, seen, 0
-   vocab flask, 0, seen, 0
-   vocab flower, 0, seen, 0
-   vocab fog, plain.2, been.here, 0
-   vocab food, 0, seen, 0
-   vocab gates, 0, seen, 0
-   vocab giant, 0, seen, 0
-   vocab goblins, 0, seen, 0
-   vocab nugget, 0, seen, gold.voc
-   vocab gong, 0, seen, 0
-   vocab grate, 0, seen, 0
-   vocab grill, 0, seen, 0
-   vocab helmet, 0, seen, 0
-   vocab horn, 0, seen, 0
-   vocab imp, 0, seen, 0
-   vocab inscription, 0, seen, inscription.voc
-   vocab jewellery, 0, seen, 0
-   vocab keys, 0, 0, 0
-   vocab lamp, 0, 0, 0
-   vocab machine, 0, seen, machine.voc
-   vocab magazines, 0, seen, magazine.voc
-   vocab mask, 0, seen, 0
-   vocab mirror, 0, seen, 0
-   vocab mist, 0, 0, 0
-   vocab mushroom, 0, seen, 0
-   vocab mustafa, 0, seen, mustafa.voc
-   vocab notice, 0, seen, 0
-   vocab ogre, 0, seen, 0
-   vocab oil, east.pit, been.here, 0
-   vocab opals, 0, seen, opals.voc
-   vocab orb, 0, seen, orb.voc
-   vocab owl, 0, seen, 0
+   vocab bottle
+   vocab bowl, seen, bowl.voc
+   vocab box, seen, box.voc
+   vocab bracelet, seen
+   vocab bridge, seen
+   vocab bucket, seen
+   vocab bust, seen
+   vocab cage seen
+   vocab caviar, champagne, seen
+   vocab chain, seen
+   vocab chalice, seen
+   vocab champagne, seen
+   vocab chasm, sw.of.chasm, been.here
+   vocab chest, seen, chest.voc
+   vocab clam, seen
+   vocab coffin, seen
+   vocab coins, seen
+   vocab crown, seen
+   vocab crucifix, seen
+   vocab curtains, seen
+   vocab diamonds, seen
+   vocab dinghy, seen
+   vocab djinn, seen
+   vocab documents, seen
+   vocab door, seen
+   vocab drachma, seen
+   vocab dragon, seen
+   vocab drain, seen
+   vocab dung, seen
+   vocab dwarf, seen, dwarf.voc
+   vocab eggs, seen, eggs.voc
+   vocab emerald, seen
+   vocab fangs, seen
+   vocab flask, seen
+   vocab flower, seen
+   vocab fog, plain.2, been.here
+   vocab food, seen
+   vocab gates, seen
+   vocab giant, seen
+   vocab goblins, seen
+   vocab nugget, seen, gold.voc
+   vocab gong, seen
+   vocab grate, seen
+   vocab grill, seen
+   vocab helmet, seen
+   vocab horn, seen
+   vocab imp, seen
+   vocab inscription, seen, inscription.voc
+   vocab jewellery, seen
+   vocab keys
+   vocab lamp
+   vocab machine, seen, machine.voc
+   vocab magazines, seen, magazine.voc
+   vocab mask, seen
+   vocab mirror, seen
+   vocab mist
+   vocab mushroom, seen
+   vocab mustafa, seen, mustafa.voc
+   vocab notice, seen
+   vocab ogre, seen
+   vocab oil, east.pit, been.here
+   vocab opals, seen, opals.voc
+   vocab orb, seen, orb.voc
+   vocab owl, seen
    ifeq packet, stupe.gro
-      vocab packet, 0, seen, packet.voc
+      vocab packet, seen, packet.voc
    else
-      vocab packet, 0, seen, 0
+      vocab packet, seen
    fin
-   vocab pearl, 0, seen, 0
-   vocab pillow, 0, seen, 0
-   vocab pine, island.05, been.here, 0
-   vocab pirate, 0, seen, 0
+   vocab pearl, seen
+   vocab pillow, seen
+   vocab pine, island.05, been.here
+   vocab pirate, seen
    ifflag plant, seen
       or
    ifflag beanstalk, seen
-      vocab plant, 0, seen, plant.voc
+      vocab plant, seen, plant.voc
    else
-      vocab plant, 0, object, 0
+      vocab plant, object
    fin
-   vocab plaque, 0, seen, 0
-   vocab plate, 0, seen, 0
-   vocab portcullis, 0, seen, 0
-   vocab pottery, 0, seen, pottery.voc
-   vocab pyramid, 0, seen, 0
-   vocab rags, 0, seen, 0
-   vocab rat, 0, seen, 0
-   vocab ring, 0, seen, 0
-   vocab rod, 0, seen, 0
-   vocab rope, 0, seen, 0
-   vocab rose, tower.roof, been.here, 0
-   vocab rosebowl, 0, seen, 0
-   vocab rug, 0, seen, 0
-   vocab safe, 0, seen, 0
-   vocab sapling, 0, seen, 0
-   vocab sapphire, 0, seen, 0
-   vocab sceptre, 0, seen, 0
-   vocab sculpture, 0, seen, 0
-   vocab seal, 0, seen, 0
-   vocab shoes, 0, seen, shoes.voc
-   vocab bars, 0, seen, silver.voc
-   vocab skeleton, 0, seen, 0
-   vocab skull, 0, seen, 0
-   vocab slime, 0, seen, 0
-   vocab snake, 0, seen, 0
-   vocab spices, 0, seen, 0
-   vocab spider, 0, seen, 0
-   vocab spire, spire, been.here, 0
-   vocab spoon, 0, seen, 0
-   vocab spyglass, 0, seen, 0
-   vocab stalactite, 0, seen, 0
-   vocab starstone, 0, seen, 0
-   vocab statue, 0, seen, 0
-   vocab steps, 0, seen, 0
-   vocab sunstone, 0, seen, 0
-   vocab sword, 0, seen, 0
-   vocab tablet, 0, seen, 0
-   vocab teeth, 0, seen, 0
-   vocab throne, 0, seen, 0
-   vocab thurible, 0, seen, 0
-   vocab tortoise, 0, seen, 0
-   vocab trapdoor, 0, seen, 0
-   vocab tree, 0, 0, 0
-   vocab trident, 0, seen, 0
-   vocab troll, 0, seen, 0
-   vocab tusk, 0, seen, 0
-   vocab unicorn, 0, seen, 0
-   vocab vampire, 0, seen, 0
-   vocab vase, 0, seen, 0
-   vocab vial, 0, seen, 0
-   vocab water, 0, 0, 0
-   vocab web, 0, seen, 0
-   vocab windrose, 0, seen, rose.voc
-   vocab wrapper, 0, seen, 0
-   vocab yacht, 0, seen, 0
+   vocab plaque, seen
+   vocab plate, seen
+   vocab portcullis, seen
+   vocab pottery, seen, pottery.voc
+   vocab pyramid, seen
+   vocab rags, seen
+   vocab rat, seen
+   vocab ring, seen
+   vocab rod, seen
+   vocab rope, seen
+   vocab rose, tower.roof, been.here
+   vocab rosebowl, seen
+   vocab rug, seen
+   vocab safe, seen
+   vocab sapling, seen
+   vocab sapphire, seen
+   vocab sceptre, seen
+   vocab sculpture, seen
+   vocab seal, seen
+   vocab shoes, seen, shoes.voc
+   vocab bars, seen, silver.voc
+   vocab skeleton, seen
+   vocab skull, seen
+   vocab slime, seen
+   vocab snake, seen
+   vocab spices, seen
+   vocab spider, seen
+   vocab spire, spire, been.here
+   vocab spoon, seen
+   vocab spyglass, seen
+   vocab stalactite, seen
+   vocab starstone, seen
+   vocab statue, seen
+   vocab steps, seen
+   vocab sunstone, seen
+   vocab sword, seen
+   vocab tablet, seen
+   vocab teeth, seen
+   vocab throne, seen
+   vocab thurible, seen
+   vocab tortoise, seen
+   vocab trapdoor, seen
+   vocab tree
+   vocab trident, seen
+   vocab troll, seen
+   vocab tusk, seen
+   vocab unicorn, seen
+   vocab vampire, seen
+   vocab vase, seen
+   vocab vial, seen
+   vocab water
+   vocab web, seen
+   vocab windrose, seen, rose.voc
+   vocab wrapper, seen
+   vocab yacht, seen
    say blank
    ifeq context, none
       quit
@@ -6946,7 +6963,7 @@ proc follow.it place1, dir1, place2, dir2
       ifflag here, not.in.cave
          call consult.sunstone, dir1
       fin
-      move, place1
+      move place1
    fin
    ifflag here, not.in.cave
       ifeq there, place1

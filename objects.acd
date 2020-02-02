@@ -1,4 +1,4 @@
-# Copyleft Mike Arnautov 1984-2016.
+# Adventure770 -- Copyleft Mike Arnautov 1984-2018.
 #
 # Here follow the object definitions.
 #
@@ -831,17 +831,17 @@ OBJECT SWORD, =SINGING, THROWER
    singing organs (whatever they happen to be...)/
    There is a sword here, singing "Witchi-Tai-To" in two-part harmony
    with itself./
-   A singing sword lies here, merrily humming the Radecky March to
+   A singing sword lies here, merrily humming the Radetzky March to
    itself./
-   An gleaming sword lies on the {FLOOR?}. Unnervingly, some
+   A gleaming sword lies on the {FLOOR?}. Unnervingly, some
    eldritch magic fills the air around it with the   
-   pensive notes of Satie's Gnosienne I./
+   pensive notes of Satie's "Gnosienne I"./
    There is an obviously enchanted sword here, improvising darkly on
    the Valkyrie theme from Wagner's Ring./
    There is a very strange singing sword here - it is glowing and
    vibrating, and the eerie electronic notes of Charles Wuorinen's
    "Time's Encomium" issue from its blade and fill the air.]
-  &A plain and deadly utilitarian object{THROWER.IS.NAME?}
+  &An elegantly plain and deadly object{THROWER.IS.NAME?}
 #
 OBJECT TEETH
    Several dragon's teeth
