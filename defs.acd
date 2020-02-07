@@ -1,4 +1,4 @@
-# Adventure770 -- Copyleft Mike Arnautov 1984-2018.
+# Adventure770 -- Copyleft Mike Arnautov 1984-2020.
 #
 # Define various flags and constants.
 #
@@ -272,6 +272,7 @@ flags variable        # CONTEXT
 #
 flags variable             # RECENT.EVENT
       just.happened        # Event occured on the previous turn
+#
 state 1, demanding.dwarf   # Dwarf died making a peculiar demand
 #
 # Valuation results.
